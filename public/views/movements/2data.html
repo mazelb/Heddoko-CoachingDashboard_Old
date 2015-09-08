@@ -1,0 +1,176 @@
+<!--<div class="row">
+	<div class="col-sm-12">
+		<div class="panel panel-default" style="height:740px;">
+			<div class="panel-body" style="padding:0px;">
+				<div class="col-sm-2" style="background-color:#f5f6f8;height:740px;padding:0px;">
+					<div class="row" style="height:56px;margin:0;line-height:56px;">
+						<div class="col-sm-8">
+							Select Trial
+						</div>
+						<div class="col-sm-4" style="height:56px;" ng-click="data.current_movement_page.data_page_data.choose_trial = !data.current_movement_page.data_page_data.choose_trial">
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="data.current_movement_page.data_page_data.choose_trial"/>
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="data.current_movement_page.data_page_data.choose_trial"/>
+						</div>
+					</div>
+					<div ng-if="data.current_movement_page.data_page_data.choose_trial" class="row" ng-repeat="trial in data.current_movement_page.active_side.trials" ng-if="true" ng-click="data.current_movement_page.active_side.active_trial = trial" style="height:56px;margin:0;line-height:56px;">
+						<div class="col-sm-8">
+							{{trial.name}}
+						</div>
+						<div class="col-sm-4" ng-click="joint.selected = !joint.selected">
+							<i style="line-height:inherit;" ng-show="data.current_movement_page.active_side.active_trial == trial" class="fa fa-2x fa-check"/>
+						</div>
+					</div>
+					<div ng-hide="data.current_movement_page.data_page_data.see_all" class="summary-joints-container" ng-repeat="joint in data.current_movement_page.active_side.active_trial.joints">
+						<div class="row" style="height:56px;margin:0;line-height:56px;" ng-click="joint.data_graph_selected = !joint.data_graph_selected">
+							<div class="col-sm-8">
+								{{joint.name}}
+							</div>
+							<div class="col-sm-4" style="height:56px;" >
+								<i ng-show="joint.data_graph_selected" class="fa fa-2x fa-caret-up" style="transform:scale(1, 1.5);">
+								<i ng-hide="joint.data_graph_selected" class="fa fa-2x fa-caret-down" style="transform:scale(1, 1.5);">
+							</div>
+						</div>
+						<div class="row" style="height:56px;margin:0;line-height:56px;" ng-repeat="movement in joint.movements" ng-click="movement.data_graph_selected = !movement.data_graph_selected;UpdateDataGraphSeries();" ng-class="{'selected':movement.data_graph_selected}" ng-if="joint.data_graph_selected">
+							<div class="col-sm-8">
+								{{movement.name}}
+							</div>
+							<div class="col-sm-4" style="height:56px;" >
+								<i ng-show="movement.data_graph_selected" class="fa fa-2x fa-check-square-o"/>
+								<i ng-hide="movement.data_graph_selected" class="fa fa-2x fa-square-o"/>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height:56px;margin:0;line-height:56px;">
+						<div class="col-sm-8">
+							See All
+						</div>
+						<div class="col-sm-4" style="height:56px;" ng-click="data.current_movement_page.data_page_data.see_all = !data.current_movement_page.data_page_data.see_all;UpdateDataGraphSeries();">
+							<i ng-show="data.current_movement_page.data_page_data.see_all" class="fa fa-2x fa-check-square-o"/>
+							<i ng-hide="data.current_movement_page.data_page_data.see_all" class="fa fa-2x fa-square-o"/>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-10">
+					<div class="row">
+						<div class="col-md-12">
+							<div style="margin-left:40px;margin-right:40px;position:relative;margin-bottom:40px;">
+								<div style="height:100%;width:40px;position:absolute;left:-40px;">
+									<span style="display: block;position: relative;top: 45%;transform: rotate(-90deg);width: 200px;text-align: center;left:-80px;height: 40px;line-height: 40px;">Flexion Degree( &deg )</span>
+								</div>
+								<div style="height:40px;width:100%;position:absolute;bottom:-40px;">
+									<span style="line-height:40px;text-align:center;display:block;">Movement Cycle</span>
+								</div>
+								<chartist ng-init="InitializeGraph();" id="movement_data_chart" class="movement_data_chart ct-chart ct-major-twelfth" chartist-data="lineData" chartist-chart-type="Line" chartist-chart-options="lineOptions" style="margin-top:30px;"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<table border="0" class="data_bottom_table" >
+								<tr height="36px">
+									<td style="background-color:white;"/>
+									<td style="background-color:#3dd5af;" ng-repeat="joint in data.current_movement_page.active_side.active_trial.joints" ng-click="show_drop = true">
+										<div style="height:100%;display:inline-block;width:100%;position:relative;" >
+											<span style="display:block;width:100%;height:36px;line-height:36px;">{{joint.name}}<i class="fa fa-2x fa-caret-down pull-right"/>
+											</span>
+											<div style="z-index:10;width:100%;display:inline-block;position:absolute;top:36px;height:40px;line-height:40px;background-color:rgba(255, 255, 255, 0.8);left:0;" ng-show="show_drop" ng-mouseleave="show_drop = false">
+												<div ng-repeat="movement in joint.movements" style="margin:0 auto;height:100%;width:60%;" ng-click="DataTableToggleMovSel(movement);">
+													<b>{{movement.name}}</b>
+													<i ng-show="movement.data_tbl_selected" class="fa fa-2x fa-check-square-o pull-right" />
+													<i ng-hide="movement.data_tbl_selected" class="fa fa-2x fa-square-o pull-right" />
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr height="36px" ng-repeat="datum in tbl_data" ng-class-odd="'odd'">
+									<td ng-if="$index == 0" style="background-color:#91decb;">
+										Time (s)
+									</td>
+									<td  ng-if="$index != 0">
+										{{$index/10.0}}
+									</td>
+									<td ng-repeat="cell in datum">
+										{{cell.val}}
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>-->
+
+<div class="row">
+	<div class="col-sm-12" >
+		<div class="panel panel-default">
+			<div class="panel-body" style="padding:0px;">
+				<div class="movement-left-column non-test-pages">
+					<div class="row" style="padding:0">
+						<div class="col-sm-8">
+							Select Trial
+						</div>
+						<div class="col-sm-4" style="height:56px;" ng-click="data.current_movement_page.data_page_data.choose_trial = !data.current_movement_page.data_page_data.choose_trial">
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="data.current_movement_page.data_page_data.choose_trial"/>
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="data.current_movement_page.data_page_data.choose_trial"/>
+						</div>
+					</div>
+					<div ng-if="data.current_movement_page.data_page_data.choose_trial" class="row hierarchy-2" ng-repeat="trial in data.current_movement_page.active_side.trials" ng-if="true" ng-click="data.current_movement_page.active_side.active_trial = trial">
+						<div class="col-sm-8">
+							{{trial.name}}
+						</div>
+						<div class="col-sm-4" ng-click="joint.selected = !joint.selected">
+							<i style="line-height:inherit;" ng-show="data.current_movement_page.active_side.active_trial == trial" class="fa fa-2x fa-check"/>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					<div ng-hide="data.current_movement_page.data_page_data.see_all" ng-repeat="joint in data.current_movement_page.active_side.active_trial.joints">
+						<div class="row" style="height:56px;margin:0;line-height:56px;" ng-click="joint.data_graph_selected = !joint.data_graph_selected">
+							<div class="col-sm-8">
+								{{joint.name}}
+							</div>
+							<div class="col-sm-4" style="height:56px;" >
+								<i ng-show="joint.data_graph_selected" class="fa fa-2x fa-caret-up" style="transform:scale(1, 1.5);" />
+								<i ng-hide="joint.data_graph_selected" class="fa fa-2x fa-caret-down" style="transform:scale(1, 1.5);" />
+							</div>
+						</div>
+						<div class="row hierarchy-2" ng-repeat="movement in joint.movements" ng-click="movement.data_graph_selected = !movement.data_graph_selected;UpdateDataGraphSeries();" ng-class="{'selected':movement.data_graph_selected}" ng-if="joint.data_graph_selected">
+							<div class="col-sm-8">
+								{{movement.name}}
+							</div>
+							<div class="col-sm-4">
+								<i ng-show="movement.data_graph_selected" class="fa fa-2x fa-check-square-o"/>
+								<i ng-hide="movement.data_graph_selected" class="fa fa-2x fa-square-o"/>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

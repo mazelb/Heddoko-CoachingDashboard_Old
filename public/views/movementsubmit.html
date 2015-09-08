@@ -1,0 +1,156 @@
+<header class="page-main-header">
+    <div class="row">
+			<div class="col-sm-6">
+				<h4>Movement Data</h4>
+				<p>Choose player and category of movement</p>
+			</div>
+    </div>
+</header>
+
+<div class="page page-dashboard">
+
+	<section>
+		<div class="row">
+
+			<div class="col-sm-12">
+
+				<div class="panel panel-default">
+
+					<div class="panel-body">
+
+						<div class="text-left col-sm-6">
+							<h2>
+								Athlete
+							</h2>
+							
+							<select ng-model="data.selected_athlete"
+									ng-selected="data.selected_athlete"
+									ng-options="athlete.first_name for athlete in data.athletes track by athlete.id" >
+							</select>	
+						</div>
+
+						<div class="panel-body col-sm-8 ng-scope">
+
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+	</section>
+	
+	<section>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2>
+							Submit Movement Data
+						</h2>
+						<div ng-show="data.selected_athlete == null">Select an athlete under 'Dashboard' in the sidebar before submitting Movement Data</div>
+						
+						<div ng-hide="data.selected_athlete == null" class="col-sm-6" data-ng-controller="SportsController">
+							
+							<div class="form-group">
+								<label for="sportChoice" class="col-sm-4 control-label">Choose Sport</label>
+
+									<select id="sportChoice"
+													ng-model="data.selected_sport"
+													ng-selected="data.selected_sport"
+													ng-options="sport.name for sport in data.sports track by sport.id" >
+									</select>  
+
+							</div>
+ 
+							
+							<div>
+
+								<!--<div ng-repeat="sport_movement in data.sport_movements" ng-click="data.selected_sport_movement = sport_movement;">
+						
+									
+									<div class="col-md-3" style="background-color:gray;height:120px;">
+										{{sport_movement.name}}
+									</div>
+									
+								</div>-->
+								
+								<a href="javascript:;" class="btn btn-primary btn-metro" ng-repeat="sport_movement in data.sport_movements" ng-click="data.selected_sport_movement = sport_movement;">
+									<!--<i class="fa fa-envelope"></i>-->
+									<span>{{sport_movement.name}}</span>
+								</a>
+
+							</div>
+							
+							
+						</div>
+						
+						<div class="col-sm-6" ng-hide="data.selected_sport_movement == null">
+							
+							<div class="row">
+								<div class="col-sm-4">
+									<!--picture here-->
+								</div>
+								<div class="col-sm-8">
+								
+									<h3>Summary</h3>
+									
+									<ul class="list-unstyled">
+										<li>Player <b class="pull-right">{{data.selected_athlete.first_name}} {{data.selected_athlete.last_name}}</b></li>
+										<li>Category <b class="pull-right">{{data.selected_sport.name}}</b></li>
+										<li>Movement <b class="pull-right">{{data.selected_sport_movement.name}}</b></li>
+										<li>Suit No. <b class="pull-right">{{}}</b></li>
+										<li>Date <b class="pull-right">{{}}</b></li>				
+									</ul>
+								</div>
+							</div>
+							
+							<form ng-controller="MovementController" ng-submit="uploadMovements();" accept-charset="UTF-8">
+								<div class="row">
+									<div class="col-sm-4">
+
+										<input multiple type="file" file-model="data.new_movement_submission_data.movement_files">
+									</div>
+									<div class="col-sm-8">
+										<table style="width:100%">
+											<tr>
+												<th>Data</th>
+												<th>File</th>
+											</tr>
+											<tr ng-repeat="movement_file in data.new_movement_submission_data.movement_files">
+												<td><input type="checkbox" checked disabled ></td>
+												<td>{{movement_file.name}}</td> 
+											</tr>
+										</table>
+									</div>
+								
+								</div>
+								
+								<div class="row">
+									<div class="col-sm-6">
+										<h3>comments</h3>
+										<textarea name="" id="" class="form-control" ng-model="data.new_movement_submission_data.comment"></textarea>
+									</div>
+									
+									<div class="col-sm-6">
+									
+										<input class="btn btn-primary btn-lg" type="submit" value="Submit Movement Data">
+									</div>
+								</div>
+							</form>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+	
+	
+	
+	
+	
+</div>

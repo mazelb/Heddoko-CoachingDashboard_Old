@@ -1,0 +1,33 @@
+<div class="logo">
+    <div class="logo-container">
+        <img src="../../images/logo/heddoko_logo_1.svg" alt="Heddoko" class="logo1">
+        <img src="../../images/logo/heddoko_logo_2.svg" alt="Heddoko" class="logo2">
+    </div>
+</div>
+<div id="nav-wrapper">
+    <ul id="nav"
+        data-slim-scroll
+        data-collapse-nav
+        data-highlight-active>
+        <li>
+            <a href="#/dashboard"><span>dashboard</span></a>
+        </li>
+		<li>
+            <a href="#/movementsubmit"><span>submit movement data</span></a>
+        </li>
+		<li>
+            <a href="#/fmstest"><span>submit fms test results</span></a>
+        </li>
+		<li>
+            <a href="#/fmsresults"><span>fms results</span></a>
+		</li>
+		<li ng-controller="MovementScreenController">
+            <a href="#/movements"><span>movement screen</span></a>
+			<ul style="display: block;">
+                <li ng-repeat="movement_page in data.movement_pages">
+					<a href="#/movements" ng-click="select_movement(movement_page)"><i ng-if="movement_page.submitted" class="fa fa-2x fa-check" style="color:white;"></i><span>{{movement_page.name}}</span></a>
+				</li>
+            </ul>
+        </li>
+    </ul>
+</div>

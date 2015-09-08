@@ -1,0 +1,225 @@
+<div class="row">
+	<div class="col-sm-9">
+		<div class="panel panel-default" style="height:740px;">
+			<div class="panel-body summary-controls-list-container" style="padding:0px;">
+				<div class="col-sm-2" style="background-color:#f5f6f8;height:740px;padding:0px;">
+					<div class="row" style="height:56px;margin:0;line-height:56px;margin-bottom:56px;">
+						<div class="col-sm-8">
+							Select Trial
+						</div>
+						<div class="col-sm-4" style="height:56px;">
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down"/>
+						</div>
+					</div>
+					<div ng-hide="data.current_movement_page.summary_page_data.see_all" ng-repeat="joint in data.current_movement_page.active_side.active_trial.joints">
+						<div class="row" style="height:56px;margin:0;line-height:56px;">
+							<div class="col-sm-8">
+								{{joint.name}}
+							</div>
+							<div class="col-sm-4" ng-click="joint.selected = !joint.selected">
+								<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="joint.selected"/>
+								<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="joint.selected" />
+							</div>
+						
+						</div>
+						<div class="row" ng-repeat="movement in joint.movements" ng-if="joint.selected" ng-click="movement.selected = !movement.selected" ng-class="{'selected':movement.selected}" style="height:56px;margin:0;line-height:56px;">
+							<div class="col-sm-8">
+								{{movement.name}}
+							</div>
+							<div class="col-sm-4">
+								<i style="line-height:inherit;" ng-show="movement.selected" class="fa fa-2x fa-check-square-o"/>
+								<i style="line-height:inherit;" ng-hide="movement.selected" class="fa fa-2x fa-square-o"/>
+							</div>
+						</div>
+					</div>
+					<div class="row" style="height:56px;margin:0;line-height:56px;">
+						<div class="col-sm-8">
+							See All
+						</div>
+						<div class="col-sm-4" ng-click="data.current_movement_page.summary_page_data.see_all = !data.current_movement_page.summary_page_data.see_all">
+							<i style="line-height:inherit;" ng-show="data.current_movement_page.summary_page_data.see_all" class="fa fa-2x fa-check-square-o"/>
+							<i style="line-height:inherit;" ng-hide="data.current_movement_page.summary_page_data.see_all" class="fa fa-2x fa-square-o"/>
+						</div>
+					</div>
+					<div style="position:absolute;bottom:0px;width:100%;">
+						<div class="row" style="margin:0;">
+							<div class="col-sm-12" style="margin-bottom:20px;">
+								<b>THRESHOLDS</b>
+							</div>
+						</div>
+						<div class="row" style="margin:0;height:32px;color:#89c443;">
+							<div class="col-sm-4">
+								<b>0-5&deg;</b>
+							</div>
+							<div class="col-sm-4">
+								<b>Good</b>
+							</div>
+						</div>
+						<div class="row" style="margin:0;height:32px;color:#f48b4a;">
+							<div class="col-sm-4">
+								<b>5-15&deg;</b>
+							</div>
+							<div class="col-sm-4">
+								<b>Caution</b>
+							</div>
+						</div>
+						<div class="row" style="margin:0;height:32px;color:#ed3941;">
+							<div class="col-sm-4">
+								<b>15&deg;+</b>
+							</div>
+							<div class="col-sm-4">
+								<b>Problematic</b>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-10">
+					<div style="padding:40px">
+						<div style="background-color:#f48b4a;height:56px;line-height:56px;margin-bottom:50px;" class="col-sm-4">
+							<div class="col-sm-8" style="margin:0;">
+								total score
+							</div>
+							<div class="col-sm-4">
+								14
+							</div>
+						</div>
+						<br/>
+						<br/>
+						<br/>
+						<div class="col-sm-12" ng-repeat="joint in data.current_movement_page.active_side.active_trial.joints" ng-if="joint.selected || data.current_movement_page.summary_page_data.see_all">
+							<div class="row" style="background-color:#d1d2d4;white;height:46px;line-height:46px;font-weight:bold;">
+								<div class="col-sm-6">
+									{{joint.name}}
+								</div>
+								<div class="col-sm-2" style="text-align:center;">
+									LEFT
+								</div>
+								<div class="col-sm-2" style="text-align:center;">
+									RIGHT
+								</div>
+								<div class="col-sm-2" style="text-align:center;">
+									DIFFERENCE
+								</div>
+							</div>
+							<div class="row" style="background-color:#f1f1f3;height:46px;line-height:46px;" ng-repeat="movement in joint.movements" ng-if="movement.selected || data.current_movement_page.summary_page_data.see_all">
+								<div class="col-sm-6">
+									{{movement.name}}
+								</div>
+								<div class="col-sm-2" style="text-align:center;">
+									{{movement.left_deg}}
+								</div>
+								<div class="col-sm-2" style="text-align:center;">
+									{{movement.right_deg}}
+								</div>
+								<div class="col-sm-2"  style="background-color:#f48b4a;text-align:center;">
+									{{movement.left_deg - movement.right_deg}}
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-12" style="height:100px">
+									<div class="summary-heat-gradient-container" style="width:400px;margin-left:auto;margin-right:auto;">
+										<div class="row">
+											<span>
+												<span class="pull-left">
+													<b>Left</b>
+												</span>
+												<span class="pull-right">
+													<b>Right</b>
+												</span>
+											</span>
+											<br/>
+											<div class="summary-heat-gradient">
+												{{ -11 + (14*(2)) }}
+												<img src="../../images/ui/down_arrow.png" alt="locked" style="top:0;left:60px;margin-left:-11px;" ng-style="{'margin-left': '' + (-11 + 14*9) + 'px'}"/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="col-sm-12" style="padding:0;">
+			<div class="panel panel-default" >
+				<div class="panel-body" style="padding:0px;">
+					<div class="text-left col-sm-12">
+						<h2 style="margin:0;">
+							<b style="font-size:60%">MOVEMENT OVERVIEW</b>
+						</h2>
+					</div>
+					<div>
+						<div class="text-left col-sm-12">
+							<h2 style="margin:0";>
+								<b style="font-size:40%">Left</b>
+							</h2>
+						</div>
+					</div>
+					<div class="panel-body col-sm-12">
+						<div style="width: 100%; height: 160px;">
+							<img ng-src="{{'../../video/'+ data.current_movement_page.url +'/summary/heat_map_left.png'}}" style="height:100%;display:block;margin:auto;"/>
+						</div>
+					</div>
+					<div>
+						<div class="text-left col-sm-12">
+							<h2 style="margin:0">
+								<b style="font-size:40%">Right</b>
+							</h2>
+						</div>
+					</div>
+					<div class="panel-body col-sm-12">
+						<div style="width: 100%; height: 160px; padding: 0px;">
+							<img ng-src="{{'../../video/'+ data.current_movement_page.url +'/summary/heat_map_right.png'}}" style="height:100%;display:block;margin:auto;"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12" style="padding:0;">
+			<div class="panel panel-default" style="height:370px;">
+				<div class="panel-body" style="padding:0px;">
+					<div class="text-left col-sm-12">
+						<h2 style="margin:0">
+							<b style="font-size:60%">OVERALL SCORES</b>
+						</h2>
+					</div>
+					<div>
+						<div class="text-left col-sm-12">
+							<h2>
+								<b style="font-size:60%">Total Test Score</b>
+							</h2>
+						</div>
+						<div class="col-sm-12 fms_horiz_bar_graph" style="padding:0;margin-left:10%;">
+							<div ng-hide="data.current_movement_page.summary_page_data.current_hover == null" class="fms_hover">
+								<div style="background-color:#f48b4a;margin:0 auto;height:30px;width:60%;">{{data.current_movement_page.summary_page_data.current_hover.name}}</div>
+							</div>
+							<span style="display:inline-block;height:100%;" class="fms_horiz_bar_graph_chunk" ng-repeat="movement in data.movement_pages"
+								ng-mouseover="data.current_movement_page.summary_page_data.current_hover = movement"
+								ng-mouseleave="data.current_movement_page.summary_page_data.current_hover = null"
+								ng-style="{'width': '' + ((movement.score) / 3) * 27 + 'px'}"
+								ng-class="movement.score ==  1 ? 'one' : (movement.score ==  2 ? 'two' : 'three')">
+								<span style="display:inline-block;background-color:white;width:6px;height:100%" />
+							</span>
+							<span style="position:absolute;display:inline-block;right:20px;color:white">
+								<b>15/21</b>
+							</span>
+						</div>
+					</div>
+					<div style="text-align:center;">
+						<div class="text-left col-sm-12">
+							<h2 style="margin-top:10px;">
+								<b style="font-size:60%">Movement Efficiency</b>
+							</h2>
+						</div>
+						<div easypiechart options="easypie3.options" percent="71" class="easypiechart">
+							<span class="pie-percent ng-binding" ng-bind="71"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
