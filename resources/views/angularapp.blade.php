@@ -2,7 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">		
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Heddoko</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
@@ -12,7 +12,7 @@
 
         <!-- Include Jquery in the vendor folder -->
         <script src="{{ url('js/jquery.min.js') }}"></script>
-		
+
         <!-- Theme's own CSS file -->
         <link rel="stylesheet" href="{{ url('css/main.css') }}">
     </head>
@@ -44,7 +44,12 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="{{ url('js/app.js') }}"></script>		
+        <!-- Vendor scripts. Can be minified into a single file when going into production. -->
+        <!-- TODO: move all vendor scripts from app.js -->
+        <script type="text/javascript" src="{{ asset('js/vendor/bootstrap.min.js') }}"></script>
 
+        <!-- App scripts. Should be minified into a single file for production. -->
+        <!-- TODO: move all modules into their own javascript file. -->
+        <script type="text/javascript" src="{{ url('js/app.js') }}"></script>
     </body>
 </html>
