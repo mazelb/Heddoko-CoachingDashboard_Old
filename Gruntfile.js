@@ -111,7 +111,8 @@ module.exports = function(grunt) {
                 separator: ';'
             },
             dist: {
-                src: ['bower_components/bootstrap/dist/js/bootstrap.min.js',
+                src: [
+                    'bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'angular-app/scripts/gmap.js',
                     'bower_components/slimScroll/jquery.slimscroll.min.js',
                     'bower_components/angular/angular.min.js',
@@ -146,7 +147,8 @@ module.exports = function(grunt) {
                     'angular-app/scripts/extras.js',
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
-                    'angular-app/app/*.js' ],
+                    'angular-app/app/*.js'
+                ],
                 dest: 'public/js/app.js'
             }
         },
@@ -192,11 +194,13 @@ module.exports = function(grunt) {
                 }]
             }
         },
-		 
+
 		sass: {
             dist: {
                 files: {
-                    'angular-app/styles/main.css': 'angular-app/styles/main.scss'
+                    'angular-app/styles/main.css': [
+                        'angular-app/styles/main.scss'
+                    ]
                 }
             }
         }
@@ -216,4 +220,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
     grunt.registerTask('minified', [ 'bower', 'watch:min' ]);
+
+    grunt.registerTask('css', [/*'sass',*/ 'cssmin']);
+    grunt.registerTask('js', ['jshint', 'concat'/*, 'uglify'*/]);
 };

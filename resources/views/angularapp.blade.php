@@ -7,7 +7,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
-
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+        
         <!-- Theme's own CSS file -->
         <link rel="stylesheet" href="{{ url('css/main.css') }}">
     </head>
@@ -39,7 +40,6 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
