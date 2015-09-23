@@ -22,8 +22,8 @@
 					<div class="panel-body">
 						<div>
 							<video id="SideVideoPlayer">
-								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/side_good.webm'}}" type="video/webm"/>
-								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/side_good.mp4'}}" type="video/mp4"/>
+								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/side_good.webm'}}" type="video/webm"/>
+								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/side_good.mp4'}}" type="video/mp4"/>
 								Sorry, your browser doesn't support HTML5 video.
 							</video>
 							<div class="movement-popup-alert" ng-show="data.current_movement_page.active_side.active_trial.status == 'stopped' || data.current_movement_page.active_side.active_trial.status == 'pain'">
@@ -74,8 +74,8 @@
 					<div class="panel-body col-sm-12">
 						<div>
 							<video id="TopVideoPlayer" style="width:100%;height:100%;">
-								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/top_good.webm'}}" type="video/webm"/>
-								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/top_good.mp4'}}" type="video/mp4"/>
+								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/top_good.webm'}}" type="video/webm"/>
+								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/top_good.mp4'}}" type="video/mp4"/>
 								Sorry, your browser doesn't support HTML5 video.
 							</video>
 						</div>
@@ -94,8 +94,8 @@
 					<div class="panel-body col-sm-12">
 						<div>
 							<video id="FrontVideoPlayer" style="width:100%;height:100%;">
-								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/front_good.webm'}}" type="video/webm"/>
-								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/front_good.mp4'}}" type="video/mp4"/>
+								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/front_good.webm'}}" type="video/webm"/>
+								<source src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name.toLowerCase() + '/front_good.mp4'}}" type="video/mp4"/>
 								Sorry, your browser doesn't support HTML5 video.
 							</video>
 						</div>
