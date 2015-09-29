@@ -46,29 +46,29 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 					$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
 				}
 			});
-		}	
+		}
 
-		$scope.submitNewTeamForm = function() {		
+		$scope.submitNewTeamForm = function() {
 
 			$scope.waiting_server_response = true;
 
 			$sessionStorage.new_team_form_data.sport_id = $sessionStorage.selected_sport.id;
 
 			Teams.create($sessionStorage.new_team_form_data)
-			.success(function(updated_teams_data) {	
+			.success(function(updated_teams_data) {
 				$sessionStorage.new_team_form_data = null;
 				$sessionStorage.teams = updated_teams_data; //store the updated teams list sent back by the server
 				$scope.waiting_server_response = false;
 				loggit.logSuccess("New Team successfully created");
 			});
-		};		
+		};
 
-		$scope.submitNewAthleteForm = function() {		
+		$scope.submitNewAthleteForm = function() {
 
 			$scope.waiting_server_response = true;
 
 			Athletes.create($sessionStorage.selected_team.id, $sessionStorage.new_athlete_form_data)
-			.success(function(updated_athletes_data) {			
+			.success(function(updated_athletes_data) {
 				$sessionStorage.new_athlete_form_data = null;
 				$sessionStorage.athletes = updated_athletes_data;
 				$scope.waiting_server_response = false;
@@ -203,7 +203,7 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
     $scope.$watch('data.selected_sport', function() {
 		$sessionStorage.selected_sport_movement = $sessionStorage.sport_movements = null;
-		
+
 		SportMovements.get($sessionStorage.selected_sport.id)
 			.success(function(sports_movements_response) {
 				$sessionStorage.sport_movements = sports_movements_response;
@@ -239,7 +239,9 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 ]).controller("MovementScreenController", ["$scope", '$sessionStorage', "loggit", 'MovementStore', '$document',
   function($scope, $sessionStorage, loggit, MovementStore, $document) {
 
-	$scope.select_movement = function(new_current_movement_page){
+	$scope.select_movement = function(new_current_movement_page) {
+        console.log('Selecting movement...');
+        console.log(new_current_movement_page);
 		MovementStore.current_movement_page = new_current_movement_page;
 	};
 
@@ -286,8 +288,8 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
 	$scope.CancelCurrentTrial = function(){
 
-		document.getElementById("FrontVideoPlayer").currentTime = 0;		
-		document.getElementById("TopVideoPlayer").currentTime = 0;		
+		document.getElementById("FrontVideoPlayer").currentTime = 0;
+		document.getElementById("TopVideoPlayer").currentTime = 0;
 		document.getElementById("SideVideoPlayer").currentTime = 0;
 
 		MovementStore.current_movement_page.active_side.active_trial.status = 'idle';
@@ -306,16 +308,16 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 		{
 			MovementStore.current_movement_page.active_side.active_trial = MovementStore.current_movement_page.active_side.trials[index + 1];
 
-			document.getElementById("FrontVideoPlayer").currentTime = 0;		
-			document.getElementById("TopVideoPlayer").currentTime = 0;		
+			document.getElementById("FrontVideoPlayer").currentTime = 0;
+			document.getElementById("TopVideoPlayer").currentTime = 0;
 			document.getElementById("SideVideoPlayer").currentTime = 0;
 		}
 	};
-	
+
 	$scope.SaveCurrentTrialPain = function(){
-		
+
 		MovementStore.current_movement_page.active_side.active_trial.status = 'saved_pain';
-		
+
 		//if there is another trial available to complete
 		var index = MovementStore.current_movement_page.active_side.trials.indexOf(MovementStore.current_movement_page.active_side.active_trial);
 
@@ -323,8 +325,8 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 		{
 			MovementStore.current_movement_page.active_side.active_trial = MovementStore.current_movement_page.active_side.trials[index + 1];
 
-			document.getElementById("FrontVideoPlayer").currentTime = 0;		
-			document.getElementById("TopVideoPlayer").currentTime = 0;		
+			document.getElementById("FrontVideoPlayer").currentTime = 0;
+			document.getElementById("TopVideoPlayer").currentTime = 0;
 			document.getElementById("SideVideoPlayer").currentTime = 0;
 		}
 	};
@@ -332,7 +334,7 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	$scope.SubmitTest = function(){
 		document.getElementById("FrontVideoPlayer").currentTime = 0;
 		MovementStore.current_movement_page.submitted = true;
-		
+
 		if (MovementStore.current_movement_page.active_side == MovementStore.current_movement_page.sides[0])
 		{
 			MovementStore.current_movement_page.active_side.test_page_data.other_side_warning = true;
@@ -341,15 +343,16 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
 	$scope.PlayAnalysisVideo = function()
 	{
-		document.getElementById("AnalysisSideVideoPlayer").playbackRate = MovementStore.current_movement_page.analysis_page_data.playback_rate;
-		document.getElementById("AnalysisFrontVideoPlayer").playbackRate = MovementStore.current_movement_page.analysis_page_data.playback_rate;
-		document.getElementById("AnalysisHorizontalVideoPlayer").playbackRate = MovementStore.current_movement_page.analysis_page_data.playback_rate;
+        var playbackRate = MovementStore.current_movement_page.analysis_page_data.playback_rate || 1.0;
+        console.log('Playback rate: ' + playbackRate);
 
-		console.log('playback at: ' + document.getElementById("AnalysisSideVideoPlayer").playbackRate);
+		document.getElementById("AnalysisSideVideoPlayer").playbackRate =
+            document.getElementById("AnalysisFrontVideoPlayer").playbackRate =
+            document.getElementById("AnalysisHorizontalVideoPlayer").playbackRate = playbackRate;
 
 		document.getElementById("AnalysisSideVideoPlayer").play();
 		document.getElementById("AnalysisFrontVideoPlayer").play();
-		document.getElementById("AnalysisHorizontalVideoPlayer").play();		
+		document.getElementById("AnalysisHorizontalVideoPlayer").play();
 	};
 
 	$scope.ForwardAnalysisVideo = function()
@@ -361,19 +364,19 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	{
 		document.getElementById("AnalysisSideVideoPlayer").pause();
 		document.getElementById("AnalysisFrontVideoPlayer").pause();
-		document.getElementById("AnalysisHorizontalVideoPlayer").pause();		
+		document.getElementById("AnalysisHorizontalVideoPlayer").pause();
 	};
-	
+
 	$scope.ResetAnalysisVideo = function()
 	{
 		document.getElementById("AnalysisSideVideoPlayer").pause();
 		document.getElementById("AnalysisSideVideoPlayer").currentTime = 0;
 		document.getElementById("AnalysisFrontVideoPlayer").pause();
-		document.getElementById("AnalysisFrontVideoPlayer").currentTime = 0;		
+		document.getElementById("AnalysisFrontVideoPlayer").currentTime = 0;
 		document.getElementById("AnalysisHorizontalVideoPlayer").pause();
 		document.getElementById("AnalysisHorizontalVideoPlayer").currentTime = 0;
 	};
-	
+
 	$scope.tbl_data =[];
 
 	for (var i = 0; i < 5; i++)
@@ -382,12 +385,12 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	}
 
 	$scope.DataTableToggleMovSel = function(newly_toggled_movement){
-		
+
 		newly_toggled_movement.data_tbl_selected = !newly_toggled_movement.data_tbl_selected;
 
 		var tbl_data = [];
 		var movement_row = [];
-		
+
 		for (i = 0; i < MovementStore.current_movement_page.active_side.active_trial.joints.length; i++)
 		{
 			for (var j = 0; j < MovementStore.current_movement_page.active_side.active_trial.joints[i].movements.length; j++)
@@ -400,12 +403,12 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 				{
 					movement_row.push({});
 				}
-				
+
 			}
 		}
 
 		tbl_data.push(movement_row);
-		
+
 		for (i = 0; i < 4; i++)
 		{
 			var new_row = [];
@@ -427,15 +430,15 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
 			tbl_data.push(new_row);
 		}
-		
+
 		$scope.tbl_data = tbl_data;
-	
+
 	};
-	
+
 	$scope.UpdateDataGraphSeries = function(){
 
 		$scope.lineData.series = [];
-	
+
 		for (var i = 0; i < MovementStore.current_movement_page.active_side.active_trial.joints.length; i++)
 		{
 			for (var j = 0; j < MovementStore.current_movement_page.active_side.active_trial.joints[i].movements.length; j++)
@@ -447,14 +450,14 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 			}
 		}
 	};
-	
+
 	$scope.ToggleSelectMovement = function(element, array)
 	{
-		
+
 		if (element.selected)
 		{
 			element.selected = false;
-			var index = array.indexOf(element);			
+			var index = array.indexOf(element);
 			if (index > -1)
 			{
 				array.splice(index, 1);
@@ -467,16 +470,16 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 		}
 
 	};
-	
+
 	$scope.InitializeGraph = function(){
-		
+
 		$scope.lineData = {
 			labels: ['0', '10', '20', '30', '40', '50', '60', '70', '80', '90', '100'],
 			series: []
 		};
 
 		$scope.lineOptions = {
-			
+
 			axisY:{
 				referenceValue: 100,
 				type : Chartist.FixedScaleAxis,
@@ -491,9 +494,9 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 			showPoint: false
 
 		};
-		
+
 		var $chart = $( ".movement_data_chart" );
-		
+
 		var $toolTip = $chart
 		  .append('<div class="chartist-tooltip"></div>')
 		  .find('.chartist-tooltip')
