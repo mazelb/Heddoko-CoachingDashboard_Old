@@ -3,39 +3,66 @@
  Initialize the Angular App
  **************************/
 
-var app = angular.module("app", ["ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard", "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services", "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls", "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls", "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"]).run(["$rootScope", "$location",
-    function ($rootScope, $location) {
+var app = angular.module("app", [
+    "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
+    "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
+    "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
+    "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"
+])
 
-        $(document).ready(function(){
+// Constants to be used throughout the app, for development.
+.constant("dev", {
+    timestamp: Date.now(),
+    isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
+})
 
-            setTimeout(function(){
-                $('.page-loading-overlay').addClass("loaded");
-                $('.load_circle_wrapper').addClass("loaded");
-            },1000);
+// Configures the application.
+.config([
+    "$routeProvider",
+    "dev",
+    function($routeProvider, dev)
+    {
+        // Cache-busting, used for development.
+        var append = dev.isLocal ? "?" + dev.timestamp : "";
 
-        });
-
-    }] ).config(["$routeProvider",
-    function($routeProvider) {
+        // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		}).when("/dashboard", {
-			templateUrl: "/views/dashboard.html"
+			templateUrl: "/views/dashboard.html" + append
 		}).when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html"
+			templateUrl: "/views/movementsubmit.html" + append
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html"
+			templateUrl: "/views/fmstest.html" + append
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html"
+			templateUrl: "/views/fmsdata.html" + append
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html"
+			templateUrl: "/views/fmsresults.html" + append
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html"
+			templateUrl: "/views/movementscreen.html" + append
 		}).when("/movements", {
-			templateUrl: "/views/outer.html"
+			templateUrl: "/views/outer.html" + append
 		}).otherwise({
 			redirectTo: "/404"
 		});
+    }
+])
+
+// Runs the application.
+.run([
+    "$rootScope",
+    "$location",
+    function ($rootScope, $location)
+    {
+        // Removes the loading animation.
+        $(document).ready(function()
+        {
+            setTimeout(function() {
+                $('.page-loading-overlay').addClass("loaded");
+                $('.load_circle_wrapper').addClass("loaded");
+            }, 1000);
+        });
     }
 ]);
 

@@ -221,6 +221,6 @@ module.exports = function(grunt) {
     grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
     grunt.registerTask('minified', [ 'bower', 'watch:min' ]);
 
-    grunt.registerTask('css', [/*'sass',*/ 'cssmin']);
+    grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['jshint', 'concat'/*, 'uglify'*/]);
 };

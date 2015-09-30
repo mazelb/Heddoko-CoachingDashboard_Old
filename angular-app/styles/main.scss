@@ -16,7 +16,7 @@ displayed here
 4 - Forms / Form Elements
 5 - Buttons and Links
 6 - Dropdowns / Toolbars / Navigation
-7 - Labels / Alerts / Progress Bars 
+7 - Labels / Alerts / Progress Bars
 8 - Panels / Modals / Tooltips
 9 - Dividers / Spacings
 10 - Animations
@@ -478,23 +478,23 @@ $text-colors:(
 }
 
 
-			
+
 			.test-controls-list-container>div:hover, .test-controls-list-container>div.active {
 
 			  background-color: white;
 			}
-			
+
 			//set the color for selected movements on the summary page
 			.summary-joints-container>.movement:hover, .summary-joints-container>.movement.selected {
 
 			  background-color: #e6e7e9;
 			}
-			
+
 			//set the height of the list elements on the summary page
 			.summary-joints-container>div{
 			  height:56px;
 			}
-		
+
 			.fms_horiz_bar_graph
 			{
 				//9*27+8*4=275
@@ -504,17 +504,17 @@ $text-colors:(
 				line-height:20px;
 				background-color: black;
 			}
-			
+
 			.fms_horiz_bar_graph_chunk{
-			
+
 				&.one{background-color: red;}
 				&.two{background-color: orange;}
 				&.three{background-color: green;}
-			
+
 			}
-			
-			
-			
+
+
+
 			//chartist axis labels
 			[data-x-axis]::before {
 				  content: attr(data-x-axis);
@@ -530,10 +530,10 @@ $text-colors:(
 			  position: absolute;
 			  /* vertical text rotation stuff */
 			}
-			
-			
-			
-			
+
+
+
+
 			.summary-heat-gradient{
 				width: 420px;
 				height: 40px;
@@ -552,15 +552,15 @@ $text-colors:(
 
 
 
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
 			//tooltip
-			
+
 			.chartist-tooltip{
 
 				position:absolute;
@@ -590,11 +590,11 @@ $text-colors:(
 
 
 
-			
 
-			
-			
-			
+
+
+
+
 			.fms_hover {
 				z-index:10;
 				width:100%;
@@ -603,9 +603,9 @@ $text-colors:(
 				top:-50px;
 				color:white;
 				text-align:center;
-				
+
 			}
-			
+
 			.fms_hover:after {
 				top: 100%;
 				left: 50%;
@@ -621,8 +621,8 @@ $text-colors:(
 				margin-left: auto;
 				margin-right:auto;
 			}
-			
-			
+
+
 			@font-face {
 				font-family: 'proxima_novaregular';
 				src: url('../fonts/proxima/proximanova-regular.eot');
@@ -639,7 +639,7 @@ $text-colors:(
 				font-weight:bold;
 			}
 
-			
+
 			.data_bottom_table {
 				width:100%;
 				table-layout:fixed;
@@ -655,28 +655,28 @@ $text-colors:(
 			.data_bottom_table tr.odd {
 				background-color: #f1f1f3;
 			}
-			
-			
-			
-			
-			
+
+
+
+
+
 			.breadcrumb-movement, .breadcrumb-movement-sm {
 				height: 40px;
 				font-style:italic;
 				font-weight:bold;
 			}
-			
-			
-			
-			
+
+
+
+
 			.breadcrumb-movement {
 				font-weight:bold;
 				height: 40px;
 				font-style:italic;
 			}
-			
-			
-			
+
+
+
 			.breadcrumb-movement>li {
 				list-style: none;
 				background-color: #91decb;
@@ -702,13 +702,13 @@ $text-colors:(
 				text-decoration: none;
 			}
 
-			.breadcrumb-movement>li:first-child {
+			.breadcrumb-movement > li:first-child {
 				background-color: transparent;
 				position: relative;
 				display: inline-block;
 				background-color: #91decb;
 				border-right: none;
-				width: 180px;
+				width: 220px;
 				margin-left: 20px;
 			}
 
@@ -721,7 +721,7 @@ $text-colors:(
 				top: -5px;
 				left: -6px;
 			}
-			
+
 			.breadcrumb-movement>li:first-child>div>a {
 				top: 5px;
 				display: inline-block;
@@ -736,28 +736,28 @@ $text-colors:(
 				color: black;
 				text-decoration: none;
 			}
-			
+
 			.breadcrumb-movement>li:hover, .breadcrumb-movement>li.active {
 				background-color: #3dd5af;
 				border-color: #3dd5af;
 			}
-			
+
 			.breadcrumb-movement>li:first-child:hover {
 				background-color: #91decb;
 				border-color: #91decb;
 			}
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
+
 			.breadcrumb-movement-sm {
 				height: 40px;
-		
+
 			}
-			
+
 			.breadcrumb-movement-sm>li {
 				list-style: none;
 				background-color: #E9D4C3;
@@ -781,31 +781,13 @@ $text-colors:(
 				text-decoration: none;
 			}
 
-			
+
 			.breadcrumb-movement-sm>li:hover, .breadcrumb-movement-sm>li.active {
 				background-color: #f48b4a;
 			}
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
+
 			.movement-left-column {
 				width: 200px;
 				height: 480px;
@@ -813,22 +795,22 @@ $text-colors:(
 				float:left;
 				position:relative;
 			}
-			
+
 			.movement-left-column.test-page>div {
 				height:56px;
 				display:flex;
 				justify-content:center;
 				align-items: center;
 			}
-			
+
 			.movement-left-column.non-test-pages>div.row {
-				
+
 				height:56px;
 				line-height:56px;
 				padding:0;
 				margin:0;
 			}
-			
+
 			.hierarchy-2 {
 				background-color: #E3E3E3;
 				height: 36px;
@@ -838,22 +820,22 @@ $text-colors:(
 			.movement-left-column>div:hover {
 				background-color: white;
 			}
-			
+
 			.large-cell-main {
 				overflow: hidden;
 			}
-			
+
 			.large-cell-main>div.panel-body>div {
 				width: 100%;
 				height: 400px;
 				padding: 0px;
 				position: relative;
-				
+
 				video {
 					width:100%;
 					height:100%;
 				}
-				
+
 				div.movement-popup-alert {
 					position:absolute;
 					z-index:10;
@@ -868,96 +850,58 @@ $text-colors:(
 					color:white;
 				}
 			}
-			
+
 			.movement-small-cell {
 				padding:0;
-				
+
 				&>div {
 					height:230px;
-					
+
 					&>div {
 						padding:0;
-						
+
 						&>div.panel-body>div {
 							width: 100%;
 							height: 140px;
 							padding: 0px;
 						}
 					}
-					
+
 				}
 			}
-			
+
 			.movement-trial-list>div {
-			
+
 				height: 50px;
 				background-color:white;
 				line-height: 50px;
 				text-align: center;
-				
-				
-				
+
+
+
 				&>div.trial-label {
 					width: 200px;
 					float:left;
 					height: 100%;
 				}
-				
+
 				&>div.trial-status {
 					overflow: hidden;
 					height: 100%;
 				}
-				
-				
+
+
 			}
-			
+
 			.movement-trial-list>div.active {
 				background-color: #f5f6f8;
 			}
-			
+
 			.movement-trial-list>div.movement-submit-button {
 				background-color: #f48b4a;
 				color: white;
 				font-size:130%;
 			}
-
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-
-
-
-
-
-
-
-
-
 
 .callout-elem {
   margin: 20px 0;

@@ -13859,39 +13859,66 @@ angular.module('ngCookies', ['ng']).
  Initialize the Angular App
  **************************/
 
-var app = angular.module("app", ["ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard", "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services", "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls", "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls", "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"]).run(["$rootScope", "$location",
-    function ($rootScope, $location) {
+var app = angular.module("app", [
+    "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
+    "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
+    "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
+    "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"
+])
 
-        $(document).ready(function(){
+// Constants to be used throughout the app, for development.
+.constant("dev", {
+    timestamp: Date.now(),
+    isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
+})
 
-            setTimeout(function(){
-                $('.page-loading-overlay').addClass("loaded");
-                $('.load_circle_wrapper').addClass("loaded");
-            },1000);
+// Configures the application.
+.config([
+    "$routeProvider",
+    "dev",
+    function($routeProvider, dev)
+    {
+        // Cache-busting, used for development.
+        var append = dev.isLocal ? "?" + dev.timestamp : "";
 
-        });
-
-    }] ).config(["$routeProvider",
-    function($routeProvider) {
+        // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		}).when("/dashboard", {
-			templateUrl: "/views/dashboard.html"
+			templateUrl: "/views/dashboard.html" + append
 		}).when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html"
+			templateUrl: "/views/movementsubmit.html" + append
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html"
+			templateUrl: "/views/fmstest.html" + append
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html"
+			templateUrl: "/views/fmsdata.html" + append
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html"
+			templateUrl: "/views/fmsresults.html" + append
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html"
+			templateUrl: "/views/movementscreen.html" + append
 		}).when("/movements", {
-			templateUrl: "/views/outer.html"
+			templateUrl: "/views/outer.html" + append
 		}).otherwise({
 			redirectTo: "/404"
 		});
+    }
+])
+
+// Runs the application.
+.run([
+    "$rootScope",
+    "$location",
+    function ($rootScope, $location)
+    {
+        // Removes the loading animation.
+        $(document).ready(function()
+        {
+            setTimeout(function() {
+                $('.page-loading-overlay').addClass("loaded");
+                $('.load_circle_wrapper').addClass("loaded");
+            }, 1000);
+        });
     }
 ]);
 
@@ -14223,7 +14250,8 @@ angular.module('countTo', []).controller("countTo", ["$scope",
             }
         };
 
-    }]);;/**
+    }]);
+;/**
  * @file backend.js
  * @brief This file defines the Factories for interfacing with the back-end (CRUD)
  * @author Maxwell Mowbray (max@heddoko.com)
@@ -14594,20 +14622,24 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
         $scope.current_dashboard_page++;
       }
     };
-  }).controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit",
-  function($scope, $sessionStorage, FMSForm, loggit) {
+}).controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", "dev",
+    function($scope, $sessionStorage, FMSForm, loggit, dev) {
 
-		/**
-		* @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
-		* It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
-		* Furthermore, it takes care of sending new FMS form data to the server
-		* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
-		* @return void
-		*/
+    	/**
+    	* @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
+    	* It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
+    	* Furthermore, it takes care of sending new FMS form data to the server
+    	* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
+    	* @return void
+    	*/
+        
+        // Save an instance of the "dev" variable in the scope.
+        $scope.dev = dev;
 
-		$sessionStorage.show_fms_edit = false;
-		$scope.waiting_server_response = false;
-		$sessionStorage.selected_fms_form = null;
+
+    	$sessionStorage.show_fms_edit = false;
+    	$scope.waiting_server_response = false;
+    	$sessionStorage.selected_fms_form = null;
 
     $scope.$watch('data.selected_athlete', function(new_selected_athlete_value) {
 
@@ -14627,49 +14659,49 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
     $scope.submitFMSForm = function() {
 
-			$scope.waiting_server_response = true;
+    		$scope.waiting_server_response = true;
 
-			console.debug($sessionStorage.fms_form_data);
+    		console.debug($sessionStorage.fms_form_data);
 
       FMSForm.create($sessionStorage.selected_athlete.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
 
-					console.log(updated_fms_form_data);
+    				console.log(updated_fms_form_data);
 
 
 
           $sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
           $sessionStorage.selected_athlete.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-					$scope.waiting_server_response = false;
-					loggit.logSuccess("FMS Form successfully submitted");
+    				$scope.waiting_server_response = false;
+    				loggit.logSuccess("FMS Form successfully submitted");
         })
         .error(function(err) {
-			loggit.logError("There was an error submitting the FMS Form");
-			$scope.waiting_server_response = false;
+    		loggit.logError("There was an error submitting the FMS Form");
+    		$scope.waiting_server_response = false;
         });
     };
 
-	$scope.updateFMS = function() {
+    $scope.updateFMS = function() {
 
-			$scope.waiting_server_response = true;
+    		$scope.waiting_server_response = true;
 
       FMSForm.update($sessionStorage.selected_athlete.id, $sessionStorage.selected_fms_form)
         .success(function(updated_fms_form_data) {
           $sessionStorage.selected_athlete.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-					$scope.waiting_server_response = false;
-					$sessionStorage.show_fms_edit = false;
-					loggit.logSuccess("FMS Form successfully updated");
+    				$scope.waiting_server_response = false;
+    				$sessionStorage.show_fms_edit = false;
+    				loggit.logSuccess("FMS Form successfully updated");
         })
         .error(function() {
-			loggit.logError("There was an error while attempting to update the FMS Form");
-			$scope.waiting_server_response = false;
+    		loggit.logError("There was an error while attempting to update the FMS Form");
+    		$scope.waiting_server_response = false;
         });
     };
 
     $scope.fmsdisplay = function(form) {
       $sessionStorage.selected_fms_form = form;
     };
-  }
+    }
 ]).controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
   function($scope, $sessionStorage, Sports, SportMovements) {
 
@@ -14723,14 +14755,15 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
     };
 
   }
-]).controller("MovementScreenController", ["$scope", '$sessionStorage', "loggit", 'MovementStore', '$document',
-  function($scope, $sessionStorage, loggit, MovementStore, $document) {
+]).controller("MovementScreenController", ["$scope", '$sessionStorage', "loggit", 'MovementStore', '$document', "dev",
+  function($scope, $sessionStorage, loggit, MovementStore, $document, dev) {
 
-	$scope.select_movement = function(new_current_movement_page) {
-        console.log('Selecting movement...');
-        console.log(new_current_movement_page);
-		MovementStore.current_movement_page = new_current_movement_page;
+	$scope.select_movement = function(movement) {
+		MovementStore.current_movement_page = movement;
 	};
+
+    // Save an instance of the "dev" variable in the scope.
+    $scope.dev = dev;
 
 	$scope.data = MovementStore; //store the movement_pages and current_movement_page in this store
 								//so it can be shared by the nav bar and the movement pages
@@ -14836,8 +14869,6 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 		document.getElementById("AnalysisSideVideoPlayer").playbackRate =
             document.getElementById("AnalysisFrontVideoPlayer").playbackRate =
             document.getElementById("AnalysisHorizontalVideoPlayer").playbackRate = playbackRate;
-
-		console.log('playback at: ' + document.getElementById("AnalysisSideVideoPlayer").playbackRate);
 
 		document.getElementById("AnalysisSideVideoPlayer").play();
 		document.getElementById("AnalysisFrontVideoPlayer").play();

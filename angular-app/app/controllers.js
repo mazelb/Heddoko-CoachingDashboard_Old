@@ -107,20 +107,27 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
         $scope.current_dashboard_page++;
       }
     };
-  }).controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit",
-  function($scope, $sessionStorage, FMSForm, loggit) {
+})
 
-		/**
-		* @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
-		* It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
-		* Furthermore, it takes care of sending new FMS form data to the server
-		* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
-		* @return void
-		*/
 
-		$sessionStorage.show_fms_edit = false;
-		$scope.waiting_server_response = false;
-		$sessionStorage.selected_fms_form = null;
+.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", "dev",
+    function($scope, $sessionStorage, FMSForm, loggit, dev) {
+
+    	/**
+    	* @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
+    	* It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
+    	* Furthermore, it takes care of sending new FMS form data to the server
+    	* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
+    	* @return void
+    	*/
+
+        // Save an instance of the "dev" variable in the scope.
+        $scope.dev = dev;
+
+
+    	$sessionStorage.show_fms_edit = false;
+    	$scope.waiting_server_response = false;
+    	$sessionStorage.selected_fms_form = null;
 
     $scope.$watch('data.selected_athlete', function(new_selected_athlete_value) {
 
@@ -140,50 +147,53 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 
     $scope.submitFMSForm = function() {
 
-			$scope.waiting_server_response = true;
+    		$scope.waiting_server_response = true;
 
-			console.debug($sessionStorage.fms_form_data);
+    		console.debug($sessionStorage.fms_form_data);
 
       FMSForm.create($sessionStorage.selected_athlete.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
 
-					console.log(updated_fms_form_data);
+    				console.log(updated_fms_form_data);
 
 
 
           $sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
           $sessionStorage.selected_athlete.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-					$scope.waiting_server_response = false;
-					loggit.logSuccess("FMS Form successfully submitted");
+    				$scope.waiting_server_response = false;
+    				loggit.logSuccess("FMS Form successfully submitted");
         })
         .error(function(err) {
-			loggit.logError("There was an error submitting the FMS Form");
-			$scope.waiting_server_response = false;
+    		loggit.logError("There was an error submitting the FMS Form");
+    		$scope.waiting_server_response = false;
         });
     };
 
-	$scope.updateFMS = function() {
+    $scope.updateFMS = function() {
 
-			$scope.waiting_server_response = true;
+    		$scope.waiting_server_response = true;
 
       FMSForm.update($sessionStorage.selected_athlete.id, $sessionStorage.selected_fms_form)
         .success(function(updated_fms_form_data) {
           $sessionStorage.selected_athlete.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-					$scope.waiting_server_response = false;
-					$sessionStorage.show_fms_edit = false;
-					loggit.logSuccess("FMS Form successfully updated");
+    				$scope.waiting_server_response = false;
+    				$sessionStorage.show_fms_edit = false;
+    				loggit.logSuccess("FMS Form successfully updated");
         })
         .error(function() {
-			loggit.logError("There was an error while attempting to update the FMS Form");
-			$scope.waiting_server_response = false;
+    		loggit.logError("There was an error while attempting to update the FMS Form");
+    		$scope.waiting_server_response = false;
         });
     };
 
     $scope.fmsdisplay = function(form) {
       $sessionStorage.selected_fms_form = form;
     };
-  }
-]).controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
+    }
+])
+
+
+.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
   function($scope, $sessionStorage, Sports, SportMovements) {
 
 		/**
@@ -236,14 +246,15 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
     };
 
   }
-]).controller("MovementScreenController", ["$scope", '$sessionStorage', "loggit", 'MovementStore', '$document',
-  function($scope, $sessionStorage, loggit, MovementStore, $document) {
+]).controller("MovementScreenController", ["$scope", '$sessionStorage', "loggit", 'MovementStore', '$document', "dev",
+  function($scope, $sessionStorage, loggit, MovementStore, $document, dev) {
 
-	$scope.select_movement = function(new_current_movement_page) {
-        console.log('Selecting movement...');
-        console.log(new_current_movement_page);
-		MovementStore.current_movement_page = new_current_movement_page;
+	$scope.select_movement = function(movement) {
+		MovementStore.current_movement_page = movement;
 	};
+
+    // Save an instance of the "dev" variable in the scope.
+    $scope.dev = dev;
 
 	$scope.data = MovementStore; //store the movement_pages and current_movement_page in this store
 								//so it can be shared by the nav bar and the movement pages

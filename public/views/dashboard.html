@@ -17,15 +17,14 @@
 		</ol>
 		<div ng-switch="current_dashboard_page">
 			<div ng-switch-when="0">
-				<div ng-include src="'views/dashboardpartial/selectteam.html'"></div>
+				<div ng-include src="'views/dashboardpartial/selectteam.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
 			</div>
 			<div ng-switch-when="1">
-				<div ng-include src="'views/dashboardpartial/viewteammembers.html'"></div>
+				<div ng-include src="'views/dashboardpartial/viewteammembers.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
 			</div>
 			<div ng-switch-when="2">
-				<div ng-include src="'views/dashboardpartial/athleteprofile.html'"></div>
+				<div ng-include src="'views/dashboardpartial/athleteprofile.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
 			</div>
 		</div>
 	</div>
 </div>
-

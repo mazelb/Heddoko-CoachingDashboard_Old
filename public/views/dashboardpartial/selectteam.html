@@ -3,12 +3,19 @@
 		<div class="col-sm-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h2>
-						Teams
-					</h2>
+					<h2>Teams</h2>
+
+                    <!-- List of teams -->
 					<div class="col-sm-12">
-						<div ng-hide="data.teams.length > 0">You don't have any teams yet! Create one below to get started</div>
-						<a ng-repeat="team in data.teams" ng-click="data.selected_team = team;forwardsStep();" href="javascript:;" class="btn btn-primary btn-metro" ng-repeat="team in data.teams" ng-click="data.selected_team = team;forwardsStep();">
+						<div ng-hide="data.teams.length > 0">
+                            You don't have any teams yet! Create one below to get started
+                        </div>
+
+						<a
+                            ng-repeat="team in data.teams"
+                            ng-click="data.selected_team = team;forwardsStep();"
+                            href="javascript:;"
+                            class="btn btn-primary btn-metro">
 							<object style="pointer-events:none;" type="image/svg+xml" data="/images/sports/{{team.sport_id}}.svg"/>
 							<span>{{team.name}}</span>
 						</a>

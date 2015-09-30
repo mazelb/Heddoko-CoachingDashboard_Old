@@ -16,7 +16,7 @@ displayed here
 4 - Forms / Form Elements
 5 - Buttons and Links
 6 - Dropdowns / Toolbars / Navigation
-7 - Labels / Alerts / Progress Bars 
+7 - Labels / Alerts / Progress Bars
 8 - Panels / Modals / Tooltips
 9 - Dividers / Spacings
 10 - Animations
@@ -648,7 +648,7 @@ pre {
   display: inline-block;
   background-color: #91decb;
   border-right: none;
-  width: 180px;
+  width: 220px;
   margin-left: 20px; }
 
 .breadcrumb-movement > li:first-child > div {

@@ -1,23 +1,73 @@
+<!--<div class="row">
+	<div class="col-sm-12">
+
+		<section class="panel panel-box">
+
+			<div class="panel-bottom bg-reverse">
+				<br>
+				<ul class="list-justified text-center">
+					<div ng-hide="data.athletes.length > 0">This team does not contain any athletes yet! Create one below to get started</div>
+					<li ng-repeat="athlete in data.athletes" ng-click="data.selected_athlete = athlete;forwardsStep();">
+						<p class="size-h2 color-info"><i class="fa fa-user"></i></p>
+						<p class="text-muted">{{athlete.name}}</p>
+					</li>
+				</ul>
+				<br>
+			</div>
+		</section>
+
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-sm-6" ng-hide="waiting_server_response">
+
+		<div class="panel panel-default">
+
+			<div class="panel-body">
+
+				<div class="text-left col-sm-6">
+					<h3>
+						Add a new athlete to the team
+					</h3>
+
+				</div>
+				</br></br></br>
+
+				<form ng-submit="submitNewAthleteForm()">
+
+					Athlete name:
+					<input ng-model="data.new_athlete_form_data.name">
+
+					<div class="form-group text-right">
+						<button type="submit" class="btn btn-primary btn-lg">Add New</br>Athlete</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>-->
+
+
+
+
 
 <section>
 	<div class="row">
 		<div class="col-sm-12">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<h2>Team members</h2>
-
+						<h2>
+							Team members
+						</h2>
 						<div class="col-sm-12">
-							<div ng-hide="data.athletes.length > 0">
-                                This team does not have any athletes yet! Add one below to get started
-                            </div>
 
-                            <!-- List of athletes -->
-							<a
-                                href="javascript:;"
-                                class="btn btn-primary btn-metro"
-                                ng-repeat="athlete in data.athletes"
-                                ng-click="data.selected_athlete = athlete;forwardsStep();">
-                                
+							<div ng-hide="data.athletes.length > 0">This team does not have any athletes yet! Add one below to get started</div>
+							<a href="javascript:;" class="btn btn-primary btn-metro" ng-repeat="athlete in data.athletes" ng-click="data.selected_athlete = athlete;forwardsStep();">
 								<span>{{athlete.first_name}}</span>
 							</a>
 

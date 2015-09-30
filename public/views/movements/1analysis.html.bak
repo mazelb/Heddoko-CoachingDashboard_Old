@@ -1,19 +1,18 @@
-
 <div class="row">
 	<div class="col-sm-9">
-		<div class="panel panel-default" style="height:480px;">
+		<div class="panel panel-default" style="height:520px;">
 			<div class="panel-body" style="padding:0px;">
-				<div class="movement-left-column non-test-pages">
-					<div class="row" style="padding:0;">
+				<div class="col-sm-2" style="background-color:#f5f6f8;height:520px;padding:0px;">
+					<div class="row" style="height:56px;margin:0;line-height:56px;">
 						<div class="col-sm-8">
 							Select Trial
 						</div>
-						<div class="col-sm-4" style="height:56px;" ng-click="data.current_movement_page.analysis_page_data.choose_trial = !data.current_movement_page.analysis_page_data.choose_trial; data.current_movement_page.analysis_page_data.choose_playback_speed = false">
+						<div class="col-sm-4" style="height:56px;" ng-click="data.current_movement_page.analysis_page_data.choose_trial = !data.current_movement_page.analysis_page_data.choose_trial">
 							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="data.current_movement_page.analysis_page_data.choose_trial"/>
 							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="data.current_movement_page.analysis_page_data.choose_trial"/>
 						</div>
 					</div>
-					<div ng-if="data.current_movement_page.analysis_page_data.choose_trial" class="row hierarchy-2" ng-repeat="trial in data.current_movement_page.active_side.trials" ng-if="true" ng-click="data.current_movement_page.active_side.active_trial = trial">
+					<div ng-if="data.current_movement_page.analysis_page_data.choose_trial" class="row" ng-repeat="trial in data.current_movement_page.active_side.trials" ng-if="true" ng-click="data.current_movement_page.active_side.active_trial = trial" style="height:56px;margin:0;line-height:56px;">
 						<div class="col-sm-8">
 							{{trial.name}}
 						</div>
@@ -33,15 +32,15 @@
 						<div class="col-sm-8">
 							Select Speed
 						</div>
-						<div class="col-sm-4" style="height:56px;"  ng-click="data.current_movement_page.analysis_page_data.choose_playback_speed = !data.current_movement_page.analysis_page_data.choose_playback_speed; data.current_movement_page.analysis_page_data.choose_trial = false">
-							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="data.current_movement_page.analysis_page_data.choose_playback_speed"/>
-							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="data.current_movement_page.analysis_page_data.choose_playback_speed"/>
+						<div class="col-sm-4" style="height:56px;"  ng-click="data.current_movement_page.analysis_page_data.choose_playback_speed = !data.current_movement_page.analysis_page_data.choose_playback_speed">
+							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down"/>
 						</div>
 					</div>
-					<div ng-if="data.current_movement_page.analysis_page_data.choose_playback_speed" class="row hierarchy-2"
+					<div ng-if="data.current_movement_page.analysis_page_data.choose_playback_speed" class="row"
 						ng-repeat="playback_rate in [0.5, 1, 5, 25]"
 						ng-click="data.current_movement_page.analysis_page_data.playback_rate = playback_rate"
-						ng-init="data.current_movement_page.analysis_page_data.playback_rate = 1">
+						ng-init="data.current_movement_page.analysis_page_data.playback_rate = 1"
+						style="height:56px;margin:0;line-height:56px;">
 						<div class="col-sm-8">
 							{{playback_rate}}x
 						</div>
@@ -57,56 +56,26 @@
 							<i style="line-height:inherit;" class="fa fa-2x fa-check-square-o"/>
 						</div>
 					</div>
-					<div style="position:absolute;bottom:0px;right:0px;margin:10px;" class="video-controls">
+					<div style="position:absolute;bottom:0px;right:0px;margin:10px;">
 						<i class="fa fa-2x fa-play" ng-click="PlayAnalysisVideo()" style="margin-right:5px;"/>
 						<i class="fa fa-2x fa-forward" style="margin-right:5px;"/>
 						<i class="fa fa-2x fa-pause" ng-click="PauseAnalysisVideo()" style="margin-right:5px;"/>
 						<i class="fa fa-2x fa-undo fa-flip-vertical" ng-click="ResetAnalysisVideo()"/>
 					</div>
 				</div>
-				<div class="large-cell-main">
+				<div class="col-sm-10">
 					<div class="text-right col-sm-12" style="padding:0;">
 						<h2>
 							<b style="font-size:60%">Side/Sagittal</b>
 						</h2>
 					</div>
-					<div class="panel-body">
-						<div>
-							<video id="AnalysisSideVideoPlayer">
+					<div class="panel-body col-sm-12">
+						<div style="width: 100%; height: 440px; padding: 0px; position: relative;">
+							<video id="AnalysisSideVideoPlayer" style="width:100%;height:100%;">
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.webm'}}" type="video/webm"/>
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.mp4'}}" type="video/mp4"/>
 								Sorry, your browser doesn't support HTML5 video.
 							</video>
-							<div class="movement-popup-alert"  ng-show="data.current_movement_page.active_side.active_trial.status == 'stopped' || data.current_movement_page.active_side.active_trial.status == 'p'">
-								<div class="row">
-									<div class="col-sm-12" style="font-size:300%;">Would you like to save this trial?</div>
-								</div>
-								<br/>
-								<br/>
-								<div class="row" style="font-size:200%;">
-									<div class="col-sm-6" ng-click="SaveCurrentTrial()">
-										<b>SAVE</b>
-									</div>
-									<div class="col-sm-6" ng-click="CancelCurrentTrial()">
-										<b>CANCEL</b>
-									</div>
-								</div>
-							</div>
-							<div class="movement-popup-alert" ng-init="data.current_movement_page.active_side.test_page_data = []" ng-show="data.current_movement_page.active_side.test_page_data.other_side_warning">
-								<div class="row">
-									<div class="col-sm-12" style="font-size:300%;">Thanks for submitting. Don't<br/>forget to do the right side.</div>
-								</div>
-								<br/>
-								<br/>
-								<div class="row" style="font-size:200%;">
-									<div class="col-sm-6" ng-click="data.current_movement_page.active_side.test_page_data.other_side_warning = false; data.current_movement_page.active_side = data.current_movement_page.sides[1]">
-										<b>START</b>
-									</div>
-									<div class="col-sm-6" ng-click="data.current_movement_page.active_side.test_page_data.other_side_warning = false">
-										<b>SKIP</b>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -114,16 +83,16 @@
 		</div>
 	</div>
 	<div class="col-sm-3">
-		<div class="col-sm-12 movement-small-cell">
-			<div class="panel panel-default">
-				<div class="panel-body" >
+		<div class="col-sm-12" style="padding:0;">
+			<div class="panel panel-default" style="height:250px;">
+				<div class="panel-body" style="padding:0px;">
 					<div class="text-right col-sm-12">
 						<h2>
 							<b style="font-size:60%">Front/Coronal</b>
 						</h2>
 					</div>
 					<div class="panel-body col-sm-12">
-						<div>
+						<div style="width: 100%; height: 160px; padding: 0px;">
 							<video id="AnalysisFrontVideoPlayer" style="width:100%;height:100%;">
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/top_good.webm'}}" type="video/webm"/>
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/top_good.mp4'}}" type="video/mp4"/>
@@ -134,16 +103,16 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-12 movement-small-cell">
-			<div class="panel panel-default">
-				<div class="panel-body" >
+		<div class="col-sm-12" style="padding:0;">
+			<div class="panel panel-default" style="height:250px;">
+				<div class="panel-body" style="padding:0px;">
 					<div class="text-right col-sm-12">
 						<h2>
 							<b style="font-size:60%">Horizontal/Transverse</b>
 						</h2>
 					</div>
 					<div class="panel-body col-sm-12">
-						<div>
+						<div style="width: 100%; height: 160px; padding: 0px;">
 							<video id="AnalysisHorizontalVideoPlayer" style="width:100%;height:100%;">
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/front_good.webm'}}" type="video/webm"/>
 								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/' + data.current_movement_page.active_side.name + '/front_good.mp4'}}" type="video/mp4"/>
