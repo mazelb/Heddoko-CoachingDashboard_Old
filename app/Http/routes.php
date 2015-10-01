@@ -13,18 +13,21 @@
 
 Route::get('/', ['middleware' => 'auth', function()
 {
-	if (Entrust::hasRole('coach')){
+    // Coaches dashboard.
+	if (Entrust::hasRole('coach'))
+    {
 		return view('angularapp');
 	}
+
 	else if (Entrust::hasRole('admin')){
 		return 'you\'re an admin!';
 	}
-	
+
 	else if (Entrust::hasRole('athlete')){
 		return 'you\'re an athlete!';
 	}
-	
-	else return 'fatal error';	
+
+	else return 'fatal error';
 
 }]);
 
@@ -32,16 +35,16 @@ Route::get('/', ['middleware' => 'auth', function()
 
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
-	
-	Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);	
+
+	Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('teams.athletes', 'TeamAthleteController', ['only' => ['index', 'show', 'store']]);
-	
+
 	Route::resource('athletes.fmsforms', 'AthleteFMSFormController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('athletes.movements', 'AthleteMovementController', ['only' => ['index', 'show', 'store']]);
-	
+
 	Route::resource('sports', 'SportsController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-	Route::resource('sports.sportmovements', 'SportSportMovementController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);	
-	
+	Route::resource('sports.sportmovements', 'SportSportMovementController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
+
 });
 
 Route::get('home', 'HomeController@index');

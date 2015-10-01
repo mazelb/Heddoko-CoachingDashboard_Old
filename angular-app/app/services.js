@@ -32,8 +32,8 @@ angular.module("app.ui.services", []).factory("loggit", [
     }
 ]);
 
-angular.module('app.controllers').service('MovementStore',function(){
-	
+angular.module('app.controllers').service('MovementStore', function() {
+
 	var movement_screen_movements = [
 		'Deep Squat',
 		'Hurdle Step',
@@ -46,16 +46,16 @@ angular.module('app.controllers').service('MovementStore',function(){
 		'Rotary Stability',
 		'Posterior Rocking (c. test)'
 	];
-	
+
 	var movement_screen_pages = {
 		test: 0,
 		analysis: 1,
 		data: 2,
 		summary: 3
 	};
-	
+
 	var movement_pages = [];
-	
+
 	for (var i = 0; i < movement_screen_movements.length; i++)
 	{
 		var new_movement_page_entry = {};
@@ -69,7 +69,7 @@ angular.module('app.controllers').service('MovementStore',function(){
 		new_movement_page_entry.summary_page_data = {};
 
 		//new_movement_page_entry.joints = [];
-		
+
 		if (i == 5) //ASLR
 		{
 
@@ -84,13 +84,13 @@ angular.module('app.controllers').service('MovementStore',function(){
 			new_movement_page_entry.trials.push({name:'trial ' + 3, status:'idle', active_graph_series:[]});
 
 			new_movement_page_entry.active_trial = new_movement_page_entry.trials[0];
-			
+
 			new_movement_page_entry.sides = ['left', 'right'];
 			new_movement_page_entry.sides[0].trials=[];
 			new_movement_page_entry.sides[0].push({name:'trial ' + 1, status:'idle', active_graph_series:[]});
 			new_movement_page_entry.sides[0].push({name:'trial ' + 2, status:'idle', active_graph_series:[]});
 			new_movement_page_entry.sides[0].push({name:'trial ' + 3, status:'idle', active_graph_series:[]});*/
-			
+
 			var sides = ['LEFT', 'RIGHT'];
 			var trials_count = 3;
 			var joints = ['Hip', 'Knee'];
@@ -100,27 +100,27 @@ angular.module('app.controllers').service('MovementStore',function(){
 			{
 				new_movement_page_entry.sides.push({'name' : sides[l]});
 			}
-			
+
 			new_movement_page_entry.active_side = new_movement_page_entry.sides[0];
-			
+
 			for (var j = 0; j < new_movement_page_entry.sides.length; j++)
 			{
 				new_movement_page_entry.sides[j].trials = [];
-				
+
 				for (var k = 0; k < trials_count; k++)
 				{
 					new_movement_page_entry.sides[j].trials.push({name:'Trial ' + (k + 1), status:'idle', joints:[{name:'HIP', movements:[{name:'Flexion/Extension', left_deg:108, right_deg:97, series_data: {name: 'Hip Flexion', data: [0, 15, 20, 60, 70, 90, 80, 75, 60, 45, 0]}} ]}, {name:'KNEE', movements:[{name:'Flexion/Extension', left_deg:108, right_deg:97, series_data: {name: 'Knee Flexion',data: [0, 5, 20, 50, 65, 80, 80, 80, 75, 60, 0]}} ]}]});
 				}
-				
+
 				new_movement_page_entry.sides[j].active_trial = new_movement_page_entry.sides[j].trials[0];
 			}
-			
+
 		}
-		
+
 		movement_pages.push(new_movement_page_entry);
-		
+
 	}
-	
+
 	return {movement_pages: movement_pages};
-	
+
 });

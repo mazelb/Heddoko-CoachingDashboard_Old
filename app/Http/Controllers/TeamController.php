@@ -1,13 +1,14 @@
 <?php namespace App\Http\Controllers;
 
+use Auth;
+use Entrust;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Team;
 use App\Models\Coach;
 use App\Models\Sport;
 use Illuminate\Http\Request;
-use Auth;
-use Entrust;
 
 class TeamController extends Controller {
 
@@ -18,13 +19,16 @@ class TeamController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-		if (Entrust::hasRole('coach')){
+		if (Entrust::hasRole('coach'))
+        {
 			return Auth::user()->coach->teams;
 		}
-		else if (Entrust::hasRole('admin')){
+		else if (Entrust::hasRole('admin'))
+        {
 			return Teams::all();
 		}
-		else{
+		else
+        {
 			return;
 		}
 	}
@@ -38,16 +42,15 @@ class TeamController extends Controller {
 	{
 		if (!Entrust::hasRole('coach')) {
 			return;
-		}	
-		
+		}
+
 		$newTeamData = [];
 		$newTeamData['coach_id'] = Auth::user()->coach->id;
 		$newTeamData['sport_id'] = $request->input('sport_id');
 		$newTeamData['name'] = $request->input('name');
 
-		$newTeam = Team::create($newTeamData);	
-		
+		$newTeam = Team::create($newTeamData);
+
 		return Auth::user()->coach->teams;
 	}
-
 }

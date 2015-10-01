@@ -11,18 +11,28 @@
 
 			</li>
 			<li>
-				<a href="#/" data-toggle-min-nav
-				   class="toggle-min"><i class="fa fa-bars"></i></a>
+				<a href="#/" data-toggle-min-nav class="toggle-min">
+                    <i class="fa fa-bars"></i>
+                </a>
 			</li>
-			
-			<li>
-				Active Team 
-				<select ng-model="data.selected_team"
-					ng-selected="data.selected_team"
-					ng-options="team.name for team in data.teams track by team.id">
-				</select>
 
-			</li>	
+            <!-- Team dropdown -->
+			<li ng-hide="data.team.list.length === 0">
+				<select
+                    ng-model="data.team.selected"
+                    ng-selected="data.team.selected"
+					ng-options="(team.name +' ('+ team.sport_name +')') for team in data.team.list track by team.id">
+				</select>
+			</li>
+
+            <!-- Athlete dropdown -->
+			<li ng-hide="data.athlete.list.length === 0">
+				<select
+                    ng-model="data.athlete.selected"
+                    ng-selected="data.athlete.selected"
+					ng-options="(athlete.first_name +' '+ athlete.last_name) for athlete in data.athlete.list track by athlete.id">
+				</select>
+			</li>
 
 		</ul>
 
@@ -39,5 +49,3 @@
 	</div>
 
 </header>
-
-

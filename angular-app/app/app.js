@@ -13,7 +13,9 @@ var app = angular.module("app", [
 
 // Constants to be used throughout the app, for development.
 .constant("dev", {
+    version: "0.2.0",
     timestamp: Date.now(),
+    userHash: $('meta[name="user-hash"]').attr('content'),
     isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
 })
 
@@ -24,25 +26,25 @@ var app = angular.module("app", [
     function($routeProvider, dev)
     {
         // Cache-busting, used for development.
-        var append = dev.isLocal ? "?" + dev.timestamp : "";
+        var version = dev.isLocal ? dev.timestamp : dev.version;
 
         // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		}).when("/dashboard", {
-			templateUrl: "/views/dashboard.html" + append
+			templateUrl: "/views/dashboard.html?" + version
 		}).when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html" + append
+			templateUrl: "/views/movementsubmit.html?" + version
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html" + append
+			templateUrl: "/views/fmstest.html?" + version
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html" + append
+			templateUrl: "/views/fmsdata.html?" + version
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html" + append
+			templateUrl: "/views/fmsresults.html?" + version
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html" + append
+			templateUrl: "/views/movementscreen.html?" + version
 		}).when("/movements", {
-			templateUrl: "/views/outer.html" + append
+			templateUrl: "/views/outer.html?" + version
 		}).otherwise({
 			redirectTo: "/404"
 		});

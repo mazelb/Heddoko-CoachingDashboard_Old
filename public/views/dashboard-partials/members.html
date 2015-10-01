@@ -1,0 +1,128 @@
+
+<section>
+	<div class="row">
+		<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2>Team members</h2>
+
+						<div class="col-sm-12">
+							<div ng-hide="data.athlete.list.length == 0">
+                                This team does not have any athletes yet! Add one below to get started.
+                            </div>
+
+                            <!-- List of athletes -->
+							<a
+                                href="javascript:;"
+                                class="btn btn-primary btn-metro"
+                                ng-repeat="athlete in data.athletes"
+                                ng-click="data.selected_athlete = athlete;forwardsStep();">
+
+								<span>{{athlete.first_name}}</span>
+							</a>
+
+						</div>
+
+					</div>
+				</div>
+		</div>
+	</div>
+</section>
+
+<!-- New athlete form -->
+<section>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2>Add an athlete</h2>
+
+                    <!-- Athlete picture -->
+					<div class="col-sm-2">
+						<a href="javascript:;" class="btn btn-primary btn-metro btn-metro-sm">
+							<object type="image/svg+xml" data="/images/sports/1.svg"/>
+						</a>
+					</div>
+
+                    <!-- Athlete details -->
+					<div class="col-sm-10">
+						<form ng-submit="submitNewAthleteForm()">
+
+                            <!-- First name -->
+							<div class="form-group">
+									<input
+                                        type="text"
+                                        class="form-control"
+                                        ng-model="data.new_athlete_form_data.first_name"
+                                        placeholder="First Name"
+                                        required>
+							</div>
+
+                            <!-- Last name -->
+							<div class="form-group">
+									<input
+                                        type="text"
+                                        class="form-control"
+                                        ng-model="data.new_athlete_form_data.last_name"
+                                        placeholder="Last Name"
+                                        required>
+							</div>
+
+                            <!-- Height -->
+							<div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-2">
+                                        Height
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input
+                                            class="form-control"
+                                            ng-model="data.new_athlete_form_data.height_cm"
+                                            placeholder="Feet"
+                                            type="number"
+                                            min="1" max="10"
+                                            required>
+                                    </div>
+                                    <div class="col-xs-5">
+                                        <input
+                                            class="form-control"
+                                            ng-model="data.new_athlete_form_data.height_cm"
+                                            placeholder="Inches"
+                                            type="number"
+                                            min="1" max="11"
+                                            required>
+                                    </div>
+                                </div>
+							</div>
+
+                            <!-- Weight -->
+							<div class="form-group">
+								<input
+                                    class="form-control"
+                                    ng-model="data.new_athlete_form_data.weight_kg"
+                                    placeholder="Weight (lbs)"
+                                    type="number"
+                                    min="50" max="500"
+                                    required>
+							</div>
+
+                            <!-- Sport -->
+							<div class="form-group">
+								<input type="text" class="form-control" ng-model="data.new_athlete_form_data.primary_sport" placeholder="Enter new athlete's primary sport">
+							</div>
+
+                            <!-- Hand/leg dominance -->
+							<div class="form-group">
+								<input type="text" class="form-control" ng-model="data.new_athlete_form_data.hand_leg_dominance" placeholder="Enter new athlete's Hand/Leg dominance">
+							</div>
+
+							<button type="submit" class="btn btn-info pull-right">Submit</button>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>

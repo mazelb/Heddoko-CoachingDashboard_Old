@@ -1,12 +1,11 @@
 /**
  * @file controllers.js
  * @brief This file controls the calls to the back end and the navigation within the dashboard
- * @author Maxwell Mowbray (max@heddoko.com)
+ * @author Maxwell Mowbray (max@heddoko.com) and Francis Amankrah (frank@heddoko.com)
  * @date June 2015
  */
-
-angular.module("app.controllers", []).controller("MainController", ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit",
-  function($scope, $sessionStorage, Teams, Athletes, loggit) {
+angular.module("app.controllers", []).controller("MainController", ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", "dev",
+  function($scope, $sessionStorage, Teams, Athletes, loggit, dev) {
 
 	/**
 	* @brief This is the central controller which runs whenever the dashboard is loaded
@@ -16,37 +15,132 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	* @return void
 	*/
 
-    $scope.data = $sessionStorage; //tie the local scope to the local web storage
+    // Save an instance of the "dev" variable in the scope.
+    $scope.dev = dev;
 
-    $scope.$watch('data.selected_team', function(new_team_value, old_team_value) {
+    // Tie the local scope to the sessionStorage.
+    $sessionStorage[dev.userHash] = $sessionStorage[dev.userHash] || {};
+    $scope.data = $sessionStorage[dev.userHash];
 
-	if ((new_team_value === null) || (typeof new_team_value === "undefined")) {
-		return;
-	  }
+    // ...
+    $scope.data.team = $scope.data.team || {};
+    $scope.data.team.list = $scope.data.team.list || [];
+    $scope.data.team.selected = $scope.data.team.selected || {id: 0};
+    $scope.data.athlete = $scope.data.athlete || {};
+    $scope.data.athlete.list = $scope.data.athlete.list || [];
+    $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
 
-	  $sessionStorage.athletes = $sessionStorage.selected_athlete = null;
+    // Populates the team list.
+    $scope.populateTeamList = function() {
 
-				Athletes.get($sessionStorage.selected_team.id)
-				.success(function(athletes_reponse) {
-					$sessionStorage.athletes = athletes_reponse;
+		Teams.get().success(function(teamList) {
 
-					if ($sessionStorage.athletes.length > 0) {
-						$sessionStorage.selected_athlete = $sessionStorage.athletes[0]; //select the first athlete by default
-					}
+			$scope.data.team.list = teamList;
 
-				});
+            // Select a team by default.
+            if ($scope.data.team.selected.id < 1) {
+                $scope.data.team.selected = teamList[0];
+            }
+		});
+    };
 
-		}, true);
+    // Populates the athlete list.
+    $scope.populateAthleteList = function() {
 
-		if ($sessionStorage.teams === null || typeof $sessionStorage.teams === "undefined"){
-			Teams.get()
-			.success(function(teams_response) {
-				$sessionStorage.teams = teams_response;
-				if ($sessionStorage.teams.length > 0) {
-					$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
-				}
-			});
-		}
+        console.log('Athlete list...');
+
+		Athletes.get($scope.data.team.selected.id).success(function(athleteList) {
+
+            console.log(athleteList);
+
+			$scope.data.athlete.list = athleteList;
+
+            // Select a team by default.
+            if ($scope.data.athlete.selected.id < 1 && athleteList.length > 0) {
+                $scope.data.athlete.selected = athleteList[0];
+            }
+		});
+    };
+
+    // Populate team list.
+	if ($scope.data.team.list.length === 0) {
+		$scope.populateTeamList();
+	}
+
+    // Populate athlete list.
+	if ($scope.data.athlete.list.length === 0) {
+		$scope.populateAthleteList();
+	}
+
+    // Update the athlete list as the selected team is modified.
+    $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
+    {
+        // Performance check.
+        if (newSelectedTeam === 0) {
+            return;
+        }
+
+        // Make sure we have an object.
+        if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+        {
+            var teamId = Number(newSelectedTeam);
+            $.each($scope.data.team.list, function(index, team)
+            {
+                if (team.id == teamId) {
+                    newSelectedTeam = team;
+                }
+            });
+
+            // TODO: find out if this inteferes with the "$watch" function.
+            $scope.data.team.selected = newSelectedTeam;
+            return;
+        }
+
+        console.log('Selected team: ' + newSelectedTeam.id);
+
+        // Reset the athletes list.
+        $scope.data.athlete.list = [];
+        $scope.data.athlete.selected = {id: 0};
+
+        // Update the athletes list.
+		$scope.populateAthleteList();
+    });
+
+    // TODO: deprecated
+    $scope.$watch('data.selected_team', function(new_team_value, old_team_value)
+    {
+        if ((new_team_value === null) || (typeof new_team_value === "undefined")) {
+            return;
+        }
+
+        // ...
+        $sessionStorage.athletes = $sessionStorage.selected_athlete = null;
+
+        // Update the athletes list.
+		Athletes.get($sessionStorage.selected_team.id).success(function(athletes_reponse)
+        {
+			$sessionStorage.athletes = athletes_reponse;
+
+			if ($sessionStorage.athletes.length > 0) {
+				$sessionStorage.selected_athlete = $sessionStorage.athletes[0]; //select the first athlete by default
+			}
+		});
+
+	}, true);
+
+	// if ($sessionStorage.teams === null || typeof $sessionStorage.teams === "undefined")
+    // {
+	// 	Teams.get().success(function(teams_response)
+    //     {
+	// 		$sessionStorage.teams = teams_response;
+    //
+    //         console.log(teams_response);
+    //
+	// 		if ($sessionStorage.teams.length > 0) {
+	// 			$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
+	// 		}
+	// 	});
+	// }
 
 		$scope.submitNewTeamForm = function() {
 
@@ -122,7 +216,7 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
     	*/
 
         // Save an instance of the "dev" variable in the scope.
-        $scope.dev = dev;
+        //$scope.dev = dev;
 
 
     	$sessionStorage.show_fms_edit = false;
@@ -254,7 +348,7 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	};
 
     // Save an instance of the "dev" variable in the scope.
-    $scope.dev = dev;
+    //$scope.dev = dev;
 
 	$scope.data = MovementStore; //store the movement_pages and current_movement_page in this store
 								//so it can be shared by the nav bar and the movement pages

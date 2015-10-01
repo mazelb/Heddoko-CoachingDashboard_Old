@@ -13869,7 +13869,9 @@ var app = angular.module("app", [
 
 // Constants to be used throughout the app, for development.
 .constant("dev", {
+    version: "0.2.0",
     timestamp: Date.now(),
+    userHash: $('meta[name="user-hash"]').attr('content'),
     isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
 })
 
@@ -13880,25 +13882,25 @@ var app = angular.module("app", [
     function($routeProvider, dev)
     {
         // Cache-busting, used for development.
-        var append = dev.isLocal ? "?" + dev.timestamp : "";
+        var version = dev.isLocal ? dev.timestamp : dev.version;
 
         // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		}).when("/dashboard", {
-			templateUrl: "/views/dashboard.html" + append
+			templateUrl: "/views/dashboard.html?" + version
 		}).when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html" + append
+			templateUrl: "/views/movementsubmit.html?" + version
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html" + append
+			templateUrl: "/views/fmstest.html?" + version
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html" + append
+			templateUrl: "/views/fmsdata.html?" + version
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html" + append
+			templateUrl: "/views/fmsresults.html?" + version
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html" + append
+			templateUrl: "/views/movementscreen.html?" + version
 		}).when("/movements", {
-			templateUrl: "/views/outer.html" + append
+			templateUrl: "/views/outer.html?" + version
 		}).otherwise({
 			redirectTo: "/404"
 		});
@@ -14257,27 +14259,32 @@ angular.module('countTo', []).controller("countTo", ["$scope",
  * @author Maxwell Mowbray (max@heddoko.com)
  * @date June 2015
  */
- 
- angular.module('backendHeddoko', []).factory('Teams', function($http) {
 
-	return { 
-	
+ angular.module('backendHeddoko', [])
+
+/**
+ * Teams factory.
+ */
+.factory('Teams', function($http) {
+
+	return {
+
 		/**
 		* @brief Teams.get method used for fetching the active user's teams
 		* @param void
 		* @return list of user's teams
 		*/
-		 
+
 		get : function() {
 			return $http.get('/api/teams');
-		},		
-	
+		},
+
 		/**
 		* @brief Teams.create method used for creating a new team under the active user
 		* @param form data pertaining to a new team entry
 		* @return upon a successful addition of a new team, the back-end returns an updated teams list
 		*/
-	
+
 		create : function(new_team_form_data) {
 			return $http({
 				method: 'POST',
@@ -14286,13 +14293,13 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 				data: $.param(new_team_form_data)
 			});
 		},
-		
+
 		/**
 		* @brief This is the Teams.update method used for updating an existing team's details
 		* @param form data pertaining to updated team details
 		* @return upon a successful update of a team, the back-end returns a updated teams list
 		*/
-		
+
 		update : function(team_id, updated_team_form_data) {
 			return $http({
 				method: 'PUT',
@@ -14301,39 +14308,44 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 				data: $.param(updated_team_form_data)
 			});
 		},
-		
+
 		/**
 		* @brief This is the Teams.destroy method used for removing a team under the active user
 		* @param id of the team to be destroyed
 		* @return void
 		*/
-		
+
 		destroy : function(team_id) {
 			return $http.delete('/api/teams/' + team_id);
 		}
-		
+
 	};
 
-}).factory('Athletes', function($http) {
+})
+
+/**
+ * Athletes factory.
+ */
+.factory('Athletes', function($http) {
 
 	return {
-	
+
 		/**
 		* @brief Athletes.get method used for fetching the athletes belonging to a given team
 		* @param team id
 		* @return list of athletes belonging to supplied team
 		*/
-	
+
 		get : function(team_id) {
 			return $http.get('/api/teams/' + team_id + '/athletes');
 		},
-		
+
 		/**
 		* @brief Athletes.create method used for creating a new Athlete, belonging to an existing team
 		* @param the id of the team under which to add the new athlete, and the new athlete's details
 		* @return upon a successful addition of a new team, the back-end returns an updated athlete's list
 		*/
-		
+
 		create : function(team_id, new_athlete_form_data) {
 		    console.log(new_athlete_form_data);
 			    return $http({
@@ -14342,24 +14354,26 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				    data: $.param(new_athlete_form_data)
 			});
-		}		
+		}
 
 	};
 
-}).factory('FMSForm', function($http) {
+})
+
+.factory('FMSForm', function($http) {
 
 	return {
-	
+
 		/**
 		* @brief FMSForm.get method used for fetching the fmsforms belonging to a supplied athlete
 		* @param id of athlete
 		* @return list of FMS Forms belonging to supplied athlete
 		*/
-			
+
 		get : function(athlete_id) {
 			return $http.get('/api/athletes/' + athlete_id + '/fmsforms');
 		},
-		
+
 		/**
 		* @brief FMSForm.create method used for creating a new FMS Form, belonging to an existing athlete
 		* @param the id of the athlete under which to add the new FMS Form, and the new FMS Form details
@@ -14367,9 +14381,9 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 		*/
 
 		create : function(athlete_id, form_data, fms_form_movement_files) {
-		
+
 			var fd = new FormData();
-			
+
 			if (fms_form_movement_files){
 				if (fms_form_movement_files.deepsquat_movement_file) fd.append('deepsquat_movement_file', fms_form_movement_files.deepsquat_movement_file[0]);
 				if (fms_form_movement_files.Lhurdle_movement_file) fd.append('Lhurdle_movement_file', fms_form_movement_files.Lhurdle_movement_file[0]);
@@ -14390,7 +14404,7 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 			}
 
 			//attach the numerical values of the fms form
-			
+
 			fd.append('deepsquat', form_data.deepsquat);
 			fd.append('deepsquatcomments', form_data.deepsquatcomments);
 			fd.append('Lhurdle', form_data.Lhurdle);
@@ -14417,22 +14431,22 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 			fd.append('rotarycomments', form_data.rotarycomments);
 			fd.append('posterior', form_data.posterior);
 			fd.append('posteriorcomments', form_data.posteriorcomments);
-			
+
 			fd.append('comment', form_data.comment);
-			
+
 			return $http.post('/api/athletes/' + athlete_id + '/fmsforms', fd, {
 				transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}
 			});
-			
+
 		},
-		
+
 		/**
 		* @brief This is the FMSForm.update method used for updating an existing FMS Form
 		* @param the id of the athlete that the FMS Form belongs to, and the form data pertaining to updated team details
 		* @return upon a successful update of a team, the back-end returns a updated FMS Form list
 		*/
-		
+
 		update : function(athlete_id, updated_fms_form) {
 			return $http({
 				method: 'PUT',
@@ -14441,22 +14455,24 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 				data: $.param(updated_fms_form)
 			});
 		},
-		
+
 		/**
 		* @brief This is the FMSForm.destroy method used for deleting an FMS Form
 		* @param id of the FMS Form to be destroyed
 		* @return upon a successful deletion of an FMS Form, the back-end returns a updated FMS Form list
 		*/
-		
+
 		destroy : function(athleteid, form_id) {
 			return $http.delete('/api/athletes/' + athleteid + '/fmsforms/' + form_id);
 		}
 	};
 
-}).factory('Sports', function($http) {
+})
+
+.factory('Sports', function($http) {
 
 	return {
-	
+
 		/**
 		* @brief SportCategories.get method used for fetching the sports categories
 		* @param void
@@ -14468,60 +14484,64 @@ angular.module('countTo', []).controller("countTo", ["$scope",
 		}
 	};
 
-}).factory('SportMovements', function($http) {
+})
+
+.factory('SportMovements', function($http) {
 
 	return {
-	
+
 		/**
 		* @brief SportMovements.get method used for fetching the movements under a given sport category
 		* @param id of sport category
 		* @return list of sport movements belonging to supplied sport category
 		*/
-		
+
 		get : function(sport_id) {
 			return $http.get('/api/sports/' + sport_id + '/sportmovements');
 		}
-		
+
 	};
-}).factory('Movements', function($http) {
+})
+
+.factory('Movements', function($http) {
 
 	return {
-	
+
 		/**
 		* @brief Movements.upload method used for uploading multiple movement files to the back-end
 		* @param id of athlete who conducted the movement(s), and the array of files to upload.
 		* @return null
 		*/
-		
+
 		upload : function(athlete_id, sport_id, form_data){
 
 			var fd = new FormData();
-			
+
 			fd.append('sportID', sport_id);
 			fd.append('comment', form_data.comment);
 
-			for (i = 0; i < form_data.movement_files.length; i++) { 
+			for (i = 0; i < form_data.movement_files.length; i++) {
 				fd.append('movements[]', form_data.movement_files[i]);
 			}
-			
+
 			return $http.post('/api/athletes/' + athlete_id + '/movements', fd, {
 				transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}
 			});
 
 		}
-		
+
 	};
-			
-});;/**
+
+});
+;/**
  * @file controllers.js
  * @brief This file controls the calls to the back end and the navigation within the dashboard
- * @author Maxwell Mowbray (max@heddoko.com)
+ * @author Maxwell Mowbray (max@heddoko.com) and Francis Amankrah (frank@heddoko.com)
  * @date June 2015
  */
-
-angular.module("app.controllers", []).controller("MainController", ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit",
-  function($scope, $sessionStorage, Teams, Athletes, loggit) {
+angular.module("app.controllers", []).controller("MainController", ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", "dev",
+  function($scope, $sessionStorage, Teams, Athletes, loggit, dev) {
 
 	/**
 	* @brief This is the central controller which runs whenever the dashboard is loaded
@@ -14531,37 +14551,132 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	* @return void
 	*/
 
-    $scope.data = $sessionStorage; //tie the local scope to the local web storage
+    // Save an instance of the "dev" variable in the scope.
+    $scope.dev = dev;
 
-    $scope.$watch('data.selected_team', function(new_team_value, old_team_value) {
+    // Tie the local scope to the sessionStorage.
+    $sessionStorage[dev.userHash] = $sessionStorage[dev.userHash] || {};
+    $scope.data = $sessionStorage[dev.userHash];
 
-	if ((new_team_value === null) || (typeof new_team_value === "undefined")) {
-		return;
-	  }
+    // ...
+    $scope.data.team = $scope.data.team || {};
+    $scope.data.team.list = $scope.data.team.list || [];
+    $scope.data.team.selected = $scope.data.team.selected || {id: 0};
+    $scope.data.athlete = $scope.data.athlete || {};
+    $scope.data.athlete.list = $scope.data.athlete.list || [];
+    $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
 
-	  $sessionStorage.athletes = $sessionStorage.selected_athlete = null;
+    // Populates the team list.
+    $scope.populateTeamList = function() {
 
-				Athletes.get($sessionStorage.selected_team.id)
-				.success(function(athletes_reponse) {
-					$sessionStorage.athletes = athletes_reponse;
+		Teams.get().success(function(teamList) {
 
-					if ($sessionStorage.athletes.length > 0) {
-						$sessionStorage.selected_athlete = $sessionStorage.athletes[0]; //select the first athlete by default
-					}
+			$scope.data.team.list = teamList;
 
-				});
+            // Select a team by default.
+            if ($scope.data.team.selected.id < 1) {
+                $scope.data.team.selected = teamList[0];
+            }
+		});
+    };
 
-		}, true);
+    // Populates the athlete list.
+    $scope.populateAthleteList = function() {
 
-		if ($sessionStorage.teams === null || typeof $sessionStorage.teams === "undefined"){
-			Teams.get()
-			.success(function(teams_response) {
-				$sessionStorage.teams = teams_response;
-				if ($sessionStorage.teams.length > 0) {
-					$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
-				}
-			});
-		}
+        console.log('Athlete list...');
+
+		Athletes.get($scope.data.team.selected.id).success(function(athleteList) {
+
+            console.log(athleteList);
+
+			$scope.data.athlete.list = athleteList;
+
+            // Select a team by default.
+            if ($scope.data.athlete.selected.id < 1 && athleteList.length > 0) {
+                $scope.data.athlete.selected = athleteList[0];
+            }
+		});
+    };
+
+    // Populate team list.
+	if ($scope.data.team.list.length === 0) {
+		$scope.populateTeamList();
+	}
+
+    // Populate athlete list.
+	if ($scope.data.athlete.list.length === 0) {
+		$scope.populateAthleteList();
+	}
+
+    // Update the athlete list as the selected team is modified.
+    $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
+    {
+        // Performance check.
+        if (newSelectedTeam === 0) {
+            return;
+        }
+
+        // Make sure we have an object.
+        if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+        {
+            var teamId = Number(newSelectedTeam);
+            $.each($scope.data.team.list, function(index, team)
+            {
+                if (team.id == teamId) {
+                    newSelectedTeam = team;
+                }
+            });
+
+            // TODO: find out if this inteferes with the "$watch" function.
+            $scope.data.team.selected = newSelectedTeam;
+            return;
+        }
+
+        console.log('Selected team: ' + newSelectedTeam.id);
+
+        // Reset the athletes list.
+        $scope.data.athlete.list = [];
+        $scope.data.athlete.selected = {id: 0};
+
+        // Update the athletes list.
+		$scope.populateAthleteList();
+    });
+
+    // TODO: deprecated
+    $scope.$watch('data.selected_team', function(new_team_value, old_team_value)
+    {
+        if ((new_team_value === null) || (typeof new_team_value === "undefined")) {
+            return;
+        }
+
+        // ...
+        $sessionStorage.athletes = $sessionStorage.selected_athlete = null;
+
+        // Update the athletes list.
+		Athletes.get($sessionStorage.selected_team.id).success(function(athletes_reponse)
+        {
+			$sessionStorage.athletes = athletes_reponse;
+
+			if ($sessionStorage.athletes.length > 0) {
+				$sessionStorage.selected_athlete = $sessionStorage.athletes[0]; //select the first athlete by default
+			}
+		});
+
+	}, true);
+
+	// if ($sessionStorage.teams === null || typeof $sessionStorage.teams === "undefined")
+    // {
+	// 	Teams.get().success(function(teams_response)
+    //     {
+	// 		$sessionStorage.teams = teams_response;
+    //
+    //         console.log(teams_response);
+    //
+	// 		if ($sessionStorage.teams.length > 0) {
+	// 			$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
+	// 		}
+	// 	});
+	// }
 
 		$scope.submitNewTeamForm = function() {
 
@@ -14622,7 +14737,10 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
         $scope.current_dashboard_page++;
       }
     };
-}).controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", "dev",
+})
+
+
+.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", "dev",
     function($scope, $sessionStorage, FMSForm, loggit, dev) {
 
     	/**
@@ -14632,9 +14750,9 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
     	* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
     	* @return void
     	*/
-        
+
         // Save an instance of the "dev" variable in the scope.
-        $scope.dev = dev;
+        //$scope.dev = dev;
 
 
     	$sessionStorage.show_fms_edit = false;
@@ -14702,7 +14820,10 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
       $sessionStorage.selected_fms_form = form;
     };
     }
-]).controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
+])
+
+
+.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
   function($scope, $sessionStorage, Sports, SportMovements) {
 
 		/**
@@ -14763,7 +14884,7 @@ angular.module("app.controllers", []).controller("MainController", ["$scope", '$
 	};
 
     // Save an instance of the "dev" variable in the scope.
-    $scope.dev = dev;
+    //$scope.dev = dev;
 
 	$scope.data = MovementStore; //store the movement_pages and current_movement_page in this store
 								//so it can be shared by the nav bar and the movement pages
@@ -17237,8 +17358,8 @@ angular.module("app.ui.services", []).factory("loggit", [
     }
 ]);
 
-angular.module('app.controllers').service('MovementStore',function(){
-	
+angular.module('app.controllers').service('MovementStore', function() {
+
 	var movement_screen_movements = [
 		'Deep Squat',
 		'Hurdle Step',
@@ -17251,16 +17372,16 @@ angular.module('app.controllers').service('MovementStore',function(){
 		'Rotary Stability',
 		'Posterior Rocking (c. test)'
 	];
-	
+
 	var movement_screen_pages = {
 		test: 0,
 		analysis: 1,
 		data: 2,
 		summary: 3
 	};
-	
+
 	var movement_pages = [];
-	
+
 	for (var i = 0; i < movement_screen_movements.length; i++)
 	{
 		var new_movement_page_entry = {};
@@ -17274,7 +17395,7 @@ angular.module('app.controllers').service('MovementStore',function(){
 		new_movement_page_entry.summary_page_data = {};
 
 		//new_movement_page_entry.joints = [];
-		
+
 		if (i == 5) //ASLR
 		{
 
@@ -17289,13 +17410,13 @@ angular.module('app.controllers').service('MovementStore',function(){
 			new_movement_page_entry.trials.push({name:'trial ' + 3, status:'idle', active_graph_series:[]});
 
 			new_movement_page_entry.active_trial = new_movement_page_entry.trials[0];
-			
+
 			new_movement_page_entry.sides = ['left', 'right'];
 			new_movement_page_entry.sides[0].trials=[];
 			new_movement_page_entry.sides[0].push({name:'trial ' + 1, status:'idle', active_graph_series:[]});
 			new_movement_page_entry.sides[0].push({name:'trial ' + 2, status:'idle', active_graph_series:[]});
 			new_movement_page_entry.sides[0].push({name:'trial ' + 3, status:'idle', active_graph_series:[]});*/
-			
+
 			var sides = ['LEFT', 'RIGHT'];
 			var trials_count = 3;
 			var joints = ['Hip', 'Knee'];
@@ -17305,27 +17426,27 @@ angular.module('app.controllers').service('MovementStore',function(){
 			{
 				new_movement_page_entry.sides.push({'name' : sides[l]});
 			}
-			
+
 			new_movement_page_entry.active_side = new_movement_page_entry.sides[0];
-			
+
 			for (var j = 0; j < new_movement_page_entry.sides.length; j++)
 			{
 				new_movement_page_entry.sides[j].trials = [];
-				
+
 				for (var k = 0; k < trials_count; k++)
 				{
 					new_movement_page_entry.sides[j].trials.push({name:'Trial ' + (k + 1), status:'idle', joints:[{name:'HIP', movements:[{name:'Flexion/Extension', left_deg:108, right_deg:97, series_data: {name: 'Hip Flexion', data: [0, 15, 20, 60, 70, 90, 80, 75, 60, 45, 0]}} ]}, {name:'KNEE', movements:[{name:'Flexion/Extension', left_deg:108, right_deg:97, series_data: {name: 'Knee Flexion',data: [0, 5, 20, 50, 65, 80, 80, 80, 75, 60, 0]}} ]}]});
 				}
-				
+
 				new_movement_page_entry.sides[j].active_trial = new_movement_page_entry.sides[j].trials[0];
 			}
-			
+
 		}
-		
+
 		movement_pages.push(new_movement_page_entry);
-		
+
 	}
-	
+
 	return {movement_pages: movement_pages};
-	
+
 });
