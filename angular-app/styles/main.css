@@ -4693,7 +4693,21 @@ fieldset[disabled] .btn-danger.active {
   border-radius: 5px; }
 
 .top-header .top-nav .nav-left > li > select {
-  margin: 10px; }
+  margin: 8px;
+  padding: 5px;
+  text-align: center;
+  color: #000;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
 
 .top-header .langs .active-flag .flag {
   margin-top: -5px; }
@@ -7312,14 +7326,6 @@ label {
 18 - Ajax loading
 *************************************/
 .page-loading-overlay {
-  zoom: 1;
-  filter: alpha(opacity=0);
-  -webkit-opacity: 0;
-  -moz-opacity: 0;
-  opacity: 1;
-  /* visibility: hidden; */ }
-
-.page-loading-overlay {
   position: fixed;
   left: 0;
   top: 0;
@@ -7339,12 +7345,14 @@ label {
   -webkit-opacity: 1;
   -moz-opacity: 1;
   opacity: 1;
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out; }
+  -webkit-transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -o-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out; }
 
-.page-loading-overlay.loaded, .loader.loaded, .load_circle_wrapper.loaded {
+.page-loading-overlay.loaded,
+.loader.loaded,
+.load_circle_wrapper.loaded {
   zoom: 1;
   filter: alpha(opacity=0);
   -webkit-opacity: 0;
