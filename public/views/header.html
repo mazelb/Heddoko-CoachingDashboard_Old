@@ -26,12 +26,15 @@
 			</li>
 
             <!-- Athlete dropdown -->
-			<li ng-hide="data.athlete.list.length === 0">
+			<li ng-hide="data.athlete.list.length === 0" class="athlete-dropdown">
 				<select
                     ng-model="data.athlete.selected"
                     ng-selected="data.athlete.selected"
 					ng-options="(athlete.first_name +' '+ athlete.last_name) for athlete in data.athlete.list track by athlete.id">
 				</select>
+                <a href="#/dashboard">
+                    <i class="fa fa-angle-double-right"></i>
+                </a>
 			</li>
 
 		</ul>
