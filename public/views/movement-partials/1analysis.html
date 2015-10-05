@@ -1,5 +1,6 @@
 
-<div class="row">
+<!-- Temp fix -->
+<div class="row" ng-hide="data.current_movement_page.disabled">
 	<div class="col-sm-9">
 		<div class="panel panel-default" style="height:480px;">
 			<div class="panel-body" style="padding:0px;">
@@ -167,4 +168,13 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Temp fix -->
+<div class="row" ng-show="data.current_movement_page.disabled">
+    <div class="col-sm-12">
+        <h1 style="text-align: center; color: #ccc;">
+            In Development
+        </h1>
+    </div>
 </div>

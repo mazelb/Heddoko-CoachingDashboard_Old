@@ -1,4 +1,6 @@
-<div class="row">
+
+<!-- Temp fix -->
+<div class="row" ng-hide="data.current_movement_page.disabled">
 	<div class="col-sm-9">
 		<div class="panel panel-default" style="height:740px;">
 			<div class="panel-body summary-controls-list-container" style="padding:0px;">
@@ -20,7 +22,7 @@
 								<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="joint.selected"/>
 								<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-down" ng-hide="joint.selected" />
 							</div>
-						
+
 						</div>
 						<div class="row" ng-repeat="movement in joint.movements" ng-if="joint.selected" ng-click="movement.selected = !movement.selected" ng-class="{'selected':movement.selected}" style="height:56px;margin:0;line-height:56px;">
 							<div class="col-sm-8">
@@ -222,4 +224,13 @@
 			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Temp fix -->
+<div class="row" ng-show="data.current_movement_page.disabled">
+    <div class="col-sm-12">
+        <h1 style="text-align: center; color: #ccc;">
+            In Development
+        </h1>
+    </div>
 </div>

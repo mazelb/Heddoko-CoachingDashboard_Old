@@ -134,6 +134,8 @@ angular.module('app.controllers')
             ];
 
             new_movement_page_entry.active_trial = new_movement_page_entry.sides[0].trials[0];
+
+            new_movement_page_entry.disabled = true;
         }
 
 		movement_pages.push(new_movement_page_entry);

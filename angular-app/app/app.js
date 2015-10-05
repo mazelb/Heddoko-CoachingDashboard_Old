@@ -14,7 +14,7 @@ var app = angular.module("app", [
 // The rover variable is used throughout the app and will be made available
 // to the different controllers.
 .constant("rover", {
-    version: "0.2.1",       // Used to version the assets.
+    version: "0.2.2",       // Used to version the assets.
     timestamp: Date.now(),  // Used to version the assets in development.
     userHash: $('meta[name="user-hash"]').attr('content'),  // User-specific hash, used for sessionStorage.
     isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
