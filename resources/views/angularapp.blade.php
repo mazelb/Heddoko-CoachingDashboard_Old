@@ -19,7 +19,7 @@
             <div data-ng-cloak="" class="no-print">
                 <!-- Include a version # with the template for caching -->
                 <aside
-                    data-ng-include=" 'views/navigation.html?' + (dev.isLocal ? dev.timestamp : dev.version) "
+                    data-ng-include=" 'views/navigation.html?' + Date.now() "
                     id="nav-container">
                 </aside>
             </div>
@@ -29,7 +29,7 @@
                 <div class="no-print">
                     <!-- Include a version # with the template for caching -->
                     <section
-                        data-ng-include=" 'views/header.html?' + (dev.isLocal ? dev.timestamp : dev.version) "
+                        data-ng-include=" 'views/header.html?' + Date.now() "
                         id="header" class="top-header">
                     </section>
                 </div>
@@ -52,6 +52,6 @@
             </div>
         </div>
 
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/app.js?'. time()) }}"></script>
     </body>
 </html>
