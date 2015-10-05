@@ -55,16 +55,16 @@
 
 		<div ng-switch="data.current_movement_page.latest_page">
 			<div ng-switch-when="0">
-				<div ng-include="'views/movement-partials/0test.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include="'views/movement-partials/0test.html?' + Date.now()"></div>
 			</div>
 			<div ng-switch-when="1">
-				<div ng-include="'views/movement-partials/1analysis.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include="'views/movement-partials/1analysis.html?' + Date.now()"></div>
 			</div>
 			<div ng-switch-when="2">
-				<div ng-include="'views/movement-partials/2data.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include="'views/movement-partials/2data.html?' + Date.now()"></div>
 			</div>
 			<div ng-switch-when="3">
-				<div ng-include="'views/movement-partials/3summary.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include="'views/movement-partials/3summary.html?' + Date.now()"></div>
 			</div>
 		</div>
 	</div>

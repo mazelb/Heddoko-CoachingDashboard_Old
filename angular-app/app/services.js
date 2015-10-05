@@ -42,12 +42,12 @@ angular.module('app.controllers')
 		'Hurdle Step',
 		'Inline Lunge',
 		'Shoulder Mobility',
-		'Impingement (c. test)',
+		'Impingement (C. Test)',
 		'Active Straight Leg Raise',
 		'Trunk Stability Pushup',
-		'Press-up (c. test)',
+		'Press-up (C. Test)',
 		'Rotary Stability',
-		'Posterior Rocking (c. test)'
+		'Posterior Rocking (C. Test)'
 	];
 
 	var movement_screen_pages = {

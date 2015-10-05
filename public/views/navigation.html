@@ -22,7 +22,13 @@
             <a href="#/movements"><span>movement screen</span></a>
 			<ul style="display: block;">
                 <li ng-repeat="movement_page in data.movement_pages">
-					<a href="#/movements" ng-click="select_movement(movement_page)"><i ng-if="movement_page.submitted" class="fa fa-2x fa-check" style="color:white;"></i><span>{{movement_page.name}}</span></a>
+					<a
+                        href="#/movements"
+                        ng-click="select_movement(movement_page)">
+
+                        <i ng-if="movement_page.submitted" class="fa fa-2x fa-check" style="color:white;"></i>
+                        <span>{{movement_page.name}}</span>
+                    </a>
 				</li>
             </ul>
         </li>

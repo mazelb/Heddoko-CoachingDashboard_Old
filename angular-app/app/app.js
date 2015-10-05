@@ -11,29 +11,13 @@ var app = angular.module("app", [
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"
 ])
 
-// The rover variable is used throughout the app and will be made available
-// to the different controllers.
-.constant("rover", {
-    version: "0.2.2",       // Used to version the assets.
-    timestamp: Date.now(),  // Used to version the assets in development.
-    userHash: $('meta[name="user-hash"]').attr('content'),  // User-specific hash, used for sessionStorage.
-    isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
-})
-
-// Constants to be used throughout the app, for development.
-.constant("dev", {
-    version: "0.2.0",
-    timestamp: Date.now(),
-    userHash: $('meta[name="user-hash"]').attr('content'),
-    isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
-})
-
 // Configures the application.
-.config(["$routeProvider", "rover",
-    function($routeProvider, rover)
+.config(['$routeProvider',
+    function($routeProvider)
     {
         // Cache-busting, used for development.
-        var version = rover.isLocal ? rover.timestamp : rover.version;
+        // TODO: update this to value in Rover service.
+        var version = Date.now();
 
         // Routing.
         return $routeProvider.when("/", {
