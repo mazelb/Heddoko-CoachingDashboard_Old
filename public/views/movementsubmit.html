@@ -49,21 +49,19 @@
 						<h2>
 							Submit Movement Data
 						</h2>
-						<div ng-show="data.selected_athlete == null">Select an athlete under 'Dashboard' in the sidebar before submitting Movement Data</div>
+						<div ng-show="data.athlete.selected == null">
+                            Select an athlete under 'Dashboard' in the sidebar before submitting Movement Data
+                        </div>
 
-						<div ng-hide="data.selected_athlete == null" class="col-sm-6" data-ng-controller="SportsController">
-
+						<div ng-hide="data.athlete.selected == null" class="col-sm-6" data-ng-controller="SportsController">
 							<div class="form-group">
 								<label for="sportChoice" class="col-sm-4 control-label">Choose Sport</label>
-
-									<select id="sportChoice"
-													ng-model="data.selected_sport"
-													ng-selected="data.selected_sport"
-													ng-options="sport.name for sport in data.sports track by sport.id" >
-									</select>
-
+								<select id="sportChoice"
+									ng-model="data.selected_sport"
+									ng-selected="data.selected_sport"
+									ng-options="sport.name for sport in data.sports track by sport.id">
+								</select>
 							</div>
-
 
 							<div>
 
@@ -97,7 +95,7 @@
 									<h3>Summary</h3>
 
 									<ul class="list-unstyled">
-										<li>Player <b class="pull-right">{{data.selected_athlete.first_name}} {{data.selected_athlete.last_name}}</b></li>
+										<li>Player <b class="pull-right">{{data.athlete.selected.first_name}} {{data.athlete.selected.last_name}}</b></li>
 										<li>Category <b class="pull-right">{{data.selected_sport.name}}</b></li>
 										<li>Movement <b class="pull-right">{{data.selected_sport_movement.name}}</b></li>
 										<li>Suit No. <b class="pull-right">{{}}</b></li>

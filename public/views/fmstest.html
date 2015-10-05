@@ -57,9 +57,9 @@
 
 						<div class="panel-body col-sm-12 ng-scope">
 
-							<div ng-show="data.selected_athlete == null">Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form</div>
+							<div ng-show="data.athlete.selected == null">Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form</div>
 
-							<form ng-submit="submitFMSForm()" ng-hide="data.selected_athlete == null">
+							<form ng-submit="submitFMSForm()" ng-hide="data.athlete.selected == null">
 								<div class="row">
 									<div class="col-sm-3">
 										Deep Squat

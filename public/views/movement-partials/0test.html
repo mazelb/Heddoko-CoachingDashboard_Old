@@ -111,27 +111,11 @@
 		<div class="panel panel-default">
 			<div class="panel-body" style="padding:0px;">
 				<div class="col-sm-12 ng-scope movement-trial-list" style="padding:0px;">
-				<!--<div class="row" ng-repeat="trial in data.current_movement_page.active_side.trials" style="margin:0;" ng-class="{'active':trial == data.current_movement_page.active_side.active_trial}">
-						<div style="height:50px;line-height:50px;text-align:center;" ng-click="data.current_movement_page.active_side.active_trial = trial" >
-							<div class="col-sm-6" style="height:100%;">
-								Trial {{$index + 1}}
-							</div>
-							<div class="col-sm-3" style="height:100%;">
-								<div ng-if="trial.status=='saved'">NO FAULT</div>
-								<div ng-if="trial.status=='pain'">PAIN</div>
-							</div>
-							<div class="col-sm-3" style="height:100%;">
-								<img ng-if="trial.status=='recording' || trial.status=='stopped'" class="pull-right" src="../../images/ui/lock_open.png" alt="unsaved" style="height:40px;margin-top:5px;"/>
-								<img ng-if="trial.status=='saved'" class="pull-right" src="../../images/ui/lock_closed.png" alt="saved" style="height:40px;margin-top:5px;"/>
-							</div>
-						</div>
-					</div>
-					<div class="row" style="margin:0;">
-						<div style="background-color:#f48b4a;color:white;height:40px;line-height:40px;text-align:center;" ng-click="SubmitTest()">
-							SUBMIT RESULTS
-						</div>
-					</div>-->
-					<div ng-repeat="trial in data.current_movement_page.active_side.trials" ng-click="data.current_movement_page.active_side.active_trial = trial" ng-class="{'active':trial == data.current_movement_page.active_side.active_trial}">
+					<div
+                        ng-repeat="trial in data.current_movement_page.active_side.trials"
+                        ng-click="data.current_movement_page.active_side.active_trial = trial"
+                        ng-class="{'active':trial == data.current_movement_page.active_side.active_trial}">
+
 						<div class="trial-label">
 							Trial {{$index + 1}}
 						</div>

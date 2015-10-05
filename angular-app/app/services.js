@@ -120,6 +120,22 @@ angular.module('app.controllers')
 
 		}
 
+        // Temp fix.
+        else
+        {
+            new_movement_page_entry.sides = [
+                {
+                    name : 'TEST',
+                    trials: [
+                        {name: 'Trial 1', status: 'idle', joints: []},
+                        {name: 'Trial 2', status: 'idle', joints: []}
+                    ]
+                }
+            ];
+
+            new_movement_page_entry.active_trial = new_movement_page_entry.sides[0].trials[0];
+        }
+
 		movement_pages.push(new_movement_page_entry);
 
 	}

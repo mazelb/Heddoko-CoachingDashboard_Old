@@ -240,12 +240,12 @@ angular.module("app.controllers", [])
 
 			$scope.waiting_server_response = true;
 
-			$sessionStorage.new_team_form_data.sport_id = $sessionStorage.selected_sport.id;
+			$scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
 
-			Teams.create($sessionStorage.new_team_form_data)
+			Teams.create($scope.data.new_team_form_data)
 			.success(function(updated_teams_data) {
-				$sessionStorage.new_team_form_data = null;
-				$sessionStorage.teams = updated_teams_data; //store the updated teams list sent back by the server
+				$scope.data.new_team_form_data = null;
+				$scope.data.teams = updated_teams_data; //store the updated teams list sent back by the server
 				$scope.waiting_server_response = false;
 				loggit.logSuccess("New Team successfully created");
 			});
@@ -301,10 +301,12 @@ angular.module("app.controllers", [])
         // Save an instance of the "rover" variable in the scope.
         //$scope.rover = rover;
 
+        $sessionStorage[rover.userHash] = $sessionStorage[rover.userHash] || {};
 
-    	$sessionStorage.show_fms_edit = false;
+
+    	$sessionStorage[rover.userHash].show_fms_edit = false;
     	$scope.waiting_server_response = false;
-    	$sessionStorage.selected_fms_form = null;
+    	$sessionStorage[rover.userHash].selected_fms_form = null;
 
     $scope.$watch('data.athlete.selected', function(new_selected_athlete_value) {
 
@@ -328,7 +330,7 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-    		console.debug($sessionStorage.fms_form_data);
+    		console.debug($sessionStorage[rover.userHash].fms_form_data);
 
       FMSForm.create($scope.data.athlete.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
@@ -337,7 +339,7 @@ angular.module("app.controllers", [])
 
 
 
-          $sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
+          $sessionStorage[rover.userHash].fms_form_data = {}; //reset the form data upon successful FMS form submission
           $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				loggit.logSuccess("FMS Form successfully submitted");
@@ -352,11 +354,11 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-      FMSForm.update($scope.data.athlete.selected.id, $sessionStorage.selected_fms_form)
+      FMSForm.update($scope.data.athlete.selected.id, $sessionStorage[rover.userHash].selected_fms_form)
         .success(function(updated_fms_form_data) {
           $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
-    				$sessionStorage.show_fms_edit = false;
+    				$sessionStorage[rover.userHash].show_fms_edit = false;
     				loggit.logSuccess("FMS Form successfully updated");
         })
         .error(function() {
@@ -366,14 +368,14 @@ angular.module("app.controllers", [])
     };
 
     $scope.fmsdisplay = function(form) {
-      $sessionStorage.selected_fms_form = form;
+      $scope.data.selected_fms_form = form;
     };
     }
 ])
 
 // SportsController
-.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements',
-  function($scope, $sessionStorage, Sports, SportMovements) {
+.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'rover',
+  function($scope, $sessionStorage, Sports, SportMovements, rover) {
 
 		/**
 		* @brief The sports controller takes care of retrieving sports and movement types from the back-end
@@ -381,21 +383,23 @@ angular.module("app.controllers", [])
 		* @return void
 		*/
 
+        $sessionStorage[rover.userHash] = $sessionStorage[rover.userHash] || {};
+
     Sports.get() //retrieve the list of all sports from the back-end
 		.success(function(sports_response) {
-			$sessionStorage.sports = sports_response;
+			$sessionStorage[rover.userHash].sports = sports_response;
 
-			if ($sessionStorage.sports.length > 0) {
-				$sessionStorage.selected_sport = $sessionStorage.sports[0]; //select the first sport by default
+			if ($sessionStorage[rover.userHash].sports.length > 0) {
+				$sessionStorage[rover.userHash].selected_sport = $sessionStorage[rover.userHash].sports[0]; //select the first sport by default
 			}
 		});
 
     $scope.$watch('data.selected_sport', function() {
-		$sessionStorage.selected_sport_movement = $sessionStorage.sport_movements = null;
+		$sessionStorage[rover.userHash].selected_sport_movement = $sessionStorage[rover.userHash].sport_movements = null;
 
-		SportMovements.get($sessionStorage.selected_sport.id)
+		SportMovements.get($sessionStorage[rover.userHash].selected_sport.id)
 			.success(function(sports_movements_response) {
-				$sessionStorage.sport_movements = sports_movements_response;
+				$sessionStorage[rover.userHash].sport_movements = sports_movements_response;
 			});
 
     }, true);
@@ -403,8 +407,8 @@ angular.module("app.controllers", [])
 ])
 
 // MovementController.
-.controller("MovementController", ["$scope", '$sessionStorage', 'Movements', "loggit",
-  function($scope, $sessionStorage, Movements, loggit) {
+.controller("MovementController", ["$scope", '$sessionStorage', 'Movements', "loggit", 'rover',
+  function($scope, $sessionStorage, Movements, loggit, rover) {
 
 	/**
 	* @brief The movement controller takes care of uploading movement data (files) from the suit
@@ -412,15 +416,17 @@ angular.module("app.controllers", [])
 	* @return void
 	*/
 
+    $sessionStorage[rover.userHash] = $sessionStorage[rover.userHash] || {};
+
 	$scope.uploadMovements = function() {
 
-		Movements.upload($scope.data.athlete.selected.id, $sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
+		Movements.upload($scope.data.athlete.selected.id, $sessionStorage[rover.userHash].selected_sport_movement.id, $scope.data.new_movement_submission_data)
 		.error(function(err_msg) {
 			loggit.logError('error uploading movements to server');
 			console.log(err_msg);
 		})
 		.success(function(succ_msg) {
-			$sessionStorage.selected_sport_movement = $sessionStorage.new_movement_submission_data = null;
+			$sessionStorage[rover.userHash].selected_sport_movement = $sessionStorage[rover.userHash].new_movement_submission_data = null;
 			loggit.logSuccess('movements succesfully uploaded to server');
 			console.log(succ_msg);
 		});
@@ -532,7 +538,7 @@ angular.module("app.controllers", [])
     	}
     };
 
-    $scope.SubmitTest = function(){
+    $scope.SubmitTest = function() {
     	document.getElementById("FrontVideoPlayer").currentTime = 0;
     	MovementStore.current_movement_page.submitted = true;
 
