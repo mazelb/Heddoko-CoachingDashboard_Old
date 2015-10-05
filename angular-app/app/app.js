@@ -8,15 +8,13 @@ var app = angular.module("app", [
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
     "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
-    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover'
 ])
 
 // Configures the application.
-.config(['$routeProvider',
-    function($routeProvider)
-    {
+.config(['$routeProvider', function($routeProvider) {
+
         // Cache-busting, used for development.
-        // TODO: update this to value in Rover service.
         var version = Date.now();
 
         // Routing.
@@ -43,17 +41,16 @@ var app = angular.module("app", [
 ])
 
 // Runs the application.
-.run(["$rootScope", "$location",
-    function ($rootScope, $location)
-    {
+.run(["$rootScope", "$location", function ($rootScope, $location) {
+
         // Removes the loading animation.
-        $(document).ready(function()
-        {
-            setTimeout(function() {
-                $('.page-loading-overlay').addClass("loaded");
-                $('.load_circle_wrapper').addClass("loaded");
-            }, 1000);
-        });
+        // $(document).ready(function()
+        // {
+        //     setTimeout(function() {
+        //         $('.page-loading-overlay').addClass("loaded");
+        //         $('.load_circle_wrapper').addClass("loaded");
+        //     }, 1000);
+        // });
     }
 ]);
 
