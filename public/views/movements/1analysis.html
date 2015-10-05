@@ -38,15 +38,22 @@
 							<i style="line-height:inherit;transform:scale(1, 1.5);" class="fa fa-2x fa-caret-up" ng-show="data.current_movement_page.analysis_page_data.choose_playback_speed"/>
 						</div>
 					</div>
-					<div ng-if="data.current_movement_page.analysis_page_data.choose_playback_speed" class="row hierarchy-2"
-						ng-repeat="playback_rate in [0.5, 1, 5, 25]"
-						ng-click="data.current_movement_page.analysis_page_data.playback_rate = playback_rate"
+					<div
+                        ng-if="data.current_movement_page.analysis_page_data.choose_playback_speed"
+                        class="row hierarchy-2"
+						ng-repeat="playbackRate in [0.5, 1, 5, 25]"
+						ng-click="data.current_movement_page.analysis_page_data.playback_rate = playbackRate"
 						ng-init="data.current_movement_page.analysis_page_data.playback_rate = 1">
+
 						<div class="col-sm-8">
-							{{playback_rate}}x
+							{{ playbackRate }}x
 						</div>
+
 						<div class="col-sm-4">
-							<i style="line-height:inherit;" class="fa fa-2x fa-check" ng-if="data.current_movement_page.analysis_page_data.playback_rate == playback_rate"/>
+							<i
+                                style="line-height:inherit;"
+                                class="fa fa-2x fa-check"
+                                ng-if="data.current_movement_page.analysis_page_data.playback_rate == playbackRate" />
 						</div>
 					</div>
 					<div class="row" style="height:56px;margin:0;line-height:56px;">
@@ -72,11 +79,16 @@
 					</div>
 					<div class="panel-body">
 						<div>
-							<video id="AnalysisSideVideoPlayer">
-								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.webm'}}" type="video/webm"/>
-								<source ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.mp4'}}" type="video/mp4"/>
+							<video id="AnalysisSideVideoPlayer" class="test-video">
+								<source
+                                    ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.webm'}}"
+                                    type="video/webm" />
+								<source
+                                    ng-src="{{'../../video/'+ data.current_movement_page.url +'/analysis/analysis.mp4'}}"
+                                    type="video/mp4" />
 								Sorry, your browser doesn't support HTML5 video.
 							</video>
+
 							<div class="movement-popup-alert"  ng-show="data.current_movement_page.active_side.active_trial.status == 'stopped' || data.current_movement_page.active_side.active_trial.status == 'p'">
 								<div class="row">
 									<div class="col-sm-12" style="font-size:300%;">Would you like to save this trial?</div>

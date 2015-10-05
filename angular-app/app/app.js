@@ -11,6 +11,15 @@ var app = angular.module("app", [
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist"
 ])
 
+// The rover variable is used throughout the app and will be made available
+// to the different controllers.
+.constant("rover", {
+    version: "0.2.1",       // Used to version the assets.
+    timestamp: Date.now(),  // Used to version the assets in development.
+    userHash: $('meta[name="user-hash"]').attr('content'),  // User-specific hash, used for sessionStorage.
+    isLocal: (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false
+})
+
 // Constants to be used throughout the app, for development.
 .constant("dev", {
     version: "0.2.0",
@@ -20,13 +29,11 @@ var app = angular.module("app", [
 })
 
 // Configures the application.
-.config([
-    "$routeProvider",
-    "dev",
-    function($routeProvider, dev)
+.config(["$routeProvider", "rover",
+    function($routeProvider, rover)
     {
         // Cache-busting, used for development.
-        var version = dev.isLocal ? dev.timestamp : dev.version;
+        var version = rover.isLocal ? rover.timestamp : rover.version;
 
         // Routing.
         return $routeProvider.when("/", {
@@ -44,7 +51,7 @@ var app = angular.module("app", [
 		}).when("/movementscreen", {
 			templateUrl: "/views/movementscreen.html?" + version
 		}).when("/movements", {
-			templateUrl: "/views/outer.html?" + version
+			templateUrl: "/views/movements.html?" + version
 		}).otherwise({
 			redirectTo: "/404"
 		});
@@ -52,9 +59,7 @@ var app = angular.module("app", [
 ])
 
 // Runs the application.
-.run([
-    "$rootScope",
-    "$location",
+.run(["$rootScope", "$location",
     function ($rootScope, $location)
     {
         // Removes the loading animation.

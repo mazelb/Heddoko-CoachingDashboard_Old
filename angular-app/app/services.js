@@ -32,7 +32,10 @@ angular.module("app.ui.services", []).factory("loggit", [
     }
 ]);
 
-angular.module('app.controllers').service('MovementStore', function() {
+angular.module('app.controllers')
+
+// MovementStore
+.service('MovementStore', function() {
 
 	var movement_screen_movements = [
 		'Deep Squat',

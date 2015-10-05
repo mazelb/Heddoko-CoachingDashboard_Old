@@ -1,3 +1,4 @@
+
 <header class="page-main-header">
     <div class="row">
         <div class="col-sm-6">
@@ -6,6 +7,7 @@
         </div>
     </div>
 </header>
+
 <div class="page page-dashboard movement-pages" ng-controller="MovementScreenController">
 	<div>
 		<ol class="breadcrumb-movement">
@@ -18,16 +20,24 @@
 			</li>
 
             <!-- Movement tabs -->
-			<li ng-click="data.current_movement_page.latest_page = 0" ng-class="{'active':data.current_movement_page.latest_page == 0}">
+			<li
+                ng-click="data.current_movement_page.latest_page = 0"
+                ng-class="{'active':data.current_movement_page.latest_page == 0}">
+
                 <a>TEST</a>
             </li>
-			<li ng-click="data.current_movement_page.latest_page = 1" ng-class="{'active':data.current_movement_page.latest_page == 1}">
+			<li
+                ng-click="data.current_movement_page.latest_page = 1"
+                ng-class="{'active':data.current_movement_page.latest_page == 1}">
                 <a>ANALYSIS</a>
             </li>
 			<!-- <li ng-click="data.current_movement_page.latest_page = 2" ng-class="{'active':data.current_movement_page.latest_page == 2}">
                 <a>DATA</a>
             </li> -->
-			<li ng-click="data.current_movement_page.latest_page = 3" ng-class="{'active':data.current_movement_page.latest_page == 3}">
+			<li
+                ng-click="data.current_movement_page.latest_page = 3"
+                ng-class="{'active':data.current_movement_page.latest_page == 3}">
+
                 <a>SUMMARY</a>
             </li>
 		</ol>

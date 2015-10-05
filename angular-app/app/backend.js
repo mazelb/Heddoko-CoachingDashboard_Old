@@ -65,7 +65,6 @@
 		}
 
 	};
-
 })
 
 /**
@@ -258,7 +257,7 @@
 		* @return null
 		*/
 
-		upload : function(athlete_id, sport_id, form_data){
+		upload : function(athlete_id, sport_id, form_data) {
 
 			var fd = new FormData();
 
@@ -273,9 +272,6 @@
 				transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}
 			});
-
 		}
-
 	};
-
 });

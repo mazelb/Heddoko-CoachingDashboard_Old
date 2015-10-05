@@ -8,7 +8,7 @@
 </header>
 
 <div class="page page-dashboard" data-ng-controller="FMSFormController">
-	
+
 	<section>
 		<div class="row">
 
@@ -22,11 +22,11 @@
 							<h3>
 								Athlete
 							</h3>
-							
-							<select ng-model="data.selected_athlete"
-									ng-selected="data.selected_athlete"
-									ng-options="athlete.first_name for athlete in data.athletes track by athlete.id" >
-							</select>	
+
+							<select ng-model="data.athlete.selected"
+									ng-selected="data.athlete.selected"
+									ng-options="athlete.first_name for athlete in data.athlete.list track by athlete.id" >
+							</select>
 						</div>
 
 						<div class="panel-body col-sm-8 ng-scope">
@@ -38,7 +38,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<section>
 		<div class="row">
 
@@ -52,13 +52,13 @@
 							<h3>
 								Add FMS Test Scores
 							</h3>
-							
+
 						</div>
 
 						<div class="panel-body col-sm-12 ng-scope">
 
 							<div ng-show="data.selected_athlete == null">Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form</div>
-							
+
 							<form ng-submit="submitFMSForm()" ng-hide="data.selected_athlete == null">
 								<div class="row">
 									<div class="col-sm-3">
@@ -88,7 +88,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lhurdle"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Lhurdle_movement_file">
@@ -122,7 +122,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Llunge"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Llunge_movement_file">
@@ -156,7 +156,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lshoulder"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Lshoulder_movement_file">
@@ -187,7 +187,7 @@
 										<label class="ui-checkbox"><input ng-model="data.fms_form_data.Limpingement" type="checkbox"><span>pain</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Limpingement_movement_file">
@@ -218,7 +218,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lactive"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Lactive_movement_file">
@@ -283,7 +283,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lrotary"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										
+
 									</div>
 									<div class="col-sm-3">
 										<input type="file" title="Upload Movement" data-ui-file-upload="" class="btn-success" file-model="data.fms_form_movement_files.Lrotary_movement_file">
@@ -327,12 +327,12 @@
 										<h3>comments</h3>
 										<textarea name="" id="" class="form-control" ng-model="data.fms_form_data.comment"></textarea>
 										<br/>
-										<div class="form-group text-right">   
+										<div class="form-group text-right">
 											<button type="submit" class="btn btn-primary btn-lg">Submit Test</br>Results</button>
 										</div>
 									</div>
 								</div>
-							</form> 
+							</form>
 						</div>
 					</div>
 				</div>
@@ -340,4 +340,3 @@
 		</div>
 	</section>
 </div>
-  
