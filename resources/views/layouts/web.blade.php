@@ -9,13 +9,14 @@
 
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
 
-        <script src="{{ url('js/jquery.min.js') }}"></script>		
+        <script src="{{ url('js/jquery.min.js') }}"></script>
 
         <link rel="stylesheet" href="{{ url('css/main.css') }}">
         <link rel="stylesheet" href="{{ url('css/app.css') }}">
-		
+
 		<script>
-			sessionStorage.clear(); //clear session storage to prevent data from one user showing up for another
+		    // Clear session storage to prevent data from one user showing up for another.
+            // sessionStorage.clear();
 		</script>
     </head>
     <body>
@@ -31,7 +32,7 @@
 					<a href="https://www.facebook.com/heddoko" target="_blank"><i class="fa fa-3x fa-facebook"></i></a>
 					<a href="https://twitter.com/heddoko" target="_blank"><i class="fa fa-3x fa-twitter"></i></a>
 					<a href="https://www.linkedin.com/company/heddoko" target="_blank"><i class="fa fa-3x fa-linkedin"></i></a>
-					<a href="https://instagram.com/heddoko/" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>						
+					<a href="https://instagram.com/heddoko/" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>
 				</p>
 			</div>
 

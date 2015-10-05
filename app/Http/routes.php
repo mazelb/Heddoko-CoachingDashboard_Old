@@ -47,12 +47,18 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 
 });
 
-Route::get('home', 'HomeController@index');
-
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+/**
+ * Redirects.
+ */
+
+Route::get('home', function() {
+    return redirect('/');
+});
 
 //@todo: lock this file down env file), wrt filesystem/web server config/perms (.htaccess)
 //@todo: remove readme files (etc.). dont share more than you need to.

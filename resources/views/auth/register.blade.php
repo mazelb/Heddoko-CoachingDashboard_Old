@@ -1,11 +1,11 @@
-@extends('angularnonapppages')
+@extends('layouts.web')
 
 @section('content')
 
 <div class="page-signup">
 
 	<div class="main-body">
-	
+
 		<div class="container" style="position:fixed;width:100%;top:5%;">
 
 			<div class="form-container">
@@ -21,11 +21,11 @@
 								@endforeach
 							</ul>
 						</div>
-					@endif				
+					@endif
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
-						<input type="hidden" name="_token" value="{{ csrf_token() }}">		
-						
+						<input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 						<div style="margin:20px 0 25px 0;">
 							<div class="form-group">
 								<label for="accType" style="color:white">Account Type:</label>
@@ -37,7 +37,7 @@
 
 							</div>
 						</div>
-						
+
 						<!--<div style="background-color:white">
 							Account Type
 							 <label class="checkbox-inline">
@@ -63,7 +63,7 @@
 												value="{{ old('first_name') }}">
 							</div>
 						</div>
-						
+
 						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
@@ -113,8 +113,8 @@
 											placeholder="Password"
 											name="password">
 							</div>
-						</div>	
-						
+						</div>
+
 						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
@@ -153,7 +153,7 @@
 											value="{{ old('dob') }}" >
 							</div>
 						</div>
-						
+
 						<!--<div style="background-color:white">
 							Sex
 							 <label class="checkbox-inline">
@@ -166,7 +166,7 @@
 									<input type="radio" name="sex" value="female">female
 							 </label>
 						</div>-->
-						
+
 						<div style="margin:20px 0 25px 0;">
 							<div class="form-group">
 								<label for="sex" style="color:white">Sex:</label>
@@ -199,7 +199,7 @@
 						</div>
 
 					</form>
-						
+
 				</section>
 
 				<section>

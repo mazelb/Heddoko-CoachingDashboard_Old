@@ -1,4 +1,4 @@
-@extends('angularnonapppages')
+@extends('layouts.web')
 
 @section('content')
 
@@ -14,12 +14,12 @@
 
     <div class="main-body">
         <div class="container">
-            
+
             <div class="info text-center">
                 <h2>Password Reset</h2>
                 <p class="text-small">Enter your email address that you used to register. We'll send you an email with your username and a link to reset your password.</p>
             </div>
-			
+
 			@if (count($errors) > 0)
 				<div class="alert alert-danger">
 					<strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -42,7 +42,7 @@
 						<button type="submit" class="btn btn-lg btn-block btn-primary">Send</button>
                     </div>
                 </form>
-                
+
             </div>
 
         </div>

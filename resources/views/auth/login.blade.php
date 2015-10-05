@@ -1,4 +1,4 @@
-@extends('angularnonapppages')
+@extends('layouts.web')
 
 @section('content')
 
@@ -8,7 +8,7 @@
 
     <div class="main-body">
         <div class="container" style="margin-bottom:50px;">
-			
+
             <div class="form-container">
 
                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
@@ -31,7 +31,7 @@
 									</div>
 
                 </form>
-				
+
 				@if (count($errors) > 0)
 					<div class="alert alert-danger">
 						<strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -47,7 +47,7 @@
                     <p class="text-center"><a style="color:white" href="{{ url('/password/email') }}">Forgot your password?</a></p>
                     <p class="text-center" style="color:white" text-muted text-small>Don't have an account yet? <a href="{{ url('/auth/register') }}">Sign up</a></p>
                 </section>
-                
+
             </div>
         </div>
     </div>
