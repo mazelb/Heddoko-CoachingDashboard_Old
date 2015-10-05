@@ -14532,10 +14532,74 @@ angular.module('countTo', []).controller("countTo", ["$scope",
     // Dev variable indicating if the app is currently in a local environment.
 
     return {
-        version: "0.2.3",       // Used to version the assets.
-        timestamp: Date.now(),  // Used to version the assets in development.
+
+        // Used to version the assets.
+        version: "0.2.5",
+
+        // Used to version the assets in local environment.
+        timestamp: Date.now(),
+
+        assetVersion: function() {
+            return this.isLocal ? this.timestamp : this.version;
+        },
+
+        // Displays or hides the loading animation.
+        showLoading: function() {
+            $('.page-loading-overlay').removeClass("loaded");
+            $('.load_circle_wrapper').removeClass("loaded");
+        },
+        hideLoading: function() {
+            $('.page-loading-overlay').addClass("loaded");
+            $('.load_circle_wrapper').addClass("loaded");
+        },
+
+        // Counts the # of requests being made, and displays the loading
+        // icon accordingly.
+        backgroundProcessCount: 0,
+        addBackgroundProcess: function()
+        {
+            this.backgroundProcessCount++;
+            this.log('Background processes: ' + this.backgroundProcessCount);
+
+            // Show loading animation.
+            if (this.backgroundProcessCount === 1) {
+                this.showLoading();
+            }
+        },
+        doneBackgroundProcess: function()
+        {
+            this.backgroundProcessCount--;
+            this.log('Background processes: ' + this.backgroundProcessCount);
+
+            // Remove loading animation.
+            if (this.backgroundProcessCount < 1) {
+                this.hideLoading();
+            }
+        },
+
+        // ...
+        browse:
+        {
+            team: function(team) {
+                Rover.log('Browse to team page: ' + team.id);
+            },
+
+            member: function(member) {
+                Rover.log('Browse to profile page: ' + member.id);
+            }
+        },
+
+        // Logs a message to the console.
+        log: function(msg) {
+            if (this.isLocal && console) {
+                console.log(msg);
+            }
+        },
+
         userHash: hash,
         sessionStorage: $sessionStorage[hash],
+
+        //
         isLocal: (window.location.hostname == 'localhost' ||
                     window.location.hostname.match(/.*\.local$/i)) ? true : false
     };
@@ -14552,247 +14616,222 @@ angular.module("app.controllers", [])
 .controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover',
     function($scope, $sessionStorage, Teams, Athletes, loggit, Rover) {
 
-	/**
-	* @brief This is the central controller which runs whenever the dashboard is loaded
-	* It keeps an eye on local scope variables keeps them in sync with the local storage
-	* It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
-	* @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
-	* @return void
-	*/
+    	/**
+    	* @brief This is the central controller which runs whenever the dashboard is loaded
+    	* It keeps an eye on local scope variables keeps them in sync with the local storage
+    	* It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
+    	* @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
+    	* @return void
+    	*/
 
-    // Save an instance of the "rover" variable in the scope.
-    $scope.rover = Rover;
+        // Save an instance of the "rover" variable in the scope.
+        $scope.Rover = Rover;
 
-    // Tie the local scope to the user-namespaced sessionStorage.
-    $scope.data = Rover.sessionStorage;
+        // Tie the local scope to the user-namespaced sessionStorage.
+        $scope.data = Rover.sessionStorage;
 
-    // ...
-    $scope.data.team = $scope.data.team || {};
-    $scope.data.team.list = $scope.data.team.list || [];
-    $scope.data.team.selected = $scope.data.team.selected || {id: 0};
-    $scope.data.team.new = {
+        // ...
+        $scope.data.team = $scope.data.team || {};
+        $scope.data.team.list = $scope.data.team.list || [];
+        $scope.data.team.selected = $scope.data.team.selected || {id: 0};
+        $scope.data.team.new = {
 
-    };
+        };
 
-    // ...
-    $scope.data.athlete = $scope.data.athlete || {};
-    $scope.data.athlete.list = $scope.data.athlete.list || [];
-    $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
-    $scope.data.athlete.new = {
-        first_name: "",
-        last_name: "",
-        height: "",
-        feet: "",
-        inches: "",
-        weight_lbs: "",
-        age: ""
-    };
+        // ...
+        $scope.data.athlete = $scope.data.athlete || {};
+        $scope.data.athlete.list = $scope.data.athlete.list || [];
+        $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
+        $scope.data.athlete.new = {
+            first_name: "",
+            last_name: "",
+            height: "",
+            feet: "",
+            inches: "",
+            weight_lbs: "",
+            age: ""
+        };
 
-    // Notifies user that app is working in the background.
-    $scope.showLoading = function() {
-        $('.page-loading-overlay').removeClass("loaded");
-        $('.load_circle_wrapper').removeClass("loaded");
-    };
-    $scope.hideLoading = function() {
-        $('.page-loading-overlay').addClass("loaded");
-        $('.load_circle_wrapper').addClass("loaded");
-    };
+        // Notifies user that app is working in the background.
+        $scope.showLoading = function() {
+            $('.page-loading-overlay').removeClass("loaded");
+            $('.load_circle_wrapper').removeClass("loaded");
+        };
+        $scope.hideLoading = function() {
+            $('.page-loading-overlay').addClass("loaded");
+            $('.load_circle_wrapper').addClass("loaded");
+        };
 
-    // Submits the "new athlete" form.
-    $scope.submitNewAthleteForm = function() {
+        // Submits the "new team" form.
+        $scope.submitNewTeamForm = function() {
 
-        console.log('submitNewAthleteForm');
+            Rover.log('submitNewTeamForm');
 
-        var athlete = $scope.data.athlete.new;
+            Rover.addBackgroundProcess();
 
-        // Format some variables.
-        athlete.team_id = $scope.data.team.selected.id;
-        athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
-        athlete.weight_cm = athlete.weight_lbs / 2.20462;
-        athlete.primary_sport = $scope.data.team.selected.sport_name;
-        athlete.primary_position = "";
-        athlete.hand_leg_dominance = "";
-        athlete.previous_injuries = "";
-        athlete.underlying_medical = "";
-        athlete.notes = "";
+            $scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
 
-        $scope.showLoading();
+            Teams.create($scope.data.new_team_form_data).then(
+                function(response) {
 
-        Athletes.create(athlete.team_id, athlete).then(
-            function(response) {
+                    $scope.data.new_team_form_data = null;
 
-                $scope.data.athlete.new = {
-                    first_name: "",
-                    last_name: "",
-                    height: "",
-                    feet: "",
-                    inches: "",
-                    weight_lbs: "",
-                    age: ""
-                };
+                    if (response.status === 200) {
+                        $scope.data.team.list = response.data;
+                    }
 
-                if (response.status === 200) {
-                    $scope.data.athlete.list = response.data;
+                    loggit.logSuccess("New Team successfully created");
+
+                    Rover.doneBackgroundProcess();
+                },
+                function(response) {
+                    Rover.doneBackgroundProcess();
                 }
+            );
+        };
 
-                $scope.waiting_server_response = false;
+        // Submits the "new athlete" form.
+        $scope.submitNewAthleteForm = function() {
 
-                loggit.logSuccess("New Athlete successfully created");
+            Rover.log('submitNewAthleteForm');
 
-                $scope.hideLoading();
-            },
-            function(response) {
-                $scope.hideLoading();
-            }
-        );
-    };
+            var athlete = $scope.data.athlete.new;
 
-    // Populates the team list.
-    $scope.populateTeamList = function() {
+            // Format some variables.
+            athlete.team_id = $scope.data.team.selected.id;
+            athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
+            athlete.weight_cm = athlete.weight_lbs / 2.20462;
+            athlete.primary_sport = $scope.data.team.selected.sport_name;
+            athlete.primary_position = "";
+            athlete.hand_leg_dominance = "";
+            athlete.previous_injuries = "";
+            athlete.underlying_medical = "";
+            athlete.notes = "";
 
-        $scope.showLoading();
+            // Show loading animation.
+            Rover.addBackgroundProcess();
 
-		Teams.get().then(
-            function(response) {
+            Athletes.create(athlete.team_id, athlete).then(
+                function(response) {
 
-    			if (response.status === 200) {
-                    $scope.data.team.list = response.data;
+                    // Reset "new athlete" form.
+                    $scope.data.athlete.new = {
+                        first_name: "",
+                        last_name: "",
+                        height: "",
+                        feet: "",
+                        inches: "",
+                        weight_lbs: "",
+                        age: ""
+                    };
+
+                    if (response.status === 200) {
+                        $scope.data.athlete.list = response.data;
+                    }
+
+                    loggit.logSuccess("New Athlete successfully created");
+
+                    Rover.doneBackgroundProcess();
+                },
+                function(response) {
+                    Rover.doneBackgroundProcess();
                 }
+            );
+        };
 
-                // Select a default team.
-                if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
-                    $scope.data.team.selected = $scope.data.team.list[0];
+        // Populates the team list.
+        $scope.populateTeamList = function() {
+
+            Rover.addBackgroundProcess();
+
+    		Teams.get().then(
+                function(response) {
+
+        			if (response.status === 200) {
+                        $scope.data.team.list = response.data;
+                    }
+
+                    // Select a default team.
+                    if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
+                        $scope.data.team.selected = $scope.data.team.list[0];
+                    }
+
+                    Rover.doneBackgroundProcess();
+        		},
+                function(response) {
+                    Rover.doneBackgroundProcess();
                 }
+            );
+        };
 
-                $scope.hideLoading();
-    		},
-            function(response) {
-                $scope.hideLoading();
-            }
-        );
-    };
+        // Populates the athlete list.
+        $scope.populateAthleteList = function() {
 
-    // Populates the athlete list.
-    $scope.populateAthleteList = function() {
+            // Show loading.
+            Rover.addBackgroundProcess();
 
-        // Show loading.
-        $scope.showLoading();
+    		Athletes.get($scope.data.team.selected.id).then(
+                function(response) {
 
-		Athletes.get($scope.data.team.selected.id).then(
-            function(response) {
+        			if (response.status === 200) {
+                        $scope.data.athlete.list = response.data;
+                    }
 
-    			if (response.status === 200) {
-                    $scope.data.athlete.list = response.data;
+                    // Select a default athlete.
+                    if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
+                        $scope.data.athlete.selected = $scope.data.athlete.list[0];
+                    }
+
+                    Rover.doneBackgroundProcess();
+    		    },
+                function(response) {
+                    Rover.doneBackgroundProcess();
                 }
+            );
+        };
 
-                // Select a default athlete.
-                if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
-                    $scope.data.athlete.selected = $scope.data.athlete.list[0];
-                }
+        // Populate team list.
+    	if ($scope.data.team.list.length === 0) {
+    		$scope.populateTeamList();
+    	}
 
-                $scope.hideLoading();
-		    },
-            function(response) {
-                $scope.hideLoading();
-            }
-        );
-    };
+        // Populate athlete list.
+    	if ($scope.data.athlete.list.length === 0) {
+    		$scope.populateAthleteList();
+    	}
 
-    // Populate team list.
-	if ($scope.data.team.list.length === 0) {
-		$scope.populateTeamList();
-	}
-
-    // Populate athlete list.
-	if ($scope.data.athlete.list.length === 0) {
-		$scope.populateAthleteList();
-	}
-
-    // Update the athlete list as the selected team is modified.
-    $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
-    {
-        // Performance check.
-        if (newSelectedTeam === 0) {
-            return;
-        }
-
-        // Make sure we have an object.
-        if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+        // Update the athlete list as the selected team is modified.
+        $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
         {
-            var teamId = Number(newSelectedTeam);
-            $.each($scope.data.team.list, function(index, team)
+            // Performance check.
+            if (newSelectedTeam === 0) {
+                return;
+            }
+
+            // Make sure we have an object.
+            if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
             {
-                if (team.id == teamId) {
-                    newSelectedTeam = team;
-                }
-            });
+                var teamId = Number(newSelectedTeam);
+                $.each($scope.data.team.list, function(index, team)
+                {
+                    if (team.id == teamId) {
+                        newSelectedTeam = team;
+                    }
+                });
 
-            $scope.data.team.selected = newSelectedTeam;
-            return;
-        }
+                $scope.data.team.selected = newSelectedTeam;
+                return;
+            }
 
-        console.log('Selected team: ' + newSelectedTeam.id);
+            Rover.log('Selected team: ' + newSelectedTeam.id);
 
-        // Reset the athletes list.
-        $scope.data.athlete.list = [];
-        $scope.data.athlete.selected = {id: 0};
+            // Reset the athletes list.
+            $scope.data.athlete.list = [];
+            $scope.data.athlete.selected = {id: 0};
 
-        // Update the athletes list.
-		$scope.populateAthleteList();
-    }, true);
-
-    // TODO: deprecated
-    // $scope.$watch('data.selected_team', function(new_team_value, old_team_value)
-    // {
-    //     if ((new_team_value === null) || (typeof new_team_value === "undefined")) {
-    //         return;
-    //     }
-    //
-    //     // ...
-    //     $sessionStorage.athletes = $sessionStorage.selected_athlete = null;
-    //
-    //     // Update the athletes list.
-	// 	Athletes.get($sessionStorage.selected_team.id).success(function(athletes_reponse)
-    //     {
-	// 		$sessionStorage.athletes = athletes_reponse;
-    //
-	// 		if ($sessionStorage.athletes.length > 0) {
-	// 			$sessionStorage.selected_athlete = $sessionStorage.athletes[0]; //select the first athlete by default
-	// 		}
-	// 	});
-    //
-	// }, true);
-
-	// if ($sessionStorage.teams === null || typeof $sessionStorage.teams === "undefined")
-    // {
-	// 	Teams.get().success(function(teams_response)
-    //     {
-	// 		$sessionStorage.teams = teams_response;
-    //
-    //         console.log(teams_response);
-    //
-	// 		if ($sessionStorage.teams.length > 0) {
-	// 			$sessionStorage.selected_team = $sessionStorage.teams[0]; //select the first team by default
-	// 		}
-	// 	});
-	// }
-
-		$scope.submitNewTeamForm = function() {
-
-			$scope.waiting_server_response = true;
-
-			$scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
-
-			Teams.create($scope.data.new_team_form_data)
-			.success(function(updated_teams_data) {
-				$scope.data.new_team_form_data = null;
-				$scope.data.teams = updated_teams_data; //store the updated teams list sent back by the server
-				$scope.waiting_server_response = false;
-				loggit.logSuccess("New Team successfully created");
-			});
-		};
-
-		$scope.waiting_server_response = false;
+            // Update the athletes list.
+    		$scope.populateAthleteList();
+        }, true);
     }
 ])
 
@@ -14852,8 +14891,6 @@ angular.module("app.controllers", [])
 
       FMSForm.get($scope.data.athlete.selected.id)
         .success(function(athletes_fms_forms_response) {
-            console.log('FMS form response...');
-            console.log(athletes_fms_forms_response);
           $scope.data.athlete.selected.fms_forms = athletes_fms_forms_response;
         })
         .error(function(error_msg) {

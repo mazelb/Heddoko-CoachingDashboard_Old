@@ -127,7 +127,7 @@ html {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.42857;
   color: #767676;
   background-color: #f3f3f3;
@@ -4804,51 +4804,58 @@ background-color:$blue;
     @include border-radius(5px);
 }
 
-.top-header .top-nav .nav-left > li > select {
-    margin: 5px 8px;
-    padding: 5px;
-    height: 40px;
-    font-size: 0.9em;
-    text-align: center;
-    color: #000;
-    background-color: #ddd;
-    border: none;
-    cursor: pointer;
-    @include border-radius(3px);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-}
-.top-header .top-nav .nav-left > li > select:hover {
-    background-color: #ccc;
+// Dropdowns in header.
+.top-header .top-nav .nav-left > li > .btn-group {
+    margin: 8px;
 }
 
-.top-header .top-nav .nav-left > li.athlete-dropdown > select {
-    margin-right: 0;
-    -webkit-border-top-right-radius: 0;
-    -moz-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 0;
-    -moz-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.top-header .top-nav .nav-left > li.athlete-dropdown > a {
-    display: inline-block;
-    margin: 5px 8px 5px -5px;
-    padding: 0 20px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 0.9em;
-    color: #fff;
-    background-color: #777;
-    @include border-radius(3px);
-    -webkit-border-top-left-radius: 0;
-    -moz-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    -moz-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
+
+// .top-header .top-nav .nav-left > li > select {
+//     margin: 5px 8px;
+//     padding: 5px;
+//     height: 40px;
+//     font-size: 0.9em;
+//     text-align: center;
+//     color: #000;
+//     background-color: #ddd;
+//     border: none;
+//     cursor: pointer;
+//     @include border-radius(3px);
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     appearance: none;
+// }
+// .top-header .top-nav .nav-left > li > select:hover {
+//     background-color: #ccc;
+// }
+//
+// .top-header .top-nav .nav-left > li.athlete-dropdown > select {
+//     margin-right: 0;
+//     -webkit-border-top-right-radius: 0;
+//     -moz-border-top-right-radius: 0;
+//     border-top-right-radius: 0;
+//     -webkit-border-bottom-right-radius: 0;
+//     -moz-border-bottom-right-radius: 0;
+//     border-bottom-right-radius: 0;
+// }
+// .top-header .top-nav .nav-left > li.athlete-dropdown > a {
+//     display: inline-block;
+//     margin: 5px 8px 5px -5px;
+//     padding: 0 20px;
+//     height: 40px;
+//     line-height: 40px;
+//     font-size: 0.9em;
+//     color: #fff;
+//     background-color: #777;
+//     @include border-radius(3px);
+//     -webkit-border-top-left-radius: 0;
+//     -moz-border-top-left-radius: 0;
+//     border-top-left-radius: 0;
+//     -webkit-border-bottom-left-radius: 0;
+//     -moz-border-bottom-left-radius: 0;
+//     border-bottom-left-radius: 0;
+// }
+
 
 .top-header .langs .active-flag .flag {
   margin-top: -5px;

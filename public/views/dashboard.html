@@ -1,8 +1,11 @@
 <header class="page-main-header">
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <h4>Dashboard</h4>
-            <p>See information easily</p>
+            <p>
+                Welcome to the dashboard! Here is where you can add or modify<br>
+                a team and define its team members.
+            </p>
         </div>
     </div>
 
@@ -23,13 +26,13 @@
 		</ol>
 		<div ng-switch="current_dashboard_page">
 			<div ng-switch-when="0">
-				<div ng-include src="'views/dashboard-partials/teams.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include src="'views/dashboard-partials/teams.html?' + Rover.assetVersion()"></div>
 			</div>
 			<div ng-switch-when="1">
-				<div ng-include src="'views/dashboard-partials/members.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include src="'views/dashboard-partials/members.html?' + Rover.assetVersion()"></div>
 			</div>
 			<div ng-switch-when="2">
-				<div ng-include src="'views/dashboard-partials/profile.html?' + (dev.isLocal ? dev.timestamp : '')"></div>
+				<div ng-include src="'views/dashboard-partials/profile.html?' + Rover.assetVersion()"></div>
 			</div>
 		</div>
 	</div>

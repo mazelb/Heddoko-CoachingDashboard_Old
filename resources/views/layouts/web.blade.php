@@ -40,7 +40,7 @@
 
 		@yield('content')
 
-		<div id="footer" class="navbar-fixed-bottom" style="color:white;text-align:center;">
+		<div id="footer" class="navbar-fixed-bottom text-center" style="color: #fff; background-color: rgba(50, 50, 50, .8);">
 			&copy; Copyright Heddoko
 		</div>
 

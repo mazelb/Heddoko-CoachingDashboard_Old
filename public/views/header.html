@@ -1,6 +1,6 @@
 <header class="clearfix">
 
-	<div class="top-nav">
+	<div class="top-nav" ng-controller="MainController">
 		<ul class="nav-left list-unstyled">
 			<li>
 				<div class="menu-button" toggle-off-canvas>
@@ -10,31 +10,85 @@
 				</div>
 
 			</li>
-			<li>
+			<!-- <li>
 				<a href="#/" data-toggle-min-nav class="toggle-min">
                     <i class="fa fa-bars"></i>
                 </a>
-			</li>
+			</li> -->
+
+            <!-- Spacer, to account for space lost by removing menu button -->
+            <li style="display: block; width: 20px; height: 1px;"></li>
 
             <!-- Team dropdown -->
 			<li ng-hide="data.team.list.length === 0">
-				<select
-                    ng-model="data.team.selected"
-                    ng-selected="data.team.selected"
-					ng-options="(team.name +' ('+ team.sport_name +')') for team in data.team.list track by team.id">
-				</select>
-			</li>
+                <div class="btn-group">
+
+                    <!-- Face of dropdown -->
+                    <button
+                        type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+
+                        {{ data.team.selected.name +' ('+ data.team.selected.sport_name +')' }}
+                        <span class="caret"></span>
+                    </button>
+
+                    <!-- Contents of dropdown -->
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="team in data.team.list">
+                            <a href="javascript:;" ng-click="data.team.selected = team">
+                                {{ team.name +' ('+ team.sport_name +')' }}
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Link to team page -->
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        ng-click="Rover.browse.team(data.team.selected)">
+
+                        View {{ data.team.selected.name }}'s page
+                    </button>
+                </div>
+            </li>
 
             <!-- Athlete dropdown -->
-			<li ng-hide="data.athlete.list.length === 0" class="athlete-dropdown">
-				<select
-                    ng-model="data.athlete.selected"
-                    ng-selected="data.athlete.selected"
-					ng-options="(athlete.first_name +' '+ athlete.last_name) for athlete in data.athlete.list track by athlete.id">
-				</select>
-                <a href="#/dashboard">
-                    <i class="fa fa-angle-double-right"></i>
-                </a>
+			<li ng-hide="data.athlete.list.length === 0">
+                <div class="btn-group">
+
+                    <!-- Face of dropdown -->
+                    <button
+                        type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+
+                        {{ data.athlete.selected.first_name +' '+ data.athlete.selected.last_name }}
+                        <span class="caret"></span>
+                    </button>
+
+                    <!-- Contents of dropdown -->
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="athlete in data.athlete.list">
+                            <a href="javascript:;" ng-click="data.athlete.selected = athlete">
+                                {{ athlete.first_name +' '+ athlete.last_name }}
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Link to profile page -->
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        ng-click="Rover.browse.member(data.athlete.selected)">
+
+                        View {{ data.athlete.selected.first_name }}'s profile
+                    </button>
+                </div>
 			</li>
 
 		</ul>

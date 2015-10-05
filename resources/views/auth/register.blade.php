@@ -6,10 +6,9 @@
 
 	<div class="main-body">
 
-		<div class="container" style="position:fixed;width:100%;top:5%;">
-
+		<!-- <div class="container" style="position:fixed;width:100%;top:5%;"> -->
+        <div>
 			<div class="form-container">
-
 				<section>
 
 					@if (count($errors) > 0)

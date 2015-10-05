@@ -17,42 +17,47 @@
 
                     <!-- Profile created -->
                     <div class="row">
-                        <div class="col-sm-5">
-                            <span class="pull-right">Profile created</span>
+                        <div class="col-sm-5 text-right">Profile created</div>
+                        <div class="col-sm-7">
+                            <b>
+                                {{ data.athlete.selected.created_at }}
+                            </b>
                         </div>
-                        <div class="col-sm-7"><b>{{data.athlete.selected.created_at}}</b></div>
                     </div>
 
                     <!-- Phone -->
                     <div class="row">
-                        <div class="col-sm-5">
-                            <span class="pull-right">Phone</span>
-                        </div>
-                        <div class="col-sm-7"><b></b></div>
+                        <div class="col-sm-5 text-right">Phone</div>
+                        <div class="col-sm-7"><b>+1 (514) 555-5555</b></div>
                     </div>
 
                     <!-- Sex -->
                     <div class="row">
-                        <div class="col-sm-5">
-                            <span class="pull-right">Sex</span>
-                        </div>
+                        <div class="col-sm-5 text-right">Sex</div>
                         <div class="col-sm-7"><b></b></div>
                     </div>
 
                     <!-- Date of Birth -->
                     <div class="row">
-                        <div class="col-sm-5">
-                            <span class="pull-right">Date of Birth</span>
-                        </div>
+                        <div class="col-sm-5 text-right">Date of Birth</div>
                         <div class="col-sm-7"><b></b></div>
                     </div>
 
                     <!-- Height -->
                     <div class="row">
-                        <div class="col-sm-5">
-                            <span class="pull-right">Height</span>
+                        <div class="col-sm-5 text-right">Height</div>
+                        <!-- <div class="col-sm-7">
+                            <b>
+                                {{ '' + Math.floor(data.athlete.selected.height_cm/30.48) }}'
+                                {{ '' + Math.round((Number(data.athlete.selected.height_cm) % 30.48) * 12 /30.48) }}"
+                                ({{data.athlete.selected.height_cm}} cm)
+                            </b>
+                        </div> -->
+                        <div class="col-sm-7">
+                            <b>
+                                {{data.athlete.selected.height_cm}} cm
+                            </b>
                         </div>
-                        <div class="col-sm-7"><b>{{data.athlete.selected.height_cm}} cm</b></div>
                     </div>
 
                     <!-- Weight -->

@@ -11,7 +11,7 @@
         <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 
         <!-- Theme's own CSS file -->
-        <link rel="stylesheet" href="{{ url('css/main.css') }}">
+        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
     </head>
     <body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="MainController">
 
@@ -19,7 +19,7 @@
             <div data-ng-cloak="" class="no-print">
                 <!-- Include a version # with the template for caching -->
                 <aside
-                    data-ng-include=" 'views/navigation.html?' + Date.now() "
+                    data-ng-include=" 'views/navigation.html?' + Rover.assetVersion() "
                     id="nav-container">
                 </aside>
             </div>
@@ -29,8 +29,9 @@
                 <div class="no-print">
                     <!-- Include a version # with the template for caching -->
                     <section
-                        data-ng-include=" 'views/header.html?' + Date.now() "
-                        id="header" class="top-header">
+                        data-ng-include=" 'views/header.html?' + Rover.assetVersion() "
+                        id="header"
+                        class="top-header">
                     </section>
                 </div>
 
