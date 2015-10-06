@@ -12,17 +12,28 @@ var app = angular.module("app", [
 ])
 
 // Configures the application.
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider',
+    function($routeProvider) {
 
         // Cache-busting, used for development.
+        // TODO: use version from Rover.
         var version = Date.now();
 
         // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
-		}).when("/dashboard", {
+		})
+
+        // Dashboard routes.
+        .when("/dashboard", {
 			templateUrl: "/views/dashboard.html?" + version
-		}).when("/movementsubmit", {
+		})
+        .when('/team/:id', {
+            templateUrl: '/views/dashboard-partials/team.html?' + version
+        })
+
+
+        .when("/movementsubmit", {
 			templateUrl: "/views/movementsubmit.html?" + version
 		}).when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + version

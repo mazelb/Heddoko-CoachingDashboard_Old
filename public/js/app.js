@@ -13868,17 +13868,28 @@ var app = angular.module("app", [
 ])
 
 // Configures the application.
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider',
+    function($routeProvider) {
 
         // Cache-busting, used for development.
+        // TODO: use version from Rover.
         var version = Date.now();
 
         // Routing.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
-		}).when("/dashboard", {
+		})
+
+        // Dashboard routes.
+        .when("/dashboard", {
 			templateUrl: "/views/dashboard.html?" + version
-		}).when("/movementsubmit", {
+		})
+        .when('/team/:id', {
+            templateUrl: '/views/dashboard-partials/team.html?' + version
+        })
+
+
+        .when("/movementsubmit", {
 			templateUrl: "/views/movementsubmit.html?" + version
 		}).when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + version
@@ -17377,7 +17388,7 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).factory('Rover', function($sessionStorage, $routeProvider) {
+angular.module('app.rover', []).factory('Rover', function($sessionStorage, $route) {
 
     // User-specific hash. Used for user specific data.
     var hash = $('meta[name="user-hash"]').attr('content');

@@ -4,7 +4,7 @@
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).factory('Rover', function($sessionStorage, $routeProvider) {
+angular.module('app.rover', []).factory('Rover', function($sessionStorage, $route) {
 
     // User-specific hash. Used for user specific data.
     var hash = $('meta[name="user-hash"]').attr('content');
