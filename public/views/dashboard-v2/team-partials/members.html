@@ -15,9 +15,9 @@
                 href="javascript:;"
                 class="btn btn-primary btn-metro"
                 ng-repeat="athlete in data.athlete.list"
-                ng-click="data.athlete.selected = athlete;forwardsStep();">
+                ng-click="Rover.browse.member(athlete)">
 
-                <span>{{athlete.first_name}}</span>
+                <span>{{ athlete.first_name }} *</span>
             </a>
         </div>
     </div>

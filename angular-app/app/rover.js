@@ -4,7 +4,7 @@
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).service('Rover', function($sessionStorage, $route) {
+angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
 
     // Used to version the assets.
     this.version = '0.2.6';
@@ -45,12 +45,12 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
         group: function(group) {
             this.debug('Browsing to group #' + group.id);
-            $route.updateParams({groupId: group.id});
+            $location.path('/dashboard/'+ group.id);
         }.bind(this),
 
         member: function(member) {
             this.debug('Browsing to member #' + member.id);
-            $route.updateParams({memberId: member.id});
+            $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
         }.bind(this)
     };
 
