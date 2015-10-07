@@ -41,324 +41,7 @@ q);b.css("height",q)}if("scrollTo"in g)n=parseInt(a.scrollTo);else if("scrollBy"
 height:"100%",position:"absolute",top:0,display:a.alwaysVisible&&a.railVisible?"block":"none","border-radius":a.railBorderRadius,background:a.railColor,opacity:a.railOpacity,zIndex:90}),c=e("<div></div>").addClass(a.barClass).css({background:a.color,width:a.size,position:"absolute",top:0,opacity:a.opacity,display:a.alwaysVisible?"block":"none","border-radius":a.borderRadius,BorderRadius:a.borderRadius,MozBorderRadius:a.borderRadius,WebkitBorderRadius:a.borderRadius,zIndex:99}),q="right"==a.position?
 {right:a.distance}:{left:a.distance};h.css(q);c.css(q);b.wrap(n);b.parent().append(c);b.parent().append(h);a.railDraggable&&c.bind("mousedown",function(a){var b=e(document);z=!0;t=parseFloat(c.css("top"));pageY=a.pageY;b.bind("mousemove.slimscroll",function(a){currTop=t+a.pageY-pageY;c.css("top",currTop);m(0,c.position().top,!1)});b.bind("mouseup.slimscroll",function(a){z=!1;p();b.unbind(".slimscroll")});return!1}).bind("selectstart.slimscroll",function(a){a.stopPropagation();a.preventDefault();return!1});
 h.hover(function(){w()},function(){p()});c.hover(function(){y=!0},function(){y=!1});b.hover(function(){r=!0;w();p()},function(){r=!1;p()});b.bind("touchstart",function(a,b){a.originalEvent.touches.length&&(A=a.originalEvent.touches[0].pageY)});b.bind("touchmove",function(b){k||b.originalEvent.preventDefault();b.originalEvent.touches.length&&(m((A-b.originalEvent.touches[0].pageY)/a.touchScrollStep,!0),A=b.originalEvent.touches[0].pageY)});x();"bottom"===a.start?(c.css({top:b.outerHeight()-c.outerHeight()}),
-m(0,!0)):"top"!==a.start&&(m(e(a.start).position().top,null,!0),a.alwaysVisible||c.hide());window.addEventListener?(this.addEventListener("DOMMouseScroll",v,!1),this.addEventListener("mousewheel",v,!1)):document.attachEvent("onmousewheel",v)}});return this}});e.fn.extend({slimscroll:e.fn.slimScroll})})(jQuery);;/*
- AngularJS v1.3.19
- (c) 2010-2014 Google, Inc. http://angularjs.org
- License: MIT
-*/
-(function(S,W,u){'use strict';function y(b){return function(){var a=arguments[0],c;c="["+(b?b+":":"")+a+"] http://errors.angularjs.org/1.3.19/"+(b?b+"/":"")+a;for(a=1;a<arguments.length;a++){c=c+(1==a?"?":"&")+"p"+(a-1)+"=";var d=encodeURIComponent,e;e=arguments[a];e="function"==typeof e?e.toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof e?"undefined":"string"!=typeof e?JSON.stringify(e):e;c+=d(e)}return Error(c)}}function Sa(b){if(null==b||Ta(b))return!1;var a="length"in Object(b)&&b.length;
-return b.nodeType===ma&&a?!0:K(b)||x(b)||0===a||"number"===typeof a&&0<a&&a-1 in b}function q(b,a,c){var d,e;if(b)if(B(b))for(d in b)"prototype"==d||"length"==d||"name"==d||b.hasOwnProperty&&!b.hasOwnProperty(d)||a.call(c,b[d],d,b);else if(x(b)||Sa(b)){var f="object"!==typeof b;d=0;for(e=b.length;d<e;d++)(f||d in b)&&a.call(c,b[d],d,b)}else if(b.forEach&&b.forEach!==q)b.forEach(a,c,b);else for(d in b)b.hasOwnProperty(d)&&a.call(c,b[d],d,b);return b}function Id(b,a,c){for(var d=Object.keys(b).sort(),
-e=0;e<d.length;e++)a.call(c,b[d[e]],d[e]);return d}function oc(b){return function(a,c){b(c,a)}}function Jd(){return++sb}function pc(b,a){a?b.$$hashKey=a:delete b.$$hashKey}function z(b){for(var a=b.$$hashKey,c=1,d=arguments.length;c<d;c++){var e=arguments[c];if(e)for(var f=Object.keys(e),g=0,h=f.length;g<h;g++){var l=f[g];b[l]=e[l]}}pc(b,a);return b}function aa(b){return parseInt(b,10)}function Pb(b,a){return z(Object.create(b),a)}function F(){}function na(b){return b}function ca(b){return function(){return b}}
-function A(b){return"undefined"===typeof b}function D(b){return"undefined"!==typeof b}function J(b){return null!==b&&"object"===typeof b}function K(b){return"string"===typeof b}function U(b){return"number"===typeof b}function ea(b){return"[object Date]"===Aa.call(b)}function B(b){return"function"===typeof b}function Ua(b){return"[object RegExp]"===Aa.call(b)}function Ta(b){return b&&b.window===b}function Va(b){return b&&b.$evalAsync&&b.$watch}function Wa(b){return"boolean"===typeof b}function qc(b){return!(!b||
-!(b.nodeName||b.prop&&b.attr&&b.find))}function Kd(b){var a={};b=b.split(",");var c;for(c=0;c<b.length;c++)a[b[c]]=!0;return a}function ta(b){return P(b.nodeName||b[0]&&b[0].nodeName)}function Xa(b,a){var c=b.indexOf(a);0<=c&&b.splice(c,1);return a}function Ba(b,a,c,d){if(Ta(b)||Va(b))throw Ja("cpws");if(a){if(b===a)throw Ja("cpi");c=c||[];d=d||[];if(J(b)){var e=c.indexOf(b);if(-1!==e)return d[e];c.push(b);d.push(a)}if(x(b))for(var f=a.length=0;f<b.length;f++)e=Ba(b[f],null,c,d),J(b[f])&&(c.push(b[f]),
-d.push(e)),a.push(e);else{var g=a.$$hashKey;x(a)?a.length=0:q(a,function(b,c){delete a[c]});for(f in b)b.hasOwnProperty(f)&&(e=Ba(b[f],null,c,d),J(b[f])&&(c.push(b[f]),d.push(e)),a[f]=e);pc(a,g)}}else if(a=b)x(b)?a=Ba(b,[],c,d):ea(b)?a=new Date(b.getTime()):Ua(b)?(a=new RegExp(b.source,b.toString().match(/[^\/]*$/)[0]),a.lastIndex=b.lastIndex):J(b)&&(e=Object.create(Object.getPrototypeOf(b)),a=Ba(b,e,c,d));return a}function oa(b,a){if(x(b)){a=a||[];for(var c=0,d=b.length;c<d;c++)a[c]=b[c]}else if(J(b))for(c in a=
-a||{},b)if("$"!==c.charAt(0)||"$"!==c.charAt(1))a[c]=b[c];return a||b}function fa(b,a){if(b===a)return!0;if(null===b||null===a)return!1;if(b!==b&&a!==a)return!0;var c=typeof b,d;if(c==typeof a&&"object"==c)if(x(b)){if(!x(a))return!1;if((c=b.length)==a.length){for(d=0;d<c;d++)if(!fa(b[d],a[d]))return!1;return!0}}else{if(ea(b))return ea(a)?fa(b.getTime(),a.getTime()):!1;if(Ua(b))return Ua(a)?b.toString()==a.toString():!1;if(Va(b)||Va(a)||Ta(b)||Ta(a)||x(a)||ea(a)||Ua(a))return!1;c={};for(d in b)if("$"!==
-d.charAt(0)&&!B(b[d])){if(!fa(b[d],a[d]))return!1;c[d]=!0}for(d in a)if(!c.hasOwnProperty(d)&&"$"!==d.charAt(0)&&a[d]!==u&&!B(a[d]))return!1;return!0}return!1}function Ya(b,a,c){return b.concat(Za.call(a,c))}function rc(b,a){var c=2<arguments.length?Za.call(arguments,2):[];return!B(a)||a instanceof RegExp?a:c.length?function(){return arguments.length?a.apply(b,Ya(c,arguments,0)):a.apply(b,c)}:function(){return arguments.length?a.apply(b,arguments):a.call(b)}}function Ld(b,a){var c=a;"string"===typeof b&&
-"$"===b.charAt(0)&&"$"===b.charAt(1)?c=u:Ta(a)?c="$WINDOW":a&&W===a?c="$DOCUMENT":Va(a)&&(c="$SCOPE");return c}function $a(b,a){if("undefined"===typeof b)return u;U(a)||(a=a?2:null);return JSON.stringify(b,Ld,a)}function sc(b){return K(b)?JSON.parse(b):b}function ua(b){b=G(b).clone();try{b.empty()}catch(a){}var c=G("<div>").append(b).html();try{return b[0].nodeType===ab?P(c):c.match(/^(<[^>]+>)/)[1].replace(/^<([\w\-]+)/,function(a,b){return"<"+P(b)})}catch(d){return P(c)}}function tc(b){try{return decodeURIComponent(b)}catch(a){}}
-function uc(b){var a={},c,d;q((b||"").split("&"),function(b){b&&(c=b.replace(/\+/g,"%20").split("="),d=tc(c[0]),D(d)&&(b=D(c[1])?tc(c[1]):!0,vc.call(a,d)?x(a[d])?a[d].push(b):a[d]=[a[d],b]:a[d]=b))});return a}function Qb(b){var a=[];q(b,function(b,d){x(b)?q(b,function(b){a.push(Ca(d,!0)+(!0===b?"":"="+Ca(b,!0)))}):a.push(Ca(d,!0)+(!0===b?"":"="+Ca(b,!0)))});return a.length?a.join("&"):""}function tb(b){return Ca(b,!0).replace(/%26/gi,"&").replace(/%3D/gi,"=").replace(/%2B/gi,"+")}function Ca(b,a){return encodeURIComponent(b).replace(/%40/gi,
-"@").replace(/%3A/gi,":").replace(/%24/g,"$").replace(/%2C/gi,",").replace(/%3B/gi,";").replace(/%20/g,a?"%20":"+")}function Md(b,a){var c,d,e=ub.length;b=G(b);for(d=0;d<e;++d)if(c=ub[d]+a,K(c=b.attr(c)))return c;return null}function Nd(b,a){var c,d,e={};q(ub,function(a){a+="app";!c&&b.hasAttribute&&b.hasAttribute(a)&&(c=b,d=b.getAttribute(a))});q(ub,function(a){a+="app";var e;!c&&(e=b.querySelector("["+a.replace(":","\\:")+"]"))&&(c=e,d=e.getAttribute(a))});c&&(e.strictDi=null!==Md(c,"strict-di"),
-a(c,d?[d]:[],e))}function wc(b,a,c){J(c)||(c={});c=z({strictDi:!1},c);var d=function(){b=G(b);if(b.injector()){var d=b[0]===W?"document":ua(b);throw Ja("btstrpd",d.replace(/</,"&lt;").replace(/>/,"&gt;"));}a=a||[];a.unshift(["$provide",function(a){a.value("$rootElement",b)}]);c.debugInfoEnabled&&a.push(["$compileProvider",function(a){a.debugInfoEnabled(!0)}]);a.unshift("ng");d=bb(a,c.strictDi);d.invoke(["$rootScope","$rootElement","$compile","$injector",function(a,b,c,d){a.$apply(function(){b.data("$injector",
-d);c(b)(a)})}]);return d},e=/^NG_ENABLE_DEBUG_INFO!/,f=/^NG_DEFER_BOOTSTRAP!/;S&&e.test(S.name)&&(c.debugInfoEnabled=!0,S.name=S.name.replace(e,""));if(S&&!f.test(S.name))return d();S.name=S.name.replace(f,"");ba.resumeBootstrap=function(b){q(b,function(b){a.push(b)});return d()};B(ba.resumeDeferredBootstrap)&&ba.resumeDeferredBootstrap()}function Od(){S.name="NG_ENABLE_DEBUG_INFO!"+S.name;S.location.reload()}function Pd(b){b=ba.element(b).injector();if(!b)throw Ja("test");return b.get("$$testability")}
-function xc(b,a){a=a||"_";return b.replace(Qd,function(b,d){return(d?a:"")+b.toLowerCase()})}function Rd(){var b;yc||((pa=S.jQuery)&&pa.fn.on?(G=pa,z(pa.fn,{scope:Ka.scope,isolateScope:Ka.isolateScope,controller:Ka.controller,injector:Ka.injector,inheritedData:Ka.inheritedData}),b=pa.cleanData,pa.cleanData=function(a){var c;if(Rb)Rb=!1;else for(var d=0,e;null!=(e=a[d]);d++)(c=pa._data(e,"events"))&&c.$destroy&&pa(e).triggerHandler("$destroy");b(a)}):G=R,ba.element=G,yc=!0)}function Sb(b,a,c){if(!b)throw Ja("areq",
-a||"?",c||"required");return b}function La(b,a,c){c&&x(b)&&(b=b[b.length-1]);Sb(B(b),a,"not a function, got "+(b&&"object"===typeof b?b.constructor.name||"Object":typeof b));return b}function Ma(b,a){if("hasOwnProperty"===b)throw Ja("badname",a);}function zc(b,a,c){if(!a)return b;a=a.split(".");for(var d,e=b,f=a.length,g=0;g<f;g++)d=a[g],b&&(b=(e=b)[d]);return!c&&B(b)?rc(e,b):b}function vb(b){var a=b[0];b=b[b.length-1];var c=[a];do{a=a.nextSibling;if(!a)break;c.push(a)}while(a!==b);return G(c)}function ga(){return Object.create(null)}
-function Sd(b){function a(a,b,c){return a[b]||(a[b]=c())}var c=y("$injector"),d=y("ng");b=a(b,"angular",Object);b.$$minErr=b.$$minErr||y;return a(b,"module",function(){var b={};return function(f,g,h){if("hasOwnProperty"===f)throw d("badname","module");g&&b.hasOwnProperty(f)&&(b[f]=null);return a(b,f,function(){function a(c,d,e,f){f||(f=b);return function(){f[e||"push"]([c,d,arguments]);return s}}if(!g)throw c("nomod",f);var b=[],d=[],e=[],n=a("$injector","invoke","push",d),s={_invokeQueue:b,_configBlocks:d,
-_runBlocks:e,requires:g,name:f,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),value:a("$provide","value"),constant:a("$provide","constant","unshift"),animation:a("$animateProvider","register"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:n,run:function(a){e.push(a);return this}};h&&n(h);return s})}})}function Td(b){z(b,{bootstrap:wc,copy:Ba,extend:z,equals:fa,
-element:G,forEach:q,injector:bb,noop:F,bind:rc,toJson:$a,fromJson:sc,identity:na,isUndefined:A,isDefined:D,isString:K,isFunction:B,isObject:J,isNumber:U,isElement:qc,isArray:x,version:Ud,isDate:ea,lowercase:P,uppercase:wb,callbacks:{counter:0},getTestability:Pd,$$minErr:y,$$csp:cb,reloadWithDebugInfo:Od});db=Sd(S);try{db("ngLocale")}catch(a){db("ngLocale",[]).provider("$locale",Vd)}db("ng",["ngLocale"],["$provide",function(a){a.provider({$$sanitizeUri:Wd});a.provider("$compile",Ac).directive({a:Xd,
-input:Bc,textarea:Bc,form:Yd,script:Zd,select:$d,style:ae,option:be,ngBind:ce,ngBindHtml:de,ngBindTemplate:ee,ngClass:fe,ngClassEven:ge,ngClassOdd:he,ngCloak:ie,ngController:je,ngForm:ke,ngHide:le,ngIf:me,ngInclude:ne,ngInit:oe,ngNonBindable:pe,ngPluralize:qe,ngRepeat:re,ngShow:se,ngStyle:te,ngSwitch:ue,ngSwitchWhen:ve,ngSwitchDefault:we,ngOptions:xe,ngTransclude:ye,ngModel:ze,ngList:Ae,ngChange:Be,pattern:Cc,ngPattern:Cc,required:Dc,ngRequired:Dc,minlength:Ec,ngMinlength:Ec,maxlength:Fc,ngMaxlength:Fc,
-ngValue:Ce,ngModelOptions:De}).directive({ngInclude:Ee}).directive(xb).directive(Gc);a.provider({$anchorScroll:Fe,$animate:Ge,$browser:He,$cacheFactory:Ie,$controller:Je,$document:Ke,$exceptionHandler:Le,$filter:Hc,$interpolate:Me,$interval:Ne,$http:Oe,$httpBackend:Pe,$location:Qe,$log:Re,$parse:Se,$rootScope:Te,$q:Ue,$$q:Ve,$sce:We,$sceDelegate:Xe,$sniffer:Ye,$templateCache:Ze,$templateRequest:$e,$$testability:af,$timeout:bf,$window:cf,$$rAF:df,$$asyncCallback:ef,$$jqLite:ff})}])}function eb(b){return b.replace(gf,
-function(a,b,d,e){return e?d.toUpperCase():d}).replace(hf,"Moz$1")}function Ic(b){b=b.nodeType;return b===ma||!b||9===b}function Jc(b,a){var c,d,e=a.createDocumentFragment(),f=[];if(Tb.test(b)){c=c||e.appendChild(a.createElement("div"));d=(jf.exec(b)||["",""])[1].toLowerCase();d=ha[d]||ha._default;c.innerHTML=d[1]+b.replace(kf,"<$1></$2>")+d[2];for(d=d[0];d--;)c=c.lastChild;f=Ya(f,c.childNodes);c=e.firstChild;c.textContent=""}else f.push(a.createTextNode(b));e.textContent="";e.innerHTML="";q(f,function(a){e.appendChild(a)});
-return e}function R(b){if(b instanceof R)return b;var a;K(b)&&(b=T(b),a=!0);if(!(this instanceof R)){if(a&&"<"!=b.charAt(0))throw Ub("nosel");return new R(b)}if(a){a=W;var c;b=(c=lf.exec(b))?[a.createElement(c[1])]:(c=Jc(b,a))?c.childNodes:[]}Kc(this,b)}function Vb(b){return b.cloneNode(!0)}function yb(b,a){a||zb(b);if(b.querySelectorAll)for(var c=b.querySelectorAll("*"),d=0,e=c.length;d<e;d++)zb(c[d])}function Lc(b,a,c,d){if(D(d))throw Ub("offargs");var e=(d=Ab(b))&&d.events,f=d&&d.handle;if(f)if(a)q(a.split(" "),
-function(a){if(D(c)){var d=e[a];Xa(d||[],c);if(d&&0<d.length)return}b.removeEventListener(a,f,!1);delete e[a]});else for(a in e)"$destroy"!==a&&b.removeEventListener(a,f,!1),delete e[a]}function zb(b,a){var c=b.ng339,d=c&&Bb[c];d&&(a?delete d.data[a]:(d.handle&&(d.events.$destroy&&d.handle({},"$destroy"),Lc(b)),delete Bb[c],b.ng339=u))}function Ab(b,a){var c=b.ng339,c=c&&Bb[c];a&&!c&&(b.ng339=c=++mf,c=Bb[c]={events:{},data:{},handle:u});return c}function Wb(b,a,c){if(Ic(b)){var d=D(c),e=!d&&a&&!J(a),
-f=!a;b=(b=Ab(b,!e))&&b.data;if(d)b[a]=c;else{if(f)return b;if(e)return b&&b[a];z(b,a)}}}function Cb(b,a){return b.getAttribute?-1<(" "+(b.getAttribute("class")||"")+" ").replace(/[\n\t]/g," ").indexOf(" "+a+" "):!1}function Db(b,a){a&&b.setAttribute&&q(a.split(" "),function(a){b.setAttribute("class",T((" "+(b.getAttribute("class")||"")+" ").replace(/[\n\t]/g," ").replace(" "+T(a)+" "," ")))})}function Eb(b,a){if(a&&b.setAttribute){var c=(" "+(b.getAttribute("class")||"")+" ").replace(/[\n\t]/g," ");
-q(a.split(" "),function(a){a=T(a);-1===c.indexOf(" "+a+" ")&&(c+=a+" ")});b.setAttribute("class",T(c))}}function Kc(b,a){if(a)if(a.nodeType)b[b.length++]=a;else{var c=a.length;if("number"===typeof c&&a.window!==a){if(c)for(var d=0;d<c;d++)b[b.length++]=a[d]}else b[b.length++]=a}}function Mc(b,a){return Fb(b,"$"+(a||"ngController")+"Controller")}function Fb(b,a,c){9==b.nodeType&&(b=b.documentElement);for(a=x(a)?a:[a];b;){for(var d=0,e=a.length;d<e;d++)if((c=G.data(b,a[d]))!==u)return c;b=b.parentNode||
-11===b.nodeType&&b.host}}function Nc(b){for(yb(b,!0);b.firstChild;)b.removeChild(b.firstChild)}function Oc(b,a){a||yb(b);var c=b.parentNode;c&&c.removeChild(b)}function nf(b,a){a=a||S;if("complete"===a.document.readyState)a.setTimeout(b);else G(a).on("load",b)}function Pc(b,a){var c=Gb[a.toLowerCase()];return c&&Qc[ta(b)]&&c}function of(b,a){var c=b.nodeName;return("INPUT"===c||"TEXTAREA"===c)&&Rc[a]}function pf(b,a){var c=function(c,e){c.isDefaultPrevented=function(){return c.defaultPrevented};var f=
-a[e||c.type],g=f?f.length:0;if(g){if(A(c.immediatePropagationStopped)){var h=c.stopImmediatePropagation;c.stopImmediatePropagation=function(){c.immediatePropagationStopped=!0;c.stopPropagation&&c.stopPropagation();h&&h.call(c)}}c.isImmediatePropagationStopped=function(){return!0===c.immediatePropagationStopped};1<g&&(f=oa(f));for(var l=0;l<g;l++)c.isImmediatePropagationStopped()||f[l].call(b,c)}};c.elem=b;return c}function ff(){this.$get=function(){return z(R,{hasClass:function(b,a){b.attr&&(b=b[0]);
-return Cb(b,a)},addClass:function(b,a){b.attr&&(b=b[0]);return Eb(b,a)},removeClass:function(b,a){b.attr&&(b=b[0]);return Db(b,a)}})}}function Na(b,a){var c=b&&b.$$hashKey;if(c)return"function"===typeof c&&(c=b.$$hashKey()),c;c=typeof b;return c="function"==c||"object"==c&&null!==b?b.$$hashKey=c+":"+(a||Jd)():c+":"+b}function fb(b,a){if(a){var c=0;this.nextUid=function(){return++c}}q(b,this.put,this)}function qf(b){return(b=b.toString().replace(Sc,"").match(Tc))?"function("+(b[1]||"").replace(/[\s\r\n]+/,
-" ")+")":"fn"}function bb(b,a){function c(a){return function(b,c){if(J(b))q(b,oc(a));else return a(b,c)}}function d(a,b){Ma(a,"service");if(B(b)||x(b))b=n.instantiate(b);if(!b.$get)throw Da("pget",a);return r[a+"Provider"]=b}function e(a,b){return function(){var c=t.invoke(b,this);if(A(c))throw Da("undef",a);return c}}function f(a,b,c){return d(a,{$get:!1!==c?e(a,b):b})}function g(a){var b=[],c;q(a,function(a){function d(a){var b,c;b=0;for(c=a.length;b<c;b++){var e=a[b],f=n.get(e[0]);f[e[1]].apply(f,
-e[2])}}if(!m.get(a)){m.put(a,!0);try{K(a)?(c=db(a),b=b.concat(g(c.requires)).concat(c._runBlocks),d(c._invokeQueue),d(c._configBlocks)):B(a)?b.push(n.invoke(a)):x(a)?b.push(n.invoke(a)):La(a,"module")}catch(e){throw x(a)&&(a=a[a.length-1]),e.message&&e.stack&&-1==e.stack.indexOf(e.message)&&(e=e.message+"\n"+e.stack),Da("modulerr",a,e.stack||e.message||e);}}});return b}function h(b,c){function d(a,e){if(b.hasOwnProperty(a)){if(b[a]===l)throw Da("cdep",a+" <- "+k.join(" <- "));return b[a]}try{return k.unshift(a),
-b[a]=l,b[a]=c(a,e)}catch(f){throw b[a]===l&&delete b[a],f;}finally{k.shift()}}function e(b,c,f,g){"string"===typeof f&&(g=f,f=null);var l=[],k=bb.$$annotate(b,a,g),h,n,m;n=0;for(h=k.length;n<h;n++){m=k[n];if("string"!==typeof m)throw Da("itkn",m);l.push(f&&f.hasOwnProperty(m)?f[m]:d(m,g))}x(b)&&(b=b[h]);return b.apply(c,l)}return{invoke:e,instantiate:function(a,b,c){var d=Object.create((x(a)?a[a.length-1]:a).prototype||null);a=e(a,d,b,c);return J(a)||B(a)?a:d},get:d,annotate:bb.$$annotate,has:function(a){return r.hasOwnProperty(a+
-"Provider")||b.hasOwnProperty(a)}}}a=!0===a;var l={},k=[],m=new fb([],!0),r={$provide:{provider:c(d),factory:c(f),service:c(function(a,b){return f(a,["$injector",function(a){return a.instantiate(b)}])}),value:c(function(a,b){return f(a,ca(b),!1)}),constant:c(function(a,b){Ma(a,"constant");r[a]=b;s[a]=b}),decorator:function(a,b){var c=n.get(a+"Provider"),d=c.$get;c.$get=function(){var a=t.invoke(d,c);return t.invoke(b,null,{$delegate:a})}}}},n=r.$injector=h(r,function(a,b){ba.isString(b)&&k.push(b);
-throw Da("unpr",k.join(" <- "));}),s={},t=s.$injector=h(s,function(a,b){var c=n.get(a+"Provider",b);return t.invoke(c.$get,c,u,a)});q(g(b),function(a){t.invoke(a||F)});return t}function Fe(){var b=!0;this.disableAutoScrolling=function(){b=!1};this.$get=["$window","$location","$rootScope",function(a,c,d){function e(a){var b=null;Array.prototype.some.call(a,function(a){if("a"===ta(a))return b=a,!0});return b}function f(b){if(b){b.scrollIntoView();var c;c=g.yOffset;B(c)?c=c():qc(c)?(c=c[0],c="fixed"!==
-a.getComputedStyle(c).position?0:c.getBoundingClientRect().bottom):U(c)||(c=0);c&&(b=b.getBoundingClientRect().top,a.scrollBy(0,b-c))}else a.scrollTo(0,0)}function g(){var a=c.hash(),b;a?(b=h.getElementById(a))?f(b):(b=e(h.getElementsByName(a)))?f(b):"top"===a&&f(null):f(null)}var h=a.document;b&&d.$watch(function(){return c.hash()},function(a,b){a===b&&""===a||nf(function(){d.$evalAsync(g)})});return g}]}function ef(){this.$get=["$$rAF","$timeout",function(b,a){return b.supported?function(a){return b(a)}:
-function(b){return a(b,0,!1)}}]}function rf(b,a,c,d){function e(a){try{a.apply(null,Za.call(arguments,1))}finally{if(p--,0===p)for(;H.length;)try{H.pop()()}catch(b){c.error(b)}}}function f(a,b){(function Xb(){q(E,function(a){a()});Q=b(Xb,a)})()}function g(){h();l()}function h(){a:{try{L=s.state;break a}catch(a){}L=void 0}L=A(L)?null:L;fa(L,O)&&(L=O);O=L}function l(){if(I!==m.url()||C!==L)I=m.url(),C=L,q($,function(a){a(m.url(),L)})}function k(a){try{return decodeURIComponent(a)}catch(b){return a}}
-var m=this,r=a[0],n=b.location,s=b.history,t=b.setTimeout,w=b.clearTimeout,v={};m.isMock=!1;var p=0,H=[];m.$$completeOutstandingRequest=e;m.$$incOutstandingRequestCount=function(){p++};m.notifyWhenNoOutstandingRequests=function(a){q(E,function(a){a()});0===p?a():H.push(a)};var E=[],Q;m.addPollFn=function(a){A(Q)&&f(100,t);E.push(a);return a};var L,C,I=n.href,N=a.find("base"),Y=null;h();C=L;m.url=function(a,c,e){A(e)&&(e=null);n!==b.location&&(n=b.location);s!==b.history&&(s=b.history);if(a){var f=
-C===e;if(I===a&&(!d.history||f))return m;var g=I&&Ea(I)===Ea(a);I=a;C=e;if(!d.history||g&&f){if(!g||Y)Y=a;c?n.replace(a):g?(c=n,e=a.indexOf("#"),a=-1===e?"":a.substr(e),c.hash=a):n.href=a}else s[c?"replaceState":"pushState"](e,"",a),h(),C=L;return m}return Y||n.href.replace(/%27/g,"'")};m.state=function(){return L};var $=[],V=!1,O=null;m.onUrlChange=function(a){if(!V){if(d.history)G(b).on("popstate",g);G(b).on("hashchange",g);V=!0}$.push(a);return a};m.$$checkUrlChange=l;m.baseHref=function(){var a=
-N.attr("href");return a?a.replace(/^(https?\:)?\/\/[^\/]*/,""):""};var Fa={},D="",hb=m.baseHref();m.cookies=function(a,b){var d,e,f,g;if(a)b===u?r.cookie=encodeURIComponent(a)+"=;path="+hb+";expires=Thu, 01 Jan 1970 00:00:00 GMT":K(b)&&(d=(r.cookie=encodeURIComponent(a)+"="+encodeURIComponent(b)+";path="+hb).length+1,4096<d&&c.warn("Cookie '"+a+"' possibly not set or overflowed because it was too large ("+d+" > 4096 bytes)!"));else{if(r.cookie!==D)for(D=r.cookie,d=D.split("; "),Fa={},f=0;f<d.length;f++)e=
-d[f],g=e.indexOf("="),0<g&&(a=k(e.substring(0,g)),Fa[a]===u&&(Fa[a]=k(e.substring(g+1))));return Fa}};m.defer=function(a,b){var c;p++;c=t(function(){delete v[c];e(a)},b||0);v[c]=!0;return c};m.defer.cancel=function(a){return v[a]?(delete v[a],w(a),e(F),!0):!1}}function He(){this.$get=["$window","$log","$sniffer","$document",function(b,a,c,d){return new rf(b,d,a,c)}]}function Ie(){this.$get=function(){function b(b,d){function e(a){a!=r&&(n?n==a&&(n=a.n):n=a,f(a.n,a.p),f(a,r),r=a,r.n=null)}function f(a,
-b){a!=b&&(a&&(a.p=b),b&&(b.n=a))}if(b in a)throw y("$cacheFactory")("iid",b);var g=0,h=z({},d,{id:b}),l={},k=d&&d.capacity||Number.MAX_VALUE,m={},r=null,n=null;return a[b]={put:function(a,b){if(k<Number.MAX_VALUE){var c=m[a]||(m[a]={key:a});e(c)}if(!A(b))return a in l||g++,l[a]=b,g>k&&this.remove(n.key),b},get:function(a){if(k<Number.MAX_VALUE){var b=m[a];if(!b)return;e(b)}return l[a]},remove:function(a){if(k<Number.MAX_VALUE){var b=m[a];if(!b)return;b==r&&(r=b.p);b==n&&(n=b.n);f(b.n,b.p);delete m[a]}delete l[a];
-g--},removeAll:function(){l={};g=0;m={};r=n=null},destroy:function(){m=h=l=null;delete a[b]},info:function(){return z({},h,{size:g})}}}var a={};b.info=function(){var b={};q(a,function(a,e){b[e]=a.info()});return b};b.get=function(b){return a[b]};return b}}function Ze(){this.$get=["$cacheFactory",function(b){return b("templates")}]}function Ac(b,a){function c(a,b){var c=/^\s*([@&]|=(\*?))(\??)\s*(\w*)\s*$/,d={};q(a,function(a,e){var f=a.match(c);if(!f)throw da("iscp",b,e,a);d[e]={mode:f[1][0],collection:"*"===
-f[2],optional:"?"===f[3],attrName:f[4]||e}});return d}function d(a){var b=a.charAt(0);if(!b||b!==P(b))throw da("baddir",a);return a}var e={},f=/^\s*directive\:\s*([\w\-]+)\s+(.*)$/,g=/(([\w\-]+)(?:\:([^;]+))?;?)/,h=Kd("ngSrc,ngSrcset,src,srcset"),l=/^(?:(\^\^?)?(\?)?(\^\^?)?)?/,k=/^(on[a-z]+|formaction)$/;this.directive=function n(a,f){Ma(a,"directive");K(a)?(d(a),Sb(f,"directiveFactory"),e.hasOwnProperty(a)||(e[a]=[],b.factory(a+"Directive",["$injector","$exceptionHandler",function(b,d){var f=[];
-q(e[a],function(e,g){try{var h=b.invoke(e);B(h)?h={compile:ca(h)}:!h.compile&&h.link&&(h.compile=ca(h.link));h.priority=h.priority||0;h.index=g;h.name=h.name||a;h.require=h.require||h.controller&&h.name;h.restrict=h.restrict||"EA";J(h.scope)&&(h.$$isolateBindings=c(h.scope,h.name));f.push(h)}catch(l){d(l)}});return f}])),e[a].push(f)):q(a,oc(n));return this};this.aHrefSanitizationWhitelist=function(b){return D(b)?(a.aHrefSanitizationWhitelist(b),this):a.aHrefSanitizationWhitelist()};this.imgSrcSanitizationWhitelist=
-function(b){return D(b)?(a.imgSrcSanitizationWhitelist(b),this):a.imgSrcSanitizationWhitelist()};var m=!0;this.debugInfoEnabled=function(a){return D(a)?(m=a,this):m};this.$get=["$injector","$interpolate","$exceptionHandler","$templateRequest","$parse","$controller","$rootScope","$document","$sce","$animate","$$sanitizeUri",function(a,b,c,d,v,p,H,E,Q,L,C){function I(a,b){try{a.addClass(b)}catch(c){}}function N(a,b,c,d,e){a instanceof G||(a=G(a));q(a,function(b,c){b.nodeType==ab&&b.nodeValue.match(/\S+/)&&
-(a[c]=G(b).wrap("<span></span>").parent()[0])});var f=Y(a,b,a,c,d,e);N.$$addScopeClass(a);var g=null;return function(b,c,d){Sb(b,"scope");d=d||{};var e=d.parentBoundTranscludeFn,h=d.transcludeControllers;d=d.futureParentElement;e&&e.$$boundTransclude&&(e=e.$$boundTransclude);g||(g=(d=d&&d[0])?"foreignobject"!==ta(d)&&d.toString().match(/SVG/)?"svg":"html":"html");d="html"!==g?G(S(g,G("<div>").append(a).html())):c?Ka.clone.call(a):a;if(h)for(var l in h)d.data("$"+l+"Controller",h[l].instance);N.$$addScopeInfo(d,
-b);c&&c(d,b);f&&f(b,d,d,e);return d}}function Y(a,b,c,d,e,f){function g(a,c,d,e){var f,l,k,n,m,t,s;if(p)for(s=Array(c.length),n=0;n<h.length;n+=3)f=h[n],s[f]=c[f];else s=c;n=0;for(m=h.length;n<m;)l=s[h[n++]],c=h[n++],f=h[n++],c?(c.scope?(k=a.$new(),N.$$addScopeInfo(G(l),k)):k=a,t=c.transcludeOnThisElement?$(a,c.transclude,e,c.elementTranscludeOnThisElement):!c.templateOnThisElement&&e?e:!e&&b?$(a,b):null,c(f,k,l,d,t)):f&&f(a,l.childNodes,u,e)}for(var h=[],l,k,n,m,p,t=0;t<a.length;t++){l=new $b;k=
-V(a[t],[],l,0===t?d:u,e);(f=k.length?D(k,a[t],l,b,c,null,[],[],f):null)&&f.scope&&N.$$addScopeClass(l.$$element);l=f&&f.terminal||!(n=a[t].childNodes)||!n.length?null:Y(n,f?(f.transcludeOnThisElement||!f.templateOnThisElement)&&f.transclude:b);if(f||l)h.push(t,f,l),m=!0,p=p||f;f=null}return m?g:null}function $(a,b,c,d){return function(d,e,f,g,h){d||(d=a.$new(!1,h),d.$$transcluded=!0);return b(d,e,{parentBoundTranscludeFn:c,transcludeControllers:f,futureParentElement:g})}}function V(a,b,c,d,e){var h=
-c.$attr,l;switch(a.nodeType){case ma:A(b,wa(ta(a)),"E",d,e);for(var k,n,m,p=a.attributes,t=0,s=p&&p.length;t<s;t++){var L=!1,Q=!1;k=p[t];l=k.name;n=T(k.value);k=wa(l);if(m=ac.test(k))l=l.replace(Vc,"").substr(8).replace(/_(.)/g,function(a,b){return b.toUpperCase()});var w=k.replace(/(Start|End)$/,"");y(w)&&k===w+"Start"&&(L=l,Q=l.substr(0,l.length-5)+"end",l=l.substr(0,l.length-6));k=wa(l.toLowerCase());h[k]=l;if(m||!c.hasOwnProperty(k))c[k]=n,Pc(a,k)&&(c[k]=!0);R(a,b,n,k,m);A(b,k,"A",d,e,L,Q)}a=
-a.className;J(a)&&(a=a.animVal);if(K(a)&&""!==a)for(;l=g.exec(a);)k=wa(l[2]),A(b,k,"C",d,e)&&(c[k]=T(l[3])),a=a.substr(l.index+l[0].length);break;case ab:ia(b,a.nodeValue);break;case 8:try{if(l=f.exec(a.nodeValue))k=wa(l[1]),A(b,k,"M",d,e)&&(c[k]=T(l[2]))}catch(v){}}b.sort(xa);return b}function O(a,b,c){var d=[],e=0;if(b&&a.hasAttribute&&a.hasAttribute(b)){do{if(!a)throw da("uterdir",b,c);a.nodeType==ma&&(a.hasAttribute(b)&&e++,a.hasAttribute(c)&&e--);d.push(a);a=a.nextSibling}while(0<e)}else d.push(a);
-return G(d)}function Fa(a,b,c){return function(d,e,f,g,h){e=O(e[0],b,c);return a(d,e,f,g,h)}}function D(a,d,e,f,g,h,k,n,m){function L(a,b,c,d){if(a){c&&(a=Fa(a,c,d));a.require=M.require;a.directiveName=ia;if(E===M||M.$$isolateScope)a=X(a,{isolateScope:!0});k.push(a)}if(b){c&&(b=Fa(b,c,d));b.require=M.require;b.directiveName=ia;if(E===M||M.$$isolateScope)b=X(b,{isolateScope:!0});n.push(b)}}function Q(a,b,c,d){var e,f="data",g=!1,h=c,k;if(K(b)){k=b.match(l);b=b.substring(k[0].length);k[3]&&(k[1]?k[3]=
-null:k[1]=k[3]);"^"===k[1]?f="inheritedData":"^^"===k[1]&&(f="inheritedData",h=c.parent());"?"===k[2]&&(g=!0);e=null;d&&"data"===f&&(e=d[b])&&(e=e.instance);e=e||h[f]("$"+b+"Controller");if(!e&&!g)throw da("ctreq",b,a);return e||null}x(b)&&(e=[],q(b,function(b){e.push(Q(a,b,c,d))}));return e}function w(a,c,f,g,h){function l(a,b,c){var d;Va(a)||(c=b,b=a,a=u);F&&(d=H);c||(c=F?O.parent():O);return h(a,b,d,c,Zb)}var m,t,L,C,H,ib,O,V;d===f?(V=e,O=e.$$element):(O=G(f),V=new $b(O,e));E&&(C=c.$new(!0));h&&
-(ib=l,ib.$$boundTransclude=h);I&&($={},H={},q(I,function(a){var b={$scope:a===E||a.$$isolateScope?C:c,$element:O,$attrs:V,$transclude:ib};L=a.controller;"@"==L&&(L=V[a.name]);b=p(L,b,!0,a.controllerAs);H[a.name]=b;F||O.data("$"+a.name+"Controller",b.instance);$[a.name]=b}));if(E){N.$$addScopeInfo(O,C,!0,!(Y&&(Y===E||Y===E.$$originalDirective)));N.$$addScopeClass(O,!0);g=$&&$[E.name];var va=C;g&&g.identifier&&!0===E.bindToController&&(va=g.instance);q(C.$$isolateBindings=E.$$isolateBindings,function(a,
-d){var e=a.attrName,f=a.optional,g,h,l,k;switch(a.mode){case "@":V.$observe(e,function(a){va[d]=a});V.$$observers[e].$$scope=c;V[e]&&(va[d]=b(V[e])(c));break;case "=":if(f&&!V[e])break;h=v(V[e]);k=h.literal?fa:function(a,b){return a===b||a!==a&&b!==b};l=h.assign||function(){g=va[d]=h(c);throw da("nonassign",V[e],E.name);};g=va[d]=h(c);f=function(a){k(a,va[d])||(k(a,g)?l(c,a=va[d]):va[d]=a);return g=a};f.$stateful=!0;f=a.collection?c.$watchCollection(V[e],f):c.$watch(v(V[e],f),null,h.literal);C.$on("$destroy",
-f);break;case "&":h=v(V[e]),va[d]=function(a){return h(c,a)}}})}$&&(q($,function(a){a()}),$=null);g=0;for(m=k.length;g<m;g++)t=k[g],Wc(t,t.isolateScope?C:c,O,V,t.require&&Q(t.directiveName,t.require,O,H),ib);var Zb=c;E&&(E.template||null===E.templateUrl)&&(Zb=C);a&&a(Zb,f.childNodes,u,h);for(g=n.length-1;0<=g;g--)t=n[g],Wc(t,t.isolateScope?C:c,O,V,t.require&&Q(t.directiveName,t.require,O,H),ib)}m=m||{};for(var C=-Number.MAX_VALUE,H,I=m.controllerDirectives,$,E=m.newIsolateScopeDirective,Y=m.templateDirective,
-Ga=m.nonTlbTranscludeDirective,A=!1,Yb=!1,F=m.hasElementTranscludeDirective,z=e.$$element=G(d),M,ia,y,gb=f,xa,qa=0,P=a.length;qa<P;qa++){M=a[qa];var R=M.$$start,jb=M.$$end;R&&(z=O(d,R,jb));y=u;if(C>M.priority)break;if(y=M.scope)M.templateUrl||(J(y)?(Oa("new/isolated scope",E||H,M,z),E=M):Oa("new/isolated scope",E,M,z)),H=H||M;ia=M.name;!M.templateUrl&&M.controller&&(y=M.controller,I=I||{},Oa("'"+ia+"' controller",I[ia],M,z),I[ia]=M);if(y=M.transclude)A=!0,M.$$tlb||(Oa("transclusion",Ga,M,z),Ga=M),
-"element"==y?(F=!0,C=M.priority,y=z,z=e.$$element=G(W.createComment(" "+ia+": "+e[ia]+" ")),d=z[0],U(g,Za.call(y,0),d),gb=N(y,f,C,h&&h.name,{nonTlbTranscludeDirective:Ga})):(y=G(Vb(d)).contents(),z.empty(),gb=N(y,f));if(M.template)if(Yb=!0,Oa("template",Y,M,z),Y=M,y=B(M.template)?M.template(z,e):M.template,y=Xc(y),M.replace){h=M;y=Tb.test(y)?Yc(S(M.templateNamespace,T(y))):[];d=y[0];if(1!=y.length||d.nodeType!==ma)throw da("tplrt",ia,"");U(g,z,d);P={$attr:{}};y=V(d,[],P);var sf=a.splice(qa+1,a.length-
-(qa+1));E&&hb(y);a=a.concat(y).concat(sf);Uc(e,P);P=a.length}else z.html(y);if(M.templateUrl)Yb=!0,Oa("template",Y,M,z),Y=M,M.replace&&(h=M),w=Xb(a.splice(qa,a.length-qa),z,e,g,A&&gb,k,n,{controllerDirectives:I,newIsolateScopeDirective:E,templateDirective:Y,nonTlbTranscludeDirective:Ga}),P=a.length;else if(M.compile)try{xa=M.compile(z,e,gb),B(xa)?L(null,xa,R,jb):xa&&L(xa.pre,xa.post,R,jb)}catch(ac){c(ac,ua(z))}M.terminal&&(w.terminal=!0,C=Math.max(C,M.priority))}w.scope=H&&!0===H.scope;w.transcludeOnThisElement=
-A;w.elementTranscludeOnThisElement=F;w.templateOnThisElement=Yb;w.transclude=gb;m.hasElementTranscludeDirective=F;return w}function hb(a){for(var b=0,c=a.length;b<c;b++)a[b]=Pb(a[b],{$$isolateScope:!0})}function A(b,d,f,g,h,l,k){if(d===h)return null;h=null;if(e.hasOwnProperty(d)){var m;d=a.get(d+"Directive");for(var p=0,L=d.length;p<L;p++)try{m=d[p],(g===u||g>m.priority)&&-1!=m.restrict.indexOf(f)&&(l&&(m=Pb(m,{$$start:l,$$end:k})),b.push(m),h=m)}catch(s){c(s)}}return h}function y(b){if(e.hasOwnProperty(b))for(var c=
-a.get(b+"Directive"),d=0,f=c.length;d<f;d++)if(b=c[d],b.multiElement)return!0;return!1}function Uc(a,b){var c=b.$attr,d=a.$attr,e=a.$$element;q(a,function(d,e){"$"!=e.charAt(0)&&(b[e]&&b[e]!==d&&(d+=("style"===e?";":" ")+b[e]),a.$set(e,d,!0,c[e]))});q(b,function(b,f){"class"==f?(I(e,b),a["class"]=(a["class"]?a["class"]+" ":"")+b):"style"==f?(e.attr("style",e.attr("style")+";"+b),a.style=(a.style?a.style+";":"")+b):"$"==f.charAt(0)||a.hasOwnProperty(f)||(a[f]=b,d[f]=c[f])})}function Xb(a,b,c,e,f,g,
-h,l){var k=[],n,m,p=b[0],t=a.shift(),L=Pb(t,{templateUrl:null,transclude:null,replace:null,$$originalDirective:t}),s=B(t.templateUrl)?t.templateUrl(b,c):t.templateUrl,Q=t.templateNamespace;b.empty();d(s).then(function(d){var w,C;d=Xc(d);if(t.replace){d=Tb.test(d)?Yc(S(Q,T(d))):[];w=d[0];if(1!=d.length||w.nodeType!==ma)throw da("tplrt",t.name,s);d={$attr:{}};U(e,b,w);var v=V(w,[],d);J(t.scope)&&hb(v);a=v.concat(a);Uc(c,d)}else w=p,b.html(d);a.unshift(L);n=D(a,w,c,f,b,t,g,h,l);q(e,function(a,c){a==
-w&&(e[c]=b[0])});for(m=Y(b[0].childNodes,f);k.length;){d=k.shift();C=k.shift();var H=k.shift(),N=k.shift(),v=b[0];if(!d.$$destroyed){if(C!==p){var E=C.className;l.hasElementTranscludeDirective&&t.replace||(v=Vb(w));U(H,G(C),v);I(G(v),E)}C=n.transcludeOnThisElement?$(d,n.transclude,N):N;n(m,d,v,e,C)}}k=null});return function(a,b,c,d,e){a=e;b.$$destroyed||(k?k.push(b,c,d,a):(n.transcludeOnThisElement&&(a=$(b,n.transclude,e)),n(m,b,c,d,a)))}}function xa(a,b){var c=b.priority-a.priority;return 0!==c?
-c:a.name!==b.name?a.name<b.name?-1:1:a.index-b.index}function Oa(a,b,c,d){if(b)throw da("multidir",b.name,c.name,a,ua(d));}function ia(a,c){var d=b(c,!0);d&&a.push({priority:0,compile:function(a){a=a.parent();var b=!!a.length;b&&N.$$addBindingClass(a);return function(a,c){var e=c.parent();b||N.$$addBindingClass(e);N.$$addBindingInfo(e,d.expressions);a.$watch(d,function(a){c[0].nodeValue=a})}}})}function S(a,b){a=P(a||"html");switch(a){case "svg":case "math":var c=W.createElement("div");c.innerHTML=
-"<"+a+">"+b+"</"+a+">";return c.childNodes[0].childNodes;default:return b}}function jb(a,b){if("srcdoc"==b)return Q.HTML;var c=ta(a);if("xlinkHref"==b||"form"==c&&"action"==b||"img"!=c&&("src"==b||"ngSrc"==b))return Q.RESOURCE_URL}function R(a,c,d,e,f){var g=jb(a,e);f=h[e]||f;var l=b(d,!0,g,f);if(l){if("multiple"===e&&"select"===ta(a))throw da("selmulti",ua(a));c.push({priority:100,compile:function(){return{pre:function(a,c,h){c=h.$$observers||(h.$$observers={});if(k.test(e))throw da("nodomevents");
-var n=h[e];n!==d&&(l=n&&b(n,!0,g,f),d=n);l&&(h[e]=l(a),(c[e]||(c[e]=[])).$$inter=!0,(h.$$observers&&h.$$observers[e].$$scope||a).$watch(l,function(a,b){"class"===e&&a!=b?h.$updateClass(a,b):h.$set(e,a)}))}}}})}}function U(a,b,c){var d=b[0],e=b.length,f=d.parentNode,g,h;if(a)for(g=0,h=a.length;g<h;g++)if(a[g]==d){a[g++]=c;h=g+e-1;for(var l=a.length;g<l;g++,h++)h<l?a[g]=a[h]:delete a[g];a.length-=e-1;a.context===d&&(a.context=c);break}f&&f.replaceChild(c,d);a=W.createDocumentFragment();a.appendChild(d);
-G(c).data(G(d).data());pa?(Rb=!0,pa.cleanData([d])):delete G.cache[d[G.expando]];d=1;for(e=b.length;d<e;d++)f=b[d],G(f).remove(),a.appendChild(f),delete b[d];b[0]=c;b.length=1}function X(a,b){return z(function(){return a.apply(null,arguments)},a,b)}function Wc(a,b,d,e,f,g){try{a(b,d,e,f,g)}catch(h){c(h,ua(d))}}var $b=function(a,b){if(b){var c=Object.keys(b),d,e,f;d=0;for(e=c.length;d<e;d++)f=c[d],this[f]=b[f]}else this.$attr={};this.$$element=a};$b.prototype={$normalize:wa,$addClass:function(a){a&&
-0<a.length&&L.addClass(this.$$element,a)},$removeClass:function(a){a&&0<a.length&&L.removeClass(this.$$element,a)},$updateClass:function(a,b){var c=Zc(a,b);c&&c.length&&L.addClass(this.$$element,c);(c=Zc(b,a))&&c.length&&L.removeClass(this.$$element,c)},$set:function(a,b,d,e){var f=this.$$element[0],g=Pc(f,a),h=of(f,a),f=a;g?(this.$$element.prop(a,b),e=g):h&&(this[h]=b,f=h);this[a]=b;e?this.$attr[a]=e:(e=this.$attr[a])||(this.$attr[a]=e=xc(a,"-"));g=ta(this.$$element);if("a"===g&&"href"===a||"img"===
-g&&"src"===a)this[a]=b=C(b,"src"===a);else if("img"===g&&"srcset"===a){for(var g="",h=T(b),l=/(\s+\d+x\s*,|\s+\d+w\s*,|\s+,|,\s+)/,l=/\s/.test(h)?l:/(,)/,h=h.split(l),l=Math.floor(h.length/2),k=0;k<l;k++)var n=2*k,g=g+C(T(h[n]),!0),g=g+(" "+T(h[n+1]));h=T(h[2*k]).split(/\s/);g+=C(T(h[0]),!0);2===h.length&&(g+=" "+T(h[1]));this[a]=b=g}!1!==d&&(null===b||b===u?this.$$element.removeAttr(e):this.$$element.attr(e,b));(a=this.$$observers)&&q(a[f],function(a){try{a(b)}catch(d){c(d)}})},$observe:function(a,
-b){var c=this,d=c.$$observers||(c.$$observers=ga()),e=d[a]||(d[a]=[]);e.push(b);H.$evalAsync(function(){!e.$$inter&&c.hasOwnProperty(a)&&b(c[a])});return function(){Xa(e,b)}}};var Ga=b.startSymbol(),qa=b.endSymbol(),Xc="{{"==Ga||"}}"==qa?na:function(a){return a.replace(/\{\{/g,Ga).replace(/}}/g,qa)},ac=/^ngAttr[A-Z]/;N.$$addBindingInfo=m?function(a,b){var c=a.data("$binding")||[];x(b)?c=c.concat(b):c.push(b);a.data("$binding",c)}:F;N.$$addBindingClass=m?function(a){I(a,"ng-binding")}:F;N.$$addScopeInfo=
-m?function(a,b,c,d){a.data(c?d?"$isolateScopeNoTemplate":"$isolateScope":"$scope",b)}:F;N.$$addScopeClass=m?function(a,b){I(a,b?"ng-isolate-scope":"ng-scope")}:F;return N}]}function wa(b){return eb(b.replace(Vc,""))}function Zc(b,a){var c="",d=b.split(/\s+/),e=a.split(/\s+/),f=0;a:for(;f<d.length;f++){for(var g=d[f],h=0;h<e.length;h++)if(g==e[h])continue a;c+=(0<c.length?" ":"")+g}return c}function Yc(b){b=G(b);var a=b.length;if(1>=a)return b;for(;a--;)8===b[a].nodeType&&tf.call(b,a,1);return b}function Je(){var b=
-{},a=!1,c=/^(\S+)(\s+as\s+(\w+))?$/;this.register=function(a,c){Ma(a,"controller");J(a)?z(b,a):b[a]=c};this.allowGlobals=function(){a=!0};this.$get=["$injector","$window",function(d,e){function f(a,b,c,d){if(!a||!J(a.$scope))throw y("$controller")("noscp",d,b);a.$scope[b]=c}return function(g,h,l,k){var m,r,n;l=!0===l;k&&K(k)&&(n=k);if(K(g)){k=g.match(c);if(!k)throw uf("ctrlfmt",g);r=k[1];n=n||k[3];g=b.hasOwnProperty(r)?b[r]:zc(h.$scope,r,!0)||(a?zc(e,r,!0):u);La(g,r,!0)}if(l)return l=(x(g)?g[g.length-
-1]:g).prototype,m=Object.create(l||null),n&&f(h,n,m,r||g.name),z(function(){d.invoke(g,m,h,r);return m},{instance:m,identifier:n});m=d.instantiate(g,h,r);n&&f(h,n,m,r||g.name);return m}}]}function Ke(){this.$get=["$window",function(b){return G(b.document)}]}function Le(){this.$get=["$log",function(b){return function(a,c){b.error.apply(b,arguments)}}]}function bc(b,a){if(K(b)){var c=b.replace(vf,"").trim();if(c){var d=a("Content-Type");(d=d&&0===d.indexOf($c))||(d=(d=c.match(wf))&&xf[d[0]].test(c));
-d&&(b=sc(c))}}return b}function ad(b){var a=ga(),c,d,e;if(!b)return a;q(b.split("\n"),function(b){e=b.indexOf(":");c=P(T(b.substr(0,e)));d=T(b.substr(e+1));c&&(a[c]=a[c]?a[c]+", "+d:d)});return a}function bd(b){var a=J(b)?b:u;return function(c){a||(a=ad(b));return c?(c=a[P(c)],void 0===c&&(c=null),c):a}}function cd(b,a,c,d){if(B(d))return d(b,a,c);q(d,function(d){b=d(b,a,c)});return b}function Oe(){var b=this.defaults={transformResponse:[bc],transformRequest:[function(a){return J(a)&&"[object File]"!==
-Aa.call(a)&&"[object Blob]"!==Aa.call(a)&&"[object FormData]"!==Aa.call(a)?$a(a):a}],headers:{common:{Accept:"application/json, text/plain, */*"},post:oa(cc),put:oa(cc),patch:oa(cc)},xsrfCookieName:"XSRF-TOKEN",xsrfHeaderName:"X-XSRF-TOKEN"},a=!1;this.useApplyAsync=function(b){return D(b)?(a=!!b,this):a};var c=this.interceptors=[];this.$get=["$httpBackend","$browser","$cacheFactory","$rootScope","$q","$injector",function(d,e,f,g,h,l){function k(a){function c(a){var b=z({},a);b.data=a.data?cd(a.data,
-a.headers,a.status,e.transformResponse):a.data;a=a.status;return 200<=a&&300>a?b:h.reject(b)}function d(a){var b,c={};q(a,function(a,d){B(a)?(b=a(),null!=b&&(c[d]=b)):c[d]=a});return c}if(!ba.isObject(a))throw y("$http")("badreq",a);var e=z({method:"get",transformRequest:b.transformRequest,transformResponse:b.transformResponse},a);e.headers=function(a){var c=b.headers,e=z({},a.headers),f,g,c=z({},c.common,c[P(a.method)]);a:for(f in c){a=P(f);for(g in e)if(P(g)===a)continue a;e[f]=c[f]}return d(e)}(a);
-e.method=wb(e.method);var f=[function(a){var d=a.headers,e=cd(a.data,bd(d),u,a.transformRequest);A(e)&&q(d,function(a,b){"content-type"===P(b)&&delete d[b]});A(a.withCredentials)&&!A(b.withCredentials)&&(a.withCredentials=b.withCredentials);return m(a,e).then(c,c)},u],g=h.when(e);for(q(s,function(a){(a.request||a.requestError)&&f.unshift(a.request,a.requestError);(a.response||a.responseError)&&f.push(a.response,a.responseError)});f.length;){a=f.shift();var l=f.shift(),g=g.then(a,l)}g.success=function(a){La(a,
-"fn");g.then(function(b){a(b.data,b.status,b.headers,e)});return g};g.error=function(a){La(a,"fn");g.then(null,function(b){a(b.data,b.status,b.headers,e)});return g};return g}function m(c,f){function l(b,c,d,e){function f(){m(c,b,d,e)}C&&(200<=b&&300>b?C.put(q,[b,c,ad(d),e]):C.remove(q));a?g.$applyAsync(f):(f(),g.$$phase||g.$apply())}function m(a,b,d,e){b=-1<=b?b:0;(200<=b&&300>b?Q.resolve:Q.reject)({data:a,status:b,headers:bd(d),config:c,statusText:e})}function s(a){m(a.data,a.status,oa(a.headers()),
-a.statusText)}function E(){var a=k.pendingRequests.indexOf(c);-1!==a&&k.pendingRequests.splice(a,1)}var Q=h.defer(),L=Q.promise,C,I,N=c.headers,q=r(c.url,c.params);k.pendingRequests.push(c);L.then(E,E);!c.cache&&!b.cache||!1===c.cache||"GET"!==c.method&&"JSONP"!==c.method||(C=J(c.cache)?c.cache:J(b.cache)?b.cache:n);C&&(I=C.get(q),D(I)?I&&B(I.then)?I.then(s,s):x(I)?m(I[1],I[0],oa(I[2]),I[3]):m(I,200,{},"OK"):C.put(q,L));A(I)&&((I=dd(c.url)?e.cookies()[c.xsrfCookieName||b.xsrfCookieName]:u)&&(N[c.xsrfHeaderName||
-b.xsrfHeaderName]=I),d(c.method,q,f,l,N,c.timeout,c.withCredentials,c.responseType));return L}function r(a,b){if(!b)return a;var c=[];Id(b,function(a,b){null===a||A(a)||(x(a)||(a=[a]),q(a,function(a){J(a)&&(a=ea(a)?a.toISOString():$a(a));c.push(Ca(b)+"="+Ca(a))}))});0<c.length&&(a+=(-1==a.indexOf("?")?"?":"&")+c.join("&"));return a}var n=f("$http"),s=[];q(c,function(a){s.unshift(K(a)?l.get(a):l.invoke(a))});k.pendingRequests=[];(function(a){q(arguments,function(a){k[a]=function(b,c){return k(z(c||
-{},{method:a,url:b}))}})})("get","delete","head","jsonp");(function(a){q(arguments,function(a){k[a]=function(b,c,d){return k(z(d||{},{method:a,url:b,data:c}))}})})("post","put","patch");k.defaults=b;return k}]}function yf(){return new S.XMLHttpRequest}function Pe(){this.$get=["$browser","$window","$document",function(b,a,c){return zf(b,yf,b.defer,a.angular.callbacks,c[0])}]}function zf(b,a,c,d,e){function f(a,b,c){var f=e.createElement("script"),m=null;f.type="text/javascript";f.src=a;f.async=!0;
-m=function(a){f.removeEventListener("load",m,!1);f.removeEventListener("error",m,!1);e.body.removeChild(f);f=null;var g=-1,s="unknown";a&&("load"!==a.type||d[b].called||(a={type:"error"}),s=a.type,g="error"===a.type?404:200);c&&c(g,s)};f.addEventListener("load",m,!1);f.addEventListener("error",m,!1);e.body.appendChild(f);return m}return function(e,h,l,k,m,r,n,s){function t(){p&&p();H&&H.abort()}function w(a,d,e,f,g){Q!==u&&c.cancel(Q);p=H=null;a(d,e,f,g);b.$$completeOutstandingRequest(F)}b.$$incOutstandingRequestCount();
-h=h||b.url();if("jsonp"==P(e)){var v="_"+(d.counter++).toString(36);d[v]=function(a){d[v].data=a;d[v].called=!0};var p=f(h.replace("JSON_CALLBACK","angular.callbacks."+v),v,function(a,b){w(k,a,d[v].data,"",b);d[v]=F})}else{var H=a();H.open(e,h,!0);q(m,function(a,b){D(a)&&H.setRequestHeader(b,a)});H.onload=function(){var a=H.statusText||"",b="response"in H?H.response:H.responseText,c=1223===H.status?204:H.status;0===c&&(c=b?200:"file"==ya(h).protocol?404:0);w(k,c,b,H.getAllResponseHeaders(),a)};e=
-function(){w(k,-1,null,null,"")};H.onerror=e;H.onabort=e;n&&(H.withCredentials=!0);if(s)try{H.responseType=s}catch(E){if("json"!==s)throw E;}H.send(l||null)}if(0<r)var Q=c(t,r);else r&&B(r.then)&&r.then(t)}}function Me(){var b="{{",a="}}";this.startSymbol=function(a){return a?(b=a,this):b};this.endSymbol=function(b){return b?(a=b,this):a};this.$get=["$parse","$exceptionHandler","$sce",function(c,d,e){function f(a){return"\\\\\\"+a}function g(f,g,s,t){function w(c){return c.replace(k,b).replace(m,
-a)}function v(a){try{var b=a;a=s?e.getTrusted(s,b):e.valueOf(b);var c;if(t&&!D(a))c=a;else if(null==a)c="";else{switch(typeof a){case "string":break;case "number":a=""+a;break;default:a=$a(a)}c=a}return c}catch(g){c=dc("interr",f,g.toString()),d(c)}}t=!!t;for(var p,H,E=0,Q=[],L=[],C=f.length,I=[],N=[];E<C;)if(-1!=(p=f.indexOf(b,E))&&-1!=(H=f.indexOf(a,p+h)))E!==p&&I.push(w(f.substring(E,p))),E=f.substring(p+h,H),Q.push(E),L.push(c(E,v)),E=H+l,N.push(I.length),I.push("");else{E!==C&&I.push(w(f.substring(E)));
-break}if(s&&1<I.length)throw dc("noconcat",f);if(!g||Q.length){var q=function(a){for(var b=0,c=Q.length;b<c;b++){if(t&&A(a[b]))return;I[N[b]]=a[b]}return I.join("")};return z(function(a){var b=0,c=Q.length,e=Array(c);try{for(;b<c;b++)e[b]=L[b](a);return q(e)}catch(g){a=dc("interr",f,g.toString()),d(a)}},{exp:f,expressions:Q,$$watchDelegate:function(a,b,c){var d;return a.$watchGroup(L,function(c,e){var f=q(c);B(b)&&b.call(this,f,c!==e?d:f,a);d=f},c)}})}}var h=b.length,l=a.length,k=new RegExp(b.replace(/./g,
-f),"g"),m=new RegExp(a.replace(/./g,f),"g");g.startSymbol=function(){return b};g.endSymbol=function(){return a};return g}]}function Ne(){this.$get=["$rootScope","$window","$q","$$q",function(b,a,c,d){function e(e,h,l,k){var m=a.setInterval,r=a.clearInterval,n=0,s=D(k)&&!k,t=(s?d:c).defer(),w=t.promise;l=D(l)?l:0;w.then(null,null,e);w.$$intervalId=m(function(){t.notify(n++);0<l&&n>=l&&(t.resolve(n),r(w.$$intervalId),delete f[w.$$intervalId]);s||b.$apply()},h);f[w.$$intervalId]=t;return w}var f={};
-e.cancel=function(b){return b&&b.$$intervalId in f?(f[b.$$intervalId].reject("canceled"),a.clearInterval(b.$$intervalId),delete f[b.$$intervalId],!0):!1};return e}]}function Vd(){this.$get=function(){return{id:"en-us",NUMBER_FORMATS:{DECIMAL_SEP:".",GROUP_SEP:",",PATTERNS:[{minInt:1,minFrac:0,maxFrac:3,posPre:"",posSuf:"",negPre:"-",negSuf:"",gSize:3,lgSize:3},{minInt:1,minFrac:2,maxFrac:2,posPre:"\u00a4",posSuf:"",negPre:"(\u00a4",negSuf:")",gSize:3,lgSize:3}],CURRENCY_SYM:"$"},DATETIME_FORMATS:{MONTH:"January February March April May June July August September October November December".split(" "),
-SHORTMONTH:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),DAY:"Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),SHORTDAY:"Sun Mon Tue Wed Thu Fri Sat".split(" "),AMPMS:["AM","PM"],medium:"MMM d, y h:mm:ss a","short":"M/d/yy h:mm a",fullDate:"EEEE, MMMM d, y",longDate:"MMMM d, y",mediumDate:"MMM d, y",shortDate:"M/d/yy",mediumTime:"h:mm:ss a",shortTime:"h:mm a",ERANAMES:["Before Christ","Anno Domini"],ERAS:["BC","AD"]},pluralCat:function(b){return 1===b?"one":"other"}}}}
-function ec(b){b=b.split("/");for(var a=b.length;a--;)b[a]=tb(b[a]);return b.join("/")}function ed(b,a){var c=ya(b);a.$$protocol=c.protocol;a.$$host=c.hostname;a.$$port=aa(c.port)||Af[c.protocol]||null}function fd(b,a){var c="/"!==b.charAt(0);c&&(b="/"+b);var d=ya(b);a.$$path=decodeURIComponent(c&&"/"===d.pathname.charAt(0)?d.pathname.substring(1):d.pathname);a.$$search=uc(d.search);a.$$hash=decodeURIComponent(d.hash);a.$$path&&"/"!=a.$$path.charAt(0)&&(a.$$path="/"+a.$$path)}function ra(b,a){if(0===
-a.indexOf(b))return a.substr(b.length)}function Ea(b){var a=b.indexOf("#");return-1==a?b:b.substr(0,a)}function Hb(b){return b.replace(/(#.+)|#$/,"$1")}function fc(b,a,c){this.$$html5=!0;c=c||"";ed(b,this);this.$$parse=function(b){var c=ra(a,b);if(!K(c))throw Ib("ipthprfx",b,a);fd(c,this);this.$$path||(this.$$path="/");this.$$compose()};this.$$compose=function(){var b=Qb(this.$$search),c=this.$$hash?"#"+tb(this.$$hash):"";this.$$url=ec(this.$$path)+(b?"?"+b:"")+c;this.$$absUrl=a+this.$$url.substr(1)};
-this.$$parseLinkUrl=function(d,e){if(e&&"#"===e[0])return this.hash(e.slice(1)),!0;var f,g;(f=ra(b,d))!==u?(g=f,g=(f=ra(c,f))!==u?a+(ra("/",f)||f):b+g):(f=ra(a,d))!==u?g=a+f:a==d+"/"&&(g=a);g&&this.$$parse(g);return!!g}}function gc(b,a,c){ed(b,this);this.$$parse=function(d){var e=ra(b,d)||ra(a,d),f;A(e)||"#"!==e.charAt(0)?this.$$html5?f=e:(f="",A(e)&&(b=d,this.replace())):(f=ra(c,e),A(f)&&(f=e));fd(f,this);d=this.$$path;var e=b,g=/^\/[A-Z]:(\/.*)/;0===f.indexOf(e)&&(f=f.replace(e,""));g.exec(f)||
-(d=(f=g.exec(d))?f[1]:d);this.$$path=d;this.$$compose()};this.$$compose=function(){var a=Qb(this.$$search),e=this.$$hash?"#"+tb(this.$$hash):"";this.$$url=ec(this.$$path)+(a?"?"+a:"")+e;this.$$absUrl=b+(this.$$url?c+this.$$url:"")};this.$$parseLinkUrl=function(a,c){return Ea(b)==Ea(a)?(this.$$parse(a),!0):!1}}function gd(b,a,c){this.$$html5=!0;gc.apply(this,arguments);this.$$parseLinkUrl=function(d,e){if(e&&"#"===e[0])return this.hash(e.slice(1)),!0;var f,g;b==Ea(d)?f=d:(g=ra(a,d))?f=b+c+g:a===d+
-"/"&&(f=a);f&&this.$$parse(f);return!!f};this.$$compose=function(){var a=Qb(this.$$search),e=this.$$hash?"#"+tb(this.$$hash):"";this.$$url=ec(this.$$path)+(a?"?"+a:"")+e;this.$$absUrl=b+c+this.$$url}}function Jb(b){return function(){return this[b]}}function hd(b,a){return function(c){if(A(c))return this[b];this[b]=a(c);this.$$compose();return this}}function Qe(){var b="",a={enabled:!1,requireBase:!0,rewriteLinks:!0};this.hashPrefix=function(a){return D(a)?(b=a,this):b};this.html5Mode=function(b){return Wa(b)?
-(a.enabled=b,this):J(b)?(Wa(b.enabled)&&(a.enabled=b.enabled),Wa(b.requireBase)&&(a.requireBase=b.requireBase),Wa(b.rewriteLinks)&&(a.rewriteLinks=b.rewriteLinks),this):a};this.$get=["$rootScope","$browser","$sniffer","$rootElement","$window",function(c,d,e,f,g){function h(a,b,c){var e=k.url(),f=k.$$state;try{d.url(a,b,c),k.$$state=d.state()}catch(g){throw k.url(e),k.$$state=f,g;}}function l(a,b){c.$broadcast("$locationChangeSuccess",k.absUrl(),a,k.$$state,b)}var k,m;m=d.baseHref();var r=d.url(),
-n;if(a.enabled){if(!m&&a.requireBase)throw Ib("nobase");n=r.substring(0,r.indexOf("/",r.indexOf("//")+2))+(m||"/");m=e.history?fc:gd}else n=Ea(r),m=gc;var s=n.substr(0,Ea(n).lastIndexOf("/")+1);k=new m(n,s,"#"+b);k.$$parseLinkUrl(r,r);k.$$state=d.state();var t=/^\s*(javascript|mailto):/i;f.on("click",function(b){if(a.rewriteLinks&&!b.ctrlKey&&!b.metaKey&&!b.shiftKey&&2!=b.which&&2!=b.button){for(var e=G(b.target);"a"!==ta(e[0]);)if(e[0]===f[0]||!(e=e.parent())[0])return;var h=e.prop("href"),l=e.attr("href")||
-e.attr("xlink:href");J(h)&&"[object SVGAnimatedString]"===h.toString()&&(h=ya(h.animVal).href);t.test(h)||!h||e.attr("target")||b.isDefaultPrevented()||!k.$$parseLinkUrl(h,l)||(b.preventDefault(),k.absUrl()!=d.url()&&(c.$apply(),g.angular["ff-684208-preventDefault"]=!0))}});Hb(k.absUrl())!=Hb(r)&&d.url(k.absUrl(),!0);var w=!0;d.onUrlChange(function(a,b){A(ra(s,a))?g.location.href=a:(c.$evalAsync(function(){var d=k.absUrl(),e=k.$$state,f;k.$$parse(a);k.$$state=b;f=c.$broadcast("$locationChangeStart",
-a,d,b,e).defaultPrevented;k.absUrl()===a&&(f?(k.$$parse(d),k.$$state=e,h(d,!1,e)):(w=!1,l(d,e)))}),c.$$phase||c.$digest())});c.$watch(function(){var a=Hb(d.url()),b=Hb(k.absUrl()),f=d.state(),g=k.$$replace,n=a!==b||k.$$html5&&e.history&&f!==k.$$state;if(w||n)w=!1,c.$evalAsync(function(){var b=k.absUrl(),d=c.$broadcast("$locationChangeStart",b,a,k.$$state,f).defaultPrevented;k.absUrl()===b&&(d?(k.$$parse(a),k.$$state=f):(n&&h(b,g,f===k.$$state?null:k.$$state),l(a,f)))});k.$$replace=!1});return k}]}
-function Re(){var b=!0,a=this;this.debugEnabled=function(a){return D(a)?(b=a,this):b};this.$get=["$window",function(c){function d(a){a instanceof Error&&(a.stack?a=a.message&&-1===a.stack.indexOf(a.message)?"Error: "+a.message+"\n"+a.stack:a.stack:a.sourceURL&&(a=a.message+"\n"+a.sourceURL+":"+a.line));return a}function e(a){var b=c.console||{},e=b[a]||b.log||F;a=!1;try{a=!!e.apply}catch(l){}return a?function(){var a=[];q(arguments,function(b){a.push(d(b))});return e.apply(b,a)}:function(a,b){e(a,
-null==b?"":b)}}return{log:e("log"),info:e("info"),warn:e("warn"),error:e("error"),debug:function(){var c=e("debug");return function(){b&&c.apply(a,arguments)}}()}}]}function sa(b,a){b=J(b)&&b.toString?b.toString():b;if("__defineGetter__"===b||"__defineSetter__"===b||"__lookupGetter__"===b||"__lookupSetter__"===b||"__proto__"===b)throw ja("isecfld",a);return b}function ka(b,a){if(b){if(b.constructor===b)throw ja("isecfn",a);if(b.window===b)throw ja("isecwindow",a);if(b.children&&(b.nodeName||b.prop&&
-b.attr&&b.find))throw ja("isecdom",a);if(b===Object)throw ja("isecobj",a);}return b}function hc(b){return b.constant}function kb(b,a,c,d,e){ka(b,e);ka(a,e);c=c.split(".");for(var f,g=0;1<c.length;g++){f=sa(c.shift(),e);var h=0===g&&a&&a[f]||b[f];h||(h={},b[f]=h);b=ka(h,e)}f=sa(c.shift(),e);ka(b[f],e);return b[f]=d}function Pa(b){return"constructor"==b}function id(b,a,c,d,e,f,g){sa(b,f);sa(a,f);sa(c,f);sa(d,f);sa(e,f);var h=function(a){return ka(a,f)},l=g||Pa(b)?h:na,k=g||Pa(a)?h:na,m=g||Pa(c)?h:na,
-r=g||Pa(d)?h:na,n=g||Pa(e)?h:na;return function(f,g){var h=g&&g.hasOwnProperty(b)?g:f;if(null==h)return h;h=l(h[b]);if(!a)return h;if(null==h)return u;h=k(h[a]);if(!c)return h;if(null==h)return u;h=m(h[c]);if(!d)return h;if(null==h)return u;h=r(h[d]);return e?null==h?u:h=n(h[e]):h}}function Bf(b,a){return function(c,d){return b(c,d,ka,a)}}function Cf(b,a,c){var d=a.expensiveChecks,e=d?Df:Ef,f=e[b];if(f)return f;var g=b.split("."),h=g.length;if(a.csp)f=6>h?id(g[0],g[1],g[2],g[3],g[4],c,d):function(a,
-b){var e=0,f;do f=id(g[e++],g[e++],g[e++],g[e++],g[e++],c,d)(a,b),b=u,a=f;while(e<h);return f};else{var l="";d&&(l+="s = eso(s, fe);\nl = eso(l, fe);\n");var k=d;q(g,function(a,b){sa(a,c);var e=(b?"s":'((l&&l.hasOwnProperty("'+a+'"))?l:s)')+"."+a;if(d||Pa(a))e="eso("+e+", fe)",k=!0;l+="if(s == null) return undefined;\ns="+e+";\n"});l+="return s;";a=new Function("s","l","eso","fe",l);a.toString=ca(l);k&&(a=Bf(a,c));f=a}f.sharedGetter=!0;f.assign=function(a,c,d){return kb(a,d,b,c,b)};return e[b]=f}
-function ic(b){return B(b.valueOf)?b.valueOf():Ff.call(b)}function Se(){var b=ga(),a=ga();this.$get=["$filter","$sniffer",function(c,d){function e(a){var b=a;a.sharedGetter&&(b=function(b,c){return a(b,c)},b.literal=a.literal,b.constant=a.constant,b.assign=a.assign);return b}function f(a,b){for(var c=0,d=a.length;c<d;c++){var e=a[c];e.constant||(e.inputs?f(e.inputs,b):-1===b.indexOf(e)&&b.push(e))}return b}function g(a,b){return null==a||null==b?a===b:"object"===typeof a&&(a=ic(a),"object"===typeof a)?
-!1:a===b||a!==a&&b!==b}function h(a,b,c,d){var e=d.$$inputs||(d.$$inputs=f(d.inputs,[])),h;if(1===e.length){var l=g,e=e[0];return a.$watch(function(a){var b=e(a);g(b,l)||(h=d(a),l=b&&ic(b));return h},b,c)}for(var k=[],n=0,m=e.length;n<m;n++)k[n]=g;return a.$watch(function(a){for(var b=!1,c=0,f=e.length;c<f;c++){var l=e[c](a);if(b||(b=!g(l,k[c])))k[c]=l&&ic(l)}b&&(h=d(a));return h},b,c)}function l(a,b,c,d){var e,f;return e=a.$watch(function(a){return d(a)},function(a,c,d){f=a;B(b)&&b.apply(this,arguments);
-D(a)&&d.$$postDigest(function(){D(f)&&e()})},c)}function k(a,b,c,d){function e(a){var b=!0;q(a,function(a){D(a)||(b=!1)});return b}var f,g;return f=a.$watch(function(a){return d(a)},function(a,c,d){g=a;B(b)&&b.call(this,a,c,d);e(a)&&d.$$postDigest(function(){e(g)&&f()})},c)}function m(a,b,c,d){var e;return e=a.$watch(function(a){return d(a)},function(a,c,d){B(b)&&b.apply(this,arguments);e()},c)}function r(a,b){if(!b)return a;var c=a.$$watchDelegate,c=c!==k&&c!==l?function(c,d){var e=a(c,d);return b(e,
-c,d)}:function(c,d){var e=a(c,d),f=b(e,c,d);return D(e)?f:e};a.$$watchDelegate&&a.$$watchDelegate!==h?c.$$watchDelegate=a.$$watchDelegate:b.$stateful||(c.$$watchDelegate=h,c.inputs=[a]);return c}var n={csp:d.csp,expensiveChecks:!1},s={csp:d.csp,expensiveChecks:!0};return function(d,f,g){var p,q,E;switch(typeof d){case "string":E=d=d.trim();var Q=g?a:b;p=Q[E];p||(":"===d.charAt(0)&&":"===d.charAt(1)&&(q=!0,d=d.substring(2)),g=g?s:n,p=new jc(g),p=(new lb(p,c,g)).parse(d),p.constant?p.$$watchDelegate=
-m:q?(p=e(p),p.$$watchDelegate=p.literal?k:l):p.inputs&&(p.$$watchDelegate=h),Q[E]=p);return r(p,f);case "function":return r(d,f);default:return r(F,f)}}}]}function Ue(){this.$get=["$rootScope","$exceptionHandler",function(b,a){return jd(function(a){b.$evalAsync(a)},a)}]}function Ve(){this.$get=["$browser","$exceptionHandler",function(b,a){return jd(function(a){b.defer(a)},a)}]}function jd(b,a){function c(a,b,c){function d(b){return function(c){e||(e=!0,b.call(a,c))}}var e=!1;return[d(b),d(c)]}function d(){this.$$state=
-{status:0}}function e(a,b){return function(c){b.call(a,c)}}function f(c){!c.processScheduled&&c.pending&&(c.processScheduled=!0,b(function(){var b,d,e;e=c.pending;c.processScheduled=!1;c.pending=u;for(var f=0,g=e.length;f<g;++f){d=e[f][0];b=e[f][c.status];try{B(b)?d.resolve(b(c.value)):1===c.status?d.resolve(c.value):d.reject(c.value)}catch(h){d.reject(h),a(h)}}}))}function g(){this.promise=new d;this.resolve=e(this,this.resolve);this.reject=e(this,this.reject);this.notify=e(this,this.notify)}var h=
-y("$q",TypeError);d.prototype={then:function(a,b,c){var d=new g;this.$$state.pending=this.$$state.pending||[];this.$$state.pending.push([d,a,b,c]);0<this.$$state.status&&f(this.$$state);return d.promise},"catch":function(a){return this.then(null,a)},"finally":function(a,b){return this.then(function(b){return k(b,!0,a)},function(b){return k(b,!1,a)},b)}};g.prototype={resolve:function(a){this.promise.$$state.status||(a===this.promise?this.$$reject(h("qcycle",a)):this.$$resolve(a))},$$resolve:function(b){var d,
-e;e=c(this,this.$$resolve,this.$$reject);try{if(J(b)||B(b))d=b&&b.then;B(d)?(this.promise.$$state.status=-1,d.call(b,e[0],e[1],this.notify)):(this.promise.$$state.value=b,this.promise.$$state.status=1,f(this.promise.$$state))}catch(g){e[1](g),a(g)}},reject:function(a){this.promise.$$state.status||this.$$reject(a)},$$reject:function(a){this.promise.$$state.value=a;this.promise.$$state.status=2;f(this.promise.$$state)},notify:function(c){var d=this.promise.$$state.pending;0>=this.promise.$$state.status&&
-d&&d.length&&b(function(){for(var b,e,f=0,g=d.length;f<g;f++){e=d[f][0];b=d[f][3];try{e.notify(B(b)?b(c):c)}catch(h){a(h)}}})}};var l=function(a,b){var c=new g;b?c.resolve(a):c.reject(a);return c.promise},k=function(a,b,c){var d=null;try{B(c)&&(d=c())}catch(e){return l(e,!1)}return d&&B(d.then)?d.then(function(){return l(a,b)},function(a){return l(a,!1)}):l(a,b)},m=function(a,b,c,d){var e=new g;e.resolve(a);return e.promise.then(b,c,d)},r=function s(a){if(!B(a))throw h("norslvr",a);if(!(this instanceof
-s))return new s(a);var b=new g;a(function(a){b.resolve(a)},function(a){b.reject(a)});return b.promise};r.defer=function(){return new g};r.reject=function(a){var b=new g;b.reject(a);return b.promise};r.when=m;r.all=function(a){var b=new g,c=0,d=x(a)?[]:{};q(a,function(a,e){c++;m(a).then(function(a){d.hasOwnProperty(e)||(d[e]=a,--c||b.resolve(d))},function(a){d.hasOwnProperty(e)||b.reject(a)})});0===c&&b.resolve(d);return b.promise};return r}function df(){this.$get=["$window","$timeout",function(b,
-a){function c(){for(var a=0;a<m.length;a++){var b=m[a];b&&(m[a]=null,b())}k=m.length=0}function d(a){var b=m.length;k++;m.push(a);0===b&&(l=h(c));return function(){0<=b&&(b=m[b]=null,0===--k&&l&&(l(),l=null,m.length=0))}}var e=b.requestAnimationFrame||b.webkitRequestAnimationFrame,f=b.cancelAnimationFrame||b.webkitCancelAnimationFrame||b.webkitCancelRequestAnimationFrame,g=!!e,h=g?function(a){var b=e(a);return function(){f(b)}}:function(b){var c=a(b,16.66,!1);return function(){a.cancel(c)}};d.supported=
-g;var l,k=0,m=[];return d}]}function Te(){function b(a){function b(){this.$$watchers=this.$$nextSibling=this.$$childHead=this.$$childTail=null;this.$$listeners={};this.$$listenerCount={};this.$id=++sb;this.$$ChildScope=null}b.prototype=a;return b}var a=10,c=y("$rootScope"),d=null,e=null;this.digestTtl=function(b){arguments.length&&(a=b);return a};this.$get=["$injector","$exceptionHandler","$parse","$browser",function(f,g,h,l){function k(a){a.currentScope.$$destroyed=!0}function m(){this.$id=++sb;
-this.$$phase=this.$parent=this.$$watchers=this.$$nextSibling=this.$$prevSibling=this.$$childHead=this.$$childTail=null;this.$root=this;this.$$destroyed=!1;this.$$listeners={};this.$$listenerCount={};this.$$isolateBindings=null}function r(a){if(v.$$phase)throw c("inprog",v.$$phase);v.$$phase=a}function n(a,b,c){do a.$$listenerCount[c]-=b,0===a.$$listenerCount[c]&&delete a.$$listenerCount[c];while(a=a.$parent)}function s(){}function t(){for(;E.length;)try{E.shift()()}catch(a){g(a)}e=null}function w(){null===
-e&&(e=l.defer(function(){v.$apply(t)}))}m.prototype={constructor:m,$new:function(a,c){var d;c=c||this;a?(d=new m,d.$root=this.$root):(this.$$ChildScope||(this.$$ChildScope=b(this)),d=new this.$$ChildScope);d.$parent=c;d.$$prevSibling=c.$$childTail;c.$$childHead?(c.$$childTail.$$nextSibling=d,c.$$childTail=d):c.$$childHead=c.$$childTail=d;(a||c!=this)&&d.$on("$destroy",k);return d},$watch:function(a,b,c){var e=h(a);if(e.$$watchDelegate)return e.$$watchDelegate(this,b,c,e);var f=this.$$watchers,g={fn:b,
-last:s,get:e,exp:a,eq:!!c};d=null;B(b)||(g.fn=F);f||(f=this.$$watchers=[]);f.unshift(g);return function(){Xa(f,g);d=null}},$watchGroup:function(a,b){function c(){h=!1;l?(l=!1,b(e,e,g)):b(e,d,g)}var d=Array(a.length),e=Array(a.length),f=[],g=this,h=!1,l=!0;if(!a.length){var k=!0;g.$evalAsync(function(){k&&b(e,e,g)});return function(){k=!1}}if(1===a.length)return this.$watch(a[0],function(a,c,f){e[0]=a;d[0]=c;b(e,a===c?e:d,f)});q(a,function(a,b){var l=g.$watch(a,function(a,f){e[b]=a;d[b]=f;h||(h=!0,
-g.$evalAsync(c))});f.push(l)});return function(){for(;f.length;)f.shift()()}},$watchCollection:function(a,b){function c(a){e=a;var b,d,g,h;if(!A(e)){if(J(e))if(Sa(e))for(f!==n&&(f=n,s=f.length=0,k++),a=e.length,s!==a&&(k++,f.length=s=a),b=0;b<a;b++)h=f[b],g=e[b],d=h!==h&&g!==g,d||h===g||(k++,f[b]=g);else{f!==r&&(f=r={},s=0,k++);a=0;for(b in e)e.hasOwnProperty(b)&&(a++,g=e[b],h=f[b],b in f?(d=h!==h&&g!==g,d||h===g||(k++,f[b]=g)):(s++,f[b]=g,k++));if(s>a)for(b in k++,f)e.hasOwnProperty(b)||(s--,delete f[b])}else f!==
-e&&(f=e,k++);return k}}c.$stateful=!0;var d=this,e,f,g,l=1<b.length,k=0,m=h(a,c),n=[],r={},p=!0,s=0;return this.$watch(m,function(){p?(p=!1,b(e,e,d)):b(e,g,d);if(l)if(J(e))if(Sa(e)){g=Array(e.length);for(var a=0;a<e.length;a++)g[a]=e[a]}else for(a in g={},e)vc.call(e,a)&&(g[a]=e[a]);else g=e})},$digest:function(){var b,f,h,k,m,n,q=a,w,O=[],E,u;r("$digest");l.$$checkUrlChange();this===v&&null!==e&&(l.defer.cancel(e),t());d=null;do{n=!1;for(w=this;p.length;){try{u=p.shift(),u.scope.$eval(u.expression,
-u.locals)}catch(D){g(D)}d=null}a:do{if(k=w.$$watchers)for(m=k.length;m--;)try{if(b=k[m])if((f=b.get(w))!==(h=b.last)&&!(b.eq?fa(f,h):"number"===typeof f&&"number"===typeof h&&isNaN(f)&&isNaN(h)))n=!0,d=b,b.last=b.eq?Ba(f,null):f,b.fn(f,h===s?f:h,w),5>q&&(E=4-q,O[E]||(O[E]=[]),O[E].push({msg:B(b.exp)?"fn: "+(b.exp.name||b.exp.toString()):b.exp,newVal:f,oldVal:h}));else if(b===d){n=!1;break a}}catch(A){g(A)}if(!(k=w.$$childHead||w!==this&&w.$$nextSibling))for(;w!==this&&!(k=w.$$nextSibling);)w=w.$parent}while(w=
-k);if((n||p.length)&&!q--)throw v.$$phase=null,c("infdig",a,O);}while(n||p.length);for(v.$$phase=null;H.length;)try{H.shift()()}catch(z){g(z)}},$destroy:function(){if(!this.$$destroyed){var a=this.$parent;this.$broadcast("$destroy");this.$$destroyed=!0;if(this!==v){for(var b in this.$$listenerCount)n(this,this.$$listenerCount[b],b);a.$$childHead==this&&(a.$$childHead=this.$$nextSibling);a.$$childTail==this&&(a.$$childTail=this.$$prevSibling);this.$$prevSibling&&(this.$$prevSibling.$$nextSibling=this.$$nextSibling);
-this.$$nextSibling&&(this.$$nextSibling.$$prevSibling=this.$$prevSibling);this.$destroy=this.$digest=this.$apply=this.$evalAsync=this.$applyAsync=F;this.$on=this.$watch=this.$watchGroup=function(){return F};this.$$listeners={};this.$parent=this.$$nextSibling=this.$$prevSibling=this.$$childHead=this.$$childTail=this.$root=this.$$watchers=null}}},$eval:function(a,b){return h(a)(this,b)},$evalAsync:function(a,b){v.$$phase||p.length||l.defer(function(){p.length&&v.$digest()});p.push({scope:this,expression:a,
-locals:b})},$$postDigest:function(a){H.push(a)},$apply:function(a){try{return r("$apply"),this.$eval(a)}catch(b){g(b)}finally{v.$$phase=null;try{v.$digest()}catch(c){throw g(c),c;}}},$applyAsync:function(a){function b(){c.$eval(a)}var c=this;a&&E.push(b);w()},$on:function(a,b){var c=this.$$listeners[a];c||(this.$$listeners[a]=c=[]);c.push(b);var d=this;do d.$$listenerCount[a]||(d.$$listenerCount[a]=0),d.$$listenerCount[a]++;while(d=d.$parent);var e=this;return function(){var d=c.indexOf(b);-1!==d&&
-(c[d]=null,n(e,1,a))}},$emit:function(a,b){var c=[],d,e=this,f=!1,h={name:a,targetScope:e,stopPropagation:function(){f=!0},preventDefault:function(){h.defaultPrevented=!0},defaultPrevented:!1},l=Ya([h],arguments,1),k,m;do{d=e.$$listeners[a]||c;h.currentScope=e;k=0;for(m=d.length;k<m;k++)if(d[k])try{d[k].apply(null,l)}catch(n){g(n)}else d.splice(k,1),k--,m--;if(f)return h.currentScope=null,h;e=e.$parent}while(e);h.currentScope=null;return h},$broadcast:function(a,b){var c=this,d=this,e={name:a,targetScope:this,
-preventDefault:function(){e.defaultPrevented=!0},defaultPrevented:!1};if(!this.$$listenerCount[a])return e;for(var f=Ya([e],arguments,1),h,l;c=d;){e.currentScope=c;d=c.$$listeners[a]||[];h=0;for(l=d.length;h<l;h++)if(d[h])try{d[h].apply(null,f)}catch(k){g(k)}else d.splice(h,1),h--,l--;if(!(d=c.$$listenerCount[a]&&c.$$childHead||c!==this&&c.$$nextSibling))for(;c!==this&&!(d=c.$$nextSibling);)c=c.$parent}e.currentScope=null;return e}};var v=new m,p=v.$$asyncQueue=[],H=v.$$postDigestQueue=[],E=v.$$applyAsyncQueue=
-[];return v}]}function Wd(){var b=/^\s*(https?|ftp|mailto|tel|file):/,a=/^\s*((https?|ftp|file|blob):|data:image\/)/;this.aHrefSanitizationWhitelist=function(a){return D(a)?(b=a,this):b};this.imgSrcSanitizationWhitelist=function(b){return D(b)?(a=b,this):a};this.$get=function(){return function(c,d){var e=d?a:b,f;f=ya(c).href;return""===f||f.match(e)?c:"unsafe:"+f}}}function Gf(b){if("self"===b)return b;if(K(b)){if(-1<b.indexOf("***"))throw za("iwcard",b);b=kd(b).replace("\\*\\*",".*").replace("\\*",
-"[^:/.?&;]*");return new RegExp("^"+b+"$")}if(Ua(b))return new RegExp("^"+b.source+"$");throw za("imatcher");}function ld(b){var a=[];D(b)&&q(b,function(b){a.push(Gf(b))});return a}function Xe(){this.SCE_CONTEXTS=la;var b=["self"],a=[];this.resourceUrlWhitelist=function(a){arguments.length&&(b=ld(a));return b};this.resourceUrlBlacklist=function(b){arguments.length&&(a=ld(b));return a};this.$get=["$injector",function(c){function d(a,b){return"self"===a?dd(b):!!a.exec(b.href)}function e(a){var b=function(a){this.$$unwrapTrustedValue=
-function(){return a}};a&&(b.prototype=new a);b.prototype.valueOf=function(){return this.$$unwrapTrustedValue()};b.prototype.toString=function(){return this.$$unwrapTrustedValue().toString()};return b}var f=function(a){throw za("unsafe");};c.has("$sanitize")&&(f=c.get("$sanitize"));var g=e(),h={};h[la.HTML]=e(g);h[la.CSS]=e(g);h[la.URL]=e(g);h[la.JS]=e(g);h[la.RESOURCE_URL]=e(h[la.URL]);return{trustAs:function(a,b){var c=h.hasOwnProperty(a)?h[a]:null;if(!c)throw za("icontext",a,b);if(null===b||b===
-u||""===b)return b;if("string"!==typeof b)throw za("itype",a);return new c(b)},getTrusted:function(c,e){if(null===e||e===u||""===e)return e;var g=h.hasOwnProperty(c)?h[c]:null;if(g&&e instanceof g)return e.$$unwrapTrustedValue();if(c===la.RESOURCE_URL){var g=ya(e.toString()),r,n,s=!1;r=0;for(n=b.length;r<n;r++)if(d(b[r],g)){s=!0;break}if(s)for(r=0,n=a.length;r<n;r++)if(d(a[r],g)){s=!1;break}if(s)return e;throw za("insecurl",e.toString());}if(c===la.HTML)return f(e);throw za("unsafe");},valueOf:function(a){return a instanceof
-g?a.$$unwrapTrustedValue():a}}}]}function We(){var b=!0;this.enabled=function(a){arguments.length&&(b=!!a);return b};this.$get=["$parse","$sceDelegate",function(a,c){if(b&&8>Qa)throw za("iequirks");var d=oa(la);d.isEnabled=function(){return b};d.trustAs=c.trustAs;d.getTrusted=c.getTrusted;d.valueOf=c.valueOf;b||(d.trustAs=d.getTrusted=function(a,b){return b},d.valueOf=na);d.parseAs=function(b,c){var e=a(c);return e.literal&&e.constant?e:a(c,function(a){return d.getTrusted(b,a)})};var e=d.parseAs,
-f=d.getTrusted,g=d.trustAs;q(la,function(a,b){var c=P(b);d[eb("parse_as_"+c)]=function(b){return e(a,b)};d[eb("get_trusted_"+c)]=function(b){return f(a,b)};d[eb("trust_as_"+c)]=function(b){return g(a,b)}});return d}]}function Ye(){this.$get=["$window","$document",function(b,a){var c={},d=aa((/android (\d+)/.exec(P((b.navigator||{}).userAgent))||[])[1]),e=/Boxee/i.test((b.navigator||{}).userAgent),f=a[0]||{},g,h=/^(Moz|webkit|ms)(?=[A-Z])/,l=f.body&&f.body.style,k=!1,m=!1;if(l){for(var r in l)if(k=
-h.exec(r)){g=k[0];g=g.substr(0,1).toUpperCase()+g.substr(1);break}g||(g="WebkitOpacity"in l&&"webkit");k=!!("transition"in l||g+"Transition"in l);m=!!("animation"in l||g+"Animation"in l);!d||k&&m||(k=K(f.body.style.webkitTransition),m=K(f.body.style.webkitAnimation))}return{history:!(!b.history||!b.history.pushState||4>d||e),hasEvent:function(a){if("input"===a&&11>=Qa)return!1;if(A(c[a])){var b=f.createElement("div");c[a]="on"+a in b}return c[a]},csp:cb(),vendorPrefix:g,transitions:k,animations:m,
-android:d}}]}function $e(){this.$get=["$templateCache","$http","$q","$sce",function(b,a,c,d){function e(f,g){e.totalPendingRequests++;K(f)&&b.get(f)||(f=d.getTrustedResourceUrl(f));var h=a.defaults&&a.defaults.transformResponse;x(h)?h=h.filter(function(a){return a!==bc}):h===bc&&(h=null);return a.get(f,{cache:b,transformResponse:h})["finally"](function(){e.totalPendingRequests--}).then(function(a){return a.data},function(a){if(!g)throw da("tpload",f);return c.reject(a)})}e.totalPendingRequests=0;
-return e}]}function af(){this.$get=["$rootScope","$browser","$location",function(b,a,c){return{findBindings:function(a,b,c){a=a.getElementsByClassName("ng-binding");var g=[];q(a,function(a){var d=ba.element(a).data("$binding");d&&q(d,function(d){c?(new RegExp("(^|\\s)"+kd(b)+"(\\s|\\||$)")).test(d)&&g.push(a):-1!=d.indexOf(b)&&g.push(a)})});return g},findModels:function(a,b,c){for(var g=["ng-","data-ng-","ng\\:"],h=0;h<g.length;++h){var l=a.querySelectorAll("["+g[h]+"model"+(c?"=":"*=")+'"'+b+'"]');
-if(l.length)return l}},getLocation:function(){return c.url()},setLocation:function(a){a!==c.url()&&(c.url(a),b.$digest())},whenStable:function(b){a.notifyWhenNoOutstandingRequests(b)}}}]}function bf(){this.$get=["$rootScope","$browser","$q","$$q","$exceptionHandler",function(b,a,c,d,e){function f(f,l,k){var m=D(k)&&!k,r=(m?d:c).defer(),n=r.promise;l=a.defer(function(){try{r.resolve(f())}catch(a){r.reject(a),e(a)}finally{delete g[n.$$timeoutId]}m||b.$apply()},l);n.$$timeoutId=l;g[l]=r;return n}var g=
-{};f.cancel=function(b){return b&&b.$$timeoutId in g?(g[b.$$timeoutId].reject("canceled"),delete g[b.$$timeoutId],a.defer.cancel(b.$$timeoutId)):!1};return f}]}function ya(b){Qa&&(X.setAttribute("href",b),b=X.href);X.setAttribute("href",b);return{href:X.href,protocol:X.protocol?X.protocol.replace(/:$/,""):"",host:X.host,search:X.search?X.search.replace(/^\?/,""):"",hash:X.hash?X.hash.replace(/^#/,""):"",hostname:X.hostname,port:X.port,pathname:"/"===X.pathname.charAt(0)?X.pathname:"/"+X.pathname}}
-function dd(b){b=K(b)?ya(b):b;return b.protocol===md.protocol&&b.host===md.host}function cf(){this.$get=ca(S)}function Hc(b){function a(c,d){if(J(c)){var e={};q(c,function(b,c){e[c]=a(c,b)});return e}return b.factory(c+"Filter",d)}this.register=a;this.$get=["$injector",function(a){return function(b){return a.get(b+"Filter")}}];a("currency",nd);a("date",od);a("filter",Hf);a("json",If);a("limitTo",Jf);a("lowercase",Kf);a("number",pd);a("orderBy",qd);a("uppercase",Lf)}function Hf(){return function(b,
-a,c){if(!x(b))return b;var d;switch(null!==a?typeof a:"null"){case "function":break;case "boolean":case "null":case "number":case "string":d=!0;case "object":a=Mf(a,c,d);break;default:return b}return b.filter(a)}}function Mf(b,a,c){var d=J(b)&&"$"in b;!0===a?a=fa:B(a)||(a=function(a,b){if(A(a))return!1;if(null===a||null===b)return a===b;if(J(a)||J(b))return!1;a=P(""+a);b=P(""+b);return-1!==a.indexOf(b)});return function(e){return d&&!J(e)?Ha(e,b.$,a,!1):Ha(e,b,a,c)}}function Ha(b,a,c,d,e){var f=null!==
-b?typeof b:"null",g=null!==a?typeof a:"null";if("string"===g&&"!"===a.charAt(0))return!Ha(b,a.substring(1),c,d);if(x(b))return b.some(function(b){return Ha(b,a,c,d)});switch(f){case "object":var h;if(d){for(h in b)if("$"!==h.charAt(0)&&Ha(b[h],a,c,!0))return!0;return e?!1:Ha(b,a,c,!1)}if("object"===g){for(h in a)if(e=a[h],!B(e)&&!A(e)&&(f="$"===h,!Ha(f?b:b[h],e,c,f,f)))return!1;return!0}return c(b,a);case "function":return!1;default:return c(b,a)}}function nd(b){var a=b.NUMBER_FORMATS;return function(b,
-d,e){A(d)&&(d=a.CURRENCY_SYM);A(e)&&(e=a.PATTERNS[1].maxFrac);return null==b?b:rd(b,a.PATTERNS[1],a.GROUP_SEP,a.DECIMAL_SEP,e).replace(/\u00A4/g,d)}}function pd(b){var a=b.NUMBER_FORMATS;return function(b,d){return null==b?b:rd(b,a.PATTERNS[0],a.GROUP_SEP,a.DECIMAL_SEP,d)}}function rd(b,a,c,d,e){if(!isFinite(b)||J(b))return"";var f=0>b;b=Math.abs(b);var g=b+"",h="",l=[],k=!1;if(-1!==g.indexOf("e")){var m=g.match(/([\d\.]+)e(-?)(\d+)/);m&&"-"==m[2]&&m[3]>e+1?b=0:(h=g,k=!0)}if(k)0<e&&1>b&&(h=b.toFixed(e),
-b=parseFloat(h));else{g=(g.split(sd)[1]||"").length;A(e)&&(e=Math.min(Math.max(a.minFrac,g),a.maxFrac));b=+(Math.round(+(b.toString()+"e"+e)).toString()+"e"+-e);var g=(""+b).split(sd),k=g[0],g=g[1]||"",r=0,n=a.lgSize,s=a.gSize;if(k.length>=n+s)for(r=k.length-n,m=0;m<r;m++)0===(r-m)%s&&0!==m&&(h+=c),h+=k.charAt(m);for(m=r;m<k.length;m++)0===(k.length-m)%n&&0!==m&&(h+=c),h+=k.charAt(m);for(;g.length<e;)g+="0";e&&"0"!==e&&(h+=d+g.substr(0,e))}0===b&&(f=!1);l.push(f?a.negPre:a.posPre,h,f?a.negSuf:a.posSuf);
-return l.join("")}function Kb(b,a,c){var d="";0>b&&(d="-",b=-b);for(b=""+b;b.length<a;)b="0"+b;c&&(b=b.substr(b.length-a));return d+b}function Z(b,a,c,d){c=c||0;return function(e){e=e["get"+b]();if(0<c||e>-c)e+=c;0===e&&-12==c&&(e=12);return Kb(e,a,d)}}function Lb(b,a){return function(c,d){var e=c["get"+b](),f=wb(a?"SHORT"+b:b);return d[f][e]}}function td(b){var a=(new Date(b,0,1)).getDay();return new Date(b,0,(4>=a?5:12)-a)}function ud(b){return function(a){var c=td(a.getFullYear());a=+new Date(a.getFullYear(),
-a.getMonth(),a.getDate()+(4-a.getDay()))-+c;a=1+Math.round(a/6048E5);return Kb(a,b)}}function kc(b,a){return 0>=b.getFullYear()?a.ERAS[0]:a.ERAS[1]}function od(b){function a(a){var b;if(b=a.match(c)){a=new Date(0);var f=0,g=0,h=b[8]?a.setUTCFullYear:a.setFullYear,l=b[8]?a.setUTCHours:a.setHours;b[9]&&(f=aa(b[9]+b[10]),g=aa(b[9]+b[11]));h.call(a,aa(b[1]),aa(b[2])-1,aa(b[3]));f=aa(b[4]||0)-f;g=aa(b[5]||0)-g;h=aa(b[6]||0);b=Math.round(1E3*parseFloat("0."+(b[7]||0)));l.call(a,f,g,h,b)}return a}var c=
-/^(\d{4})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/;return function(c,e,f){var g="",h=[],l,k;e=e||"mediumDate";e=b.DATETIME_FORMATS[e]||e;K(c)&&(c=Nf.test(c)?aa(c):a(c));U(c)&&(c=new Date(c));if(!ea(c))return c;for(;e;)(k=Of.exec(e))?(h=Ya(h,k,1),e=h.pop()):(h.push(e),e=null);f&&"UTC"===f&&(c=new Date(c.getTime()),c.setMinutes(c.getMinutes()+c.getTimezoneOffset()));q(h,function(a){l=Pf[a];g+=l?l(c,b.DATETIME_FORMATS):a.replace(/(^'|'$)/g,"").replace(/''/g,
-"'")});return g}}function If(){return function(b,a){A(a)&&(a=2);return $a(b,a)}}function Jf(){return function(b,a){U(b)&&(b=b.toString());return x(b)||K(b)?(a=Infinity===Math.abs(Number(a))?Number(a):aa(a))?0<a?b.slice(0,a):b.slice(a):K(b)?"":[]:b}}function qd(b){return function(a,c,d){function e(a,b){return b?function(b,c){return a(c,b)}:a}function f(a){switch(typeof a){case "number":case "boolean":case "string":return!0;default:return!1}}function g(a){return null===a?"null":"function"===typeof a.valueOf&&
-(a=a.valueOf(),f(a))||"function"===typeof a.toString&&(a=a.toString(),f(a))?a:""}function h(a,b){var c=typeof a,d=typeof b;c===d&&"object"===c&&(a=g(a),b=g(b));return c===d?("string"===c&&(a=a.toLowerCase(),b=b.toLowerCase()),a===b?0:a<b?-1:1):c<d?-1:1}if(!Sa(a))return a;c=x(c)?c:[c];0===c.length&&(c=["+"]);c=c.map(function(a){var c=!1,d=a||na;if(K(a)){if("+"==a.charAt(0)||"-"==a.charAt(0))c="-"==a.charAt(0),a=a.substring(1);if(""===a)return e(h,c);d=b(a);if(d.constant){var f=d();return e(function(a,
-b){return h(a[f],b[f])},c)}}return e(function(a,b){return h(d(a),d(b))},c)});return Za.call(a).sort(e(function(a,b){for(var d=0;d<c.length;d++){var e=c[d](a,b);if(0!==e)return e}return 0},d))}}function Ia(b){B(b)&&(b={link:b});b.restrict=b.restrict||"AC";return ca(b)}function vd(b,a,c,d,e){var f=this,g=[],h=f.$$parentForm=b.parent().controller("form")||Mb;f.$error={};f.$$success={};f.$pending=u;f.$name=e(a.name||a.ngForm||"")(c);f.$dirty=!1;f.$pristine=!0;f.$valid=!0;f.$invalid=!1;f.$submitted=!1;
-h.$addControl(f);f.$rollbackViewValue=function(){q(g,function(a){a.$rollbackViewValue()})};f.$commitViewValue=function(){q(g,function(a){a.$commitViewValue()})};f.$addControl=function(a){Ma(a.$name,"input");g.push(a);a.$name&&(f[a.$name]=a)};f.$$renameControl=function(a,b){var c=a.$name;f[c]===a&&delete f[c];f[b]=a;a.$name=b};f.$removeControl=function(a){a.$name&&f[a.$name]===a&&delete f[a.$name];q(f.$pending,function(b,c){f.$setValidity(c,null,a)});q(f.$error,function(b,c){f.$setValidity(c,null,
-a)});q(f.$$success,function(b,c){f.$setValidity(c,null,a)});Xa(g,a)};wd({ctrl:this,$element:b,set:function(a,b,c){var d=a[b];d?-1===d.indexOf(c)&&d.push(c):a[b]=[c]},unset:function(a,b,c){var d=a[b];d&&(Xa(d,c),0===d.length&&delete a[b])},parentForm:h,$animate:d});f.$setDirty=function(){d.removeClass(b,Ra);d.addClass(b,Nb);f.$dirty=!0;f.$pristine=!1;h.$setDirty()};f.$setPristine=function(){d.setClass(b,Ra,Nb+" ng-submitted");f.$dirty=!1;f.$pristine=!0;f.$submitted=!1;q(g,function(a){a.$setPristine()})};
-f.$setUntouched=function(){q(g,function(a){a.$setUntouched()})};f.$setSubmitted=function(){d.addClass(b,"ng-submitted");f.$submitted=!0;h.$setSubmitted()}}function lc(b){b.$formatters.push(function(a){return b.$isEmpty(a)?a:a.toString()})}function mb(b,a,c,d,e,f){var g=P(a[0].type);if(!e.android){var h=!1;a.on("compositionstart",function(a){h=!0});a.on("compositionend",function(){h=!1;l()})}var l=function(b){k&&(f.defer.cancel(k),k=null);if(!h){var e=a.val();b=b&&b.type;"password"===g||c.ngTrim&&
-"false"===c.ngTrim||(e=T(e));(d.$viewValue!==e||""===e&&d.$$hasNativeValidators)&&d.$setViewValue(e,b)}};if(e.hasEvent("input"))a.on("input",l);else{var k,m=function(a,b,c){k||(k=f.defer(function(){k=null;b&&b.value===c||l(a)}))};a.on("keydown",function(a){var b=a.keyCode;91===b||15<b&&19>b||37<=b&&40>=b||m(a,this,this.value)});if(e.hasEvent("paste"))a.on("paste cut",m)}a.on("change",l);d.$render=function(){a.val(d.$isEmpty(d.$viewValue)?"":d.$viewValue)}}function Ob(b,a){return function(c,d){var e,
-f;if(ea(c))return c;if(K(c)){'"'==c.charAt(0)&&'"'==c.charAt(c.length-1)&&(c=c.substring(1,c.length-1));if(Qf.test(c))return new Date(c);b.lastIndex=0;if(e=b.exec(c))return e.shift(),f=d?{yyyy:d.getFullYear(),MM:d.getMonth()+1,dd:d.getDate(),HH:d.getHours(),mm:d.getMinutes(),ss:d.getSeconds(),sss:d.getMilliseconds()/1E3}:{yyyy:1970,MM:1,dd:1,HH:0,mm:0,ss:0,sss:0},q(e,function(b,c){c<a.length&&(f[a[c]]=+b)}),new Date(f.yyyy,f.MM-1,f.dd,f.HH,f.mm,f.ss||0,1E3*f.sss||0)}return NaN}}function nb(b,a,c,
-d){return function(e,f,g,h,l,k,m){function r(a){return a&&!(a.getTime&&a.getTime()!==a.getTime())}function n(a){return D(a)?ea(a)?a:c(a):u}xd(e,f,g,h);mb(e,f,g,h,l,k);var s=h&&h.$options&&h.$options.timezone,t;h.$$parserName=b;h.$parsers.push(function(b){return h.$isEmpty(b)?null:a.test(b)?(b=c(b,t),"UTC"===s&&b.setMinutes(b.getMinutes()-b.getTimezoneOffset()),b):u});h.$formatters.push(function(a){if(a&&!ea(a))throw ob("datefmt",a);if(r(a)){if((t=a)&&"UTC"===s){var b=6E4*t.getTimezoneOffset();t=new Date(t.getTime()+
-b)}return m("date")(a,d,s)}t=null;return""});if(D(g.min)||g.ngMin){var q;h.$validators.min=function(a){return!r(a)||A(q)||c(a)>=q};g.$observe("min",function(a){q=n(a);h.$validate()})}if(D(g.max)||g.ngMax){var v;h.$validators.max=function(a){return!r(a)||A(v)||c(a)<=v};g.$observe("max",function(a){v=n(a);h.$validate()})}}}function xd(b,a,c,d){(d.$$hasNativeValidators=J(a[0].validity))&&d.$parsers.push(function(b){var c=a.prop("validity")||{};return c.badInput&&!c.typeMismatch?u:b})}function yd(b,a,
-c,d,e){if(D(d)){b=b(d);if(!b.constant)throw ob("constexpr",c,d);return b(a)}return e}function mc(b,a){b="ngClass"+b;return["$animate",function(c){function d(a,b){var c=[],d=0;a:for(;d<a.length;d++){for(var e=a[d],m=0;m<b.length;m++)if(e==b[m])continue a;c.push(e)}return c}function e(a){if(!x(a)){if(K(a))return a.split(" ");if(J(a)){var b=[];q(a,function(a,c){a&&(b=b.concat(c.split(" ")))});return b}}return a}return{restrict:"AC",link:function(f,g,h){function l(a,b){var c=g.data("$classCounts")||{},
-d=[];q(a,function(a){if(0<b||c[a])c[a]=(c[a]||0)+b,c[a]===+(0<b)&&d.push(a)});g.data("$classCounts",c);return d.join(" ")}function k(b){if(!0===a||f.$index%2===a){var k=e(b||[]);if(!m){var s=l(k,1);h.$addClass(s)}else if(!fa(b,m)){var t=e(m),s=d(k,t),k=d(t,k),s=l(s,1),k=l(k,-1);s&&s.length&&c.addClass(g,s);k&&k.length&&c.removeClass(g,k)}}m=oa(b)}var m;f.$watch(h[b],k,!0);h.$observe("class",function(a){k(f.$eval(h[b]))});"ngClass"!==b&&f.$watch("$index",function(c,d){var g=c&1;if(g!==(d&1)){var k=
-e(f.$eval(h[b]));g===a?(g=l(k,1),h.$addClass(g)):(g=l(k,-1),h.$removeClass(g))}})}}}]}function wd(b){function a(a,b){b&&!f[a]?(k.addClass(e,a),f[a]=!0):!b&&f[a]&&(k.removeClass(e,a),f[a]=!1)}function c(b,c){b=b?"-"+xc(b,"-"):"";a(pb+b,!0===c);a(zd+b,!1===c)}var d=b.ctrl,e=b.$element,f={},g=b.set,h=b.unset,l=b.parentForm,k=b.$animate;f[zd]=!(f[pb]=e.hasClass(pb));d.$setValidity=function(b,e,f){e===u?(d.$pending||(d.$pending={}),g(d.$pending,b,f)):(d.$pending&&h(d.$pending,b,f),Ad(d.$pending)&&(d.$pending=
-u));Wa(e)?e?(h(d.$error,b,f),g(d.$$success,b,f)):(g(d.$error,b,f),h(d.$$success,b,f)):(h(d.$error,b,f),h(d.$$success,b,f));d.$pending?(a(Bd,!0),d.$valid=d.$invalid=u,c("",null)):(a(Bd,!1),d.$valid=Ad(d.$error),d.$invalid=!d.$valid,c("",d.$valid));e=d.$pending&&d.$pending[b]?u:d.$error[b]?!1:d.$$success[b]?!0:null;c(b,e);l.$setValidity(b,e,d)}}function Ad(b){if(b)for(var a in b)return!1;return!0}var Rf=/^\/(.+)\/([a-z]*)$/,P=function(b){return K(b)?b.toLowerCase():b},vc=Object.prototype.hasOwnProperty,
-wb=function(b){return K(b)?b.toUpperCase():b},Qa,G,pa,Za=[].slice,tf=[].splice,Sf=[].push,Aa=Object.prototype.toString,Ja=y("ng"),ba=S.angular||(S.angular={}),db,sb=0;Qa=W.documentMode;F.$inject=[];na.$inject=[];var x=Array.isArray,T=function(b){return K(b)?b.trim():b},kd=function(b){return b.replace(/([-()\[\]{}+?*.$\^|,:#<!\\])/g,"\\$1").replace(/\x08/g,"\\x08")},cb=function(){if(D(cb.isActive_))return cb.isActive_;var b=!(!W.querySelector("[ng-csp]")&&!W.querySelector("[data-ng-csp]"));if(!b)try{new Function("")}catch(a){b=
-!0}return cb.isActive_=b},ub=["ng-","data-ng-","ng:","x-ng-"],Qd=/[A-Z]/g,yc=!1,Rb,ma=1,ab=3,Ud={full:"1.3.19",major:1,minor:3,dot:19,codeName:"glutinous-shriek"};R.expando="ng339";var Bb=R.cache={},mf=1;R._data=function(b){return this.cache[b[this.expando]]||{}};var gf=/([\:\-\_]+(.))/g,hf=/^moz([A-Z])/,Tf={mouseleave:"mouseout",mouseenter:"mouseover"},Ub=y("jqLite"),lf=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,Tb=/<|&#?\w+;/,jf=/<([\w:]+)/,kf=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
-ha={option:[1,'<select multiple="multiple">',"</select>"],thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};ha.optgroup=ha.option;ha.tbody=ha.tfoot=ha.colgroup=ha.caption=ha.thead;ha.th=ha.td;var Ka=R.prototype={ready:function(b){function a(){c||(c=!0,b())}var c=!1;"complete"===W.readyState?setTimeout(a):(this.on("DOMContentLoaded",a),R(S).on("load",a))},
-toString:function(){var b=[];q(this,function(a){b.push(""+a)});return"["+b.join(", ")+"]"},eq:function(b){return 0<=b?G(this[b]):G(this[this.length+b])},length:0,push:Sf,sort:[].sort,splice:[].splice},Gb={};q("multiple selected checked disabled readOnly required open".split(" "),function(b){Gb[P(b)]=b});var Qc={};q("input select option textarea button form details".split(" "),function(b){Qc[b]=!0});var Rc={ngMinlength:"minlength",ngMaxlength:"maxlength",ngMin:"min",ngMax:"max",ngPattern:"pattern"};
-q({data:Wb,removeData:zb},function(b,a){R[a]=b});q({data:Wb,inheritedData:Fb,scope:function(b){return G.data(b,"$scope")||Fb(b.parentNode||b,["$isolateScope","$scope"])},isolateScope:function(b){return G.data(b,"$isolateScope")||G.data(b,"$isolateScopeNoTemplate")},controller:Mc,injector:function(b){return Fb(b,"$injector")},removeAttr:function(b,a){b.removeAttribute(a)},hasClass:Cb,css:function(b,a,c){a=eb(a);if(D(c))b.style[a]=c;else return b.style[a]},attr:function(b,a,c){var d=b.nodeType;if(d!==
-ab&&2!==d&&8!==d)if(d=P(a),Gb[d])if(D(c))c?(b[a]=!0,b.setAttribute(a,d)):(b[a]=!1,b.removeAttribute(d));else return b[a]||(b.attributes.getNamedItem(a)||F).specified?d:u;else if(D(c))b.setAttribute(a,c);else if(b.getAttribute)return b=b.getAttribute(a,2),null===b?u:b},prop:function(b,a,c){if(D(c))b[a]=c;else return b[a]},text:function(){function b(a,b){if(A(b)){var d=a.nodeType;return d===ma||d===ab?a.textContent:""}a.textContent=b}b.$dv="";return b}(),val:function(b,a){if(A(a)){if(b.multiple&&"select"===
-ta(b)){var c=[];q(b.options,function(a){a.selected&&c.push(a.value||a.text)});return 0===c.length?null:c}return b.value}b.value=a},html:function(b,a){if(A(a))return b.innerHTML;yb(b,!0);b.innerHTML=a},empty:Nc},function(b,a){R.prototype[a]=function(a,d){var e,f,g=this.length;if(b!==Nc&&(2==b.length&&b!==Cb&&b!==Mc?a:d)===u){if(J(a)){for(e=0;e<g;e++)if(b===Wb)b(this[e],a);else for(f in a)b(this[e],f,a[f]);return this}e=b.$dv;g=e===u?Math.min(g,1):g;for(f=0;f<g;f++){var h=b(this[f],a,d);e=e?e+h:h}return e}for(e=
-0;e<g;e++)b(this[e],a,d);return this}});q({removeData:zb,on:function a(c,d,e,f){if(D(f))throw Ub("onargs");if(Ic(c)){var g=Ab(c,!0);f=g.events;var h=g.handle;h||(h=g.handle=pf(c,f));for(var g=0<=d.indexOf(" ")?d.split(" "):[d],l=g.length;l--;){d=g[l];var k=f[d];k||(f[d]=[],"mouseenter"===d||"mouseleave"===d?a(c,Tf[d],function(a){var c=a.relatedTarget;c&&(c===this||this.contains(c))||h(a,d)}):"$destroy"!==d&&c.addEventListener(d,h,!1),k=f[d]);k.push(e)}}},off:Lc,one:function(a,c,d){a=G(a);a.on(c,function f(){a.off(c,
-d);a.off(c,f)});a.on(c,d)},replaceWith:function(a,c){var d,e=a.parentNode;yb(a);q(new R(c),function(c){d?e.insertBefore(c,d.nextSibling):e.replaceChild(c,a);d=c})},children:function(a){var c=[];q(a.childNodes,function(a){a.nodeType===ma&&c.push(a)});return c},contents:function(a){return a.contentDocument||a.childNodes||[]},append:function(a,c){var d=a.nodeType;if(d===ma||11===d){c=new R(c);for(var d=0,e=c.length;d<e;d++)a.appendChild(c[d])}},prepend:function(a,c){if(a.nodeType===ma){var d=a.firstChild;
-q(new R(c),function(c){a.insertBefore(c,d)})}},wrap:function(a,c){c=G(c).eq(0).clone()[0];var d=a.parentNode;d&&d.replaceChild(c,a);c.appendChild(a)},remove:Oc,detach:function(a){Oc(a,!0)},after:function(a,c){var d=a,e=a.parentNode;c=new R(c);for(var f=0,g=c.length;f<g;f++){var h=c[f];e.insertBefore(h,d.nextSibling);d=h}},addClass:Eb,removeClass:Db,toggleClass:function(a,c,d){c&&q(c.split(" "),function(c){var f=d;A(f)&&(f=!Cb(a,c));(f?Eb:Db)(a,c)})},parent:function(a){return(a=a.parentNode)&&11!==
-a.nodeType?a:null},next:function(a){return a.nextElementSibling},find:function(a,c){return a.getElementsByTagName?a.getElementsByTagName(c):[]},clone:Vb,triggerHandler:function(a,c,d){var e,f,g=c.type||c,h=Ab(a);if(h=(h=h&&h.events)&&h[g])e={preventDefault:function(){this.defaultPrevented=!0},isDefaultPrevented:function(){return!0===this.defaultPrevented},stopImmediatePropagation:function(){this.immediatePropagationStopped=!0},isImmediatePropagationStopped:function(){return!0===this.immediatePropagationStopped},
-stopPropagation:F,type:g,target:a},c.type&&(e=z(e,c)),c=oa(h),f=d?[e].concat(d):[e],q(c,function(c){e.isImmediatePropagationStopped()||c.apply(a,f)})}},function(a,c){R.prototype[c]=function(c,e,f){for(var g,h=0,l=this.length;h<l;h++)A(g)?(g=a(this[h],c,e,f),D(g)&&(g=G(g))):Kc(g,a(this[h],c,e,f));return D(g)?g:this};R.prototype.bind=R.prototype.on;R.prototype.unbind=R.prototype.off});fb.prototype={put:function(a,c){this[Na(a,this.nextUid)]=c},get:function(a){return this[Na(a,this.nextUid)]},remove:function(a){var c=
-this[a=Na(a,this.nextUid)];delete this[a];return c}};var Tc=/^function\s*[^\(]*\(\s*([^\)]*)\)/m,Uf=/,/,Vf=/^\s*(_?)(\S+?)\1\s*$/,Sc=/((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg,Da=y("$injector");bb.$$annotate=function(a,c,d){var e;if("function"===typeof a){if(!(e=a.$inject)){e=[];if(a.length){if(c)throw K(d)&&d||(d=a.name||qf(a)),Da("strictdi",d);c=a.toString().replace(Sc,"");c=c.match(Tc);q(c[1].split(Uf),function(a){a.replace(Vf,function(a,c,d){e.push(d)})})}a.$inject=e}}else x(a)?(c=a.length-1,La(a[c],
-"fn"),e=a.slice(0,c)):La(a,"fn",!0);return e};var Wf=y("$animate"),Ge=["$provide",function(a){this.$$selectors={};this.register=function(c,d){var e=c+"-animation";if(c&&"."!=c.charAt(0))throw Wf("notcsel",c);this.$$selectors[c.substr(1)]=e;a.factory(e,d)};this.classNameFilter=function(a){1===arguments.length&&(this.$$classNameFilter=a instanceof RegExp?a:null);return this.$$classNameFilter};this.$get=["$$q","$$asyncCallback","$rootScope",function(a,d,e){function f(d){var f,g=a.defer();g.promise.$$cancelFn=
-function(){f&&f()};e.$$postDigest(function(){f=d(function(){g.resolve()})});return g.promise}function g(a,c){var d=[],e=[],f=ga();q((a.attr("class")||"").split(/\s+/),function(a){f[a]=!0});q(c,function(a,c){var g=f[c];!1===a&&g?e.push(c):!0!==a||g||d.push(c)});return 0<d.length+e.length&&[d.length?d:null,e.length?e:null]}function h(a,c,d){for(var e=0,f=c.length;e<f;++e)a[c[e]]=d}function l(){m||(m=a.defer(),d(function(){m.resolve();m=null}));return m.promise}function k(a,c){if(ba.isObject(c)){var d=
-z(c.from||{},c.to||{});a.css(d)}}var m;return{animate:function(a,c,d){k(a,{from:c,to:d});return l()},enter:function(a,c,d,e){k(a,e);d?d.after(a):c.prepend(a);return l()},leave:function(a,c){k(a,c);a.remove();return l()},move:function(a,c,d,e){return this.enter(a,c,d,e)},addClass:function(a,c,d){return this.setClass(a,c,[],d)},$$addClassImmediately:function(a,c,d){a=G(a);c=K(c)?c:x(c)?c.join(" "):"";q(a,function(a){Eb(a,c)});k(a,d);return l()},removeClass:function(a,c,d){return this.setClass(a,[],
-c,d)},$$removeClassImmediately:function(a,c,d){a=G(a);c=K(c)?c:x(c)?c.join(" "):"";q(a,function(a){Db(a,c)});k(a,d);return l()},setClass:function(a,c,d,e){var k=this,l=!1;a=G(a);var m=a.data("$$animateClasses");m?e&&m.options&&(m.options=ba.extend(m.options||{},e)):(m={classes:{},options:e},l=!0);e=m.classes;c=x(c)?c:c.split(" ");d=x(d)?d:d.split(" ");h(e,c,!0);h(e,d,!1);l&&(m.promise=f(function(c){var d=a.data("$$animateClasses");a.removeData("$$animateClasses");if(d){var e=g(a,d.classes);e&&k.$$setClassImmediately(a,
-e[0],e[1],d.options)}c()}),a.data("$$animateClasses",m));return m.promise},$$setClassImmediately:function(a,c,d,e){c&&this.$$addClassImmediately(a,c);d&&this.$$removeClassImmediately(a,d);k(a,e);return l()},enabled:F,cancel:F}}]}],da=y("$compile");Ac.$inject=["$provide","$$sanitizeUriProvider"];var Vc=/^((?:x|data)[\:\-_])/i,uf=y("$controller"),$c="application/json",cc={"Content-Type":$c+";charset=utf-8"},wf=/^\[|^\{(?!\{)/,xf={"[":/]$/,"{":/}$/},vf=/^\)\]\}',?\n/,dc=y("$interpolate"),Xf=/^([^\?#]*)(\?([^#]*))?(#(.*))?$/,
-Af={http:80,https:443,ftp:21},Ib=y("$location"),Yf={$$html5:!1,$$replace:!1,absUrl:Jb("$$absUrl"),url:function(a){if(A(a))return this.$$url;var c=Xf.exec(a);(c[1]||""===a)&&this.path(decodeURIComponent(c[1]));(c[2]||c[1]||""===a)&&this.search(c[3]||"");this.hash(c[5]||"");return this},protocol:Jb("$$protocol"),host:Jb("$$host"),port:Jb("$$port"),path:hd("$$path",function(a){a=null!==a?a.toString():"";return"/"==a.charAt(0)?a:"/"+a}),search:function(a,c){switch(arguments.length){case 0:return this.$$search;
-case 1:if(K(a)||U(a))a=a.toString(),this.$$search=uc(a);else if(J(a))a=Ba(a,{}),q(a,function(c,e){null==c&&delete a[e]}),this.$$search=a;else throw Ib("isrcharg");break;default:A(c)||null===c?delete this.$$search[a]:this.$$search[a]=c}this.$$compose();return this},hash:hd("$$hash",function(a){return null!==a?a.toString():""}),replace:function(){this.$$replace=!0;return this}};q([gd,gc,fc],function(a){a.prototype=Object.create(Yf);a.prototype.state=function(c){if(!arguments.length)return this.$$state;
-if(a!==fc||!this.$$html5)throw Ib("nostate");this.$$state=A(c)?null:c;return this}});var ja=y("$parse"),Zf=Function.prototype.call,$f=Function.prototype.apply,ag=Function.prototype.bind,qb=ga();q({"null":function(){return null},"true":function(){return!0},"false":function(){return!1},undefined:function(){}},function(a,c){a.constant=a.literal=a.sharedGetter=!0;qb[c]=a});qb["this"]=function(a){return a};qb["this"].sharedGetter=!0;var rb=z(ga(),{"+":function(a,c,d,e){d=d(a,c);e=e(a,c);return D(d)?D(e)?
-d+e:d:D(e)?e:u},"-":function(a,c,d,e){d=d(a,c);e=e(a,c);return(D(d)?d:0)-(D(e)?e:0)},"*":function(a,c,d,e){return d(a,c)*e(a,c)},"/":function(a,c,d,e){return d(a,c)/e(a,c)},"%":function(a,c,d,e){return d(a,c)%e(a,c)},"===":function(a,c,d,e){return d(a,c)===e(a,c)},"!==":function(a,c,d,e){return d(a,c)!==e(a,c)},"==":function(a,c,d,e){return d(a,c)==e(a,c)},"!=":function(a,c,d,e){return d(a,c)!=e(a,c)},"<":function(a,c,d,e){return d(a,c)<e(a,c)},">":function(a,c,d,e){return d(a,c)>e(a,c)},"<=":function(a,
-c,d,e){return d(a,c)<=e(a,c)},">=":function(a,c,d,e){return d(a,c)>=e(a,c)},"&&":function(a,c,d,e){return d(a,c)&&e(a,c)},"||":function(a,c,d,e){return d(a,c)||e(a,c)},"!":function(a,c,d){return!d(a,c)},"=":!0,"|":!0}),bg={n:"\n",f:"\f",r:"\r",t:"\t",v:"\v","'":"'",'"':'"'},jc=function(a){this.options=a};jc.prototype={constructor:jc,lex:function(a){this.text=a;this.index=0;for(this.tokens=[];this.index<this.text.length;)if(a=this.text.charAt(this.index),'"'===a||"'"===a)this.readString(a);else if(this.isNumber(a)||
-"."===a&&this.isNumber(this.peek()))this.readNumber();else if(this.isIdent(a))this.readIdent();else if(this.is(a,"(){}[].,;:?"))this.tokens.push({index:this.index,text:a}),this.index++;else if(this.isWhitespace(a))this.index++;else{var c=a+this.peek(),d=c+this.peek(2),e=rb[c],f=rb[d];rb[a]||e||f?(a=f?d:e?c:a,this.tokens.push({index:this.index,text:a,operator:!0}),this.index+=a.length):this.throwError("Unexpected next character ",this.index,this.index+1)}return this.tokens},is:function(a,c){return-1!==
-c.indexOf(a)},peek:function(a){a=a||1;return this.index+a<this.text.length?this.text.charAt(this.index+a):!1},isNumber:function(a){return"0"<=a&&"9">=a&&"string"===typeof a},isWhitespace:function(a){return" "===a||"\r"===a||"\t"===a||"\n"===a||"\v"===a||"\u00a0"===a},isIdent:function(a){return"a"<=a&&"z">=a||"A"<=a&&"Z">=a||"_"===a||"$"===a},isExpOperator:function(a){return"-"===a||"+"===a||this.isNumber(a)},throwError:function(a,c,d){d=d||this.index;c=D(c)?"s "+c+"-"+this.index+" ["+this.text.substring(c,
-d)+"]":" "+d;throw ja("lexerr",a,c,this.text);},readNumber:function(){for(var a="",c=this.index;this.index<this.text.length;){var d=P(this.text.charAt(this.index));if("."==d||this.isNumber(d))a+=d;else{var e=this.peek();if("e"==d&&this.isExpOperator(e))a+=d;else if(this.isExpOperator(d)&&e&&this.isNumber(e)&&"e"==a.charAt(a.length-1))a+=d;else if(!this.isExpOperator(d)||e&&this.isNumber(e)||"e"!=a.charAt(a.length-1))break;else this.throwError("Invalid exponent")}this.index++}this.tokens.push({index:c,
-text:a,constant:!0,value:Number(a)})},readIdent:function(){for(var a=this.index;this.index<this.text.length;){var c=this.text.charAt(this.index);if(!this.isIdent(c)&&!this.isNumber(c))break;this.index++}this.tokens.push({index:a,text:this.text.slice(a,this.index),identifier:!0})},readString:function(a){var c=this.index;this.index++;for(var d="",e=a,f=!1;this.index<this.text.length;){var g=this.text.charAt(this.index),e=e+g;if(f)"u"===g?(f=this.text.substring(this.index+1,this.index+5),f.match(/[\da-f]{4}/i)||
-this.throwError("Invalid unicode escape [\\u"+f+"]"),this.index+=4,d+=String.fromCharCode(parseInt(f,16))):d+=bg[g]||g,f=!1;else if("\\"===g)f=!0;else{if(g===a){this.index++;this.tokens.push({index:c,text:e,constant:!0,value:d});return}d+=g}this.index++}this.throwError("Unterminated quote",c)}};var lb=function(a,c,d){this.lexer=a;this.$filter=c;this.options=d};lb.ZERO=z(function(){return 0},{sharedGetter:!0,constant:!0});lb.prototype={constructor:lb,parse:function(a){this.text=a;this.tokens=this.lexer.lex(a);
-a=this.statements();0!==this.tokens.length&&this.throwError("is an unexpected token",this.tokens[0]);a.literal=!!a.literal;a.constant=!!a.constant;return a},primary:function(){var a;this.expect("(")?(a=this.filterChain(),this.consume(")")):this.expect("[")?a=this.arrayDeclaration():this.expect("{")?a=this.object():this.peek().identifier&&this.peek().text in qb?a=qb[this.consume().text]:this.peek().identifier?a=this.identifier():this.peek().constant?a=this.constant():this.throwError("not a primary expression",
-this.peek());for(var c,d;c=this.expect("(","[",".");)"("===c.text?(a=this.functionCall(a,d),d=null):"["===c.text?(d=a,a=this.objectIndex(a)):"."===c.text?(d=a,a=this.fieldAccess(a)):this.throwError("IMPOSSIBLE");return a},throwError:function(a,c){throw ja("syntax",c.text,a,c.index+1,this.text,this.text.substring(c.index));},peekToken:function(){if(0===this.tokens.length)throw ja("ueoe",this.text);return this.tokens[0]},peek:function(a,c,d,e){return this.peekAhead(0,a,c,d,e)},peekAhead:function(a,
-c,d,e,f){if(this.tokens.length>a){a=this.tokens[a];var g=a.text;if(g===c||g===d||g===e||g===f||!(c||d||e||f))return a}return!1},expect:function(a,c,d,e){return(a=this.peek(a,c,d,e))?(this.tokens.shift(),a):!1},consume:function(a){if(0===this.tokens.length)throw ja("ueoe",this.text);var c=this.expect(a);c||this.throwError("is unexpected, expecting ["+a+"]",this.peek());return c},unaryFn:function(a,c){var d=rb[a];return z(function(a,f){return d(a,f,c)},{constant:c.constant,inputs:[c]})},binaryFn:function(a,
-c,d,e){var f=rb[c];return z(function(c,e){return f(c,e,a,d)},{constant:a.constant&&d.constant,inputs:!e&&[a,d]})},identifier:function(){for(var a=this.consume().text;this.peek(".")&&this.peekAhead(1).identifier&&!this.peekAhead(2,"(");)a+=this.consume().text+this.consume().text;return Cf(a,this.options,this.text)},constant:function(){var a=this.consume().value;return z(function(){return a},{constant:!0,literal:!0})},statements:function(){for(var a=[];;)if(0<this.tokens.length&&!this.peek("}",")",
-";","]")&&a.push(this.filterChain()),!this.expect(";"))return 1===a.length?a[0]:function(c,d){for(var e,f=0,g=a.length;f<g;f++)e=a[f](c,d);return e}},filterChain:function(){for(var a=this.expression();this.expect("|");)a=this.filter(a);return a},filter:function(a){var c=this.$filter(this.consume().text),d,e;if(this.peek(":"))for(d=[],e=[];this.expect(":");)d.push(this.expression());var f=[a].concat(d||[]);return z(function(f,h){var l=a(f,h);if(e){e[0]=l;for(l=d.length;l--;)e[l+1]=d[l](f,h);return c.apply(u,
-e)}return c(l)},{constant:!c.$stateful&&f.every(hc),inputs:!c.$stateful&&f})},expression:function(){return this.assignment()},assignment:function(){var a=this.ternary(),c,d;return(d=this.expect("="))?(a.assign||this.throwError("implies assignment but ["+this.text.substring(0,d.index)+"] can not be assigned to",d),c=this.ternary(),z(function(d,f){return a.assign(d,c(d,f),f)},{inputs:[a,c]})):a},ternary:function(){var a=this.logicalOR(),c;if(this.expect("?")&&(c=this.assignment(),this.consume(":"))){var d=
-this.assignment();return z(function(e,f){return a(e,f)?c(e,f):d(e,f)},{constant:a.constant&&c.constant&&d.constant})}return a},logicalOR:function(){for(var a=this.logicalAND(),c;c=this.expect("||");)a=this.binaryFn(a,c.text,this.logicalAND(),!0);return a},logicalAND:function(){for(var a=this.equality(),c;c=this.expect("&&");)a=this.binaryFn(a,c.text,this.equality(),!0);return a},equality:function(){for(var a=this.relational(),c;c=this.expect("==","!=","===","!==");)a=this.binaryFn(a,c.text,this.relational());
-return a},relational:function(){for(var a=this.additive(),c;c=this.expect("<",">","<=",">=");)a=this.binaryFn(a,c.text,this.additive());return a},additive:function(){for(var a=this.multiplicative(),c;c=this.expect("+","-");)a=this.binaryFn(a,c.text,this.multiplicative());return a},multiplicative:function(){for(var a=this.unary(),c;c=this.expect("*","/","%");)a=this.binaryFn(a,c.text,this.unary());return a},unary:function(){var a;return this.expect("+")?this.primary():(a=this.expect("-"))?this.binaryFn(lb.ZERO,
-a.text,this.unary()):(a=this.expect("!"))?this.unaryFn(a.text,this.unary()):this.primary()},fieldAccess:function(a){var c=this.identifier();return z(function(d,e,f){d=f||a(d,e);return null==d?u:c(d)},{assign:function(d,e,f){var g=a(d,f);g||a.assign(d,g={},f);return c.assign(g,e)}})},objectIndex:function(a){var c=this.text,d=this.expression();this.consume("]");return z(function(e,f){var g=a(e,f),h=d(e,f);sa(h,c);return g?ka(g[h],c):u},{assign:function(e,f,g){var h=sa(d(e,g),c),l=ka(a(e,g),c);l||a.assign(e,
-l={},g);return l[h]=f}})},functionCall:function(a,c){var d=[];if(")"!==this.peekToken().text){do d.push(this.expression());while(this.expect(","))}this.consume(")");var e=this.text,f=d.length?[]:null;return function(g,h){var l=c?c(g,h):D(c)?u:g,k=a(g,h,l)||F;if(f)for(var m=d.length;m--;)f[m]=ka(d[m](g,h),e);ka(l,e);if(k){if(k.constructor===k)throw ja("isecfn",e);if(k===Zf||k===$f||k===ag)throw ja("isecff",e);}l=k.apply?k.apply(l,f):k(f[0],f[1],f[2],f[3],f[4]);f&&(f.length=0);return ka(l,e)}},arrayDeclaration:function(){var a=
-[];if("]"!==this.peekToken().text){do{if(this.peek("]"))break;a.push(this.expression())}while(this.expect(","))}this.consume("]");return z(function(c,d){for(var e=[],f=0,g=a.length;f<g;f++)e.push(a[f](c,d));return e},{literal:!0,constant:a.every(hc),inputs:a})},object:function(){var a=[],c=[];if("}"!==this.peekToken().text){do{if(this.peek("}"))break;var d=this.consume();d.constant?a.push(d.value):d.identifier?a.push(d.text):this.throwError("invalid key",d);this.consume(":");c.push(this.expression())}while(this.expect(","))
-}this.consume("}");return z(function(d,f){for(var g={},h=0,l=c.length;h<l;h++)g[a[h]]=c[h](d,f);return g},{literal:!0,constant:c.every(hc),inputs:c})}};var Ef=ga(),Df=ga(),Ff=Object.prototype.valueOf,za=y("$sce"),la={HTML:"html",CSS:"css",URL:"url",RESOURCE_URL:"resourceUrl",JS:"js"},da=y("$compile"),X=W.createElement("a"),md=ya(S.location.href);Hc.$inject=["$provide"];nd.$inject=["$locale"];pd.$inject=["$locale"];var sd=".",Pf={yyyy:Z("FullYear",4),yy:Z("FullYear",2,0,!0),y:Z("FullYear",1),MMMM:Lb("Month"),
-MMM:Lb("Month",!0),MM:Z("Month",2,1),M:Z("Month",1,1),dd:Z("Date",2),d:Z("Date",1),HH:Z("Hours",2),H:Z("Hours",1),hh:Z("Hours",2,-12),h:Z("Hours",1,-12),mm:Z("Minutes",2),m:Z("Minutes",1),ss:Z("Seconds",2),s:Z("Seconds",1),sss:Z("Milliseconds",3),EEEE:Lb("Day"),EEE:Lb("Day",!0),a:function(a,c){return 12>a.getHours()?c.AMPMS[0]:c.AMPMS[1]},Z:function(a){a=-1*a.getTimezoneOffset();return a=(0<=a?"+":"")+(Kb(Math[0<a?"floor":"ceil"](a/60),2)+Kb(Math.abs(a%60),2))},ww:ud(2),w:ud(1),G:kc,GG:kc,GGG:kc,
-GGGG:function(a,c){return 0>=a.getFullYear()?c.ERANAMES[0]:c.ERANAMES[1]}},Of=/((?:[^yMdHhmsaZEwG']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+|H+|h+|m+|s+|a|Z|G+|w+))(.*)/,Nf=/^\-?\d+$/;od.$inject=["$locale"];var Kf=ca(P),Lf=ca(wb);qd.$inject=["$parse"];var Xd=ca({restrict:"E",compile:function(a,c){if(!c.href&&!c.xlinkHref&&!c.name)return function(a,c){if("a"===c[0].nodeName.toLowerCase()){var f="[object SVGAnimatedString]"===Aa.call(c.prop("href"))?"xlink:href":"href";c.on("click",function(a){c.attr(f)||
-a.preventDefault()})}}}}),xb={};q(Gb,function(a,c){if("multiple"!=a){var d=wa("ng-"+c);xb[d]=function(){return{restrict:"A",priority:100,link:function(a,f,g){a.$watch(g[d],function(a){g.$set(c,!!a)})}}}}});q(Rc,function(a,c){xb[c]=function(){return{priority:100,link:function(a,e,f){if("ngPattern"===c&&"/"==f.ngPattern.charAt(0)&&(e=f.ngPattern.match(Rf))){f.$set("ngPattern",new RegExp(e[1],e[2]));return}a.$watch(f[c],function(a){f.$set(c,a)})}}}});q(["src","srcset","href"],function(a){var c=wa("ng-"+
-a);xb[c]=function(){return{priority:99,link:function(d,e,f){var g=a,h=a;"href"===a&&"[object SVGAnimatedString]"===Aa.call(e.prop("href"))&&(h="xlinkHref",f.$attr[h]="xlink:href",g=null);f.$observe(c,function(c){c?(f.$set(h,c),Qa&&g&&e.prop(g,f[h])):"href"===a&&f.$set(h,null)})}}}});var Mb={$addControl:F,$$renameControl:function(a,c){a.$name=c},$removeControl:F,$setValidity:F,$setDirty:F,$setPristine:F,$setSubmitted:F};vd.$inject=["$element","$attrs","$scope","$animate","$interpolate"];var Cd=function(a){return["$timeout",
-function(c){return{name:"form",restrict:a?"EAC":"E",controller:vd,compile:function(d,e){d.addClass(Ra).addClass(pb);var f=e.name?"name":a&&e.ngForm?"ngForm":!1;return{pre:function(a,d,e,k){if(!("action"in e)){var m=function(c){a.$apply(function(){k.$commitViewValue();k.$setSubmitted()});c.preventDefault()};d[0].addEventListener("submit",m,!1);d.on("$destroy",function(){c(function(){d[0].removeEventListener("submit",m,!1)},0,!1)})}var r=k.$$parentForm;f&&(kb(a,null,k.$name,k,k.$name),e.$observe(f,
-function(c){k.$name!==c&&(kb(a,null,k.$name,u,k.$name),r.$$renameControl(k,c),kb(a,null,k.$name,k,k.$name))}));d.on("$destroy",function(){r.$removeControl(k);f&&kb(a,null,e[f],u,k.$name);z(k,Mb)})}}}}}]},Yd=Cd(),ke=Cd(!0),Qf=/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/,cg=/^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/,dg=/^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i,eg=/^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/,
-Dd=/^(\d{4})-(\d{2})-(\d{2})$/,Ed=/^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/,nc=/^(\d{4})-W(\d\d)$/,Fd=/^(\d{4})-(\d\d)$/,Gd=/^(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/,Hd={text:function(a,c,d,e,f,g){mb(a,c,d,e,f,g);lc(e)},date:nb("date",Dd,Ob(Dd,["yyyy","MM","dd"]),"yyyy-MM-dd"),"datetime-local":nb("datetimelocal",Ed,Ob(Ed,"yyyy MM dd HH mm ss sss".split(" ")),"yyyy-MM-ddTHH:mm:ss.sss"),time:nb("time",Gd,Ob(Gd,["HH","mm","ss","sss"]),"HH:mm:ss.sss"),week:nb("week",nc,function(a,
-c){if(ea(a))return a;if(K(a)){nc.lastIndex=0;var d=nc.exec(a);if(d){var e=+d[1],f=+d[2],g=d=0,h=0,l=0,k=td(e),f=7*(f-1);c&&(d=c.getHours(),g=c.getMinutes(),h=c.getSeconds(),l=c.getMilliseconds());return new Date(e,0,k.getDate()+f,d,g,h,l)}}return NaN},"yyyy-Www"),month:nb("month",Fd,Ob(Fd,["yyyy","MM"]),"yyyy-MM"),number:function(a,c,d,e,f,g){xd(a,c,d,e);mb(a,c,d,e,f,g);e.$$parserName="number";e.$parsers.push(function(a){return e.$isEmpty(a)?null:eg.test(a)?parseFloat(a):u});e.$formatters.push(function(a){if(!e.$isEmpty(a)){if(!U(a))throw ob("numfmt",
-a);a=a.toString()}return a});if(D(d.min)||d.ngMin){var h;e.$validators.min=function(a){return e.$isEmpty(a)||A(h)||a>=h};d.$observe("min",function(a){D(a)&&!U(a)&&(a=parseFloat(a,10));h=U(a)&&!isNaN(a)?a:u;e.$validate()})}if(D(d.max)||d.ngMax){var l;e.$validators.max=function(a){return e.$isEmpty(a)||A(l)||a<=l};d.$observe("max",function(a){D(a)&&!U(a)&&(a=parseFloat(a,10));l=U(a)&&!isNaN(a)?a:u;e.$validate()})}},url:function(a,c,d,e,f,g){mb(a,c,d,e,f,g);lc(e);e.$$parserName="url";e.$validators.url=
-function(a,c){var d=a||c;return e.$isEmpty(d)||cg.test(d)}},email:function(a,c,d,e,f,g){mb(a,c,d,e,f,g);lc(e);e.$$parserName="email";e.$validators.email=function(a,c){var d=a||c;return e.$isEmpty(d)||dg.test(d)}},radio:function(a,c,d,e){A(d.name)&&c.attr("name",++sb);c.on("click",function(a){c[0].checked&&e.$setViewValue(d.value,a&&a.type)});e.$render=function(){c[0].checked=d.value==e.$viewValue};d.$observe("value",e.$render)},checkbox:function(a,c,d,e,f,g,h,l){var k=yd(l,a,"ngTrueValue",d.ngTrueValue,
-!0),m=yd(l,a,"ngFalseValue",d.ngFalseValue,!1);c.on("click",function(a){e.$setViewValue(c[0].checked,a&&a.type)});e.$render=function(){c[0].checked=e.$viewValue};e.$isEmpty=function(a){return!1===a};e.$formatters.push(function(a){return fa(a,k)});e.$parsers.push(function(a){return a?k:m})},hidden:F,button:F,submit:F,reset:F,file:F},Bc=["$browser","$sniffer","$filter","$parse",function(a,c,d,e){return{restrict:"E",require:["?ngModel"],link:{pre:function(f,g,h,l){l[0]&&(Hd[P(h.type)]||Hd.text)(f,g,
-h,l[0],c,a,d,e)}}}}],fg=/^(true|false|\d+)$/,Ce=function(){return{restrict:"A",priority:100,compile:function(a,c){return fg.test(c.ngValue)?function(a,c,f){f.$set("value",a.$eval(f.ngValue))}:function(a,c,f){a.$watch(f.ngValue,function(a){f.$set("value",a)})}}}},ce=["$compile",function(a){return{restrict:"AC",compile:function(c){a.$$addBindingClass(c);return function(c,e,f){a.$$addBindingInfo(e,f.ngBind);e=e[0];c.$watch(f.ngBind,function(a){e.textContent=a===u?"":a})}}}}],ee=["$interpolate","$compile",
-function(a,c){return{compile:function(d){c.$$addBindingClass(d);return function(d,f,g){d=a(f.attr(g.$attr.ngBindTemplate));c.$$addBindingInfo(f,d.expressions);f=f[0];g.$observe("ngBindTemplate",function(a){f.textContent=a===u?"":a})}}}}],de=["$sce","$parse","$compile",function(a,c,d){return{restrict:"A",compile:function(e,f){var g=c(f.ngBindHtml),h=c(f.ngBindHtml,function(a){return(a||"").toString()});d.$$addBindingClass(e);return function(c,e,f){d.$$addBindingInfo(e,f.ngBindHtml);c.$watch(h,function(){e.html(a.getTrustedHtml(g(c))||
-"")})}}}}],Be=ca({restrict:"A",require:"ngModel",link:function(a,c,d,e){e.$viewChangeListeners.push(function(){a.$eval(d.ngChange)})}}),fe=mc("",!0),he=mc("Odd",0),ge=mc("Even",1),ie=Ia({compile:function(a,c){c.$set("ngCloak",u);a.removeClass("ng-cloak")}}),je=[function(){return{restrict:"A",scope:!0,controller:"@",priority:500}}],Gc={},gg={blur:!0,focus:!0};q("click dblclick mousedown mouseup mouseover mouseout mousemove mouseenter mouseleave keydown keyup keypress submit focus blur copy cut paste".split(" "),
-function(a){var c=wa("ng-"+a);Gc[c]=["$parse","$rootScope",function(d,e){return{restrict:"A",compile:function(f,g){var h=d(g[c],null,!0);return function(c,d){d.on(a,function(d){var f=function(){h(c,{$event:d})};gg[a]&&e.$$phase?c.$evalAsync(f):c.$apply(f)})}}}}]});var me=["$animate",function(a){return{multiElement:!0,transclude:"element",priority:600,terminal:!0,restrict:"A",$$tlb:!0,link:function(c,d,e,f,g){var h,l,k;c.$watch(e.ngIf,function(c){c?l||g(function(c,f){l=f;c[c.length++]=W.createComment(" end ngIf: "+
-e.ngIf+" ");h={clone:c};a.enter(c,d.parent(),d)}):(k&&(k.remove(),k=null),l&&(l.$destroy(),l=null),h&&(k=vb(h.clone),a.leave(k).then(function(){k=null}),h=null))})}}}],ne=["$templateRequest","$anchorScroll","$animate",function(a,c,d){return{restrict:"ECA",priority:400,terminal:!0,transclude:"element",controller:ba.noop,compile:function(e,f){var g=f.ngInclude||f.src,h=f.onload||"",l=f.autoscroll;return function(e,f,q,n,s){var t=0,w,u,p,H=function(){u&&(u.remove(),u=null);w&&(w.$destroy(),w=null);p&&
-(d.leave(p).then(function(){u=null}),u=p,p=null)};e.$watch(g,function(g){var q=function(){!D(l)||l&&!e.$eval(l)||c()},r=++t;g?(a(g,!0).then(function(a){if(r===t){var c=e.$new();n.template=a;a=s(c,function(a){H();d.enter(a,null,f).then(q)});w=c;p=a;w.$emit("$includeContentLoaded",g);e.$eval(h)}},function(){r===t&&(H(),e.$emit("$includeContentError",g))}),e.$emit("$includeContentRequested",g)):(H(),n.template=null)})}}}}],Ee=["$compile",function(a){return{restrict:"ECA",priority:-400,require:"ngInclude",
-link:function(c,d,e,f){/SVG/.test(d[0].toString())?(d.empty(),a(Jc(f.template,W).childNodes)(c,function(a){d.append(a)},{futureParentElement:d})):(d.html(f.template),a(d.contents())(c))}}}],oe=Ia({priority:450,compile:function(){return{pre:function(a,c,d){a.$eval(d.ngInit)}}}}),Ae=function(){return{restrict:"A",priority:100,require:"ngModel",link:function(a,c,d,e){var f=c.attr(d.$attr.ngList)||", ",g="false"!==d.ngTrim,h=g?T(f):f;e.$parsers.push(function(a){if(!A(a)){var c=[];a&&q(a.split(h),function(a){a&&
-c.push(g?T(a):a)});return c}});e.$formatters.push(function(a){return x(a)?a.join(f):u});e.$isEmpty=function(a){return!a||!a.length}}}},pb="ng-valid",zd="ng-invalid",Ra="ng-pristine",Nb="ng-dirty",Bd="ng-pending",ob=y("ngModel"),hg=["$scope","$exceptionHandler","$attrs","$element","$parse","$animate","$timeout","$rootScope","$q","$interpolate",function(a,c,d,e,f,g,h,l,k,m){this.$modelValue=this.$viewValue=Number.NaN;this.$$rawModelValue=u;this.$validators={};this.$asyncValidators={};this.$parsers=
-[];this.$formatters=[];this.$viewChangeListeners=[];this.$untouched=!0;this.$touched=!1;this.$pristine=!0;this.$dirty=!1;this.$valid=!0;this.$invalid=!1;this.$error={};this.$$success={};this.$pending=u;this.$name=m(d.name||"",!1)(a);var r=f(d.ngModel),n=r.assign,s=r,t=n,w=null,v,p=this;this.$$setOptions=function(a){if((p.$options=a)&&a.getterSetter){var c=f(d.ngModel+"()"),g=f(d.ngModel+"($$$p)");s=function(a){var d=r(a);B(d)&&(d=c(a));return d};t=function(a,c){B(r(a))?g(a,{$$$p:p.$modelValue}):n(a,
-p.$modelValue)}}else if(!r.assign)throw ob("nonassign",d.ngModel,ua(e));};this.$render=F;this.$isEmpty=function(a){return A(a)||""===a||null===a||a!==a};var H=e.inheritedData("$formController")||Mb,E=0;wd({ctrl:this,$element:e,set:function(a,c){a[c]=!0},unset:function(a,c){delete a[c]},parentForm:H,$animate:g});this.$setPristine=function(){p.$dirty=!1;p.$pristine=!0;g.removeClass(e,Nb);g.addClass(e,Ra)};this.$setDirty=function(){p.$dirty=!0;p.$pristine=!1;g.removeClass(e,Ra);g.addClass(e,Nb);H.$setDirty()};
-this.$setUntouched=function(){p.$touched=!1;p.$untouched=!0;g.setClass(e,"ng-untouched","ng-touched")};this.$setTouched=function(){p.$touched=!0;p.$untouched=!1;g.setClass(e,"ng-touched","ng-untouched")};this.$rollbackViewValue=function(){h.cancel(w);p.$viewValue=p.$$lastCommittedViewValue;p.$render()};this.$validate=function(){if(!U(p.$modelValue)||!isNaN(p.$modelValue)){var a=p.$$rawModelValue,c=p.$valid,d=p.$modelValue,e=p.$options&&p.$options.allowInvalid;p.$$runValidators(a,p.$$lastCommittedViewValue,
-function(f){e||c===f||(p.$modelValue=f?a:u,p.$modelValue!==d&&p.$$writeModelToScope())})}};this.$$runValidators=function(a,c,d){function e(){var d=!0;q(p.$validators,function(e,f){var h=e(a,c);d=d&&h;g(f,h)});return d?!0:(q(p.$asyncValidators,function(a,c){g(c,null)}),!1)}function f(){var d=[],e=!0;q(p.$asyncValidators,function(f,h){var k=f(a,c);if(!k||!B(k.then))throw ob("$asyncValidators",k);g(h,u);d.push(k.then(function(){g(h,!0)},function(a){e=!1;g(h,!1)}))});d.length?k.all(d).then(function(){h(e)},
-F):h(!0)}function g(a,c){l===E&&p.$setValidity(a,c)}function h(a){l===E&&d(a)}E++;var l=E;(function(){var a=p.$$parserName||"parse";if(v===u)g(a,null);else return v||(q(p.$validators,function(a,c){g(c,null)}),q(p.$asyncValidators,function(a,c){g(c,null)})),g(a,v),v;return!0})()?e()?f():h(!1):h(!1)};this.$commitViewValue=function(){var a=p.$viewValue;h.cancel(w);if(p.$$lastCommittedViewValue!==a||""===a&&p.$$hasNativeValidators)p.$$lastCommittedViewValue=a,p.$pristine&&this.$setDirty(),this.$$parseAndValidate()};
-this.$$parseAndValidate=function(){var c=p.$$lastCommittedViewValue;if(v=A(c)?u:!0)for(var d=0;d<p.$parsers.length;d++)if(c=p.$parsers[d](c),A(c)){v=!1;break}U(p.$modelValue)&&isNaN(p.$modelValue)&&(p.$modelValue=s(a));var e=p.$modelValue,f=p.$options&&p.$options.allowInvalid;p.$$rawModelValue=c;f&&(p.$modelValue=c,p.$modelValue!==e&&p.$$writeModelToScope());p.$$runValidators(c,p.$$lastCommittedViewValue,function(a){f||(p.$modelValue=a?c:u,p.$modelValue!==e&&p.$$writeModelToScope())})};this.$$writeModelToScope=
-function(){t(a,p.$modelValue);q(p.$viewChangeListeners,function(a){try{a()}catch(d){c(d)}})};this.$setViewValue=function(a,c){p.$viewValue=a;p.$options&&!p.$options.updateOnDefault||p.$$debounceViewValueCommit(c)};this.$$debounceViewValueCommit=function(c){var d=0,e=p.$options;e&&D(e.debounce)&&(e=e.debounce,U(e)?d=e:U(e[c])?d=e[c]:U(e["default"])&&(d=e["default"]));h.cancel(w);d?w=h(function(){p.$commitViewValue()},d):l.$$phase?p.$commitViewValue():a.$apply(function(){p.$commitViewValue()})};a.$watch(function(){var c=
-s(a);if(c!==p.$modelValue&&(p.$modelValue===p.$modelValue||c===c)){p.$modelValue=p.$$rawModelValue=c;v=u;for(var d=p.$formatters,e=d.length,f=c;e--;)f=d[e](f);p.$viewValue!==f&&(p.$viewValue=p.$$lastCommittedViewValue=f,p.$render(),p.$$runValidators(c,f,F))}return c})}],ze=["$rootScope",function(a){return{restrict:"A",require:["ngModel","^?form","^?ngModelOptions"],controller:hg,priority:1,compile:function(c){c.addClass(Ra).addClass("ng-untouched").addClass(pb);return{pre:function(a,c,f,g){var h=
-g[0],l=g[1]||Mb;h.$$setOptions(g[2]&&g[2].$options);l.$addControl(h);f.$observe("name",function(a){h.$name!==a&&l.$$renameControl(h,a)});a.$on("$destroy",function(){l.$removeControl(h)})},post:function(c,e,f,g){var h=g[0];if(h.$options&&h.$options.updateOn)e.on(h.$options.updateOn,function(a){h.$$debounceViewValueCommit(a&&a.type)});e.on("blur",function(e){h.$touched||(a.$$phase?c.$evalAsync(h.$setTouched):c.$apply(h.$setTouched))})}}}}}],ig=/(\s+|^)default(\s+|$)/,De=function(){return{restrict:"A",
-controller:["$scope","$attrs",function(a,c){var d=this;this.$options=a.$eval(c.ngModelOptions);this.$options.updateOn!==u?(this.$options.updateOnDefault=!1,this.$options.updateOn=T(this.$options.updateOn.replace(ig,function(){d.$options.updateOnDefault=!0;return" "}))):this.$options.updateOnDefault=!0}]}},pe=Ia({terminal:!0,priority:1E3}),qe=["$locale","$interpolate",function(a,c){var d=/{}/g,e=/^when(Minus)?(.+)$/;return{restrict:"EA",link:function(f,g,h){function l(a){g.text(a||"")}var k=h.count,
-m=h.$attr.when&&g.attr(h.$attr.when),r=h.offset||0,n=f.$eval(m)||{},s={},m=c.startSymbol(),t=c.endSymbol(),w=m+k+"-"+r+t,u=ba.noop,p;q(h,function(a,c){var d=e.exec(c);d&&(d=(d[1]?"-":"")+P(d[2]),n[d]=g.attr(h.$attr[c]))});q(n,function(a,e){s[e]=c(a.replace(d,w))});f.$watch(k,function(c){c=parseFloat(c);var d=isNaN(c);d||c in n||(c=a.pluralCat(c-r));c===p||d&&isNaN(p)||(u(),u=f.$watch(s[c],l),p=c)})}}}],re=["$parse","$animate",function(a,c){var d=y("ngRepeat"),e=function(a,c,d,e,k,m,q){a[d]=e;k&&(a[k]=
-m);a.$index=c;a.$first=0===c;a.$last=c===q-1;a.$middle=!(a.$first||a.$last);a.$odd=!(a.$even=0===(c&1))};return{restrict:"A",multiElement:!0,transclude:"element",priority:1E3,terminal:!0,$$tlb:!0,compile:function(f,g){var h=g.ngRepeat,l=W.createComment(" end ngRepeat: "+h+" "),k=h.match(/^\s*([\s\S]+?)\s+in\s+([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+track\s+by\s+([\s\S]+?))?\s*$/);if(!k)throw d("iexp",h);var m=k[1],r=k[2],n=k[3],s=k[4],k=m.match(/^(?:(\s*[\$\w]+)|\(\s*([\$\w]+)\s*,\s*([\$\w]+)\s*\))$/);
-if(!k)throw d("iidexp",m);var t=k[3]||k[1],w=k[2];if(n&&(!/^[$a-zA-Z_][$a-zA-Z0-9_]*$/.test(n)||/^(null|undefined|this|\$index|\$first|\$middle|\$last|\$even|\$odd|\$parent|\$root|\$id)$/.test(n)))throw d("badident",n);var v,p,D,E,A={$id:Na};s?v=a(s):(D=function(a,c){return Na(c)},E=function(a){return a});return function(a,f,g,k,m){v&&(p=function(c,d,e){w&&(A[w]=c);A[t]=d;A.$index=e;return v(a,A)});var s=ga();a.$watchCollection(r,function(g){var k,r,v=f[0],I,A=ga(),z,y,F,N,B,x,J;n&&(a[n]=g);if(Sa(g))B=
-g,r=p||D;else{r=p||E;B=[];for(J in g)g.hasOwnProperty(J)&&"$"!=J.charAt(0)&&B.push(J);B.sort()}z=B.length;J=Array(z);for(k=0;k<z;k++)if(y=g===B?k:B[k],F=g[y],N=r(y,F,k),s[N])x=s[N],delete s[N],A[N]=x,J[k]=x;else{if(A[N])throw q(J,function(a){a&&a.scope&&(s[a.id]=a)}),d("dupes",h,N,F);J[k]={id:N,scope:u,clone:u};A[N]=!0}for(I in s){x=s[I];N=vb(x.clone);c.leave(N);if(N[0].parentNode)for(k=0,r=N.length;k<r;k++)N[k].$$NG_REMOVED=!0;x.scope.$destroy()}for(k=0;k<z;k++)if(y=g===B?k:B[k],F=g[y],x=J[k],x.scope){I=
-v;do I=I.nextSibling;while(I&&I.$$NG_REMOVED);x.clone[0]!=I&&c.move(vb(x.clone),null,G(v));v=x.clone[x.clone.length-1];e(x.scope,k,t,F,w,y,z)}else m(function(a,d){x.scope=d;var f=l.cloneNode(!1);a[a.length++]=f;c.enter(a,null,G(v));v=f;x.clone=a;A[x.id]=x;e(x.scope,k,t,F,w,y,z)});s=A})}}}}],se=["$animate",function(a){return{restrict:"A",multiElement:!0,link:function(c,d,e){c.$watch(e.ngShow,function(c){a[c?"removeClass":"addClass"](d,"ng-hide",{tempClasses:"ng-hide-animate"})})}}}],le=["$animate",
-function(a){return{restrict:"A",multiElement:!0,link:function(c,d,e){c.$watch(e.ngHide,function(c){a[c?"addClass":"removeClass"](d,"ng-hide",{tempClasses:"ng-hide-animate"})})}}}],te=Ia(function(a,c,d){a.$watch(d.ngStyle,function(a,d){d&&a!==d&&q(d,function(a,d){c.css(d,"")});a&&c.css(a)},!0)}),ue=["$animate",function(a){return{restrict:"EA",require:"ngSwitch",controller:["$scope",function(){this.cases={}}],link:function(c,d,e,f){var g=[],h=[],l=[],k=[],m=function(a,c){return function(){a.splice(c,
-1)}};c.$watch(e.ngSwitch||e.on,function(c){var d,e;d=0;for(e=l.length;d<e;++d)a.cancel(l[d]);d=l.length=0;for(e=k.length;d<e;++d){var t=vb(h[d].clone);k[d].$destroy();(l[d]=a.leave(t)).then(m(l,d))}h.length=0;k.length=0;(g=f.cases["!"+c]||f.cases["?"])&&q(g,function(c){c.transclude(function(d,e){k.push(e);var f=c.element;d[d.length++]=W.createComment(" end ngSwitchWhen: ");h.push({clone:d});a.enter(d,f.parent(),f)})})})}}}],ve=Ia({transclude:"element",priority:1200,require:"^ngSwitch",multiElement:!0,
-link:function(a,c,d,e,f){e.cases["!"+d.ngSwitchWhen]=e.cases["!"+d.ngSwitchWhen]||[];e.cases["!"+d.ngSwitchWhen].push({transclude:f,element:c})}}),we=Ia({transclude:"element",priority:1200,require:"^ngSwitch",multiElement:!0,link:function(a,c,d,e,f){e.cases["?"]=e.cases["?"]||[];e.cases["?"].push({transclude:f,element:c})}}),ye=Ia({restrict:"EAC",link:function(a,c,d,e,f){if(!f)throw y("ngTransclude")("orphan",ua(c));f(function(a){c.empty();c.append(a)})}}),Zd=["$templateCache",function(a){return{restrict:"E",
-terminal:!0,compile:function(c,d){"text/ng-template"==d.type&&a.put(d.id,c[0].text)}}}],jg=y("ngOptions"),xe=ca({restrict:"A",terminal:!0}),$d=["$compile","$parse",function(a,c){var d=/^\s*([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+group\s+by\s+([\s\S]+?))?\s+for\s+(?:([\$\w][\$\w]*)|(?:\(\s*([\$\w][\$\w]*)\s*,\s*([\$\w][\$\w]*)\s*\)))\s+in\s+([\s\S]+?)(?:\s+track\s+by\s+([\s\S]+?))?$/,e={$setViewValue:F};return{restrict:"E",require:["select","?ngModel"],controller:["$element","$scope","$attrs",function(a,
-c,d){var l=this,k={},m=e,q;l.databound=d.ngModel;l.init=function(a,c,d){m=a;q=d};l.addOption=function(c,d){Ma(c,'"option value"');k[c]=!0;m.$viewValue==c&&(a.val(c),q.parent()&&q.remove());d&&d[0].hasAttribute("selected")&&(d[0].selected=!0)};l.removeOption=function(a){this.hasOption(a)&&(delete k[a],m.$viewValue===a&&this.renderUnknownOption(a))};l.renderUnknownOption=function(c){c="? "+Na(c)+" ?";q.val(c);a.prepend(q);a.val(c);q.prop("selected",!0)};l.hasOption=function(a){return k.hasOwnProperty(a)};
-c.$on("$destroy",function(){l.renderUnknownOption=F})}],link:function(e,g,h,l){function k(a,c,d,e){d.$render=function(){var a=d.$viewValue;e.hasOption(a)?(z.parent()&&z.remove(),c.val(a),""===a&&v.prop("selected",!0)):null==a&&v?c.val(""):e.renderUnknownOption(a)};c.on("change",function(){a.$apply(function(){z.parent()&&z.remove();d.$setViewValue(c.val())})})}function m(a,c,d){var e;d.$render=function(){var a=new fb(d.$viewValue);q(c.find("option"),function(c){c.selected=D(a.get(c.value))})};a.$watch(function(){fa(e,
-d.$viewValue)||(e=oa(d.$viewValue),d.$render())});c.on("change",function(){a.$apply(function(){var a=[];q(c.find("option"),function(c){c.selected&&a.push(c.value)});d.$setViewValue(a)})})}function r(e,f,g){function h(a,c,d){R[y]=d;G&&(R[G]=c);return a(e,R)}function k(a){var c;if(s)if(K&&x(a)){c=new fb([]);for(var d=0;d<a.length;d++)c.put(h(K,null,a[d]),!0)}else c=new fb(a);else K&&(a=h(K,null,a));return function(d,e){var f;f=K?K:B?B:C;return s?D(c.remove(h(f,d,e))):a===h(f,d,e)}}function l(){p||(e.$$postDigest(r),
-p=!0)}function m(a,c,d){a[c]=a[c]||0;a[c]+=d?1:-1}function r(){p=!1;var a={"":[]},c=[""],d,l,t,u,v;t=g.$viewValue;u=L(e)||[];var y=G?Object.keys(u).sort():u,x,B,F,C,S={};v=k(t);var O=!1,T,U;P={};for(C=0;F=y.length,C<F;C++){x=C;if(G&&(x=y[C],"$"===x.charAt(0)))continue;B=u[x];d=h(J,x,B)||"";(l=a[d])||(l=a[d]=[],c.push(d));d=v(x,B);O=O||d;B=h(z,x,B);B=D(B)?B:"";U=K?K(e,R):G?y[C]:C;K&&(P[U]=x);l.push({id:U,label:B,selected:d})}s||(w||null===t?a[""].unshift({id:"",label:"",selected:!O}):O||a[""].unshift({id:"?",
-label:"",selected:!0}));x=0;for(y=c.length;x<y;x++){d=c[x];l=a[d];Q.length<=x?(t={element:E.clone().attr("label",d),label:l.label},u=[t],Q.push(u),f.append(t.element)):(u=Q[x],t=u[0],t.label!=d&&t.element.attr("label",t.label=d));O=null;C=0;for(F=l.length;C<F;C++)d=l[C],(v=u[C+1])?(O=v.element,v.label!==d.label&&(m(S,v.label,!1),m(S,d.label,!0),O.text(v.label=d.label),O.prop("label",v.label)),v.id!==d.id&&O.val(v.id=d.id),O[0].selected!==d.selected&&(O.prop("selected",v.selected=d.selected),Qa&&O.prop("selected",
-v.selected))):(""===d.id&&w?T=w:(T=A.clone()).val(d.id).prop("selected",d.selected).attr("selected",d.selected).prop("label",d.label).text(d.label),u.push(v={element:T,label:d.label,id:d.id,selected:d.selected}),m(S,d.label,!0),O?O.after(T):t.element.append(T),O=T);for(C++;u.length>C;)d=u.pop(),m(S,d.label,!1),d.element.remove()}for(;Q.length>x;){l=Q.pop();for(C=1;C<l.length;++C)m(S,l[C].label,!1);l[0].element.remove()}q(S,function(a,c){0<a?n.addOption(c):0>a&&n.removeOption(c)})}var v;if(!(v=t.match(d)))throw jg("iexp",
-t,ua(f));var z=c(v[2]||v[1]),y=v[4]||v[6],F=/ as /.test(v[0])&&v[1],B=F?c(F):null,G=v[5],J=c(v[3]||""),C=c(v[2]?v[1]:y),L=c(v[7]),K=v[8]?c(v[8]):null,P={},Q=[[{element:f,label:""}]],R={};w&&(a(w)(e),w.removeClass("ng-scope"),w.remove());f.empty();f.on("change",function(){e.$apply(function(){var a=L(e)||[],c;if(s)c=[],q(f.val(),function(d){d=K?P[d]:d;c.push("?"===d?u:""===d?null:h(B?B:C,d,a[d]))});else{var d=K?P[f.val()]:f.val();c="?"===d?u:""===d?null:h(B?B:C,d,a[d])}g.$setViewValue(c);r()})});g.$render=
-r;e.$watchCollection(L,l);e.$watchCollection(function(){var a=L(e),c;if(a&&x(a)){c=Array(a.length);for(var d=0,f=a.length;d<f;d++)c[d]=h(z,d,a[d])}else if(a)for(d in c={},a)a.hasOwnProperty(d)&&(c[d]=h(z,d,a[d]));return c},l);s&&e.$watchCollection(function(){return g.$modelValue},l)}if(l[1]){var n=l[0];l=l[1];var s=h.multiple,t=h.ngOptions,w=!1,v,p=!1,A=G(W.createElement("option")),E=G(W.createElement("optgroup")),z=A.clone();h=0;for(var y=g.children(),F=y.length;h<F;h++)if(""===y[h].value){v=w=y.eq(h);
-break}n.init(l,w,z);s&&(l.$isEmpty=function(a){return!a||0===a.length});t?r(e,g,l):s?m(e,g,l):k(e,g,l,n)}}}}],be=["$interpolate",function(a){var c={addOption:F,removeOption:F};return{restrict:"E",priority:100,compile:function(d,e){if(A(e.value)){var f=a(d.text(),!0);f||e.$set("value",d.text())}return function(a,d,e){var k=d.parent(),m=k.data("$selectController")||k.parent().data("$selectController");m&&m.databound||(m=c);f?a.$watch(f,function(a,c){e.$set("value",a);c!==a&&m.removeOption(c);m.addOption(a,
-d)}):m.addOption(e.value,d);d.on("$destroy",function(){m.removeOption(e.value)})}}}}],ae=ca({restrict:"E",terminal:!1}),Dc=function(){return{restrict:"A",require:"?ngModel",link:function(a,c,d,e){e&&(d.required=!0,e.$validators.required=function(a,c){return!d.required||!e.$isEmpty(c)},d.$observe("required",function(){e.$validate()}))}}},Cc=function(){return{restrict:"A",require:"?ngModel",link:function(a,c,d,e){if(e){var f,g=d.ngPattern||d.pattern;d.$observe("pattern",function(a){K(a)&&0<a.length&&
-(a=new RegExp("^"+a+"$"));if(a&&!a.test)throw y("ngPattern")("noregexp",g,a,ua(c));f=a||u;e.$validate()});e.$validators.pattern=function(a,c){return e.$isEmpty(c)||A(f)||f.test(c)}}}}},Fc=function(){return{restrict:"A",require:"?ngModel",link:function(a,c,d,e){if(e){var f=-1;d.$observe("maxlength",function(a){a=aa(a);f=isNaN(a)?-1:a;e.$validate()});e.$validators.maxlength=function(a,c){return 0>f||e.$isEmpty(c)||c.length<=f}}}}},Ec=function(){return{restrict:"A",require:"?ngModel",link:function(a,
-c,d,e){if(e){var f=0;d.$observe("minlength",function(a){f=aa(a)||0;e.$validate()});e.$validators.minlength=function(a,c){return e.$isEmpty(c)||c.length>=f}}}}};S.angular.bootstrap?console.log("WARNING: Tried to load angular more than once."):(Rd(),Td(ba),G(W).ready(function(){Nd(W,wc)}))})(window,document);!window.angular.$$csp()&&window.angular.element(document.head).prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\\:form{display:block;}</style>');
-//# sourceMappingURL=angular.min.js.map
-;/*
- AngularJS v1.3.19
- (c) 2010-2014 Google, Inc. http://angularjs.org
- License: MIT
-*/
-(function(N,f,W){'use strict';f.module("ngAnimate",["ng"]).directive("ngAnimateChildren",function(){return function(X,r,g){g=g.ngAnimateChildren;f.isString(g)&&0===g.length?r.data("$$ngAnimateChildren",!0):X.$watch(g,function(f){r.data("$$ngAnimateChildren",!!f)})}}).factory("$$animateReflow",["$$rAF","$document",function(f,r){var g=r[0].body;return function(r){return f(function(){r(g.offsetWidth)})}}]).config(["$provide","$animateProvider",function(X,r){function g(f){for(var n=0;n<f.length;n++){var g=
-f[n];if(1==g.nodeType)return g}}function ba(f,n){return g(f)==g(n)}var t=f.noop,n=f.forEach,ca=r.$$selectors,aa=f.isArray,da=f.isString,ga=f.isObject,w={running:!0},u;X.decorator("$animate",["$delegate","$$q","$injector","$sniffer","$rootElement","$$asyncCallback","$rootScope","$document","$templateRequest","$$jqLite",function(O,N,M,Y,y,I,P,W,Z,Q){function R(a,c){var b=a.data("$$ngAnimateState")||{};c&&(b.running=!0,b.structural=!0,a.data("$$ngAnimateState",b));return b.disabled||b.running&&b.structural}
-function D(a){var c,b=N.defer();b.promise.$$cancelFn=function(){c&&c()};P.$$postDigest(function(){c=a(function(){b.resolve()})});return b.promise}function J(a){if(ga(a))return a.tempClasses&&da(a.tempClasses)&&(a.tempClasses=a.tempClasses.split(/\s+/)),a}function S(a,c,b){b=b||{};var d={};n(b,function(e,a){n(a.split(" "),function(a){d[a]=e})});var h=Object.create(null);n((a.attr("class")||"").split(/\s+/),function(e){h[e]=!0});var f=[],k=[];n(c&&c.classes||[],function(e,a){var b=h[a],c=d[a]||{};!1===
-e?(b||"addClass"==c.event)&&k.push(a):!0===e&&(b&&"removeClass"!=c.event||f.push(a))});return 0<f.length+k.length&&[f.join(" "),k.join(" ")]}function T(a){if(a){var c=[],b={};a=a.substr(1).split(".");(Y.transitions||Y.animations)&&c.push(M.get(ca[""]));for(var d=0;d<a.length;d++){var f=a[d],l=ca[f];l&&!b[f]&&(c.push(M.get(l)),b[f]=!0)}return c}}function U(a,c,b,d){function h(e,a){var b=e[a],c=e["before"+a.charAt(0).toUpperCase()+a.substr(1)];if(b||c)return"leave"==a&&(c=b,b=null),u.push({event:a,
-fn:b}),fa.push({event:a,fn:c}),!0}function l(c,k,x){var E=[];n(c,function(a){a.fn&&E.push(a)});var m=0;n(E,function(c,f){var p=function(){a:{if(k){(k[f]||t)();if(++m<E.length)break a;k=null}x()}};switch(c.event){case "setClass":k.push(c.fn(a,e,A,p,d));break;case "animate":k.push(c.fn(a,b,d.from,d.to,p));break;case "addClass":k.push(c.fn(a,e||b,p,d));break;case "removeClass":k.push(c.fn(a,A||b,p,d));break;default:k.push(c.fn(a,p,d))}});k&&0===k.length&&x()}var k=a[0];if(k){d&&(d.to=d.to||{},d.from=
-d.from||{});var e,A;aa(b)&&(e=b[0],A=b[1],e?A?b=e+" "+A:(b=e,c="addClass"):(b=A,c="removeClass"));var x="setClass"==c,E=x||"addClass"==c||"removeClass"==c||"animate"==c,p=a.attr("class")+" "+b;if(B(p)){var G=t,m=[],fa=[],g=t,s=[],u=[],p=(" "+p).replace(/\s+/g,".");n(T(p),function(a){!h(a,c)&&x&&(h(a,"addClass"),h(a,"removeClass"))});return{node:k,event:c,className:b,isClassBased:E,isSetClassOperation:x,applyStyles:function(){d&&a.css(f.extend(d.from||{},d.to||{}))},before:function(a){G=a;l(fa,m,function(){G=
-t;a()})},after:function(a){g=a;l(u,s,function(){g=t;a()})},cancel:function(){m&&(n(m,function(a){(a||t)(!0)}),G(!0));s&&(n(s,function(a){(a||t)(!0)}),g(!0))}}}}}function H(a,c,b,d,h,l,k,e){function A(e){var k="$animate:"+e;g&&g[k]&&0<g[k].length&&I(function(){b.triggerHandler(k,{event:a,className:c})})}function x(){A("before")}function E(){A("after")}function p(){p.hasBeenRun||(p.hasBeenRun=!0,l())}function G(){if(!G.hasBeenRun){m&&m.applyStyles();G.hasBeenRun=!0;k&&k.tempClasses&&n(k.tempClasses,
-function(a){u.removeClass(b,a)});var x=b.data("$$ngAnimateState");x&&(m&&m.isClassBased?C(b,c):(I(function(){var e=b.data("$$ngAnimateState")||{};ea==e.index&&C(b,c,a)}),b.data("$$ngAnimateState",x)));A("close");e()}}var m=U(b,a,c,k);if(!m)return p(),x(),E(),G(),t;a=m.event;c=m.className;var g=f.element._data(m.node),g=g&&g.events;d||(d=h?h.parent():b.parent());if(z(b,d))return p(),x(),E(),G(),t;d=b.data("$$ngAnimateState")||{};var L=d.active||{},s=d.totalActive||0,q=d.last;h=!1;if(0<s){s=[];if(m.isClassBased)"setClass"==
-q.event?(s.push(q),C(b,c)):L[c]&&(v=L[c],v.event==a?h=!0:(s.push(v),C(b,c)));else if("leave"==a&&L["ng-leave"])h=!0;else{for(var v in L)s.push(L[v]);d={};C(b,!0)}0<s.length&&n(s,function(a){a.cancel()})}!m.isClassBased||m.isSetClassOperation||"animate"==a||h||(h="addClass"==a==b.hasClass(c));if(h)return p(),x(),E(),A("close"),e(),t;L=d.active||{};s=d.totalActive||0;if("leave"==a)b.one("$destroy",function(a){a=f.element(this);var e=a.data("$$ngAnimateState");e&&(e=e.active["ng-leave"])&&(e.cancel(),
-C(a,"ng-leave"))});u.addClass(b,"ng-animate");k&&k.tempClasses&&n(k.tempClasses,function(a){u.addClass(b,a)});var ea=K++;s++;L[c]=m;b.data("$$ngAnimateState",{last:m,active:L,index:ea,totalActive:s});x();m.before(function(e){var k=b.data("$$ngAnimateState");e=e||!k||!k.active[c]||m.isClassBased&&k.active[c].event!=a;p();!0===e?G():(E(),m.after(G))});return m.cancel}function q(a){if(a=g(a))a=f.isFunction(a.getElementsByClassName)?a.getElementsByClassName("ng-animate"):a.querySelectorAll(".ng-animate"),
-n(a,function(a){a=f.element(a);(a=a.data("$$ngAnimateState"))&&a.active&&n(a.active,function(a){a.cancel()})})}function C(a,c){if(ba(a,y))w.disabled||(w.running=!1,w.structural=!1);else if(c){var b=a.data("$$ngAnimateState")||{},d=!0===c;!d&&b.active&&b.active[c]&&(b.totalActive--,delete b.active[c]);if(d||!b.totalActive)u.removeClass(a,"ng-animate"),a.removeData("$$ngAnimateState")}}function z(a,c){if(w.disabled)return!0;if(ba(a,y))return w.running;var b,d,g;do{if(0===c.length)break;var l=ba(c,y),
-k=l?w:c.data("$$ngAnimateState")||{};if(k.disabled)return!0;l&&(g=!0);!1!==b&&(l=c.data("$$ngAnimateChildren"),f.isDefined(l)&&(b=l));d=d||k.running||k.last&&!k.last.isClassBased}while(c=c.parent());return!g||!b&&d}u=Q;y.data("$$ngAnimateState",w);var $=P.$watch(function(){return Z.totalPendingRequests},function(a,c){0===a&&($(),P.$$postDigest(function(){P.$$postDigest(function(){w.running=!1})}))}),K=0,V=r.classNameFilter(),B=V?function(a){return V.test(a)}:function(){return!0};return{animate:function(a,
-c,b,d,h){d=d||"ng-inline-animate";h=J(h)||{};h.from=b?c:null;h.to=b?b:c;return D(function(b){return H("animate",d,f.element(g(a)),null,null,t,h,b)})},enter:function(a,c,b,d){d=J(d);a=f.element(a);c=c&&f.element(c);b=b&&f.element(b);R(a,!0);O.enter(a,c,b);return D(function(h){return H("enter","ng-enter",f.element(g(a)),c,b,t,d,h)})},leave:function(a,c){c=J(c);a=f.element(a);q(a);R(a,!0);return D(function(b){return H("leave","ng-leave",f.element(g(a)),null,null,function(){O.leave(a)},c,b)})},move:function(a,
-c,b,d){d=J(d);a=f.element(a);c=c&&f.element(c);b=b&&f.element(b);q(a);R(a,!0);O.move(a,c,b);return D(function(h){return H("move","ng-move",f.element(g(a)),c,b,t,d,h)})},addClass:function(a,c,b){return this.setClass(a,c,[],b)},removeClass:function(a,c,b){return this.setClass(a,[],c,b)},setClass:function(a,c,b,d){d=J(d);a=f.element(a);a=f.element(g(a));if(R(a))return O.$$setClassImmediately(a,c,b,d);var h,l=a.data("$$animateClasses"),k=!!l;l||(l={classes:{}});h=l.classes;c=aa(c)?c:c.split(" ");n(c,
-function(a){a&&a.length&&(h[a]=!0)});b=aa(b)?b:b.split(" ");n(b,function(a){a&&a.length&&(h[a]=!1)});if(k)return d&&l.options&&(l.options=f.extend(l.options||{},d)),l.promise;a.data("$$animateClasses",l={classes:h,options:d});return l.promise=D(function(e){var k,b,c,d=g(a);d&&(k=a.data("$$animateClasses"),a.removeData("$$animateClasses"),c=a.parent(),b=d.parentNode);if(!b||b.$$NG_REMOVED||d.$$NG_REMOVED)e();else{b=a.data("$$ngAnimateState")||{};var f=S(a,k,b.active);return f?H("setClass",f,a,c,null,
-function(){f[0]&&O.$$addClassImmediately(a,f[0]);f[1]&&O.$$removeClassImmediately(a,f[1])},k.options,e):e()}})},cancel:function(a){a.$$cancelFn()},enabled:function(a,c){switch(arguments.length){case 2:if(a)C(c);else{var b=c.data("$$ngAnimateState")||{};b.disabled=!0;c.data("$$ngAnimateState",b)}break;case 1:w.disabled=!a;break;default:a=!w.disabled}return!!a}}}]);r.register("",["$window","$sniffer","$timeout","$$animateReflow",function(r,w,M,Y){function y(){b||(b=Y(function(){c=[];b=null;B={}}))}
-function I(a,e){b&&b();c.push(e);b=Y(function(){n(c,function(a){a()});c=[];b=null;B={}})}function P(a,e){var b=g(a);a=f.element(b);l.push(a);b=Date.now()+e;b<=h||(M.cancel(d),h=b,d=M(function(){X(l);l=[]},e,!1))}function X(a){n(a,function(a){(a=a.data("$$ngAnimateCSS3Data"))&&n(a.closeAnimationFns,function(a){a()})})}function Z(a,e){var b=e?B[e]:null;if(!b){var c=0,d=0,f=0,g=0;n(a,function(a){if(1==a.nodeType){a=r.getComputedStyle(a)||{};c=Math.max(Q(a[z+"Duration"]),c);d=Math.max(Q(a[z+"Delay"]),
-d);g=Math.max(Q(a[K+"Delay"]),g);var e=Q(a[K+"Duration"]);0<e&&(e*=parseInt(a[K+"IterationCount"],10)||1);f=Math.max(e,f)}});b={total:0,transitionDelay:d,transitionDuration:c,animationDelay:g,animationDuration:f};e&&(B[e]=b)}return b}function Q(a){var e=0;a=da(a)?a.split(/\s*,\s*/):[];n(a,function(a){e=Math.max(parseFloat(a)||0,e)});return e}function R(b,e,c,d){b=0<=["ng-enter","ng-leave","ng-move"].indexOf(c);var f,p=e.parent(),h=p.data("$$ngAnimateKey");h||(p.data("$$ngAnimateKey",++a),h=a);f=h+
-"-"+g(e).getAttribute("class");var p=f+" "+c,h=B[p]?++B[p].total:0,m={};if(0<h){var n=c+"-stagger",m=f+" "+n;(f=!B[m])&&u.addClass(e,n);m=Z(e,m);f&&u.removeClass(e,n)}u.addClass(e,c);var n=e.data("$$ngAnimateCSS3Data")||{},l=Z(e,p);f=l.transitionDuration;l=l.animationDuration;if(b&&0===f&&0===l)return u.removeClass(e,c),!1;c=d||b&&0<f;b=0<l&&0<m.animationDelay&&0===m.animationDuration;e.data("$$ngAnimateCSS3Data",{stagger:m,cacheKey:p,running:n.running||0,itemIndex:h,blockTransition:c,closeAnimationFns:n.closeAnimationFns||
-[]});p=g(e);c&&(J(p,!0),d&&e.css(d));b&&(p.style[K+"PlayState"]="paused");return!0}function D(a,e,b,c,d){function f(){e.off(D,h);u.removeClass(e,l);u.removeClass(e,t);z&&M.cancel(z);H(e,b);var a=g(e),c;for(c in s)a.style.removeProperty(s[c])}function h(a){a.stopPropagation();var b=a.originalEvent||a;a=b.$manualTimeStamp||b.timeStamp||Date.now();b=parseFloat(b.elapsedTime.toFixed(3));Math.max(a-I,0)>=B&&b>=y&&c()}var m=g(e);a=e.data("$$ngAnimateCSS3Data");if(-1!=m.getAttribute("class").indexOf(b)&&
-a){var l="",t="";n(b.split(" "),function(a,b){var e=(0<b?" ":"")+a;l+=e+"-active";t+=e+"-pending"});var s=[],q=a.itemIndex,v=a.stagger,r=0;if(0<q){r=0;0<v.transitionDelay&&0===v.transitionDuration&&(r=v.transitionDelay*q);var w=0;0<v.animationDelay&&0===v.animationDuration&&(w=v.animationDelay*q,s.push(C+"animation-play-state"));r=Math.round(100*Math.max(r,w))/100}r||(u.addClass(e,l),a.blockTransition&&J(m,!1));var F=Z(e,a.cacheKey+" "+l),y=Math.max(F.transitionDuration,F.animationDuration);if(0===
-y)u.removeClass(e,l),H(e,b),c();else{!r&&d&&0<Object.keys(d).length&&(F.transitionDuration||(e.css("transition",F.animationDuration+"s linear all"),s.push("transition")),e.css(d));var q=Math.max(F.transitionDelay,F.animationDelay),B=1E3*q;0<s.length&&(v=m.getAttribute("style")||"",";"!==v.charAt(v.length-1)&&(v+=";"),m.setAttribute("style",v+" "));var I=Date.now(),D=V+" "+$,q=1E3*(r+1.5*(q+y)),z;0<r&&(u.addClass(e,t),z=M(function(){z=null;0<F.transitionDuration&&J(m,!1);0<F.animationDuration&&(m.style[K+
-"PlayState"]="");u.addClass(e,l);u.removeClass(e,t);d&&(0===F.transitionDuration&&e.css("transition",F.animationDuration+"s linear all"),e.css(d),s.push("transition"))},1E3*r,!1));e.on(D,h);a.closeAnimationFns.push(function(){f();c()});a.running++;P(e,q);return f}}else c()}function J(a,b){a.style[z+"Property"]=b?"none":""}function S(a,b,c,d){if(R(a,b,c,d))return function(a){a&&H(b,c)}}function T(a,b,c,d,f){if(b.data("$$ngAnimateCSS3Data"))return D(a,b,c,d,f);H(b,c);d()}function U(a,b,c,d,f){var g=
-S(a,b,c,f.from);if(g){var h=g;I(b,function(){h=T(a,b,c,d,f.to)});return function(a){(h||t)(a)}}y();d()}function H(a,b){u.removeClass(a,b);var c=a.data("$$ngAnimateCSS3Data");c&&(c.running&&c.running--,c.running&&0!==c.running||a.removeData("$$ngAnimateCSS3Data"))}function q(a,b){var c="";a=aa(a)?a:a.split(/\s+/);n(a,function(a,d){a&&0<a.length&&(c+=(0<d?" ":"")+a+b)});return c}var C="",z,$,K,V;N.ontransitionend===W&&N.onwebkittransitionend!==W?(C="-webkit-",z="WebkitTransition",$="webkitTransitionEnd transitionend"):
-(z="transition",$="transitionend");N.onanimationend===W&&N.onwebkitanimationend!==W?(C="-webkit-",K="WebkitAnimation",V="webkitAnimationEnd animationend"):(K="animation",V="animationend");var B={},a=0,c=[],b,d=null,h=0,l=[];return{animate:function(a,b,c,d,f,g){g=g||{};g.from=c;g.to=d;return U("animate",a,b,f,g)},enter:function(a,b,c){c=c||{};return U("enter",a,"ng-enter",b,c)},leave:function(a,b,c){c=c||{};return U("leave",a,"ng-leave",b,c)},move:function(a,b,c){c=c||{};return U("move",a,"ng-move",
-b,c)},beforeSetClass:function(a,b,c,d,f){f=f||{};b=q(c,"-remove")+" "+q(b,"-add");if(f=S("setClass",a,b,f.from))return I(a,d),f;y();d()},beforeAddClass:function(a,b,c,d){d=d||{};if(b=S("addClass",a,q(b,"-add"),d.from))return I(a,c),b;y();c()},beforeRemoveClass:function(a,b,c,d){d=d||{};if(b=S("removeClass",a,q(b,"-remove"),d.from))return I(a,c),b;y();c()},setClass:function(a,b,c,d,f){f=f||{};c=q(c,"-remove");b=q(b,"-add");return T("setClass",a,c+" "+b,d,f.to)},addClass:function(a,b,c,d){d=d||{};return T("addClass",
-a,q(b,"-add"),c,d.to)},removeClass:function(a,b,c,d){d=d||{};return T("removeClass",a,q(b,"-remove"),c,d.to)}}}])}])})(window,window.angular);
-//# sourceMappingURL=angular-animate.min.js.map
-;/*
- AngularJS v1.3.19
- (c) 2010-2014 Google, Inc. http://angularjs.org
- License: MIT
-*/
-(function(p,c,C){'use strict';function v(r,h,g){return{restrict:"ECA",terminal:!0,priority:400,transclude:"element",link:function(a,f,b,d,y){function z(){k&&(g.cancel(k),k=null);l&&(l.$destroy(),l=null);m&&(k=g.leave(m),k.then(function(){k=null}),m=null)}function x(){var b=r.current&&r.current.locals;if(c.isDefined(b&&b.$template)){var b=a.$new(),d=r.current;m=y(b,function(b){g.enter(b,null,m||f).then(function(){!c.isDefined(t)||t&&!a.$eval(t)||h()});z()});l=d.scope=b;l.$emit("$viewContentLoaded");
-l.$eval(w)}else z()}var l,m,k,t=b.autoscroll,w=b.onload||"";a.$on("$routeChangeSuccess",x);x()}}}function A(c,h,g){return{restrict:"ECA",priority:-400,link:function(a,f){var b=g.current,d=b.locals;f.html(d.$template);var y=c(f.contents());b.controller&&(d.$scope=a,d=h(b.controller,d),b.controllerAs&&(a[b.controllerAs]=d),f.data("$ngControllerController",d),f.children().data("$ngControllerController",d));y(a)}}}p=c.module("ngRoute",["ng"]).provider("$route",function(){function r(a,f){return c.extend(Object.create(a),
-f)}function h(a,c){var b=c.caseInsensitiveMatch,d={originalPath:a,regexp:a},g=d.keys=[];a=a.replace(/([().])/g,"\\$1").replace(/(\/)?:(\w+)([\?\*])?/g,function(a,c,b,d){a="?"===d?d:null;d="*"===d?d:null;g.push({name:b,optional:!!a});c=c||"";return""+(a?"":c)+"(?:"+(a?c:"")+(d&&"(.+?)"||"([^/]+)")+(a||"")+")"+(a||"")}).replace(/([\/$\*])/g,"\\$1");d.regexp=new RegExp("^"+a+"$",b?"i":"");return d}var g={};this.when=function(a,f){var b=c.copy(f);c.isUndefined(b.reloadOnSearch)&&(b.reloadOnSearch=!0);
-c.isUndefined(b.caseInsensitiveMatch)&&(b.caseInsensitiveMatch=this.caseInsensitiveMatch);g[a]=c.extend(b,a&&h(a,b));if(a){var d="/"==a[a.length-1]?a.substr(0,a.length-1):a+"/";g[d]=c.extend({redirectTo:a},h(d,b))}return this};this.caseInsensitiveMatch=!1;this.otherwise=function(a){"string"===typeof a&&(a={redirectTo:a});this.when(null,a);return this};this.$get=["$rootScope","$location","$routeParams","$q","$injector","$templateRequest","$sce",function(a,f,b,d,h,p,x){function l(b){var e=s.current;
-(v=(n=k())&&e&&n.$$route===e.$$route&&c.equals(n.pathParams,e.pathParams)&&!n.reloadOnSearch&&!w)||!e&&!n||a.$broadcast("$routeChangeStart",n,e).defaultPrevented&&b&&b.preventDefault()}function m(){var u=s.current,e=n;if(v)u.params=e.params,c.copy(u.params,b),a.$broadcast("$routeUpdate",u);else if(e||u)w=!1,(s.current=e)&&e.redirectTo&&(c.isString(e.redirectTo)?f.path(t(e.redirectTo,e.params)).search(e.params).replace():f.url(e.redirectTo(e.pathParams,f.path(),f.search())).replace()),d.when(e).then(function(){if(e){var a=
-c.extend({},e.resolve),b,f;c.forEach(a,function(b,e){a[e]=c.isString(b)?h.get(b):h.invoke(b,null,null,e)});c.isDefined(b=e.template)?c.isFunction(b)&&(b=b(e.params)):c.isDefined(f=e.templateUrl)&&(c.isFunction(f)&&(f=f(e.params)),c.isDefined(f)&&(e.loadedTemplateUrl=x.valueOf(f),b=p(f)));c.isDefined(b)&&(a.$template=b);return d.all(a)}}).then(function(f){e==s.current&&(e&&(e.locals=f,c.copy(e.params,b)),a.$broadcast("$routeChangeSuccess",e,u))},function(b){e==s.current&&a.$broadcast("$routeChangeError",
-e,u,b)})}function k(){var a,b;c.forEach(g,function(d,g){var q;if(q=!b){var h=f.path();q=d.keys;var l={};if(d.regexp)if(h=d.regexp.exec(h)){for(var k=1,m=h.length;k<m;++k){var n=q[k-1],p=h[k];n&&p&&(l[n.name]=p)}q=l}else q=null;else q=null;q=a=q}q&&(b=r(d,{params:c.extend({},f.search(),a),pathParams:a}),b.$$route=d)});return b||g[null]&&r(g[null],{params:{},pathParams:{}})}function t(a,b){var d=[];c.forEach((a||"").split(":"),function(a,c){if(0===c)d.push(a);else{var f=a.match(/(\w+)(?:[?*])?(.*)/),
-g=f[1];d.push(b[g]);d.push(f[2]||"");delete b[g]}});return d.join("")}var w=!1,n,v,s={routes:g,reload:function(){w=!0;a.$evalAsync(function(){l();m()})},updateParams:function(a){if(this.current&&this.current.$$route)a=c.extend({},this.current.params,a),f.path(t(this.current.$$route.originalPath,a)),f.search(a);else throw B("norout");}};a.$on("$locationChangeStart",l);a.$on("$locationChangeSuccess",m);return s}]});var B=c.$$minErr("ngRoute");p.provider("$routeParams",function(){this.$get=function(){return{}}});
-p.directive("ngView",v);p.directive("ngView",A);v.$inject=["$route","$anchorScroll","$animate"];A.$inject=["$compile","$controller","$route"]})(window,window.angular);
-//# sourceMappingURL=angular-route.min.js.map
-;/*
- AngularJS v1.3.19
- (c) 2010-2014 Google, Inc. http://angularjs.org
- License: MIT
-*/
-(function(n,h,p){'use strict';function E(a){var e=[];r(e,h.noop).chars(a);return e.join("")}function g(a){var e={};a=a.split(",");var d;for(d=0;d<a.length;d++)e[a[d]]=!0;return e}function F(a,e){function d(a,b,d,l){b=h.lowercase(b);if(s[b])for(;f.last()&&t[f.last()];)c("",f.last());u[b]&&f.last()==b&&c("",b);(l=v[b]||!!l)||f.push(b);var m={};d.replace(G,function(a,b,e,c,d){m[b]=q(e||c||d||"")});e.start&&e.start(b,m,l)}function c(a,b){var c=0,d;if(b=h.lowercase(b))for(c=f.length-1;0<=c&&f[c]!=b;c--);
-if(0<=c){for(d=f.length-1;d>=c;d--)e.end&&e.end(f[d]);f.length=c}}"string"!==typeof a&&(a=null===a||"undefined"===typeof a?"":""+a);var b,k,f=[],m=a,l;for(f.last=function(){return f[f.length-1]};a;){l="";k=!0;if(f.last()&&w[f.last()])a=a.replace(new RegExp("([\\W\\w]*)<\\s*\\/\\s*"+f.last()+"[^>]*>","i"),function(a,b){b=b.replace(H,"$1").replace(I,"$1");e.chars&&e.chars(q(b));return""}),c("",f.last());else{if(0===a.indexOf("\x3c!--"))b=a.indexOf("--",4),0<=b&&a.lastIndexOf("--\x3e",b)===b&&(e.comment&&
-e.comment(a.substring(4,b)),a=a.substring(b+3),k=!1);else if(x.test(a)){if(b=a.match(x))a=a.replace(b[0],""),k=!1}else if(J.test(a)){if(b=a.match(y))a=a.substring(b[0].length),b[0].replace(y,c),k=!1}else K.test(a)&&((b=a.match(z))?(b[4]&&(a=a.substring(b[0].length),b[0].replace(z,d)),k=!1):(l+="<",a=a.substring(1)));k&&(b=a.indexOf("<"),l+=0>b?a:a.substring(0,b),a=0>b?"":a.substring(b),e.chars&&e.chars(q(l)))}if(a==m)throw L("badparse",a);m=a}c()}function q(a){if(!a)return"";A.innerHTML=a.replace(/</g,
-"&lt;");return A.textContent}function B(a){return a.replace(/&/g,"&amp;").replace(M,function(a){var d=a.charCodeAt(0);a=a.charCodeAt(1);return"&#"+(1024*(d-55296)+(a-56320)+65536)+";"}).replace(N,function(a){return"&#"+a.charCodeAt(0)+";"}).replace(/</g,"&lt;").replace(/>/g,"&gt;")}function r(a,e){var d=!1,c=h.bind(a,a.push);return{start:function(a,k,f){a=h.lowercase(a);!d&&w[a]&&(d=a);d||!0!==C[a]||(c("<"),c(a),h.forEach(k,function(d,f){var k=h.lowercase(f),g="img"===a&&"src"===k||"background"===
-k;!0!==O[k]||!0===D[k]&&!e(d,g)||(c(" "),c(f),c('="'),c(B(d)),c('"'))}),c(f?"/>":">"))},end:function(a){a=h.lowercase(a);d||!0!==C[a]||(c("</"),c(a),c(">"));a==d&&(d=!1)},chars:function(a){d||c(B(a))}}}var L=h.$$minErr("$sanitize"),z=/^<((?:[a-zA-Z])[\w:-]*)((?:\s+[\w:-]+(?:\s*=\s*(?:(?:"[^"]*")|(?:'[^']*')|[^>\s]+))?)*)\s*(\/?)\s*(>?)/,y=/^<\/\s*([\w:-]+)[^>]*>/,G=/([\w:-]+)(?:\s*=\s*(?:(?:"((?:[^"])*)")|(?:'((?:[^'])*)')|([^>\s]+)))?/g,K=/^</,J=/^<\//,H=/\x3c!--(.*?)--\x3e/g,x=/<!DOCTYPE([^>]*?)>/i,
-I=/<!\[CDATA\[(.*?)]]\x3e/g,M=/[\uD800-\uDBFF][\uDC00-\uDFFF]/g,N=/([^\#-~| |!])/g,v=g("area,br,col,hr,img,wbr");n=g("colgroup,dd,dt,li,p,tbody,td,tfoot,th,thead,tr");p=g("rp,rt");var u=h.extend({},p,n),s=h.extend({},n,g("address,article,aside,blockquote,caption,center,del,dir,div,dl,figure,figcaption,footer,h1,h2,h3,h4,h5,h6,header,hgroup,hr,ins,map,menu,nav,ol,pre,script,section,table,ul")),t=h.extend({},p,g("a,abbr,acronym,b,bdi,bdo,big,br,cite,code,del,dfn,em,font,i,img,ins,kbd,label,map,mark,q,ruby,rp,rt,s,samp,small,span,strike,strong,sub,sup,time,tt,u,var"));
-n=g("animate,animateColor,animateMotion,animateTransform,circle,defs,desc,ellipse,font-face,font-face-name,font-face-src,g,glyph,hkern,image,linearGradient,line,marker,metadata,missing-glyph,mpath,path,polygon,polyline,radialGradient,rect,set,stop,svg,switch,text,title,tspan,use");var w=g("script,style"),C=h.extend({},v,s,t,u,n),D=g("background,cite,href,longdesc,src,usemap,xlink:href");n=g("abbr,align,alt,axis,bgcolor,border,cellpadding,cellspacing,class,clear,color,cols,colspan,compact,coords,dir,face,headers,height,hreflang,hspace,ismap,lang,language,nohref,nowrap,rel,rev,rows,rowspan,rules,scope,scrolling,shape,size,span,start,summary,target,title,type,valign,value,vspace,width");
-p=g("accent-height,accumulate,additive,alphabetic,arabic-form,ascent,attributeName,attributeType,baseProfile,bbox,begin,by,calcMode,cap-height,class,color,color-rendering,content,cx,cy,d,dx,dy,descent,display,dur,end,fill,fill-rule,font-family,font-size,font-stretch,font-style,font-variant,font-weight,from,fx,fy,g1,g2,glyph-name,gradientUnits,hanging,height,horiz-adv-x,horiz-origin-x,ideographic,k,keyPoints,keySplines,keyTimes,lang,marker-end,marker-mid,marker-start,markerHeight,markerUnits,markerWidth,mathematical,max,min,offset,opacity,orient,origin,overline-position,overline-thickness,panose-1,path,pathLength,points,preserveAspectRatio,r,refX,refY,repeatCount,repeatDur,requiredExtensions,requiredFeatures,restart,rotate,rx,ry,slope,stemh,stemv,stop-color,stop-opacity,strikethrough-position,strikethrough-thickness,stroke,stroke-dasharray,stroke-dashoffset,stroke-linecap,stroke-linejoin,stroke-miterlimit,stroke-opacity,stroke-width,systemLanguage,target,text-anchor,to,transform,type,u1,u2,underline-position,underline-thickness,unicode,unicode-range,units-per-em,values,version,viewBox,visibility,width,widths,x,x-height,x1,x2,xlink:actuate,xlink:arcrole,xlink:role,xlink:show,xlink:title,xlink:type,xml:base,xml:lang,xml:space,xmlns,xmlns:xlink,y,y1,y2,zoomAndPan");
-var O=h.extend({},D,p,n),A=document.createElement("pre");h.module("ngSanitize",[]).provider("$sanitize",function(){this.$get=["$$sanitizeUri",function(a){return function(e){var d=[];F(e,r(d,function(c,b){return!/^unsafe/.test(a(c,b))}));return d.join("")}}]});h.module("ngSanitize").filter("linky",["$sanitize",function(a){var e=/((ftp|https?):\/\/|(www\.)|(mailto:)?[A-Za-z0-9._%+-]+@)\S*[^\s.;,(){}<>"\u201d\u2019]/i,d=/^mailto:/i;return function(c,b){function k(a){a&&g.push(E(a))}function f(a,c){g.push("<a ");
-h.isDefined(b)&&g.push('target="',b,'" ');g.push('href="',a.replace(/"/g,"&quot;"),'">');k(c);g.push("</a>")}if(!c)return c;for(var m,l=c,g=[],n,p;m=l.match(e);)n=m[0],m[2]||m[4]||(n=(m[3]?"http://":"mailto:")+n),p=m.index,k(l.substr(0,p)),f(n,m[0].replace(d,"")),l=l.substring(p+m[0].length);k(l);return a(g.join(""))}}])})(window,window.angular);
-//# sourceMappingURL=angular-sanitize.min.js.map
-;//     Underscore.js 1.8.3
+m(0,!0)):"top"!==a.start&&(m(e(a.start).position().top,null,!0),a.alwaysVisible||c.hide());window.addEventListener?(this.addEventListener("DOMMouseScroll",v,!1),this.addEventListener("mousewheel",v,!1)):document.attachEvent("onmousewheel",v)}});return this}});e.fn.extend({slimscroll:e.fn.slimScroll})})(jQuery);;//     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 //     Underscore may be freely distributed under the MIT license.
@@ -6726,2546 +6409,7 @@ charts or filled areas).
  * @author Robert Fleischmann <rendro87@gmail.com> (http://robert-fleischmann.de)
  * @version 2.1.6
  **/
-!function(a,b){"object"==typeof exports?module.exports=b(require("angular")):"function"==typeof define&&define.amd?define(["angular"],b):b(a.angular)}(this,function(a){!function(a){"use strict";return a.module("easypiechart",[]).directive("easypiechart",[function(){return{restrict:"A",require:"?ngModel",scope:{percent:"=",options:"="},link:function(b,d){b.percent=b.percent||0;var e={barColor:"#ef1e25",trackColor:"#f9f9f9",scaleColor:"#dfe0e0",scaleLength:5,lineCap:"round",lineWidth:3,size:110,rotate:0,animate:{duration:1e3,enabled:!0}};b.options=a.extend(e,b.options);var f=new c(d[0],e);b.$watch("percent",function(a){f.update(a)})}}}])}(a);var b=function(a,b){var c,d=document.createElement("canvas");a.appendChild(d),"undefined"!=typeof G_vmlCanvasManager&&G_vmlCanvasManager.initElement(d);var e=d.getContext("2d");d.width=d.height=b.size;var f=1;window.devicePixelRatio>1&&(f=window.devicePixelRatio,d.style.width=d.style.height=[b.size,"px"].join(""),d.width=d.height=b.size*f,e.scale(f,f)),e.translate(b.size/2,b.size/2),e.rotate((-0.5+b.rotate/180)*Math.PI);var g=(b.size-b.lineWidth)/2;b.scaleColor&&b.scaleLength&&(g-=b.scaleLength+2),Date.now=Date.now||function(){return+new Date};var h=function(a,b,c){c=Math.min(Math.max(-1,c||0),1);var d=0>=c?!0:!1;e.beginPath(),e.arc(0,0,g,0,2*Math.PI*c,d),e.strokeStyle=a,e.lineWidth=b,e.stroke()},i=function(){var a,c;e.lineWidth=1,e.fillStyle=b.scaleColor,e.save();for(var d=24;d>0;--d)d%6===0?(c=b.scaleLength,a=0):(c=.6*b.scaleLength,a=b.scaleLength-c),e.fillRect(-b.size/2+a,0,c,1),e.rotate(Math.PI/12);e.restore()},j=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(a){window.setTimeout(a,1e3/60)}}(),k=function(){b.scaleColor&&i(),b.trackColor&&h(b.trackColor,b.trackWidth||b.lineWidth,1)};this.getCanvas=function(){return d},this.getCtx=function(){return e},this.clear=function(){e.clearRect(b.size/-2,b.size/-2,b.size,b.size)},this.draw=function(a){b.scaleColor||b.trackColor?e.getImageData&&e.putImageData?c?e.putImageData(c,0,0):(k(),c=e.getImageData(0,0,b.size*f,b.size*f)):(this.clear(),k()):this.clear(),e.lineCap=b.lineCap;var d;d="function"==typeof b.barColor?b.barColor(a):b.barColor,h(d,b.lineWidth,a/100)}.bind(this),this.animate=function(a,c){var d=Date.now();b.onStart(a,c);var e=function(){var f=Math.min(Date.now()-d,b.animate.duration),g=b.easing(this,f,a,c-a,b.animate.duration);this.draw(g),b.onStep(a,c,g),f>=b.animate.duration?b.onStop(a,c):j(e)}.bind(this);j(e)}.bind(this)},c=function(a,c){var d={barColor:"#ef1e25",trackColor:"#f9f9f9",scaleColor:"#dfe0e0",scaleLength:5,lineCap:"round",lineWidth:3,trackWidth:void 0,size:110,rotate:0,animate:{duration:1e3,enabled:!0},easing:function(a,b,c,d,e){return b/=e/2,1>b?d/2*b*b+c:-d/2*(--b*(b-2)-1)+c},onStart:function(){},onStep:function(){},onStop:function(){}};if("undefined"!=typeof b)d.renderer=b;else{if("undefined"==typeof SVGRenderer)throw new Error("Please load either the SVG- or the CanvasRenderer");d.renderer=SVGRenderer}var e={},f=0,g=function(){this.el=a,this.options=e;for(var b in d)d.hasOwnProperty(b)&&(e[b]=c&&"undefined"!=typeof c[b]?c[b]:d[b],"function"==typeof e[b]&&(e[b]=e[b].bind(this)));e.easing="string"==typeof e.easing&&"undefined"!=typeof jQuery&&jQuery.isFunction(jQuery.easing[e.easing])?jQuery.easing[e.easing]:d.easing,"number"==typeof e.animate&&(e.animate={duration:e.animate,enabled:!0}),"boolean"!=typeof e.animate||e.animate||(e.animate={duration:1e3,enabled:e.animate}),this.renderer=new e.renderer(a,e),this.renderer.draw(f),a.dataset&&a.dataset.percent?this.update(parseFloat(a.dataset.percent)):a.getAttribute&&a.getAttribute("data-percent")&&this.update(parseFloat(a.getAttribute("data-percent")))}.bind(this);this.update=function(a){return a=parseFloat(a),e.animate.enabled?this.renderer.animate(f,a):this.renderer.draw(a),f=a,this}.bind(this),this.disableAnimation=function(){return e.animate.enabled=!1,this},this.enableAnimation=function(){return e.animate.enabled=!0,this},g()}});;/**
- * Easy to use Wizard library for AngularJS
- * @version v0.4.2 - 2015-04-03 * @link https://github.com/mgonto/angular-wizard
- * @author Martin Gontovnikas <martin@gon.to>
- * @license MIT License, http://www.opensource.org/licenses/MIT
- */
-angular.module('templates-angularwizard', ['step.html', 'wizard.html']);
-
-angular.module("step.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("step.html",
-    "<section ng-show=\"selected\" ng-class=\"{current: selected, done: completed}\" class=\"step\" ng-transclude>\n" +
-    "</section>");
-}]);
-
-angular.module("wizard.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("wizard.html",
-    "<div>\n" +
-    "    <div class=\"steps\" ng-transclude></div>\n" +
-    "    <ul class=\"steps-indicator steps-{{steps.length}}\" ng-if=\"!hideIndicators\">\n" +
-    "      <li ng-class=\"{default: !step.completed && !step.selected, current: step.selected && !step.completed, done: step.completed && !step.selected, editing: step.selected && step.completed}\" ng-repeat=\"step in steps\">\n" +
-    "        <a ng-click=\"goTo(step)\">{{step.title || step.wzTitle}}</a>\n" +
-    "      </li>\n" +
-    "    </ul>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module('mgo-angular-wizard', ['templates-angularwizard']);
-
-angular.module('mgo-angular-wizard').directive('wzStep', function() {
-    return {
-        restrict: 'EA',
-        replace: true,
-        transclude: true,
-        scope: {
-            wzTitle: '@',
-            title: '@',
-            canenter : '=',
-            canexit : '='
-        },
-        require: '^wizard',
-        templateUrl: function(element, attributes) {
-          return attributes.template || "step.html";
-        },
-        link: function($scope, $element, $attrs, wizard) {
-            $scope.title = $scope.title || $scope.wzTitle;
-            wizard.addStep($scope);
-        }
-    };
-});
-
-//wizard directive
-angular.module('mgo-angular-wizard').directive('wizard', function() {
-    return {
-        restrict: 'EA',
-        replace: true,
-        transclude: true,
-        scope: {
-            currentStep: '=',
-            onFinish: '&',
-            hideIndicators: '=',
-            editMode: '=',
-            name: '@'
-        },
-        templateUrl: function(element, attributes) {
-            return attributes.template || "wizard.html";
-        },
-
-        //controller for wizard directive, treat this just like an angular controller
-        controller: ['$scope', '$element', '$log', 'WizardHandler', function($scope, $element, $log, WizardHandler) {
-            //this variable allows directive to load without having to pass any step validation
-            var firstRun = true;
-            //creating instance of wizard, passing this as second argument allows access to functions attached to this via Service
-            WizardHandler.addWizard($scope.name || WizardHandler.defaultName, this);
-
-            $scope.$on('$destroy', function() {
-                WizardHandler.removeWizard($scope.name || WizardHandler.defaultName);
-            });
-
-            //steps array where all the scopes of each step are added
-            $scope.steps = [];
-
-            //access to context object for step validation
-            $scope.context = {};
-
-            //watching changes to currentStep
-            $scope.$watch('currentStep', function(step) {
-                //checking to make sure currentStep is truthy value
-                if (!step) return;
-                //setting stepTitle equal to current step title or default title
-                var stepTitle = $scope.selectedStep.title || $scope.selectedStep.wzTitle;
-                if ($scope.selectedStep && stepTitle !== $scope.currentStep) {
-                    //invoking goTo() with step title as argument
-                    $scope.goTo(_.findWhere($scope.steps, {title: $scope.currentStep}));
-                }
-
-            });
-
-            //watching steps array length and editMode value, if edit module is undefined or null the nothing is done
-            //if edit mode is truthy, then all steps are marked as completed
-            $scope.$watch('[editMode, steps.length]', function() {
-                var editMode = $scope.editMode;
-                if (_.isUndefined(editMode) || _.isNull(editMode)) return;
-
-                if (editMode) {
-                    _.each($scope.steps, function(step) {
-                        step.completed = true;
-                    });
-                }
-            }, true);
-
-            //called each time step directive is loaded
-            this.addStep = function(step) {
-                //pushing the scope of directive onto step array
-                $scope.steps.push(step);
-                //if this is first step being pushed then goTo that first step
-                if ($scope.steps.length === 1) {
-                    //goTo first step
-                    $scope.goTo($scope.steps[0]);
-                }
-            };
-
-            this.context = $scope.context;
-
-            $scope.getStepNumber = function(step) {
-                return _.indexOf($scope.steps, step) + 1;
-            };
-
-            $scope.goTo = function(step) {
-                //if this is the first time the wizard is loading it bi-passes step validation
-                if(firstRun){
-                    //deselect all steps so you can set fresh below
-                    unselectAll();
-                    $scope.selectedStep = step;
-                    //making sure current step is not undefined
-                    if (!_.isUndefined($scope.currentStep)) {
-                        $scope.currentStep = step.title || step.wzTitle;
-                    }
-                    //setting selected step to argument passed into goTo()
-                    step.selected = true;
-                    //emit event upwards with data on goTo() invoktion
-                    $scope.$emit('wizard:stepChanged', {step: step, index: _.indexOf($scope.steps , step)});
-                    //setting variable to false so all other step changes must pass validation
-                    firstRun = false;
-                } else {
-                    //createing variables to capture current state that goTo() was invoked from and allow booleans
-                    var thisStep;
-                    var exitallowed = false;
-                    var enterallowed = false;
-                    //getting data for step you are transitioning out of
-                    if($scope.currentStepNumber() > 0){
-                        thisStep = $scope.currentStepNumber() - 1;
-                    } else if ($scope.currentStepNumber() === 0){
-                        thisStep = 0;
-                    }
-                    //$log.log('steps[thisStep] Data: ', $scope.steps[thisStep].canexit);
-                    if(typeof($scope.steps[thisStep].canexit) === 'undefined' || $scope.steps[thisStep].canexit($scope.context) === true){
-                        exitallowed = true;
-                    }
-                    if($scope.getStepNumber(step) < $scope.currentStepNumber()){
-                        exitallowed = true;
-                    }
-                    if(exitallowed && step.canenter === undefined || exitallowed && step.canenter($scope.context) === true){
-                        enterallowed = true;
-                    }
-
-                    if(exitallowed && enterallowed){
-                        //deselect all steps so you can set fresh below
-                        unselectAll();
-
-                        //$log.log('value for canExit argument: ', $scope.currentStep.canexit);
-                        $scope.selectedStep = step;
-                        //making sure current step is not undefined
-                        if (!_.isUndefined($scope.currentStep)) {
-                            $scope.currentStep = step.title || step.wzTitle;
-                        }
-                        //setting selected step to argument passed into goTo()
-                        step.selected = true;
-                        //emit event upwards with data on goTo() invoktion
-                        $scope.$emit('wizard:stepChanged', {step: step, index: _.indexOf($scope.steps , step)});
-                        //$log.log('current step number: ', $scope.currentStepNumber());
-                    } else {
-                        return;
-                    }
-                }
-            };
-
-            $scope.currentStepNumber = function() {
-                //retreive current step number
-                return _.indexOf($scope.steps , $scope.selectedStep) + 1;
-            };
-
-            //unSelect All Steps
-            function unselectAll() {
-                //traverse steps array and set each "selected" property to false
-                _.each($scope.steps, function (step) {
-                    step.selected = false;
-                });
-                //set selectedStep variable to null
-                $scope.selectedStep = null;
-            }
-
-            //ALL METHODS ATTACHED TO this ARE ACCESSIBLE VIA WizardHandler.wizard().methodName()
-
-            //Access to current step number from outside
-            this.currentStepNumber = function(){
-                return $scope.currentStepNumber();
-            };
-            //method used for next button within step
-            this.next = function(callback) {
-                //setting variable equal to step  you were on when next() was invoked
-                var index = _.indexOf($scope.steps , $scope.selectedStep);
-                //checking to see if callback is a function
-                if(angular.isFunction(callback)){
-                   if(callback()){
-                        if (index === $scope.steps.length - 1) {
-                            this.finish();
-                        } else {
-                            //invoking goTo() with step number next in line
-                            $scope.goTo($scope.steps[index + 1]);
-                        }
-                   } else {
-                        return;
-                   }
-                }
-                if (!callback) {
-                    //completed property set on scope which is used to add class/remove class from progress bar
-                    $scope.selectedStep.completed = true;
-                }
-                //checking to see if this is the last step.  If it is next behaves the same as finish()
-                if (index === $scope.steps.length - 1) {
-                    this.finish();
-                } else {
-                    //invoking goTo() with step number next in line
-                    $scope.goTo($scope.steps[index + 1]);
-                }
-                
-            };
-
-            //used to traverse to any step, step number placed as argument
-            this.goTo = function(step) {
-                var stepTo;
-                //checking that step is a Number
-                if (_.isNumber(step)) {
-                    stepTo = $scope.steps[step];
-                } else {
-                    //finding the step associated with the title entered as goTo argument
-                    stepTo = _.findWhere($scope.steps, {title: step});
-                }
-                //going to step
-                $scope.goTo(stepTo);
-            };
-
-            //calls finish() which calls onFinish() which is declared on an attribute and linked to controller via wizard directive.
-            this.finish = function() {
-                if ($scope.onFinish) {
-                    $scope.onFinish();
-                }
-            };
-
-            //cancel is alias for previous.
-            this.cancel = this.previous = function() {
-                //getting index of current step
-                var index = _.indexOf($scope.steps , $scope.selectedStep);
-                //ensuring you aren't trying to go back from the first step
-                if (index === 0) {
-                    throw new Error("Can't go back. It's already in step 0");
-                } else {
-                    //go back one step from current step
-                    $scope.goTo($scope.steps[index - 1]);
-                }
-            };
-        }]
-    };
-});
-
-function wizardButtonDirective(action) {
-    angular.module('mgo-angular-wizard')
-        .directive(action, function() {
-            return {
-                restrict: 'A',
-                replace: false,
-                require: '^wizard',
-                link: function($scope, $element, $attrs, wizard) {
-
-                    $element.on("click", function(e) {
-                        e.preventDefault();
-                        $scope.$apply(function() {
-                            $scope.$eval($attrs[action]);
-                            wizard[action.replace("wz", "").toLowerCase()]();
-                        });
-                    });
-                }
-            };
-        });
-}
-
-wizardButtonDirective('wzNext');
-wizardButtonDirective('wzPrevious');
-wizardButtonDirective('wzFinish');
-wizardButtonDirective('wzCancel');
-
-angular.module('mgo-angular-wizard').factory('WizardHandler', function() {
-   var service = {};
-   
-   var wizards = {};
-   
-   service.defaultName = "defaultWizard";
-   
-   service.addWizard = function(name, wizard) {
-       wizards[name] = wizard;
-   };
-   
-   service.removeWizard = function(name) {
-       delete wizards[name];
-   };
-   
-   service.wizard = function(name) {
-       var nameToUse = name;
-       if (!name) {
-           nameToUse = service.defaultName;
-       }
-       
-       return wizards[nameToUse];
-   };
-   
-   return service;
-});
-;/**
- * Rangy, a cross-browser JavaScript range and selection library
- * https://github.com/timdown/rangy
- *
- * Copyright 2015, Tim Down
- * Licensed under the MIT license.
- * Version: 1.3.0
- * Build date: 10 May 2015
- */
-!function(e,t){"function"==typeof define&&define.amd?define(e):"undefined"!=typeof module&&"object"==typeof exports?module.exports=e():t.rangy=e()}(function(){function e(e,t){var n=typeof e[t];return n==N||!(n!=C||!e[t])||"unknown"==n}function t(e,t){return!(typeof e[t]!=C||!e[t])}function n(e,t){return typeof e[t]!=E}function r(e){return function(t,n){for(var r=n.length;r--;)if(!e(t,n[r]))return!1;return!0}}function o(e){return e&&O(e,T)&&D(e,w)}function i(e){return t(e,"body")?e.body:e.getElementsByTagName("body")[0]}function a(t){typeof console!=E&&e(console,"log")&&console.log(t)}function s(e,t){b&&t?alert(e):a(e)}function c(e){I.initialized=!0,I.supported=!1,s("Rangy is not supported in this environment. Reason: "+e,I.config.alertOnFail)}function d(e){s("Rangy warning: "+e,I.config.alertOnWarn)}function f(e){return e.message||e.description||String(e)}function u(){if(b&&!I.initialized){var t,n=!1,r=!1;e(document,"createRange")&&(t=document.createRange(),O(t,y)&&D(t,S)&&(n=!0));var s=i(document);if(!s||"body"!=s.nodeName.toLowerCase())return void c("No body element found");if(s&&e(s,"createTextRange")&&(t=s.createTextRange(),o(t)&&(r=!0)),!n&&!r)return void c("Neither Range nor TextRange are available");I.initialized=!0,I.features={implementsDomRange:n,implementsTextRange:r};var d,u;for(var l in x)(d=x[l])instanceof p&&d.init(d,I);for(var h=0,g=M.length;g>h;++h)try{M[h](I)}catch(m){u="Rangy init listener threw an exception. Continuing. Detail: "+f(m),a(u)}}}function l(e,t,n){n&&(e+=" in module "+n.name),I.warn("DEPRECATED: "+e+" is deprecated. Please use "+t+" instead.")}function h(e,t,n,r){e[t]=function(){return l(t,n,r),e[n].apply(e,P.toArray(arguments))}}function g(e){e=e||window,u();for(var t=0,n=k.length;n>t;++t)k[t](e)}function p(e,t,n){this.name=e,this.dependencies=t,this.initialized=!1,this.supported=!1,this.initializer=n}function m(e,t,n){var r=new p(e,t,function(t){if(!t.initialized){t.initialized=!0;try{n(I,t),t.supported=!0}catch(r){var o="Module '"+e+"' failed to load: "+f(r);a(o),r.stack&&a(r.stack)}}});return x[e]=r,r}function R(){}function v(){}var C="object",N="function",E="undefined",S=["startContainer","startOffset","endContainer","endOffset","collapsed","commonAncestorContainer"],y=["setStart","setStartBefore","setStartAfter","setEnd","setEndBefore","setEndAfter","collapse","selectNode","selectNodeContents","compareBoundaryPoints","deleteContents","extractContents","cloneContents","insertNode","surroundContents","cloneRange","toString","detach"],w=["boundingHeight","boundingLeft","boundingTop","boundingWidth","htmlText","text"],T=["collapse","compareEndPoints","duplicate","moveToElementText","parentElement","select","setEndPoint","getBoundingClientRect"],O=r(e),_=r(t),D=r(n),A=[].forEach?function(e,t){e.forEach(t)}:function(e,t){for(var n=0,r=e.length;r>n;++n)t(e[n],n)},x={},b=typeof window!=E&&typeof document!=E,P={isHostMethod:e,isHostObject:t,isHostProperty:n,areHostMethods:O,areHostObjects:_,areHostProperties:D,isTextRange:o,getBody:i,forEach:A},I={version:"1.3.0",initialized:!1,isBrowser:b,supported:!0,util:P,features:{},modules:x,config:{alertOnFail:!1,alertOnWarn:!1,preferTextRange:!1,autoInitialize:typeof rangyAutoInitialize==E?!0:rangyAutoInitialize}};I.fail=c,I.warn=d;var B;({}).hasOwnProperty?(P.extend=B=function(e,t,n){var r,o;for(var i in t)t.hasOwnProperty(i)&&(r=e[i],o=t[i],n&&null!==r&&"object"==typeof r&&null!==o&&"object"==typeof o&&B(r,o,!0),e[i]=o);return t.hasOwnProperty("toString")&&(e.toString=t.toString),e},P.createOptions=function(e,t){var n={};return B(n,t),e&&B(n,e),n}):c("hasOwnProperty not supported"),b||c("Rangy can only run in a browser"),function(){var e;if(b){var t=document.createElement("div");t.appendChild(document.createElement("span"));var n=[].slice;try{1==n.call(t.childNodes,0)[0].nodeType&&(e=function(e){return n.call(e,0)})}catch(r){}}e||(e=function(e){for(var t=[],n=0,r=e.length;r>n;++n)t[n]=e[n];return t}),P.toArray=e}();var H;b&&(e(document,"addEventListener")?H=function(e,t,n){e.addEventListener(t,n,!1)}:e(document,"attachEvent")?H=function(e,t,n){e.attachEvent("on"+t,n)}:c("Document does not have required addEventListener or attachEvent method"),P.addListener=H);var M=[];P.deprecationNotice=l,P.createAliasForDeprecatedMethod=h,I.init=u,I.addInitListener=function(e){I.initialized?e(I):M.push(e)};var k=[];I.addShimListener=function(e){k.push(e)},b&&(I.shim=I.createMissingNativeApi=g,h(I,"createMissingNativeApi","shim")),p.prototype={init:function(){for(var e,t,n=this.dependencies||[],r=0,o=n.length;o>r;++r){if(t=n[r],e=x[t],!(e&&e instanceof p))throw new Error("required module '"+t+"' not found");if(e.init(),!e.supported)throw new Error("required module '"+t+"' not supported")}this.initializer(this)},fail:function(e){throw this.initialized=!0,this.supported=!1,new Error(e)},warn:function(e){I.warn("Module "+this.name+": "+e)},deprecationNotice:function(e,t){I.warn("DEPRECATED: "+e+" in module "+this.name+" is deprecated. Please use "+t+" instead")},createError:function(e){return new Error("Error in Rangy "+this.name+" module: "+e)}},I.createModule=function(e){var t,n;2==arguments.length?(t=arguments[1],n=[]):(t=arguments[2],n=arguments[1]);var r=m(e,n,t);I.initialized&&I.supported&&r.init()},I.createCoreModule=function(e,t,n){m(e,t,n)},I.RangePrototype=R,I.rangePrototype=new R,I.selectionPrototype=new v,I.createCoreModule("DomUtil",[],function(e,t){function n(e){var t;return typeof e.namespaceURI==b||null===(t=e.namespaceURI)||"http://www.w3.org/1999/xhtml"==t}function r(e){var t=e.parentNode;return 1==t.nodeType?t:null}function o(e){for(var t=0;e=e.previousSibling;)++t;return t}function i(e){switch(e.nodeType){case 7:case 10:return 0;case 3:case 8:return e.length;default:return e.childNodes.length}}function a(e,t){var n,r=[];for(n=e;n;n=n.parentNode)r.push(n);for(n=t;n;n=n.parentNode)if(M(r,n))return n;return null}function s(e,t,n){for(var r=n?t:t.parentNode;r;){if(r===e)return!0;r=r.parentNode}return!1}function c(e,t){return s(e,t,!0)}function d(e,t,n){for(var r,o=n?e:e.parentNode;o;){if(r=o.parentNode,r===t)return o;o=r}return null}function f(e){var t=e.nodeType;return 3==t||4==t||8==t}function u(e){if(!e)return!1;var t=e.nodeType;return 3==t||8==t}function l(e,t){var n=t.nextSibling,r=t.parentNode;return n?r.insertBefore(e,n):r.appendChild(e),e}function h(e,t,n){var r=e.cloneNode(!1);if(r.deleteData(0,t),e.deleteData(t,e.length-t),l(r,e),n)for(var i,a=0;i=n[a++];)i.node==e&&i.offset>t?(i.node=r,i.offset-=t):i.node==e.parentNode&&i.offset>o(e)&&++i.offset;return r}function g(e){if(9==e.nodeType)return e;if(typeof e.ownerDocument!=b)return e.ownerDocument;if(typeof e.document!=b)return e.document;if(e.parentNode)return g(e.parentNode);throw t.createError("getDocument: no document found for node")}function p(e){var n=g(e);if(typeof n.defaultView!=b)return n.defaultView;if(typeof n.parentWindow!=b)return n.parentWindow;throw t.createError("Cannot get a window object for node")}function m(e){if(typeof e.contentDocument!=b)return e.contentDocument;if(typeof e.contentWindow!=b)return e.contentWindow.document;throw t.createError("getIframeDocument: No Document object found for iframe element")}function R(e){if(typeof e.contentWindow!=b)return e.contentWindow;if(typeof e.contentDocument!=b)return e.contentDocument.defaultView;throw t.createError("getIframeWindow: No Window object found for iframe element")}function v(e){return e&&P.isHostMethod(e,"setTimeout")&&P.isHostObject(e,"document")}function C(e,t,n){var r;if(e?P.isHostProperty(e,"nodeType")?r=1==e.nodeType&&"iframe"==e.tagName.toLowerCase()?m(e):g(e):v(e)&&(r=e.document):r=document,!r)throw t.createError(n+"(): Parameter must be a Window object or DOM node");return r}function N(e){for(var t;t=e.parentNode;)e=t;return e}function E(e,n,r,i){var s,c,f,u,l;if(e==r)return n===i?0:i>n?-1:1;if(s=d(r,e,!0))return n<=o(s)?-1:1;if(s=d(e,r,!0))return o(s)<i?-1:1;if(c=a(e,r),!c)throw new Error("comparePoints error: nodes have no common ancestor");if(f=e===c?c:d(e,c,!0),u=r===c?c:d(r,c,!0),f===u)throw t.createError("comparePoints got to case 4 and childA and childB are the same!");for(l=c.firstChild;l;){if(l===f)return-1;if(l===u)return 1;l=l.nextSibling}}function S(e){var t;try{return t=e.parentNode,!1}catch(n){return!0}}function y(e){if(!e)return"[No node]";if(k&&S(e))return"[Broken node]";if(f(e))return'"'+e.data+'"';if(1==e.nodeType){var t=e.id?' id="'+e.id+'"':"";return"<"+e.nodeName+t+">[index:"+o(e)+",length:"+e.childNodes.length+"]["+(e.innerHTML||"[innerHTML not supported]").slice(0,25)+"]"}return e.nodeName}function w(e){for(var t,n=g(e).createDocumentFragment();t=e.firstChild;)n.appendChild(t);return n}function T(e,t,n){var r=I(e),o=e.createElement("div");o.contentEditable=""+!!n,t&&(o.innerHTML=t);var i=r.firstChild;return i?r.insertBefore(o,i):r.appendChild(o),o}function O(e){return e.parentNode.removeChild(e)}function _(e){this.root=e,this._next=e}function D(e){return new _(e)}function A(e,t){this.node=e,this.offset=t}function x(e){this.code=this[e],this.codeName=e,this.message="DOMException: "+this.codeName}var b="undefined",P=e.util,I=P.getBody;P.areHostMethods(document,["createDocumentFragment","createElement","createTextNode"])||t.fail("document missing a Node creation method"),P.isHostMethod(document,"getElementsByTagName")||t.fail("document missing getElementsByTagName method");var B=document.createElement("div");P.areHostMethods(B,["insertBefore","appendChild","cloneNode"]||!P.areHostObjects(B,["previousSibling","nextSibling","childNodes","parentNode"]))||t.fail("Incomplete Element implementation"),P.isHostProperty(B,"innerHTML")||t.fail("Element is missing innerHTML property");var H=document.createTextNode("test");P.areHostMethods(H,["splitText","deleteData","insertData","appendData","cloneNode"]||!P.areHostObjects(B,["previousSibling","nextSibling","childNodes","parentNode"])||!P.areHostProperties(H,["data"]))||t.fail("Incomplete Text Node implementation");var M=function(e,t){for(var n=e.length;n--;)if(e[n]===t)return!0;return!1},k=!1;!function(){var t=document.createElement("b");t.innerHTML="1";var n=t.firstChild;t.innerHTML="<br />",k=S(n),e.features.crashyTextNodes=k}();var L;typeof window.getComputedStyle!=b?L=function(e,t){return p(e).getComputedStyle(e,null)[t]}:typeof document.documentElement.currentStyle!=b?L=function(e,t){return e.currentStyle?e.currentStyle[t]:""}:t.fail("No means of obtaining computed style properties found"),_.prototype={_current:null,hasNext:function(){return!!this._next},next:function(){var e,t,n=this._current=this._next;if(this._current)if(e=n.firstChild)this._next=e;else{for(t=null;n!==this.root&&!(t=n.nextSibling);)n=n.parentNode;this._next=t}return this._current},detach:function(){this._current=this._next=this.root=null}},A.prototype={equals:function(e){return!!e&&this.node===e.node&&this.offset==e.offset},inspect:function(){return"[DomPosition("+y(this.node)+":"+this.offset+")]"},toString:function(){return this.inspect()}},x.prototype={INDEX_SIZE_ERR:1,HIERARCHY_REQUEST_ERR:3,WRONG_DOCUMENT_ERR:4,NO_MODIFICATION_ALLOWED_ERR:7,NOT_FOUND_ERR:8,NOT_SUPPORTED_ERR:9,INVALID_STATE_ERR:11,INVALID_NODE_TYPE_ERR:24},x.prototype.toString=function(){return this.message},e.dom={arrayContains:M,isHtmlNamespace:n,parentElement:r,getNodeIndex:o,getNodeLength:i,getCommonAncestor:a,isAncestorOf:s,isOrIsAncestorOf:c,getClosestAncestorIn:d,isCharacterDataNode:f,isTextOrCommentNode:u,insertAfter:l,splitDataNode:h,getDocument:g,getWindow:p,getIframeWindow:R,getIframeDocument:m,getBody:I,isWindow:v,getContentDocument:C,getRootContainer:N,comparePoints:E,isBrokenNode:S,inspectNode:y,getComputedStyleProperty:L,createTestElement:T,removeNode:O,fragmentFromNodeChildren:w,createIterator:D,DomPosition:A},e.DOMException=x}),I.createCoreModule("DomRange",["DomUtil"],function(e){function t(e,t){return 3!=e.nodeType&&(F(e,t.startContainer)||F(e,t.endContainer))}function n(e){return e.document||j(e.startContainer)}function r(e){return Q(e.startContainer)}function o(e){return new M(e.parentNode,W(e))}function i(e){return new M(e.parentNode,W(e)+1)}function a(e,t,n){var r=11==e.nodeType?e.firstChild:e;return L(t)?n==t.length?B.insertAfter(e,t):t.parentNode.insertBefore(e,0==n?t:U(t,n)):n>=t.childNodes.length?t.appendChild(e):t.insertBefore(e,t.childNodes[n]),r}function s(e,t,r){if(w(e),w(t),n(t)!=n(e))throw new k("WRONG_DOCUMENT_ERR");var o=z(e.startContainer,e.startOffset,t.endContainer,t.endOffset),i=z(e.endContainer,e.endOffset,t.startContainer,t.startOffset);return r?0>=o&&i>=0:0>o&&i>0}function c(e){for(var t,r,o,i=n(e.range).createDocumentFragment();r=e.next();){if(t=e.isPartiallySelectedSubtree(),r=r.cloneNode(!t),t&&(o=e.getSubtreeIterator(),r.appendChild(c(o)),o.detach()),10==r.nodeType)throw new k("HIERARCHY_REQUEST_ERR");i.appendChild(r)}return i}function d(e,t,n){var r,o;n=n||{stop:!1};for(var i,a;i=e.next();)if(e.isPartiallySelectedSubtree()){if(t(i)===!1)return void(n.stop=!0);if(a=e.getSubtreeIterator(),d(a,t,n),a.detach(),n.stop)return}else for(r=B.createIterator(i);o=r.next();)if(t(o)===!1)return void(n.stop=!0)}function f(e){for(var t;e.next();)e.isPartiallySelectedSubtree()?(t=e.getSubtreeIterator(),f(t),t.detach()):e.remove()}function u(e){for(var t,r,o=n(e.range).createDocumentFragment();t=e.next();){if(e.isPartiallySelectedSubtree()?(t=t.cloneNode(!1),r=e.getSubtreeIterator(),t.appendChild(u(r)),r.detach()):e.remove(),10==t.nodeType)throw new k("HIERARCHY_REQUEST_ERR");o.appendChild(t)}return o}function l(e,t,n){var r,o=!(!t||!t.length),i=!!n;o&&(r=new RegExp("^("+t.join("|")+")$"));var a=[];return d(new g(e,!1),function(t){if(!(o&&!r.test(t.nodeType)||i&&!n(t))){var s=e.startContainer;if(t!=s||!L(s)||e.startOffset!=s.length){var c=e.endContainer;t==c&&L(c)&&0==e.endOffset||a.push(t)}}}),a}function h(e){var t="undefined"==typeof e.getName?"Range":e.getName();return"["+t+"("+B.inspectNode(e.startContainer)+":"+e.startOffset+", "+B.inspectNode(e.endContainer)+":"+e.endOffset+")]"}function g(e,t){if(this.range=e,this.clonePartiallySelectedTextNodes=t,!e.collapsed){this.sc=e.startContainer,this.so=e.startOffset,this.ec=e.endContainer,this.eo=e.endOffset;var n=e.commonAncestorContainer;this.sc===this.ec&&L(this.sc)?(this.isSingleCharacterDataNode=!0,this._first=this._last=this._next=this.sc):(this._first=this._next=this.sc!==n||L(this.sc)?V(this.sc,n,!0):this.sc.childNodes[this.so],this._last=this.ec!==n||L(this.ec)?V(this.ec,n,!0):this.ec.childNodes[this.eo-1])}}function p(e){return function(t,n){for(var r,o=n?t:t.parentNode;o;){if(r=o.nodeType,Y(e,r))return o;o=o.parentNode}return null}}function m(e,t){if(rt(e,t))throw new k("INVALID_NODE_TYPE_ERR")}function R(e,t){if(!Y(t,e.nodeType))throw new k("INVALID_NODE_TYPE_ERR")}function v(e,t){if(0>t||t>(L(e)?e.length:e.childNodes.length))throw new k("INDEX_SIZE_ERR")}function C(e,t){if(tt(e,!0)!==tt(t,!0))throw new k("WRONG_DOCUMENT_ERR")}function N(e){if(nt(e,!0))throw new k("NO_MODIFICATION_ALLOWED_ERR")}function E(e,t){if(!e)throw new k(t)}function S(e,t){return t<=(L(e)?e.length:e.childNodes.length)}function y(e){return!!e.startContainer&&!!e.endContainer&&!(G&&(B.isBrokenNode(e.startContainer)||B.isBrokenNode(e.endContainer)))&&Q(e.startContainer)==Q(e.endContainer)&&S(e.startContainer,e.startOffset)&&S(e.endContainer,e.endOffset)}function w(e){if(!y(e))throw new Error("Range error: Range is not valid. This usually happens after DOM mutation. Range: ("+e.inspect()+")")}function T(e,t){w(e);var n=e.startContainer,r=e.startOffset,o=e.endContainer,i=e.endOffset,a=n===o;L(o)&&i>0&&i<o.length&&U(o,i,t),L(n)&&r>0&&r<n.length&&(n=U(n,r,t),a?(i-=r,o=n):o==n.parentNode&&i>=W(n)&&i++,r=0),e.setStartAndEnd(n,r,o,i)}function O(e){w(e);var t=e.commonAncestorContainer.parentNode.cloneNode(!1);return t.appendChild(e.cloneContents()),t.innerHTML}function _(e){e.START_TO_START=dt,e.START_TO_END=ft,e.END_TO_END=ut,e.END_TO_START=lt,e.NODE_BEFORE=ht,e.NODE_AFTER=gt,e.NODE_BEFORE_AND_AFTER=pt,e.NODE_INSIDE=mt}function D(e){_(e),_(e.prototype)}function A(e,t){return function(){w(this);var n,r,o=this.startContainer,a=this.startOffset,s=this.commonAncestorContainer,c=new g(this,!0);o!==s&&(n=V(o,s,!0),r=i(n),o=r.node,a=r.offset),d(c,N),c.reset();var f=e(c);return c.detach(),t(this,o,a,o,a),f}}function x(n,r){function a(e,t){return function(n){R(n,Z),R(Q(n),$);var r=(e?o:i)(n);(t?s:c)(this,r.node,r.offset)}}function s(e,t,n){var o=e.endContainer,i=e.endOffset;(t!==e.startContainer||n!==e.startOffset)&&((Q(t)!=Q(o)||1==z(t,n,o,i))&&(o=t,i=n),r(e,t,n,o,i))}function c(e,t,n){var o=e.startContainer,i=e.startOffset;(t!==e.endContainer||n!==e.endOffset)&&((Q(t)!=Q(o)||-1==z(t,n,o,i))&&(o=t,i=n),r(e,o,i,t,n))}var d=function(){};d.prototype=e.rangePrototype,n.prototype=new d,H.extend(n.prototype,{setStart:function(e,t){m(e,!0),v(e,t),s(this,e,t)},setEnd:function(e,t){m(e,!0),v(e,t),c(this,e,t)},setStartAndEnd:function(){var e=arguments,t=e[0],n=e[1],o=t,i=n;switch(e.length){case 3:i=e[2];break;case 4:o=e[2],i=e[3]}r(this,t,n,o,i)},setBoundary:function(e,t,n){this["set"+(n?"Start":"End")](e,t)},setStartBefore:a(!0,!0),setStartAfter:a(!1,!0),setEndBefore:a(!0,!1),setEndAfter:a(!1,!1),collapse:function(e){w(this),e?r(this,this.startContainer,this.startOffset,this.startContainer,this.startOffset):r(this,this.endContainer,this.endOffset,this.endContainer,this.endOffset)},selectNodeContents:function(e){m(e,!0),r(this,e,0,e,q(e))},selectNode:function(e){m(e,!1),R(e,Z);var t=o(e),n=i(e);r(this,t.node,t.offset,n.node,n.offset)},extractContents:A(u,r),deleteContents:A(f,r),canSurroundContents:function(){w(this),N(this.startContainer),N(this.endContainer);var e=new g(this,!0),n=e._first&&t(e._first,this)||e._last&&t(e._last,this);return e.detach(),!n},splitBoundaries:function(){T(this)},splitBoundariesPreservingPositions:function(e){T(this,e)},normalizeBoundaries:function(){w(this);var e,t=this.startContainer,n=this.startOffset,o=this.endContainer,i=this.endOffset,a=function(e){var t=e.nextSibling;t&&t.nodeType==e.nodeType&&(o=e,i=e.length,e.appendData(t.data),X(t))},s=function(e){var r=e.previousSibling;if(r&&r.nodeType==e.nodeType){t=e;var a=e.length;if(n=r.length,e.insertData(0,r.data),X(r),t==o)i+=n,o=t;else if(o==e.parentNode){var s=W(e);i==s?(o=e,i=a):i>s&&i--}}},c=!0;if(L(o))i==o.length?a(o):0==i&&(e=o.previousSibling,e&&e.nodeType==o.nodeType&&(i=e.length,t==o&&(c=!1),e.appendData(o.data),X(o),o=e));else{if(i>0){var d=o.childNodes[i-1];d&&L(d)&&a(d)}c=!this.collapsed}if(c){if(L(t))0==n?s(t):n==t.length&&(e=t.nextSibling,e&&e.nodeType==t.nodeType&&(o==e&&(o=t,i+=t.length),t.appendData(e.data),X(e)));else if(n<t.childNodes.length){var f=t.childNodes[n];f&&L(f)&&s(f)}}else t=o,n=i;r(this,t,n,o,i)},collapseToPoint:function(e,t){m(e,!0),v(e,t),this.setStartAndEnd(e,t)}}),D(n)}function b(e){e.collapsed=e.startContainer===e.endContainer&&e.startOffset===e.endOffset,e.commonAncestorContainer=e.collapsed?e.startContainer:B.getCommonAncestor(e.startContainer,e.endContainer)}function P(e,t,n,r,o){e.startContainer=t,e.startOffset=n,e.endContainer=r,e.endOffset=o,e.document=B.getDocument(t),b(e)}function I(e){this.startContainer=e,this.startOffset=0,this.endContainer=e,this.endOffset=0,this.document=e,b(this)}var B=e.dom,H=e.util,M=B.DomPosition,k=e.DOMException,L=B.isCharacterDataNode,W=B.getNodeIndex,F=B.isOrIsAncestorOf,j=B.getDocument,z=B.comparePoints,U=B.splitDataNode,V=B.getClosestAncestorIn,q=B.getNodeLength,Y=B.arrayContains,Q=B.getRootContainer,G=e.features.crashyTextNodes,X=B.removeNode;g.prototype={_current:null,_next:null,_first:null,_last:null,isSingleCharacterDataNode:!1,reset:function(){this._current=null,this._next=this._first},hasNext:function(){return!!this._next},next:function(){var e=this._current=this._next;return e&&(this._next=e!==this._last?e.nextSibling:null,L(e)&&this.clonePartiallySelectedTextNodes&&(e===this.ec&&(e=e.cloneNode(!0)).deleteData(this.eo,e.length-this.eo),this._current===this.sc&&(e=e.cloneNode(!0)).deleteData(0,this.so))),e},remove:function(){var e,t,n=this._current;!L(n)||n!==this.sc&&n!==this.ec?n.parentNode&&X(n):(e=n===this.sc?this.so:0,t=n===this.ec?this.eo:n.length,e!=t&&n.deleteData(e,t-e))},isPartiallySelectedSubtree:function(){var e=this._current;return t(e,this.range)},getSubtreeIterator:function(){var e;if(this.isSingleCharacterDataNode)e=this.range.cloneRange(),e.collapse(!1);else{e=new I(n(this.range));var t=this._current,r=t,o=0,i=t,a=q(t);F(t,this.sc)&&(r=this.sc,o=this.so),F(t,this.ec)&&(i=this.ec,a=this.eo),P(e,r,o,i,a)}return new g(e,this.clonePartiallySelectedTextNodes)},detach:function(){this.range=this._current=this._next=this._first=this._last=this.sc=this.so=this.ec=this.eo=null}};var Z=[1,3,4,5,7,8,10],$=[2,9,11],J=[5,6,10,12],K=[1,3,4,5,7,8,10,11],et=[1,3,4,5,7,8],tt=p([9,11]),nt=p(J),rt=p([6,10,12]),ot=document.createElement("style"),it=!1;try{ot.innerHTML="<b>x</b>",it=3==ot.firstChild.nodeType}catch(at){}e.features.htmlParsingConforms=it;var st=it?function(e){var t=this.startContainer,n=j(t);if(!t)throw new k("INVALID_STATE_ERR");var r=null;return 1==t.nodeType?r=t:L(t)&&(r=B.parentElement(t)),r=null===r||"HTML"==r.nodeName&&B.isHtmlNamespace(j(r).documentElement)&&B.isHtmlNamespace(r)?n.createElement("body"):r.cloneNode(!1),r.innerHTML=e,B.fragmentFromNodeChildren(r)}:function(e){var t=n(this),r=t.createElement("body");return r.innerHTML=e,B.fragmentFromNodeChildren(r)},ct=["startContainer","startOffset","endContainer","endOffset","collapsed","commonAncestorContainer"],dt=0,ft=1,ut=2,lt=3,ht=0,gt=1,pt=2,mt=3;H.extend(e.rangePrototype,{compareBoundaryPoints:function(e,t){w(this),C(this.startContainer,t.startContainer);var n,r,o,i,a=e==lt||e==dt?"start":"end",s=e==ft||e==dt?"start":"end";return n=this[a+"Container"],r=this[a+"Offset"],o=t[s+"Container"],i=t[s+"Offset"],z(n,r,o,i)},insertNode:function(e){if(w(this),R(e,K),N(this.startContainer),F(e,this.startContainer))throw new k("HIERARCHY_REQUEST_ERR");var t=a(e,this.startContainer,this.startOffset);this.setStartBefore(t)},cloneContents:function(){w(this);var e,t;if(this.collapsed)return n(this).createDocumentFragment();if(this.startContainer===this.endContainer&&L(this.startContainer))return e=this.startContainer.cloneNode(!0),e.data=e.data.slice(this.startOffset,this.endOffset),t=n(this).createDocumentFragment(),t.appendChild(e),t;var r=new g(this,!0);return e=c(r),r.detach(),e},canSurroundContents:function(){w(this),N(this.startContainer),N(this.endContainer);var e=new g(this,!0),n=e._first&&t(e._first,this)||e._last&&t(e._last,this);return e.detach(),!n},surroundContents:function(e){if(R(e,et),!this.canSurroundContents())throw new k("INVALID_STATE_ERR");var t=this.extractContents();if(e.hasChildNodes())for(;e.lastChild;)e.removeChild(e.lastChild);a(e,this.startContainer,this.startOffset),e.appendChild(t),this.selectNode(e)},cloneRange:function(){w(this);for(var e,t=new I(n(this)),r=ct.length;r--;)e=ct[r],t[e]=this[e];return t},toString:function(){w(this);var e=this.startContainer;if(e===this.endContainer&&L(e))return 3==e.nodeType||4==e.nodeType?e.data.slice(this.startOffset,this.endOffset):"";var t=[],n=new g(this,!0);return d(n,function(e){(3==e.nodeType||4==e.nodeType)&&t.push(e.data)}),n.detach(),t.join("")},compareNode:function(e){w(this);var t=e.parentNode,n=W(e);if(!t)throw new k("NOT_FOUND_ERR");var r=this.comparePoint(t,n),o=this.comparePoint(t,n+1);return 0>r?o>0?pt:ht:o>0?gt:mt},comparePoint:function(e,t){return w(this),E(e,"HIERARCHY_REQUEST_ERR"),C(e,this.startContainer),z(e,t,this.startContainer,this.startOffset)<0?-1:z(e,t,this.endContainer,this.endOffset)>0?1:0},createContextualFragment:st,toHtml:function(){return O(this)},intersectsNode:function(e,t){if(w(this),Q(e)!=r(this))return!1;var n=e.parentNode,o=W(e);if(!n)return!0;var i=z(n,o,this.endContainer,this.endOffset),a=z(n,o+1,this.startContainer,this.startOffset);return t?0>=i&&a>=0:0>i&&a>0},isPointInRange:function(e,t){return w(this),E(e,"HIERARCHY_REQUEST_ERR"),C(e,this.startContainer),z(e,t,this.startContainer,this.startOffset)>=0&&z(e,t,this.endContainer,this.endOffset)<=0},intersectsRange:function(e){return s(this,e,!1)},intersectsOrTouchesRange:function(e){return s(this,e,!0)},intersection:function(e){if(this.intersectsRange(e)){var t=z(this.startContainer,this.startOffset,e.startContainer,e.startOffset),n=z(this.endContainer,this.endOffset,e.endContainer,e.endOffset),r=this.cloneRange();return-1==t&&r.setStart(e.startContainer,e.startOffset),1==n&&r.setEnd(e.endContainer,e.endOffset),r}return null},union:function(e){if(this.intersectsOrTouchesRange(e)){var t=this.cloneRange();return-1==z(e.startContainer,e.startOffset,this.startContainer,this.startOffset)&&t.setStart(e.startContainer,e.startOffset),1==z(e.endContainer,e.endOffset,this.endContainer,this.endOffset)&&t.setEnd(e.endContainer,e.endOffset),t}throw new k("Ranges do not intersect")},containsNode:function(e,t){return t?this.intersectsNode(e,!1):this.compareNode(e)==mt},containsNodeContents:function(e){return this.comparePoint(e,0)>=0&&this.comparePoint(e,q(e))<=0},containsRange:function(e){var t=this.intersection(e);return null!==t&&e.equals(t)},containsNodeText:function(e){var t=this.cloneRange();t.selectNode(e);var n=t.getNodes([3]);if(n.length>0){t.setStart(n[0],0);var r=n.pop();return t.setEnd(r,r.length),this.containsRange(t)}return this.containsNodeContents(e)},getNodes:function(e,t){return w(this),l(this,e,t)},getDocument:function(){return n(this)},collapseBefore:function(e){this.setEndBefore(e),this.collapse(!1)},collapseAfter:function(e){this.setStartAfter(e),this.collapse(!0)},getBookmark:function(t){var r=n(this),o=e.createRange(r);t=t||B.getBody(r),o.selectNodeContents(t);var i=this.intersection(o),a=0,s=0;return i&&(o.setEnd(i.startContainer,i.startOffset),a=o.toString().length,s=a+i.toString().length),{start:a,end:s,containerNode:t}},moveToBookmark:function(e){var t=e.containerNode,n=0;this.setStart(t,0),this.collapse(!0);for(var r,o,i,a,s=[t],c=!1,d=!1;!d&&(r=s.pop());)if(3==r.nodeType)o=n+r.length,!c&&e.start>=n&&e.start<=o&&(this.setStart(r,e.start-n),c=!0),c&&e.end>=n&&e.end<=o&&(this.setEnd(r,e.end-n),d=!0),n=o;else for(a=r.childNodes,i=a.length;i--;)s.push(a[i])},getName:function(){return"DomRange"},equals:function(e){return I.rangesEqual(this,e)},isValid:function(){return y(this)},inspect:function(){return h(this)},detach:function(){}}),x(I,P),H.extend(I,{rangeProperties:ct,RangeIterator:g,copyComparisonConstants:D,createPrototypeRange:x,inspect:h,toHtml:O,getRangeDocument:n,rangesEqual:function(e,t){return e.startContainer===t.startContainer&&e.startOffset===t.startOffset&&e.endContainer===t.endContainer&&e.endOffset===t.endOffset}}),e.DomRange=I}),I.createCoreModule("WrappedRange",["DomRange"],function(e,t){var n,r,o=e.dom,i=e.util,a=o.DomPosition,s=e.DomRange,c=o.getBody,d=o.getContentDocument,f=o.isCharacterDataNode;if(e.features.implementsDomRange&&!function(){function r(e){for(var t,n=l.length;n--;)t=l[n],e[t]=e.nativeRange[t];e.collapsed=e.startContainer===e.endContainer&&e.startOffset===e.endOffset}function a(e,t,n,r,o){var i=e.startContainer!==t||e.startOffset!=n,a=e.endContainer!==r||e.endOffset!=o,s=!e.equals(e.nativeRange);(i||a||s)&&(e.setEnd(r,o),e.setStart(t,n))}var f,u,l=s.rangeProperties;n=function(e){if(!e)throw t.createError("WrappedRange: Range must be specified");this.nativeRange=e,r(this)},s.createPrototypeRange(n,a),f=n.prototype,f.selectNode=function(e){this.nativeRange.selectNode(e),r(this)},f.cloneContents=function(){return this.nativeRange.cloneContents()},f.surroundContents=function(e){this.nativeRange.surroundContents(e),r(this)},f.collapse=function(e){this.nativeRange.collapse(e),r(this)},f.cloneRange=function(){return new n(this.nativeRange.cloneRange())},f.refresh=function(){r(this)},f.toString=function(){return this.nativeRange.toString()};var h=document.createTextNode("test");c(document).appendChild(h);var g=document.createRange();g.setStart(h,0),g.setEnd(h,0);try{g.setStart(h,1),f.setStart=function(e,t){this.nativeRange.setStart(e,t),r(this)},f.setEnd=function(e,t){this.nativeRange.setEnd(e,t),r(this)},u=function(e){return function(t){this.nativeRange[e](t),r(this)}}}catch(p){f.setStart=function(e,t){try{this.nativeRange.setStart(e,t)}catch(n){this.nativeRange.setEnd(e,t),this.nativeRange.setStart(e,t)}r(this)},f.setEnd=function(e,t){try{this.nativeRange.setEnd(e,t)}catch(n){this.nativeRange.setStart(e,t),this.nativeRange.setEnd(e,t)}r(this)},u=function(e,t){return function(n){try{this.nativeRange[e](n)}catch(o){this.nativeRange[t](n),this.nativeRange[e](n)}r(this)}}}f.setStartBefore=u("setStartBefore","setEndBefore"),f.setStartAfter=u("setStartAfter","setEndAfter"),f.setEndBefore=u("setEndBefore","setStartBefore"),f.setEndAfter=u("setEndAfter","setStartAfter"),f.selectNodeContents=function(e){this.setStartAndEnd(e,0,o.getNodeLength(e))},g.selectNodeContents(h),g.setEnd(h,3);var m=document.createRange();m.selectNodeContents(h),m.setEnd(h,4),m.setStart(h,2),f.compareBoundaryPoints=-1==g.compareBoundaryPoints(g.START_TO_END,m)&&1==g.compareBoundaryPoints(g.END_TO_START,m)?function(e,t){return t=t.nativeRange||t,e==t.START_TO_END?e=t.END_TO_START:e==t.END_TO_START&&(e=t.START_TO_END),this.nativeRange.compareBoundaryPoints(e,t)}:function(e,t){return this.nativeRange.compareBoundaryPoints(e,t.nativeRange||t)};var R=document.createElement("div");R.innerHTML="123";var v=R.firstChild,C=c(document);C.appendChild(R),g.setStart(v,1),g.setEnd(v,2),g.deleteContents(),"13"==v.data&&(f.deleteContents=function(){this.nativeRange.deleteContents(),r(this)},f.extractContents=function(){var e=this.nativeRange.extractContents();return r(this),e}),C.removeChild(R),C=null,i.isHostMethod(g,"createContextualFragment")&&(f.createContextualFragment=function(e){return this.nativeRange.createContextualFragment(e)}),c(document).removeChild(h),f.getName=function(){return"WrappedRange"},e.WrappedRange=n,e.createNativeRange=function(e){return e=d(e,t,"createNativeRange"),e.createRange()}}(),e.features.implementsTextRange){var u=function(e){var t=e.parentElement(),n=e.duplicate();n.collapse(!0);var r=n.parentElement();n=e.duplicate(),n.collapse(!1);var i=n.parentElement(),a=r==i?r:o.getCommonAncestor(r,i);return a==t?a:o.getCommonAncestor(t,a)},l=function(e){return 0==e.compareEndPoints("StartToEnd",e)},h=function(e,t,n,r,i){var s=e.duplicate();s.collapse(n);var c=s.parentElement();if(o.isOrIsAncestorOf(t,c)||(c=t),!c.canHaveHTML){var d=new a(c.parentNode,o.getNodeIndex(c));return{boundaryPosition:d,nodeInfo:{nodeIndex:d.offset,containerElement:d.node}}}var u=o.getDocument(c).createElement("span");u.parentNode&&o.removeNode(u);for(var l,h,g,p,m,R=n?"StartToStart":"StartToEnd",v=i&&i.containerElement==c?i.nodeIndex:0,C=c.childNodes.length,N=C,E=N;;){if(E==C?c.appendChild(u):c.insertBefore(u,c.childNodes[E]),s.moveToElementText(u),l=s.compareEndPoints(R,e),0==l||v==N)break;if(-1==l){if(N==v+1)break;v=E}else N=N==v+1?v:E;E=Math.floor((v+N)/2),c.removeChild(u)}if(m=u.nextSibling,-1==l&&m&&f(m)){s.setEndPoint(n?"EndToStart":"EndToEnd",e);var S;if(/[\r\n]/.test(m.data)){var y=s.duplicate(),w=y.text.replace(/\r\n/g,"\r").length;for(S=y.moveStart("character",w);-1==(l=y.compareEndPoints("StartToEnd",y));)S++,y.moveStart("character",1)}else S=s.text.length;p=new a(m,S)}else h=(r||!n)&&u.previousSibling,g=(r||n)&&u.nextSibling,p=g&&f(g)?new a(g,0):h&&f(h)?new a(h,h.data.length):new a(c,o.getNodeIndex(u));return o.removeNode(u),{boundaryPosition:p,nodeInfo:{nodeIndex:E,containerElement:c}}},g=function(e,t){var n,r,i,a,s=e.offset,d=o.getDocument(e.node),u=c(d).createTextRange(),l=f(e.node);return l?(n=e.node,r=n.parentNode):(a=e.node.childNodes,n=s<a.length?a[s]:null,r=e.node),i=d.createElement("span"),i.innerHTML="&#feff;",n?r.insertBefore(i,n):r.appendChild(i),u.moveToElementText(i),u.collapse(!t),r.removeChild(i),l&&u[t?"moveStart":"moveEnd"]("character",s),u};r=function(e){this.textRange=e,this.refresh()},r.prototype=new s(document),r.prototype.refresh=function(){var e,t,n,r=u(this.textRange);
-l(this.textRange)?t=e=h(this.textRange,r,!0,!0).boundaryPosition:(n=h(this.textRange,r,!0,!1),e=n.boundaryPosition,t=h(this.textRange,r,!1,!1,n.nodeInfo).boundaryPosition),this.setStart(e.node,e.offset),this.setEnd(t.node,t.offset)},r.prototype.getName=function(){return"WrappedTextRange"},s.copyComparisonConstants(r);var p=function(e){if(e.collapsed)return g(new a(e.startContainer,e.startOffset),!0);var t=g(new a(e.startContainer,e.startOffset),!0),n=g(new a(e.endContainer,e.endOffset),!1),r=c(s.getRangeDocument(e)).createTextRange();return r.setEndPoint("StartToStart",t),r.setEndPoint("EndToEnd",n),r};if(r.rangeToTextRange=p,r.prototype.toTextRange=function(){return p(this)},e.WrappedTextRange=r,!e.features.implementsDomRange||e.config.preferTextRange){var m=function(e){return e("return this;")()}(Function);"undefined"==typeof m.Range&&(m.Range=r),e.createNativeRange=function(e){return e=d(e,t,"createNativeRange"),c(e).createTextRange()},e.WrappedRange=r}}e.createRange=function(n){return n=d(n,t,"createRange"),new e.WrappedRange(e.createNativeRange(n))},e.createRangyRange=function(e){return e=d(e,t,"createRangyRange"),new s(e)},i.createAliasForDeprecatedMethod(e,"createIframeRange","createRange"),i.createAliasForDeprecatedMethod(e,"createIframeRangyRange","createRangyRange"),e.addShimListener(function(t){var n=t.document;"undefined"==typeof n.createRange&&(n.createRange=function(){return e.createRange(n)}),n=t=null})}),I.createCoreModule("WrappedSelection",["DomRange","WrappedRange"],function(e,t){function n(e){return"string"==typeof e?/^backward(s)?$/i.test(e):!!e}function r(e,n){if(e){if(D.isWindow(e))return e;if(e instanceof R)return e.win;var r=D.getContentDocument(e,t,n);return D.getWindow(r)}return window}function o(e){return r(e,"getWinSelection").getSelection()}function i(e){return r(e,"getDocSelection").document.selection}function a(e){var t=!1;return e.anchorNode&&(t=1==D.comparePoints(e.anchorNode,e.anchorOffset,e.focusNode,e.focusOffset)),t}function s(e,t,n){var r=n?"end":"start",o=n?"start":"end";e.anchorNode=t[r+"Container"],e.anchorOffset=t[r+"Offset"],e.focusNode=t[o+"Container"],e.focusOffset=t[o+"Offset"]}function c(e){var t=e.nativeSelection;e.anchorNode=t.anchorNode,e.anchorOffset=t.anchorOffset,e.focusNode=t.focusNode,e.focusOffset=t.focusOffset}function d(e){e.anchorNode=e.focusNode=null,e.anchorOffset=e.focusOffset=0,e.rangeCount=0,e.isCollapsed=!0,e._ranges.length=0}function f(t){var n;return t instanceof b?(n=e.createNativeRange(t.getDocument()),n.setEnd(t.endContainer,t.endOffset),n.setStart(t.startContainer,t.startOffset)):t instanceof P?n=t.nativeRange:H.implementsDomRange&&t instanceof D.getWindow(t.startContainer).Range&&(n=t),n}function u(e){if(!e.length||1!=e[0].nodeType)return!1;for(var t=1,n=e.length;n>t;++t)if(!D.isAncestorOf(e[0],e[t]))return!1;return!0}function l(e){var n=e.getNodes();if(!u(n))throw t.createError("getSingleElementFromRange: range "+e.inspect()+" did not consist of a single element");return n[0]}function h(e){return!!e&&"undefined"!=typeof e.text}function g(e,t){var n=new P(t);e._ranges=[n],s(e,n,!1),e.rangeCount=1,e.isCollapsed=n.collapsed}function p(t){if(t._ranges.length=0,"None"==t.docSelection.type)d(t);else{var n=t.docSelection.createRange();if(h(n))g(t,n);else{t.rangeCount=n.length;for(var r,o=k(n.item(0)),i=0;i<t.rangeCount;++i)r=e.createRange(o),r.selectNode(n.item(i)),t._ranges.push(r);t.isCollapsed=1==t.rangeCount&&t._ranges[0].collapsed,s(t,t._ranges[t.rangeCount-1],!1)}}}function m(e,n){for(var r=e.docSelection.createRange(),o=l(n),i=k(r.item(0)),a=L(i).createControlRange(),s=0,c=r.length;c>s;++s)a.add(r.item(s));try{a.add(o)}catch(d){throw t.createError("addRange(): Element within the specified Range could not be added to control selection (does it have layout?)")}a.select(),p(e)}function R(e,t,n){this.nativeSelection=e,this.docSelection=t,this._ranges=[],this.win=n,this.refresh()}function v(e){e.win=e.anchorNode=e.focusNode=e._ranges=null,e.rangeCount=e.anchorOffset=e.focusOffset=0,e.detached=!0}function C(e,t){for(var n,r,o=tt.length;o--;)if(n=tt[o],r=n.selection,"deleteAll"==t)v(r);else if(n.win==e)return"delete"==t?(tt.splice(o,1),!0):r;return"deleteAll"==t&&(tt.length=0),null}function N(e,n){for(var r,o=k(n[0].startContainer),i=L(o).createControlRange(),a=0,s=n.length;s>a;++a){r=l(n[a]);try{i.add(r)}catch(c){throw t.createError("setRanges(): Element within one of the specified Ranges could not be added to control selection (does it have layout?)")}}i.select(),p(e)}function E(e,t){if(e.win.document!=k(t))throw new I("WRONG_DOCUMENT_ERR")}function S(t){return function(n,r){var o;this.rangeCount?(o=this.getRangeAt(0),o["set"+(t?"Start":"End")](n,r)):(o=e.createRange(this.win.document),o.setStartAndEnd(n,r)),this.setSingleRange(o,this.isBackward())}}function y(e){var t=[],n=new B(e.anchorNode,e.anchorOffset),r=new B(e.focusNode,e.focusOffset),o="function"==typeof e.getName?e.getName():"Selection";if("undefined"!=typeof e.rangeCount)for(var i=0,a=e.rangeCount;a>i;++i)t[i]=b.inspect(e.getRangeAt(i));return"["+o+"(Ranges: "+t.join(", ")+")(anchor: "+n.inspect()+", focus: "+r.inspect()+"]"}e.config.checkSelectionRanges=!0;var w,T,O="boolean",_="number",D=e.dom,A=e.util,x=A.isHostMethod,b=e.DomRange,P=e.WrappedRange,I=e.DOMException,B=D.DomPosition,H=e.features,M="Control",k=D.getDocument,L=D.getBody,W=b.rangesEqual,F=x(window,"getSelection"),j=A.isHostObject(document,"selection");H.implementsWinGetSelection=F,H.implementsDocSelection=j;var z=j&&(!F||e.config.preferTextRange);if(z)w=i,e.isSelectionValid=function(e){var t=r(e,"isSelectionValid").document,n=t.selection;return"None"!=n.type||k(n.createRange().parentElement())==t};else{if(!F)return t.fail("Neither document.selection or window.getSelection() detected."),!1;w=o,e.isSelectionValid=function(){return!0}}e.getNativeSelection=w;var U=w();if(!U)return t.fail("Native selection was null (possibly issue 138?)"),!1;var V=e.createNativeRange(document),q=L(document),Y=A.areHostProperties(U,["anchorNode","focusNode","anchorOffset","focusOffset"]);H.selectionHasAnchorAndFocus=Y;var Q=x(U,"extend");H.selectionHasExtend=Q;var G=typeof U.rangeCount==_;H.selectionHasRangeCount=G;var X=!1,Z=!0,$=Q?function(t,n){var r=b.getRangeDocument(n),o=e.createRange(r);o.collapseToPoint(n.endContainer,n.endOffset),t.addRange(f(o)),t.extend(n.startContainer,n.startOffset)}:null;A.areHostMethods(U,["addRange","getRangeAt","removeAllRanges"])&&typeof U.rangeCount==_&&H.implementsDomRange&&!function(){var t=window.getSelection();if(t){for(var n=t.rangeCount,r=n>1,o=[],i=a(t),s=0;n>s;++s)o[s]=t.getRangeAt(s);var c=D.createTestElement(document,"",!1),d=c.appendChild(document.createTextNode("   ")),f=document.createRange();if(f.setStart(d,1),f.collapse(!0),t.removeAllRanges(),t.addRange(f),Z=1==t.rangeCount,t.removeAllRanges(),!r){var u=window.navigator.appVersion.match(/Chrome\/(.*?) /);if(u&&parseInt(u[1])>=36)X=!1;else{var l=f.cloneRange();f.setStart(d,0),l.setEnd(d,3),l.setStart(d,2),t.addRange(f),t.addRange(l),X=2==t.rangeCount}}for(D.removeNode(c),t.removeAllRanges(),s=0;n>s;++s)0==s&&i?$?$(t,o[s]):(e.warn("Rangy initialization: original selection was backwards but selection has been restored forwards because the browser does not support Selection.extend"),t.addRange(o[s])):t.addRange(o[s])}}(),H.selectionSupportsMultipleRanges=X,H.collapsedNonEditableSelectionsSupported=Z;var J,K=!1;q&&x(q,"createControlRange")&&(J=q.createControlRange(),A.areHostProperties(J,["item","add"])&&(K=!0)),H.implementsControlRange=K,T=Y?function(e){return e.anchorNode===e.focusNode&&e.anchorOffset===e.focusOffset}:function(e){return e.rangeCount?e.getRangeAt(e.rangeCount-1).collapsed:!1};var et;x(U,"getRangeAt")?et=function(e,t){try{return e.getRangeAt(t)}catch(n){return null}}:Y&&(et=function(t){var n=k(t.anchorNode),r=e.createRange(n);return r.setStartAndEnd(t.anchorNode,t.anchorOffset,t.focusNode,t.focusOffset),r.collapsed!==this.isCollapsed&&r.setStartAndEnd(t.focusNode,t.focusOffset,t.anchorNode,t.anchorOffset),r}),R.prototype=e.selectionPrototype;var tt=[],nt=function(e){if(e&&e instanceof R)return e.refresh(),e;e=r(e,"getNativeSelection");var t=C(e),n=w(e),o=j?i(e):null;return t?(t.nativeSelection=n,t.docSelection=o,t.refresh()):(t=new R(n,o,e),tt.push({win:e,selection:t})),t};e.getSelection=nt,A.createAliasForDeprecatedMethod(e,"getIframeSelection","getSelection");var rt=R.prototype;if(!z&&Y&&A.areHostMethods(U,["removeAllRanges","addRange"])){rt.removeAllRanges=function(){this.nativeSelection.removeAllRanges(),d(this)};var ot=function(e,t){$(e.nativeSelection,t),e.refresh()};rt.addRange=G?function(t,r){if(K&&j&&this.docSelection.type==M)m(this,t);else if(n(r)&&Q)ot(this,t);else{var o;X?o=this.rangeCount:(this.removeAllRanges(),o=0);var i=f(t).cloneRange();try{this.nativeSelection.addRange(i)}catch(a){}if(this.rangeCount=this.nativeSelection.rangeCount,this.rangeCount==o+1){if(e.config.checkSelectionRanges){var c=et(this.nativeSelection,this.rangeCount-1);c&&!W(c,t)&&(t=new P(c))}this._ranges[this.rangeCount-1]=t,s(this,t,st(this.nativeSelection)),this.isCollapsed=T(this)}else this.refresh()}}:function(e,t){n(t)&&Q?ot(this,e):(this.nativeSelection.addRange(f(e)),this.refresh())},rt.setRanges=function(e){if(K&&j&&e.length>1)N(this,e);else{this.removeAllRanges();for(var t=0,n=e.length;n>t;++t)this.addRange(e[t])}}}else{if(!(x(U,"empty")&&x(V,"select")&&K&&z))return t.fail("No means of selecting a Range or TextRange was found"),!1;rt.removeAllRanges=function(){try{if(this.docSelection.empty(),"None"!=this.docSelection.type){var e;if(this.anchorNode)e=k(this.anchorNode);else if(this.docSelection.type==M){var t=this.docSelection.createRange();t.length&&(e=k(t.item(0)))}if(e){var n=L(e).createTextRange();n.select(),this.docSelection.empty()}}}catch(r){}d(this)},rt.addRange=function(t){this.docSelection.type==M?m(this,t):(e.WrappedTextRange.rangeToTextRange(t).select(),this._ranges[0]=t,this.rangeCount=1,this.isCollapsed=this._ranges[0].collapsed,s(this,t,!1))},rt.setRanges=function(e){this.removeAllRanges();var t=e.length;t>1?N(this,e):t&&this.addRange(e[0])}}rt.getRangeAt=function(e){if(0>e||e>=this.rangeCount)throw new I("INDEX_SIZE_ERR");return this._ranges[e].cloneRange()};var it;if(z)it=function(t){var n;e.isSelectionValid(t.win)?n=t.docSelection.createRange():(n=L(t.win.document).createTextRange(),n.collapse(!0)),t.docSelection.type==M?p(t):h(n)?g(t,n):d(t)};else if(x(U,"getRangeAt")&&typeof U.rangeCount==_)it=function(t){if(K&&j&&t.docSelection.type==M)p(t);else if(t._ranges.length=t.rangeCount=t.nativeSelection.rangeCount,t.rangeCount){for(var n=0,r=t.rangeCount;r>n;++n)t._ranges[n]=new e.WrappedRange(t.nativeSelection.getRangeAt(n));s(t,t._ranges[t.rangeCount-1],st(t.nativeSelection)),t.isCollapsed=T(t)}else d(t)};else{if(!Y||typeof U.isCollapsed!=O||typeof V.collapsed!=O||!H.implementsDomRange)return t.fail("No means of obtaining a Range or TextRange from the user's selection was found"),!1;it=function(e){var t,n=e.nativeSelection;n.anchorNode?(t=et(n,0),e._ranges=[t],e.rangeCount=1,c(e),e.isCollapsed=T(e)):d(e)}}rt.refresh=function(e){var t=e?this._ranges.slice(0):null,n=this.anchorNode,r=this.anchorOffset;if(it(this),e){var o=t.length;if(o!=this._ranges.length)return!0;if(this.anchorNode!=n||this.anchorOffset!=r)return!0;for(;o--;)if(!W(t[o],this._ranges[o]))return!0;return!1}};var at=function(e,t){var n=e.getAllRanges();e.removeAllRanges();for(var r=0,o=n.length;o>r;++r)W(t,n[r])||e.addRange(n[r]);e.rangeCount||d(e)};rt.removeRange=K&&j?function(e){if(this.docSelection.type==M){for(var t,n=this.docSelection.createRange(),r=l(e),o=k(n.item(0)),i=L(o).createControlRange(),a=!1,s=0,c=n.length;c>s;++s)t=n.item(s),t!==r||a?i.add(n.item(s)):a=!0;i.select(),p(this)}else at(this,e)}:function(e){at(this,e)};var st;!z&&Y&&H.implementsDomRange?(st=a,rt.isBackward=function(){return st(this)}):st=rt.isBackward=function(){return!1},rt.isBackwards=rt.isBackward,rt.toString=function(){for(var e=[],t=0,n=this.rangeCount;n>t;++t)e[t]=""+this._ranges[t];return e.join("")},rt.collapse=function(t,n){E(this,t);var r=e.createRange(t);r.collapseToPoint(t,n),this.setSingleRange(r),this.isCollapsed=!0},rt.collapseToStart=function(){if(!this.rangeCount)throw new I("INVALID_STATE_ERR");var e=this._ranges[0];this.collapse(e.startContainer,e.startOffset)},rt.collapseToEnd=function(){if(!this.rangeCount)throw new I("INVALID_STATE_ERR");var e=this._ranges[this.rangeCount-1];this.collapse(e.endContainer,e.endOffset)},rt.selectAllChildren=function(t){E(this,t);var n=e.createRange(t);n.selectNodeContents(t),this.setSingleRange(n)},rt.deleteFromDocument=function(){if(K&&j&&this.docSelection.type==M){for(var e,t=this.docSelection.createRange();t.length;)e=t.item(0),t.remove(e),D.removeNode(e);this.refresh()}else if(this.rangeCount){var n=this.getAllRanges();if(n.length){this.removeAllRanges();for(var r=0,o=n.length;o>r;++r)n[r].deleteContents();this.addRange(n[o-1])}}},rt.eachRange=function(e,t){for(var n=0,r=this._ranges.length;r>n;++n)if(e(this.getRangeAt(n)))return t},rt.getAllRanges=function(){var e=[];return this.eachRange(function(t){e.push(t)}),e},rt.setSingleRange=function(e,t){this.removeAllRanges(),this.addRange(e,t)},rt.callMethodOnEachRange=function(e,t){var n=[];return this.eachRange(function(r){n.push(r[e].apply(r,t||[]))}),n},rt.setStart=S(!0),rt.setEnd=S(!1),e.rangePrototype.select=function(e){nt(this.getDocument()).setSingleRange(this,e)},rt.changeEachRange=function(e){var t=[],n=this.isBackward();this.eachRange(function(n){e(n),t.push(n)}),this.removeAllRanges(),n&&1==t.length?this.addRange(t[0],"backward"):this.setRanges(t)},rt.containsNode=function(e,t){return this.eachRange(function(n){return n.containsNode(e,t)},!0)||!1},rt.getBookmark=function(e){return{backward:this.isBackward(),rangeBookmarks:this.callMethodOnEachRange("getBookmark",[e])}},rt.moveToBookmark=function(t){for(var n,r,o=[],i=0;n=t.rangeBookmarks[i++];)r=e.createRange(this.win),r.moveToBookmark(n),o.push(r);t.backward?this.setSingleRange(o[0],"backward"):this.setRanges(o)},rt.saveRanges=function(){return{backward:this.isBackward(),ranges:this.callMethodOnEachRange("cloneRange")}},rt.restoreRanges=function(e){this.removeAllRanges();for(var t,n=0;t=e.ranges[n];++n)this.addRange(t,e.backward&&0==n)},rt.toHtml=function(){var e=[];return this.eachRange(function(t){e.push(b.toHtml(t))}),e.join("")},H.implementsTextRange&&(rt.getNativeTextRange=function(){var n;if(n=this.docSelection){var r=n.createRange();if(h(r))return r;throw t.createError("getNativeTextRange: selection is a control selection")}if(this.rangeCount>0)return e.WrappedTextRange.rangeToTextRange(this.getRangeAt(0));throw t.createError("getNativeTextRange: selection contains no range")}),rt.getName=function(){return"WrappedSelection"},rt.inspect=function(){return y(this)},rt.detach=function(){C(this.win,"delete"),v(this)},R.detachAll=function(){C(null,"deleteAll")},R.inspect=y,R.isDirectionBackward=n,e.Selection=R,e.selectionPrototype=rt,e.addShimListener(function(e){"undefined"==typeof e.getSelection&&(e.getSelection=function(){return nt(e)}),e=null})});var L=!1,W=function(){L||(L=!0,!I.initialized&&I.config.autoInitialize&&u())};return b&&("complete"==document.readyState?W():(e(document,"addEventListener")&&document.addEventListener("DOMContentLoaded",W,!1),H(window,"load",W))),I},this);;/**
- * Selection save and restore module for Rangy.
- * Saves and restores user selections using marker invisible elements in the DOM.
- *
- * Part of Rangy, a cross-browser JavaScript range and selection library
- * https://github.com/timdown/rangy
- *
- * Depends on Rangy core.
- *
- * Copyright 2015, Tim Down
- * Licensed under the MIT license.
- * Version: 1.3.0
- * Build date: 10 May 2015
- */
-!function(e,n){"function"==typeof define&&define.amd?define(["./rangy-core"],e):"undefined"!=typeof module&&"object"==typeof exports?module.exports=e(require("rangy")):e(n.rangy)}(function(e){return e.createModule("SaveRestore",["WrappedRange"],function(e,n){function r(e,n){return(n||document).getElementById(e)}function t(e,n){var r,t="selectionBoundary_"+ +new Date+"_"+(""+Math.random()).slice(2),a=m.getDocument(e.startContainer),o=e.cloneRange();return o.collapse(n),r=a.createElement("span"),r.id=t,r.style.lineHeight="0",r.style.display="none",r.className="rangySelectionBoundary",r.appendChild(a.createTextNode(k)),o.insertNode(r),r}function a(e,t,a,o){var s=r(a,e);s?(t[o?"setStartBefore":"setEndBefore"](s),p(s)):n.warn("Marker element has been removed. Cannot restore selection.")}function o(e,n){return n.compareBoundaryPoints(e.START_TO_START,e)}function s(n,r){var a,o,s=e.DomRange.getRangeDocument(n),i=n.toString(),d=v(r);return n.collapsed?(o=t(n,!1),{document:s,markerId:o.id,collapsed:!0}):(o=t(n,!1),a=t(n,!0),{document:s,startMarkerId:a.id,endMarkerId:o.id,collapsed:!1,backward:d,toString:function(){return"original text: '"+i+"', new text: '"+n.toString()+"'"}})}function i(t,o){var s=t.document;"undefined"==typeof o&&(o=!0);var i=e.createRange(s);if(t.collapsed){var d=r(t.markerId,s);if(d){d.style.display="inline";var l=d.previousSibling;l&&3==l.nodeType?(p(d),i.collapseToPoint(l,l.length)):(i.collapseBefore(d),p(d))}else n.warn("Marker element has been removed. Cannot restore selection.")}else a(s,i,t.startMarkerId,!0),a(s,i,t.endMarkerId,!1);return o&&i.normalizeBoundaries(),i}function d(n,t){var a,i,d=[],l=v(t);n=n.slice(0),n.sort(o);for(var c=0,u=n.length;u>c;++c)d[c]=s(n[c],l);for(c=u-1;c>=0;--c)a=n[c],i=e.DomRange.getRangeDocument(a),a.collapsed?a.collapseAfter(r(d[c].markerId,i)):(a.setEndBefore(r(d[c].endMarkerId,i)),a.setStartAfter(r(d[c].startMarkerId,i)));return d}function l(r){if(!e.isSelectionValid(r))return n.warn("Cannot save selection. This usually happens when the selection is collapsed and the selection document has lost focus."),null;var t=e.getSelection(r),a=t.getAllRanges(),o=1==a.length&&t.isBackward(),s=d(a,o);return o?t.setSingleRange(a[0],o):t.setRanges(a),{win:r,rangeInfos:s,restored:!1}}function c(e){for(var n=[],r=e.length,t=r-1;t>=0;t--)n[t]=i(e[t],!0);return n}function u(n,r){if(!n.restored){var t=n.rangeInfos,a=e.getSelection(n.win),o=c(t),s=t.length;1==s&&r&&e.features.selectionHasExtend&&t[0].backward?(a.removeAllRanges(),a.addRange(o[0],!0)):a.setRanges(o),n.restored=!0}}function f(e,n){var t=r(n,e);t&&p(t)}function g(e){for(var n,r=e.rangeInfos,t=0,a=r.length;a>t;++t)n=r[t],n.collapsed?f(e.doc,n.markerId):(f(e.doc,n.startMarkerId),f(e.doc,n.endMarkerId))}var m=e.dom,p=m.removeNode,v=e.Selection.isDirectionBackward,k="﻿";e.util.extend(e,{saveRange:s,restoreRange:i,saveRanges:d,restoreRanges:c,saveSelection:l,restoreSelection:u,removeMarkerElement:f,removeMarkers:g})}),e},this);;!function(a,b){b["true"]=a,/*
-@license textAngular
-Author : Austin Anderson
-License : 2013 MIT
-Version 1.3.7
-
-See README.md or https://github.com/fraywing/textAngular/wiki for requirements and use.
-*/
-angular.module("textAngularSetup",[]).value("taOptions",{toolbar:[["h1","h2","h3","h4","h5","h6","p","pre","quote"],["bold","italics","underline","strikeThrough","ul","ol","redo","undo","clear"],["justifyLeft","justifyCenter","justifyRight","indent","outdent"],["html","insertImage","insertLink","insertVideo","wordcount","charcount"]],classes:{focussed:"focussed",toolbar:"btn-toolbar",toolbarGroup:"btn-group",toolbarButton:"btn btn-default",toolbarButtonActive:"active",disabled:"disabled",textEditor:"form-control",htmlEditor:"form-control"},setup:{textEditorSetup:function(){},htmlEditorSetup:function(){}},defaultFileDropHandler:function(a,b){var c=new FileReader;return"image"===a.type.substring(0,5)?(c.onload=function(){""!==c.result&&b("insertImage",c.result,!0)},c.readAsDataURL(a),!0):!1}}).value("taSelectableElements",["a","img"]).value("taCustomRenderers",[{selector:"img",customAttribute:"ta-insert-video",renderLogic:function(a){var b=angular.element("<iframe></iframe>"),c=a.prop("attributes");angular.forEach(c,function(a){b.attr(a.name,a.value)}),b.attr("src",b.attr("ta-insert-video")),a.replaceWith(b)}}]).value("taTranslations",{html:{tooltip:"Toggle html / Rich Text"},heading:{tooltip:"Heading "},p:{tooltip:"Paragraph"},pre:{tooltip:"Preformatted text"},ul:{tooltip:"Unordered List"},ol:{tooltip:"Ordered List"},quote:{tooltip:"Quote/unquote selection or paragraph"},undo:{tooltip:"Undo"},redo:{tooltip:"Redo"},bold:{tooltip:"Bold"},italic:{tooltip:"Italic"},underline:{tooltip:"Underline"},strikeThrough:{tooltip:"Strikethrough"},justifyLeft:{tooltip:"Align text left"},justifyRight:{tooltip:"Align text right"},justifyCenter:{tooltip:"Center"},indent:{tooltip:"Increase indent"},outdent:{tooltip:"Decrease indent"},clear:{tooltip:"Clear formatting"},insertImage:{dialogPrompt:"Please enter an image URL to insert",tooltip:"Insert image",hotkey:"the - possibly language dependent hotkey ... for some future implementation"},insertVideo:{tooltip:"Insert video",dialogPrompt:"Please enter a youtube URL to embed"},insertLink:{tooltip:"Insert / edit link",dialogPrompt:"Please enter a URL to insert"},editLink:{reLinkButton:{tooltip:"Relink"},unLinkButton:{tooltip:"Unlink"},targetToggle:{buttontext:"Open in New Window"}},wordcount:{tooltip:"Display words Count"},charcount:{tooltip:"Display characters Count"}}).run(["taRegisterTool","$window","taTranslations","taSelection",function(a,b,c,d){a("html",{iconclass:"fa fa-code",tooltiptext:c.html.tooltip,action:function(){this.$editor().switchView()},activeState:function(){return this.$editor().showHtml}});var e=function(a){return function(){return this.$editor().queryFormatBlockState(a)}},f=function(){return this.$editor().wrapSelection("formatBlock","<"+this.name.toUpperCase()+">")};angular.forEach(["h1","h2","h3","h4","h5","h6"],function(b){a(b.toLowerCase(),{buttontext:b.toUpperCase(),tooltiptext:c.heading.tooltip+b.charAt(1),action:f,activeState:e(b.toLowerCase())})}),a("p",{buttontext:"P",tooltiptext:c.p.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<P>")},activeState:function(){return this.$editor().queryFormatBlockState("p")}}),a("pre",{buttontext:"pre",tooltiptext:c.pre.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<PRE>")},activeState:function(){return this.$editor().queryFormatBlockState("pre")}}),a("ul",{iconclass:"fa fa-list-ul",tooltiptext:c.ul.tooltip,action:function(){return this.$editor().wrapSelection("insertUnorderedList",null)},activeState:function(){return this.$editor().queryCommandState("insertUnorderedList")}}),a("ol",{iconclass:"fa fa-list-ol",tooltiptext:c.ol.tooltip,action:function(){return this.$editor().wrapSelection("insertOrderedList",null)},activeState:function(){return this.$editor().queryCommandState("insertOrderedList")}}),a("quote",{iconclass:"fa fa-quote-right",tooltiptext:c.quote.tooltip,action:function(){return this.$editor().wrapSelection("formatBlock","<BLOCKQUOTE>")},activeState:function(){return this.$editor().queryFormatBlockState("blockquote")}}),a("undo",{iconclass:"fa fa-undo",tooltiptext:c.undo.tooltip,action:function(){return this.$editor().wrapSelection("undo",null)}}),a("redo",{iconclass:"fa fa-repeat",tooltiptext:c.redo.tooltip,action:function(){return this.$editor().wrapSelection("redo",null)}}),a("bold",{iconclass:"fa fa-bold",tooltiptext:c.bold.tooltip,action:function(){return this.$editor().wrapSelection("bold",null)},activeState:function(){return this.$editor().queryCommandState("bold")},commandKeyCode:98}),a("justifyLeft",{iconclass:"fa fa-align-left",tooltiptext:c.justifyLeft.tooltip,action:function(){return this.$editor().wrapSelection("justifyLeft",null)},activeState:function(a){var b=!1;return a&&(b="left"===a.css("text-align")||"left"===a.attr("align")||"right"!==a.css("text-align")&&"center"!==a.css("text-align")&&"justify"!==a.css("text-align")&&!this.$editor().queryCommandState("justifyRight")&&!this.$editor().queryCommandState("justifyCenter")&&!this.$editor().queryCommandState("justifyFull")),b=b||this.$editor().queryCommandState("justifyLeft")}}),a("justifyRight",{iconclass:"fa fa-align-right",tooltiptext:c.justifyRight.tooltip,action:function(){return this.$editor().wrapSelection("justifyRight",null)},activeState:function(a){var b=!1;return a&&(b="right"===a.css("text-align")),b=b||this.$editor().queryCommandState("justifyRight")}}),a("justifyCenter",{iconclass:"fa fa-align-center",tooltiptext:c.justifyCenter.tooltip,action:function(){return this.$editor().wrapSelection("justifyCenter",null)},activeState:function(a){var b=!1;return a&&(b="center"===a.css("text-align")),b=b||this.$editor().queryCommandState("justifyCenter")}}),a("indent",{iconclass:"fa fa-indent",tooltiptext:c.indent.tooltip,action:function(){return this.$editor().wrapSelection("indent",null)},activeState:function(){return this.$editor().queryFormatBlockState("blockquote")}}),a("outdent",{iconclass:"fa fa-outdent",tooltiptext:c.outdent.tooltip,action:function(){return this.$editor().wrapSelection("outdent",null)},activeState:function(){return!1}}),a("italics",{iconclass:"fa fa-italic",tooltiptext:c.italic.tooltip,action:function(){return this.$editor().wrapSelection("italic",null)},activeState:function(){return this.$editor().queryCommandState("italic")},commandKeyCode:105}),a("underline",{iconclass:"fa fa-underline",tooltiptext:c.underline.tooltip,action:function(){return this.$editor().wrapSelection("underline",null)},activeState:function(){return this.$editor().queryCommandState("underline")},commandKeyCode:117}),a("strikeThrough",{iconclass:"fa fa-strikethrough",action:function(){return this.$editor().wrapSelection("strikeThrough",null)},activeState:function(){return document.queryCommandState("strikeThrough")}}),a("clear",{iconclass:"fa fa-ban",tooltiptext:c.clear.tooltip,action:function(a,b){var c;this.$editor().wrapSelection("removeFormat",null);var e=angular.element(d.getSelectionElement()),f=function(a){a=angular.element(a);var b=a;angular.forEach(a.children(),function(a){var c=angular.element("<p></p>");c.html(angular.element(a).html()),b.after(c),b=c}),a.remove()};if(angular.forEach(e.find("ul"),f),angular.forEach(e.find("ol"),f),"li"===e[0].tagName.toLowerCase()){var g=e[0].parentNode.childNodes,h=[],i=[],j=!1;for(c=0;c<g.length;c++)g[c]===e[0]?j=!0:j?i.push(g[c]):h.push(g[c]);var k=angular.element(e[0].parentNode),l=angular.element("<p></p>");if(l.html(angular.element(e[0]).html()),0===h.length||0===i.length)0===i.length?k.after(l):k[0].parentNode.insertBefore(l[0],k[0]),0===h.length&&0===i.length?k.remove():angular.element(e[0]).remove();else{var m=angular.element("<"+k[0].tagName+"></"+k[0].tagName+">"),n=angular.element("<"+k[0].tagName+"></"+k[0].tagName+">");for(c=0;c<h.length;c++)m.append(angular.element(h[c]));for(c=0;c<i.length;c++)n.append(angular.element(i[c]));k.after(n),k.after(l),k.after(m),k.remove()}d.setSelectionToElementEnd(l[0])}var o=this.$editor(),p=function(a){a=angular.element(a),a[0]!==o.displayElements.text[0]&&a.removeAttr("class"),angular.forEach(a.children(),p)};angular.forEach(e,p),"li"!==e[0].tagName.toLowerCase()&&"ol"!==e[0].tagName.toLowerCase()&&"ul"!==e[0].tagName.toLowerCase()&&this.$editor().wrapSelection("formatBlock","default"),b()}});var g=function(a,b,c){var d=function(){c.updateTaBindtaTextElement(),c.hidePopover()};a.preventDefault(),c.displayElements.popover.css("width","375px");var e=c.displayElements.popoverContainer;e.empty();var f=angular.element('<div class="btn-group" style="padding-right: 6px;">'),g=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">100% </button>');g.on("click",function(a){a.preventDefault(),b.css({width:"100%",height:""}),d()});var h=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">50% </button>');h.on("click",function(a){a.preventDefault(),b.css({width:"50%",height:""}),d()});var i=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">25% </button>');i.on("click",function(a){a.preventDefault(),b.css({width:"25%",height:""}),d()});var j=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1">Reset</button>');j.on("click",function(a){a.preventDefault(),b.css({width:"",height:""}),d()}),f.append(g),f.append(h),f.append(i),f.append(j),e.append(f),f=angular.element('<div class="btn-group" style="padding-right: 6px;">');var k=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-left"></i></button>');k.on("click",function(a){a.preventDefault(),b.css("float","left"),b.css("cssFloat","left"),b.css("styleFloat","left"),d()});var l=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-right"></i></button>');l.on("click",function(a){a.preventDefault(),b.css("float","right"),b.css("cssFloat","right"),b.css("styleFloat","right"),d()});var m=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-align-justify"></i></button>');m.on("click",function(a){a.preventDefault(),b.css("float",""),b.css("cssFloat",""),b.css("styleFloat",""),d()}),f.append(k),f.append(m),f.append(l),e.append(f),f=angular.element('<div class="btn-group">');var n=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" unselectable="on" tabindex="-1"><i class="fa fa-trash-o"></i></button>');n.on("click",function(a){a.preventDefault(),b.remove(),d()}),f.append(n),e.append(f),c.showPopover(b),c.showResizeOverlay(b)};a("insertImage",{iconclass:"fa fa-picture-o",tooltiptext:c.insertImage.tooltip,action:function(){var a;return a=b.prompt(c.insertImage.dialogPrompt,"http://"),a&&""!==a&&"http://"!==a?this.$editor().wrapSelection("insertImage",a,!0):void 0},onElementSelect:{element:"img",action:g}}),a("insertVideo",{iconclass:"fa fa-youtube-play",tooltiptext:c.insertVideo.tooltip,action:function(){var a;if(a=b.prompt(c.insertVideo.dialogPrompt,"https://"),a&&""!==a&&"https://"!==a){var d=a.match(/(\?|&)v=[^&]*/);if(d&&d.length>0){var e="https://www.youtube.com/embed/"+d[0].substring(3),f='<img class="ta-insert-video" src="https://img.youtube.com/vi/'+d[0].substring(3)+'/hqdefault.jpg" ta-insert-video="'+e+'" contenteditable="false" src="" allowfullscreen="true" frameborder="0" />';return this.$editor().wrapSelection("insertHTML",f,!0)}}},onElementSelect:{element:"img",onlyWithAttrs:["ta-insert-video"],action:g}}),a("insertLink",{tooltiptext:c.insertLink.tooltip,iconclass:"fa fa-link",action:function(){var a;return a=b.prompt(c.insertLink.dialogPrompt,"http://"),a&&""!==a&&"http://"!==a?this.$editor().wrapSelection("createLink",a,!0):void 0},activeState:function(a){return a?"A"===a[0].tagName:!1},onElementSelect:{element:"a",action:function(a,d,e){a.preventDefault(),e.displayElements.popover.css("width","436px");var f=e.displayElements.popoverContainer;f.empty(),f.css("line-height","28px");var g=angular.element('<a href="'+d.attr("href")+'" target="_blank">'+d.attr("href")+"</a>");g.css({display:"inline-block","max-width":"200px",overflow:"hidden","text-overflow":"ellipsis","white-space":"nowrap","vertical-align":"middle"}),f.append(g);var h=angular.element('<div class="btn-group pull-right">'),i=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on" title="'+c.editLink.reLinkButton.tooltip+'"><i class="fa fa-edit icon-edit"></i></button>');i.on("click",function(a){a.preventDefault();var f=b.prompt(c.insertLink.dialogPrompt,d.attr("href"));f&&""!==f&&"http://"!==f&&(d.attr("href",f),e.updateTaBindtaTextElement()),e.hidePopover()}),h.append(i);var j=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on" title="'+c.editLink.unLinkButton.tooltip+'"><i class="fa fa-unlink icon-unlink"></i></button>');j.on("click",function(a){a.preventDefault(),d.replaceWith(d.contents()),e.updateTaBindtaTextElement(),e.hidePopover()}),h.append(j);var k=angular.element('<button type="button" class="btn btn-default btn-sm btn-small" tabindex="-1" unselectable="on">'+c.editLink.targetToggle.buttontext+"</button>");"_blank"===d.attr("target")&&k.addClass("active"),k.on("click",function(a){a.preventDefault(),d.attr("target","_blank"===d.attr("target")?"":"_blank"),k.toggleClass("active"),e.updateTaBindtaTextElement()}),h.append(k),f.append(h),e.showPopover(d)}}}),a("wordcount",{display:'<div id="toolbarWC" style="display:block; min-width:100px;">Words: <span ng-bind="wordcount"></span></div>',disabled:!0,wordcount:0,activeState:function(){var a=this.$editor().displayElements.text,b=a[0].innerHTML,c=b.replace(/(<[^>]*?>)/gi," "),d=c.match(/\S+/g),e=d&&d.length||0;return this.wordcount=e,this.$editor().wordcount=e,!1}}),a("charcount",{display:'<div id="toolbarCC" style="display:block; min-width:120px;">Characters: <span ng-bind="charcount"></span></div>',disabled:!0,charcount:0,activeState:function(){var a=this.$editor().displayElements.text,b=a[0].innerText||a[0].textContent,c=b.replace(/(\r\n|\n|\r)/gm,"").replace(/^\s+/g," ").replace(/\s+$/g," ").length;return this.charcount=c,this.$editor().charcount=c,!1}})}]),/*
-@license textAngular
-Author : Austin Anderson
-License : 2013 MIT
-Version 1.3.11
-
-See README.md or https://github.com/fraywing/textAngular/wiki for requirements and use.
-*/
-function(){"use strict";function a(a){try{return 0!==angular.element(a).length}catch(b){return!1}}function b(b,c){if(!b||""===b||r.hasOwnProperty(b))throw"textAngular Error: A unique name is required for a Tool Definition";if(c.display&&(""===c.display||!a(c.display))||!c.display&&!c.buttontext&&!c.iconclass)throw'textAngular Error: Tool Definition for "'+b+'" does not have a valid display/iconclass/buttontext value';r[b]=c}var c={ie:function(){for(var a,b=3,c=document.createElement("div"),d=c.getElementsByTagName("i");c.innerHTML="<!--[if gt IE "+ ++b+"]><i></i><![endif]-->",d[0];);return b>4?b:a}(),webkit:/AppleWebKit\/([\d.]+)/i.test(navigator.userAgent)},d=!1;c.webkit&&(document.addEventListener("mousedown",function(a){var b=a||window.event,c=b.target;if(d&&null!==c){for(var e=!1,f=c;null!==f&&"html"!==f.tagName.toLowerCase()&&!e;)e="true"===f.contentEditable,f=f.parentNode;e||(document.getElementById("textAngular-editableFix-010203040506070809").setSelectionRange(0,0),c.focus(),c.select&&c.select())}d=!1},!1),angular.element(document).ready(function(){angular.element(document.body).append(angular.element('<input id="textAngular-editableFix-010203040506070809" class="ta-hidden-input" unselectable="on" tabIndex="-1">'))}));var e=/^(address|article|aside|audio|blockquote|canvas|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video)$/i,f=/^(ul|li|ol)$/i,g=/^(address|article|aside|audio|blockquote|canvas|dd|div|dl|fieldset|figcaption|figure|footer|form|h1|h2|h3|h4|h5|h6|header|hgroup|hr|noscript|ol|output|p|pre|section|table|tfoot|ul|video|li)$/i;String.prototype.trim||(String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g,"")});var h,i,j,k,l,m;if(c.ie>8||void 0===c.ie){for(var n=document.styleSheets,o=0;o<n.length;o++)if((0===n[o].media.length||n[o].media.mediaText.match(/(all|screen)/gi))&&n[o].href&&n[o].href.match(/textangular\.(min\.|)css/gi)){h=n[o];break}h||(h=function(){var a=document.createElement("style");return c.webkit&&a.appendChild(document.createTextNode("")),document.getElementsByTagName("head")[0].appendChild(a),a.sheet}()),i=function(a,b){return k(h,a,b)},k=function(a,b,c){var d,e;return a.cssRules?d=Math.max(a.cssRules.length-1,0):a.rules&&(d=Math.max(a.rules.length-1,0)),a.insertRule?a.insertRule(b+"{"+c+"}",d):a.addRule(b,c,d),h.rules?e=h.rules[d]:h.cssRules&&(e=h.cssRules[d]),e},m=function(a,b){var c,d;for(c=0;c<b.length;c++)if(b[c].cssText===a.cssText){d=c;break}return d},j=function(a){l(h,a)},l=function(a,b){var c=m(b,a.cssRules||a.rules);a.removeRule?a.removeRule(c):a.deleteRule(c)}}angular.module("textAngular.factories",[]).factory("taBrowserTag",[function(){return function(a){return a?""===a?void 0===c.ie?"div":c.ie<=8?"P":"p":c.ie<=8?a.toUpperCase():a:c.ie<=8?"P":"p"}}]).factory("taApplyCustomRenderers",["taCustomRenderers","taDOM",function(a,b){return function(c){var d=angular.element("<div></div>");return d[0].innerHTML=c,angular.forEach(a,function(a){var c=[];a.selector&&""!==a.selector?c=d.find(a.selector):a.customAttribute&&""!==a.customAttribute&&(c=b.getByAttribute(d,a.customAttribute)),angular.forEach(c,function(b){b=angular.element(b),a.selector&&""!==a.selector&&a.customAttribute&&""!==a.customAttribute?void 0!==b.attr(a.customAttribute)&&a.renderLogic(b):a.renderLogic(b)})}),d[0].innerHTML}}]).factory("taFixChrome",function(){var a=function(a){if(!a||!angular.isString(a)||a.length<=0)return a;for(var b,c,d,e=/<([^>\/]+?)style=("([^"]+)"|'([^']+)')([^>]*)>/gi,f="",g=0;b=e.exec(a);)c=b[3]||b[4],c&&c.match(/line-height: 1.428571429;|color: inherit; line-height: 1.1;/i)&&(c=c.replace(/( |)font-family: inherit;|( |)line-height: 1.428571429;|( |)line-height:1.1;|( |)color: inherit;/gi,""),d="<"+b[1].trim(),c.length>0&&(d+=" style="+b[2].substring(0,1)+c+b[2].substring(0,1)),d+=b[5].trim()+">",f+=a.substring(g,b.index)+d,g=b.index+b[0].length);return f+=a.substring(g),g>0?f.replace(/<span\s*>(.*?)<\/span>(<br(\/|)>|)/gi,"$1"):a};return a}).factory("taSanitize",["$sanitize",function(a){function b(a,b){for(var c,d=0,e=0,f=/<[^>]*>/gi;c=f.exec(a);)if(e=c.index,"/"===c[0].substr(1,1)){if(0===d)break;d--}else d++;return b+a.substring(0,e)+angular.element(b)[0].outerHTML.substring(b.length)+a.substring(e)}function c(a){if(!a||!angular.isString(a)||a.length<=0)return a;for(var d,f,g,h,i,k,l=/<([^>\/]+?)style=("([^"]+)"|'([^']+)')([^>]*)>/gi,m="",n="",o=0;f=l.exec(a);){h=f[3]||f[4];var p=new RegExp(j,"i");if(angular.isString(h)&&p.test(h)){i="";for(var q=new RegExp(j,"ig");g=q.exec(h);)for(d=0;d<e.length;d++)g[2*d+2]&&(i+="<"+e[d].tag+">");k=c(a.substring(o,f.index)),n+=m.length>0?b(k,m):k,h=h.replace(new RegExp(j,"ig"),""),n+="<"+f[1].trim(),h.length>0&&(n+=' style="'+h+'"'),n+=f[5]+">",o=f.index+f[0].length,m=i}}return n+=m.length>0?b(a.substring(o),m):a.substring(o)}function d(a){if(!a||!angular.isString(a)||a.length<=0)return a;for(var b,c=/<([^>\/]+?)align=("([^"]+)"|'([^']+)')([^>]*)>/gi,d="",e=0;b=c.exec(a);){d+=a.substring(e,b.index),e=b.index+b[0].length;var f="<"+b[1]+b[5];/style=("([^"]+)"|'([^']+)')/gi.test(f)?f=f.replace(/style=("([^"]+)"|'([^']+)')/i,'style="$2$3 text-align:'+(b[3]||b[4])+';"'):f+=' style="text-align:'+(b[3]||b[4])+';"',f+=">",d+=f}return d+a.substring(e)}for(var e=[{property:"font-weight",values:["bold"],tag:"b"},{property:"font-style",values:["italic"],tag:"i"}],f=[],g=0;g<e.length;g++){for(var h="("+e[g].property+":\\s*(",i=0;i<e[g].values.length;i++)i>0&&(h+="|"),h+=e[g].values[i];h+=");)",f.push(h)}var j="("+f.join("|")+")";return function(b,e,f){if(!f)try{b=c(b)}catch(g){}b=d(b);var h;try{h=a(b),f&&(h=b)}catch(g){h=e||""}var i,j=h.match(/(<pre[^>]*>.*?<\/pre[^>]*>)/gi),k=h.replace(/(&#(9|10);)*/gi,""),l=/<pre[^>]*>.*?<\/pre[^>]*>/gi,m=0,n=0;for(h="";null!==(i=l.exec(k))&&m<j.length;)h+=k.substring(n,i.index)+j[m],n=i.index+i[0].length,m++;return h+k.substring(n)}}]).factory("taToolExecuteAction",["$q","$log",function(a,b){return function(c){void 0!==c&&(this.$editor=function(){return c});var d=a.defer(),e=d.promise,f=this.$editor();e["finally"](function(){f.endAction.call(f)});var g;try{g=this.action(d,f.startAction())}catch(h){b.error(h)}(g||void 0===g)&&d.resolve()}}]),angular.module("textAngular.DOM",["textAngular.factories"]).factory("taExecCommand",["taSelection","taBrowserTag","$document",function(a,b,c){var d=function(b,c){var d,e,f=b.find("li");for(e=f.length-1;e>=0;e--)d=angular.element("<"+c+">"+f[e].innerHTML+"</"+c+">"),b.after(d);b.remove(),a.setSelectionToElementEnd(d[0])},g=function(b){/(<br(|\/)>)$/i.test(b.innerHTML.trim())?a.setSelectionBeforeElement(angular.element(b).find("br")[0]):a.setSelectionToElementEnd(b)},h=function(a,b){var c=angular.element("<"+b+">"+a[0].innerHTML+"</"+b+">");a.after(c),a.remove(),g(c.find("li")[0])},i=function(a,c,d){for(var e="",f=0;f<a.length;f++)e+="<"+b("li")+">"+a[f].innerHTML+"</"+b("li")+">";var h=angular.element("<"+d+">"+e+"</"+d+">");c.after(h),c.remove(),g(h.find("li")[0])};return function(g,j){return g=b(g),function(k,l,m){var n,o,p,q,r,s,t,u=angular.element("<"+g+">");try{t=a.getSelectionElement()}catch(v){}var w=angular.element(t);if(void 0!==t){var x=t.tagName.toLowerCase();if("insertorderedlist"===k.toLowerCase()||"insertunorderedlist"===k.toLowerCase()){var y=b("insertorderedlist"===k.toLowerCase()?"ol":"ul");if(x===y)return d(w,g);if("li"===x&&w.parent()[0].tagName.toLowerCase()===y&&1===w.parent().children().length)return d(w.parent(),g);if("li"===x&&w.parent()[0].tagName.toLowerCase()!==y&&1===w.parent().children().length)return h(w.parent(),y);if(x.match(e)&&!w.hasClass("ta-bind")){if("ol"===x||"ul"===x)return h(w,y);var z=!1;return angular.forEach(w.children(),function(a){a.tagName.match(e)&&(z=!0)}),z?i(w.children(),w,y):i([angular.element("<div>"+t.innerHTML+"</div>")[0]],w,y)}if(x.match(e)){if(q=a.getOnlySelectedElements(),0===q.length)o=angular.element("<"+y+"><li>"+t.innerHTML+"</li></"+y+">"),w.html(""),w.append(o);else{if(1===q.length&&("ol"===q[0].tagName.toLowerCase()||"ul"===q[0].tagName.toLowerCase()))return q[0].tagName.toLowerCase()===y?d(angular.element(q[0]),g):h(angular.element(q[0]),y);p="";var A=[];for(n=0;n<q.length;n++)if(3!==q[n].nodeType){var B=angular.element(q[n]);if("li"===q[n].tagName.toLowerCase())continue;p+="ol"===q[n].tagName.toLowerCase()||"ul"===q[n].tagName.toLowerCase()?B[0].innerHTML:"span"!==q[n].tagName.toLowerCase()||"ol"!==q[n].childNodes[0].tagName.toLowerCase()&&"ul"!==q[n].childNodes[0].tagName.toLowerCase()?"<"+b("li")+">"+B[0].innerHTML+"</"+b("li")+">":B[0].childNodes[0].innerHTML,A.unshift(B)}o=angular.element("<"+y+">"+p+"</"+y+">"),A.pop().replaceWith(o),angular.forEach(A,function(a){a.remove()})}return void a.setSelectionToElementEnd(o[0])}}else{if("formatblock"===k.toLowerCase()){for(s=m.toLowerCase().replace(/[<>]/gi,""),"default"===s.trim()&&(s=g,m="<"+g+">"),o="li"===x?w.parent():w;!o[0].tagName||!o[0].tagName.match(e)&&!o.parent().attr("contenteditable");)o=o.parent(),x=(o[0].tagName||"").toLowerCase();if(x===s){q=o.children();var C=!1;for(n=0;n<q.length;n++)C=C||q[n].tagName.match(e);C?(o.after(q),r=o.next(),o.remove(),o=r):(u.append(o[0].childNodes),o.after(u),o.remove(),o=u)}else if(o.parent()[0].tagName.toLowerCase()!==s||o.parent().hasClass("ta-bind"))if(x.match(f))o.wrap(m);else{for(q=a.getOnlySelectedElements(),0===q.length&&(q=[o[0]]),n=0;n<q.length;n++)if(3===q[n].nodeType||!q[n].tagName.match(e))for(;3===q[n].nodeType||!q[n].tagName||!q[n].tagName.match(e);)q[n]=q[n].parentNode;if(angular.element(q[0]).hasClass("ta-bind"))o=angular.element(m),o[0].innerHTML=q[0].innerHTML,q[0].innerHTML=o[0].outerHTML;else if("blockquote"===s){for(p="",n=0;n<q.length;n++)p+=q[n].outerHTML;for(o=angular.element(m),o[0].innerHTML=p,q[0].parentNode.insertBefore(o[0],q[0]),n=q.length-1;n>=0;n--)q[n].parentNode&&q[n].parentNode.removeChild(q[n])}else for(n=0;n<q.length;n++)o=angular.element(m),o[0].innerHTML=q[n].innerHTML,q[n].parentNode.insertBefore(o[0],q[n]),q[n].parentNode.removeChild(q[n])}else{var D=o.parent(),E=D.contents();for(n=0;n<E.length;n++)D.parent().hasClass("ta-bind")&&3===E[n].nodeType&&(u=angular.element("<"+g+">"),u[0].innerHTML=E[n].outerHTML,E[n]=u[0]),D.parent()[0].insertBefore(E[n],D[0]);D.remove()}return void a.setSelectionToElementEnd(o[0])}if("createlink"===k.toLowerCase()){var F=a.getSelection();if(F.collapsed)return void a.insertHtml('<a href="'+m+'">'+m+"</a>",j)}else if("inserthtml"===k.toLowerCase())return void a.insertHtml(m,j)}}try{c[0].execCommand(k,l,m)}catch(v){}}}}]).service("taSelection",["$window","$document","taDOM",function(a,b,c){var d=b[0],f=a.rangy,h=function(a,b){return a.tagName&&a.tagName.match(/^br$/i)&&0===b&&!a.previousSibling?{element:a.parentNode,offset:0}:{element:a,offset:b}},i={getSelection:function(){var a=f.getSelection().getRangeAt(0),b=a.commonAncestorContainer,c={start:h(a.startContainer,a.startOffset),end:h(a.endContainer,a.endOffset),collapsed:a.collapsed};return b=3===b.nodeType?b.parentNode:b,c.container=b.parentNode===c.start.element||b.parentNode===c.end.element?b.parentNode:b,c},getOnlySelectedElements:function(){var a=f.getSelection().getRangeAt(0),b=a.commonAncestorContainer;return b=3===b.nodeType?b.parentNode:b,a.getNodes([1],function(a){return a.parentNode===b})},getSelectionElement:function(){return i.getSelection().container},setSelection:function(a,b,c){var d=f.createRange();d.setStart(a,b),d.setEnd(a,c),f.getSelection().setSingleRange(d)},setSelectionBeforeElement:function(a){var b=f.createRange();b.selectNode(a),b.collapse(!0),f.getSelection().setSingleRange(b)},setSelectionAfterElement:function(a){var b=f.createRange();b.selectNode(a),b.collapse(!1),f.getSelection().setSingleRange(b)},setSelectionToElementStart:function(a){var b=f.createRange();b.selectNodeContents(a),b.collapse(!0),f.getSelection().setSingleRange(b)},setSelectionToElementEnd:function(a){var b=f.createRange();b.selectNodeContents(a),b.collapse(!1),a.childNodes&&a.childNodes[a.childNodes.length-1]&&"br"===a.childNodes[a.childNodes.length-1].nodeName&&(b.startOffset=b.endOffset=b.startOffset-1),f.getSelection().setSingleRange(b)},insertHtml:function(a,b){var h,j,k,l,m,n,o,p=angular.element("<div>"+a+"</div>"),q=f.getSelection().getRangeAt(0),r=d.createDocumentFragment(),s=p[0].childNodes,t=!0;if(s.length>0){for(l=[],k=0;k<s.length;k++)"p"===s[k].nodeName.toLowerCase()&&""===s[k].innerHTML.trim()||3===s[k].nodeType&&""===s[k].nodeValue.trim()||(t=t&&!e.test(s[k].nodeName),l.push(s[k]));for(var u=0;u<l.length;u++)n=r.appendChild(l[u]);!t&&q.collapsed&&/^(|<br(|\/)>)$/i.test(q.startContainer.innerHTML)&&q.selectNode(q.startContainer)}else t=!0,n=r=d.createTextNode(a);if(t)q.deleteContents();else if(q.collapsed&&q.startContainer!==b)if(q.startContainer.innerHTML&&q.startContainer.innerHTML.match(/^<[^>]*>$/i))h=q.startContainer,1===q.startOffset?(q.setStartAfter(h),q.setEndAfter(h)):(q.setStartBefore(h),q.setEndBefore(h));else{if(3===q.startContainer.nodeType&&q.startContainer.parentNode!==b)for(h=q.startContainer.parentNode,j=h.cloneNode(),c.splitNodes(h.childNodes,h,j,q.startContainer,q.startOffset);!g.test(h.nodeName);){angular.element(h).after(j),h=h.parentNode;var v=j;j=h.cloneNode(),c.splitNodes(h.childNodes,h,j,v)}else h=q.startContainer,j=h.cloneNode(),c.splitNodes(h.childNodes,h,j,void 0,void 0,q.startOffset);if(angular.element(h).after(j),q.setStartAfter(h),q.setEndAfter(h),/^(|<br(|\/)>)$/i.test(h.innerHTML.trim())&&(q.setStartBefore(h),q.setEndBefore(h),angular.element(h).remove()),/^(|<br(|\/)>)$/i.test(j.innerHTML.trim())&&angular.element(j).remove(),"li"===h.nodeName.toLowerCase()){for(o=d.createDocumentFragment(),m=0;m<r.childNodes.length;m++)p=angular.element("<li>"),c.transferChildNodes(r.childNodes[m],p[0]),c.transferNodeAttributes(r.childNodes[m],p[0]),o.appendChild(p[0]);r=o,n&&(n=r.childNodes[r.childNodes.length-1],n=n.childNodes[n.childNodes.length-1])}}else q.deleteContents();q.insertNode(r),n&&i.setSelectionToElementEnd(n)}};return i}]).service("taDOM",function(){var a={getByAttribute:function(b,c){var d=[],e=b.children();return e.length&&angular.forEach(e,function(b){d=d.concat(a.getByAttribute(angular.element(b),c))}),void 0!==b.attr(c)&&d.push(b),d},transferChildNodes:function(a,b){for(b.innerHTML="";a.childNodes.length>0;)b.appendChild(a.childNodes[0]);return b},splitNodes:function(b,c,d,e,f,g){if(!e&&isNaN(g))throw new Error("taDOM.splitNodes requires a splitNode or splitIndex");for(var h=document.createDocumentFragment(),i=document.createDocumentFragment(),j=0;b.length>0&&(isNaN(g)||g!==j)&&b[0]!==e;)h.appendChild(b[0]),j++;for(!isNaN(f)&&f>=0&&b[0]&&(h.appendChild(document.createTextNode(b[0].nodeValue.substring(0,f))),b[0].nodeValue=b[0].nodeValue.substring(f));b.length>0;)i.appendChild(b[0]);a.transferChildNodes(h,c),a.transferChildNodes(i,d)},transferNodeAttributes:function(a,b){for(var c=0;c<a.attributes.length;c++)b.setAttribute(a.attributes[c].name,a.attributes[c].value);return b}};return a}),angular.module("textAngular.validators",[]).directive("taMaxText",function(){return{restrict:"A",require:"ngModel",link:function(a,b,c,d){function e(a){var b=angular.element("<div/>");b.html(a);var c=b.text().length;return f>=c?(d.$setValidity("taMaxText",!0),a):void d.$setValidity("taMaxText",!1)}var f=parseInt(a.$eval(c.taMaxText));if(isNaN(f))throw"Max text must be an integer";c.$observe("taMaxText",function(a){if(f=parseInt(a),isNaN(f))throw"Max text must be an integer";d.$dirty&&d.$setViewValue(d.$viewValue)}),d.$parsers.unshift(e)}}}).directive("taMinText",function(){return{restrict:"A",require:"ngModel",link:function(a,b,c,d){function e(a){var b=angular.element("<div/>");b.html(a);var c=b.text().length;return!c||c>=f?(d.$setValidity("taMinText",!0),a):void d.$setValidity("taMinText",!1)}var f=parseInt(a.$eval(c.taMinText));if(isNaN(f))throw"Min text must be an integer";c.$observe("taMinText",function(a){if(f=parseInt(a),isNaN(f))throw"Min text must be an integer";d.$dirty&&d.$setViewValue(d.$viewValue)}),d.$parsers.unshift(e)}}}),angular.module("textAngular.taBind",["textAngular.factories","textAngular.DOM"]).service("_taBlankTest",[function(){var a=/<(a|abbr|acronym|bdi|bdo|big|cite|code|del|dfn|img|ins|kbd|label|map|mark|q|ruby|rp|rt|s|samp|time|tt|var)[^>]*(>|$)/i;return function(b){return function(c){if(!c)return!0;var d,e=/(^[^<]|>)[^<]/i.exec(c);return e?d=e.index:(c=c.toString().replace(/="[^"]*"/i,"").replace(/="[^"]*"/i,"").replace(/="[^"]*"/i,"").replace(/="[^"]*"/i,""),d=c.indexOf(">")),c=c.trim().substring(d,d+100),/^[^<>]+$/i.test(c)?!1:0===c.length||c===b||/^>(\s|&nbsp;)*<\/[^>]+>$/gi.test(c)?!0:/>\s*[^\s<]/i.test(c)||a.test(c)?!1:!0}}}]).directive("taBind",["taSanitize","$timeout","$window","$document","taFixChrome","taBrowserTag","taSelection","taSelectableElements","taApplyCustomRenderers","taOptions","_taBlankTest","$parse","taDOM",function(a,b,e,f,h,k,l,m,n,o,q,r,s){return{require:"ngModel",link:function(k,t,u,v){var w,x,y,z,A=void 0!==t.attr("contenteditable")&&t.attr("contenteditable"),B=A||"textarea"===t[0].tagName.toLowerCase()||"input"===t[0].tagName.toLowerCase(),C=!1,D=!1,E=!1,F=u.taUnsafeSanitizer||o.disableSanitizer,G=/^(9|19|20|27|33|34|35|36|37|38|39|40|45|112|113|114|115|116|117|118|119|120|121|122|123|144|145)$/i,H=/^(8|13|32|46|59|61|107|109|186|187|188|189|190|191|192|219|220|221|222)$/i;void 0===u.taDefaultWrap&&(u.taDefaultWrap="p"),""===u.taDefaultWrap?(y="",z=void 0===c.ie?"<div><br></div>":c.ie>=11?"<p><br></p>":c.ie<=8?"<P>&nbsp;</P>":"<p>&nbsp;</p>"):(y=void 0===c.ie||c.ie>=11?"<"+u.taDefaultWrap+"><br></"+u.taDefaultWrap+">":c.ie<=8?"<"+u.taDefaultWrap.toUpperCase()+"></"+u.taDefaultWrap.toUpperCase()+">":"<"+u.taDefaultWrap+"></"+u.taDefaultWrap+">",z=void 0===c.ie||c.ie>=11?"<"+u.taDefaultWrap+"><br></"+u.taDefaultWrap+">":c.ie<=8?"<"+u.taDefaultWrap.toUpperCase()+">&nbsp;</"+u.taDefaultWrap.toUpperCase()+">":"<"+u.taDefaultWrap+">&nbsp;</"+u.taDefaultWrap+">");var I=q(z),J=function(a){if(I(a))return a;var b=angular.element("<div>"+a+"</div>");return 0===b.children().length&&(a="<"+u.taDefaultWrap+">"+a+"</"+u.taDefaultWrap+">"),a};u.taPaste&&(x=r(u.taPaste)),t.addClass("ta-bind");var K;k["$undoManager"+(u.id||"")]=v.$undoManager={_stack:[],_index:0,_max:1e3,push:function(a){return"undefined"==typeof a||null===a||"undefined"!=typeof this.current()&&null!==this.current()&&a===this.current()?a:(this._index<this._stack.length-1&&(this._stack=this._stack.slice(0,this._index+1)),this._stack.push(a),K&&b.cancel(K),this._stack.length>this._max&&this._stack.shift(),this._index=this._stack.length-1,a)},undo:function(){return this.setToIndex(this._index-1)},redo:function(){return this.setToIndex(this._index+1)},setToIndex:function(a){return 0>a||a>this._stack.length-1?void 0:(this._index=a,this.current())},current:function(){return this._stack[this._index]}};var L=k["$undoTaBind"+(u.id||"")]=function(){if(!C&&A){var a=v.$undoManager.undo();"undefined"!=typeof a&&null!==a&&(Z(a),O(a,!1),l.setSelectionToElementEnd(t[0].childNodes.length?t[0].childNodes[t[0].childNodes.length-1]:t[0]))}},M=k["$redoTaBind"+(u.id||"")]=function(){if(!C&&A){var a=v.$undoManager.redo();"undefined"!=typeof a&&null!==a&&(Z(a),O(a,!1),l.setSelectionToElementEnd(t[0].childNodes.length?t[0].childNodes[t[0].childNodes.length-1]:t[0]))}},N=function(){if(A)return t[0].innerHTML;if(B)return t.val();throw"textAngular Error: attempting to update non-editable taBind"},O=function(a,b){E=!0,("undefined"==typeof b||null===b)&&(b=!0&&A),("undefined"==typeof a||null===a)&&(a=N()),I(a)?(""!==v.$viewValue&&v.$setViewValue(""),b&&""!==v.$undoManager.current()&&v.$undoManager.push("")):(Y(),v.$viewValue!==a&&(v.$setViewValue(a),b&&v.$undoManager.push(a)))};if(k["updateTaBind"+(u.id||"")]=function(){C||O()},B)if(k.events={},A){var P=!1,Q=function(c){if(c&&c.trim().length){if(c.match(/class=["']*Mso(Normal|List)/i)){var d=c.match(/<!--StartFragment-->([\s\S]*?)<!--EndFragment-->/i);d=d?d[1]:c,d=d.replace(/<o:p>[\s\S]*?<\/o:p>/gi,"").replace(/class=(["']|)MsoNormal(["']|)/gi,"");var e=angular.element("<div>"+d+"</div>"),f=angular.element("<div></div>"),g={element:null,lastIndent:[],lastLi:null,isUl:!1};g.lastIndent.peek=function(){var a=this.length;return a>0?this[a-1]:void 0};for(var h=function(a){g.isUl=a,g.element=angular.element(a?"<ul>":"<ol>"),g.lastIndent=[],g.lastIndent.peek=function(){var a=this.length;return a>0?this[a-1]:void 0},g.lastLevelMatch=null},i=0;i<=e[0].childNodes.length;i++)if(e[0].childNodes[i]&&"#text"!==e[0].childNodes[i].nodeName&&"p"===e[0].childNodes[i].tagName.toLowerCase()){var j=angular.element(e[0].childNodes[i]),m=(j.attr("class")||"").match(/MsoList(Bullet|Number|Paragraph)(CxSp(First|Middle|Last)|)/i);if(m){if(j[0].childNodes.length<2||j[0].childNodes[1].childNodes.length<1)continue;var n="bullet"===m[1].toLowerCase()||"number"!==m[1].toLowerCase()&&!(/^[^0-9a-z<]*[0-9a-z]+[^0-9a-z<>]</i.test(j[0].childNodes[1].innerHTML)||/^[^0-9a-z<]*[0-9a-z]+[^0-9a-z<>]</i.test(j[0].childNodes[1].childNodes[0].innerHTML)),o=(j.attr("style")||"").match(/margin-left:([\-\.0-9]*)/i),p=parseFloat(o?o[1]:0),q=(j.attr("style")||"").match(/mso-list:l([0-9]+) level([0-9]+) lfo[0-9+]($|;)/i);if(q&&q[2]&&(p=parseInt(q[2])),q&&(!g.lastLevelMatch||q[1]!==g.lastLevelMatch[1])||!m[3]||"first"===m[3].toLowerCase()||null===g.lastIndent.peek()||g.isUl!==n&&g.lastIndent.peek()===p)h(n),f.append(g.element);else if(null!=g.lastIndent.peek()&&g.lastIndent.peek()<p)g.element=angular.element(n?"<ul>":"<ol>"),g.lastLi.append(g.element);else if(null!=g.lastIndent.peek()&&g.lastIndent.peek()>p){for(;null!=g.lastIndent.peek()&&g.lastIndent.peek()>p;)if("li"!==g.element.parent()[0].tagName.toLowerCase()){if(!/[uo]l/i.test(g.element.parent()[0].tagName.toLowerCase()))break;g.element=g.element.parent(),g.lastIndent.pop()}else g.element=g.element.parent();g.isUl="ul"===g.element[0].tagName.toLowerCase(),n!==g.isUl&&(h(n),f.append(g.element))}g.lastLevelMatch=q,p!==g.lastIndent.peek()&&g.lastIndent.push(p),g.lastLi=angular.element("<li>"),g.element.append(g.lastLi),g.lastLi.html(j.html().replace(/<!(--|)\[if !supportLists\](--|)>[\s\S]*?<!(--|)\[endif\](--|)>/gi,"")),j.remove()}else h(!1),f.append(j)}var r=function(a){a=angular.element(a);for(var b=a[0].childNodes.length-1;b>=0;b--)a.after(a[0].childNodes[b]);a.remove()};angular.forEach(f.find("span"),function(a){a.removeAttribute("lang"),a.attributes.length<=0&&r(a)}),angular.forEach(f.find("font"),r),c=f.html()}else{if(c=c.replace(/<(|\/)meta[^>]*?>/gi,""),c.match(/<[^>]*?(ta-bind)[^>]*?>/)){if(c.match(/<[^>]*?(text-angular)[^>]*?>/)){var u=angular.element("<div>"+c+"</div>");u.find("textarea").remove();for(var w=s.getByAttribute(u,"ta-bind"),y=0;y<w.length;y++){for(var z=w[y][0].parentNode.parentNode,A=0;A<w[y][0].childNodes.length;A++)z.parentNode.insertBefore(w[y][0].childNodes[A],z);z.parentNode.removeChild(z)}c=u.html().replace('<br class="Apple-interchange-newline">',"")}}else c.match(/^<span/)&&(c=c.replace(/<(|\/)span[^>]*?>/gi,""));c=c.replace(/<br class="Apple-interchange-newline"[^>]*?>/gi,"").replace(/<span class="Apple-converted-space">( |&nbsp;)<\/span>/gi,"&nbsp;")}c=a(c,"",F),x&&(c=x(k,{$html:c})||c),l.insertHtml(c,t[0]),b(function(){v.$setViewValue(N()),P=!1,t.removeClass("processing-paste")},0)}else P=!1,t.removeClass("processing-paste")};if(t.on("paste",k.events.paste=function(a,c){if(c&&angular.extend(a,c),C||P)return a.stopPropagation(),a.preventDefault(),!1;P=!0,t.addClass("processing-paste");var d,g=(a.originalEvent||a).clipboardData;if(g&&g.getData&&g.types.length>0){for(var h="",i=0;i<g.types.length;i++)h+=" "+g.types[i];return/text\/html/i.test(h)?d=g.getData("text/html"):/text\/plain/i.test(h)&&(d=g.getData("text/plain")),Q(d),a.stopPropagation(),a.preventDefault(),!1}var j=e.rangy.saveSelection(),k=angular.element('<div class="ta-hidden-input" contenteditable="true"></div>');f.find("body").append(k),k[0].focus(),b(function(){e.rangy.restoreSelection(j),Q(k[0].innerHTML),t[0].focus(),k.remove()},0)}),t.on("cut",k.events.cut=function(a){C?a.preventDefault():b(function(){v.$setViewValue(N())},0)}),t.on("keydown",k.events.keydown=function(a,b){if(b&&angular.extend(a,b),!C)if(!a.altKey&&a.metaKey||a.ctrlKey)90!==a.keyCode||a.shiftKey?(90===a.keyCode&&a.shiftKey||89===a.keyCode&&!a.shiftKey)&&(M(),a.preventDefault()):(L(),a.preventDefault());else if(13===a.keyCode&&!a.shiftKey){var c,d=l.getSelectionElement();if(!d.tagName.match(g))return;var e=angular.element(y);if(/^<br(|\/)>$/i.test(d.innerHTML.trim())&&"blockquote"===d.parentNode.tagName.toLowerCase()&&!d.nextSibling){c=angular.element(d);var f=c.parent();f.after(e),c.remove(),0===f.children().length&&f.remove(),l.setSelectionToElementStart(e[0]),a.preventDefault()}else/^<[^>]+><br(|\/)><\/[^>]+>$/i.test(d.innerHTML.trim())&&"blockquote"===d.tagName.toLowerCase()&&(c=angular.element(d),c.after(e),c.remove(),l.setSelectionToElementStart(e[0]),a.preventDefault())}}),t.on("keyup",k.events.keyup=function(a,c){if(c&&angular.extend(a,c),9===a.keyCode){var d=l.getSelection();return void(d.start.element===t[0]&&t.children().length&&l.setSelectionToElementStart(t.children()[0]))}if(K&&b.cancel(K),!C&&!G.test(a.keyCode)){if(""!==y&&13===a.keyCode&&!a.shiftKey){for(var f=l.getSelectionElement();!f.tagName.match(g)&&f!==t[0];)f=f.parentNode;if(f.tagName.toLowerCase()!==u.taDefaultWrap&&"li"!==f.tagName.toLowerCase()&&(""===f.innerHTML.trim()||"<br>"===f.innerHTML.trim())){var h=angular.element(y);angular.element(f).replaceWith(h),l.setSelectionToElementStart(h[0])}}var i=N();if(""!==y&&""===i.trim())Z(y),l.setSelectionToElementStart(t.children()[0]);else if("<"!==i.substring(0,1)&&""!==u.taDefaultWrap){var j=e.rangy.saveSelection();i=N(),i="<"+u.taDefaultWrap+">"+i+"</"+u.taDefaultWrap+">",Z(i),e.rangy.restoreSelection(j)}var k=w!==a.keyCode&&H.test(a.keyCode);O(i,k),k||(K=b(function(){v.$undoManager.push(i)},250)),w=a.keyCode}}),t.on("blur",k.events.blur=function(){D=!1,C||O(),E=!0,v.$render()}),u.placeholder&&(c.ie>8||void 0===c.ie)){var R;if(!u.id)throw"textAngular Error: An unique ID is required for placeholders to work";R=i("#"+u.id+".placeholder-text:before",'content: "'+u.placeholder+'"'),k.$on("$destroy",function(){j(R)})}t.on("focus",k.events.focus=function(){D=!0,t.removeClass("placeholder-text")}),t.on("mouseup",k.events.mouseup=function(){var a=l.getSelection();a.start.element===t[0]&&t.children().length&&l.setSelectionToElementStart(t.children()[0])}),t.on("mousedown",k.events.mousedown=function(a,b){b&&angular.extend(a,b),a.stopPropagation()})}else{t.on("change blur",k.events.change=k.events.blur=function(){C||v.$setViewValue(N())}),t.on("keydown",k.events.keydown=function(a,b){if(b&&angular.extend(a,b),9===a.keyCode){var c=this.selectionStart,d=this.selectionEnd,e=t.val();if(a.shiftKey){var f=e.lastIndexOf("\n",c),g=e.lastIndexOf("	",c);-1!==g&&g>=f&&(t.val(e.substring(0,g)+e.substring(g+1)),this.selectionStart=this.selectionEnd=c-1)}else t.val(e.substring(0,c)+"	"+e.substring(d)),this.selectionStart=this.selectionEnd=c+1;a.preventDefault()}});var S=function(a,b){for(var c="",d=0;b>d;d++)c+=a;return c},T=function(a,b){var c="",d=a.childNodes;b++,c+=S("	",b-1)+a.outerHTML.substring(0,a.outerHTML.indexOf("<li"));for(var e=0;e<d.length;e++)d[e].outerHTML&&(c+="ul"===d[e].nodeName.toLowerCase()||"ol"===d[e].nodeName.toLowerCase()?"\n"+T(d[e],b):"\n"+S("	",b)+d[e].outerHTML);return c+="\n"+S("	",b-1)+a.outerHTML.substring(a.outerHTML.lastIndexOf("<"))};v.$formatters.unshift(J),v.$formatters.unshift(function(a){var b=angular.element("<div>"+a+"</div>")[0].childNodes;if(b.length>0){a="";for(var c=0;c<b.length;c++)b[c].outerHTML&&(a.length>0&&(a+="\n"),a+="ul"===b[c].nodeName.toLowerCase()||"ol"===b[c].nodeName.toLowerCase()?""+T(b[c],0):""+b[c].outerHTML)}return a})}var U=function(b){return v.$oldViewValue=a(h(b),v.$oldViewValue,F)},V=function(a){return u.required&&v.$setValidity("required",!I(a)),a};v.$parsers.push(U),v.$parsers.unshift(V),v.$formatters.push(U),v.$formatters.unshift(J),v.$formatters.unshift(V),v.$formatters.unshift(function(a){return v.$undoManager.push(a||"")});var W=function(a){return k.$emit("ta-element-select",this),a.preventDefault(),!1},X=function(a,c){if(c&&angular.extend(a,c),!p&&!C){p=!0;var d;d=a.originalEvent?a.originalEvent.dataTransfer:a.dataTransfer,k.$emit("ta-drop-event",this,a,d),b(function(){p=!1,O()},100)}},Y=k["reApplyOnSelectorHandlers"+(u.id||"")]=function(){C||angular.forEach(m,function(a){t.find(a).off("click",W).on("click",W)})},Z=function(a){t[0].innerHTML=a};v.$render=function(){var a=v.$viewValue||"";E||(A&&D&&(t.removeClass("placeholder-text"),t[0].blur(),b(function(){t[0].focus(),l.setSelectionToElementEnd(t.children()[t.children().length-1])},1)),A?(Z(u.placeholder?""===a?y:a:""===a?y:a),C?t.off("drop",X):(Y(),t.on("drop",X))):"textarea"!==t[0].tagName.toLowerCase()&&"input"!==t[0].tagName.toLowerCase()?Z(n(a)):t.val(a)),A&&u.placeholder&&(""===a?D?t.removeClass("placeholder-text"):t.addClass("placeholder-text"):t.removeClass("placeholder-text")),E=!1},u.taReadonly&&(C=k.$eval(u.taReadonly),C?(t.addClass("ta-readonly"),("textarea"===t[0].tagName.toLowerCase()||"input"===t[0].tagName.toLowerCase())&&t.attr("disabled","disabled"),void 0!==t.attr("contenteditable")&&t.attr("contenteditable")&&t.removeAttr("contenteditable")):(t.removeClass("ta-readonly"),"textarea"===t[0].tagName.toLowerCase()||"input"===t[0].tagName.toLowerCase()?t.removeAttr("disabled"):A&&t.attr("contenteditable","true")),k.$watch(u.taReadonly,function(a,b){b!==a&&(a?(t.addClass("ta-readonly"),("textarea"===t[0].tagName.toLowerCase()||"input"===t[0].tagName.toLowerCase())&&t.attr("disabled","disabled"),void 0!==t.attr("contenteditable")&&t.attr("contenteditable")&&t.removeAttr("contenteditable"),angular.forEach(m,function(a){t.find(a).on("click",W)}),t.off("drop",X)):(t.removeClass("ta-readonly"),"textarea"===t[0].tagName.toLowerCase()||"input"===t[0].tagName.toLowerCase()?t.removeAttr("disabled"):A&&t.attr("contenteditable","true"),angular.forEach(m,function(a){t.find(a).off("click",W)}),t.on("drop",X)),C=a)})),A&&!C&&(angular.forEach(m,function(a){t.find(a).on("click",W)}),t.on("drop",X),t.on("blur",function(){c.webkit&&(d=!0)}))}}}]);var p=!1,q=angular.module("textAngular",["ngSanitize","textAngularSetup","textAngular.factories","textAngular.DOM","textAngular.validators","textAngular.taBind"]),r={};q.constant("taRegisterTool",b),q.value("taTools",r),q.config([function(){angular.forEach(r,function(a,b){delete r[b]})}]),q.run([function(){if(!window.rangy)throw"rangy-core.js and rangy-selectionsaverestore.js are required for textAngular to work correctly, rangy-core is not yet loaded.";if(window.rangy.init(),!window.rangy.saveSelection)throw"rangy-selectionsaverestore.js is required for textAngular to work correctly."}]),q.directive("textAngular",["$compile","$timeout","taOptions","taSelection","taExecCommand","textAngularManager","$window","$document","$animate","$log","$q","$parse",function(a,b,c,d,e,f,g,h,i,j,k,l){return{require:"?ngModel",scope:{},restrict:"EA",link:function(m,n,o,p){var q,r,s,t,u,v,w,x,y,z,A,B=o.serial?o.serial:Math.floor(1e16*Math.random());m._name=o.name?o.name:"textAngularEditor"+B;var C=function(a,c,d){b(function(){var b=function(){a.off(c,b),d.apply(this,arguments)};a.on(c,b)},100)};y=e(o.taDefaultWrap),angular.extend(m,angular.copy(c),{wrapSelection:function(a,b,c){"undo"===a.toLowerCase()?m["$undoTaBindtaTextElement"+B]():"redo"===a.toLowerCase()?m["$redoTaBindtaTextElement"+B]():(y(a,!1,b),c&&m["reApplyOnSelectorHandlerstaTextElement"+B](),m.displayElements.text[0].focus())},showHtml:m.$eval(o.taShowHtml)||!1}),o.taFocussedClass&&(m.classes.focussed=o.taFocussedClass),o.taTextEditorClass&&(m.classes.textEditor=o.taTextEditorClass),o.taHtmlEditorClass&&(m.classes.htmlEditor=o.taHtmlEditorClass),o.taTextEditorSetup&&(m.setup.textEditorSetup=m.$parent.$eval(o.taTextEditorSetup)),o.taHtmlEditorSetup&&(m.setup.htmlEditorSetup=m.$parent.$eval(o.taHtmlEditorSetup)),m.fileDropHandler=o.taFileDrop?m.$parent.$eval(o.taFileDrop):m.defaultFileDropHandler,w=n[0].innerHTML,n[0].innerHTML="",m.displayElements={forminput:angular.element("<input type='hidden' tabindex='-1' style='display: none;'>"),html:angular.element("<textarea></textarea>"),text:angular.element("<div></div>"),scrollWindow:angular.element("<div class='ta-scroll-window'></div>"),popover:angular.element('<div class="popover fade bottom" style="max-width: none; width: 305px;"></div>'),popoverArrow:angular.element('<div class="arrow"></div>'),popoverContainer:angular.element('<div class="popover-content"></div>'),resize:{overlay:angular.element('<div class="ta-resizer-handle-overlay"></div>'),background:angular.element('<div class="ta-resizer-handle-background"></div>'),anchors:[angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-tl"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-tr"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-bl"></div>'),angular.element('<div class="ta-resizer-handle-corner ta-resizer-handle-corner-br"></div>')],info:angular.element('<div class="ta-resizer-handle-info"></div>')}},m.displayElements.popover.append(m.displayElements.popoverArrow),m.displayElements.popover.append(m.displayElements.popoverContainer),m.displayElements.scrollWindow.append(m.displayElements.popover),m.displayElements.popover.on("mousedown",function(a,b){return b&&angular.extend(a,b),a.preventDefault(),!1
-}),m.showPopover=function(a){m.displayElements.popover.css("display","block"),m.reflowPopover(a),i.addClass(m.displayElements.popover,"in"),C(h.find("body"),"click keyup",function(){m.hidePopover()})},m.reflowPopover=function(a){m.displayElements.text[0].offsetHeight-51>a[0].offsetTop?(m.displayElements.popover.css("top",a[0].offsetTop+a[0].offsetHeight+m.displayElements.scrollWindow[0].scrollTop+"px"),m.displayElements.popover.removeClass("top").addClass("bottom")):(m.displayElements.popover.css("top",a[0].offsetTop-54+m.displayElements.scrollWindow[0].scrollTop+"px"),m.displayElements.popover.removeClass("bottom").addClass("top"));var b=m.displayElements.text[0].offsetWidth-m.displayElements.popover[0].offsetWidth,c=a[0].offsetLeft+a[0].offsetWidth/2-m.displayElements.popover[0].offsetWidth/2;m.displayElements.popover.css("left",Math.max(0,Math.min(b,c))+"px"),m.displayElements.popoverArrow.css("margin-left",Math.min(c,Math.max(0,c-b))-11+"px")},m.hidePopover=function(){var a=function(){m.displayElements.popover.css("display",""),m.displayElements.popoverContainer.attr("style",""),m.displayElements.popoverContainer.attr("class","popover-content")};k.when(i.removeClass(m.displayElements.popover,"in",a)).then(a)},m.displayElements.resize.overlay.append(m.displayElements.resize.background),angular.forEach(m.displayElements.resize.anchors,function(a){m.displayElements.resize.overlay.append(a)}),m.displayElements.resize.overlay.append(m.displayElements.resize.info),m.displayElements.scrollWindow.append(m.displayElements.resize.overlay),m.reflowResizeOverlay=function(a){a=angular.element(a)[0],m.displayElements.resize.overlay.css({display:"block",left:a.offsetLeft-5+"px",top:a.offsetTop-5+"px",width:a.offsetWidth+10+"px",height:a.offsetHeight+10+"px"}),m.displayElements.resize.info.text(a.offsetWidth+" x "+a.offsetHeight)},m.showResizeOverlay=function(a){var b=h.find("body");z=function(c){var d={width:parseInt(a.attr("width")),height:parseInt(a.attr("height")),x:c.clientX,y:c.clientY};(void 0===d.width||isNaN(d.width))&&(d.width=a[0].offsetWidth),(void 0===d.height||isNaN(d.height))&&(d.height=a[0].offsetHeight),m.hidePopover();var e=d.height/d.width,f=function(b){var c={x:Math.max(0,d.width+(b.clientX-d.x)),y:Math.max(0,d.height+(b.clientY-d.y))};if(b.shiftKey){var f=c.y/c.x;c.x=e>f?c.x:c.y/e,c.y=e>f?c.x*e:c.y}el=angular.element(a),el.attr("height",Math.max(0,c.y)),el.attr("width",Math.max(0,c.x)),m.reflowResizeOverlay(a)};b.on("mousemove",f),C(b,"mouseup",function(c){c.preventDefault(),c.stopPropagation(),b.off("mousemove",f),m.showPopover(a)}),c.stopPropagation(),c.preventDefault()},m.displayElements.resize.anchors[3].on("mousedown",z),m.reflowResizeOverlay(a),C(b,"click",function(){m.hideResizeOverlay()})},m.hideResizeOverlay=function(){m.displayElements.resize.anchors[3].off("mousedown",z),m.displayElements.resize.overlay.css("display","")},m.setup.htmlEditorSetup(m.displayElements.html),m.setup.textEditorSetup(m.displayElements.text),m.displayElements.html.attr({id:"taHtmlElement"+B,"ng-show":"showHtml","ta-bind":"ta-bind","ng-model":"html"}),m.displayElements.text.attr({id:"taTextElement"+B,contentEditable:"true","ta-bind":"ta-bind","ng-model":"html"}),m.displayElements.scrollWindow.attr({"ng-hide":"showHtml"}),o.taDefaultWrap&&m.displayElements.text.attr("ta-default-wrap",o.taDefaultWrap),o.taUnsafeSanitizer&&(m.displayElements.text.attr("ta-unsafe-sanitizer",o.taUnsafeSanitizer),m.displayElements.html.attr("ta-unsafe-sanitizer",o.taUnsafeSanitizer)),m.displayElements.scrollWindow.append(m.displayElements.text),n.append(m.displayElements.scrollWindow),n.append(m.displayElements.html),m.displayElements.forminput.attr("name",m._name),n.append(m.displayElements.forminput),o.tabindex&&(n.removeAttr("tabindex"),m.displayElements.text.attr("tabindex",o.tabindex),m.displayElements.html.attr("tabindex",o.tabindex)),o.placeholder&&(m.displayElements.text.attr("placeholder",o.placeholder),m.displayElements.html.attr("placeholder",o.placeholder)),o.taDisabled&&(m.displayElements.text.attr("ta-readonly","disabled"),m.displayElements.html.attr("ta-readonly","disabled"),m.disabled=m.$parent.$eval(o.taDisabled),m.$parent.$watch(o.taDisabled,function(a){m.disabled=a,m.disabled?n.addClass(m.classes.disabled):n.removeClass(m.classes.disabled)})),o.taPaste&&(m._pasteHandler=function(a){return l(o.taPaste)(m.$parent,{$html:a})},m.displayElements.text.attr("ta-paste","_pasteHandler($html)")),a(m.displayElements.scrollWindow)(m),a(m.displayElements.html)(m),m.updateTaBindtaTextElement=m["updateTaBindtaTextElement"+B],m.updateTaBindtaHtmlElement=m["updateTaBindtaHtmlElement"+B],n.addClass("ta-root"),m.displayElements.scrollWindow.addClass("ta-text ta-editor "+m.classes.textEditor),m.displayElements.html.addClass("ta-html ta-editor "+m.classes.htmlEditor),m._actionRunning=!1;var D=!1;if(m.startAction=function(){return m._actionRunning=!0,D=g.rangy.saveSelection(),function(){D&&g.rangy.restoreSelection(D)}},m.endAction=function(){m._actionRunning=!1,D&&g.rangy.removeMarkers(D),D=!1,m.updateSelectedStyles(),m.showHtml||m["updateTaBindtaTextElement"+B]()},u=function(){m.focussed=!0,n.addClass(m.classes.focussed),x.focus(),n.triggerHandler("focus")},m.displayElements.html.on("focus",u),m.displayElements.text.on("focus",u),v=function(a){return m._actionRunning||h[0].activeElement===m.displayElements.html[0]||h[0].activeElement===m.displayElements.text[0]||(n.removeClass(m.classes.focussed),x.unfocus(),b(function(){m._bUpdateSelectedStyles=!1,n.triggerHandler("blur"),m.focussed=!1},0)),a.preventDefault(),!1},m.displayElements.html.on("blur",v),m.displayElements.text.on("blur",v),m.displayElements.text.on("paste",function(a){n.triggerHandler("paste",a)}),m.queryFormatBlockState=function(a){return!m.showHtml&&a.toLowerCase()===h[0].queryCommandValue("formatBlock").toLowerCase()},m.queryCommandState=function(a){return m.showHtml?"":h[0].queryCommandState(a)},m.switchView=function(){m.showHtml=!m.showHtml,i.enabled(!1,m.displayElements.html),i.enabled(!1,m.displayElements.text),m.showHtml?b(function(){return i.enabled(!0,m.displayElements.html),i.enabled(!0,m.displayElements.text),m.displayElements.html[0].focus()},100):b(function(){return i.enabled(!0,m.displayElements.html),i.enabled(!0,m.displayElements.text),m.displayElements.text[0].focus()},100)},o.ngModel){var E=!0;p.$render=function(){if(E){E=!1;var a=m.$parent.$eval(o.ngModel);void 0!==a&&null!==a||!w||""===w||p.$setViewValue(w)}m.displayElements.forminput.val(p.$viewValue),m._elementSelectTriggered||(m.html=p.$viewValue||"")};var F=function(a){return o.required&&p.$setValidity("required",!(!a||""===a.trim())),a};p.$parsers.push(F),p.$formatters.push(F)}else m.displayElements.forminput.val(w),m.html=w;if(m.$watch("html",function(a,b){a!==b&&(o.ngModel&&p.$viewValue!==a&&p.$setViewValue(a),m.displayElements.forminput.val(a))}),o.taTargetToolbars)x=f.registerEditor(m._name,m,o.taTargetToolbars.split(","));else{var G=angular.element('<div text-angular-toolbar name="textAngularToolbar'+B+'">');o.taToolbar&&G.attr("ta-toolbar",o.taToolbar),o.taToolbarClass&&G.attr("ta-toolbar-class",o.taToolbarClass),o.taToolbarGroupClass&&G.attr("ta-toolbar-group-class",o.taToolbarGroupClass),o.taToolbarButtonClass&&G.attr("ta-toolbar-button-class",o.taToolbarButtonClass),o.taToolbarActiveButtonClass&&G.attr("ta-toolbar-active-button-class",o.taToolbarActiveButtonClass),o.taFocussedClass&&G.attr("ta-focussed-class",o.taFocussedClass),n.prepend(G),a(G)(m.$parent),x=f.registerEditor(m._name,m,["textAngularToolbar"+B])}m.$on("$destroy",function(){f.unregisterEditor(m._name)}),m.$on("ta-element-select",function(a,b){x.triggerElementSelect(a,b)&&m["reApplyOnSelectorHandlerstaTextElement"+B]()}),m.$on("ta-drop-event",function(a,c,d,e){m.displayElements.text[0].focus(),e&&e.files&&e.files.length>0?(angular.forEach(e.files,function(a){try{k.when(m.fileDropHandler(a,m.wrapSelection)||m.fileDropHandler!==m.defaultFileDropHandler&&k.when(m.defaultFileDropHandler(a,m.wrapSelection))).then(function(){m["updateTaBindtaTextElement"+B]()})}catch(b){j.error(b)}}),d.preventDefault(),d.stopPropagation()):b(function(){m["updateTaBindtaTextElement"+B]()},0)}),m._bUpdateSelectedStyles=!1,angular.element(window).on("blur",function(){m._bUpdateSelectedStyles=!1,m.focussed=!1}),m.updateSelectedStyles=function(){var a;A&&b.cancel(A),void 0!==(a=d.getSelectionElement())&&a.parentNode!==m.displayElements.text[0]?x.updateSelectedStyles(angular.element(a)):x.updateSelectedStyles(),m._bUpdateSelectedStyles&&(A=b(m.updateSelectedStyles,200))},q=function(){return m.focussed?void(m._bUpdateSelectedStyles||(m._bUpdateSelectedStyles=!0,m.$apply(function(){m.updateSelectedStyles()}))):void(m._bUpdateSelectedStyles=!1)},m.displayElements.html.on("keydown",q),m.displayElements.text.on("keydown",q),r=function(){m._bUpdateSelectedStyles=!1},m.displayElements.html.on("keyup",r),m.displayElements.text.on("keyup",r),s=function(a,b){b&&angular.extend(a,b),m.$apply(function(){return x.sendKeyCommand(a)?(m._bUpdateSelectedStyles||m.updateSelectedStyles(),a.preventDefault(),!1):void 0})},m.displayElements.html.on("keypress",s),m.displayElements.text.on("keypress",s),t=function(){m._bUpdateSelectedStyles=!1,m.$apply(function(){m.updateSelectedStyles()})},m.displayElements.html.on("mouseup",t),m.displayElements.text.on("mouseup",t)}}}]),q.service("textAngularManager",["taToolExecuteAction","taTools","taRegisterTool",function(a,b,c){var d={},e={};return{registerEditor:function(c,f,g){if(!c||""===c)throw"textAngular Error: An editor requires a name";if(!f)throw"textAngular Error: An editor requires a scope";if(e[c])throw'textAngular Error: An Editor with name "'+c+'" already exists';var h=[];return angular.forEach(g,function(a){d[a]&&h.push(d[a])}),e[c]={scope:f,toolbars:g,_registerToolbar:function(a){this.toolbars.indexOf(a.name)>=0&&h.push(a)},editorFunctions:{disable:function(){angular.forEach(h,function(a){a.disabled=!0})},enable:function(){angular.forEach(h,function(a){a.disabled=!1})},focus:function(){angular.forEach(h,function(a){a._parent=f,a.disabled=!1,a.focussed=!0,f.focussed=!0})},unfocus:function(){angular.forEach(h,function(a){a.disabled=!0,a.focussed=!1}),f.focussed=!1},updateSelectedStyles:function(a){angular.forEach(h,function(b){angular.forEach(b.tools,function(c){c.activeState&&(b._parent=f,c.active=c.activeState(a))})})},sendKeyCommand:function(c){var d=!1;return(c.ctrlKey||c.metaKey)&&angular.forEach(b,function(b,e){if(b.commandKeyCode&&b.commandKeyCode===c.which)for(var g=0;g<h.length;g++)if(void 0!==h[g].tools[e]){a.call(h[g].tools[e],f),d=!0;break}}),d},triggerElementSelect:function(a,c){var d=function(a,b){for(var c=!0,d=0;d<b.length;d++)c=c&&a.attr(b[d]);return c},e=[],g={},i=!1;c=angular.element(c);var j=!1;if(angular.forEach(b,function(a,b){a.onElementSelect&&a.onElementSelect.element&&a.onElementSelect.element.toLowerCase()===c[0].tagName.toLowerCase()&&(!a.onElementSelect.filter||a.onElementSelect.filter(c))&&(j=j||angular.isArray(a.onElementSelect.onlyWithAttrs)&&d(c,a.onElementSelect.onlyWithAttrs),(!a.onElementSelect.onlyWithAttrs||d(c,a.onElementSelect.onlyWithAttrs))&&(g[b]=a))}),j?(angular.forEach(g,function(a,b){a.onElementSelect.onlyWithAttrs&&d(c,a.onElementSelect.onlyWithAttrs)&&e.push({name:b,tool:a})}),e.sort(function(a,b){return b.tool.onElementSelect.onlyWithAttrs.length-a.tool.onElementSelect.onlyWithAttrs.length})):angular.forEach(g,function(a,b){e.push({name:b,tool:a})}),e.length>0)for(var k=0;k<e.length;k++){for(var l=e[k].tool,m=e[k].name,n=0;n<h.length;n++)if(void 0!==h[n].tools[m]){l.onElementSelect.action.call(h[n].tools[m],a,c,f),i=!0;break}if(i)break}return i}}},e[c].editorFunctions},retrieveEditor:function(a){return e[a]},unregisterEditor:function(a){delete e[a]},registerToolbar:function(a){if(!a)throw"textAngular Error: A toolbar requires a scope";if(!a.name||""===a.name)throw"textAngular Error: A toolbar requires a name";if(d[a.name])throw'textAngular Error: A toolbar with name "'+a.name+'" already exists';d[a.name]=a,angular.forEach(e,function(b){b._registerToolbar(a)})},retrieveToolbar:function(a){return d[a]},retrieveToolbarsViaEditor:function(a){var b=[],c=this;return angular.forEach(this.retrieveEditor(a).toolbars,function(a){b.push(c.retrieveToolbar(a))}),b},unregisterToolbar:function(a){delete d[a]},updateToolsDisplay:function(a){var b=this;angular.forEach(a,function(a,c){b.updateToolDisplay(c,a)})},resetToolsDisplay:function(){var a=this;angular.forEach(b,function(b,c){a.resetToolDisplay(c)})},updateToolDisplay:function(a,b){var c=this;angular.forEach(d,function(d,e){c.updateToolbarToolDisplay(e,a,b)})},resetToolDisplay:function(a){var b=this;angular.forEach(d,function(c,d){b.resetToolbarToolDisplay(d,a)})},updateToolbarToolDisplay:function(a,b,c){if(!d[a])throw'textAngular Error: No Toolbar with name "'+a+'" exists';d[a].updateToolDisplay(b,c)},resetToolbarToolDisplay:function(a,c){if(!d[a])throw'textAngular Error: No Toolbar with name "'+a+'" exists';d[a].updateToolDisplay(c,b[c],!0)},removeTool:function(a){delete b[a],angular.forEach(d,function(b){delete b.tools[a];for(var c=0;c<b.toolbar.length;c++){for(var d,e=0;e<b.toolbar[c].length;e++){if(b.toolbar[c][e]===a){d={group:c,index:e};break}if(void 0!==d)break}void 0!==d&&(b.toolbar[d.group].slice(d.index,1),b._$element.children().eq(d.group).children().eq(d.index).remove())}})},addTool:function(a,b,e,f){c(a,b),angular.forEach(d,function(c){c.addTool(a,b,e,f)})},addToolToToolbar:function(a,b,e,f,g){c(a,b),d[e].addTool(a,b,f,g)},refreshEditor:function(a){if(!e[a])throw'textAngular Error: No Editor with name "'+a+'" exists';e[a].scope.updateTaBindtaTextElement(),e[a].scope.$$phase||e[a].scope.$digest()}}}]),q.directive("textAngularToolbar",["$compile","textAngularManager","taOptions","taTools","taToolExecuteAction","$window",function(a,b,c,d,e,f){return{scope:{name:"@"},restrict:"EA",link:function(g,h,i){if(!g.name||""===g.name)throw"textAngular Error: A toolbar requires a name";angular.extend(g,angular.copy(c)),i.taToolbar&&(g.toolbar=g.$parent.$eval(i.taToolbar)),i.taToolbarClass&&(g.classes.toolbar=i.taToolbarClass),i.taToolbarGroupClass&&(g.classes.toolbarGroup=i.taToolbarGroupClass),i.taToolbarButtonClass&&(g.classes.toolbarButton=i.taToolbarButtonClass),i.taToolbarActiveButtonClass&&(g.classes.toolbarButtonActive=i.taToolbarActiveButtonClass),i.taFocussedClass&&(g.classes.focussed=i.taFocussedClass),g.disabled=!0,g.focussed=!1,g._$element=h,h[0].innerHTML="",h.addClass("ta-toolbar "+g.classes.toolbar),g.$watch("focussed",function(){g.focussed?h.addClass(g.classes.focussed):h.removeClass(g.classes.focussed)});var j=function(b,c){var d;if(d=angular.element(b&&b.display?b.display:"<button type='button'>"),d.addClass(b&&b["class"]?b["class"]:g.classes.toolbarButton),d.attr("name",c.name),d.attr("unselectable","on"),d.attr("ng-disabled","isDisabled()"),d.attr("tabindex","-1"),d.attr("ng-click","executeAction()"),d.attr("ng-class","displayActiveToolClass(active)"),b&&b.tooltiptext&&d.attr("title",b.tooltiptext),d.on("mousedown",function(a,b){return b&&angular.extend(a,b),a.preventDefault(),!1}),b&&!b.display&&!c._display&&(d[0].innerHTML="",b.buttontext&&(d[0].innerHTML=b.buttontext),b.iconclass)){var e=angular.element("<i>"),f=d[0].innerHTML;e.addClass(b.iconclass),d[0].innerHTML="",d.append(e),f&&""!==f&&d.append("&nbsp;"+f)}return c._lastToolDefinition=angular.copy(b),a(d)(c)};g.tools={},g._parent={disabled:!0,showHtml:!1,queryFormatBlockState:function(){return!1},queryCommandState:function(){return!1}};var k={$window:f,$editor:function(){return g._parent},isDisabled:function(){return"function"!=typeof this.$eval("disabled")&&this.$eval("disabled")||this.$eval("disabled()")||"html"!==this.name&&this.$editor().showHtml||this.$parent.disabled||this.$editor().disabled},displayActiveToolClass:function(a){return a?g.classes.toolbarButtonActive:""},executeAction:e};angular.forEach(g.toolbar,function(a){var b=angular.element("<div>");b.addClass(g.classes.toolbarGroup),angular.forEach(a,function(a){g.tools[a]=angular.extend(g.$new(!0),d[a],k,{name:a}),g.tools[a].$element=j(d[a],g.tools[a]),b.append(g.tools[a].$element)}),h.append(b)}),g.updateToolDisplay=function(a,b,c){var d=g.tools[a];if(d){if(d._lastToolDefinition&&!c&&(b=angular.extend({},d._lastToolDefinition,b)),null===b.buttontext&&null===b.iconclass&&null===b.display)throw'textAngular Error: Tool Definition for updating "'+a+'" does not have a valid display/iconclass/buttontext value';null===b.buttontext&&delete b.buttontext,null===b.iconclass&&delete b.iconclass,null===b.display&&delete b.display;var e=j(b,d);d.$element.replaceWith(e),d.$element=e}},g.addTool=function(a,b,c,e){g.tools[a]=angular.extend(g.$new(!0),d[a],k,{name:a}),g.tools[a].$element=j(d[a],g.tools[a]);var f;void 0===c&&(c=g.toolbar.length-1),f=angular.element(h.children()[c]),void 0===e?(f.append(g.tools[a].$element),g.toolbar[c][g.toolbar[c].length-1]=a):(f.children().eq(e).after(g.tools[a].$element),g.toolbar[c][e]=a)},b.registerToolbar(g),g.$on("$destroy",function(){b.unregisterToolbar(g.name)})}}}])}()}({},function(){return this}());;/**
- * @license Angular UI Tree v2.2.0
- * (c) 2010-2014. https://github.com/JimLiu/angular-ui-tree
- * License: MIT
- */
-(function () {
-  'use strict';
-
-  angular.module('ui.tree', [])
-    .constant('treeConfig', {
-      treeClass: 'angular-ui-tree',
-      emptyTreeClass: 'angular-ui-tree-empty',
-      hiddenClass: 'angular-ui-tree-hidden',
-      nodesClass: 'angular-ui-tree-nodes',
-      nodeClass: 'angular-ui-tree-node',
-      handleClass: 'angular-ui-tree-handle',
-      placeHoldersWrapperClass: 'angular-ui-tree-placeholders-wrapper',
-      placeHolderClass: 'angular-ui-tree-placeholder',
-      dragClass: 'angular-ui-tree-drag',
-      dragWrapperClass: 'angular-ui-tree-drag-wrapper',
-      dragUpThreshold: 10,
-      dir: 'ltr',
-      levelThreshold: 30
-    })
-    .constant('keys', {
-      space: 32,
-      enter: 13,
-      tab: 9,
-      esc: 27,
-      escape: 27,
-      backspace: 8,
-      back: 8,
-      shift: 16,
-      maj: 16,
-      ctrl: 17,
-      control: 17,
-      alt: 18,
-      left: 37,
-      leftarrow: 37,
-      up: 38,
-      uparrow: 38,
-      right: 39,
-      rightarrow: 39,
-      down: 40,
-      downarrow: 40,
-      ins: 45,
-      insert: 45,
-      del: 46,
-      'delete': 46,
-      home: 36,
-      end: 35,
-      pgup: 33,
-      pageup: 33,
-      pgdown: 34,
-      pagedown: 34,
-      f1: 112,
-      f2: 113,
-      f3: 114,
-      f4: 115,
-      f5: 116,
-      f6: 117,
-      f7: 118,
-      f8: 119,
-      f9: 120,
-      f10: 121,
-      f11: 122,
-      f12: 123
-    });
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-
-    .controller('TreeHandleController', ['$scope', '$element', '$attrs', 'treeConfig',
-      function ($scope, $element, $attrs, treeConfig) {
-        this.scope = $scope;
-
-        $scope.$element = $element;
-        $scope.$handleElement = $element;
-        $scope.$nodeScope = undefined;
-        $scope.$type = 'uiTreeHandle';
-      }
-    ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-
-    .controller('TreeNodeController', ['$scope', '$element', '$attrs', 'treeConfig',
-      function ($scope, $element, $attrs, treeConfig) {
-        this.scope = $scope;
-
-        $scope.$element = $element;
-        $scope.$nodeElement = $element;
-        $scope.$modelValue = undefined; // Model value for node;
-        $scope.$parentNodeScope = undefined; // uiTreeNode Scope of parent node;
-        $scope.$childNodesScope = undefined; // uiTreeNodes Scope of child nodes.
-        $scope.$parentNodesScope = undefined; // uiTreeNodes Scope of parent nodes.
-        $scope.$treeScope = undefined; // uiTree scope
-        $scope.$handleScope = undefined; // it's handle scope
-        $scope.$type = 'uiTreeNode';
-        $scope.$$apply = false; //
-        $scope.$dragInfo = undefined;
-
-        $scope.collapsed = false;
-        $scope.expandOnHover = false;
-
-        $scope.selected = false;
-
-        $scope.init = function(controllersArr) {
-          var treeNodesCtrl = controllersArr[0];
-          $scope.$treeScope = controllersArr[1] ? controllersArr[1].scope : undefined;
-
-          // find the scope of it's parent node
-          $scope.$parentNodeScope = treeNodesCtrl.scope.$nodeScope;
-          // modelValue for current node
-          $scope.$modelValue = treeNodesCtrl.scope.$modelValue[$scope.$index];
-          $scope.$parentNodesScope = treeNodesCtrl.scope;
-          treeNodesCtrl.scope.initSubNode($scope); // init sub nodes
-
-          $element.on('$destroy', function() {
-            treeNodesCtrl.scope.destroySubNode($scope); // destroy sub nodes
-          });
-        };
-
-        $scope.toggleSelected = function() {
-          if ($scope.selected) {
-            $scope.unselect();
-          } else {
-            $scope.select();
-          }
-        };
-
-        $scope.select = function() {
-          if (!$scope.selected && $scope.$treeScope.$callbacks.select($scope)) {
-            $scope.selected = true;
-
-            $scope.$treeScope.$selecteds.push($scope.$element);
-          }
-        };
-
-        $scope.unselect = function() {
-          if ($scope.selected && $scope.$treeScope.$callbacks.unselect($scope)) {
-            $scope.selected = false;
-
-            var indexOf = $scope.$treeScope.$selecteds.indexOf($scope.$element);
-            if (angular.isDefined(indexOf) && indexOf > -1) {
-              $scope.$treeScope.$selecteds.splice(indexOf, 1);
-            }
-          }
-        };
-
-        $scope.index = function() {
-          return $scope.$parentNodesScope.$modelValue.indexOf($scope.$modelValue);
-        };
-
-        $scope.dragEnabled = function() {
-          return !($scope.$treeScope && !$scope.$treeScope.dragEnabled);
-        };
-
-        $scope.isSibling = function(targetNode) {
-          return $scope.$parentNodesScope === targetNode.$parentNodesScope;
-        };
-
-        $scope.isChild = function(targetNode) {
-          var nodes = $scope.childNodes();
-          return nodes && nodes.indexOf(targetNode) > -1;
-        };
-
-        $scope.prev = function() {
-          var index = $scope.index();
-          if (index > 0) {
-            return $scope.siblings()[index - 1];
-          }
-
-          return undefined;
-        };
-
-        $scope.siblings = function() {
-          return $scope.$parentNodesScope.childNodes();
-        };
-
-        $scope.childNodesCount = function() {
-          return (angular.isDefined($scope.childNodes())) ? $scope.childNodes().length : 0;
-        };
-
-        $scope.hasChild = function() {
-          return $scope.childNodesCount() > 0;
-        };
-
-        $scope.childNodes = function() {
-          return (angular.isDefined($scope.$childNodesScope) && angular.isDefined($scope.$childNodesScope.$modelValue)) ?
-                 $scope.$childNodesScope.childNodes() : undefined;
-        };
-
-        $scope.accept = function(sourceNode, destIndex) {
-          return angular.isDefined($scope.$childNodesScope) &&
-                  angular.isDefined($scope.$childNodesScope.$modelValue) &&
-                  $scope.$childNodesScope.accept(sourceNode, destIndex);
-        };
-
-        $scope.removeNode = function() {
-          if ($scope.$treeScope.$callbacks.remove(node)) {
-            var node = $scope.remove();
-
-            return node;
-          }
-
-          return undefined;
-        };
-
-        $scope.remove = function() {
-          return $scope.$parentNodesScope.removeNode($scope);
-        };
-
-        $scope.toggle = function() {
-          $scope.collapsed = !$scope.collapsed;
-        };
-
-        $scope.collapse = function(all) {
-          $scope.collapsed = $scope.$treeScope.$callbacks.collapse($scope, all);
-        };
-
-        $scope.expand = function(all) {
-          $scope.collapsed = !$scope.$treeScope.$callbacks.expand($scope, all);
-        };
-
-        $scope.depth = function() {
-          var parentNode = $scope.$parentNodeScope;
-          if (parentNode) {
-            return parentNode.depth() + 1;
-          }
-
-          return 1;
-        };
-
-        var subDepth = 0;
-        var countSubDepth = function(scope) {
-          var count = 0;
-          var nodes = scope.childNodes();
-          for (var i = 0; i < nodes.length; i++) {
-            var childNodes = nodes[i].$childNodesScope;
-            if (childNodes) {
-              count = 1;
-              countSubDepth(childNodes);
-            }
-          }
-          subDepth += count;
-        };
-
-        $scope.maxSubDepth = function() {
-          subDepth = 0;
-          if ($scope.$childNodesScope) {
-            countSubDepth($scope.$childNodesScope);
-          }
-
-          return subDepth;
-        };
-
-      }
-    ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-
-    .controller('TreeNodesController', ['$scope', '$element', '$q', 'treeConfig',
-      function ($scope, $element, $q, treeConfig) {
-        this.scope = $scope;
-
-        $scope.$element = $element;
-        $scope.$nodesElement = $element;
-        $scope.$modelValue = undefined;
-        $scope.$nodeScope = undefined; // the scope of node which the nodes belongs to
-        $scope.$treeScope = undefined;
-        $scope.$type = 'uiTreeNodes';
-        $scope.$nodesMap = {};
-
-        $scope.nodrop = false;
-        $scope.maxDepth = 0;
-
-        $scope.expandOnHover = undefined;
-
-        $scope.initSubNode = function(subNode) {
-          if (!subNode.$modelValue) {
-            return undefined;
-          }
-          $scope.$nodesMap[subNode.$modelValue.$$hashKey] = subNode;
-        };
-
-        $scope.destroySubNode = function(subNode) {
-          if (!subNode.$modelValue) {
-            return undefined;
-          }
-          $scope.$nodesMap[subNode.$modelValue.$$hashKey] = undefined;
-        };
-
-        $scope.accept = function(sourceNode, destIndex) {
-          return $scope.$treeScope.$callbacks.accept(sourceNode, $scope, destIndex);
-        };
-
-        $scope.beforeDrag = function(sourceNode, event) {
-          return $scope.$treeScope.$callbacks.beforeDrag(sourceNode, event);
-        };
-
-        $scope.isParent = function(node) {
-          return node.$parentNodesScope == $scope;
-        };
-
-        $scope.hasChild = function() {
-          return $scope.$modelValue.length > 0;
-        };
-
-        $scope.safeApply = function(fn) {
-          var phase = this.$root.$$phase;
-          if (phase == '$apply' || phase == '$digest') {
-            if (fn && (typeof(fn) === 'function')) {
-              fn();
-            }
-          } else {
-            this.$apply(fn);
-          }
-        };
-
-        $scope.removeNode = function(node) {
-          var deferred = $q.defer();
-
-          var index = $scope.$modelValue.indexOf(node.$modelValue);
-          if (index > -1) {
-            $scope.safeApply(function() {
-              $scope.$modelValue.splice(index, 1)[0];
-
-              deferred.resolve(node);
-            });
-          } else {
-            deferred.reject('not found');
-          }
-
-          return deferred.promise;
-        };
-
-        $scope.insertNode = function(index, nodeData) {
-          var deferred = $q.defer();
-
-          $scope.safeApply(function() {
-            $scope.$modelValue.splice(index, 0, nodeData);
-            deferred.resolve('inserted');
-          });
-
-          return deferred.promise;
-        };
-
-        $scope.childNodes = function() {
-          var nodes = [];
-          if ($scope.$modelValue) {
-            for (var i = 0; i < $scope.$modelValue.length; i++) {
-              nodes.push($scope.$nodesMap[$scope.$modelValue[i].$$hashKey]);
-            }
-          }
-          return nodes;
-        };
-
-        $scope.depth = function() {
-          if ($scope.$nodeScope) {
-            return $scope.$nodeScope.depth();
-          }
-          return 0; // if it has no $nodeScope, it's root
-        };
-
-        // check if depth limit has reached
-        $scope.outOfDepth = function(sourceNode) {
-          var maxDepth = $scope.maxDepth || $scope.$treeScope.maxDepth;
-          if (maxDepth > 0) {
-            return $scope.depth() + sourceNode.maxSubDepth() + 1 > maxDepth;
-          }
-          return false;
-        };
-
-      }
-    ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-    .controller('TreeController', ['$scope', '$element', '$window', '$attrs', 'treeConfig', 'keys',
-      function ($scope, $element, $window, $attrs, treeConfig, keys) {
-        this.scope = $scope;
-
-        $scope.$element = $element;
-        $scope.$treeElement = $element;
-        $scope.$nodesScope = undefined; // root nodes
-        $scope.$type = 'uiTree';
-        $scope.$emptyElm = undefined;
-        $scope.$callbacks = undefined;
-
-        $scope.$selecteds = [];
-
-        $scope.dragEnabled = (angular.isUndefined($scope.dragEnabled)) ? true : $scope.dragEnabled;
-        $scope.emptyPlaceholderEnabled = (angular.isUndefined($scope.emptyPlaceholderEnabled)) ? false : $scope.emptyPlaceholderEnabled;
-        $scope.maxDepth = (angular.isUndefined($scope.maxDepth)) ? 10 : $scope.maxDepth;
-        $scope.dragDelay = (angular.isUndefined($scope.dragDelay)) ? 0 : $scope.dragDelay;
-        $scope.dragDistance = (angular.isUndefined($scope.dragDistance)) ? 0 : $scope.dragDistance;
-        $scope.cancelKey = keys.escape;
-        $scope.lockXKey = undefined;
-        $scope.lockX = false;
-        $scope.lockYKey = undefined;
-        $scope.lockY = false;
-        $scope.boundTo = (angular.isUndefined($scope.boundTo)) ? '' : $scope.boundTo;
-        $scope.collideWith = 'bottom';
-        $scope.coverage = 0.5;
-        $scope.spacing = (angular.isUndefined($scope.spacing)) ? 50 : $scope.spacing;
-        $scope.spacingThreshold = Math.floor($scope.spacing / 4);
-
-        $scope.copyKey = undefined;
-        $scope.copy = false;
-        $scope.multiSelectKey = undefined;
-        $scope.multiSelect = false;
-
-        $scope.expandOnHover = (angular.isUndefined($scope.expandOnHover)) ? 500 : $scope.expandOnHover;
-
-        $scope.$watch('callbacks', function(newOptions) {
-          angular.forEach(newOptions, function(value, key) {
-            if ($scope.$callbacks[key]) {
-              if (angular.isFunction(value)) {
-                $scope.$callbacks[key] = value;
-              }
-            }
-          });
-        }, true);
-
-        $scope.$watch('$nodesScope.$modelValue.length', function(val) {
-          if ((typeof val) != 'undefined' && $scope.$nodesScope.$modelValue) {
-            $scope.resetEmptyElement();
-          }
-        }, true);
-
-        $scope.$watch('lockXKeyString', function(val) {
-          if (angular.isString(val)) {
-            val = val.toLowerCase();
-            if (val.length > 0) {
-              $scope.lockXKey = (angular.isDefined(keys[val])) ? keys[val] : (val.length === 1) ? (val.charCodeAt(0) - 32) : undefined;
-            }
-          }
-
-          $scope.lockX = (angular.isUndefined($scope.lockXKey) && ((typeof val) === 'boolean')) ? val : false;
-        });
-
-        $scope.$watch('lockYKeyString', function(val) {
-          if (angular.isString(val)) {
-            val = val.toLowerCase();
-            if (val.length > 0) {
-              $scope.lockYKey = (angular.isDefined(keys[val])) ? keys[val] : (val.length === 1) ? (val.charCodeAt(0) - 32) : undefined;
-            }
-          }
-
-          $scope.lockY = (angular.isUndefined($scope.lockXKey) && ((typeof val) === 'boolean')) ? val : false;
-        });
-
-        $scope.$watch('boundToString', function(val) {
-          if (angular.isString(val) && val.length > 0) {
-            try {
-              $scope.boundTo = angular.element($window.document.querySelectorAll(val));
-            } catch (exception) {
-              $scope.boundTo = '';
-            }
-          }
-        });
-
-        $scope.$watch('spacing', function(val) {
-          if (angular.isNumber(val) && val > 0) {
-            $scope.spacingThreshold = Math.floor($scope.spacing / 4);
-          }
-        });
-
-        $scope.$watch('coveragePercent', function(val) {
-          if (angular.isNumber(val) && val >= -100 && val <= 100) {
-            $scope.collideWith = (val < 0) ? 'top' : 'bottom';
-            $scope.coverage = Math.abs((val / 100));
-          }
-        });
-
-        $scope.$watch('cancelKeyString', function(val) {
-          if (angular.isString(val)) {
-            val = val.toLowerCase();
-            if (val.length > 0) {
-              $scope.cancelKey = (angular.isDefined(keys[val])) ? keys[val] : (val.charCodeAt(0) - 32);
-            }
-          }
-        });
-
-        $scope.$watch('copyKeyString', function(val) {
-          if (angular.isString(val)) {
-            val = val.toLowerCase();
-            if (val.length > 0) {
-              $scope.copyKey = (angular.isDefined(keys[val])) ? keys[val] : (val.charCodeAt(0) - 32);
-            }
-          }
-        });
-
-        $scope.$watch('selectKeyString', function(val) {
-          if (angular.isString(val)) {
-            val = val.toLowerCase();
-            if (val.length > 0) {
-              $scope.multiSelectKey = (angular.isDefined(keys[val])) ? keys[val] : (val.charCodeAt(0) - 32);
-            }
-          }
-        });
-
-        // Check if it's a empty tree
-        $scope.isEmpty = function() {
-          return ($scope.$nodesScope && $scope.$nodesScope.$modelValue && $scope.$nodesScope.$modelValue.length === 0);
-        };
-
-        // add placeholder to empty tree
-        $scope.place = function(placeElm) {
-          $scope.$nodesScope.$element.append(placeElm);
-          $scope.$emptyElm.remove();
-        };
-
-        $scope.resetEmptyElement = function() {
-          if ($scope.$nodesScope.$modelValue.length === 0 && $scope.emptyPlaceholderEnabled) {
-            $element.append($scope.$emptyElm);
-          } else {
-            $scope.$emptyElm.remove();
-          }
-        };
-
-        var collapseOrExpand = function(scope, collapsed) {
-          var nodes = scope.childNodes();
-          for (var i = 0; i < nodes.length; i++) {
-            if (nodes[i]) {
-              (collapsed) ? nodes[i].collapse(true) : nodes[i].expand(true);
-
-              var subScope = nodes[i].$childNodesScope;
-              if (subScope) {
-                collapseOrExpand(subScope, collapsed);
-              }
-            }
-          }
-        };
-
-        $scope.collapseAll = function() {
-          collapseOrExpand($scope.$nodesScope, true);
-        };
-        $scope.$on('collapseAll', $scope.collapseAll);
-
-        $scope.expandAll = function() {
-          collapseOrExpand($scope.$nodesScope, false);
-        };
-        $scope.$on('expandAll', $scope.expandAll);
-      }
-    ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-  .directive('uiTree', [ 'treeConfig', 'keys', '$window',
-    function(treeConfig, keys, $window) {
-      return {
-        restrict: 'EA',
-        scope: {
-          callbacks: '=?',
-          dragEnabled: '=?',
-          emptyPlaceholderEnabled: '=?',
-          maxDepth: '=?',
-          dragDelay: '=?',
-          dragDistance: '=?',
-          lockXKeyString: '=?lockX',
-          lockYKeyString: '=?lockY',
-          boundToString: '=?boundTo',
-          spacing: '=?',
-          coveragePercent: '=?coverage',
-          cancelKeyString: '=?cancelKey',
-          copyKeyString: '=?copyKey',
-          selectKeyString: '=?selectKey',
-          expandOnHover: '=?'
-        },
-        controller: 'TreeController',
-        link: function(scope, element, attrs) {
-          var callbacks = {
-            accept: undefined,
-            beforeDrag: undefined
-          };
-
-          var config = {};
-
-          if (attrs.uiTreeDir) {
-            treeConfig.dir = attrs.uiTreeDir;
-          }
-
-          angular.extend(config, treeConfig);
-          if (config.treeClass) {
-            element.addClass(config.treeClass);
-          }
-
-          scope.$emptyElm = angular.element($window.document.createElement('div'));
-          if (config.emptyTreeClass) {
-            scope.$emptyElm.addClass(config.emptyTreeClass);
-          }
-
-          // check if the dest node can accept the dragging node
-          // by default, we check the 'nodrop' attribute in `ui-tree-nodes`
-          // and the 'max-depth' attribute in `ui-tree` or `ui-tree-nodes`.
-          // the method can be overrided
-          callbacks.accept = function(sourceNodeScope, destNodesScope, destIndex) {
-            if (destNodesScope.nodrop || destNodesScope.outOfDepth(sourceNodeScope)) {
-              return false;
-            }
-
-            return true;
-          };
-
-          callbacks.collapse = function(node, all) {
-            return true;
-          };
-
-          callbacks.expand = function(node, all) {
-            return true;
-          };
-
-          callbacks.beforeDrag = function(sourceNodeScope) {
-            return true;
-          };
-
-          callbacks.expandTimeoutStart = function() {
-          };
-
-          callbacks.expandTimeoutCancel = function() {
-          };
-
-          callbacks.expandTimeoutEnd = function() {
-            return true;
-          };
-
-          callbacks.remove = function(node) {
-            return true;
-          };
-
-          callbacks.dropped = function(event) {
-          };
-
-          callbacks.droppedInto = function(event) {
-          };
-
-          callbacks.dragStart = function(event) {
-          };
-
-          callbacks.dragMove = function(event) {
-          };
-
-          callbacks.placeholderMove = function(event) {
-          };
-
-          callbacks.dragCancel = function(event) {
-          };
-
-          callbacks.dragStop = function(event) {
-          };
-
-          callbacks.beforeDrop = function(event) {
-            return true;
-          };
-
-          callbacks.lock = function(axis) {
-            return true;
-          };
-
-          callbacks.unlock = function(axis) {
-            return true;
-          };
-
-          callbacks.startCopy = function() {
-            return true;
-          };
-
-          callbacks.endCopy = function() {
-          };
-
-          callbacks.startSelect = function() {
-            return true;
-          };
-
-          callbacks.select = function(node) {
-            return true;
-          };
-
-          callbacks.unselect = function(node) {
-            return true;
-          };
-
-          callbacks.endSelect = function() {
-          };
-
-          scope.$callbacks = callbacks;
-        }
-      };
-    }
-  ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-  .directive('uiTreeHandle', [ 'treeConfig',
-    function(treeConfig) {
-      return {
-        require: '^uiTreeNode',
-        restrict: 'A',
-        scope: true,
-        controller: 'TreeHandleController',
-        link: function(scope, element, attrs, treeNodeCtrl) {
-          var config = {};
-          angular.extend(config, treeConfig);
-          if (config.handleClass) {
-            element.addClass(config.handleClass);
-          }
-          // connect with the tree node.
-          if (scope != treeNodeCtrl.scope) {
-            scope.$nodeScope = treeNodeCtrl.scope;
-            treeNodeCtrl.scope.$handleScope = scope;
-          }
-        }
-      };
-    }
-  ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-    .directive('uiTreeNode', ['treeConfig', '$uiTreeHelper', '$window', '$document', '$timeout', '$filter',
-      function (treeConfig, $uiTreeHelper, $window, $document, $timeout, $filter) {
-        return {
-          require: ['^uiTreeNodes', '^uiTree'],
-          restrict: 'EA',
-          controller: 'TreeNodeController',
-          link: function(scope, element, attrs, controllersArr) {
-            var config = {};
-            angular.extend(config, treeConfig);
-            if (config.nodeClass) {
-              element.addClass(config.nodeClass);
-            }
-            scope.init(controllersArr);
-
-            scope.collapsed = !!$uiTreeHelper.getNodeAttribute(scope, 'collapsed');
-            if (attrs && attrs.collapsed) {
-              scope.$watch(attrs.collapsed, function (val) {
-                if ((typeof val) === "boolean") {
-                  scope.collapsed = val;
-                }
-              });
-            }
-            scope.$watch('collapsed', function(val) {
-              $uiTreeHelper.setNodeAttribute(scope, 'collapsed', val);
-              attrs.$set('collapsed', val);
-            });
-
-            scope.selected = !!$uiTreeHelper.getNodeAttribute(scope, 'selected');
-            if (attrs && attrs.selected) {
-              scope.$watch(attrs.selected, function (val) {
-                if ((typeof val) === "boolean") {
-                  scope.selected = val;
-                }
-              });
-            }
-            scope.$watch('selected', function(val) {
-              $uiTreeHelper.setNodeAttribute(scope, 'selected', val);
-              attrs.$set('selected', val);
-            });
-
-            if (attrs && attrs.expandOnHover) {
-              scope.$watch(attrs.expandOnHover, function (val) {
-                scope.expandOnHover = val;
-              });
-            }
-
-            var hasTouch = 'ontouchstart' in window;
-            // todo startPos is unused
-            var startPos, firstMoving, pos;
-            var placeElm, hiddenPlaceElm, dragElm;
-            var treeScope;
-            var elements; // As a parameter for callbacks
-            var dragDelaying = true;
-            var dragStarted = false;
-            var dragTimer;
-            var body = document.body,
-                html = document.documentElement,
-                documentHeight,
-                documentWidth;
-
-            var toggleSelect = function(e) {
-              e.preventDefault();
-              e.stopPropagation();
-
-              removeChildSelect(scope);
-
-              if (!checkParentSelect(scope)) {
-                scope.$apply(scope.toggleSelected);
-              }
-            };
-
-            var checkParentSelect = function(elementScope, count) {
-              elementScope = (angular.isUndefined(elementScope)) ? scope : elementScope;
-              count = (angular.isUndefined(count)) ? 0 : count;
-
-              var selected = false;
-              if (elementScope !== null) {
-                selected = false;
-                if (!selected && angular.isDefined(elementScope.$parent)) {
-                  selected = checkParentSelect(elementScope.$parent, (count + 1));
-                }
-
-                if (!selected && count > 0) {
-                  selected = (angular.isDefined(elementScope.selected)) ? elementScope.selected : false;
-                }
-              }
-
-              return selected;
-            };
-
-            var removeChildSelect = function(elementScope) {
-              elementScope = (angular.isUndefined(elementScope)) ? scope : elementScope;
-
-              if (elementScope.hasChild()) {
-                angular.forEach(elementScope.childNodes(), function(childNodeScope) {
-                  childNodeScope.$apply(childNodeScope.unselect);
-                  removeChildSelect(childNodeScope);
-                });
-              }
-            };
-
-            var dragStart = function(e) {
-              if (scope.$treeScope.dragDistance > 0) {
-                var eventObj = $uiTreeHelper.eventObj(e);
-                pos = $uiTreeHelper.positionStarted(eventObj, scope.$element);
-
-                var tempMoveFunction = function(tempEvent) {
-                  tempEvent.preventDefault();
-
-                  var distance = Math.floor(Math.sqrt(Math.pow(tempEvent.pageX - pos.startX, 2) + Math.pow(tempEvent.pageY - pos.startY, 2)));
-
-                  if (distance >= scope.$treeScope.dragDistance) {
-                    angular.element($document).unbind('touchmove', tempMoveFunction);
-                    angular.element($document).unbind('mousemove', tempMoveFunction);
-                    angular.element($document).unbind('touchend', tempEndFunction);
-                    angular.element($document).unbind('touchcancel', tempEndFunction);
-                    angular.element($document).unbind('mouseup', tempEndFunction);
-
-                    drag(e);
-                  }
-                };
-                angular.element($document).bind('touchmove', tempMoveFunction);
-                angular.element($document).bind('mousemove', tempMoveFunction);
-
-                var tempEndFunction = function(tempEvent) {
-                  tempEvent.preventDefault();
-
-                  angular.element($document).unbind('touchmove', tempMoveFunction);
-                  angular.element($document).unbind('mousemove', tempMoveFunction);
-                  angular.element($document).unbind('touchend', tempEndFunction);
-                  angular.element($document).unbind('touchcancel', tempEndFunction);
-                  angular.element($document).unbind('mouseup', tempEndFunction);
-
-                  dragEndEvent(tempEvent);
-                };
-
-                angular.element($document).bind('touchend', tempEndFunction);
-                angular.element($document).bind('touchcancel', tempEndFunction);
-                angular.element($document).bind('mouseup', tempEndFunction);
-              } else {
-                drag(e);
-              }
-            };
-
-            var drag = function(e, restart) {
-              scope.$treeScope.dragEvent = (angular.isDefined(e) && !restart) ? e : scope.$treeScope.dragEvent;
-
-              if (angular.isDefined(scope.$treeScope.dragEvent))
-              {
-                var position = $uiTreeHelper.offset(scope.$element);
-
-                if (!hasTouch && (scope.$treeScope.dragEvent.button == 2 || scope.$treeScope.dragEvent.which == 3)) {
-                  // disable right click
-                  return;
-                }
-                if ((scope.$treeScope.dragEvent.uiTreeDragging || (scope.$treeScope.dragEvent.originalEvent &&
-                     scope.$treeScope.dragEvent.originalEvent.uiTreeDragging)) && !restart) { // event has already fired in other scope.
-                  return;
-                }
-                // the element which is clicked.
-                var eventElm = angular.element(scope.$treeScope.dragEvent.target);
-                var eventScope = eventElm.scope();
-                if (!eventScope || !eventScope.$type) {
-                  return;
-                }
-                if (eventScope.$type != 'uiTreeNode' && eventScope.$type != 'uiTreeHandle') {
-                  // Check if it is a node or a handle
-                  return;
-                }
-                if (eventScope.$type == 'uiTreeNode' && eventScope.$handleScope) {
-                  // If the node has a handle, then it should be clicked by the handle
-                  return;
-                }
-
-                var eventElmTagName = eventElm.prop('tagName').toLowerCase();
-                if (eventElmTagName == 'input' ||
-                  eventElmTagName == 'textarea' ||
-                  eventElmTagName == 'button' ||
-                  eventElmTagName == 'select') { // if it's a input or button, ignore it
-                  return;
-                }
-
-                // check if it or it's parents has a 'nodrag' attribute
-                while (eventElm && eventElm[0] && eventElm[0] != element) {
-                  if ($uiTreeHelper.nodrag(eventElm)) { // if the node mark as `nodrag`, DONOT drag it.
-                    return;
-                  }
-                  eventElm = eventElm.parent();
-                }
-
-                if (!scope.$parentNodesScope.beforeDrag(scope, scope.$treeScope.dragEvent) && !restart) {
-                  return;
-                }
-
-                scope.$treeScope.dragEvent.uiTreeDragging = true; // stop event bubbling
-                if (scope.$treeScope.dragEvent.originalEvent) {
-                  scope.$treeScope.dragEvent.originalEvent.uiTreeDragging = true;
-                }
-
-                scope.$treeScope.dragEvent.preventDefault();
-                if ($window.getSelection) {
-                  $window.getSelection().removeAllRanges();
-                } else if ($window.document.selection) {
-                  $window.document.selection.empty();
-                }
-
-                var eventObj = $uiTreeHelper.eventObj(scope.$treeScope.dragEvent);
-
-                if (!restart) {
-                  firstMoving = true;
-
-                  if (angular.isUndefined(scope.$treeScope.$selecteds) || scope.$treeScope.$selecteds.length === 0) {
-                    scope.$treeScope.$selecteds = [scope.$element];
-                  }
-
-                  if (!scope.selected) {
-                    angular.forEach(scope.$treeScope.$selecteds, function(selectedElement) {
-                      var selectedElementScope = angular.element(selectedElement).scope();
-
-                      selectedElementScope.$apply(function() {
-                        selectedElementScope.selected = false;
-                      });
-                    });
-
-                    scope.$treeScope.$selecteds = [scope.$element];
-                  }
-
-                  if (scope.$treeScope.$selecteds.length > 1) {
-                    scope.$treeScope.$selecteds = $filter('orderBy')(scope.$treeScope.$selecteds, function(selectedElement) {
-                      return $uiTreeHelper.offset(angular.element(selectedElement)).top;
-                    }, false);
-                  }
-
-                  if (angular.isDefined(scope.$treeScope.$selecteds) && scope.$treeScope.$selecteds.length > 0) {
-                    var orderedElements = [];
-
-                    placeElm = angular.element($window.document.createElement('div')).addClass(config.placeHoldersWrapperClass);
-                    hiddenPlaceElm = angular.element($window.document.createElement('div'));
-                    dragElm = angular.element($window.document.createElement('div')).addClass(config.dragWrapperClass);
-
-                    pos = $uiTreeHelper.positionStarted(eventObj, angular.element(scope.$treeScope.$selecteds[0]));
-
-                    var firstElement = angular.element(scope.$treeScope.$selecteds[0]);
-                    var firstElementOffset = angular.copy($uiTreeHelper.offset(firstElement));
-
-                    angular.forEach(scope.$treeScope.$selecteds, function(selected, index) {
-                      var selectedElement = angular.element(selected);
-                      var selectedElementScope = selectedElement.scope();
-
-                      selectedElementScope.$dragInfo = $uiTreeHelper.dragInfo(selectedElementScope);
-
-                      var selectedElementHeight = $uiTreeHelper.height(selectedElement);
-                      var selectedElementWidth = $uiTreeHelper.width(selectedElement);
-
-                      var selectedElementPlace;
-
-                      var tagName = selectedElement.prop('tagName');
-                      if (tagName.toLowerCase() === 'tr') {
-                        selectedElementPlace = angular.element($window.document.createElement(tagName));
-                        var tdElm = angular.element($window.document.createElement('td'))
-                                           .addClass(config.placeHolderClass);
-                        selectedElementPlace.append(tdElm);
-                      } else {
-                        selectedElementPlace = angular.element($window.document.createElement(tagName))
-                                                      .addClass(config.placeHolderClass);
-                      }
-                      selectedElementPlace.css('height', selectedElementHeight + 'px');
-                      placeElm.append(selectedElementPlace);
-
-                      var selectedElementHiddenPlace = angular.element($window.document.createElement(tagName));
-                      if (config.hiddenClass) {
-                        selectedElementHiddenPlace.addClass(config.hiddenClass);
-                      }
-                      hiddenPlaceElm.append(selectedElementHiddenPlace);
-
-                      var selectedElementDrag = angular.element($window.document.createElement(selectedElementScope.$parentNodesScope.$element.prop('tagName')))
-                                                       .addClass(selectedElementScope.$parentNodesScope.$element.attr('class'));
-
-                      selectedElementDrag.css('width', selectedElementWidth + 'px');
-
-                      var clone = selectedElement.clone();
-                      selectedElementDrag.append(clone);
-                      if (!scope.$treeScope.copy) {
-                        selectedElement.addClass(config.hiddenClass);
-                      }
-
-                      dragElm.append(selectedElementDrag);
-                      // Prevents cursor to change rapidly in Opera 12.16 and IE when dragging an element
-                      var hStyle = (scope.$element[0].querySelector('.angular-ui-tree-handle') || scope.$element[0]).currentStyle;
-                      if (hStyle) {
-                        document.body.setAttribute('ui-tree-cursor', $document.find('body').css('cursor') || '');
-                        $document.find('body').css({ cursor: hStyle.cursor + '!important' });
-                      }
-
-                      selectedElementScope.$apply(function() {
-                        selectedElementScope.selected = false;
-                        selectedElementScope.original = true;
-                      });
-                    });
-
-                    dragElm.css('z-index', 9999).addClass(config.dragClass);
-
-                    firstElement.parent()[0].insertBefore(placeElm[0], firstElement[0]);
-                    firstElement.parent()[0].insertBefore(hiddenPlaceElm[0], firstElement[0]);
-
-                    $document.find('body').append(dragElm);
-                    dragElm.css({
-                      left: firstElementOffset.left + 'px',
-                      top: firstElementOffset.top + 'px'
-                    });
-                    elements = {
-                      placeholder: placeElm,
-                      dragging: dragElm
-                    };
-
-                    angular.element($document).bind('touchend', dragEndEvent);
-                    angular.element($document).bind('touchcancel', dragEndEvent);
-                    angular.element($document).bind('touchmove', dragMoveEvent);
-                    angular.element($document).bind('mouseup', dragEndEvent);
-                    angular.element($document).bind('mousemove', dragMoveEvent);
-                    angular.element($document).bind('mouseleave', dragCancelEvent);
-                  }
-
-                  documentHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
-                  documentWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
-                } else {
-                  angular.forEach(scope.$treeScope.$selecteds, function(selectedElement) {
-                    selectedElement = angular.element(selectedElement);
-
-                    if (scope.$treeScope.copy) {
-                      selectedElement.removeClass(config.hiddenClass);
-                    } else {
-                      selectedElement.addClass(config.hiddenClass);
-                    }
-                  });
-                }
-              }
-            };
-
-            var restartDrag = function(e) {
-              e.preventDefault();
-
-              if ( scope.$treeScope.$selecteds.length > 0) {
-                drag(undefined, true);
-              }
-            };
-
-            var dragMove = function(e) {
-              if (!dragStarted) {
-                if (!dragDelaying) {
-                  dragStarted = true;
-
-                  angular.forEach(scope.$treeScope.$selecteds, function(selectedElement) {
-                    selectedElement = angular.element(selectedElement);
-                    var selectedElementScope = selectedElement.scope();
-
-                    selectedElementScope.$apply(function() {
-                      scope.$treeScope.$callbacks.dragStart(selectedElementScope.$dragInfo.eventArgs(elements, pos));
-                    });
-                  });
-                }
-                return;
-              }
-
-              var eventObj = $uiTreeHelper.eventObj(e);
-              var elmPos = {}, elmOrigPos = {}, hdlPos = {}, boundToPos = {};
-              var prev, hdlElm, hdlOffset;
-
-              // Prevent default action and text selection
-              e.preventDefault();
-              if ($window.getSelection) {
-                $window.getSelection().removeAllRanges();
-              } else if ($window.document.selection) {
-                $window.document.selection.empty();
-              }
-
-              if (dragElm) {
-                elmOrigPos = $uiTreeHelper.offset(dragElm);
-
-                // Retrieve object position and dimensions
-                elmPos.left = eventObj.pageX - pos.offsetX;
-                elmPos.width = elmOrigPos.width;
-                elmPos.right = elmPos.left + elmPos.width;
-                elmPos.top = eventObj.pageY - pos.offsetY;
-                elmPos.height = elmOrigPos.height;
-                elmPos.bottom = elmPos.top + elmPos.height;
-
-                // Retrieve handle position and dimension
-                hdlElm = scope.$element.find(config.handleClass);
-                var hdlElmOffset;
-                if (angular.isDefined(hdlElm) && hdlElm.length > 0) {
-                  hdlElmOffset = $uiTreeHelper.offset(hdlElm);
-                  hdlPos.left = hdlElmOffset.left;
-                  hdlPos.width = hdlElmOffset.width;
-                  hdlPos.top = hdlElmOffset.top;
-                  hdlPos.height = hdlElmOffset.height;
-                  hdlPos.offset = hdlElm.position().top;
-                } else {
-                  hdlPos.left = elmPos.left;
-                  hdlPos.width = elmPos.width;
-                  hdlPos.top = elmPos.top;
-                }
-                hdlPos.right = hdlPos.left + hdlPos.width;
-                hdlPos.bottom = hdlPos.top + hdlPos.height;
-
-                // If we are bounded to an element, and that element exists (and is offset is defined)
-                if (angular.isDefined(scope.$treeScope.boundTo) && scope.$treeScope.boundTo.length > 0) {
-                  var boundToOffset = $uiTreeHelper.offset(scope.$treeScope.boundTo);
-                  // Then get it's position and dimension
-                  boundToPos.left = boundToOffset.left;
-                  boundToPos.width = boundToOffset.width;
-                  boundToPos.top = boundToOffset.top;
-                  boundToPos.height = boundToOffset.height;
-                } else { // Else, bound to document
-                  boundToPos.left = 0;
-                  boundToPos.width = documentWidth;
-                  boundToPos.top = 0;
-                  boundToPos.height = documentHeight;
-                }
-                boundToPos.right = boundToPos.left + boundToPos.width;
-                boundToPos.bottom = boundToPos.top + boundToPos.height;
-
-                //dragElm can't leave the screen or the bounding parent on the left
-                if (elmPos.left < boundToPos.left) {
-                  elmPos.left = boundToPos.left;
-                }
-                //dragElm can't leave the screen or the bounding parent on the top
-                if (elmPos.top < boundToPos.top) {
-                  elmPos.top = boundToPos.top;
-                }
-                //dragElm can't leave the screen or the bounding parent on the right
-                if (elmPos.left > boundToPos.right){
-                  elmPos.left = boundToPos.right;
-                }
-                //dragElm can't leave the screen or the bounding parent on the bottom
-                if (elmPos.top > boundToPos.bottom){
-                  elmPos.top = boundToPos.bottom;
-                }
-                if (scope.$treeScope.lockY) {
-                  elmPos.top = elmOrigPos.top;
-                }
-                if (scope.$treeScope.lockX) {
-                  elmPos.left = elmOrigPos.left;
-                }
-
-                dragElm.css({
-                  'left': elmPos.left + 'px',
-                  'top': elmPos.top + 'px'
-                });
-
-                var topScroll = window.pageYOffset || $window.document.documentElement.scrollTop;
-                var bottomScroll = topScroll + (window.innerHeight || $window.document.clientHeight || $window.document.clientHeight);
-                // to scroll down if cursor y-position is greater than the bottom position the vertical scroll
-                if (bottomScroll < eventObj.pageY && bottomScroll <= documentHeight) {
-                  window.scrollBy(0, 10);
-                }
-                // to scroll top if cursor y-position is less than the top position the vertical scroll
-                if (topScroll > eventObj.pageY) {
-                  window.scrollBy(0, -10);
-                }
-
-                $uiTreeHelper.positionMoved(e, pos, firstMoving);
-                if (firstMoving) {
-                  firstMoving = false;
-                  return;
-                }
-
-                // Check if we are above another tree
-                // var targetX = eventObj.pageX - $window.document.body.scrollLeft;
-                var targetX = elmPos.left + (elmPos.width / 2);
-                // var targetY = eventObj.pageY - (window.pageYOffset || $window.document.documentElement.scrollTop);
-                var targetY = elmPos.top + (elmPos.height * scope.$treeScope.coverage);
-                // Select the drag target. Because IE does not support CSS 'pointer-events: none', it will always
-                // pick the drag element itself as the target. To prevent this, we hide the drag element while
-                // selecting the target.
-                var displayElm;
-                if (angular.isFunction(dragElm.hide)) {
-                  dragElm.hide();
-                } else {
-                  displayElm = dragElm[0].style.display;
-                  dragElm[0].style.display = "none";
-                }
-
-                var placeDisplayElm;
-                if (angular.isFunction(placeElm.hide)) {
-                  placeElm.hide();
-                } else {
-                  placeDisplayElm = placeElm[0].style.display;
-                  placeElm[0].style.display = "none";
-                }
-
-                // when using elementFromPoint() inside an iframe, you have to call
-                // elementFromPoint() twice to make sure IE8 returns the correct value
-                $window.document.elementFromPoint(targetX, targetY);
-                var closestElement = angular.element($window.document.elementFromPoint(targetX, targetY));
-
-                if (angular.isFunction(placeElm.show)) {
-                  placeElm.show();
-                } else {
-                  placeElm[0].style.display = placeDisplayElm;
-                }
-
-                if (angular.isFunction(dragElm.show)) {
-                  dragElm.show();
-                } else {
-                  dragElm[0].style.display = displayElm;
-                }
-
-                var targetBefore, targetNode, targetElm, isEmpty, isTree, targetElmOffset;
-                var closestScope = closestElement.scope();
-                var selectedScope;
-
-                if (angular.isDefined(closestScope) && angular.isDefined(closestScope.$nodeScope)) {
-                  closestScope = closestScope.$nodeScope;
-                } else if (angular.isDefined(closestScope) && angular.isDefined(closestScope.$nodesScope)) {
-                  closestScope = closestScope.$nodesScope;
-                }
-
-                if (angular.isDefined(closestScope) && angular.isDefined(closestScope.$treeScope) && angular.isDefined(closestScope.$treeScope.$treeElement)
-                    && angular.isDefined(closestScope.$treeScope.$treeElement.children())) {
-                  selectedScope = closestScope;
-                } else {
-                  selectedScope = scope;
-                }
-                var nodes = selectedScope.$treeScope.$treeElement.children();
-
-                var treeChange = (angular.isUndefined(scope.previousTreeId) || scope.previousTreeId.length === 0
-                                  || angular.isUndefined(selectedScope.$treeScope) || scope.previousTreeId !== selectedScope.$treeScope.$id);
-                scope.previousTreeId = (angular.isDefined(selectedScope.$treeScope)) ? selectedScope.$treeScope.$id : undefined;
-
-                // Compute the intersected element of the tree we are hovering
-                var direction = (treeChange) ? 1 : (pos.dirAx) ? pos.dirX : pos.dirY;
-
-                var intersectWith = $uiTreeHelper.findIntersect(elmPos, nodes, scope.$treeScope.collideWith, direction, scope.$parentNodesScope.horizontal);
-                if (angular.isDefined(intersectWith)) {
-                  targetElm = angular.element(intersectWith);
-                }
-
-                if (pos.moving || treeChange) {
-                  // Move horizontally
-                  var dragInfo = angular.element(scope.$treeScope.$selecteds[0]).scope().$dragInfo;
-                  var previous = dragInfo.prev();
-                  var parent = dragInfo.parentNode();
-
-                  // If we have a element right above us and it's not collapsed and it accept the current element
-                  if (angular.isDefined(previous) && !previous.collapsed && angular.isDefined(previous.$childNodesScope)) {
-                    var previousElmOffset = $uiTreeHelper.offset(previous.$element);
-                    // And if the horizontal position of the mouse is greater than the one of the parent
-                    if (elmPos.left >= (previousElmOffset.left + scope.$treeScope.spacing - scope.$treeScope.spacingThreshold)) {
-                      // Then move the element as a children of the previous element
-                      if (previous.accept(scope, previous.childNodesCount())) {
-                        previous.$childNodesScope.$element.append(placeElm);
-                      }
-
-                      angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                        var selectedElementScope = angular.element(selectedElement).scope();
-
-                        selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(previous.$childNodesScope, previous.childNodes(), previous.childNodesCount() + index);
-                      });
-
-                      scope.asChild = true;
-                    }
-                  }
-
-                  parent = dragInfo.parentNode();
-
-                  // If we have a parent
-                  if (angular.isDefined(parent)) {
-                    var parentElmOffset = $uiTreeHelper.offset(parent.$element);
-                    // And that the horizontal position of the mouse is around the position of the parent
-                    if (elmPos.left <= (parentElmOffset.left + scope.$treeScope.spacingThreshold)) {
-                      // And that there is no element after the current one
-                      if (!dragInfo.next()) {
-                        // Then move the element as the parent sibling
-                        if (parent.accept(scope, (parent.index() + 1))) {
-                          parent.$element.after(placeElm);
-                        }
-
-                        angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                          var selectedElementScope = angular.element(selectedElement).scope();
-
-                          selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(parent.$parentNodesScope, parent.siblings(), parent.index() + 1 + index);
-                        });
-
-                        scope.asChild = false;
-                      }
-                    }
-                  }
-
-                  if (angular.isUndefined(targetElm)) {
-                    return;
-                  }
-
-                  targetNode = targetElm.scope();
-                  if (!targetNode) {
-                    return;
-                  }
-
-                  // check it's new position
-                  isEmpty = false;
-                  isTree = false;
-
-                  if (targetNode.$type == 'uiTree' && targetNode.dragEnabled) {
-                    isEmpty = targetNode.isEmpty(); // Check if it's empty tree
-                  }
-                  if (targetNode.$type == 'uiTreeHandle') {
-                    targetNode = targetNode.$nodeScope;
-                  }
-                  if (targetNode.$type != 'uiTreeNode' && !isEmpty) { // Check if it is a uiTreeNode or it's an empty tree
-                    if (targetNode.$type == 'uiTree') {
-                      isTree = true;
-                    } else {
-                      return;
-                    }
-                  }
-
-                  targetElm = targetNode.$element; // Get the element of ui-tree-node
-                  targetElmOffset = $uiTreeHelper.offset(targetElm);
-
-                  // if placeholder move from empty tree, reset it.
-                  if (treeScope && placeElm.parent()[0] != treeScope.$element[0]) {
-                    treeScope.resetEmptyElement();
-                    treeScope = undefined;
-                  }
-
-                  if (isEmpty) { // it's an empty tree
-                    treeScope = targetNode;
-
-                    if (targetNode.accept(scope, 0)) {
-                      targetNode.place(placeElm);
-                    }
-
-                    angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                      var selectedElementScope = angular.element(selectedElement).scope();
-
-                      selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(targetNode.$parentNodesScope, targetNode.$parentNodesScope.childNodes(), index);
-                    });
-                  } else if (isTree) { // it's in the bottom padded portion of the tree itself
-                    if (targetNode.accept(scope, (targetNode.$parentNodesScope.childNodes().length + 1))) {
-                      targetNode.place(placeElm);
-                    }
-
-                    angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                      var selectedElementScope = angular.element(selectedElement).scope();
-
-                      selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(targetNode.$parentNodesScope, targetNode.$parentNodesScope.childNodes(),
-                                                                                         (targetNode.$parentNodesScope.childNodes().length + 1 + index));
-                    });
-                  } else if (targetNode.dragEnabled()) { // drag enabled
-                    // If another node was witing for expand, cancel it
-                    angular.forEach(scope.$treeScope.$selecteds, function(selectedElement) {
-                      var selectedElementScope = angular.element(selectedElement).scope();
-
-                      if (angular.isDefined(selectedElementScope.expandTimeoutOn) && selectedElementScope.expandTimeoutOn !== targetNode.id) {
-                        $timeout.cancel(selectedElementScope.expandTimeout);
-                        delete selectedElementScope.expandTimeout;
-                        delete selectedElementScope.expandTimeoutOn;
-
-                        targetNode.$apply(function() {
-                          scope.$treeScope.$callbacks.expandTimeoutCancel();
-                        });
-                      }
-                    });
-
-                    // If the node is collapsed, expand it accordingly to the configuration
-                    if (targetNode.collapsed) {
-                      var expandOnHover = targetNode.expandOnHover || targetNode.$parentNodesScope.expandOnHover || targetNode.$treeScope.expandOnHover;
-
-                      if (expandOnHover === true || (angular.isNumber(expandOnHover) && expandOnHover === 0)) {
-                        targetNode.collapsed = false;
-                      } else if (expandOnHover !== false && angular.isNumber(expandOnHover) && expandOnHover > 0) {
-                        angular.forEach(scope.$treeScope.$selecteds, function(selectedElement) {
-                          var selectedElementScope = angular.element(selectedElement).scope();
-
-                          if (angular.isUndefined(selectedElementScope.expandTimeoutOn)) {
-                            selectedElementScope.expandTimeoutOn = targetNode.$id;
-                            targetNode.$apply(function() {
-                              targetNode.$treeScope.$callbacks.expandTimeoutStart();
-                            });
-                            selectedElementScope.expandTimeout = $timeout(function()
-                            {
-                              targetNode.$apply(function() {
-                                targetNode.collapsed = !targetNode.$treeScope.$callbacks.expandTimeoutEnd();
-                              });
-                            }, expandOnHover);
-                          }
-                        });
-                      }
-                    }
-
-                    var childsHeight = (targetNode.hasChild()) ? $uiTreeHelper.offset(targetNode.$childNodesScope.$element).height : 0;
-
-                    if ((!scope.$parentNodesScope.horizontal && pos.dirY > 0) || (scope.$parentNodesScope.horizontal && pos.dirX > 0) || treeChange) {
-                      var elmVertDown = (scope.$treeScope.collideWith === 'top') ? (scope.$parentNodesScope.horizontal) ? elmPos.right : elmPos.top
-                                                                                : (scope.$parentNodesScope.horizontal) ? elmPos.left : elmPos.bottom;
-                      var downLimit = (scope.$parentNodesScope.horizontal) ? ((targetElmOffset.left - elmPos.left) + (targetElmOffset.width * scope.$treeScope.coverage))
-                                                        : (targetElmOffset.top + ((targetElmOffset.height - childsHeight) * scope.$treeScope.coverage));
-
-                      // If the element as moved behond the trigger
-                      if (elmVertDown >= downLimit) {
-                        if ((targetNode.collapsed || !targetNode.hasChild()) && !scope.asChild) {
-                          if (targetNode.accept(scope, (targetNode.index() + 1))) {
-                            targetElm.after(placeElm);
-                          }
-
-                          angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                            var selectedElementScope = angular.element(selectedElement).scope();
-
-                            selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(targetNode.$parentNodesScope, targetNode.siblings(), (targetNode.index() + 1 + index));
-                          });
-                        } else {
-                          var firstChild = (targetNode.childNodesCount() > 0) ? targetNode.childNodes()[0] : undefined;
-                          var firstChildOffset = (angular.isDefined(firstChild)) ? $uiTreeHelper.offset(firstChild.$element) : undefined;
-
-                          var firstChildChildsHeight = (angular.isDefined(firstChild) && firstChild.hasChild()) ? $uiTreeHelper.offset(firstChild.$childNodesScope.$element).height : 0;
-
-                          if (angular.isUndefined(firstChild) || (angular.isDefined(firstChild) &&
-                              elmVertDown < (firstChildOffset.top + ((firstChildOffset.height - firstChildChildsHeight) * scope.$treeScope.coverage))))
-                          {
-                            if (targetNode.accept(scope, 0)) {
-                              targetNode.$childNodesScope.$element.prepend(placeElm);
-                            }
-
-                            angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                              var selectedElementScope = angular.element(selectedElement).scope();
-
-                              var target = targetNode;
-                              if (!target.$childNodesScope){
-                                while (typeof(target.$childNodesScope) === "undefined"){
-                                  target = target.$parent;
-                                }
-                              }
-
-                              selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(target.$childNodesScope, target.childNodes(), index);
-                            });
-                          }
-                        }
-                      }
-                    }
-
-                    if ((((!scope.$parentNodesScope.horizontal && pos.dirY < 0) || (scope.$parentNodesScope.horizontal && pos.dirX < 0))
-                          && ((!scope.$parentNodesScope.horizontal && pos.distAxY > config.dragUpThreshold) || (!scope.$parentNodesScope.horizontal && pos.distAxX > 8))
-                          || treeChange)) {
-                      var elmVertUp = (scope.$treeScope.collideWith === 'top') ? (scope.$parentNodesScope.horizontal) ? elmPos.left : elmPos.bottom
-                                                                               : (scope.$parentNodesScope.horizontal) ? elmPos.right : elmPos.top;
-                      var upLimit = (scope.$parentNodesScope.horizontal) ? ((targetElmOffset.left - elmPos.left) + targetElmOffset.width - (targetElmOffset.width * scope.$treeScope.coverage))
-                                                      : (targetElmOffset.top + targetElmOffset.height - childsHeight - ((targetElmOffset.height - childsHeight) * scope.$treeScope.coverage));
-
-                      if (elmVertUp <= upLimit) {
-                        if (targetNode.accept(scope, targetNode.index())) {
-                          targetElm[0].parentNode.insertBefore(placeElm[0], targetElm[0]);
-                        }
-
-                        angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                          var selectedElementScope = angular.element(selectedElement).scope();
-
-                          selectedElementScope.moved = selectedElementScope.$dragInfo.moveTo(targetNode.$parentNodesScope, targetNode.siblings(), (targetNode.index() + index));
-                        });
-                      }
-                    }
-
-                    angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                      var selectedElementScope = angular.element(selectedElement).scope();
-
-                      if (selectedElementScope.moved) {
-                        var dragInfoEventsArgs = selectedElementScope.$dragInfo.eventArgs(elements, pos);
-
-                        if (angular.isDefined(dragInfoEventsArgs) && angular.isDefined(dragInfoEventsArgs.dest))
-                        {
-                          if (angular.isUndefined(selectedElementScope.dragInfoEventsArgs) || angular.isUndefined(selectedElementScope.dragInfoEventsArgs.dest)
-                              || !angular.equals(selectedElementScope.dragInfoEventsArgs.dest, dragInfoEventsArgs.dest))
-                          {
-                            selectedElementScope.$apply(function() {
-                              scope.$treeScope.$callbacks.placeholderMove(dragInfoEventsArgs);
-                            });
-
-                            selectedElementScope.dragInfoEventsArgs = dragInfoEventsArgs;
-                          }
-                        }
-                      }
-                    });
-                  }
-                }
-              }
-
-              angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                var selectedElementScope = angular.element(selectedElement).scope();
-
-                selectedElementScope.$apply(function() {
-                  scope.$treeScope.$callbacks.dragMove(selectedElementScope.$dragInfo.eventArgs(elements, pos));
-                });
-              });
-            };
-
-            var dragEnd = function(e, cancel) {
-              if (angular.isDefined(e)) {
-                e.preventDefault();
-              }
-
-              $timeout.cancel(scope.expandTimeout);
-
-              if (angular.isDefined(dragElm) && angular.isDefined(e)) {
-                var selectedsCount = angular.copy(scope.$treeScope.$selecteds.length);
-
-                angular.forEach(scope.$treeScope.$selecteds, function(selectedElement, index) {
-                  var selectedElementScope = angular.element(selectedElement).scope();
-
-                  if (angular.isDefined(selectedElementScope)) {
-                    var dragInfoEventArgs = selectedElementScope.$dragInfo.eventArgs(elements, pos);
-
-                    selectedElementScope.$apply(function() {
-                      selectedElementScope.$$apply = scope.$treeScope.$callbacks.beforeDrop(dragInfoEventArgs);
-                    });
-
-                    if (selectedElementScope.$$apply && !cancel) {
-                      selectedElementScope.$dragInfo.apply(scope.$treeScope.copy);
-
-                      scope.$treeScope.$apply(function() {
-                        scope.$treeScope.$callbacks.dropped(dragInfoEventArgs);
-                      });
-                      dragInfoEventArgs.dest.nodesScope.$apply(function() {
-                        scope.$treeScope.$callbacks.droppedInto(dragInfoEventArgs);
-                      });
-                    } else {
-                      selectedElementScope.$element.removeClass(config.hiddenClass);
-
-                      selectedElementScope.$apply(function() {
-                        scope.$treeScope.$callbacks.dragCancel(dragInfoEventArgs);
-                      });
-                    }
-
-                    selectedElementScope.$apply(function() {
-                      scope.$treeScope.$callbacks.dragStop(dragInfoEventArgs);
-                    });
-
-                    selectedElementScope.$dragInfo = undefined;
-
-                    selectedElementScope.$apply(function() {
-                      delete selectedElementScope.original;
-                    });
-                  }
-                });
-
-                if (angular.isDefined(placeElm)) {
-                  placeElm.remove();
-                  placeElm = undefined;
-                }
-                if (angular.isDefined(hiddenPlaceElm)) {
-                  hiddenPlaceElm.remove();
-                  hiddenPlaceElm = undefined;
-                }
-                if (angular.isDefined(dragElm)) {
-                  dragElm.remove();
-                  dragElm = undefined;
-                }
-
-                scope.$treeScope.$selecteds = [];
-              }
-
-              // Restore cursor in Opera 12.16 and IE
-              var oldCur = document.body.getAttribute('ui-tree-cursor');
-              if (oldCur !== null) {
-                $document.find('body').css({ cursor: oldCur });
-                document.body.removeAttribute('ui-tree-cursor');
-              }
-
-              angular.element($document).unbind('touchend', dragEndEvent); // Mobile
-              angular.element($document).unbind('touchcancel', dragEndEvent); // Mobile
-              angular.element($document).unbind('touchmove', dragMoveEvent); // Mobile
-              angular.element($document).unbind('mouseup', dragEndEvent);
-              angular.element($document).unbind('mousemove', dragMoveEvent);
-              angular.element($document).unbind('mouseleave', dragCancelEvent);
-            };
-
-            var dragStartEvent = function(e) {
-              if (scope.dragEnabled()) {
-                dragStart(e);
-              }
-            };
-
-            var dragMoveEvent = function(e) {
-              dragMove(e);
-            };
-
-            var dragEndEvent = function(e) {
-              angular.forEach(scope.$treeScope.$selecteds, function(selected) {
-                var selectedElement = angular.element(selected);
-
-                if (angular.isDefined(selectedElement)) {
-                  var selectedElementScope = selectedElement.scope();
-
-                  if (angular.isDefined(selectedElementScope)) {
-                    selectedElementScope.$$apply = true;
-                  }
-                }
-              });
-
-              dragEnd(e);
-            };
-
-            var dragCancelEvent = function(e) {
-              angular.forEach(scope.$treeScope.$selecteds, function(selected) {
-                var selectedElement = angular.element(selected);
-
-                if (angular.isDefined(selectedElement)) {
-                  var selectedElementScope = selectedElement.scope();
-
-                  if (angular.isDefined(selectedElementScope)) {
-                    selectedElementScope.$$apply = false;
-                  }
-                }
-              });
-
-              dragEnd(e, true);
-            };
-
-            var bindDrag = function() {
-              element.bind('touchstart mousedown', function (e) {
-                if (!scope.$treeScope.multiSelect) {
-                  dragDelaying = true;
-                  dragStarted = false;
-
-                  dragTimer = $timeout(function() {
-                    dragStartEvent(e);
-                    dragDelaying = false;
-                  }, scope.$treeScope.dragDelay);
-                } else {
-                  toggleSelect(e);
-                }
-              });
-              element.bind('touchend touchcancel mouseup', function() {
-                $timeout.cancel(dragTimer);
-              });
-            };
-
-            var unbind = function() {
-              dragEnd();
-              angular.element($document).unbind('keydown').unbind('keyup');
-            };
-
-            bindDrag();
-
-            angular.element($document).bind("keydown", function(e) {
-              if (e.keyCode === scope.$treeScope.cancelKey) {
-                dragCancelEvent(e);
-              }
-
-              if (angular.isDefined(scope.$treeScope.lockXKey)) {
-                if (e.keyCode === scope.$treeScope.lockXKey) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.lockX = scope.$treeScope.$callbacks.lock('X');
-                  });
-                }
-              }
-              if (angular.isDefined(scope.$treeScope.lockYKey)) {
-                if (e.keyCode === scope.$treeScope.lockYKey) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.lockY = scope.$treeScope.$callbacks.lock('Y');
-                  });
-                }
-              }
-
-              if (e.keyCode === scope.$treeScope.copyKey) {
-                if (!scope.$treeScope.copy) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.copy = scope.$treeScope.$callbacks.startCopy();
-                  });
-                  restartDrag(e);
-                }
-              } else if (e.keyCode === scope.$treeScope.multiSelectKey) {
-                if (!scope.$treeScope.multiSelect) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.multiSelect = scope.$treeScope.$callbacks.startSelect();
-                  });
-                }
-              }
-            });
-
-            angular.element($document).bind("keyup", function(e) {
-              if (angular.isDefined(scope.$treeScope.lockXKey)) {
-                if (e.keyCode === scope.$treeScope.lockXKey) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.lockX = !scope.$treeScope.$callbacks.unlock('X');
-                  });
-                }
-              }
-              if (angular.isDefined(scope.$treeScope.lockYKey)) {
-                if (e.keyCode === scope.$treeScope.lockYKey) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.lockY = !scope.$treeScope.$callbacks.unlock('Y');
-                  });
-                }
-              }
-
-              if (e.keyCode === scope.$treeScope.copyKey) {
-                if (scope.$treeScope.copy) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.copy = !scope.$treeScope.$callbacks.endCopy();
-                  });
-                  restartDrag(e);
-                }
-              } else if (e.keyCode === scope.$treeScope.multiSelectKey) {
-                if (scope.$treeScope.multiSelect) {
-                  scope.$treeScope.$apply(function() {
-                    scope.$treeScope.multiSelect = !scope.$treeScope.$callbacks.endSelect();
-                  });
-                }
-              }
-            });
-
-            scope.$on("$destroy", unbind);
-          }
-        };
-      }
-    ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-  .directive('uiTreeNodes', [ 'treeConfig',
-    function(treeConfig) {
-      return {
-        require: ['ngModel', '?^uiTreeNode', '^uiTree'],
-        restrict: 'EA',
-        scope: {
-          maxDepth: '=?',
-          expandOnHover: '=?',
-          noDrop: '=?',
-          horizontal: '=?'
-        },
-        controller: 'TreeNodesController',
-        link: function(scope, element, attrs, controllersArr) {
-          var config = {};
-          angular.extend(config, treeConfig);
-          if (config.nodesClass) {
-            element.addClass(config.nodesClass);
-          }
-
-          var ngModel = controllersArr[0];
-          var treeNodeCtrl = controllersArr[1];
-          var treeCtrl = controllersArr[2];
-
-          if (treeNodeCtrl) {
-            treeNodeCtrl.scope.$childNodesScope = scope;
-            scope.$nodeScope = treeNodeCtrl.scope;
-          } else { // find the root nodes if there is no parent node and have a parent ui-tree
-            treeCtrl.scope.$nodesScope = scope;
-          }
-          scope.$treeScope = treeCtrl.scope;
-
-          if (ngModel) {
-            ngModel.$render = function() {
-              if (!ngModel.$modelValue || !angular.isArray(ngModel.$modelValue)) {
-                scope.$modelValue = [];
-              }
-              scope.$modelValue = ngModel.$modelValue;
-            };
-          }
-        }
-      };
-    }
-  ]);
-})();
-
-(function() {
-  'use strict';
-
-  angular.module('ui.tree')
-
-   /**
-    * @ngdoc service
-    * @name ui.tree.service:$helper
-    * @requires ng.$document
-    * @requires ng.$window
-    *
-    * @description
-    * angular-ui-tree.
-    */
-    .factory('$uiTreeHelper', ['$document', '$window', 'treeConfig',
-      function ($document, $window, treeConfig) {
-        return {
-
-          /**
-           * A hashtable used to storage data of nodes
-           * @type {Object}
-           */
-          nodesData: {
-          },
-
-          setNodeAttribute: function(scope, attrName, val) {
-            if (!scope.$modelValue) {
-              return undefined;
-            }
-            var data = this.nodesData[scope.$modelValue.$$hashKey];
-            if (!data) {
-              data = {};
-              this.nodesData[scope.$modelValue.$$hashKey] = data;
-            }
-            data[attrName] = val;
-          },
-
-          getNodeAttribute: function(scope, attrName) {
-            if (!scope.$modelValue) {
-              return undefined;
-            }
-            var data = this.nodesData[scope.$modelValue.$$hashKey];
-            if (data) {
-              return data[attrName];
-            }
-            return undefined;
-          },
-
-          /**
-           * @ngdoc method
-           * @methodOf ui.tree.service:$nodrag
-           * @param  {Object} targetElm angular element
-           * @return {Bool} check if the node can be dragged.
-           */
-          nodrag: function (targetElm) {
-            return (typeof targetElm.attr('nodrag')) != "undefined";
-          },
-
-          /**
-           * get the event object for touchs
-           * @param  {[type]} e [description]
-           * @return {[type]}   [description]
-           */
-          eventObj: function(e) {
-            var obj = e;
-            if (e.targetTouches !== undefined) {
-              obj = e.targetTouches.item(0);
-            } else if (e.originalEvent !== undefined && e.originalEvent.targetTouches !== undefined) {
-              obj = e.originalEvent.targetTouches.item(0);
-            }
-            return obj;
-          },
-
-          dragInfo: function(node) {
-            if (angular.isDefined(node)) {
-              return {
-                source: node,
-                sourceInfo: {
-                  nodeScope: node,
-                  index: (angular.isFunction(node.index)) ? node.index() : 0,
-                  nodesScope: node.$parentNodesScope
-                },
-                index: (angular.isFunction(node.index)) ? node.index() : 0,
-                siblings: (angular.isFunction(node.siblings)) ? node.siblings().slice(0) : [],
-                parent: node.$parentNodesScope,
-
-                moveTo: function(parent, siblings, index) { // Move the node to a new position
-                  if (parent.accept(node, index) === true)
-                  {
-                    this.parent = parent;
-                    this.siblings = siblings.slice(0);
-                    var i = this.siblings.indexOf(this.source); // If source node is in the target nodes
-
-                    if (i > -1) {
-                      this.siblings.splice(i, 1);
-                      if (this.source.index() < index) {
-                        index--;
-                      }
-                    }
-
-                    this.siblings.splice(index, 0, this.source);
-                    this.index = index;
-
-                    return true;
-                  }
-
-                  return false;
-                },
-
-                parentNode: function() {
-                  return this.parent.$nodeScope;
-                },
-
-                prev: function() {
-                  if (this.index > 0) {
-                    return this.siblings[this.index - 1];
-                  }
-                  return undefined;
-                },
-
-                next: function() {
-                  if (this.index < this.siblings.length - 1) {
-                    return this.siblings[this.index + 1];
-                  }
-                  return undefined;
-                },
-
-                isDirty: function() {
-                  return this.source.$parentNodesScope != this.parent ||
-                          this.source.index() != this.index;
-                },
-
-                eventArgs: function(elements, pos) {
-                  return {
-                    source: this.sourceInfo,
-                    dest: {
-                      index: this.index,
-                      nodesScope: this.parent
-                    },
-                    elements: elements,
-                    pos: pos
-                  };
-                },
-
-                apply: function(copy) {
-                  var nodeData = this.source.$modelValue;
-                  if (!copy) {
-                    this.source.remove();
-                  }
-
-                  if (angular.isDefined(this.parent))
-                  {
-                    var data = (copy) ? angular.copy(nodeData) : nodeData;
-                    var index = this.index;
-                    if (copy && this.sourceInfo.index < this.index && this.sourceInfo.nodesScope === this.parent) {
-                      index = this.index + 1;
-                    }
-                    this.parent.insertNode(index, data);
-                  }
-                }
-              };
-            } else {
-              return undefined;
-            }
-          },
-
-          /**
-          * @ngdoc method
-          * @name hippo.theme#height
-          * @methodOf ui.tree.service:$helper
-          *
-          * @description
-          * Get the height of an element.
-          *
-          * @param {Object} element Angular element.
-          * @returns {String} Height
-          */
-          height: function (element) {
-            return element.prop('scrollHeight');
-          },
-
-          /**
-          * @ngdoc method
-          * @name hippo.theme#width
-          * @methodOf ui.tree.service:$helper
-          *
-          * @description
-          * Get the width of an element.
-          *
-          * @param {Object} element Angular element.
-          * @returns {String} Width
-          */
-          width: function (element) {
-            return element.prop('scrollWidth');
-          },
-
-          /**
-          * @ngdoc method
-          * @name hippo.theme#offset
-          * @methodOf ui.nestedSortable.service:$helper
-          *
-          * @description
-          * Get the offset values of an element.
-          *
-          * @param {Object} element Angular element.
-          * @returns {Object} Object with properties width, height, top and left
-          */
-          offset: function (element) {
-            var boundingClientRect = element[0].getBoundingClientRect();
-
-            return {
-                width: element.prop('offsetWidth'),
-                height: element.prop('offsetHeight'),
-                top: boundingClientRect.top + ($window.pageYOffset || $document[0].body.scrollTop || $document[0].documentElement.scrollTop),
-                left: boundingClientRect.left + ($window.pageXOffset || $document[0].body.scrollLeft  || $document[0].documentElement.scrollLeft)
-              };
-          },
-
-          /**
-          * @ngdoc method
-          * @name hippo.theme#positionStarted
-          * @methodOf ui.tree.service:$helper
-          *
-          * @description
-          * Get the start position of the target element according to the provided event properties.
-          *
-          * @param {Object} e Event
-          * @param {Object} target Target element
-          * @returns {Object} Object with properties offsetX, offsetY, startX, startY, nowX and dirX.
-          */
-          positionStarted: function (e, target) {
-            var pos = {};
-            pos.offsetX = e.pageX - this.offset(target).left;
-            pos.offsetY = e.pageY - this.offset(target).top;
-            pos.startX = pos.lastX = e.pageX;
-            pos.startY = pos.lastY = e.pageY;
-            pos.nowX = pos.nowY = pos.distX = pos.distY = pos.dirAx = 0;
-            pos.dirX = pos.dirY = pos.lastDirX = pos.lastDirY = pos.distAxX = pos.distAxY = 0;
-            return pos;
-          },
-
-          positionMoved: function (e, pos, firstMoving) {
-            // mouse position last events
-            pos.lastX = pos.nowX;
-            pos.lastY = pos.nowY;
-
-            // mouse position this events
-            pos.nowX  = e.pageX;
-            pos.nowY  = e.pageY;
-
-            // distance mouse moved between events
-            if (treeConfig.dir == 'rtl') {
-              pos.distX = pos.lastX - pos.nowX;
-            } else {
-              pos.distX = pos.nowX - pos.lastX;
-            }
-            pos.distY = pos.nowY - pos.lastY;
-
-            // direction mouse was moving
-            pos.lastDirX = pos.dirX;
-            pos.lastDirY = pos.dirY;
-
-            // direction mouse is now moving (on both axis)
-            pos.dirX = pos.distX === 0 ? 0 : pos.distX > 0 ? 1 : -1;
-            pos.dirY = pos.distY === 0 ? 0 : pos.distY > 0 ? 1 : -1;
-
-            // axis mouse is now moving on
-            var newAx   = Math.abs(pos.distX) > Math.abs(pos.distY) ? 1 : 0;
-
-            // do nothing on first move
-            if (firstMoving) {
-              pos.dirAx  = newAx;
-              pos.moving = true;
-              return;
-            }
-
-            // calc distance moved on this axis (and direction)
-            if (pos.dirAx !== newAx) {
-              pos.distAxX = 0;
-              pos.distAxY = 0;
-            } else {
-              pos.distAxX += Math.abs(pos.distX);
-              if (pos.dirX !== 0 && pos.dirX !== pos.lastDirX) {
-                pos.distAxX = 0;
-              }
-
-              pos.distAxY += Math.abs(pos.distY);
-              if (pos.dirY !== 0 && pos.dirY !== pos.lastDirY) {
-                pos.distAxY = 0;
-              }
-            }
-
-            pos.dirAx = newAx;
-          },
-
-          findIntersect: function(elmPos, nodes, collideWith, direction, horizontal) {
-            var self = this;
-            var intersectWith;
-            for (var nodeIdx = 0; nodeIdx < nodes.length; nodeIdx++) {
-              var intersectWithChild;
-              var nodeElement = angular.element(nodes[nodeIdx]);
-
-              if (angular.isDefined(nodeElement[0])) {
-                if (nodeElement.hasClass('angular-ui-tree-node')) {
-                  intersectWithChild = self.findIntersect(elmPos, nodeElement.children(), collideWith, direction, horizontal);
-
-                  if (angular.isUndefined(intersectWithChild)) {
-                    var nodeOffset = self.offset(nodeElement);
-                    var nodePos = {
-                      left: nodeOffset.left,
-                      width: nodeOffset.width,
-                      right: nodeOffset.left + nodeOffset.width,
-                      top: nodeOffset.top,
-                      height: nodeOffset.height,
-                      bottom: nodeOffset.top + nodeOffset.height
-                    };
-
-                    var isOverElementWidth;
-                    var isOverElementHeight;
-                    if (horizontal) {
-                      if (direction < 0) {
-                        isOverElementWidth = (collideWith === 'bottom') ? (elmPos.left <= nodePos.right && elmPos.right >= nodePos.left)
-                                                                         : (elmPos.right <= nodePos.right && elmPos.right >= nodePos.left);
-                      } else if (direction > 0) {
-                        isOverElementWidth = (collideWith === 'bottom') ? (elmPos.right >= nodePos.left && elmPos.left <= nodePos.right)
-                                                                        : (elmPos.left >= nodePos.left && elmPos.left <= nodePos.right);
-                      }
-                    }
-
-                    if (direction < 0) {
-                      isOverElementHeight = (collideWith === 'bottom') ? (elmPos.top <= nodePos.bottom && elmPos.bottom >= nodePos.top)
-                                                                       : (elmPos.bottom <= nodePos.bottom && elmPos.bottom >= nodePos.top);
-                    } else if (direction > 0) {
-                      isOverElementHeight = (collideWith === 'bottom') ? (elmPos.bottom >= nodePos.top && elmPos.top <= nodePos.bottom)
-                                                                       : (elmPos.top >= nodePos.top && elmPos.top <= nodePos.bottom);
-                    }
-
-                    if ((horizontal && (isOverElementWidth && isOverElementHeight)) || (!horizontal && isOverElementHeight)) {
-                      intersectWith = nodes[nodeIdx];
-                    }
-                  } else {
-                    intersectWith = intersectWithChild;
-                  }
-                } else {
-                  if (angular.isDefined(nodeElement.children()) && nodeElement.children().length > 0) {
-                    intersectWith = self.findIntersect(elmPos, nodeElement.children(), collideWith, direction, horizontal);
-                  }
-                }
-              }
-
-              if (angular.isDefined(intersectWith))
-              {
-                break;
-              }
-            }
-
-            return intersectWith;
-          }
-        };
-      }
-    ]);
-})();
-;/*!
+!function(a,b){"object"==typeof exports?module.exports=b(require("angular")):"function"==typeof define&&define.amd?define(["angular"],b):b(a.angular)}(this,function(a){!function(a){"use strict";return a.module("easypiechart",[]).directive("easypiechart",[function(){return{restrict:"A",require:"?ngModel",scope:{percent:"=",options:"="},link:function(b,d){b.percent=b.percent||0;var e={barColor:"#ef1e25",trackColor:"#f9f9f9",scaleColor:"#dfe0e0",scaleLength:5,lineCap:"round",lineWidth:3,size:110,rotate:0,animate:{duration:1e3,enabled:!0}};b.options=a.extend(e,b.options);var f=new c(d[0],e);b.$watch("percent",function(a){f.update(a)})}}}])}(a);var b=function(a,b){var c,d=document.createElement("canvas");a.appendChild(d),"undefined"!=typeof G_vmlCanvasManager&&G_vmlCanvasManager.initElement(d);var e=d.getContext("2d");d.width=d.height=b.size;var f=1;window.devicePixelRatio>1&&(f=window.devicePixelRatio,d.style.width=d.style.height=[b.size,"px"].join(""),d.width=d.height=b.size*f,e.scale(f,f)),e.translate(b.size/2,b.size/2),e.rotate((-0.5+b.rotate/180)*Math.PI);var g=(b.size-b.lineWidth)/2;b.scaleColor&&b.scaleLength&&(g-=b.scaleLength+2),Date.now=Date.now||function(){return+new Date};var h=function(a,b,c){c=Math.min(Math.max(-1,c||0),1);var d=0>=c?!0:!1;e.beginPath(),e.arc(0,0,g,0,2*Math.PI*c,d),e.strokeStyle=a,e.lineWidth=b,e.stroke()},i=function(){var a,c;e.lineWidth=1,e.fillStyle=b.scaleColor,e.save();for(var d=24;d>0;--d)d%6===0?(c=b.scaleLength,a=0):(c=.6*b.scaleLength,a=b.scaleLength-c),e.fillRect(-b.size/2+a,0,c,1),e.rotate(Math.PI/12);e.restore()},j=function(){return window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(a){window.setTimeout(a,1e3/60)}}(),k=function(){b.scaleColor&&i(),b.trackColor&&h(b.trackColor,b.trackWidth||b.lineWidth,1)};this.getCanvas=function(){return d},this.getCtx=function(){return e},this.clear=function(){e.clearRect(b.size/-2,b.size/-2,b.size,b.size)},this.draw=function(a){b.scaleColor||b.trackColor?e.getImageData&&e.putImageData?c?e.putImageData(c,0,0):(k(),c=e.getImageData(0,0,b.size*f,b.size*f)):(this.clear(),k()):this.clear(),e.lineCap=b.lineCap;var d;d="function"==typeof b.barColor?b.barColor(a):b.barColor,h(d,b.lineWidth,a/100)}.bind(this),this.animate=function(a,c){var d=Date.now();b.onStart(a,c);var e=function(){var f=Math.min(Date.now()-d,b.animate.duration),g=b.easing(this,f,a,c-a,b.animate.duration);this.draw(g),b.onStep(a,c,g),f>=b.animate.duration?b.onStop(a,c):j(e)}.bind(this);j(e)}.bind(this)},c=function(a,c){var d={barColor:"#ef1e25",trackColor:"#f9f9f9",scaleColor:"#dfe0e0",scaleLength:5,lineCap:"round",lineWidth:3,trackWidth:void 0,size:110,rotate:0,animate:{duration:1e3,enabled:!0},easing:function(a,b,c,d,e){return b/=e/2,1>b?d/2*b*b+c:-d/2*(--b*(b-2)-1)+c},onStart:function(){},onStep:function(){},onStop:function(){}};if("undefined"!=typeof b)d.renderer=b;else{if("undefined"==typeof SVGRenderer)throw new Error("Please load either the SVG- or the CanvasRenderer");d.renderer=SVGRenderer}var e={},f=0,g=function(){this.el=a,this.options=e;for(var b in d)d.hasOwnProperty(b)&&(e[b]=c&&"undefined"!=typeof c[b]?c[b]:d[b],"function"==typeof e[b]&&(e[b]=e[b].bind(this)));e.easing="string"==typeof e.easing&&"undefined"!=typeof jQuery&&jQuery.isFunction(jQuery.easing[e.easing])?jQuery.easing[e.easing]:d.easing,"number"==typeof e.animate&&(e.animate={duration:e.animate,enabled:!0}),"boolean"!=typeof e.animate||e.animate||(e.animate={duration:1e3,enabled:e.animate}),this.renderer=new e.renderer(a,e),this.renderer.draw(f),a.dataset&&a.dataset.percent?this.update(parseFloat(a.dataset.percent)):a.getAttribute&&a.getAttribute("data-percent")&&this.update(parseFloat(a.getAttribute("data-percent")))}.bind(this);this.update=function(a){return a=parseFloat(a),e.animate.enabled?this.renderer.animate(f,a):this.renderer.draw(a),f=a,this}.bind(this),this.disableAnimation=function(){return e.animate.enabled=!1,this},this.enableAnimation=function(){return e.animate.enabled=!0,this},g()}});;/*!
  * jQVMap Version 1.0 
  *
  * http://jqvmap.com
@@ -9277,16 +6421,7 @@ function(){"use strict";function a(a){try{return 0!==angular.element(a).length}c
  * Fork Me @ https://github.com/manifestinteractive/jqvmap
  */
 (function($){var apiParams={colors:1,values:1,backgroundColor:1,scaleColors:1,normalizeFunction:1,enableZoom:1,showTooltip:1,borderColor:1,borderWidth:1,borderOpacity:1,selectedRegion:1};var apiEvents={onLabelShow:'labelShow',onRegionOver:'regionMouseOver',onRegionOut:'regionMouseOut',onRegionClick:'regionClick'};$.fn.vectorMap=function(options){var defaultParams={map:'world_en',backgroundColor:'#a5bfdd',color:'#f4f3f0',hoverColor:'#c9dfaf',selectedColor:'#c9dfaf',scaleColors:['#b6d6ff','#005ace'],normalizeFunction:'linear',enableZoom:true,showTooltip:true,borderColor:'#818181',borderWidth:1,borderOpacity:0.25,selectedRegion:null},map;if(options==='addMap'){WorldMap.maps[arguments[1]]=arguments[2]}else if(options==='set'&&apiParams[arguments[1]]){this.data('mapObject')['set'+arguments[1].charAt(0).toUpperCase()+arguments[1].substr(1)].apply(this.data('mapObject'),Array.prototype.slice.call(arguments,2))}else{$.extend(defaultParams,options);defaultParams.container=this;this.css({position:'relative',overflow:'hidden'});map=new WorldMap(defaultParams);this.data('mapObject',map);for(var e in apiEvents){if(defaultParams[e]){this.bind(apiEvents[e]+'.jqvmap',defaultParams[e])}}}};var VectorCanvas=function(width,height,params){this.mode=window.SVGAngle?'svg':'vml';this.params=params;if(this.mode=='svg'){this.createSvgNode=function(nodeName){return document.createElementNS(this.svgns,nodeName)}}else{try{if(!document.namespaces.rvml){document.namespaces.add("rvml","urn:schemas-microsoft-com:vml")}this.createVmlNode=function(tagName){return document.createElement('<rvml:'+tagName+' class="rvml">')}}catch(e){this.createVmlNode=function(tagName){return document.createElement('<'+tagName+' xmlns="urn:schemas-microsoft.com:vml" class="rvml">')}}document.createStyleSheet().addRule(".rvml","behavior:url(#default#VML)")}if(this.mode=='svg'){this.canvas=this.createSvgNode('svg')}else{this.canvas=this.createVmlNode('group');this.canvas.style.position='absolute'}this.setSize(width,height)};VectorCanvas.prototype={svgns:"http://www.w3.org/2000/svg",mode:'svg',width:0,height:0,canvas:null,setSize:function(width,height){if(this.mode=='svg'){this.canvas.setAttribute('width',width);this.canvas.setAttribute('height',height)}else{this.canvas.style.width=width+"px";this.canvas.style.height=height+"px";this.canvas.coordsize=width+' '+height;this.canvas.coordorigin="0 0";if(this.rootGroup){var pathes=this.rootGroup.getElementsByTagName('shape');for(var i=0,l=pathes.length;i<l;i++){pathes[i].coordsize=width+' '+height;pathes[i].style.width=width+'px';pathes[i].style.height=height+'px'}this.rootGroup.coordsize=width+' '+height;this.rootGroup.style.width=width+'px';this.rootGroup.style.height=height+'px'}}this.width=width;this.height=height},createPath:function(config){var node;if(this.mode=='svg'){node=this.createSvgNode('path');node.setAttribute('d',config.path);if(this.params.borderColor!==null){node.setAttribute('stroke',this.params.borderColor)}if(this.params.borderWidth>0){node.setAttribute('stroke-width',this.params.borderWidth);node.setAttribute('stroke-linecap','round');node.setAttribute('stroke-linejoin','round')}if(this.params.borderOpacity>0){node.setAttribute('stroke-opacity',this.params.borderOpacity)}node.setFill=function(color){this.setAttribute("fill",color);if(this.getAttribute("original")===null){this.setAttribute("original",color)}};node.getFill=function(color){return this.getAttribute("fill")};node.getOriginalFill=function(){return this.getAttribute("original")};node.setOpacity=function(opacity){this.setAttribute('fill-opacity',opacity)}}else{node=this.createVmlNode('shape');node.coordorigin="0 0";node.coordsize=this.width+' '+this.height;node.style.width=this.width+'px';node.style.height=this.height+'px';node.fillcolor=WorldMap.defaultFillColor;node.stroked=false;node.path=VectorCanvas.pathSvgToVml(config.path);var scale=this.createVmlNode('skew');scale.on=true;scale.matrix='0.01,0,0,0.01,0,0';scale.offset='0,0';node.appendChild(scale);var fill=this.createVmlNode('fill');node.appendChild(fill);node.setFill=function(color){this.getElementsByTagName('fill')[0].color=color};node.getFill=function(color){return this.getElementsByTagName('fill')[0].color};node.setOpacity=function(opacity){this.getElementsByTagName('fill')[0].opacity=parseInt(opacity*100,10)+'%'}}return node},createGroup:function(isRoot){var node;if(this.mode=='svg'){node=this.createSvgNode('g')}else{node=this.createVmlNode('group');node.style.width=this.width+'px';node.style.height=this.height+'px';node.style.left='0px';node.style.top='0px';node.coordorigin="0 0";node.coordsize=this.width+' '+this.height}if(isRoot){this.rootGroup=node}return node},applyTransformParams:function(scale,transX,transY){if(this.mode=='svg'){this.rootGroup.setAttribute('transform','scale('+scale+') translate('+transX+', '+transY+')')}else{this.rootGroup.coordorigin=(this.width-transX)+','+(this.height-transY);this.rootGroup.coordsize=this.width/scale+','+this.height/scale}}};VectorCanvas.pathSvgToVml=function(path){var result='';var cx=0,cy=0,ctrlx,ctrly;return path.replace(/([MmLlHhVvCcSs])((?:-?(?:\d+)?(?:\.\d+)?,?\s?)+)/g,function(segment,letter,coords,index){coords=coords.replace(/(\d)-/g,'$1,-').replace(/\s+/g,',').split(',');if(!coords[0]){coords.shift()}for(var i=0,l=coords.length;i<l;i++){coords[i]=Math.round(100*coords[i])}switch(letter){case'm':cx+=coords[0];cy+=coords[1];return't'+coords.join(',');break;case'M':cx=coords[0];cy=coords[1];return'm'+coords.join(',');break;case'l':cx+=coords[0];cy+=coords[1];return'r'+coords.join(',');break;case'L':cx=coords[0];cy=coords[1];return'l'+coords.join(',');break;case'h':cx+=coords[0];return'r'+coords[0]+',0';break;case'H':cx=coords[0];return'l'+cx+','+cy;break;case'v':cy+=coords[0];return'r0,'+coords[0];break;case'V':cy=coords[0];return'l'+cx+','+cy;break;case'c':ctrlx=cx+coords[coords.length-4];ctrly=cy+coords[coords.length-3];cx+=coords[coords.length-2];cy+=coords[coords.length-1];return'v'+coords.join(',');break;case'C':ctrlx=coords[coords.length-4];ctrly=coords[coords.length-3];cx=coords[coords.length-2];cy=coords[coords.length-1];return'c'+coords.join(',');break;case's':coords.unshift(cy-ctrly);coords.unshift(cx-ctrlx);ctrlx=cx+coords[coords.length-4];ctrly=cy+coords[coords.length-3];cx+=coords[coords.length-2];cy+=coords[coords.length-1];return'v'+coords.join(',');break;case'S':coords.unshift(cy+cy-ctrly);coords.unshift(cx+cx-ctrlx);ctrlx=coords[coords.length-4];ctrly=coords[coords.length-3];cx=coords[coords.length-2];cy=coords[coords.length-1];return'c'+coords.join(',');break;default:return false;break}return''}).replace(/z/g,'')};var WorldMap=function(params){params=params||{};var map=this;var mapData=WorldMap.maps[params.map];this.container=params.container;this.defaultWidth=mapData.width;this.defaultHeight=mapData.height;this.color=params.color;this.hoverColor=params.hoverColor;this.setBackgroundColor(params.backgroundColor);this.width=params.container.width();this.height=params.container.height();this.resize();jQuery(window).resize(function(){map.width=params.container.width();map.height=params.container.height();map.resize();map.canvas.setSize(map.width,map.height);map.applyTransform()});this.canvas=new VectorCanvas(this.width,this.height,params);params.container.append(this.canvas.canvas);this.makeDraggable();this.rootGroup=this.canvas.createGroup(true);this.index=WorldMap.mapIndex;this.label=jQuery('<div/>').addClass('jqvmap-label').appendTo(jQuery('body'));if(params.enableZoom){jQuery('<div/>').addClass('jqvmap-zoomin').text('+').appendTo(params.container);jQuery('<div/>').addClass('jqvmap-zoomout').html('&#x2212;').appendTo(params.container)}map.countries=[];for(var key in mapData.pathes){var path=this.canvas.createPath({path:mapData.pathes[key].path});path.setFill(this.color);path.id='jqvmap'+map.index+'_'+key;map.countries[key]=path;jQuery(this.rootGroup).append(path);path.setAttribute('class','jqvmap-region');if(params.selectedRegion!==null){if(key.toLowerCase()==params.selectedRegion.toLowerCase()){path.setFill(params.selectedColor)}}}jQuery(params.container).delegate(this.canvas.mode=='svg'?'path':'shape','mouseover mouseout',function(e){var path=e.target,code=e.target.id.split('_').pop(),labelShowEvent=$.Event('labelShow.jqvmap'),regionMouseOverEvent=$.Event('regionMouseOver.jqvmap');if(e.type=='mouseover'){jQuery(params.container).trigger(regionMouseOverEvent,[code,mapData.pathes[code].name]);if(!regionMouseOverEvent.isDefaultPrevented()){if(params.hoverOpacity){path.setOpacity(params.hoverOpacity)}else if(params.hoverColor){path.currentFillColor=path.getFill()+'';path.setFill(params.hoverColor)}}if(params.showTooltip){map.label.text(mapData.pathes[code].name);jQuery(params.container).trigger(labelShowEvent,[map.label,code]);if(!labelShowEvent.isDefaultPrevented()){map.label.show();map.labelWidth=map.label.width();map.labelHeight=map.label.height()}}}else{path.setOpacity(1);if(path.currentFillColor){path.setFill(path.currentFillColor)}map.label.hide();jQuery(params.container).trigger('regionMouseOut.jqvmap',[code,mapData.pathes[code].name])}});jQuery(params.container).delegate(this.canvas.mode=='svg'?'path':'shape','click',function(e){for(var key in mapData.pathes){map.countries[key].currentFillColor=map.countries[key].getOriginalFill();map.countries[key].setFill(map.countries[key].getOriginalFill())}var path=e.target;var code=e.target.id.split('_').pop();jQuery(params.container).trigger('regionClick.jqvmap',[code,mapData.pathes[code].name]);path.currentFillColor=params.selectedColor;path.setFill(params.selectedColor)});if(params.showTooltip){params.container.mousemove(function(e){if(map.label.is(':visible')){map.label.css({left:e.pageX-15-map.labelWidth,top:e.pageY-15-map.labelHeight})}})}this.setColors(params.colors);this.canvas.canvas.appendChild(this.rootGroup);this.applyTransform();this.colorScale=new ColorScale(params.scaleColors,params.normalizeFunction,params.valueMin,params.valueMax);if(params.values){this.values=params.values;this.setValues(params.values)}this.bindZoomButtons();WorldMap.mapIndex++};WorldMap.prototype={transX:0,transY:0,scale:1,baseTransX:0,baseTransY:0,baseScale:1,width:0,height:0,countries:{},countriesColors:{},countriesData:{},zoomStep:1.4,zoomMaxStep:4,zoomCurStep:1,setColors:function(key,color){if(typeof key=='string'){this.countries[key].setFill(color);this.countries[key].setAttribute("original",color)}else{var colors=key;for(var code in colors){if(this.countries[code]){this.countries[code].setFill(colors[code]);this.countries[code].setAttribute("original",colors[code])}}}},setValues:function(values){var max=0,min=Number.MAX_VALUE,val;for(var cc in values){val=parseFloat(values[cc]);if(val>max){max=values[cc]}if(val&&val<min){min=val}}this.colorScale.setMin(min);this.colorScale.setMax(max);var colors={};for(cc in values){val=parseFloat(values[cc]);if(val){colors[cc]=this.colorScale.getColor(val)}else{colors[cc]=this.color}}this.setColors(colors);this.values=values},setBackgroundColor:function(backgroundColor){this.container.css('background-color',backgroundColor)},setScaleColors:function(colors){this.colorScale.setColors(colors);if(this.values){this.setValues(this.values)}},setNormalizeFunction:function(f){this.colorScale.setNormalizeFunction(f);if(this.values){this.setValues(this.values)}},resize:function(){var curBaseScale=this.baseScale;if(this.width/this.height>this.defaultWidth/this.defaultHeight){this.baseScale=this.height/this.defaultHeight;this.baseTransX=Math.abs(this.width-this.defaultWidth*this.baseScale)/(2*this.baseScale)}else{this.baseScale=this.width/this.defaultWidth;this.baseTransY=Math.abs(this.height-this.defaultHeight*this.baseScale)/(2*this.baseScale)}this.scale*=this.baseScale/curBaseScale;this.transX*=this.baseScale/curBaseScale;this.transY*=this.baseScale/curBaseScale},reset:function(){this.countryTitle.reset();for(var key in this.countries){this.countries[key].setFill(WorldMap.defaultColor)}this.scale=this.baseScale;this.transX=this.baseTransX;this.transY=this.baseTransY;this.applyTransform()},applyTransform:function(){var maxTransX,maxTransY,minTransX,minTransY;if(this.defaultWidth*this.scale<=this.width){maxTransX=(this.width-this.defaultWidth*this.scale)/(2*this.scale);minTransX=(this.width-this.defaultWidth*this.scale)/(2*this.scale)}else{maxTransX=0;minTransX=(this.width-this.defaultWidth*this.scale)/this.scale}if(this.defaultHeight*this.scale<=this.height){maxTransY=(this.height-this.defaultHeight*this.scale)/(2*this.scale);minTransY=(this.height-this.defaultHeight*this.scale)/(2*this.scale)}else{maxTransY=0;minTransY=(this.height-this.defaultHeight*this.scale)/this.scale}if(this.transY>maxTransY){this.transY=maxTransY}else if(this.transY<minTransY){this.transY=minTransY}if(this.transX>maxTransX){this.transX=maxTransX}else if(this.transX<minTransX){this.transX=minTransX}this.canvas.applyTransformParams(this.scale,this.transX,this.transY)},makeDraggable:function(){var mouseDown=false;var oldPageX,oldPageY;var self=this;this.container.mousemove(function(e){if(mouseDown){var curTransX=self.transX;var curTransY=self.transY;self.transX-=(oldPageX-e.pageX)/self.scale;self.transY-=(oldPageY-e.pageY)/self.scale;self.applyTransform();oldPageX=e.pageX;oldPageY=e.pageY}return false}).mousedown(function(e){mouseDown=true;oldPageX=e.pageX;oldPageY=e.pageY;return false}).mouseup(function(){mouseDown=false;return false})},bindZoomButtons:function(){var map=this;var sliderDelta=(jQuery('#zoom').innerHeight()-6*2-15*2-3*2-7-6)/(this.zoomMaxStep-this.zoomCurStep);this.container.find('.jqvmap-zoomin').click(function(){if(map.zoomCurStep<map.zoomMaxStep){var curTransX=map.transX;var curTransY=map.transY;var curScale=map.scale;map.transX-=(map.width/map.scale-map.width/ (map.scale * map.zoomStep)) /2;map.transY-=(map.height/map.scale-map.height/ (map.scale * map.zoomStep)) /2;map.setScale(map.scale*map.zoomStep);map.zoomCurStep++;jQuery('#zoomSlider').css('top',parseInt(jQuery('#zoomSlider').css('top'),10)-sliderDelta)}});this.container.find('.jqvmap-zoomout').click(function(){if(map.zoomCurStep>1){var curTransX=map.transX;var curTransY=map.transY;var curScale=map.scale;map.transX+=(map.width/(map.scale/ map.zoomStep) - map.width/map.scale)/2;map.transY+=(map.height/(map.scale/ map.zoomStep) - map.height/map.scale)/2;map.setScale(map.scale/map.zoomStep);map.zoomCurStep--;jQuery('#zoomSlider').css('top',parseInt(jQuery('#zoomSlider').css('top'),10)+sliderDelta)}})},setScale:function(scale){this.scale=scale;this.applyTransform()},getCountryPath:function(cc){return jQuery('#'+cc)[0]}};WorldMap.xlink="http://www.w3.org/1999/xlink";WorldMap.mapIndex=1;WorldMap.maps={};var ColorScale=function(colors,normalizeFunction,minValue,maxValue){if(colors){this.setColors(colors)}if(normalizeFunction){this.setNormalizeFunction(normalizeFunction)}if(minValue){this.setMin(minValue)}if(minValue){this.setMax(maxValue)}};ColorScale.prototype={colors:[],setMin:function(min){this.clearMinValue=min;if(typeof this.normalize==='function'){this.minValue=this.normalize(min)}else{this.minValue=min}},setMax:function(max){this.clearMaxValue=max;if(typeof this.normalize==='function'){this.maxValue=this.normalize(max)}else{this.maxValue=max}},setColors:function(colors){for(var i=0;i<colors.length;i++){colors[i]=ColorScale.rgbToArray(colors[i])}this.colors=colors},setNormalizeFunction:function(f){if(f==='polynomial'){this.normalize=function(value){return Math.pow(value,0.2)}}else if(f==='linear'){delete this.normalize}else{this.normalize=f}this.setMin(this.clearMinValue);this.setMax(this.clearMaxValue)},getColor:function(value){if(typeof this.normalize==='function'){value=this.normalize(value)}var lengthes=[];var fullLength=0;var l;for(var i=0;i<this.colors.length-1;i++){l=this.vectorLength(this.vectorSubtract(this.colors[i+1],this.colors[i]));lengthes.push(l);fullLength+=l}var c=(this.maxValue-this.minValue)/fullLength;for(i=0;i<lengthes.length;i++){lengthes[i]*=c}i=0;value-=this.minValue;while(value-lengthes[i]>=0){value-=lengthes[i];i++}var color;if(i==this.colors.length-1){color=this.vectorToNum(this.colors[i]).toString(16)}else{color=(this.vectorToNum(this.vectorAdd(this.colors[i],this.vectorMult(this.vectorSubtract(this.colors[i+1],this.colors[i]),(value)/(lengthes[i]))))).toString(16)}while(color.length<6){color='0'+color}return'#'+color},vectorToNum:function(vector){var num=0;for(var i=0;i<vector.length;i++){num+=Math.round(vector[i])*Math.pow(256,vector.length-i-1)}return num},vectorSubtract:function(vector1,vector2){var vector=[];for(var i=0;i<vector1.length;i++){vector[i]=vector1[i]-vector2[i]}return vector},vectorAdd:function(vector1,vector2){var vector=[];for(var i=0;i<vector1.length;i++){vector[i]=vector1[i]+vector2[i]}return vector},vectorMult:function(vector,num){var result=[];for(var i=0;i<vector.length;i++){result[i]=vector[i]*num}return result},vectorLength:function(vector){var result=0;for(var i=0;i<vector.length;i++){result+=vector[i]*vector[i]}return Math.sqrt(result)}};ColorScale.arrayToRgb=function(ar){var rgb='#';var d;for(var i=0;i<ar.length;i++){d=ar[i].toString(16);rgb+=d.length==1?'0'+d:d}return rgb};ColorScale.rgbToArray=function(rgb){rgb=rgb.substr(1);return[parseInt(rgb.substr(0,2),16),parseInt(rgb.substr(2,2),16),parseInt(rgb.substr(4,2),16)]}})(jQuery);
-;/*
- * angular-ui-bootstrap
- * http://angular-ui.github.io/bootstrap/
-
- * Version: 0.12.1 - 2015-02-20
- * License: MIT
- */
-angular.module("ui.bootstrap",["ui.bootstrap.tpls","ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.bindHtml","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.dateparser","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdown","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]),angular.module("ui.bootstrap.tpls",["template/accordion/accordion-group.html","template/accordion/accordion.html","template/alert/alert.html","template/carousel/carousel.html","template/carousel/slide.html","template/datepicker/datepicker.html","template/datepicker/day.html","template/datepicker/month.html","template/datepicker/popup.html","template/datepicker/year.html","template/modal/backdrop.html","template/modal/window.html","template/pagination/pager.html","template/pagination/pagination.html","template/tooltip/tooltip-html-unsafe-popup.html","template/tooltip/tooltip-popup.html","template/popover/popover.html","template/progressbar/bar.html","template/progressbar/progress.html","template/progressbar/progressbar.html","template/rating/rating.html","template/tabs/tab.html","template/tabs/tabset.html","template/timepicker/timepicker.html","template/typeahead/typeahead-match.html","template/typeahead/typeahead-popup.html"]),angular.module("ui.bootstrap.transition",[]).factory("$transition",["$q","$timeout","$rootScope",function(a,b,c){function d(a){for(var b in a)if(void 0!==f.style[b])return a[b]}var e=function(d,f,g){g=g||{};var h=a.defer(),i=e[g.animation?"animationEndEventName":"transitionEndEventName"],j=function(){c.$apply(function(){d.unbind(i,j),h.resolve(d)})};return i&&d.bind(i,j),b(function(){angular.isString(f)?d.addClass(f):angular.isFunction(f)?f(d):angular.isObject(f)&&d.css(f),i||h.resolve(d)}),h.promise.cancel=function(){i&&d.unbind(i,j),h.reject("Transition cancelled")},h.promise},f=document.createElement("trans"),g={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd",transition:"transitionend"},h={WebkitTransition:"webkitAnimationEnd",MozTransition:"animationend",OTransition:"oAnimationEnd",transition:"animationend"};return e.transitionEndEventName=d(g),e.animationEndEventName=d(h),e}]),angular.module("ui.bootstrap.collapse",["ui.bootstrap.transition"]).directive("collapse",["$transition",function(a){return{link:function(b,c,d){function e(b){function d(){j===e&&(j=void 0)}var e=a(c,b);return j&&j.cancel(),j=e,e.then(d,d),e}function f(){k?(k=!1,g()):(c.removeClass("collapse").addClass("collapsing"),e({height:c[0].scrollHeight+"px"}).then(g))}function g(){c.removeClass("collapsing"),c.addClass("collapse in"),c.css({height:"auto"})}function h(){if(k)k=!1,i(),c.css({height:0});else{c.css({height:c[0].scrollHeight+"px"});{c[0].offsetWidth}c.removeClass("collapse in").addClass("collapsing"),e({height:0}).then(i)}}function i(){c.removeClass("collapsing"),c.addClass("collapse")}var j,k=!0;b.$watch(d.collapse,function(a){a?h():f()})}}}]),angular.module("ui.bootstrap.accordion",["ui.bootstrap.collapse"]).constant("accordionConfig",{closeOthers:!0}).controller("AccordionController",["$scope","$attrs","accordionConfig",function(a,b,c){this.groups=[],this.closeOthers=function(d){var e=angular.isDefined(b.closeOthers)?a.$eval(b.closeOthers):c.closeOthers;e&&angular.forEach(this.groups,function(a){a!==d&&(a.isOpen=!1)})},this.addGroup=function(a){var b=this;this.groups.push(a),a.$on("$destroy",function(){b.removeGroup(a)})},this.removeGroup=function(a){var b=this.groups.indexOf(a);-1!==b&&this.groups.splice(b,1)}}]).directive("accordion",function(){return{restrict:"EA",controller:"AccordionController",transclude:!0,replace:!1,templateUrl:"template/accordion/accordion.html"}}).directive("accordionGroup",function(){return{require:"^accordion",restrict:"EA",transclude:!0,replace:!0,templateUrl:"template/accordion/accordion-group.html",scope:{heading:"@",isOpen:"=?",isDisabled:"=?"},controller:function(){this.setHeading=function(a){this.heading=a}},link:function(a,b,c,d){d.addGroup(a),a.$watch("isOpen",function(b){b&&d.closeOthers(a)}),a.toggleOpen=function(){a.isDisabled||(a.isOpen=!a.isOpen)}}}}).directive("accordionHeading",function(){return{restrict:"EA",transclude:!0,template:"",replace:!0,require:"^accordionGroup",link:function(a,b,c,d,e){d.setHeading(e(a,function(){}))}}}).directive("accordionTransclude",function(){return{require:"^accordionGroup",link:function(a,b,c,d){a.$watch(function(){return d[c.accordionTransclude]},function(a){a&&(b.html(""),b.append(a))})}}}),angular.module("ui.bootstrap.alert",[]).controller("AlertController",["$scope","$attrs",function(a,b){a.closeable="close"in b,this.close=a.close}]).directive("alert",function(){return{restrict:"EA",controller:"AlertController",templateUrl:"template/alert/alert.html",transclude:!0,replace:!0,scope:{type:"@",close:"&"}}}).directive("dismissOnTimeout",["$timeout",function(a){return{require:"alert",link:function(b,c,d,e){a(function(){e.close()},parseInt(d.dismissOnTimeout,10))}}}]),angular.module("ui.bootstrap.bindHtml",[]).directive("bindHtmlUnsafe",function(){return function(a,b,c){b.addClass("ng-binding").data("$binding",c.bindHtmlUnsafe),a.$watch(c.bindHtmlUnsafe,function(a){b.html(a||"")})}}),angular.module("ui.bootstrap.buttons",[]).constant("buttonConfig",{activeClass:"active",toggleEvent:"click"}).controller("ButtonsController",["buttonConfig",function(a){this.activeClass=a.activeClass||"active",this.toggleEvent=a.toggleEvent||"click"}]).directive("btnRadio",function(){return{require:["btnRadio","ngModel"],controller:"ButtonsController",link:function(a,b,c,d){var e=d[0],f=d[1];f.$render=function(){b.toggleClass(e.activeClass,angular.equals(f.$modelValue,a.$eval(c.btnRadio)))},b.bind(e.toggleEvent,function(){var d=b.hasClass(e.activeClass);(!d||angular.isDefined(c.uncheckable))&&a.$apply(function(){f.$setViewValue(d?null:a.$eval(c.btnRadio)),f.$render()})})}}}).directive("btnCheckbox",function(){return{require:["btnCheckbox","ngModel"],controller:"ButtonsController",link:function(a,b,c,d){function e(){return g(c.btnCheckboxTrue,!0)}function f(){return g(c.btnCheckboxFalse,!1)}function g(b,c){var d=a.$eval(b);return angular.isDefined(d)?d:c}var h=d[0],i=d[1];i.$render=function(){b.toggleClass(h.activeClass,angular.equals(i.$modelValue,e()))},b.bind(h.toggleEvent,function(){a.$apply(function(){i.$setViewValue(b.hasClass(h.activeClass)?f():e()),i.$render()})})}}}),angular.module("ui.bootstrap.carousel",["ui.bootstrap.transition"]).controller("CarouselController",["$scope","$timeout","$interval","$transition",function(a,b,c,d){function e(){f();var b=+a.interval;!isNaN(b)&&b>0&&(h=c(g,b))}function f(){h&&(c.cancel(h),h=null)}function g(){var b=+a.interval;i&&!isNaN(b)&&b>0?a.next():a.pause()}var h,i,j=this,k=j.slides=a.slides=[],l=-1;j.currentSlide=null;var m=!1;j.select=a.select=function(c,f){function g(){if(!m){if(j.currentSlide&&angular.isString(f)&&!a.noTransition&&c.$element){c.$element.addClass(f);{c.$element[0].offsetWidth}angular.forEach(k,function(a){angular.extend(a,{direction:"",entering:!1,leaving:!1,active:!1})}),angular.extend(c,{direction:f,active:!0,entering:!0}),angular.extend(j.currentSlide||{},{direction:f,leaving:!0}),a.$currentTransition=d(c.$element,{}),function(b,c){a.$currentTransition.then(function(){h(b,c)},function(){h(b,c)})}(c,j.currentSlide)}else h(c,j.currentSlide);j.currentSlide=c,l=i,e()}}function h(b,c){angular.extend(b,{direction:"",active:!0,leaving:!1,entering:!1}),angular.extend(c||{},{direction:"",active:!1,leaving:!1,entering:!1}),a.$currentTransition=null}var i=k.indexOf(c);void 0===f&&(f=i>l?"next":"prev"),c&&c!==j.currentSlide&&(a.$currentTransition?(a.$currentTransition.cancel(),b(g)):g())},a.$on("$destroy",function(){m=!0}),j.indexOfSlide=function(a){return k.indexOf(a)},a.next=function(){var b=(l+1)%k.length;return a.$currentTransition?void 0:j.select(k[b],"next")},a.prev=function(){var b=0>l-1?k.length-1:l-1;return a.$currentTransition?void 0:j.select(k[b],"prev")},a.isActive=function(a){return j.currentSlide===a},a.$watch("interval",e),a.$on("$destroy",f),a.play=function(){i||(i=!0,e())},a.pause=function(){a.noPause||(i=!1,f())},j.addSlide=function(b,c){b.$element=c,k.push(b),1===k.length||b.active?(j.select(k[k.length-1]),1==k.length&&a.play()):b.active=!1},j.removeSlide=function(a){var b=k.indexOf(a);k.splice(b,1),k.length>0&&a.active?j.select(b>=k.length?k[b-1]:k[b]):l>b&&l--}}]).directive("carousel",[function(){return{restrict:"EA",transclude:!0,replace:!0,controller:"CarouselController",require:"carousel",templateUrl:"template/carousel/carousel.html",scope:{interval:"=",noTransition:"=",noPause:"="}}}]).directive("slide",function(){return{require:"^carousel",restrict:"EA",transclude:!0,replace:!0,templateUrl:"template/carousel/slide.html",scope:{active:"=?"},link:function(a,b,c,d){d.addSlide(a,b),a.$on("$destroy",function(){d.removeSlide(a)}),a.$watch("active",function(b){b&&d.select(a)})}}}),angular.module("ui.bootstrap.dateparser",[]).service("dateParser",["$locale","orderByFilter",function(a,b){function c(a){var c=[],d=a.split("");return angular.forEach(e,function(b,e){var f=a.indexOf(e);if(f>-1){a=a.split(""),d[f]="("+b.regex+")",a[f]="$";for(var g=f+1,h=f+e.length;h>g;g++)d[g]="",a[g]="$";a=a.join(""),c.push({index:f,apply:b.apply})}}),{regex:new RegExp("^"+d.join("")+"$"),map:b(c,"index")}}function d(a,b,c){return 1===b&&c>28?29===c&&(a%4===0&&a%100!==0||a%400===0):3===b||5===b||8===b||10===b?31>c:!0}this.parsers={};var e={yyyy:{regex:"\\d{4}",apply:function(a){this.year=+a}},yy:{regex:"\\d{2}",apply:function(a){this.year=+a+2e3}},y:{regex:"\\d{1,4}",apply:function(a){this.year=+a}},MMMM:{regex:a.DATETIME_FORMATS.MONTH.join("|"),apply:function(b){this.month=a.DATETIME_FORMATS.MONTH.indexOf(b)}},MMM:{regex:a.DATETIME_FORMATS.SHORTMONTH.join("|"),apply:function(b){this.month=a.DATETIME_FORMATS.SHORTMONTH.indexOf(b)}},MM:{regex:"0[1-9]|1[0-2]",apply:function(a){this.month=a-1}},M:{regex:"[1-9]|1[0-2]",apply:function(a){this.month=a-1}},dd:{regex:"[0-2][0-9]{1}|3[0-1]{1}",apply:function(a){this.date=+a}},d:{regex:"[1-2]?[0-9]{1}|3[0-1]{1}",apply:function(a){this.date=+a}},EEEE:{regex:a.DATETIME_FORMATS.DAY.join("|")},EEE:{regex:a.DATETIME_FORMATS.SHORTDAY.join("|")}};this.parse=function(b,e){if(!angular.isString(b)||!e)return b;e=a.DATETIME_FORMATS[e]||e,this.parsers[e]||(this.parsers[e]=c(e));var f=this.parsers[e],g=f.regex,h=f.map,i=b.match(g);if(i&&i.length){for(var j,k={year:1900,month:0,date:1,hours:0},l=1,m=i.length;m>l;l++){var n=h[l-1];n.apply&&n.apply.call(k,i[l])}return d(k.year,k.month,k.date)&&(j=new Date(k.year,k.month,k.date,k.hours)),j}}}]),angular.module("ui.bootstrap.position",[]).factory("$position",["$document","$window",function(a,b){function c(a,c){return a.currentStyle?a.currentStyle[c]:b.getComputedStyle?b.getComputedStyle(a)[c]:a.style[c]}function d(a){return"static"===(c(a,"position")||"static")}var e=function(b){for(var c=a[0],e=b.offsetParent||c;e&&e!==c&&d(e);)e=e.offsetParent;return e||c};return{position:function(b){var c=this.offset(b),d={top:0,left:0},f=e(b[0]);f!=a[0]&&(d=this.offset(angular.element(f)),d.top+=f.clientTop-f.scrollTop,d.left+=f.clientLeft-f.scrollLeft);var g=b[0].getBoundingClientRect();return{width:g.width||b.prop("offsetWidth"),height:g.height||b.prop("offsetHeight"),top:c.top-d.top,left:c.left-d.left}},offset:function(c){var d=c[0].getBoundingClientRect();return{width:d.width||c.prop("offsetWidth"),height:d.height||c.prop("offsetHeight"),top:d.top+(b.pageYOffset||a[0].documentElement.scrollTop),left:d.left+(b.pageXOffset||a[0].documentElement.scrollLeft)}},positionElements:function(a,b,c,d){var e,f,g,h,i=c.split("-"),j=i[0],k=i[1]||"center";e=d?this.offset(a):this.position(a),f=b.prop("offsetWidth"),g=b.prop("offsetHeight");var l={center:function(){return e.left+e.width/2-f/2},left:function(){return e.left},right:function(){return e.left+e.width}},m={center:function(){return e.top+e.height/2-g/2},top:function(){return e.top},bottom:function(){return e.top+e.height}};switch(j){case"right":h={top:m[k](),left:l[j]()};break;case"left":h={top:m[k](),left:e.left-f};break;case"bottom":h={top:m[j](),left:l[k]()};break;default:h={top:e.top-g,left:l[k]()}}return h}}}]),angular.module("ui.bootstrap.datepicker",["ui.bootstrap.dateparser","ui.bootstrap.position"]).constant("datepickerConfig",{formatDay:"dd",formatMonth:"MMMM",formatYear:"yyyy",formatDayHeader:"EEE",formatDayTitle:"MMMM yyyy",formatMonthTitle:"yyyy",datepickerMode:"day",minMode:"day",maxMode:"year",showWeeks:!0,startingDay:0,yearRange:20,minDate:null,maxDate:null}).controller("DatepickerController",["$scope","$attrs","$parse","$interpolate","$timeout","$log","dateFilter","datepickerConfig",function(a,b,c,d,e,f,g,h){var i=this,j={$setViewValue:angular.noop};this.modes=["day","month","year"],angular.forEach(["formatDay","formatMonth","formatYear","formatDayHeader","formatDayTitle","formatMonthTitle","minMode","maxMode","showWeeks","startingDay","yearRange"],function(c,e){i[c]=angular.isDefined(b[c])?8>e?d(b[c])(a.$parent):a.$parent.$eval(b[c]):h[c]}),angular.forEach(["minDate","maxDate"],function(d){b[d]?a.$parent.$watch(c(b[d]),function(a){i[d]=a?new Date(a):null,i.refreshView()}):i[d]=h[d]?new Date(h[d]):null}),a.datepickerMode=a.datepickerMode||h.datepickerMode,a.uniqueId="datepicker-"+a.$id+"-"+Math.floor(1e4*Math.random()),this.activeDate=angular.isDefined(b.initDate)?a.$parent.$eval(b.initDate):new Date,a.isActive=function(b){return 0===i.compare(b.date,i.activeDate)?(a.activeDateId=b.uid,!0):!1},this.init=function(a){j=a,j.$render=function(){i.render()}},this.render=function(){if(j.$modelValue){var a=new Date(j.$modelValue),b=!isNaN(a);b?this.activeDate=a:f.error('Datepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.'),j.$setValidity("date",b)}this.refreshView()},this.refreshView=function(){if(this.element){this._refreshView();var a=j.$modelValue?new Date(j.$modelValue):null;j.$setValidity("date-disabled",!a||this.element&&!this.isDisabled(a))}},this.createDateObject=function(a,b){var c=j.$modelValue?new Date(j.$modelValue):null;return{date:a,label:g(a,b),selected:c&&0===this.compare(a,c),disabled:this.isDisabled(a),current:0===this.compare(a,new Date)}},this.isDisabled=function(c){return this.minDate&&this.compare(c,this.minDate)<0||this.maxDate&&this.compare(c,this.maxDate)>0||b.dateDisabled&&a.dateDisabled({date:c,mode:a.datepickerMode})},this.split=function(a,b){for(var c=[];a.length>0;)c.push(a.splice(0,b));return c},a.select=function(b){if(a.datepickerMode===i.minMode){var c=j.$modelValue?new Date(j.$modelValue):new Date(0,0,0,0,0,0,0);c.setFullYear(b.getFullYear(),b.getMonth(),b.getDate()),j.$setViewValue(c),j.$render()}else i.activeDate=b,a.datepickerMode=i.modes[i.modes.indexOf(a.datepickerMode)-1]},a.move=function(a){var b=i.activeDate.getFullYear()+a*(i.step.years||0),c=i.activeDate.getMonth()+a*(i.step.months||0);i.activeDate.setFullYear(b,c,1),i.refreshView()},a.toggleMode=function(b){b=b||1,a.datepickerMode===i.maxMode&&1===b||a.datepickerMode===i.minMode&&-1===b||(a.datepickerMode=i.modes[i.modes.indexOf(a.datepickerMode)+b])},a.keys={13:"enter",32:"space",33:"pageup",34:"pagedown",35:"end",36:"home",37:"left",38:"up",39:"right",40:"down"};var k=function(){e(function(){i.element[0].focus()},0,!1)};a.$on("datepicker.focus",k),a.keydown=function(b){var c=a.keys[b.which];if(c&&!b.shiftKey&&!b.altKey)if(b.preventDefault(),b.stopPropagation(),"enter"===c||"space"===c){if(i.isDisabled(i.activeDate))return;a.select(i.activeDate),k()}else!b.ctrlKey||"up"!==c&&"down"!==c?(i.handleKeyDown(c,b),i.refreshView()):(a.toggleMode("up"===c?1:-1),k())}}]).directive("datepicker",function(){return{restrict:"EA",replace:!0,templateUrl:"template/datepicker/datepicker.html",scope:{datepickerMode:"=?",dateDisabled:"&"},require:["datepicker","?^ngModel"],controller:"DatepickerController",link:function(a,b,c,d){var e=d[0],f=d[1];f&&e.init(f)}}}).directive("daypicker",["dateFilter",function(a){return{restrict:"EA",replace:!0,templateUrl:"template/datepicker/day.html",require:"^datepicker",link:function(b,c,d,e){function f(a,b){return 1!==b||a%4!==0||a%100===0&&a%400!==0?i[b]:29}function g(a,b){var c=new Array(b),d=new Date(a),e=0;for(d.setHours(12);b>e;)c[e++]=new Date(d),d.setDate(d.getDate()+1);return c}function h(a){var b=new Date(a);b.setDate(b.getDate()+4-(b.getDay()||7));var c=b.getTime();return b.setMonth(0),b.setDate(1),Math.floor(Math.round((c-b)/864e5)/7)+1}b.showWeeks=e.showWeeks,e.step={months:1},e.element=c;var i=[31,28,31,30,31,30,31,31,30,31,30,31];e._refreshView=function(){var c=e.activeDate.getFullYear(),d=e.activeDate.getMonth(),f=new Date(c,d,1),i=e.startingDay-f.getDay(),j=i>0?7-i:-i,k=new Date(f);j>0&&k.setDate(-j+1);for(var l=g(k,42),m=0;42>m;m++)l[m]=angular.extend(e.createDateObject(l[m],e.formatDay),{secondary:l[m].getMonth()!==d,uid:b.uniqueId+"-"+m});b.labels=new Array(7);for(var n=0;7>n;n++)b.labels[n]={abbr:a(l[n].date,e.formatDayHeader),full:a(l[n].date,"EEEE")};if(b.title=a(e.activeDate,e.formatDayTitle),b.rows=e.split(l,7),b.showWeeks){b.weekNumbers=[];for(var o=h(b.rows[0][0].date),p=b.rows.length;b.weekNumbers.push(o++)<p;);}},e.compare=function(a,b){return new Date(a.getFullYear(),a.getMonth(),a.getDate())-new Date(b.getFullYear(),b.getMonth(),b.getDate())},e.handleKeyDown=function(a){var b=e.activeDate.getDate();if("left"===a)b-=1;else if("up"===a)b-=7;else if("right"===a)b+=1;else if("down"===a)b+=7;else if("pageup"===a||"pagedown"===a){var c=e.activeDate.getMonth()+("pageup"===a?-1:1);e.activeDate.setMonth(c,1),b=Math.min(f(e.activeDate.getFullYear(),e.activeDate.getMonth()),b)}else"home"===a?b=1:"end"===a&&(b=f(e.activeDate.getFullYear(),e.activeDate.getMonth()));e.activeDate.setDate(b)},e.refreshView()}}}]).directive("monthpicker",["dateFilter",function(a){return{restrict:"EA",replace:!0,templateUrl:"template/datepicker/month.html",require:"^datepicker",link:function(b,c,d,e){e.step={years:1},e.element=c,e._refreshView=function(){for(var c=new Array(12),d=e.activeDate.getFullYear(),f=0;12>f;f++)c[f]=angular.extend(e.createDateObject(new Date(d,f,1),e.formatMonth),{uid:b.uniqueId+"-"+f});b.title=a(e.activeDate,e.formatMonthTitle),b.rows=e.split(c,3)},e.compare=function(a,b){return new Date(a.getFullYear(),a.getMonth())-new Date(b.getFullYear(),b.getMonth())},e.handleKeyDown=function(a){var b=e.activeDate.getMonth();if("left"===a)b-=1;else if("up"===a)b-=3;else if("right"===a)b+=1;else if("down"===a)b+=3;else if("pageup"===a||"pagedown"===a){var c=e.activeDate.getFullYear()+("pageup"===a?-1:1);e.activeDate.setFullYear(c)}else"home"===a?b=0:"end"===a&&(b=11);e.activeDate.setMonth(b)},e.refreshView()}}}]).directive("yearpicker",["dateFilter",function(){return{restrict:"EA",replace:!0,templateUrl:"template/datepicker/year.html",require:"^datepicker",link:function(a,b,c,d){function e(a){return parseInt((a-1)/f,10)*f+1}var f=d.yearRange;d.step={years:f},d.element=b,d._refreshView=function(){for(var b=new Array(f),c=0,g=e(d.activeDate.getFullYear());f>c;c++)b[c]=angular.extend(d.createDateObject(new Date(g+c,0,1),d.formatYear),{uid:a.uniqueId+"-"+c});a.title=[b[0].label,b[f-1].label].join(" - "),a.rows=d.split(b,5)},d.compare=function(a,b){return a.getFullYear()-b.getFullYear()},d.handleKeyDown=function(a){var b=d.activeDate.getFullYear();"left"===a?b-=1:"up"===a?b-=5:"right"===a?b+=1:"down"===a?b+=5:"pageup"===a||"pagedown"===a?b+=("pageup"===a?-1:1)*d.step.years:"home"===a?b=e(d.activeDate.getFullYear()):"end"===a&&(b=e(d.activeDate.getFullYear())+f-1),d.activeDate.setFullYear(b)},d.refreshView()}}}]).constant("datepickerPopupConfig",{datepickerPopup:"yyyy-MM-dd",currentText:"Today",clearText:"Clear",closeText:"Done",closeOnDateSelection:!0,appendToBody:!1,showButtonBar:!0}).directive("datepickerPopup",["$compile","$parse","$document","$position","dateFilter","dateParser","datepickerPopupConfig",function(a,b,c,d,e,f,g){return{restrict:"EA",require:"ngModel",scope:{isOpen:"=?",currentText:"@",clearText:"@",closeText:"@",dateDisabled:"&"},link:function(h,i,j,k){function l(a){return a.replace(/([A-Z])/g,function(a){return"-"+a.toLowerCase()})}function m(a){if(a){if(angular.isDate(a)&&!isNaN(a))return k.$setValidity("date",!0),a;if(angular.isString(a)){var b=f.parse(a,n)||new Date(a);return isNaN(b)?void k.$setValidity("date",!1):(k.$setValidity("date",!0),b)}return void k.$setValidity("date",!1)}return k.$setValidity("date",!0),null}var n,o=angular.isDefined(j.closeOnDateSelection)?h.$parent.$eval(j.closeOnDateSelection):g.closeOnDateSelection,p=angular.isDefined(j.datepickerAppendToBody)?h.$parent.$eval(j.datepickerAppendToBody):g.appendToBody;h.showButtonBar=angular.isDefined(j.showButtonBar)?h.$parent.$eval(j.showButtonBar):g.showButtonBar,h.getText=function(a){return h[a+"Text"]||g[a+"Text"]},j.$observe("datepickerPopup",function(a){n=a||g.datepickerPopup,k.$render()});var q=angular.element("<div datepicker-popup-wrap><div datepicker></div></div>");q.attr({"ng-model":"date","ng-change":"dateSelection()"});var r=angular.element(q.children()[0]);j.datepickerOptions&&angular.forEach(h.$parent.$eval(j.datepickerOptions),function(a,b){r.attr(l(b),a)}),h.watchData={},angular.forEach(["minDate","maxDate","datepickerMode"],function(a){if(j[a]){var c=b(j[a]);if(h.$parent.$watch(c,function(b){h.watchData[a]=b}),r.attr(l(a),"watchData."+a),"datepickerMode"===a){var d=c.assign;h.$watch("watchData."+a,function(a,b){a!==b&&d(h.$parent,a)})}}}),j.dateDisabled&&r.attr("date-disabled","dateDisabled({ date: date, mode: mode })"),k.$parsers.unshift(m),h.dateSelection=function(a){angular.isDefined(a)&&(h.date=a),k.$setViewValue(h.date),k.$render(),o&&(h.isOpen=!1,i[0].focus())},i.bind("input change keyup",function(){h.$apply(function(){h.date=k.$modelValue})}),k.$render=function(){var a=k.$viewValue?e(k.$viewValue,n):"";i.val(a),h.date=m(k.$modelValue)};var s=function(a){h.isOpen&&a.target!==i[0]&&h.$apply(function(){h.isOpen=!1})},t=function(a){h.keydown(a)};i.bind("keydown",t),h.keydown=function(a){27===a.which?(a.preventDefault(),a.stopPropagation(),h.close()):40!==a.which||h.isOpen||(h.isOpen=!0)},h.$watch("isOpen",function(a){a?(h.$broadcast("datepicker.focus"),h.position=p?d.offset(i):d.position(i),h.position.top=h.position.top+i.prop("offsetHeight"),c.bind("click",s)):c.unbind("click",s)}),h.select=function(a){if("today"===a){var b=new Date;angular.isDate(k.$modelValue)?(a=new Date(k.$modelValue),a.setFullYear(b.getFullYear(),b.getMonth(),b.getDate())):a=new Date(b.setHours(0,0,0,0))}h.dateSelection(a)},h.close=function(){h.isOpen=!1,i[0].focus()};var u=a(q)(h);q.remove(),p?c.find("body").append(u):i.after(u),h.$on("$destroy",function(){u.remove(),i.unbind("keydown",t),c.unbind("click",s)})}}}]).directive("datepickerPopupWrap",function(){return{restrict:"EA",replace:!0,transclude:!0,templateUrl:"template/datepicker/popup.html",link:function(a,b){b.bind("click",function(a){a.preventDefault(),a.stopPropagation()})}}}),angular.module("ui.bootstrap.dropdown",[]).constant("dropdownConfig",{openClass:"open"}).service("dropdownService",["$document",function(a){var b=null;this.open=function(e){b||(a.bind("click",c),a.bind("keydown",d)),b&&b!==e&&(b.isOpen=!1),b=e},this.close=function(e){b===e&&(b=null,a.unbind("click",c),a.unbind("keydown",d))};var c=function(a){if(b){var c=b.getToggleElement();a&&c&&c[0].contains(a.target)||b.$apply(function(){b.isOpen=!1})}},d=function(a){27===a.which&&(b.focusToggleElement(),c())}}]).controller("DropdownController",["$scope","$attrs","$parse","dropdownConfig","dropdownService","$animate",function(a,b,c,d,e,f){var g,h=this,i=a.$new(),j=d.openClass,k=angular.noop,l=b.onToggle?c(b.onToggle):angular.noop;this.init=function(d){h.$element=d,b.isOpen&&(g=c(b.isOpen),k=g.assign,a.$watch(g,function(a){i.isOpen=!!a}))},this.toggle=function(a){return i.isOpen=arguments.length?!!a:!i.isOpen},this.isOpen=function(){return i.isOpen},i.getToggleElement=function(){return h.toggleElement},i.focusToggleElement=function(){h.toggleElement&&h.toggleElement[0].focus()},i.$watch("isOpen",function(b,c){f[b?"addClass":"removeClass"](h.$element,j),b?(i.focusToggleElement(),e.open(i)):e.close(i),k(a,b),angular.isDefined(b)&&b!==c&&l(a,{open:!!b})}),a.$on("$locationChangeSuccess",function(){i.isOpen=!1}),a.$on("$destroy",function(){i.$destroy()})}]).directive("dropdown",function(){return{controller:"DropdownController",link:function(a,b,c,d){d.init(b)}}}).directive("dropdownToggle",function(){return{require:"?^dropdown",link:function(a,b,c,d){if(d){d.toggleElement=b;var e=function(e){e.preventDefault(),b.hasClass("disabled")||c.disabled||a.$apply(function(){d.toggle()})};b.bind("click",e),b.attr({"aria-haspopup":!0,"aria-expanded":!1}),a.$watch(d.isOpen,function(a){b.attr("aria-expanded",!!a)}),a.$on("$destroy",function(){b.unbind("click",e)})}}}}),angular.module("ui.bootstrap.modal",["ui.bootstrap.transition"]).factory("$$stackedMap",function(){return{createNew:function(){var a=[];return{add:function(b,c){a.push({key:b,value:c})},get:function(b){for(var c=0;c<a.length;c++)if(b==a[c].key)return a[c]},keys:function(){for(var b=[],c=0;c<a.length;c++)b.push(a[c].key);return b},top:function(){return a[a.length-1]},remove:function(b){for(var c=-1,d=0;d<a.length;d++)if(b==a[d].key){c=d;break}return a.splice(c,1)[0]},removeTop:function(){return a.splice(a.length-1,1)[0]},length:function(){return a.length}}}}}).directive("modalBackdrop",["$timeout",function(a){return{restrict:"EA",replace:!0,templateUrl:"template/modal/backdrop.html",link:function(b,c,d){b.backdropClass=d.backdropClass||"",b.animate=!1,a(function(){b.animate=!0})}}}]).directive("modalWindow",["$modalStack","$timeout",function(a,b){return{restrict:"EA",scope:{index:"@",animate:"="},replace:!0,transclude:!0,templateUrl:function(a,b){return b.templateUrl||"template/modal/window.html"},link:function(c,d,e){d.addClass(e.windowClass||""),c.size=e.size,b(function(){c.animate=!0,d[0].querySelectorAll("[autofocus]").length||d[0].focus()}),c.close=function(b){var c=a.getTop();c&&c.value.backdrop&&"static"!=c.value.backdrop&&b.target===b.currentTarget&&(b.preventDefault(),b.stopPropagation(),a.dismiss(c.key,"backdrop click"))}}}}]).directive("modalTransclude",function(){return{link:function(a,b,c,d,e){e(a.$parent,function(a){b.empty(),b.append(a)})}}}).factory("$modalStack",["$transition","$timeout","$document","$compile","$rootScope","$$stackedMap",function(a,b,c,d,e,f){function g(){for(var a=-1,b=n.keys(),c=0;c<b.length;c++)n.get(b[c]).value.backdrop&&(a=c);return a}function h(a){var b=c.find("body").eq(0),d=n.get(a).value;n.remove(a),j(d.modalDomEl,d.modalScope,300,function(){d.modalScope.$destroy(),b.toggleClass(m,n.length()>0),i()})}function i(){if(k&&-1==g()){var a=l;j(k,l,150,function(){a.$destroy(),a=null}),k=void 0,l=void 0}}function j(c,d,e,f){function g(){g.done||(g.done=!0,c.remove(),f&&f())}d.animate=!1;var h=a.transitionEndEventName;if(h){var i=b(g,e);c.bind(h,function(){b.cancel(i),g(),d.$apply()})}else b(g)}var k,l,m="modal-open",n=f.createNew(),o={};return e.$watch(g,function(a){l&&(l.index=a)}),c.bind("keydown",function(a){var b;27===a.which&&(b=n.top(),b&&b.value.keyboard&&(a.preventDefault(),e.$apply(function(){o.dismiss(b.key,"escape key press")})))}),o.open=function(a,b){n.add(a,{deferred:b.deferred,modalScope:b.scope,backdrop:b.backdrop,keyboard:b.keyboard});var f=c.find("body").eq(0),h=g();if(h>=0&&!k){l=e.$new(!0),l.index=h;var i=angular.element("<div modal-backdrop></div>");i.attr("backdrop-class",b.backdropClass),k=d(i)(l),f.append(k)}var j=angular.element("<div modal-window></div>");j.attr({"template-url":b.windowTemplateUrl,"window-class":b.windowClass,size:b.size,index:n.length()-1,animate:"animate"}).html(b.content);var o=d(j)(b.scope);n.top().value.modalDomEl=o,f.append(o),f.addClass(m)},o.close=function(a,b){var c=n.get(a);c&&(c.value.deferred.resolve(b),h(a))},o.dismiss=function(a,b){var c=n.get(a);c&&(c.value.deferred.reject(b),h(a))},o.dismissAll=function(a){for(var b=this.getTop();b;)this.dismiss(b.key,a),b=this.getTop()},o.getTop=function(){return n.top()},o}]).provider("$modal",function(){var a={options:{backdrop:!0,keyboard:!0},$get:["$injector","$rootScope","$q","$http","$templateCache","$controller","$modalStack",function(b,c,d,e,f,g,h){function i(a){return a.template?d.when(a.template):e.get(angular.isFunction(a.templateUrl)?a.templateUrl():a.templateUrl,{cache:f}).then(function(a){return a.data})}function j(a){var c=[];return angular.forEach(a,function(a){(angular.isFunction(a)||angular.isArray(a))&&c.push(d.when(b.invoke(a)))}),c}var k={};return k.open=function(b){var e=d.defer(),f=d.defer(),k={result:e.promise,opened:f.promise,close:function(a){h.close(k,a)},dismiss:function(a){h.dismiss(k,a)}};if(b=angular.extend({},a.options,b),b.resolve=b.resolve||{},!b.template&&!b.templateUrl)throw new Error("One of template or templateUrl options is required.");var l=d.all([i(b)].concat(j(b.resolve)));return l.then(function(a){var d=(b.scope||c).$new();d.$close=k.close,d.$dismiss=k.dismiss;var f,i={},j=1;b.controller&&(i.$scope=d,i.$modalInstance=k,angular.forEach(b.resolve,function(b,c){i[c]=a[j++]}),f=g(b.controller,i),b.controllerAs&&(d[b.controllerAs]=f)),h.open(k,{scope:d,deferred:e,content:a[0],backdrop:b.backdrop,keyboard:b.keyboard,backdropClass:b.backdropClass,windowClass:b.windowClass,windowTemplateUrl:b.windowTemplateUrl,size:b.size})},function(a){e.reject(a)}),l.then(function(){f.resolve(!0)},function(){f.reject(!1)}),k},k}]};return a}),angular.module("ui.bootstrap.pagination",[]).controller("PaginationController",["$scope","$attrs","$parse",function(a,b,c){var d=this,e={$setViewValue:angular.noop},f=b.numPages?c(b.numPages).assign:angular.noop;this.init=function(f,g){e=f,this.config=g,e.$render=function(){d.render()},b.itemsPerPage?a.$parent.$watch(c(b.itemsPerPage),function(b){d.itemsPerPage=parseInt(b,10),a.totalPages=d.calculateTotalPages()}):this.itemsPerPage=g.itemsPerPage},this.calculateTotalPages=function(){var b=this.itemsPerPage<1?1:Math.ceil(a.totalItems/this.itemsPerPage);return Math.max(b||0,1)},this.render=function(){a.page=parseInt(e.$viewValue,10)||1},a.selectPage=function(b){a.page!==b&&b>0&&b<=a.totalPages&&(e.$setViewValue(b),e.$render())},a.getText=function(b){return a[b+"Text"]||d.config[b+"Text"]},a.noPrevious=function(){return 1===a.page},a.noNext=function(){return a.page===a.totalPages},a.$watch("totalItems",function(){a.totalPages=d.calculateTotalPages()}),a.$watch("totalPages",function(b){f(a.$parent,b),a.page>b?a.selectPage(b):e.$render()})}]).constant("paginationConfig",{itemsPerPage:10,boundaryLinks:!1,directionLinks:!0,firstText:"First",previousText:"Previous",nextText:"Next",lastText:"Last",rotate:!0}).directive("pagination",["$parse","paginationConfig",function(a,b){return{restrict:"EA",scope:{totalItems:"=",firstText:"@",previousText:"@",nextText:"@",lastText:"@"},require:["pagination","?ngModel"],controller:"PaginationController",templateUrl:"template/pagination/pagination.html",replace:!0,link:function(c,d,e,f){function g(a,b,c){return{number:a,text:b,active:c}}function h(a,b){var c=[],d=1,e=b,f=angular.isDefined(k)&&b>k;f&&(l?(d=Math.max(a-Math.floor(k/2),1),e=d+k-1,e>b&&(e=b,d=e-k+1)):(d=(Math.ceil(a/k)-1)*k+1,e=Math.min(d+k-1,b)));for(var h=d;e>=h;h++){var i=g(h,h,h===a);c.push(i)}if(f&&!l){if(d>1){var j=g(d-1,"...",!1);c.unshift(j)}if(b>e){var m=g(e+1,"...",!1);c.push(m)}}return c}var i=f[0],j=f[1];if(j){var k=angular.isDefined(e.maxSize)?c.$parent.$eval(e.maxSize):b.maxSize,l=angular.isDefined(e.rotate)?c.$parent.$eval(e.rotate):b.rotate;c.boundaryLinks=angular.isDefined(e.boundaryLinks)?c.$parent.$eval(e.boundaryLinks):b.boundaryLinks,c.directionLinks=angular.isDefined(e.directionLinks)?c.$parent.$eval(e.directionLinks):b.directionLinks,i.init(j,b),e.maxSize&&c.$parent.$watch(a(e.maxSize),function(a){k=parseInt(a,10),i.render()
-});var m=i.render;i.render=function(){m(),c.page>0&&c.page<=c.totalPages&&(c.pages=h(c.page,c.totalPages))}}}}}]).constant("pagerConfig",{itemsPerPage:10,previousText:"« Previous",nextText:"Next »",align:!0}).directive("pager",["pagerConfig",function(a){return{restrict:"EA",scope:{totalItems:"=",previousText:"@",nextText:"@"},require:["pager","?ngModel"],controller:"PaginationController",templateUrl:"template/pagination/pager.html",replace:!0,link:function(b,c,d,e){var f=e[0],g=e[1];g&&(b.align=angular.isDefined(d.align)?b.$parent.$eval(d.align):a.align,f.init(g,a))}}}]),angular.module("ui.bootstrap.tooltip",["ui.bootstrap.position","ui.bootstrap.bindHtml"]).provider("$tooltip",function(){function a(a){var b=/[A-Z]/g,c="-";return a.replace(b,function(a,b){return(b?c:"")+a.toLowerCase()})}var b={placement:"top",animation:!0,popupDelay:0},c={mouseenter:"mouseleave",click:"click",focus:"blur"},d={};this.options=function(a){angular.extend(d,a)},this.setTriggers=function(a){angular.extend(c,a)},this.$get=["$window","$compile","$timeout","$document","$position","$interpolate",function(e,f,g,h,i,j){return function(e,k,l){function m(a){var b=a||n.trigger||l,d=c[b]||b;return{show:b,hide:d}}var n=angular.extend({},b,d),o=a(e),p=j.startSymbol(),q=j.endSymbol(),r="<div "+o+'-popup title="'+p+"title"+q+'" content="'+p+"content"+q+'" placement="'+p+"placement"+q+'" animation="animation" is-open="isOpen"></div>';return{restrict:"EA",compile:function(){var a=f(r);return function(b,c,d){function f(){D.isOpen?l():j()}function j(){(!C||b.$eval(d[k+"Enable"]))&&(s(),D.popupDelay?z||(z=g(o,D.popupDelay,!1),z.then(function(a){a()})):o()())}function l(){b.$apply(function(){p()})}function o(){return z=null,y&&(g.cancel(y),y=null),D.content?(q(),w.css({top:0,left:0,display:"block"}),D.$digest(),E(),D.isOpen=!0,D.$digest(),E):angular.noop}function p(){D.isOpen=!1,g.cancel(z),z=null,D.animation?y||(y=g(r,500)):r()}function q(){w&&r(),x=D.$new(),w=a(x,function(a){A?h.find("body").append(a):c.after(a)})}function r(){y=null,w&&(w.remove(),w=null),x&&(x.$destroy(),x=null)}function s(){t(),u()}function t(){var a=d[k+"Placement"];D.placement=angular.isDefined(a)?a:n.placement}function u(){var a=d[k+"PopupDelay"],b=parseInt(a,10);D.popupDelay=isNaN(b)?n.popupDelay:b}function v(){var a=d[k+"Trigger"];F(),B=m(a),B.show===B.hide?c.bind(B.show,f):(c.bind(B.show,j),c.bind(B.hide,l))}var w,x,y,z,A=angular.isDefined(n.appendToBody)?n.appendToBody:!1,B=m(void 0),C=angular.isDefined(d[k+"Enable"]),D=b.$new(!0),E=function(){var a=i.positionElements(c,w,D.placement,A);a.top+="px",a.left+="px",w.css(a)};D.isOpen=!1,d.$observe(e,function(a){D.content=a,!a&&D.isOpen&&p()}),d.$observe(k+"Title",function(a){D.title=a});var F=function(){c.unbind(B.show,j),c.unbind(B.hide,l)};v();var G=b.$eval(d[k+"Animation"]);D.animation=angular.isDefined(G)?!!G:n.animation;var H=b.$eval(d[k+"AppendToBody"]);A=angular.isDefined(H)?H:A,A&&b.$on("$locationChangeSuccess",function(){D.isOpen&&p()}),b.$on("$destroy",function(){g.cancel(y),g.cancel(z),F(),r(),D=null})}}}}}]}).directive("tooltipPopup",function(){return{restrict:"EA",replace:!0,scope:{content:"@",placement:"@",animation:"&",isOpen:"&"},templateUrl:"template/tooltip/tooltip-popup.html"}}).directive("tooltip",["$tooltip",function(a){return a("tooltip","tooltip","mouseenter")}]).directive("tooltipHtmlUnsafePopup",function(){return{restrict:"EA",replace:!0,scope:{content:"@",placement:"@",animation:"&",isOpen:"&"},templateUrl:"template/tooltip/tooltip-html-unsafe-popup.html"}}).directive("tooltipHtmlUnsafe",["$tooltip",function(a){return a("tooltipHtmlUnsafe","tooltip","mouseenter")}]),angular.module("ui.bootstrap.popover",["ui.bootstrap.tooltip"]).directive("popoverPopup",function(){return{restrict:"EA",replace:!0,scope:{title:"@",content:"@",placement:"@",animation:"&",isOpen:"&"},templateUrl:"template/popover/popover.html"}}).directive("popover",["$tooltip",function(a){return a("popover","popover","click")}]),angular.module("ui.bootstrap.progressbar",[]).constant("progressConfig",{animate:!0,max:100}).controller("ProgressController",["$scope","$attrs","progressConfig",function(a,b,c){var d=this,e=angular.isDefined(b.animate)?a.$parent.$eval(b.animate):c.animate;this.bars=[],a.max=angular.isDefined(b.max)?a.$parent.$eval(b.max):c.max,this.addBar=function(b,c){e||c.css({transition:"none"}),this.bars.push(b),b.$watch("value",function(c){b.percent=+(100*c/a.max).toFixed(2)}),b.$on("$destroy",function(){c=null,d.removeBar(b)})},this.removeBar=function(a){this.bars.splice(this.bars.indexOf(a),1)}}]).directive("progress",function(){return{restrict:"EA",replace:!0,transclude:!0,controller:"ProgressController",require:"progress",scope:{},templateUrl:"template/progressbar/progress.html"}}).directive("bar",function(){return{restrict:"EA",replace:!0,transclude:!0,require:"^progress",scope:{value:"=",type:"@"},templateUrl:"template/progressbar/bar.html",link:function(a,b,c,d){d.addBar(a,b)}}}).directive("progressbar",function(){return{restrict:"EA",replace:!0,transclude:!0,controller:"ProgressController",scope:{value:"=",type:"@"},templateUrl:"template/progressbar/progressbar.html",link:function(a,b,c,d){d.addBar(a,angular.element(b.children()[0]))}}}),angular.module("ui.bootstrap.rating",[]).constant("ratingConfig",{max:5,stateOn:null,stateOff:null}).controller("RatingController",["$scope","$attrs","ratingConfig",function(a,b,c){var d={$setViewValue:angular.noop};this.init=function(e){d=e,d.$render=this.render,this.stateOn=angular.isDefined(b.stateOn)?a.$parent.$eval(b.stateOn):c.stateOn,this.stateOff=angular.isDefined(b.stateOff)?a.$parent.$eval(b.stateOff):c.stateOff;var f=angular.isDefined(b.ratingStates)?a.$parent.$eval(b.ratingStates):new Array(angular.isDefined(b.max)?a.$parent.$eval(b.max):c.max);a.range=this.buildTemplateObjects(f)},this.buildTemplateObjects=function(a){for(var b=0,c=a.length;c>b;b++)a[b]=angular.extend({index:b},{stateOn:this.stateOn,stateOff:this.stateOff},a[b]);return a},a.rate=function(b){!a.readonly&&b>=0&&b<=a.range.length&&(d.$setViewValue(b),d.$render())},a.enter=function(b){a.readonly||(a.value=b),a.onHover({value:b})},a.reset=function(){a.value=d.$viewValue,a.onLeave()},a.onKeydown=function(b){/(37|38|39|40)/.test(b.which)&&(b.preventDefault(),b.stopPropagation(),a.rate(a.value+(38===b.which||39===b.which?1:-1)))},this.render=function(){a.value=d.$viewValue}}]).directive("rating",function(){return{restrict:"EA",require:["rating","ngModel"],scope:{readonly:"=?",onHover:"&",onLeave:"&"},controller:"RatingController",templateUrl:"template/rating/rating.html",replace:!0,link:function(a,b,c,d){var e=d[0],f=d[1];f&&e.init(f)}}}),angular.module("ui.bootstrap.tabs",[]).controller("TabsetController",["$scope",function(a){var b=this,c=b.tabs=a.tabs=[];b.select=function(a){angular.forEach(c,function(b){b.active&&b!==a&&(b.active=!1,b.onDeselect())}),a.active=!0,a.onSelect()},b.addTab=function(a){c.push(a),1===c.length?a.active=!0:a.active&&b.select(a)},b.removeTab=function(a){var e=c.indexOf(a);if(a.active&&c.length>1&&!d){var f=e==c.length-1?e-1:e+1;b.select(c[f])}c.splice(e,1)};var d;a.$on("$destroy",function(){d=!0})}]).directive("tabset",function(){return{restrict:"EA",transclude:!0,replace:!0,scope:{type:"@"},controller:"TabsetController",templateUrl:"template/tabs/tabset.html",link:function(a,b,c){a.vertical=angular.isDefined(c.vertical)?a.$parent.$eval(c.vertical):!1,a.justified=angular.isDefined(c.justified)?a.$parent.$eval(c.justified):!1}}}).directive("tab",["$parse",function(a){return{require:"^tabset",restrict:"EA",replace:!0,templateUrl:"template/tabs/tab.html",transclude:!0,scope:{active:"=?",heading:"@",onSelect:"&select",onDeselect:"&deselect"},controller:function(){},compile:function(b,c,d){return function(b,c,e,f){b.$watch("active",function(a){a&&f.select(b)}),b.disabled=!1,e.disabled&&b.$parent.$watch(a(e.disabled),function(a){b.disabled=!!a}),b.select=function(){b.disabled||(b.active=!0)},f.addTab(b),b.$on("$destroy",function(){f.removeTab(b)}),b.$transcludeFn=d}}}}]).directive("tabHeadingTransclude",[function(){return{restrict:"A",require:"^tab",link:function(a,b){a.$watch("headingElement",function(a){a&&(b.html(""),b.append(a))})}}}]).directive("tabContentTransclude",function(){function a(a){return a.tagName&&(a.hasAttribute("tab-heading")||a.hasAttribute("data-tab-heading")||"tab-heading"===a.tagName.toLowerCase()||"data-tab-heading"===a.tagName.toLowerCase())}return{restrict:"A",require:"^tabset",link:function(b,c,d){var e=b.$eval(d.tabContentTransclude);e.$transcludeFn(e.$parent,function(b){angular.forEach(b,function(b){a(b)?e.headingElement=b:c.append(b)})})}}}),angular.module("ui.bootstrap.timepicker",[]).constant("timepickerConfig",{hourStep:1,minuteStep:1,showMeridian:!0,meridians:null,readonlyInput:!1,mousewheel:!0}).controller("TimepickerController",["$scope","$attrs","$parse","$log","$locale","timepickerConfig",function(a,b,c,d,e,f){function g(){var b=parseInt(a.hours,10),c=a.showMeridian?b>0&&13>b:b>=0&&24>b;return c?(a.showMeridian&&(12===b&&(b=0),a.meridian===p[1]&&(b+=12)),b):void 0}function h(){var b=parseInt(a.minutes,10);return b>=0&&60>b?b:void 0}function i(a){return angular.isDefined(a)&&a.toString().length<2?"0"+a:a}function j(a){k(),o.$setViewValue(new Date(n)),l(a)}function k(){o.$setValidity("time",!0),a.invalidHours=!1,a.invalidMinutes=!1}function l(b){var c=n.getHours(),d=n.getMinutes();a.showMeridian&&(c=0===c||12===c?12:c%12),a.hours="h"===b?c:i(c),a.minutes="m"===b?d:i(d),a.meridian=n.getHours()<12?p[0]:p[1]}function m(a){var b=new Date(n.getTime()+6e4*a);n.setHours(b.getHours(),b.getMinutes()),j()}var n=new Date,o={$setViewValue:angular.noop},p=angular.isDefined(b.meridians)?a.$parent.$eval(b.meridians):f.meridians||e.DATETIME_FORMATS.AMPMS;this.init=function(c,d){o=c,o.$render=this.render;var e=d.eq(0),g=d.eq(1),h=angular.isDefined(b.mousewheel)?a.$parent.$eval(b.mousewheel):f.mousewheel;h&&this.setupMousewheelEvents(e,g),a.readonlyInput=angular.isDefined(b.readonlyInput)?a.$parent.$eval(b.readonlyInput):f.readonlyInput,this.setupInputEvents(e,g)};var q=f.hourStep;b.hourStep&&a.$parent.$watch(c(b.hourStep),function(a){q=parseInt(a,10)});var r=f.minuteStep;b.minuteStep&&a.$parent.$watch(c(b.minuteStep),function(a){r=parseInt(a,10)}),a.showMeridian=f.showMeridian,b.showMeridian&&a.$parent.$watch(c(b.showMeridian),function(b){if(a.showMeridian=!!b,o.$error.time){var c=g(),d=h();angular.isDefined(c)&&angular.isDefined(d)&&(n.setHours(c),j())}else l()}),this.setupMousewheelEvents=function(b,c){var d=function(a){a.originalEvent&&(a=a.originalEvent);var b=a.wheelDelta?a.wheelDelta:-a.deltaY;return a.detail||b>0};b.bind("mousewheel wheel",function(b){a.$apply(d(b)?a.incrementHours():a.decrementHours()),b.preventDefault()}),c.bind("mousewheel wheel",function(b){a.$apply(d(b)?a.incrementMinutes():a.decrementMinutes()),b.preventDefault()})},this.setupInputEvents=function(b,c){if(a.readonlyInput)return a.updateHours=angular.noop,void(a.updateMinutes=angular.noop);var d=function(b,c){o.$setViewValue(null),o.$setValidity("time",!1),angular.isDefined(b)&&(a.invalidHours=b),angular.isDefined(c)&&(a.invalidMinutes=c)};a.updateHours=function(){var a=g();angular.isDefined(a)?(n.setHours(a),j("h")):d(!0)},b.bind("blur",function(){!a.invalidHours&&a.hours<10&&a.$apply(function(){a.hours=i(a.hours)})}),a.updateMinutes=function(){var a=h();angular.isDefined(a)?(n.setMinutes(a),j("m")):d(void 0,!0)},c.bind("blur",function(){!a.invalidMinutes&&a.minutes<10&&a.$apply(function(){a.minutes=i(a.minutes)})})},this.render=function(){var a=o.$modelValue?new Date(o.$modelValue):null;isNaN(a)?(o.$setValidity("time",!1),d.error('Timepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.')):(a&&(n=a),k(),l())},a.incrementHours=function(){m(60*q)},a.decrementHours=function(){m(60*-q)},a.incrementMinutes=function(){m(r)},a.decrementMinutes=function(){m(-r)},a.toggleMeridian=function(){m(720*(n.getHours()<12?1:-1))}}]).directive("timepicker",function(){return{restrict:"EA",require:["timepicker","?^ngModel"],controller:"TimepickerController",replace:!0,scope:{},templateUrl:"template/timepicker/timepicker.html",link:function(a,b,c,d){var e=d[0],f=d[1];f&&e.init(f,b.find("input"))}}}),angular.module("ui.bootstrap.typeahead",["ui.bootstrap.position","ui.bootstrap.bindHtml"]).factory("typeaheadParser",["$parse",function(a){var b=/^\s*([\s\S]+?)(?:\s+as\s+([\s\S]+?))?\s+for\s+(?:([\$\w][\$\w\d]*))\s+in\s+([\s\S]+?)$/;return{parse:function(c){var d=c.match(b);if(!d)throw new Error('Expected typeahead specification in form of "_modelValue_ (as _label_)? for _item_ in _collection_" but got "'+c+'".');return{itemName:d[3],source:a(d[4]),viewMapper:a(d[2]||d[1]),modelMapper:a(d[1])}}}}]).directive("typeahead",["$compile","$parse","$q","$timeout","$document","$position","typeaheadParser",function(a,b,c,d,e,f,g){var h=[9,13,27,38,40];return{require:"ngModel",link:function(i,j,k,l){var m,n=i.$eval(k.typeaheadMinLength)||1,o=i.$eval(k.typeaheadWaitMs)||0,p=i.$eval(k.typeaheadEditable)!==!1,q=b(k.typeaheadLoading).assign||angular.noop,r=b(k.typeaheadOnSelect),s=k.typeaheadInputFormatter?b(k.typeaheadInputFormatter):void 0,t=k.typeaheadAppendToBody?i.$eval(k.typeaheadAppendToBody):!1,u=i.$eval(k.typeaheadFocusFirst)!==!1,v=b(k.ngModel).assign,w=g.parse(k.typeahead),x=i.$new();i.$on("$destroy",function(){x.$destroy()});var y="typeahead-"+x.$id+"-"+Math.floor(1e4*Math.random());j.attr({"aria-autocomplete":"list","aria-expanded":!1,"aria-owns":y});var z=angular.element("<div typeahead-popup></div>");z.attr({id:y,matches:"matches",active:"activeIdx",select:"select(activeIdx)",query:"query",position:"position"}),angular.isDefined(k.typeaheadTemplateUrl)&&z.attr("template-url",k.typeaheadTemplateUrl);var A=function(){x.matches=[],x.activeIdx=-1,j.attr("aria-expanded",!1)},B=function(a){return y+"-option-"+a};x.$watch("activeIdx",function(a){0>a?j.removeAttr("aria-activedescendant"):j.attr("aria-activedescendant",B(a))});var C=function(a){var b={$viewValue:a};q(i,!0),c.when(w.source(i,b)).then(function(c){var d=a===l.$viewValue;if(d&&m)if(c.length>0){x.activeIdx=u?0:-1,x.matches.length=0;for(var e=0;e<c.length;e++)b[w.itemName]=c[e],x.matches.push({id:B(e),label:w.viewMapper(x,b),model:c[e]});x.query=a,x.position=t?f.offset(j):f.position(j),x.position.top=x.position.top+j.prop("offsetHeight"),j.attr("aria-expanded",!0)}else A();d&&q(i,!1)},function(){A(),q(i,!1)})};A(),x.query=void 0;var D,E=function(a){D=d(function(){C(a)},o)},F=function(){D&&d.cancel(D)};l.$parsers.unshift(function(a){return m=!0,a&&a.length>=n?o>0?(F(),E(a)):C(a):(q(i,!1),F(),A()),p?a:a?void l.$setValidity("editable",!1):(l.$setValidity("editable",!0),a)}),l.$formatters.push(function(a){var b,c,d={};return s?(d.$model=a,s(i,d)):(d[w.itemName]=a,b=w.viewMapper(i,d),d[w.itemName]=void 0,c=w.viewMapper(i,d),b!==c?b:a)}),x.select=function(a){var b,c,e={};e[w.itemName]=c=x.matches[a].model,b=w.modelMapper(i,e),v(i,b),l.$setValidity("editable",!0),r(i,{$item:c,$model:b,$label:w.viewMapper(i,e)}),A(),d(function(){j[0].focus()},0,!1)},j.bind("keydown",function(a){0!==x.matches.length&&-1!==h.indexOf(a.which)&&(-1!=x.activeIdx||13!==a.which&&9!==a.which)&&(a.preventDefault(),40===a.which?(x.activeIdx=(x.activeIdx+1)%x.matches.length,x.$digest()):38===a.which?(x.activeIdx=(x.activeIdx>0?x.activeIdx:x.matches.length)-1,x.$digest()):13===a.which||9===a.which?x.$apply(function(){x.select(x.activeIdx)}):27===a.which&&(a.stopPropagation(),A(),x.$digest()))}),j.bind("blur",function(){m=!1});var G=function(a){j[0]!==a.target&&(A(),x.$digest())};e.bind("click",G),i.$on("$destroy",function(){e.unbind("click",G),t&&H.remove()});var H=a(z)(x);t?e.find("body").append(H):j.after(H)}}}]).directive("typeaheadPopup",function(){return{restrict:"EA",scope:{matches:"=",query:"=",active:"=",position:"=",select:"&"},replace:!0,templateUrl:"template/typeahead/typeahead-popup.html",link:function(a,b,c){a.templateUrl=c.templateUrl,a.isOpen=function(){return a.matches.length>0},a.isActive=function(b){return a.active==b},a.selectActive=function(b){a.active=b},a.selectMatch=function(b){a.select({activeIdx:b})}}}}).directive("typeaheadMatch",["$http","$templateCache","$compile","$parse",function(a,b,c,d){return{restrict:"EA",scope:{index:"=",match:"=",query:"="},link:function(e,f,g){var h=d(g.templateUrl)(e.$parent)||"template/typeahead/typeahead-match.html";a.get(h,{cache:b}).success(function(a){f.replaceWith(c(a.trim())(e))})}}}]).filter("typeaheadHighlight",function(){function a(a){return a.replace(/([.?*+^$[\]\\(){}|-])/g,"\\$1")}return function(b,c){return c?(""+b).replace(new RegExp(a(c),"gi"),"<strong>$&</strong>"):b}}),angular.module("template/accordion/accordion-group.html",[]).run(["$templateCache",function(a){a.put("template/accordion/accordion-group.html",'<div class="panel panel-default">\n  <div class="panel-heading">\n    <h4 class="panel-title">\n      <a href class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span ng-class="{\'text-muted\': isDisabled}">{{heading}}</span></a>\n    </h4>\n  </div>\n  <div class="panel-collapse" collapse="!isOpen">\n	  <div class="panel-body" ng-transclude></div>\n  </div>\n</div>\n')}]),angular.module("template/accordion/accordion.html",[]).run(["$templateCache",function(a){a.put("template/accordion/accordion.html",'<div class="panel-group" ng-transclude></div>')}]),angular.module("template/alert/alert.html",[]).run(["$templateCache",function(a){a.put("template/alert/alert.html",'<div class="alert" ng-class="[\'alert-\' + (type || \'warning\'), closeable ? \'alert-dismissable\' : null]" role="alert">\n    <button ng-show="closeable" type="button" class="close" ng-click="close()">\n        <span aria-hidden="true">&times;</span>\n        <span class="sr-only">Close</span>\n    </button>\n    <div ng-transclude></div>\n</div>\n')}]),angular.module("template/carousel/carousel.html",[]).run(["$templateCache",function(a){a.put("template/carousel/carousel.html",'<div ng-mouseenter="pause()" ng-mouseleave="play()" class="carousel" ng-swipe-right="prev()" ng-swipe-left="next()">\n    <ol class="carousel-indicators" ng-show="slides.length > 1">\n        <li ng-repeat="slide in slides track by $index" ng-class="{active: isActive(slide)}" ng-click="select(slide)"></li>\n    </ol>\n    <div class="carousel-inner" ng-transclude></div>\n    <a class="left carousel-control" ng-click="prev()" ng-show="slides.length > 1"><span class="glyphicon glyphicon-chevron-left"></span></a>\n    <a class="right carousel-control" ng-click="next()" ng-show="slides.length > 1"><span class="glyphicon glyphicon-chevron-right"></span></a>\n</div>\n')}]),angular.module("template/carousel/slide.html",[]).run(["$templateCache",function(a){a.put("template/carousel/slide.html","<div ng-class=\"{\n    'active': leaving || (active && !entering),\n    'prev': (next || active) && direction=='prev',\n    'next': (next || active) && direction=='next',\n    'right': direction=='prev',\n    'left': direction=='next'\n  }\" class=\"item text-center\" ng-transclude></div>\n")}]),angular.module("template/datepicker/datepicker.html",[]).run(["$templateCache",function(a){a.put("template/datepicker/datepicker.html",'<div ng-switch="datepickerMode" role="application" ng-keydown="keydown($event)">\n  <daypicker ng-switch-when="day" tabindex="0"></daypicker>\n  <monthpicker ng-switch-when="month" tabindex="0"></monthpicker>\n  <yearpicker ng-switch-when="year" tabindex="0"></yearpicker>\n</div>')}]),angular.module("template/datepicker/day.html",[]).run(["$templateCache",function(a){a.put("template/datepicker/day.html",'<table role="grid" aria-labelledby="{{uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th colspan="{{5 + showWeeks}}"><button id="{{uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n    <tr>\n      <th ng-show="showWeeks" class="text-center"></th>\n      <th ng-repeat="label in labels track by $index" class="text-center"><small aria-label="{{label.full}}">{{label.abbr}}</small></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-show="showWeeks" class="text-center h6"><em>{{ weekNumbers[$index] }}</em></td>\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{dt.uid}}" aria-disabled="{{!!dt.disabled}}">\n        <button type="button" style="width:100%;" class="btn btn-default btn-sm" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="{\'text-muted\': dt.secondary, \'text-info\': dt.current}">{{dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n')}]),angular.module("template/datepicker/month.html",[]).run(["$templateCache",function(a){a.put("template/datepicker/month.html",'<table role="grid" aria-labelledby="{{uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th><button id="{{uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{dt.uid}}" aria-disabled="{{!!dt.disabled}}">\n        <button type="button" style="width:100%;" class="btn btn-default" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="{\'text-info\': dt.current}">{{dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n')}]),angular.module("template/datepicker/popup.html",[]).run(["$templateCache",function(a){a.put("template/datepicker/popup.html",'<ul class="dropdown-menu" ng-style="{display: (isOpen && \'block\') || \'none\', top: position.top+\'px\', left: position.left+\'px\'}" ng-keydown="keydown($event)">\n	<li ng-transclude></li>\n	<li ng-if="showButtonBar" style="padding:10px 9px 2px">\n		<span class="btn-group pull-left">\n			<button type="button" class="btn btn-sm btn-info" ng-click="select(\'today\')">{{ getText(\'current\') }}</button>\n			<button type="button" class="btn btn-sm btn-danger" ng-click="select(null)">{{ getText(\'clear\') }}</button>\n		</span>\n		<button type="button" class="btn btn-sm btn-success pull-right" ng-click="close()">{{ getText(\'close\') }}</button>\n	</li>\n</ul>\n')}]),angular.module("template/datepicker/year.html",[]).run(["$templateCache",function(a){a.put("template/datepicker/year.html",'<table role="grid" aria-labelledby="{{uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th colspan="3"><button id="{{uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{dt.uid}}" aria-disabled="{{!!dt.disabled}}">\n        <button type="button" style="width:100%;" class="btn btn-default" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="{\'text-info\': dt.current}">{{dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n')}]),angular.module("template/modal/backdrop.html",[]).run(["$templateCache",function(a){a.put("template/modal/backdrop.html",'<div class="modal-backdrop fade {{ backdropClass }}"\n     ng-class="{in: animate}"\n     ng-style="{\'z-index\': 1040 + (index && 1 || 0) + index*10}"\n></div>\n')}]),angular.module("template/modal/window.html",[]).run(["$templateCache",function(a){a.put("template/modal/window.html",'<div tabindex="-1" role="dialog" class="modal fade" ng-class="{in: animate}" ng-style="{\'z-index\': 1050 + index*10, display: \'block\'}" ng-click="close($event)">\n    <div class="modal-dialog" ng-class="{\'modal-sm\': size == \'sm\', \'modal-lg\': size == \'lg\'}"><div class="modal-content" modal-transclude></div></div>\n</div>')}]),angular.module("template/pagination/pager.html",[]).run(["$templateCache",function(a){a.put("template/pagination/pager.html",'<ul class="pager">\n  <li ng-class="{disabled: noPrevious(), previous: align}"><a href ng-click="selectPage(page - 1)">{{getText(\'previous\')}}</a></li>\n  <li ng-class="{disabled: noNext(), next: align}"><a href ng-click="selectPage(page + 1)">{{getText(\'next\')}}</a></li>\n</ul>')}]),angular.module("template/pagination/pagination.html",[]).run(["$templateCache",function(a){a.put("template/pagination/pagination.html",'<ul class="pagination">\n  <li ng-if="boundaryLinks" ng-class="{disabled: noPrevious()}"><a href ng-click="selectPage(1)">{{getText(\'first\')}}</a></li>\n  <li ng-if="directionLinks" ng-class="{disabled: noPrevious()}"><a href ng-click="selectPage(page - 1)">{{getText(\'previous\')}}</a></li>\n  <li ng-repeat="page in pages track by $index" ng-class="{active: page.active}"><a href ng-click="selectPage(page.number)">{{page.text}}</a></li>\n  <li ng-if="directionLinks" ng-class="{disabled: noNext()}"><a href ng-click="selectPage(page + 1)">{{getText(\'next\')}}</a></li>\n  <li ng-if="boundaryLinks" ng-class="{disabled: noNext()}"><a href ng-click="selectPage(totalPages)">{{getText(\'last\')}}</a></li>\n</ul>')}]),angular.module("template/tooltip/tooltip-html-unsafe-popup.html",[]).run(["$templateCache",function(a){a.put("template/tooltip/tooltip-html-unsafe-popup.html",'<div class="tooltip {{placement}}" ng-class="{ in: isOpen(), fade: animation() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner" bind-html-unsafe="content"></div>\n</div>\n')}]),angular.module("template/tooltip/tooltip-popup.html",[]).run(["$templateCache",function(a){a.put("template/tooltip/tooltip-popup.html",'<div class="tooltip {{placement}}" ng-class="{ in: isOpen(), fade: animation() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner" ng-bind="content"></div>\n</div>\n')}]),angular.module("template/popover/popover.html",[]).run(["$templateCache",function(a){a.put("template/popover/popover.html",'<div class="popover {{placement}}" ng-class="{ in: isOpen(), fade: animation() }">\n  <div class="arrow"></div>\n\n  <div class="popover-inner">\n      <h3 class="popover-title" ng-bind="title" ng-show="title"></h3>\n      <div class="popover-content" ng-bind="content"></div>\n  </div>\n</div>\n')}]),angular.module("template/progressbar/bar.html",[]).run(["$templateCache",function(a){a.put("template/progressbar/bar.html",'<div class="progress-bar" ng-class="type && \'progress-bar-\' + type" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="{{max}}" ng-style="{width: percent + \'%\'}" aria-valuetext="{{percent | number:0}}%" ng-transclude></div>')}]),angular.module("template/progressbar/progress.html",[]).run(["$templateCache",function(a){a.put("template/progressbar/progress.html",'<div class="progress" ng-transclude></div>')}]),angular.module("template/progressbar/progressbar.html",[]).run(["$templateCache",function(a){a.put("template/progressbar/progressbar.html",'<div class="progress">\n  <div class="progress-bar" ng-class="type && \'progress-bar-\' + type" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="{{max}}" ng-style="{width: percent + \'%\'}" aria-valuetext="{{percent | number:0}}%" ng-transclude></div>\n</div>')}]),angular.module("template/rating/rating.html",[]).run(["$templateCache",function(a){a.put("template/rating/rating.html",'<span ng-mouseleave="reset()" ng-keydown="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="{{range.length}}" aria-valuenow="{{value}}">\n    <i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon" ng-class="$index < value && (r.stateOn || \'glyphicon-star\') || (r.stateOff || \'glyphicon-star-empty\')">\n        <span class="sr-only">({{ $index < value ? \'*\' : \' \' }})</span>\n    </i>\n</span>')}]),angular.module("template/tabs/tab.html",[]).run(["$templateCache",function(a){a.put("template/tabs/tab.html",'<li ng-class="{active: active, disabled: disabled}">\n  <a href ng-click="select()" tab-heading-transclude>{{heading}}</a>\n</li>\n')}]),angular.module("template/tabs/tabset.html",[]).run(["$templateCache",function(a){a.put("template/tabs/tabset.html",'<div>\n  <ul class="nav nav-{{type || \'tabs\'}}" ng-class="{\'nav-stacked\': vertical, \'nav-justified\': justified}" ng-transclude></ul>\n  <div class="tab-content">\n    <div class="tab-pane" \n         ng-repeat="tab in tabs" \n         ng-class="{active: tab.active}"\n         tab-content-transclude="tab">\n    </div>\n  </div>\n</div>\n')}]),angular.module("template/timepicker/timepicker.html",[]).run(["$templateCache",function(a){a.put("template/timepicker/timepicker.html",'<table>\n	<tbody>\n		<tr class="text-center">\n			<td><a ng-click="incrementHours()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>\n			<td>&nbsp;</td>\n			<td><a ng-click="incrementMinutes()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>\n			<td ng-show="showMeridian"></td>\n		</tr>\n		<tr>\n			<td style="width:50px;" class="form-group" ng-class="{\'has-error\': invalidHours}">\n				<input type="text" ng-model="hours" ng-change="updateHours()" class="form-control text-center" ng-mousewheel="incrementHours()" ng-readonly="readonlyInput" maxlength="2">\n			</td>\n			<td>:</td>\n			<td style="width:50px;" class="form-group" ng-class="{\'has-error\': invalidMinutes}">\n				<input type="text" ng-model="minutes" ng-change="updateMinutes()" class="form-control text-center" ng-readonly="readonlyInput" maxlength="2">\n			</td>\n			<td ng-show="showMeridian"><button type="button" class="btn btn-default text-center" ng-click="toggleMeridian()">{{meridian}}</button></td>\n		</tr>\n		<tr class="text-center">\n			<td><a ng-click="decrementHours()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>\n			<td>&nbsp;</td>\n			<td><a ng-click="decrementMinutes()" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>\n			<td ng-show="showMeridian"></td>\n		</tr>\n	</tbody>\n</table>\n')}]),angular.module("template/typeahead/typeahead-match.html",[]).run(["$templateCache",function(a){a.put("template/typeahead/typeahead-match.html",'<a tabindex="-1" bind-html-unsafe="match.label | typeaheadHighlight:query"></a>')
-}]),angular.module("template/typeahead/typeahead-popup.html",[]).run(["$templateCache",function(a){a.put("template/typeahead/typeahead-popup.html",'<ul class="dropdown-menu" ng-show="isOpen()" ng-style="{top: position.top+\'px\', left: position.left+\'px\'}" style="display: block;" role="listbox" aria-hidden="{{!isOpen()}}">\n    <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{match.id}}">\n        <div typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>\n    </li>\n</ul>\n')}]);;
+;
 !function(){var AnimatedText,AnimatedTextFactory,Bar,BaseDonut,BaseGauge,Donut,Gauge,GaugePointer,TextRenderer,ValueUpdater,addCommas,cutHex,formatNumber,mergeObjects,secondsToString,updateObjectValues,_ref,_ref1,__hasProp={}.hasOwnProperty,__extends=function(child,parent){for(var key in parent){if(__hasProp.call(parent,key))child[key]=parent[key]}function ctor(){this.constructor=child}ctor.prototype=parent.prototype;child.prototype=new ctor;child.__super__=parent.prototype;return child};!function(){var browserRequestAnimationFrame,isCancelled,lastId,vendor,vendors,_i,_len;vendors=["ms","moz","webkit","o"];for(_i=0,_len=vendors.length;_i<_len;_i++){vendor=vendors[_i];if(window.requestAnimationFrame){break}window.requestAnimationFrame=window[vendor+"RequestAnimationFrame"];window.cancelAnimationFrame=window[vendor+"CancelAnimationFrame"]||window[vendor+"CancelRequestAnimationFrame"]}browserRequestAnimationFrame=null;lastId=0;isCancelled={};if(!requestAnimationFrame){window.requestAnimationFrame=function(callback,element){var currTime,id,lastTime,timeToCall;currTime=(new Date).getTime();timeToCall=Math.max(0,16-(currTime-lastTime));id=window.setTimeout(function(){return callback(currTime+timeToCall)},timeToCall);lastTime=currTime+timeToCall;return id};return window.cancelAnimationFrame=function(id){return clearTimeout(id)}}else if(!window.cancelAnimationFrame){browserRequestAnimationFrame=window.requestAnimationFrame;window.requestAnimationFrame=function(callback,element){var myId;myId=++lastId;browserRequestAnimationFrame(function(){if(!isCancelled[myId]){return callback()}},element);return myId};return window.cancelAnimationFrame=function(id){return isCancelled[id]=true}}}();String.prototype.hashCode=function(){var char,hash,i,_i,_ref;hash=0;if(this.length===0){return hash}for(i=_i=0,_ref=this.length;0<=_ref?_i<_ref:_i>_ref;i=0<=_ref?++_i:--_i){char=this.charCodeAt(i);hash=(hash<<5)-hash+char;hash=hash&hash}return hash};secondsToString=function(sec){var hr,min;hr=Math.floor(sec/3600);min=Math.floor((sec-hr*3600)/60);sec-=hr*3600+min*60;sec+="";min+="";while(min.length<2){min="0"+min}while(sec.length<2){sec="0"+sec}hr=hr?hr+":":"";return hr+min+":"+sec};formatNumber=function(num){return addCommas(num.toFixed(0))};updateObjectValues=function(obj1,obj2){var key,val;for(key in obj2){if(!__hasProp.call(obj2,key))continue;val=obj2[key];obj1[key]=val}return obj1};mergeObjects=function(obj1,obj2){var key,out,val;out={};for(key in obj1){if(!__hasProp.call(obj1,key))continue;val=obj1[key];out[key]=val}for(key in obj2){if(!__hasProp.call(obj2,key))continue;val=obj2[key];out[key]=val}return out};addCommas=function(nStr){var rgx,x,x1,x2;nStr+="";x=nStr.split(".");x1=x[0];x2="";if(x.length>1){x2="."+x[1]}rgx=/(\d+)(\d{3})/;while(rgx.test(x1)){x1=x1.replace(rgx,"$1"+","+"$2")}return x1+x2};cutHex=function(nStr){if(nStr.charAt(0)==="#"){return nStr.substring(1,7)}return nStr};ValueUpdater=function(){ValueUpdater.prototype.animationSpeed=32;function ValueUpdater(addToAnimationQueue,clear){if(addToAnimationQueue==null){addToAnimationQueue=true}this.clear=clear!=null?clear:true;if(addToAnimationQueue){AnimationUpdater.add(this)}}ValueUpdater.prototype.update=function(force){var diff;if(force==null){force=false}if(force||this.displayedValue!==this.value){if(this.ctx&&this.clear){this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)}diff=this.value-this.displayedValue;if(Math.abs(diff/this.animationSpeed)<=.001){this.displayedValue=this.value}else{this.displayedValue=this.displayedValue+diff/this.animationSpeed}this.render();return true}return false};return ValueUpdater}();BaseGauge=function(_super){__extends(BaseGauge,_super);function BaseGauge(){_ref=BaseGauge.__super__.constructor.apply(this,arguments);return _ref}BaseGauge.prototype.displayScale=1;BaseGauge.prototype.setTextField=function(textField){return this.textField=textField instanceof TextRenderer?textField:new TextRenderer(textField)};BaseGauge.prototype.setMinValue=function(minValue,updateStartValue){var gauge,_i,_len,_ref1,_results;this.minValue=minValue;if(updateStartValue==null){updateStartValue=true}if(updateStartValue){this.displayedValue=this.minValue;_ref1=this.gp||[];_results=[];for(_i=0,_len=_ref1.length;_i<_len;_i++){gauge=_ref1[_i];_results.push(gauge.displayedValue=this.minValue)}return _results}};BaseGauge.prototype.setOptions=function(options){if(options==null){options=null}this.options=mergeObjects(this.options,options);if(this.textField){this.textField.el.style.fontSize=options.fontSize+"px"}if(this.options.angle>.5){this.gauge.options.angle=.5}this.configDisplayScale();return this};BaseGauge.prototype.configDisplayScale=function(){var backingStorePixelRatio,devicePixelRatio,height,prevDisplayScale,width;prevDisplayScale=this.displayScale;if(this.options.highDpiSupport===false){delete this.displayScale}else{devicePixelRatio=window.devicePixelRatio||1;backingStorePixelRatio=this.ctx.webkitBackingStorePixelRatio||this.ctx.mozBackingStorePixelRatio||this.ctx.msBackingStorePixelRatio||this.ctx.oBackingStorePixelRatio||this.ctx.backingStorePixelRatio||1;this.displayScale=devicePixelRatio/backingStorePixelRatio}if(this.displayScale!==prevDisplayScale){width=this.canvas.G__width||this.canvas.width;height=this.canvas.G__height||this.canvas.height;this.canvas.width=width*this.displayScale;this.canvas.height=height*this.displayScale;this.canvas.style.width=""+width+"px";this.canvas.style.height=""+height+"px";this.canvas.G__width=width;this.canvas.G__height=height}return this};return BaseGauge}(ValueUpdater);TextRenderer=function(){function TextRenderer(el){this.el=el}TextRenderer.prototype.render=function(gauge){return this.el.innerHTML=formatNumber(gauge.displayedValue)};return TextRenderer}();AnimatedText=function(_super){__extends(AnimatedText,_super);AnimatedText.prototype.displayedValue=0;AnimatedText.prototype.value=0;AnimatedText.prototype.setVal=function(value){return this.value=1*value};function AnimatedText(elem,text){this.elem=elem;this.text=text!=null?text:false;this.value=1*this.elem.innerHTML;if(this.text){this.value=0}}AnimatedText.prototype.render=function(){var textVal;if(this.text){textVal=secondsToString(this.displayedValue.toFixed(0))}else{textVal=addCommas(formatNumber(this.displayedValue))}return this.elem.innerHTML=textVal};return AnimatedText}(ValueUpdater);AnimatedTextFactory={create:function(objList){var elem,out,_i,_len;out=[];for(_i=0,_len=objList.length;_i<_len;_i++){elem=objList[_i];out.push(new AnimatedText(elem))}return out}};GaugePointer=function(_super){__extends(GaugePointer,_super);GaugePointer.prototype.displayedValue=0;GaugePointer.prototype.value=0;GaugePointer.prototype.options={strokeWidth:.035,length:.1,color:"#000000"};function GaugePointer(gauge){this.gauge=gauge;this.ctx=this.gauge.ctx;this.canvas=this.gauge.canvas;GaugePointer.__super__.constructor.call(this,false,false);this.setOptions()}GaugePointer.prototype.setOptions=function(options){if(options==null){options=null}updateObjectValues(this.options,options);this.length=this.canvas.height*this.options.length;this.strokeWidth=this.canvas.height*this.options.strokeWidth;this.maxValue=this.gauge.maxValue;this.minValue=this.gauge.minValue;this.animationSpeed=this.gauge.animationSpeed;return this.options.angle=this.gauge.options.angle};GaugePointer.prototype.render=function(){var angle,centerX,centerY,endX,endY,startX,startY,x,y;angle=this.gauge.getAngle.call(this,this.displayedValue);centerX=this.canvas.width/2;centerY=this.canvas.height*.9;x=Math.round(centerX+this.length*Math.cos(angle));y=Math.round(centerY+this.length*Math.sin(angle));startX=Math.round(centerX+this.strokeWidth*Math.cos(angle-Math.PI/2));startY=Math.round(centerY+this.strokeWidth*Math.sin(angle-Math.PI/2));endX=Math.round(centerX+this.strokeWidth*Math.cos(angle+Math.PI/2));endY=Math.round(centerY+this.strokeWidth*Math.sin(angle+Math.PI/2));this.ctx.fillStyle=this.options.color;this.ctx.beginPath();this.ctx.arc(centerX,centerY,this.strokeWidth,0,Math.PI*2,true);this.ctx.fill();this.ctx.beginPath();this.ctx.moveTo(startX,startY);this.ctx.lineTo(x,y);this.ctx.lineTo(endX,endY);return this.ctx.fill()};return GaugePointer}(ValueUpdater);Bar=function(){function Bar(elem){this.elem=elem}Bar.prototype.updateValues=function(arrValues){this.value=arrValues[0];this.maxValue=arrValues[1];this.avgValue=arrValues[2];return this.render()};Bar.prototype.render=function(){var avgPercent,valPercent;if(this.textField){this.textField.text(formatNumber(this.value))}if(this.maxValue===0){this.maxValue=this.avgValue*2}valPercent=this.value/this.maxValue*100;avgPercent=this.avgValue/this.maxValue*100;$(".bar-value",this.elem).css({width:valPercent+"%"});return $(".typical-value",this.elem).css({width:avgPercent+"%"})};return Bar}();Gauge=function(_super){__extends(Gauge,_super);Gauge.prototype.elem=null;Gauge.prototype.value=[20];Gauge.prototype.maxValue=80;Gauge.prototype.minValue=0;Gauge.prototype.displayedAngle=0;Gauge.prototype.displayedValue=0;Gauge.prototype.lineWidth=40;Gauge.prototype.paddingBottom=.1;Gauge.prototype.percentColors=null;Gauge.prototype.options={colorStart:"#6fadcf",colorStop:void 0,gradientType:0,strokeColor:"#e0e0e0",pointer:{length:.8,strokeWidth:.035},angle:.15,lineWidth:.44,fontSize:40,limitMax:false,percentColors:[[0,"#a9d70b"],[.5,"#f9c802"],[1,"#ff0000"]]};function Gauge(canvas){this.canvas=canvas;Gauge.__super__.constructor.call(this);this.percentColors=null;if(typeof G_vmlCanvasManager!=="undefined"){this.canvas=window.G_vmlCanvasManager.initElement(this.canvas)}this.ctx=this.canvas.getContext("2d");this.gp=[new GaugePointer(this)];this.setOptions();this.render()}Gauge.prototype.setOptions=function(options){var gauge,_i,_len,_ref1;if(options==null){options=null}Gauge.__super__.setOptions.call(this,options);this.configPercentColors();this.lineWidth=this.canvas.height*(1-this.paddingBottom)*this.options.lineWidth;this.radius=this.canvas.height*(1-this.paddingBottom)-this.lineWidth;this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);this.render();_ref1=this.gp;for(_i=0,_len=_ref1.length;_i<_len;_i++){gauge=_ref1[_i];gauge.setOptions(this.options.pointer);gauge.render()}return this};Gauge.prototype.configPercentColors=function(){var bval,gval,i,rval,_i,_ref1,_results;this.percentColors=null;if(this.options.percentColors!==void 0){this.percentColors=new Array;_results=[];for(i=_i=0,_ref1=this.options.percentColors.length-1;0<=_ref1?_i<=_ref1:_i>=_ref1;i=0<=_ref1?++_i:--_i){rval=parseInt(cutHex(this.options.percentColors[i][1]).substring(0,2),16);gval=parseInt(cutHex(this.options.percentColors[i][1]).substring(2,4),16);bval=parseInt(cutHex(this.options.percentColors[i][1]).substring(4,6),16);_results.push(this.percentColors[i]={pct:this.options.percentColors[i][0],color:{r:rval,g:gval,b:bval}})}return _results}};Gauge.prototype.set=function(value){var i,max_hit,val,_i,_j,_len,_ref1;if(!(value instanceof Array)){value=[value]}if(value.length>this.gp.length){for(i=_i=0,_ref1=value.length-this.gp.length;0<=_ref1?_i<_ref1:_i>_ref1;i=0<=_ref1?++_i:--_i){this.gp.push(new GaugePointer(this))}}i=0;max_hit=false;for(_j=0,_len=value.length;_j<_len;_j++){val=value[_j];if(val>this.maxValue){this.maxValue=this.value*1.1;max_hit=true}this.gp[i].value=val;this.gp[i++].setOptions({maxValue:this.maxValue,angle:this.options.angle})}this.value=value[value.length-1];if(max_hit){if(!this.options.limitMax){return AnimationUpdater.run()}}else{return AnimationUpdater.run()}};Gauge.prototype.getAngle=function(value){return(1+this.options.angle)*Math.PI+(value-this.minValue)/(this.maxValue-this.minValue)*(1-this.options.angle*2)*Math.PI};Gauge.prototype.getColorForPercentage=function(pct,grad){var color,endColor,i,rangePct,startColor,_i,_ref1;if(pct===0){color=this.percentColors[0].color}else{color=this.percentColors[this.percentColors.length-1].color;for(i=_i=0,_ref1=this.percentColors.length-1;0<=_ref1?_i<=_ref1:_i>=_ref1;i=0<=_ref1?++_i:--_i){if(pct<=this.percentColors[i].pct){if(grad===true){startColor=this.percentColors[i-1];endColor=this.percentColors[i];rangePct=(pct-startColor.pct)/(endColor.pct-startColor.pct);color={r:Math.floor(startColor.color.r*(1-rangePct)+endColor.color.r*rangePct),g:Math.floor(startColor.color.g*(1-rangePct)+endColor.color.g*rangePct),b:Math.floor(startColor.color.b*(1-rangePct)+endColor.color.b*rangePct)}}else{color=this.percentColors[i].color}break}}}return"rgb("+[color.r,color.g,color.b].join(",")+")"};Gauge.prototype.getColorForValue=function(val,grad){var pct;pct=(val-this.minValue)/(this.maxValue-this.minValue);return this.getColorForPercentage(pct,grad)};Gauge.prototype.render=function(){var displayedAngle,fillStyle,gauge,h,w,_i,_len,_ref1,_results;w=this.canvas.width/2;h=this.canvas.height*(1-this.paddingBottom);displayedAngle=this.getAngle(this.displayedValue);if(this.textField){this.textField.render(this)}this.ctx.lineCap="butt";if(this.options.customFillStyle!==void 0){fillStyle=this.options.customFillStyle(this)}else if(this.percentColors!==null){fillStyle=this.getColorForValue(this.displayedValue,true)}else if(this.options.colorStop!==void 0){if(this.options.gradientType===0){fillStyle=this.ctx.createRadialGradient(w,h,9,w,h,70)}else{fillStyle=this.ctx.createLinearGradient(0,0,w,0)}fillStyle.addColorStop(0,this.options.colorStart);fillStyle.addColorStop(1,this.options.colorStop)}else{fillStyle=this.options.colorStart}this.ctx.strokeStyle=fillStyle;this.ctx.beginPath();this.ctx.arc(w,h,this.radius,(1+this.options.angle)*Math.PI,displayedAngle,false);this.ctx.lineWidth=this.lineWidth;this.ctx.stroke();this.ctx.strokeStyle=this.options.strokeColor;this.ctx.beginPath();this.ctx.arc(w,h,this.radius,displayedAngle,(2-this.options.angle)*Math.PI,false);this.ctx.stroke();_ref1=this.gp;_results=[];for(_i=0,_len=_ref1.length;_i<_len;_i++){gauge=_ref1[_i];_results.push(gauge.update(true))}return _results};return Gauge}(BaseGauge);BaseDonut=function(_super){__extends(BaseDonut,_super);BaseDonut.prototype.lineWidth=15;BaseDonut.prototype.displayedValue=0;BaseDonut.prototype.value=33;BaseDonut.prototype.maxValue=80;BaseDonut.prototype.minValue=0;BaseDonut.prototype.options={lineWidth:.1,colorStart:"#6f6ea0",colorStop:"#c0c0db",strokeColor:"#eeeeee",shadowColor:"#d5d5d5",angle:.35};function BaseDonut(canvas){this.canvas=canvas;BaseDonut.__super__.constructor.call(this);if(typeof G_vmlCanvasManager!=="undefined"){this.canvas=window.G_vmlCanvasManager.initElement(this.canvas)}this.ctx=this.canvas.getContext("2d");this.setOptions();this.render()}BaseDonut.prototype.getAngle=function(value){return(1-this.options.angle)*Math.PI+(value-this.minValue)/(this.maxValue-this.minValue)*(2+this.options.angle-(1-this.options.angle))*Math.PI};BaseDonut.prototype.setOptions=function(options){if(options==null){options=null}BaseDonut.__super__.setOptions.call(this,options);this.lineWidth=this.canvas.height*this.options.lineWidth;this.radius=this.canvas.height/2-this.lineWidth/2;return this};BaseDonut.prototype.set=function(value){this.value=value;if(this.value>this.maxValue){this.maxValue=this.value*1.1}return AnimationUpdater.run()};BaseDonut.prototype.render=function(){var displayedAngle,grdFill,h,start,stop,w;displayedAngle=this.getAngle(this.displayedValue);w=this.canvas.width/2;h=this.canvas.height/2;if(this.textField){this.textField.render(this)}grdFill=this.ctx.createRadialGradient(w,h,39,w,h,70);grdFill.addColorStop(0,this.options.colorStart);grdFill.addColorStop(1,this.options.colorStop);start=this.radius-this.lineWidth/2;stop=this.radius+this.lineWidth/2;this.ctx.strokeStyle=this.options.strokeColor;this.ctx.beginPath();this.ctx.arc(w,h,this.radius,(1-this.options.angle)*Math.PI,(2+this.options.angle)*Math.PI,false);this.ctx.lineWidth=this.lineWidth;this.ctx.lineCap="round";this.ctx.stroke();this.ctx.strokeStyle=grdFill;this.ctx.beginPath();this.ctx.arc(w,h,this.radius,(1-this.options.angle)*Math.PI,displayedAngle,false);return this.ctx.stroke()};return BaseDonut}(BaseGauge);Donut=function(_super){__extends(Donut,_super);function Donut(){_ref1=Donut.__super__.constructor.apply(this,arguments);return _ref1}Donut.prototype.strokeGradient=function(w,h,start,stop){var grd;grd=this.ctx.createRadialGradient(w,h,start,w,h,stop);grd.addColorStop(0,this.options.shadowColor);grd.addColorStop(.12,this.options._orgStrokeColor);grd.addColorStop(.88,this.options._orgStrokeColor);grd.addColorStop(1,this.options.shadowColor);return grd};Donut.prototype.setOptions=function(options){var h,start,stop,w;if(options==null){options=null}Donut.__super__.setOptions.call(this,options);w=this.canvas.width/2;h=this.canvas.height/2;start=this.radius-this.lineWidth/2;stop=this.radius+this.lineWidth/2;this.options._orgStrokeColor=this.options.strokeColor;this.options.strokeColor=this.strokeGradient(w,h,start,stop);return this};return Donut}(BaseDonut);window.AnimationUpdater={elements:[],animId:null,addAll:function(list){var elem,_i,_len,_results;_results=[];for(_i=0,_len=list.length;_i<_len;_i++){elem=list[_i];_results.push(AnimationUpdater.elements.push(elem))}return _results},add:function(object){return AnimationUpdater.elements.push(object)},run:function(){var animationFinished,elem,_i,_len,_ref2;animationFinished=true;_ref2=AnimationUpdater.elements;for(_i=0,_len=_ref2.length;_i<_len;_i++){elem=_ref2[_i];if(elem.update()){animationFinished=false}}if(!animationFinished){return AnimationUpdater.animId=requestAnimationFrame(AnimationUpdater.run)}else{return cancelAnimationFrame(AnimationUpdater.animId)}}};window.Gauge=Gauge;window.Donut=Donut;window.BaseDonut=BaseDonut;window.TextRenderer=TextRenderer}.call(this);
 ;
 ;/*! jQuery spinner - v0.1.5 - 2013-12-03
@@ -13873,6 +11008,7 @@ var app = angular.module("app", [
 
         // Cache-busting, used for development.
         // TODO: use version from Rover.
+        // var version = Rover.assetVersion();
         var version = Date.now();
 
         // Routing.
@@ -13884,8 +11020,13 @@ var app = angular.module("app", [
         .when("/dashboard", {
 			templateUrl: "/views/dashboard.html?" + version
 		})
-        .when('/team/:id', {
-            templateUrl: '/views/dashboard-partials/team.html?' + version
+        .when('/dashboard/:groupId', {
+            templateUrl: '/views/dashboard-v2/team.html?' + version,
+            controller: 'GroupController'
+        })
+        .when('/dashboard/:groupId/:memberId', {
+            templateUrl: '/views/dashboard-v2/member.html?' + version,
+            controller: 'MemberController'
         })
 
 
@@ -14534,229 +11675,6 @@ angular.module('backendHeddoko', [])
  * @date June 2015
  */
 angular.module("app.controllers", [])
-
-// MainController
-.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover) {
-
-    	/**
-    	* @brief This is the central controller which runs whenever the dashboard is loaded
-    	* It keeps an eye on local scope variables keeps them in sync with the local storage
-    	* It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
-    	* @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
-    	* @return void
-    	*/
-
-        // Save an instance of the "rover" variable in the scope.
-        $scope.Rover = Rover;
-
-        // Tie the local scope to the user-namespaced sessionStorage.
-        $scope.data = Rover.sessionStorage;
-
-        // ...
-        $scope.data.team = $scope.data.team || {};
-        $scope.data.team.list = $scope.data.team.list || [];
-        $scope.data.team.selected = $scope.data.team.selected || {id: 0};
-        $scope.data.team.new = {
-
-        };
-
-        // ...
-        $scope.data.athlete = $scope.data.athlete || {};
-        $scope.data.athlete.list = $scope.data.athlete.list || [];
-        $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
-        $scope.data.athlete.new = {
-            first_name: "",
-            last_name: "",
-            height: "",
-            feet: "",
-            inches: "",
-            weight_lbs: "",
-            age: ""
-        };
-
-        // Notifies user that app is working in the background.
-        $scope.showLoading = function() {
-            $('.page-loading-overlay').removeClass("loaded");
-            $('.load_circle_wrapper').removeClass("loaded");
-        };
-        $scope.hideLoading = function() {
-            $('.page-loading-overlay').addClass("loaded");
-            $('.load_circle_wrapper').addClass("loaded");
-        };
-
-        // Submits the "new team" form.
-        $scope.submitNewTeamForm = function() {
-
-            Rover.log('submitNewTeamForm');
-
-            Rover.addBackgroundProcess();
-
-            $scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
-
-            Teams.create($scope.data.new_team_form_data).then(
-                function(response) {
-
-                    $scope.data.new_team_form_data = null;
-
-                    if (response.status === 200) {
-                        $scope.data.team.list = response.data;
-                    }
-
-                    loggit.logSuccess("New Team successfully created");
-
-                    Rover.doneBackgroundProcess();
-                },
-                function(response) {
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
-        // Submits the "new athlete" form.
-        $scope.submitNewAthleteForm = function() {
-
-            Rover.log('submitNewAthleteForm');
-
-            var athlete = $scope.data.athlete.new;
-
-            // Format some variables.
-            athlete.team_id = $scope.data.team.selected.id;
-            athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
-            athlete.weight_cm = athlete.weight_lbs / 2.20462;
-            athlete.primary_sport = $scope.data.team.selected.sport_name;
-            athlete.primary_position = "";
-            athlete.hand_leg_dominance = "";
-            athlete.previous_injuries = "";
-            athlete.underlying_medical = "";
-            athlete.notes = "";
-
-            // Show loading animation.
-            Rover.addBackgroundProcess();
-
-            Athletes.create(athlete.team_id, athlete).then(
-                function(response) {
-
-                    // Reset "new athlete" form.
-                    $scope.data.athlete.new = {
-                        first_name: "",
-                        last_name: "",
-                        height: "",
-                        feet: "",
-                        inches: "",
-                        weight_lbs: "",
-                        age: ""
-                    };
-
-                    if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
-                    }
-
-                    loggit.logSuccess("New Athlete successfully created");
-
-                    Rover.doneBackgroundProcess();
-                },
-                function(response) {
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
-        // Populates the team list.
-        $scope.populateTeamList = function() {
-
-            Rover.addBackgroundProcess();
-
-    		Teams.get().then(
-                function(response) {
-
-        			if (response.status === 200) {
-                        $scope.data.team.list = response.data;
-                    }
-
-                    // Select a default team.
-                    if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
-                        $scope.data.team.selected = $scope.data.team.list[0];
-                    }
-
-                    Rover.doneBackgroundProcess();
-        		},
-                function(response) {
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
-        // Populates the athlete list.
-        $scope.populateAthleteList = function() {
-
-            // Show loading.
-            Rover.addBackgroundProcess();
-
-    		Athletes.get($scope.data.team.selected.id).then(
-                function(response) {
-
-        			if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
-                    }
-
-                    // Select a default athlete.
-                    if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
-                        $scope.data.athlete.selected = $scope.data.athlete.list[0];
-                    }
-
-                    Rover.doneBackgroundProcess();
-    		    },
-                function(response) {
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
-        // Populate team list.
-    	if ($scope.data.team.list.length === 0) {
-    		$scope.populateTeamList();
-    	}
-
-        // Populate athlete list.
-    	if ($scope.data.athlete.list.length === 0) {
-    		$scope.populateAthleteList();
-    	}
-
-        // Update the athlete list as the selected team is modified.
-        $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
-        {
-            // Performance check.
-            if (newSelectedTeam === 0) {
-                return;
-            }
-
-            // Make sure we have an object.
-            if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
-            {
-                var teamId = Number(newSelectedTeam);
-                $.each($scope.data.team.list, function(index, team)
-                {
-                    if (team.id == teamId) {
-                        newSelectedTeam = team;
-                    }
-                });
-
-                $scope.data.team.selected = newSelectedTeam;
-                return;
-            }
-
-            Rover.log('Selected team: ' + newSelectedTeam.id);
-
-            // Reset the athletes list.
-            $scope.data.athlete.list = [];
-            $scope.data.athlete.selected = {id: 0};
-
-            // Update the athletes list.
-    		$scope.populateAthleteList();
-        }, true);
-    }
-])
 
 // StepController
 .controller('StepController', ['$scope', 'Rover',
@@ -16702,6 +13620,319 @@ angular.module("app.ui.ctrls", []).controller("NotifyCtrl", ["$scope", "loggit",
     };
   }
 ]);
+;/**
+ * @file    team.js
+ * @brief   Team controller.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('GroupController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
+
+        $scope.params = $routeParams;
+
+        // ...
+        $scope.$watch('params.groupId', function(newId, oldId)
+        {
+            // Performance check.
+            if (newId === 0 || newId === $scope.data.team.selected.id || $scope.data.team.list.length < 1) {
+                return;
+            }
+
+            // Find the group to be updated.
+            var current, selected;
+            for (var i = 0; i < $scope.data.team.list.length; i++)
+            {
+                current = $scope.data.team.list[i];
+
+                if (current.id == newId) {
+                    selected = current;
+                    break;
+                }
+            }
+
+            if (selected) {
+                Rover.log('Selecting group #' + newId + '...');
+                $scope.data.team.selected = selected;
+            }
+
+            else {
+                Rover.error('Group #' + newId + ' not found.');
+            }
+        }, true);
+    }
+]);
+;/**
+ * @brief This is the central controller which runs whenever the dashboard is loaded
+ * It keeps an eye on local scope variables keeps them in sync with the local storage
+ * It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
+ * @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
+ * @return void
+ */
+angular.module('app.controllers')
+
+.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover',
+    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover) {
+
+        // Save an instance of the "rover" variable in the scope.
+        $scope.Rover = Rover;
+
+        // Tie the local scope to the user-namespaced sessionStorage.
+        $scope.data = Rover.sessionStorage;
+
+        // ...
+        $scope.data.team = $scope.data.team || {};
+        $scope.data.team.list = $scope.data.team.list || [];
+        $scope.data.team.selected = $scope.data.team.selected || {id: 0};
+        $scope.data.team.new = {
+
+        };
+
+        // ...
+        $scope.data.athlete = $scope.data.athlete || {};
+        $scope.data.athlete.list = $scope.data.athlete.list || [];
+        $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
+        $scope.data.athlete.new = {
+            first_name: "",
+            last_name: "",
+            height: "",
+            feet: "",
+            inches: "",
+            weight_lbs: "",
+            age: ""
+        };
+
+        // Notifies user that app is working in the background.
+        $scope.showLoading = function() {
+            $('.page-loading-overlay').removeClass("loaded");
+            $('.load_circle_wrapper').removeClass("loaded");
+        };
+        $scope.hideLoading = function() {
+            $('.page-loading-overlay').addClass("loaded");
+            $('.load_circle_wrapper').addClass("loaded");
+        };
+
+        // Submits the "new team" form.
+        $scope.submitNewTeamForm = function() {
+
+            Rover.log('submitNewTeamForm');
+
+            Rover.addBackgroundProcess();
+
+            $scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
+
+            Teams.create($scope.data.new_team_form_data).then(
+                function(response) {
+
+                    $scope.data.new_team_form_data = null;
+
+                    if (response.status === 200) {
+                        $scope.data.team.list = response.data;
+                    }
+
+                    loggit.logSuccess("New Team successfully created");
+
+                    Rover.doneBackgroundProcess();
+                },
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
+        // Submits the "new athlete" form.
+        $scope.submitNewAthleteForm = function() {
+
+            Rover.log('submitNewAthleteForm');
+
+            var athlete = $scope.data.athlete.new;
+
+            // Format some variables.
+            athlete.team_id = $scope.data.team.selected.id;
+            athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
+            athlete.weight_cm = athlete.weight_lbs / 2.20462;
+            athlete.primary_sport = $scope.data.team.selected.sport_name;
+            athlete.primary_position = "";
+            athlete.hand_leg_dominance = "";
+            athlete.previous_injuries = "";
+            athlete.underlying_medical = "";
+            athlete.notes = "";
+
+            // Show loading animation.
+            Rover.addBackgroundProcess();
+
+            Athletes.create(athlete.team_id, athlete).then(
+                function(response) {
+
+                    // Reset "new athlete" form.
+                    $scope.data.athlete.new = {
+                        first_name: "",
+                        last_name: "",
+                        height: "",
+                        feet: "",
+                        inches: "",
+                        weight_lbs: "",
+                        age: ""
+                    };
+
+                    if (response.status === 200) {
+                        $scope.data.athlete.list = response.data;
+                    }
+
+                    loggit.logSuccess("New Athlete successfully created");
+
+                    Rover.doneBackgroundProcess();
+                },
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
+        // Populates the team list.
+        $scope.populateTeamList = function() {
+
+            Rover.addBackgroundProcess();
+
+    		Teams.get().then(
+                function(response) {
+
+        			if (response.status === 200) {
+                        $scope.data.team.list = response.data;
+                    }
+
+                    // Select a default team.
+                    if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
+                        $scope.data.team.selected = $scope.data.team.list[0];
+                    }
+
+                    Rover.doneBackgroundProcess();
+        		},
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
+        // Populates the athlete list.
+        $scope.populateAthleteList = function() {
+
+            // Show loading.
+            Rover.addBackgroundProcess();
+
+    		Athletes.get($scope.data.team.selected.id).then(
+                function(response) {
+
+        			if (response.status === 200) {
+                        $scope.data.athlete.list = response.data;
+                    }
+
+                    // Select a default athlete.
+                    if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
+                        $scope.data.athlete.selected = $scope.data.athlete.list[0];
+                    }
+
+                    Rover.doneBackgroundProcess();
+    		    },
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
+        // Populate team list.
+    	if ($scope.data.team.list.length === 0) {
+    		$scope.populateTeamList();
+    	}
+
+        // Populate athlete list.
+    	if ($scope.data.athlete.list.length === 0) {
+    		$scope.populateAthleteList();
+    	}
+
+        // Update the athlete list as the selected team is modified.
+        $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
+        {
+            // Performance check.
+            if (newSelectedTeam === 0) {
+                return;
+            }
+
+            // Make sure we have an object.
+            if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+            {
+                var teamId = Number(newSelectedTeam);
+                $.each($scope.data.team.list, function(index, team)
+                {
+                    if (team.id == teamId) {
+                        newSelectedTeam = team;
+                    }
+                });
+
+                $scope.data.team.selected = newSelectedTeam;
+                return;
+            }
+
+            Rover.log('Selected team: ' + newSelectedTeam.id);
+
+            // Reset the athletes list.
+            $scope.data.athlete.list = [];
+            $scope.data.athlete.selected = {id: 0};
+
+            // Update the athletes list.
+    		$scope.populateAthleteList();
+        }, true);
+    }
+]);
+;/**
+ * @file    team.js
+ * @brief   Team controller.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('MemberController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
+
+        // Update the selected team.
+
+        $scope.params = $routeParams;
+
+        // Watch the "memberId" parameter to updated the selected member.
+        $scope.$watch('params.memberId', function(newId, oldId)
+        {
+            // Performance check.
+            if (newId === 0 || newId === $scope.data.athlete.selected.id || $scope.data.athlete.list.length < 1) {
+                return;
+            }
+
+            // Find the requested member.
+            var current, selected;
+            for (var i = 0; i < $scope.data.athlete.list.length; i++)
+            {
+                current = $scope.data.athlete.list[i];
+
+                if (current.id == newId) {
+                    selected = current;
+                    break;
+                }
+            }
+
+            if (selected) {
+                Rover.log('Selecting member #' + newId + '...');
+                $scope.data.athlete.selected = selected;
+            }
+
+            else {
+                Rover.error('Member #' + newId + ' not found.');
+            }
+        }, true);
+
+    }
+]);
 ;/*
  Charting directives
  Provides custom directives for charting elements
@@ -17388,88 +14619,167 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).factory('Rover', function($sessionStorage, $route) {
+angular.module('app.rover', []).service('Rover', function($sessionStorage, $route) {
 
-    // User-specific hash. Used for user specific data.
-    var hash = $('meta[name="user-hash"]').attr('content');
+    // Used to version the assets.
+    this.version = '0.2.6';
+
+    // Dev variables.
+    this.timestamp = Date.now();
+    this.isLocal = (window.location.hostname == 'localhost' ||
+                window.location.hostname.match(/.*\.local$/i)) ? true : false;
+
+    // User-specific hash. Used for user-specific data.
+    this.userHash = $('meta[name="user-hash"]').attr('content');
+
+    // Counts the # of requests being made, and displays the loading icon accordingly.
+    this.backgroundProcessCount = 0;
+    this.addBackgroundProcess = function() {
+
+        this.backgroundProcessCount++;
+        this.log('Background processes: ' + this.backgroundProcessCount);
+
+        // Show loading animation.
+        if (this.backgroundProcessCount === 1) {
+            this.showLoading();
+        }
+    }.bind(this);
+    this.doneBackgroundProcess = function() {
+
+        this.backgroundProcessCount--;
+        this.log('Background processes: ' + this.backgroundProcessCount);
+
+        // Remove loading animation.
+        if (this.backgroundProcessCount < 1) {
+            this.hideLoading();
+        }
+    }.bind(this);
+
+    // ...
+    this.browse = {
+
+        group: function(group) {
+            this.debug('Browsing to group #' + group.id);
+            $route.updateParams({groupId: group.id});
+        }.bind(this),
+
+        member: function(member) {
+            this.debug('Browsing to member #' + member.id);
+            $route.updateParams({memberId: member.id});
+        }.bind(this)
+    };
+
+    // Logs a message to the console.
+    this.log = function(msg) {
+        if (this.isLocal && console) {
+            console.log('Rover.log is deprecated...');
+            console.log(msg);
+        }
+    };
+    this.debug = function(msg) {
+        if (this.isLocal && console) {
+            console.log(msg);
+        }
+    };
+    this.error = function(msg) {
+        if (console) {
+            console.log(msg);
+        }
+    };
+
+    // Displays or hides the loading animation.
+    this.showLoading = function() {
+        $('.page-loading-overlay').removeClass("loaded");
+        $('.load_circle_wrapper').removeClass("loaded");
+    };
+    this.hideLoading = function() {
+        $('.page-loading-overlay').addClass("loaded");
+        $('.load_circle_wrapper').addClass("loaded");
+    };
 
     // User-namespaced session storage object.
-    $sessionStorage[hash] = $sessionStorage[hash] || {};
+    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
+    this.sessionStorage = $sessionStorage[this.userHash];
+
+    // TODO: refactor.
+    this.assetVersion = function() {
+        return this.isLocal ? this.timestamp : this.version;
+    }.bind(this);
 
     // Dev variable indicating if the app is currently in a local environment.
 
-    return {
-
-        // Used to version the assets.
-        version: "0.2.5",
-
-        // Used to version the assets in local environment.
-        timestamp: Date.now(),
-
-        assetVersion: function() {
-            return this.isLocal ? this.timestamp : this.version;
-        },
-
-        // Displays or hides the loading animation.
-        showLoading: function() {
-            $('.page-loading-overlay').removeClass("loaded");
-            $('.load_circle_wrapper').removeClass("loaded");
-        },
-        hideLoading: function() {
-            $('.page-loading-overlay').addClass("loaded");
-            $('.load_circle_wrapper').addClass("loaded");
-        },
-
-        // Counts the # of requests being made, and displays the loading
-        // icon accordingly.
-        backgroundProcessCount: 0,
-        addBackgroundProcess: function()
-        {
-            this.backgroundProcessCount++;
-            this.log('Background processes: ' + this.backgroundProcessCount);
-
-            // Show loading animation.
-            if (this.backgroundProcessCount === 1) {
-                this.showLoading();
-            }
-        },
-        doneBackgroundProcess: function()
-        {
-            this.backgroundProcessCount--;
-            this.log('Background processes: ' + this.backgroundProcessCount);
-
-            // Remove loading animation.
-            if (this.backgroundProcessCount < 1) {
-                this.hideLoading();
-            }
-        },
-
-        // ...
-        browse:
-        {
-            team: function(team) {
-                Rover.log('Browse to team page: ' + team.id);
-            },
-
-            member: function(member) {
-                Rover.log('Browse to profile page: ' + member.id);
-            }
-        },
-
-        // Logs a message to the console.
-        log: function(msg) {
-            if (this.isLocal && console) {
-                console.log(msg);
-            }
-        },
-
-        userHash: hash,
-        sessionStorage: $sessionStorage[hash],
-
-        //
-        isLocal: (window.location.hostname == 'localhost' ||
-                    window.location.hostname.match(/.*\.local$/i)) ? true : false
-    };
+    // return {
+    //
+    //     // Used to version the assets.
+    //     version: "0.2.5",
+    //
+    //     // Used to version the assets in local environment.
+    //     timestamp: Date.now(),
+    //
+    //     assetVersion: function() {
+    //         return this.isLocal ? this.timestamp : this.version;
+    //     },
+    //
+    //     // Displays or hides the loading animation.
+    //     showLoading: function() {
+    //         $('.page-loading-overlay').removeClass("loaded");
+    //         $('.load_circle_wrapper').removeClass("loaded");
+    //     },
+    //     hideLoading: function() {
+    //         $('.page-loading-overlay').addClass("loaded");
+    //         $('.load_circle_wrapper').addClass("loaded");
+    //     },
+    //
+    //     // Counts the # of requests being made, and displays the loading
+    //     // icon accordingly.
+    //     backgroundProcessCount: 0,
+    //     addBackgroundProcess: function()
+    //     {
+    //         this.backgroundProcessCount++;
+    //         this.log('Background processes: ' + this.backgroundProcessCount);
+    //
+    //         // Show loading animation.
+    //         if (this.backgroundProcessCount === 1) {
+    //             this.showLoading();
+    //         }
+    //     },
+    //     doneBackgroundProcess: function()
+    //     {
+    //         this.backgroundProcessCount--;
+    //         this.log('Background processes: ' + this.backgroundProcessCount);
+    //
+    //         // Remove loading animation.
+    //         if (this.backgroundProcessCount < 1) {
+    //             this.hideLoading();
+    //         }
+    //     },
+    //
+    //     // ...
+    //     browse:
+    //     {
+    //         team: function(team) {
+    //             Rover.log('Browse to team page: ' + team.id);
+    //         },
+    //
+    //         member: function(member) {
+    //             Rover.log('Browse to profile page: ' + member.id);
+    //         }
+    //     },
+    //
+    //     // Logs a message to the console.
+    //     log: function(msg) {
+    //         if (this.isLocal && console) {
+    //             console.log(msg);
+    //         }
+    //     },
+    //
+    //     userHash: hash,
+    //     sessionStorage: $sessionStorage[hash],
+    //
+    //     //
+    //     isLocal: (window.location.hostname == 'localhost' ||
+    //                 window.location.hostname.match(/.*\.local$/i)) ? true : false
+    // };
 });
 ;
 /**************************

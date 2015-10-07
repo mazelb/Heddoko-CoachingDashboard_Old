@@ -147,6 +147,7 @@ module.exports = function(grunt) {
                     'angular-app/scripts/extras.js',
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
+                    'angular-app/app/**/*.js',
                     'angular-app/app/*.js'
                 ],
                 dest: 'public/js/app.js'
@@ -159,7 +160,12 @@ module.exports = function(grunt) {
 
         watch: {
             dev: {
-                files: [ 'Gruntfile.js', 'angular-app/app/*.js', 'angular-app/styles/*.scss' ],
+                files: [
+                    'Gruntfile.js',
+                    'angular-app/app/*.js',
+                    'angular-app/app/**/*.js',
+                    'angular-app/styles/*.scss'
+                ],
                 tasks: [ 'jshint','html2js:dist','copy:main', 'concat:dist', 'clean:temp', 'sass', 'cssmin' ],
                 options: {
                     atBegin: true

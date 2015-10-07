@@ -17,6 +17,7 @@ var app = angular.module("app", [
 
         // Cache-busting, used for development.
         // TODO: use version from Rover.
+        // var version = Rover.assetVersion();
         var version = Date.now();
 
         // Routing.
@@ -28,8 +29,13 @@ var app = angular.module("app", [
         .when("/dashboard", {
 			templateUrl: "/views/dashboard.html?" + version
 		})
-        .when('/team/:id', {
-            templateUrl: '/views/dashboard-partials/team.html?' + version
+        .when('/dashboard/:groupId', {
+            templateUrl: '/views/dashboard-v2/team.html?' + version,
+            controller: 'GroupController'
+        })
+        .when('/dashboard/:groupId/:memberId', {
+            templateUrl: '/views/dashboard-v2/member.html?' + version,
+            controller: 'MemberController'
         })
 
 
