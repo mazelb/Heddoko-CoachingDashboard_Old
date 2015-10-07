@@ -1,0 +1,36 @@
+
+<!-- Header -->
+<div ng-include src="'views/dashboard-v2/partials/header.html?' + Rover.assetVersion()"></div>
+
+<div class="page page-dashboard" data-ng-controller="FMSFormController">
+
+    <!-- Breadcrumbs -->
+    <div ng-include src="'views/dashboard-v2/partials/breadcrumbs.html?' + Rover.assetVersion()"></div>
+
+    <div>
+        {{ params.groupId }}<br>
+        {{ data.team.selected.id }}
+    </div>
+
+    <!-- Team page contents -->
+
+    <section>
+    	<div class="row">
+    		<div class="col-sm-12">
+
+                <!-- List of members -->
+                <div ng-include src="'views/dashboard-v2/team-partials/members.html?' + Rover.assetVersion()"></div>
+    		</div>
+    	</div>
+    </section>
+
+    <section>
+    	<div class="row">
+    		<div class="col-sm-6">
+
+                <!-- New athlete form -->
+                <div ng-include src="'views/dashboard-v2/team-partials/form.html?' + Rover.assetVersion()"></div>
+    		</div>
+    	</div>
+    </section>
+</div>

@@ -1,0 +1,24 @@
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <h2>Team members</h2>
+        </div>
+
+        <div class="col-sm-12">
+            <div ng-hide="data.athlete.list.length > 1">
+                This team does not have any athletes yet! Add one below to get started.
+            </div>
+
+            <!-- List of athletes -->
+            <a
+                href="javascript:;"
+                class="btn btn-primary btn-metro"
+                ng-repeat="athlete in data.athlete.list"
+                ng-click="data.athlete.selected = athlete;forwardsStep();">
+
+                <span>{{athlete.first_name}}</span>
+            </a>
+        </div>
+    </div>
+</div>
