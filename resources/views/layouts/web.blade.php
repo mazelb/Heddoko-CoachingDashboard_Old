@@ -11,7 +11,7 @@
 
         <script src="{{ url('js/jquery.min.js') }}"></script>
 
-        <link rel="stylesheet" href="{{ url('css/main.css') }}">
+        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
         <link rel="stylesheet" href="{{ url('css/app.css') }}">
 
 		<script>
@@ -29,10 +29,18 @@
 
 			<div class="social">
 				<p>
-					<a href="https://www.facebook.com/heddoko" target="_blank"><i class="fa fa-3x fa-facebook"></i></a>
-					<a href="https://twitter.com/heddoko" target="_blank"><i class="fa fa-3x fa-twitter"></i></a>
-					<a href="https://www.linkedin.com/company/heddoko" target="_blank"><i class="fa fa-3x fa-linkedin"></i></a>
-					<a href="https://instagram.com/heddoko/" target="_blank"><i class="fa fa-3x fa-instagram"></i></a>
+					<a href="https://www.facebook.com/heddoko" target="_blank">
+                        <i class="fa fa-2x fa-facebook"></i>
+                    </a>
+					<a href="https://twitter.com/heddoko" target="_blank">
+                        <i class="fa fa-2x fa-twitter"></i>
+                    </a>
+					<a href="https://www.linkedin.com/company/heddoko" target="_blank">
+                        <i class="fa fa-2x fa-linkedin"></i>
+                    </a>
+					<a href="https://instagram.com/heddoko/" target="_blank">
+                        <i class="fa fa-2x fa-instagram"></i>
+                    </a>
 				</p>
 			</div>
 
@@ -40,7 +48,7 @@
 
 		@yield('content')
 
-		<div id="footer" class="navbar-fixed-bottom text-center" style="color: #fff; background-color: rgba(50, 50, 50, .8);">
+		<div id="footer" class="navbar-fixed-bottom text-center">
 			&copy; Copyright Heddoko
 		</div>
 
