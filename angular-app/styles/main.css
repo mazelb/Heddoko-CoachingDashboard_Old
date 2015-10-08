@@ -49,7 +49,7 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent; }
 
-html {
+html.auth-login {
   overflow: hidden; }
 
 body {
@@ -272,6 +272,12 @@ blockquote {
 
 .blockquote-reverse, blockquote.pull-right {
   border-right: 5px solid #db5031; }
+
+.inspiring-quote {
+  position: fixed;
+  margin: 0 5%;
+  width: 90%;
+  top: 45%; }
 
 kbd {
   -webkit-border-radius: 0px;
@@ -6732,6 +6738,10 @@ button.toast-close-button {
 /************************************
 17 - Custom Pages
 *************************************/
+header {
+  margin: 40px 5% 0 !important;
+  width: 90% !important; }
+
 .non-display {
   display: none; }
 
@@ -7008,6 +7018,11 @@ label {
 .tips h3 {
   margin-top: 0; }
 
+.page-signin {
+  position: fixed;
+  width: 100%;
+  bottom: 0%; }
+
 .page-signin .signin-header, .page-signup .signin-header, .page-forgot .signin-header {
   padding: 25px 0;
   background-color: #fff;
@@ -7098,7 +7113,7 @@ label {
   color: #fff;
   font-weight: bold;
   font-style: italic;
-  margin: 10px 0px;
+  margin: 10px 5px;
   display: inline-block; }
 
 .page-signin .auth-form a.create-account {
@@ -7344,6 +7359,9 @@ label {
   padding: 10px;
   color: #fff;
   text-transform: uppercase; }
+
+.auth-register #footer {
+  background-color: rgba(0, 0, 0, 0.5); }
 
 /************************************
 18 - Ajax loading

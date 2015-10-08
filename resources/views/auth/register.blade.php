@@ -1,5 +1,7 @@
 @extends('layouts.web')
 
+@section('html-class', 'auth-register')
+
 @section('content')
 
 <div class="page-signup">
@@ -209,5 +211,7 @@
 		</div>
 	</div>
 </div>
+<br>
+<br>
 
 @endsection

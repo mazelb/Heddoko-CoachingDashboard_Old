@@ -1,10 +1,13 @@
 @extends('layouts.web')
 
+@section('html-class', 'auth-login')
+
 @section('content')
 
-<h1 style="position:fixed;width:100%;top:50%;"><b>{{ Inspiring::quote() }}</b></h1>
+<!-- Quote -->
+<h1 class="inspiring-quote">{{ Inspiring::quote() }}</h1>
 
-<div class="page-signin" style="position:fixed;width:100%;bottom:-2%;">
+<div class="page-signin">
     <div class="main-body">
         <div class="container" style="margin-bottom:50px;">
 

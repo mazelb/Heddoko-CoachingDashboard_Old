@@ -121,19 +121,19 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html {
-  overflow: hidden;
+html.auth-login {
+    overflow: hidden;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  line-height: 1.42857;
-  color: #767676;
-  background-color: #f3f3f3;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.42857;
+    color: #767676;
+    background-color: #f3f3f3;
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
 }
 
 
@@ -255,6 +255,13 @@ blockquote {
 
 .blockquote-reverse, blockquote.pull-right {
   border-right: 5px solid $orange;
+}
+
+.inspiring-quote {
+    position: fixed;
+    margin: 0 5%;
+    width: 90%;
+    top: 45%;
 }
 
 kbd {
@@ -7050,6 +7057,11 @@ button.toast-close-button {
 17 - Custom Pages
 *************************************/
 
+header {
+    margin: 40px 5% 0 !important;
+    width: 90% !important;
+}
+
 .non-display {
   display: none;
 }
@@ -7375,6 +7387,12 @@ button.toast-close-button {
   margin-top: 0;
 }
 
+.page-signin {
+    position: fixed;
+    width: 100%;
+    bottom: 0%;
+}
+
 .page-signin .signin-header, .page-signup .signin-header, .page-forgot .signin-header {
   padding: 25px 0;
   background-color: #fff;
@@ -7471,7 +7489,7 @@ button.toast-close-button {
     color: #fff;
     font-weight: bold;
     font-style: italic;
-    margin: 10px 0px;
+    margin: 10px 5px;
     display: inline-block;
 }
 .page-signin .auth-form a.create-account {
@@ -7766,6 +7784,9 @@ button.toast-close-button {
     padding: 10px;
     color: #fff;
     text-transform: uppercase;
+}
+.auth-register #footer {
+    background-color: rgba(0, 0, 0, .5);
 }
 
 /************************************

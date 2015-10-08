@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js @yield('html-class', '')">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -20,9 +20,7 @@
 		</script>
     </head>
     <body>
-
 		<header>
-
 			<a class="nav-logo" href="/">
 				<img src="{{ URL::asset('images/logo/heddoko_logo.svg') }}" alt="Heddoko">
 			</a>
@@ -43,7 +41,6 @@
                     </a>
 				</p>
 			</div>
-
 		</header>
 
 		@yield('content')
@@ -51,7 +48,5 @@
 		<div id="footer" class="navbar-fixed-bottom text-center">
 			&copy; Copyright Heddoko
 		</div>
-
     </body>
-
 </html>
