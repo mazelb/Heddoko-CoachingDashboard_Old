@@ -49,8 +49,11 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: transparent; }
 
-html.auth-login {
+html {
   overflow: hidden; }
+
+html.auth-register {
+  overflow-y: scroll; }
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -3703,6 +3706,12 @@ fieldset[disabled] .btn-danger.active {
   left: 15px;
   bottom: 15px; }
 
+.btn-metro .btn-title {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  width: 140px; }
+
 .btn-metro-sm {
   width: 84px;
   height: 84px; }
@@ -6738,7 +6747,7 @@ button.toast-close-button {
 /************************************
 17 - Custom Pages
 *************************************/
-header {
+.auth-login header, .auth-register header {
   margin: 40px 5% 0 !important;
   width: 90% !important; }
 

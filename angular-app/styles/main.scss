@@ -121,8 +121,11 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-html.auth-login {
+html {
     overflow: hidden;
+}
+html.auth-register {
+    overflow-y: scroll;
 }
 
 body {
@@ -135,7 +138,6 @@ body {
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
 }
-
 
 ::selection {
   background: $orange;
@@ -3639,13 +3641,13 @@ $social-profiles: (
 }
 
 .btn-metro {
-  position: relative;
-  padding: 0;
-  border: 0;
-  width: 170px;
-  height: 170px;
-  font-size: 21px;
-  text-align: center;
+    position: relative;
+    padding: 0;
+    border: 0;
+    width: 170px;
+    height: 170px;
+    font-size: 21px;
+    text-align: center;
 }
 
 .btn-metro i {
@@ -3654,9 +3656,16 @@ $social-profiles: (
 }
 
 .btn-metro span {
-  position: absolute;
-  left: 15px;
-  bottom: 15px;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+}
+
+.btn-metro .btn-title {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    width: 140px;
 }
 
 .btn-metro-sm {
@@ -7057,7 +7066,7 @@ button.toast-close-button {
 17 - Custom Pages
 *************************************/
 
-header {
+.auth-login header, .auth-register header {
     margin: 40px 5% 0 !important;
     width: 90% !important;
 }
