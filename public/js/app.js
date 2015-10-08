@@ -13859,6 +13859,16 @@ angular.module('ngCookies', ['ng']).
  Initialize the Angular App
  **************************/
 
+// App revision. Used for versioning assets.
+var _appVersion = '0.2.7';
+
+// Constant indicating if we're in a development environment or not.
+var _appIsLocal = (window.location.hostname == 'localhost' ||
+                window.location.hostname.match(/.*\.local$/i)) ? true : false;
+
+// Constant used for asset versioning.
+var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
+
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
@@ -13867,46 +13877,47 @@ var app = angular.module("app", [
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover'
 ])
 
+// App constants.
+.constant('appVersion', _appVersion)
+.constant('isLocalEnvironment', _appIsLocal)
+.constant('assetVersion', _appAssetVersion)
+
 // Configures the application.
 .config(['$routeProvider',
-    function($routeProvider) {
+    function($routeProvider, assetVersion) {
 
-        // Cache-busting, used for development.
-        // TODO: use version from Rover.
-        // var version = Rover.assetVersion();
-        var version = Date.now();
-
-        // Routing.
+        // Landing page.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		})
 
         // Dashboard routes.
         .when("/dashboard", {
-			templateUrl: "/views/dashboard.html?" + version
+			templateUrl: "/views/dashboard-v2/groups.html?" + assetVersion,
+            controller: 'DashboardGroupsController'
 		})
         .when('/dashboard/:groupId', {
-            templateUrl: '/views/dashboard-v2/team.html?' + version,
-            controller: 'GroupController'
+            templateUrl: '/views/dashboard-v2/group.html?' + assetVersion,
+            controller: 'DashboardGroupController'
         })
         .when('/dashboard/:groupId/:memberId', {
-            templateUrl: '/views/dashboard-v2/member.html?' + version,
-            controller: 'MemberController'
+            templateUrl: '/views/dashboard-v2/member.html?' + assetVersion,
+            controller: 'DashboardMemberController'
         })
 
-
+        // Other routes.
         .when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html?" + version
+			templateUrl: "/views/movementsubmit.html?" + assetVersion
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html?" + version
+			templateUrl: "/views/fmstest.html?" + assetVersion
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html?" + version
+			templateUrl: "/views/fmsdata.html?" + assetVersion
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html?" + version
+			templateUrl: "/views/fmsresults.html?" + assetVersion
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html?" + version
+			templateUrl: "/views/movementscreen.html?" + assetVersion
 		}).when("/movements", {
-			templateUrl: "/views/movements.html?" + version
+			templateUrl: "/views/movements.html?" + assetVersion
 		}).otherwise({
 			redirectTo: "/404"
 		});
@@ -16486,14 +16497,14 @@ angular.module("app.ui.ctrls", []).controller("NotifyCtrl", ["$scope", "loggit",
   }
 ]);
 ;/**
- * @file    team.js
- * @brief   Team controller.
+ * @file    group.js
+ * @brief   Controller for the dashbord's group page.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller('GroupController', ['$scope', '$routeParams', 'Rover',
+.controller('DashboardGroupController', ['$scope', '$routeParams', 'Rover',
     function($scope, $routeParams, Rover) {
 
         $scope.params = $routeParams;
@@ -16502,15 +16513,15 @@ angular.module('app.controllers')
         $scope.$watch('params.groupId', function(newId, oldId)
         {
             // Performance check.
-            if (newId === 0 || newId === $scope.data.team.selected.id || $scope.data.team.list.length < 1) {
+            if (newId === 0 || newId === $scope.data.group.selected.id || $scope.data.group.list.length < 1) {
                 return;
             }
 
             // Find the group to be updated.
             var current, selected;
-            for (var i = 0; i < $scope.data.team.list.length; i++)
+            for (var i = 0; i < $scope.data.group.list.length; i++)
             {
-                current = $scope.data.team.list[i];
+                current = $scope.data.group.list[i];
 
                 if (current.id == newId) {
                     selected = current;
@@ -16520,7 +16531,7 @@ angular.module('app.controllers')
 
             if (selected) {
                 Rover.log('Selecting group #' + newId + '...');
-                $scope.data.team.selected = selected;
+                $scope.data.group.selected = selected;
             }
 
             else {
@@ -16530,36 +16541,56 @@ angular.module('app.controllers')
     }
 ]);
 ;/**
+ * @file    groups.js
+ * @brief   Controller for the dashboard's groups page.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
+
+        $scope.params = $routeParams;
+
+    }
+]);
+;/**
  * @brief This is the central controller which runs whenever the dashboard is loaded
  * It keeps an eye on local scope variables keeps them in sync with the local storage
  * It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
+ * @author Maxwell Mowbray (max@heddoko.com)
  * @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
  * @return void
  */
 angular.module('app.controllers')
 
-.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover) {
+.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion',
+    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion) {
 
         // Save an instance of the "rover" variable in the scope.
+        Rover.debug('MainController');
         $scope.Rover = Rover;
 
         // Tie the local scope to the user-namespaced sessionStorage.
+        Rover.debug('Setting up sessionStorage...');
         $scope.data = Rover.sessionStorage;
 
         // ...
-        $scope.data.team = $scope.data.team || {};
-        $scope.data.team.list = $scope.data.team.list || [];
-        $scope.data.team.selected = $scope.data.team.selected || {id: 0};
-        $scope.data.team.new = {
+        Rover.debug('Setting up group data...');
+        $scope.data.group = $scope.data.group || {};
+        $scope.data.group.list = $scope.data.group.list || [];
+        $scope.data.group.selected = $scope.data.group.selected || {id: 0};
+        $scope.data.group.new = {
 
         };
 
         // ...
-        $scope.data.athlete = $scope.data.athlete || {};
-        $scope.data.athlete.list = $scope.data.athlete.list || [];
-        $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
-        $scope.data.athlete.new = {
+        Rover.debug('Setting up member data...');
+        $scope.data.member = $scope.data.member || {};
+        $scope.data.member.list = $scope.data.member.list || [];
+        $scope.data.member.selected = $scope.data.member.selected || {id: 0};
+        $scope.data.member.new = {
             first_name: "",
             last_name: "",
             height: "",
@@ -16594,7 +16625,7 @@ angular.module('app.controllers')
                     $scope.data.new_team_form_data = null;
 
                     if (response.status === 200) {
-                        $scope.data.team.list = response.data;
+                        $scope.data.group.list = response.data;
                     }
 
                     loggit.logSuccess("New Team successfully created");
@@ -16610,15 +16641,15 @@ angular.module('app.controllers')
         // Submits the "new athlete" form.
         $scope.submitNewAthleteForm = function() {
 
-            Rover.log('submitNewAthleteForm');
+            Rover.debug('submitNewAthleteForm');
 
-            var athlete = $scope.data.athlete.new;
+            var athlete = $scope.data.member.new;
 
             // Format some variables.
-            athlete.team_id = $scope.data.team.selected.id;
+            athlete.team_id = $scope.data.group.selected.id;
             athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
             athlete.weight_cm = athlete.weight_lbs / 2.20462;
-            athlete.primary_sport = $scope.data.team.selected.sport_name;
+            athlete.primary_sport = $scope.data.group.selected.sport_name;
             athlete.primary_position = "";
             athlete.hand_leg_dominance = "";
             athlete.previous_injuries = "";
@@ -16632,7 +16663,7 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Reset "new athlete" form.
-                    $scope.data.athlete.new = {
+                    $scope.data.member.new = {
                         first_name: "",
                         last_name: "",
                         height: "",
@@ -16643,7 +16674,7 @@ angular.module('app.controllers')
                     };
 
                     if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
+                        $scope.data.member.list = response.data;
                     }
 
                     loggit.logSuccess("New Athlete successfully created");
@@ -16657,20 +16688,22 @@ angular.module('app.controllers')
         };
 
         // Populates the team list.
-        $scope.populateTeamList = function() {
+        $scope.populateGroupList = function() {
 
+            // Show loading animation.
+            Rover.debug('Populating group list...');
             Rover.addBackgroundProcess();
 
     		Teams.get().then(
                 function(response) {
 
         			if (response.status === 200) {
-                        $scope.data.team.list = response.data;
+                        $scope.data.group.list = response.data;
                     }
 
                     // Select a default team.
-                    if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
-                        $scope.data.team.selected = $scope.data.team.list[0];
+                    if ($scope.data.group.selected.id < 1 && $scope.data.group.list.length > 0) {
+                        $scope.data.group.selected = $scope.data.group.list[0];
                     }
 
                     Rover.doneBackgroundProcess();
@@ -16682,21 +16715,22 @@ angular.module('app.controllers')
         };
 
         // Populates the athlete list.
-        $scope.populateAthleteList = function() {
+        $scope.populateMemberList = function() {
 
-            // Show loading.
+            // Show loading animation.
+            Rover.debug('Populating member list...');
             Rover.addBackgroundProcess();
 
-    		Athletes.get($scope.data.team.selected.id).then(
+    		Athletes.get($scope.data.group.selected.id).then(
                 function(response) {
 
         			if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
+                        $scope.data.member.list = response.data;
                     }
 
                     // Select a default athlete.
-                    if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
-                        $scope.data.athlete.selected = $scope.data.athlete.list[0];
+                    if ($scope.data.member.selected.id < 1 && $scope.data.member.list.length > 0) {
+                        $scope.data.member.selected = $scope.data.member.list[0];
                     }
 
                     Rover.doneBackgroundProcess();
@@ -16707,59 +16741,61 @@ angular.module('app.controllers')
             );
         };
 
-        // Populate team list.
-    	if ($scope.data.team.list.length === 0) {
-    		$scope.populateTeamList();
+        // Populate group list.
+        Rover.debug('Checking group list on first load...');
+    	if ($scope.data.group.list.length === 0) {
+    		$scope.populateGroupList();
     	}
 
-        // Populate athlete list.
-    	if ($scope.data.athlete.list.length === 0) {
-    		$scope.populateAthleteList();
+        // Populate member list.
+        Rover.debug('Checking member list on first load...');
+    	if ($scope.data.member.list.length === 0) {
+    		$scope.populateMemberList();
     	}
 
         // Update the athlete list as the selected team is modified.
-        $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
+        $scope.$watch('data.group.selected', function(newGroup, oldGroup)
         {
             // Performance check.
-            if (newSelectedTeam === 0) {
+            if (newGroup === 0) {
                 return;
             }
 
             // Make sure we have an object.
-            if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+            if (typeof newGroup == 'number' || typeof newGroup == 'string')
             {
-                var teamId = Number(newSelectedTeam);
-                $.each($scope.data.team.list, function(index, team)
+                var id = Number(newGroup);
+                $.each($scope.data.group.list, function(group, team)
                 {
-                    if (team.id == teamId) {
-                        newSelectedTeam = team;
+                    if (group.id == id) {
+                        newGroup = group;
                     }
                 });
 
-                $scope.data.team.selected = newSelectedTeam;
+                $scope.data.group.selected = newGroup;
                 return;
             }
 
-            Rover.log('Selected team: ' + newSelectedTeam.id);
+            Rover.debug('Selected group: ' + newGroup.id);
 
-            // Reset the athletes list.
-            $scope.data.athlete.list = [];
-            $scope.data.athlete.selected = {id: 0};
+            // Reset members list.
+            $scope.data.member.list = [];
+            $scope.data.member.selected = {id: 0};
 
-            // Update the athletes list.
-    		$scope.populateAthleteList();
+            // Update members list.
+    		$scope.populateMemberList();
         }, true);
     }
 ]);
 ;/**
- * @file    team.js
- * @brief   Team controller.
+ * @file    member.js
+ * @brief   Controller for the dashboard's member page.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller('MemberController', ['$scope', '$routeParams', 'Rover',
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'Rover',
     function($scope, $routeParams, Rover) {
 
         // Update the selected team.
@@ -16770,15 +16806,15 @@ angular.module('app.controllers')
         $scope.$watch('params.memberId', function(newId, oldId)
         {
             // Performance check.
-            if (newId === 0 || newId === $scope.data.athlete.selected.id || $scope.data.athlete.list.length < 1) {
+            if (newId === 0 || newId === $scope.data.member.selected.id || $scope.data.member.list.length < 1) {
                 return;
             }
 
             // Find the requested member.
             var current, selected;
-            for (var i = 0; i < $scope.data.athlete.list.length; i++)
+            for (var i = 0; i < $scope.data.member.list.length; i++)
             {
-                current = $scope.data.athlete.list[i];
+                current = $scope.data.member.list[i];
 
                 if (current.id == newId) {
                     selected = current;
@@ -16788,7 +16824,7 @@ angular.module('app.controllers')
 
             if (selected) {
                 Rover.log('Selecting member #' + newId + '...');
-                $scope.data.athlete.selected = selected;
+                $scope.data.member.selected = selected;
             }
 
             else {
@@ -17478,175 +17514,7 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
     }
 
 }));
-/* jshint ignore:end */;/**
- * @file    rover.js
- * @brief   The rover service is used throughout the app and should be made available to other
- *          modules and controllers through dependency injection.
- * @author  Francis Amankrah (frank@heddoko.com)
- */
-angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
-
-    // Used to version the assets.
-    this.version = '0.2.6';
-
-    // Dev variables.
-    this.timestamp = Date.now();
-    this.isLocal = (window.location.hostname == 'localhost' ||
-                window.location.hostname.match(/.*\.local$/i)) ? true : false;
-
-    // User-specific hash. Used for user-specific data.
-    this.userHash = $('meta[name="user-hash"]').attr('content');
-
-    // Counts the # of requests being made, and displays the loading icon accordingly.
-    this.backgroundProcessCount = 0;
-    this.addBackgroundProcess = function() {
-
-        this.backgroundProcessCount++;
-        this.log('Background processes: ' + this.backgroundProcessCount);
-
-        // Show loading animation.
-        if (this.backgroundProcessCount === 1) {
-            this.showLoading();
-        }
-    }.bind(this);
-    this.doneBackgroundProcess = function() {
-
-        this.backgroundProcessCount--;
-        this.log('Background processes: ' + this.backgroundProcessCount);
-
-        // Remove loading animation.
-        if (this.backgroundProcessCount < 1) {
-            this.hideLoading();
-        }
-    }.bind(this);
-
-    // ...
-    this.browse = {
-
-        group: function(group) {
-            this.debug('Browsing to group #' + group.id);
-            $location.path('/dashboard/'+ group.id);
-        }.bind(this),
-
-        member: function(member) {
-            this.debug('Browsing to member #' + member.id);
-            $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
-        }.bind(this)
-    };
-
-    // Logs a message to the console.
-    this.log = function(msg) {
-        if (this.isLocal && console) {
-            console.log('Rover.log is deprecated...');
-            console.log(msg);
-        }
-    };
-    this.debug = function(msg) {
-        if (this.isLocal && console) {
-            console.log(msg);
-        }
-    };
-    this.error = function(msg) {
-        if (console) {
-            console.log(msg);
-        }
-    };
-
-    // Displays or hides the loading animation.
-    this.showLoading = function() {
-        $('.page-loading-overlay').removeClass("loaded");
-        $('.load_circle_wrapper').removeClass("loaded");
-    };
-    this.hideLoading = function() {
-        $('.page-loading-overlay').addClass("loaded");
-        $('.load_circle_wrapper').addClass("loaded");
-    };
-
-    // User-namespaced session storage object.
-    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-    this.sessionStorage = $sessionStorage[this.userHash];
-
-    // TODO: refactor.
-    this.assetVersion = function() {
-        return this.isLocal ? this.timestamp : this.version;
-    }.bind(this);
-
-    // Dev variable indicating if the app is currently in a local environment.
-
-    // return {
-    //
-    //     // Used to version the assets.
-    //     version: "0.2.5",
-    //
-    //     // Used to version the assets in local environment.
-    //     timestamp: Date.now(),
-    //
-    //     assetVersion: function() {
-    //         return this.isLocal ? this.timestamp : this.version;
-    //     },
-    //
-    //     // Displays or hides the loading animation.
-    //     showLoading: function() {
-    //         $('.page-loading-overlay').removeClass("loaded");
-    //         $('.load_circle_wrapper').removeClass("loaded");
-    //     },
-    //     hideLoading: function() {
-    //         $('.page-loading-overlay').addClass("loaded");
-    //         $('.load_circle_wrapper').addClass("loaded");
-    //     },
-    //
-    //     // Counts the # of requests being made, and displays the loading
-    //     // icon accordingly.
-    //     backgroundProcessCount: 0,
-    //     addBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount++;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Show loading animation.
-    //         if (this.backgroundProcessCount === 1) {
-    //             this.showLoading();
-    //         }
-    //     },
-    //     doneBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount--;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Remove loading animation.
-    //         if (this.backgroundProcessCount < 1) {
-    //             this.hideLoading();
-    //         }
-    //     },
-    //
-    //     // ...
-    //     browse:
-    //     {
-    //         team: function(team) {
-    //             Rover.log('Browse to team page: ' + team.id);
-    //         },
-    //
-    //         member: function(member) {
-    //             Rover.log('Browse to profile page: ' + member.id);
-    //         }
-    //     },
-    //
-    //     // Logs a message to the console.
-    //     log: function(msg) {
-    //         if (this.isLocal && console) {
-    //             console.log(msg);
-    //         }
-    //     },
-    //
-    //     userHash: hash,
-    //     sessionStorage: $sessionStorage[hash],
-    //
-    //     //
-    //     isLocal: (window.location.hostname == 'localhost' ||
-    //                 window.location.hostname.match(/.*\.local$/i)) ? true : false
-    // };
-});
-;
+/* jshint ignore:end */;
 /**************************
  App ui Services
 
@@ -17792,4 +17660,172 @@ angular.module('app.controllers')
 
 	return {movement_pages: movement_pages};
 
+});
+;/**
+ * @file    rover.js
+ * @brief   The rover service is used throughout the app and should be made available to other
+ *          modules and controllers through dependency injection.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ */
+angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
+
+    // Used to version the assets.
+    this.version = '0.2.6';
+
+    // Dev variables.
+    this.timestamp = Date.now();
+    this.isLocal = (window.location.hostname == 'localhost' ||
+                window.location.hostname.match(/.*\.local$/i)) ? true : false;
+
+    // User-specific hash. Used for user-specific data.
+    this.userHash = $('meta[name="user-hash"]').attr('content');
+
+    // Counts the # of requests being made, and displays the loading icon accordingly.
+    this.backgroundProcessCount = 0;
+    this.addBackgroundProcess = function() {
+
+        this.backgroundProcessCount++;
+        this.debug('Background processes: ' + this.backgroundProcessCount);
+
+        // Show loading animation.
+        if (this.backgroundProcessCount === 1) {
+            this.showLoading();
+        }
+    }.bind(this);
+    this.doneBackgroundProcess = function() {
+
+        this.backgroundProcessCount--;
+        this.debug('Background processes: ' + this.backgroundProcessCount);
+
+        // Remove loading animation.
+        if (this.backgroundProcessCount < 1) {
+            this.hideLoading();
+        }
+    }.bind(this);
+
+    // ...
+    this.browse = {
+
+        group: function(group) {
+            this.debug('Browsing to group #' + group.id);
+            $location.path('/dashboard/'+ group.id);
+        }.bind(this),
+
+        member: function(member) {
+            this.debug('Browsing to member #' + member.id);
+            $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
+        }.bind(this)
+    };
+
+    // Logs a message to the console.
+    this.log = function(msg) {
+        if (this.isLocal && console) {
+            console.log('Rover.log is deprecated...');
+            console.log(msg);
+        }
+    };
+    this.debug = function(msg) {
+        if (this.isLocal && console) {
+            console.log(msg);
+        }
+    };
+    this.error = function(msg) {
+        if (console) {
+            console.log(msg);
+        }
+    };
+
+    // Displays or hides the loading animation.
+    this.showLoading = function() {
+        $('.page-loading-overlay').removeClass("loaded");
+        $('.load_circle_wrapper').removeClass("loaded");
+    };
+    this.hideLoading = function() {
+        $('.page-loading-overlay').addClass("loaded");
+        $('.load_circle_wrapper').addClass("loaded");
+    };
+
+    // User-namespaced session storage object.
+    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
+    this.sessionStorage = $sessionStorage[this.userHash];
+
+    // TODO: refactor.
+    this.assetVersion = function() {
+        return this.isLocal ? this.timestamp : this.version;
+    }.bind(this);
+
+    // Dev variable indicating if the app is currently in a local environment.
+
+    // return {
+    //
+    //     // Used to version the assets.
+    //     version: "0.2.5",
+    //
+    //     // Used to version the assets in local environment.
+    //     timestamp: Date.now(),
+    //
+    //     assetVersion: function() {
+    //         return this.isLocal ? this.timestamp : this.version;
+    //     },
+    //
+    //     // Displays or hides the loading animation.
+    //     showLoading: function() {
+    //         $('.page-loading-overlay').removeClass("loaded");
+    //         $('.load_circle_wrapper').removeClass("loaded");
+    //     },
+    //     hideLoading: function() {
+    //         $('.page-loading-overlay').addClass("loaded");
+    //         $('.load_circle_wrapper').addClass("loaded");
+    //     },
+    //
+    //     // Counts the # of requests being made, and displays the loading
+    //     // icon accordingly.
+    //     backgroundProcessCount: 0,
+    //     addBackgroundProcess: function()
+    //     {
+    //         this.backgroundProcessCount++;
+    //         this.log('Background processes: ' + this.backgroundProcessCount);
+    //
+    //         // Show loading animation.
+    //         if (this.backgroundProcessCount === 1) {
+    //             this.showLoading();
+    //         }
+    //     },
+    //     doneBackgroundProcess: function()
+    //     {
+    //         this.backgroundProcessCount--;
+    //         this.log('Background processes: ' + this.backgroundProcessCount);
+    //
+    //         // Remove loading animation.
+    //         if (this.backgroundProcessCount < 1) {
+    //             this.hideLoading();
+    //         }
+    //     },
+    //
+    //     // ...
+    //     browse:
+    //     {
+    //         team: function(team) {
+    //             Rover.log('Browse to team page: ' + team.id);
+    //         },
+    //
+    //         member: function(member) {
+    //             Rover.log('Browse to profile page: ' + member.id);
+    //         }
+    //     },
+    //
+    //     // Logs a message to the console.
+    //     log: function(msg) {
+    //         if (this.isLocal && console) {
+    //             console.log(msg);
+    //         }
+    //     },
+    //
+    //     userHash: hash,
+    //     sessionStorage: $sessionStorage[hash],
+    //
+    //     //
+    //     isLocal: (window.location.hostname == 'localhost' ||
+    //                 window.location.hostname.match(/.*\.local$/i)) ? true : false
+    // };
 });

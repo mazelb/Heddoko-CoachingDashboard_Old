@@ -1,0 +1,27 @@
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <h2>Teams</h2>
+
+        <!-- List of groups -->
+        <div class="col-sm-12">
+            <div ng-hide="data.group.list.length > 0">
+                You don't have any teams yet! Create one below to get started.
+            </div>
+
+            <a
+                ng-repeat="group in data.group.list"
+                ng-click="Rover.browse.group(group)"
+                href="javascript:;"
+                class="btn btn-primary btn-metro">
+
+                <object
+                    style="pointer-events:none;"
+                    type="image/svg+xml"
+                    data="/images/sports/{{group.sport_id}}.svg" />
+
+                <span>{{group.name}}</span>
+            </a>
+        </div>
+    </div>
+</div>

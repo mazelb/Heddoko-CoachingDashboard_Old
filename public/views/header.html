@@ -1,7 +1,8 @@
 <header class="clearfix">
-
-	<div class="top-nav" ng-controller="MainController">
+	<div class="top-nav">
 		<ul class="nav-left list-unstyled">
+
+            <!-- Menu button (shows up in mobile views) -->
 			<li>
 				<div class="menu-button" toggle-off-canvas>
 					<span class="icon-bar"></span>
@@ -10,6 +11,8 @@
 				</div>
 
 			</li>
+
+            <!-- Menu button (shows up on desktop views) -->
 			<!-- <li>
 				<a href="#/" data-toggle-min-nav class="toggle-min">
                     <i class="fa fa-bars"></i>
@@ -19,8 +22,8 @@
             <!-- Spacer, to account for space lost by removing menu button -->
             <li style="display: block; width: 20px; height: 1px;"></li>
 
-            <!-- Team dropdown -->
-			<li ng-hide="data.team.list.length === 0">
+            <!-- Group dropdown -->
+			<li ng-hide="data.group.list.length === 0">
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
@@ -31,32 +34,32 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ data.team.selected.name +' ('+ data.team.selected.sport_name +')' }}
+                        {{ data.group.selected.name +' ('+ data.group.selected.sport_name +')' }}
                         <span class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
-                        <li ng-repeat="team in data.team.list">
-                            <a href="javascript:;" ng-click="data.team.selected = team">
-                                {{ team.name +' ('+ team.sport_name +')' }}
+                        <li ng-repeat="group in data.group.list">
+                            <a href="javascript:;" ng-click="Rover.browse.group(group)">
+                                {{ group.name +' ('+ group.sport_name +')' }}
                             </a>
                         </li>
                     </ul>
 
-                    <!-- Link to team page -->
+                    <!-- Link to group page -->
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browse.group(data.team.selected)">
+                        ng-click="Rover.browse.group(data.group.selected)">
 
-                        View {{ data.team.selected.name }}'s page
+                        View {{ data.group.selected.name }}'s page
                     </button>
                 </div>
             </li>
 
-            <!-- Athlete dropdown -->
-			<li ng-hide="data.athlete.list.length === 0">
+            <!-- Member dropdown -->
+			<li ng-hide="data.member.list.length === 0">
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
@@ -67,15 +70,15 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ data.athlete.selected.first_name +' '+ data.athlete.selected.last_name }}
+                        {{ data.member.selected.first_name +' '+ data.member.selected.last_name }}
                         <span class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
-                        <li ng-repeat="athlete in data.athlete.list">
-                            <a href="javascript:;" ng-click="data.athlete.selected = athlete">
-                                {{ athlete.first_name +' '+ athlete.last_name }}
+                        <li ng-repeat="member in data.member.list">
+                            <a href="javascript:;" ng-click="Rover.browse.member(member)">
+                                {{ member.first_name +' '+ member.last_name }}
                             </a>
                         </li>
                     </ul>
@@ -84,25 +87,20 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browse.member(data.athlete.selected)">
+                        ng-click="Rover.browse.member(data.member.selected)">
 
-                        View {{ data.athlete.selected.first_name }}'s profile
+                        View {{ data.member.selected.first_name }}'s profile
                     </button>
                 </div>
 			</li>
-
 		</ul>
 
 		<ul class="nav-right-button list-unstyled" style="float:right">
-
 			<li>
 				<a ng-click="endSession();" ng-href='/auth/logout' class="btn btn-logout">
 					LOGOUT &nbsp;&nbsp;<i class="fa fa-sign-out"></i>
 				</a>
 			</li>
-
 		</ul>
-
 	</div>
-
 </header>

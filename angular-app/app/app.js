@@ -3,6 +3,16 @@
  Initialize the Angular App
  **************************/
 
+// App revision. Used for versioning assets.
+var _appVersion = '0.2.7';
+
+// Constant indicating if we're in a development environment or not.
+var _appIsLocal = (window.location.hostname == 'localhost' ||
+                window.location.hostname.match(/.*\.local$/i)) ? true : false;
+
+// Constant used for asset versioning.
+var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
+
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
@@ -11,46 +21,47 @@ var app = angular.module("app", [
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover'
 ])
 
+// App constants.
+.constant('appVersion', _appVersion)
+.constant('isLocalEnvironment', _appIsLocal)
+.constant('assetVersion', _appAssetVersion)
+
 // Configures the application.
 .config(['$routeProvider',
-    function($routeProvider) {
+    function($routeProvider, assetVersion) {
 
-        // Cache-busting, used for development.
-        // TODO: use version from Rover.
-        // var version = Rover.assetVersion();
-        var version = Date.now();
-
-        // Routing.
+        // Landing page.
         return $routeProvider.when("/", {
 			redirectTo: "/dashboard"
 		})
 
         // Dashboard routes.
         .when("/dashboard", {
-			templateUrl: "/views/dashboard.html?" + version
+			templateUrl: "/views/dashboard-v2/groups.html?" + assetVersion,
+            controller: 'DashboardGroupsController'
 		})
         .when('/dashboard/:groupId', {
-            templateUrl: '/views/dashboard-v2/team.html?' + version,
-            controller: 'GroupController'
+            templateUrl: '/views/dashboard-v2/group.html?' + assetVersion,
+            controller: 'DashboardGroupController'
         })
         .when('/dashboard/:groupId/:memberId', {
-            templateUrl: '/views/dashboard-v2/member.html?' + version,
-            controller: 'MemberController'
+            templateUrl: '/views/dashboard-v2/member.html?' + assetVersion,
+            controller: 'DashboardMemberController'
         })
 
-
+        // Other routes.
         .when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html?" + version
+			templateUrl: "/views/movementsubmit.html?" + assetVersion
 		}).when("/fmstest", {
-			templateUrl: "/views/fmstest.html?" + version
+			templateUrl: "/views/fmstest.html?" + assetVersion
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html?" + version
+			templateUrl: "/views/fmsdata.html?" + assetVersion
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html?" + version
+			templateUrl: "/views/fmsresults.html?" + assetVersion
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html?" + version
+			templateUrl: "/views/movementscreen.html?" + assetVersion
 		}).when("/movements", {
-			templateUrl: "/views/movements.html?" + version
+			templateUrl: "/views/movements.html?" + assetVersion
 		}).otherwise({
 			redirectTo: "/404"
 		});

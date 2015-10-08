@@ -1,12 +1,12 @@
 /**
- * @file    team.js
- * @brief   Team controller.
+ * @file    member.js
+ * @brief   Controller for the dashboard's member page.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller('MemberController', ['$scope', '$routeParams', 'Rover',
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'Rover',
     function($scope, $routeParams, Rover) {
 
         // Update the selected team.
@@ -17,15 +17,15 @@ angular.module('app.controllers')
         $scope.$watch('params.memberId', function(newId, oldId)
         {
             // Performance check.
-            if (newId === 0 || newId === $scope.data.athlete.selected.id || $scope.data.athlete.list.length < 1) {
+            if (newId === 0 || newId === $scope.data.member.selected.id || $scope.data.member.list.length < 1) {
                 return;
             }
 
             // Find the requested member.
             var current, selected;
-            for (var i = 0; i < $scope.data.athlete.list.length; i++)
+            for (var i = 0; i < $scope.data.member.list.length; i++)
             {
-                current = $scope.data.athlete.list[i];
+                current = $scope.data.member.list[i];
 
                 if (current.id == newId) {
                     selected = current;
@@ -35,7 +35,7 @@ angular.module('app.controllers')
 
             if (selected) {
                 Rover.log('Selecting member #' + newId + '...');
-                $scope.data.athlete.selected = selected;
+                $scope.data.member.selected = selected;
             }
 
             else {

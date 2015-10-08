@@ -17,19 +17,14 @@
 
         <div>
             <div data-ng-cloak="" class="no-print">
-                <!-- Include a version # with the template for caching -->
-                <aside
-                    data-ng-include=" 'views/navigation.html?' + Rover.assetVersion() "
-                    id="nav-container">
+                <aside data-ng-include=" 'views/navigation.html?' + assetVersion " id="nav-container">
                 </aside>
             </div>
 
             <div class="view-container">
-
                 <div class="no-print">
-                    <!-- Include a version # with the template for caching -->
                     <section
-                        data-ng-include=" 'views/header.html?' + Rover.assetVersion() "
+                        data-ng-include=" 'views/header.html?' + assetVersion "
                         id="header"
                         class="top-header">
                     </section>
@@ -54,5 +49,6 @@
         </div>
 
         <script type="text/javascript" src="{{ asset('js/app.js?'. time()) }}"></script>
+        <!-- <script type="text/javascript" ng-src="js/app.js?@{{ assetVersion }}"></script> -->
     </body>
 </html>

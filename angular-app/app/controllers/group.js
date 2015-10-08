@@ -1,12 +1,12 @@
 /**
- * @file    team.js
- * @brief   Team controller.
+ * @file    group.js
+ * @brief   Controller for the dashbord's group page.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller('GroupController', ['$scope', '$routeParams', 'Rover',
+.controller('DashboardGroupController', ['$scope', '$routeParams', 'Rover',
     function($scope, $routeParams, Rover) {
 
         $scope.params = $routeParams;
@@ -15,15 +15,15 @@ angular.module('app.controllers')
         $scope.$watch('params.groupId', function(newId, oldId)
         {
             // Performance check.
-            if (newId === 0 || newId === $scope.data.team.selected.id || $scope.data.team.list.length < 1) {
+            if (newId === 0 || newId === $scope.data.group.selected.id || $scope.data.group.list.length < 1) {
                 return;
             }
 
             // Find the group to be updated.
             var current, selected;
-            for (var i = 0; i < $scope.data.team.list.length; i++)
+            for (var i = 0; i < $scope.data.group.list.length; i++)
             {
-                current = $scope.data.team.list[i];
+                current = $scope.data.group.list[i];
 
                 if (current.id == newId) {
                     selected = current;
@@ -33,7 +33,7 @@ angular.module('app.controllers')
 
             if (selected) {
                 Rover.log('Selecting group #' + newId + '...');
-                $scope.data.team.selected = selected;
+                $scope.data.group.selected = selected;
             }
 
             else {

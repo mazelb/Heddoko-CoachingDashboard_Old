@@ -1,0 +1,31 @@
+
+<!-- Header -->
+<div ng-include src="'views/dashboard-v2/partials/header.html?' + Rover.assetVersion()"></div>
+
+<div class="page page-dashboard" data-ng-controller="FMSFormController">
+
+    <!-- Breadcrumbs -->
+    <div ng-include src="'views/dashboard-v2/partials/breadcrumbs.html?' + Rover.assetVersion()"></div>
+
+    <!-- Dashboard contents -->
+
+    <section>
+    	<div class="row">
+    		<div class="col-sm-12">
+
+                <!-- List of groups -->
+                <div ng-include src="'views/dashboard-v2/groups-partials/groups.html?' + Rover.assetVersion()"></div>
+    		</div>
+    	</div>
+    </section>
+
+    <section>
+    	<div class="row">
+    		<div class="col-sm-6">
+
+                <!-- Add a group form -->
+                <div ng-include src="'views/dashboard-v2/groups-partials/form.html?' + Rover.assetVersion()"></div>
+    		</div>
+    	</div>
+    </section>
+</div>

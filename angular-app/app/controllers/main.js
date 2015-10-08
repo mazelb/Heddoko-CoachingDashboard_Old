@@ -2,33 +2,38 @@
  * @brief This is the central controller which runs whenever the dashboard is loaded
  * It keeps an eye on local scope variables keeps them in sync with the local storage
  * It also fetches the teams list when the page is loaded, and loads a team's athletes when the selected team changes
+ * @author Maxwell Mowbray (max@heddoko.com)
  * @param $scope and $sessionStorage (variables used by the view), Teams factory (for retrieving list of teams), TeamsAthletes factory (for retrieving athletes on a team)
  * @return void
  */
 angular.module('app.controllers')
 
-.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover) {
+.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion',
+    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion) {
 
         // Save an instance of the "rover" variable in the scope.
+        Rover.debug('MainController');
         $scope.Rover = Rover;
 
         // Tie the local scope to the user-namespaced sessionStorage.
+        Rover.debug('Setting up sessionStorage...');
         $scope.data = Rover.sessionStorage;
 
         // ...
-        $scope.data.team = $scope.data.team || {};
-        $scope.data.team.list = $scope.data.team.list || [];
-        $scope.data.team.selected = $scope.data.team.selected || {id: 0};
-        $scope.data.team.new = {
+        Rover.debug('Setting up group data...');
+        $scope.data.group = $scope.data.group || {};
+        $scope.data.group.list = $scope.data.group.list || [];
+        $scope.data.group.selected = $scope.data.group.selected || {id: 0};
+        $scope.data.group.new = {
 
         };
 
         // ...
-        $scope.data.athlete = $scope.data.athlete || {};
-        $scope.data.athlete.list = $scope.data.athlete.list || [];
-        $scope.data.athlete.selected = $scope.data.athlete.selected || {id: 0};
-        $scope.data.athlete.new = {
+        Rover.debug('Setting up member data...');
+        $scope.data.member = $scope.data.member || {};
+        $scope.data.member.list = $scope.data.member.list || [];
+        $scope.data.member.selected = $scope.data.member.selected || {id: 0};
+        $scope.data.member.new = {
             first_name: "",
             last_name: "",
             height: "",
@@ -63,7 +68,7 @@ angular.module('app.controllers')
                     $scope.data.new_team_form_data = null;
 
                     if (response.status === 200) {
-                        $scope.data.team.list = response.data;
+                        $scope.data.group.list = response.data;
                     }
 
                     loggit.logSuccess("New Team successfully created");
@@ -79,15 +84,15 @@ angular.module('app.controllers')
         // Submits the "new athlete" form.
         $scope.submitNewAthleteForm = function() {
 
-            Rover.log('submitNewAthleteForm');
+            Rover.debug('submitNewAthleteForm');
 
-            var athlete = $scope.data.athlete.new;
+            var athlete = $scope.data.member.new;
 
             // Format some variables.
-            athlete.team_id = $scope.data.team.selected.id;
+            athlete.team_id = $scope.data.group.selected.id;
             athlete.height_cm = (athlete.feet * 12 + athlete.inches) * 2.54;
             athlete.weight_cm = athlete.weight_lbs / 2.20462;
-            athlete.primary_sport = $scope.data.team.selected.sport_name;
+            athlete.primary_sport = $scope.data.group.selected.sport_name;
             athlete.primary_position = "";
             athlete.hand_leg_dominance = "";
             athlete.previous_injuries = "";
@@ -101,7 +106,7 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Reset "new athlete" form.
-                    $scope.data.athlete.new = {
+                    $scope.data.member.new = {
                         first_name: "",
                         last_name: "",
                         height: "",
@@ -112,7 +117,7 @@ angular.module('app.controllers')
                     };
 
                     if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
+                        $scope.data.member.list = response.data;
                     }
 
                     loggit.logSuccess("New Athlete successfully created");
@@ -126,20 +131,22 @@ angular.module('app.controllers')
         };
 
         // Populates the team list.
-        $scope.populateTeamList = function() {
+        $scope.populateGroupList = function() {
 
+            // Show loading animation.
+            Rover.debug('Populating group list...');
             Rover.addBackgroundProcess();
 
     		Teams.get().then(
                 function(response) {
 
         			if (response.status === 200) {
-                        $scope.data.team.list = response.data;
+                        $scope.data.group.list = response.data;
                     }
 
                     // Select a default team.
-                    if ($scope.data.team.selected.id < 1 && $scope.data.team.list.length > 0) {
-                        $scope.data.team.selected = $scope.data.team.list[0];
+                    if ($scope.data.group.selected.id < 1 && $scope.data.group.list.length > 0) {
+                        $scope.data.group.selected = $scope.data.group.list[0];
                     }
 
                     Rover.doneBackgroundProcess();
@@ -151,21 +158,22 @@ angular.module('app.controllers')
         };
 
         // Populates the athlete list.
-        $scope.populateAthleteList = function() {
+        $scope.populateMemberList = function() {
 
-            // Show loading.
+            // Show loading animation.
+            Rover.debug('Populating member list...');
             Rover.addBackgroundProcess();
 
-    		Athletes.get($scope.data.team.selected.id).then(
+    		Athletes.get($scope.data.group.selected.id).then(
                 function(response) {
 
         			if (response.status === 200) {
-                        $scope.data.athlete.list = response.data;
+                        $scope.data.member.list = response.data;
                     }
 
                     // Select a default athlete.
-                    if ($scope.data.athlete.selected.id < 1 && $scope.data.athlete.list.length > 0) {
-                        $scope.data.athlete.selected = $scope.data.athlete.list[0];
+                    if ($scope.data.member.selected.id < 1 && $scope.data.member.list.length > 0) {
+                        $scope.data.member.selected = $scope.data.member.list[0];
                     }
 
                     Rover.doneBackgroundProcess();
@@ -176,47 +184,49 @@ angular.module('app.controllers')
             );
         };
 
-        // Populate team list.
-    	if ($scope.data.team.list.length === 0) {
-    		$scope.populateTeamList();
+        // Populate group list.
+        Rover.debug('Checking group list on first load...');
+    	if ($scope.data.group.list.length === 0) {
+    		$scope.populateGroupList();
     	}
 
-        // Populate athlete list.
-    	if ($scope.data.athlete.list.length === 0) {
-    		$scope.populateAthleteList();
+        // Populate member list.
+        Rover.debug('Checking member list on first load...');
+    	if ($scope.data.member.list.length === 0) {
+    		$scope.populateMemberList();
     	}
 
         // Update the athlete list as the selected team is modified.
-        $scope.$watch('data.team.selected', function(newSelectedTeam, oldSelectedTeam)
+        $scope.$watch('data.group.selected', function(newGroup, oldGroup)
         {
             // Performance check.
-            if (newSelectedTeam === 0) {
+            if (newGroup === 0) {
                 return;
             }
 
             // Make sure we have an object.
-            if (typeof newSelectedTeam == 'number' || typeof newSelectedTeam == 'string')
+            if (typeof newGroup == 'number' || typeof newGroup == 'string')
             {
-                var teamId = Number(newSelectedTeam);
-                $.each($scope.data.team.list, function(index, team)
+                var id = Number(newGroup);
+                $.each($scope.data.group.list, function(group, team)
                 {
-                    if (team.id == teamId) {
-                        newSelectedTeam = team;
+                    if (group.id == id) {
+                        newGroup = group;
                     }
                 });
 
-                $scope.data.team.selected = newSelectedTeam;
+                $scope.data.group.selected = newGroup;
                 return;
             }
 
-            Rover.log('Selected team: ' + newSelectedTeam.id);
+            Rover.debug('Selected group: ' + newGroup.id);
 
-            // Reset the athletes list.
-            $scope.data.athlete.list = [];
-            $scope.data.athlete.selected = {id: 0};
+            // Reset members list.
+            $scope.data.member.list = [];
+            $scope.data.member.selected = {id: 0};
 
-            // Update the athletes list.
-    		$scope.populateAthleteList();
+            // Update members list.
+    		$scope.populateMemberList();
         }, true);
     }
 ]);

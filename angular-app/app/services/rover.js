@@ -22,7 +22,7 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     this.addBackgroundProcess = function() {
 
         this.backgroundProcessCount++;
-        this.log('Background processes: ' + this.backgroundProcessCount);
+        this.debug('Background processes: ' + this.backgroundProcessCount);
 
         // Show loading animation.
         if (this.backgroundProcessCount === 1) {
@@ -32,7 +32,7 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     this.doneBackgroundProcess = function() {
 
         this.backgroundProcessCount--;
-        this.log('Background processes: ' + this.backgroundProcessCount);
+        this.debug('Background processes: ' + this.backgroundProcessCount);
 
         // Remove loading animation.
         if (this.backgroundProcessCount < 1) {
