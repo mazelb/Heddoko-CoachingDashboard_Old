@@ -17703,8 +17703,8 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         }
     }.bind(this);
 
-    // ...
-    this.browse = {
+    // Shortcut to browse through app.
+    this.browseTo = {
 
         group: function(group) {
             this.debug('Browsing to group #' + group.id);
@@ -17716,6 +17716,7 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
             $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
         }.bind(this)
     };
+    this.browse = this.browseTo;
 
     // Logs a message to the console.
     this.log = function(msg) {

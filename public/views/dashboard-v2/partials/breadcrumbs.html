@@ -3,10 +3,14 @@
     <li>
         <a class="active" ng-click="current_dashboard_page=0">Teams</a>
     </li>
-    <li ng-show="current_dashboard_page > 0">
-        <a class="active" ng-click="current_dashboard_page=1">Athletes</a>
+    <li ng-show="params.groupId">
+        <a class="active" ng-click="Rover.browseTo.group(data.group.selected)">
+            {{ data.group.selected.name }}
+        </a>
     </li>
-    <li ng-show="current_dashboard_page > 1">
-        <a class="active" ng-click="current_dashboard_page=2">Profiles</a>
+    <li ng-show="params.memberId">
+        <a class="active" ng-click="Rover.browseTo.member(data.member.selected)">
+            {{ data.member.selected.first_name }}
+        </a>
     </li>
 </ol>
