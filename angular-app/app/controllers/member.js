@@ -34,7 +34,7 @@ angular.module('app.controllers')
             }
 
             if (selected) {
-                Rover.log('Selecting member #' + newId + '...');
+                Rover.debug('Selecting member #' + newId + '...');
                 $scope.data.member.selected = selected;
             }
 

@@ -13887,12 +13887,17 @@ var app = angular.module("app", [
     function($routeProvider, assetVersion) {
 
         // Landing page.
-        return $routeProvider.when("/", {
-			redirectTo: "/dashboard"
+        return $routeProvider.when('/', {
+			redirectTo: '/dashboard/list'
 		})
 
         // Dashboard routes.
-        .when("/dashboard", {
+        .when('/dashboard', {
+            redirectTo: '/dashboard/list'
+			// templateUrl: "/views/dashboard-v2/index.html?" + assetVersion,
+            // controller: 'DashboardIndexController'
+		})
+        .when('/dashboard/list', {
 			templateUrl: "/views/dashboard-v2/groups.html?" + assetVersion,
             controller: 'DashboardGroupsController'
 		})
@@ -14600,15 +14605,15 @@ angular.module("app.controllers", [])
     	$scope.waiting_server_response = false;
     	Rover.sessionStorage.selected_fms_form = null;
 
-    $scope.$watch('data.athlete.selected', function(new_selected_athlete_value) {
+    $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
 
       if (new_selected_athlete_value === null) {
         return;
       }
 
-      FMSForm.get($scope.data.athlete.selected.id)
+      FMSForm.get($scope.data.member.selected.id)
         .success(function(athletes_fms_forms_response) {
-          $scope.data.athlete.selected.fms_forms = athletes_fms_forms_response;
+          $scope.data.member.selected.fms_forms = athletes_fms_forms_response;
         })
         .error(function(error_msg) {
           console.log('error retrieving forms from the database' + error_msg);
@@ -14622,7 +14627,7 @@ angular.module("app.controllers", [])
 
     		console.debug(Rover.sessionStorage.fms_form_data);
 
-      FMSForm.create($scope.data.athlete.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
+      FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
 
     				console.log(updated_fms_form_data);
@@ -14630,7 +14635,7 @@ angular.module("app.controllers", [])
 
 
           Rover.sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
-          $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				loggit.logSuccess("FMS Form successfully submitted");
         })
@@ -14644,9 +14649,9 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-      FMSForm.update($scope.data.athlete.selected.id, Rover.sessionStorage.selected_fms_form)
+      FMSForm.update($scope.data.member.selected.id, Rover.sessionStorage.selected_fms_form)
         .success(function(updated_fms_form_data) {
-          $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				Rover.sessionStorage.show_fms_edit = false;
     				loggit.logSuccess("FMS Form successfully updated");
@@ -14706,7 +14711,7 @@ angular.module("app.controllers", [])
 
 	$scope.uploadMovements = function() {
 
-		Movements.upload($scope.data.athlete.selected.id, Rover.sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
+		Movements.upload($scope.data.member.selected.id, Rover.sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
 		.error(function(err_msg) {
 			loggit.logError('error uploading movements to server');
 			console.log(err_msg);
@@ -16613,7 +16618,7 @@ angular.module('app.controllers')
         // Submits the "new team" form.
         $scope.submitNewTeamForm = function() {
 
-            Rover.log('submitNewTeamForm');
+            Rover.debug('submitNewTeamForm');
 
             Rover.addBackgroundProcess();
 
@@ -17706,25 +17711,62 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     // Shortcut to browse through app.
     this.browseTo = {
 
-        group: function(group) {
-            this.debug('Browsing to group #' + group.id);
-            $location.path('/dashboard/'+ group.id);
+        // Dashboard index page.
+        dashboard: function() {
+            this.debug('Browsing to group dashboard index page.');
+            $location.path('/dashboard');
         }.bind(this),
 
+        // Group list page.
+        groups: function() {
+            this.debug('Browsing to group dashboard groups.');
+            $location.path('/dashboard/list');
+        }.bind(this),
+
+        // Group page.
+        group: function(group) {
+
+            var id = this.browseTo._getId(group);
+            this.debug('Browsing to group #' + id);
+            $location.path('/dashboard/'+ id);
+
+        }.bind(this),
+
+        // Member profile page.
         member: function(member) {
-            this.debug('Browsing to member #' + member.id);
-            $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
-        }.bind(this)
+
+            var id = this.browseTo._getId(member);
+            this.debug('Browsing to member #' + id);
+            $location.path('/dashboard/'+ this.sessionStorage.group.selected.id +'/'+ id);
+
+        }.bind(this),
+
+        // Retrieves the ID of an object.
+        _getId: function(obj) {
+            return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
+        }
     };
     this.browse = this.browseTo;
 
+    //
+    // Shortcuts to update the application state.
+    //
+
+    // Updates the selected group.
+    this.updateGroup = function(group) {
+        this.sessionStorage.group.selected = group;
+    }.bind(this);
+
+    // Updates the selected member.
+    this.updateMember = function(member) {
+        this.sessionStorage.member.selected = member;
+    }.bind(this);
+
+    //
+    // General helper methods.
+    //
+
     // Logs a message to the console.
-    this.log = function(msg) {
-        if (this.isLocal && console) {
-            console.log('Rover.log is deprecated...');
-            console.log(msg);
-        }
-    };
     this.debug = function(msg) {
         if (this.isLocal && console) {
             console.log(msg);
@@ -17754,79 +17796,4 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     this.assetVersion = function() {
         return this.isLocal ? this.timestamp : this.version;
     }.bind(this);
-
-    // Dev variable indicating if the app is currently in a local environment.
-
-    // return {
-    //
-    //     // Used to version the assets.
-    //     version: "0.2.5",
-    //
-    //     // Used to version the assets in local environment.
-    //     timestamp: Date.now(),
-    //
-    //     assetVersion: function() {
-    //         return this.isLocal ? this.timestamp : this.version;
-    //     },
-    //
-    //     // Displays or hides the loading animation.
-    //     showLoading: function() {
-    //         $('.page-loading-overlay').removeClass("loaded");
-    //         $('.load_circle_wrapper').removeClass("loaded");
-    //     },
-    //     hideLoading: function() {
-    //         $('.page-loading-overlay').addClass("loaded");
-    //         $('.load_circle_wrapper').addClass("loaded");
-    //     },
-    //
-    //     // Counts the # of requests being made, and displays the loading
-    //     // icon accordingly.
-    //     backgroundProcessCount: 0,
-    //     addBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount++;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Show loading animation.
-    //         if (this.backgroundProcessCount === 1) {
-    //             this.showLoading();
-    //         }
-    //     },
-    //     doneBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount--;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Remove loading animation.
-    //         if (this.backgroundProcessCount < 1) {
-    //             this.hideLoading();
-    //         }
-    //     },
-    //
-    //     // ...
-    //     browse:
-    //     {
-    //         team: function(team) {
-    //             Rover.log('Browse to team page: ' + team.id);
-    //         },
-    //
-    //         member: function(member) {
-    //             Rover.log('Browse to profile page: ' + member.id);
-    //         }
-    //     },
-    //
-    //     // Logs a message to the console.
-    //     log: function(msg) {
-    //         if (this.isLocal && console) {
-    //             console.log(msg);
-    //         }
-    //     },
-    //
-    //     userHash: hash,
-    //     sessionStorage: $sessionStorage[hash],
-    //
-    //     //
-    //     isLocal: (window.location.hostname == 'localhost' ||
-    //                 window.location.hostname.match(/.*\.local$/i)) ? true : false
-    // };
 });

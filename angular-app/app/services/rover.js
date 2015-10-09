@@ -6,9 +6,6 @@
  */
 angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
 
-    // Used to version the assets.
-    this.version = '0.2.6';
-
     // Dev variables.
     this.timestamp = Date.now();
     this.isLocal = (window.location.hostname == 'localhost' ||
@@ -43,25 +40,57 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     // Shortcut to browse through app.
     this.browseTo = {
 
-        group: function(group) {
-            this.debug('Browsing to group #' + group.id);
-            $location.path('/dashboard/'+ group.id);
+        // Dashboard index page.
+        dashboard: function() {
+            this.debug('Browsing to group dashboard index page.');
+            $location.path('/dashboard');
         }.bind(this),
 
+        // Group list page.
+        groups: function() {
+            this.debug('Browsing to group dashboard groups.');
+            $location.path('/dashboard/list');
+        }.bind(this),
+
+        // Group page.
+        group: function(group) {
+
+            var id = this.getId(group);
+            this.debug('Browsing to group #' + id);
+            $location.path('/dashboard/'+ id);
+
+        }.bind(this),
+
+        // Member profile page.
         member: function(member) {
-            this.debug('Browsing to member #' + member.id);
-            $location.path('/dashboard/'+ $route.current.params.groupId +'/'+ member.id);
+
+            var id = this.getId(member);
+            this.debug('Browsing to member #' + id);
+            $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
+
         }.bind(this)
     };
     this.browse = this.browseTo;
 
+    //
+    // Shortcuts to update the application state.
+    //
+
+    // Updates the selected group.
+    this.updateGroup = function(group) {
+        this.state.group.selected = group;
+    }.bind(this);
+
+    // Updates the selected member.
+    this.updateMember = function(member) {
+        this.state.member.selected = member;
+    }.bind(this);
+
+    //
+    // General helper methods.
+    //
+
     // Logs a message to the console.
-    this.log = function(msg) {
-        if (this.isLocal && console) {
-            console.log('Rover.log is deprecated...');
-            console.log(msg);
-        }
-    };
     this.debug = function(msg) {
         if (this.isLocal && console) {
             console.log(msg);
@@ -83,87 +112,13 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         $('.load_circle_wrapper').addClass("loaded");
     };
 
+    // Retrieves the ID of an object.
+    this.getId: function(obj) {
+        return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
+    };
+
     // User-namespaced session storage object.
     $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
     this.sessionStorage = $sessionStorage[this.userHash];
-
-    // TODO: refactor.
-    this.assetVersion = function() {
-        return this.isLocal ? this.timestamp : this.version;
-    }.bind(this);
-
-    // Dev variable indicating if the app is currently in a local environment.
-
-    // return {
-    //
-    //     // Used to version the assets.
-    //     version: "0.2.5",
-    //
-    //     // Used to version the assets in local environment.
-    //     timestamp: Date.now(),
-    //
-    //     assetVersion: function() {
-    //         return this.isLocal ? this.timestamp : this.version;
-    //     },
-    //
-    //     // Displays or hides the loading animation.
-    //     showLoading: function() {
-    //         $('.page-loading-overlay').removeClass("loaded");
-    //         $('.load_circle_wrapper').removeClass("loaded");
-    //     },
-    //     hideLoading: function() {
-    //         $('.page-loading-overlay').addClass("loaded");
-    //         $('.load_circle_wrapper').addClass("loaded");
-    //     },
-    //
-    //     // Counts the # of requests being made, and displays the loading
-    //     // icon accordingly.
-    //     backgroundProcessCount: 0,
-    //     addBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount++;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Show loading animation.
-    //         if (this.backgroundProcessCount === 1) {
-    //             this.showLoading();
-    //         }
-    //     },
-    //     doneBackgroundProcess: function()
-    //     {
-    //         this.backgroundProcessCount--;
-    //         this.log('Background processes: ' + this.backgroundProcessCount);
-    //
-    //         // Remove loading animation.
-    //         if (this.backgroundProcessCount < 1) {
-    //             this.hideLoading();
-    //         }
-    //     },
-    //
-    //     // ...
-    //     browse:
-    //     {
-    //         team: function(team) {
-    //             Rover.log('Browse to team page: ' + team.id);
-    //         },
-    //
-    //         member: function(member) {
-    //             Rover.log('Browse to profile page: ' + member.id);
-    //         }
-    //     },
-    //
-    //     // Logs a message to the console.
-    //     log: function(msg) {
-    //         if (this.isLocal && console) {
-    //             console.log(msg);
-    //         }
-    //     },
-    //
-    //     userHash: hash,
-    //     sessionStorage: $sessionStorage[hash],
-    //
-    //     //
-    //     isLocal: (window.location.hostname == 'localhost' ||
-    //                 window.location.hostname.match(/.*\.local$/i)) ? true : false
-    // };
+    this.state = $sessionStorage[this.userHash];
 });

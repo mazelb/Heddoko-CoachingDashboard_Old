@@ -18,9 +18,9 @@
 							<h3>
 								Athlete
 							</h3>
-							<select ng-model="data.athlete.selected"
-									ng-selected="data.athlete.selected"
-									ng-options="athlete.first_name for athlete in data.athlete.list track by athlete.id" >
+							<select ng-model="data.member.selected"
+									ng-selected="data.member.selected"
+									ng-options="member.first_name for member in data.member.list track by member.id" >
 							</select>
 						</div>
 						<div class="panel-body col-sm-8 ng-scope">
@@ -46,9 +46,9 @@
 
 					</div>
 
-					<div ng-show="data.athlete.selected == null">Select an athlete under 'Dashboard' in the sidebar before viewing historical FMS data</div>
+					<div ng-show="data.member.selected == null">Select an athlete under 'Dashboard' in the sidebar before viewing historical FMS data</div>
 
-					<div ng-hide="data.athlete.selected == null" class="panel-body ng-scope">
+					<div ng-hide="data.member.selected == null" class="panel-body ng-scope">
 						<table class="table">
 							<thead>
 								<tr>
@@ -62,9 +62,9 @@
 							<tbody>
 
 								<tr
-                                    ng-repeat="fmsform in data.athlete.selected.fms_forms track by fmsform.id"
+                                    ng-repeat="fmsform in data.member.selected.fms_forms track by fmsform.id"
                                     ng-click="fmsdisplay(fmsform)">
-                                    
+
 									<td>{{$index + 1}}</td>
 									<td>{{fmsform.created_at}}</td>
 									<td>
@@ -79,7 +79,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div ng-show="data.athlete.selected.fms_forms.length == 0">0 FMS Forms found</div>
+					<div ng-show="data.member.selected.fms_forms.length == 0">0 FMS Forms found</div>
 				</div>
 			</div>
 		</div>

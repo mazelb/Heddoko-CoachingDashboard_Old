@@ -31,12 +31,17 @@ var app = angular.module("app", [
     function($routeProvider, assetVersion) {
 
         // Landing page.
-        return $routeProvider.when("/", {
-			redirectTo: "/dashboard"
+        return $routeProvider.when('/', {
+			redirectTo: '/dashboard/list'
 		})
 
         // Dashboard routes.
-        .when("/dashboard", {
+        .when('/dashboard', {
+            redirectTo: '/dashboard/list'
+			// templateUrl: "/views/dashboard-v2/index.html?" + assetVersion,
+            // controller: 'DashboardIndexController'
+		})
+        .when('/dashboard/list', {
 			templateUrl: "/views/dashboard-v2/groups.html?" + assetVersion,
             controller: 'DashboardGroupsController'
 		})

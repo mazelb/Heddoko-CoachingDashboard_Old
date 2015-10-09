@@ -8,24 +8,19 @@
 </header>
 
 <div class="page page-dashboard">
-
 	<section>
 		<div class="row">
-
 			<div class="col-sm-12">
-
 				<div class="panel panel-default">
-
 					<div class="panel-body">
-
 						<div class="text-left col-sm-6">
 							<h2>
 								Athlete
 							</h2>
 
-							<select ng-model="data.athlete.selected"
-									ng-selected="data.athlete.selected"
-									ng-options="athlete.first_name for athlete in data.athlete.list track by athlete.id" >
+							<select ng-model="data.member.selected"
+									ng-selected="data.member.selected"
+									ng-options="member.first_name for member in data.member.list track by member.id" >
 							</select>
 						</div>
 
@@ -34,9 +29,7 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
-
 		</div>
 	</section>
 
@@ -49,11 +42,11 @@
 						<h2>
 							Submit Movement Data
 						</h2>
-						<div ng-show="data.athlete.selected == null">
+						<div ng-show="data.member.selected == null">
                             Select an athlete under 'Dashboard' in the sidebar before submitting Movement Data
                         </div>
 
-						<div ng-hide="data.athlete.selected == null" class="col-sm-6" data-ng-controller="SportsController">
+						<div ng-hide="data.member.selected == null" class="col-sm-6" data-ng-controller="SportsController">
 							<div class="form-group">
 								<label for="sportChoice" class="col-sm-4 control-label">Choose Sport</label>
 								<select id="sportChoice"
@@ -95,7 +88,7 @@
 									<h3>Summary</h3>
 
 									<ul class="list-unstyled">
-										<li>Player <b class="pull-right">{{data.athlete.selected.first_name}} {{data.athlete.selected.last_name}}</b></li>
+										<li>Player <b class="pull-right">{{data.member.selected.first_name}} {{data.member.selected.last_name}}</b></li>
 										<li>Category <b class="pull-right">{{data.selected_sport.name}}</b></li>
 										<li>Movement <b class="pull-right">{{data.selected_sport_movement.name}}</b></li>
 										<li>Suit No. <b class="pull-right">{{}}</b></li>
@@ -137,18 +130,10 @@
 									</div>
 								</div>
 							</form>
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
 	</section>
-
-
-
-
-
 </div>

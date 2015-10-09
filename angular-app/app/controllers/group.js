@@ -32,7 +32,7 @@ angular.module('app.controllers')
             }
 
             if (selected) {
-                Rover.log('Selecting group #' + newId + '...');
+                Rover.debug('Selecting group #' + newId + '...');
                 $scope.data.group.selected = selected;
             }
 

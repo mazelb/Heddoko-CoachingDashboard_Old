@@ -54,15 +54,15 @@ angular.module("app.controllers", [])
     	$scope.waiting_server_response = false;
     	Rover.sessionStorage.selected_fms_form = null;
 
-    $scope.$watch('data.athlete.selected', function(new_selected_athlete_value) {
+    $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
 
       if (new_selected_athlete_value === null) {
         return;
       }
 
-      FMSForm.get($scope.data.athlete.selected.id)
+      FMSForm.get($scope.data.member.selected.id)
         .success(function(athletes_fms_forms_response) {
-          $scope.data.athlete.selected.fms_forms = athletes_fms_forms_response;
+          $scope.data.member.selected.fms_forms = athletes_fms_forms_response;
         })
         .error(function(error_msg) {
           console.log('error retrieving forms from the database' + error_msg);
@@ -76,7 +76,7 @@ angular.module("app.controllers", [])
 
     		console.debug(Rover.sessionStorage.fms_form_data);
 
-      FMSForm.create($scope.data.athlete.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
+      FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
 
     				console.log(updated_fms_form_data);
@@ -84,7 +84,7 @@ angular.module("app.controllers", [])
 
 
           Rover.sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
-          $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				loggit.logSuccess("FMS Form successfully submitted");
         })
@@ -98,9 +98,9 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-      FMSForm.update($scope.data.athlete.selected.id, Rover.sessionStorage.selected_fms_form)
+      FMSForm.update($scope.data.member.selected.id, Rover.sessionStorage.selected_fms_form)
         .success(function(updated_fms_form_data) {
-          $scope.data.athlete.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				Rover.sessionStorage.show_fms_edit = false;
     				loggit.logSuccess("FMS Form successfully updated");
@@ -160,7 +160,7 @@ angular.module("app.controllers", [])
 
 	$scope.uploadMovements = function() {
 
-		Movements.upload($scope.data.athlete.selected.id, Rover.sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
+		Movements.upload($scope.data.member.selected.id, Rover.sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
 		.error(function(err_msg) {
 			loggit.logError('error uploading movements to server');
 			console.log(err_msg);

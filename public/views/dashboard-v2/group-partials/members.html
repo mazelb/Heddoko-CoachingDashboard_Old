@@ -9,7 +9,8 @@
 
         <div class="col-sm-12">
             <div ng-hide="data.member.list.length > 1">
-                The <b>{{ <data class="group"></data>.selected.name }}</b> team does not have any athletes yet. Add one below to get started!
+                The <b>{{ <data class="group"></data>.selected.name }}</b> team does not have any
+                athletes yet. Add one below to get started!
             </div>
 
             <!-- List of members -->
@@ -17,9 +18,9 @@
                 href="javascript:;"
                 class="btn btn-primary btn-metro"
                 ng-repeat="member in data.member.list"
-                ng-click="Rover.browse.member(member)">
+                ng-click="Rover.browseTo.member(member)">
 
-                <div class="btn-title">{{ member.first_name }} *</div>
+                <div class="btn-title">{{ member.first_name }}</div>
             </a>
         </div>
     </div>

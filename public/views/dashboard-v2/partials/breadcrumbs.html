@@ -1,15 +1,17 @@
 
 <ol class="breadcrumb-alt">
     <li>
-        <a class="active" ng-click="current_dashboard_page=0">Teams</a>
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.groups()">
+            Teams
+        </a>
     </li>
     <li ng-show="params.groupId">
-        <a class="active" ng-click="Rover.browseTo.group(data.group.selected)">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.group(data.group.selected)">
             {{ data.group.selected.name }}
         </a>
     </li>
     <li ng-show="params.memberId">
-        <a class="active" ng-click="Rover.browseTo.member(data.member.selected)">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.member(data.member.selected)">
             {{ data.member.selected.first_name }}
         </a>
     </li>

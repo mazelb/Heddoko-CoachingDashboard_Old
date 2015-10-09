@@ -41,7 +41,7 @@
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
                         <li ng-repeat="group in data.group.list">
-                            <a href="javascript:;" ng-click="Rover.browse.group(group)">
+                            <a href="javascript:;" ng-click="Rover.state.group.selected = group">
                                 {{ group.name +' ('+ group.sport_name +')' }}
                             </a>
                         </li>
@@ -51,7 +51,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browse.group(data.group.selected)">
+                        ng-click="Rover.browseTo.group(data.group.selected)">
 
                         View {{ data.group.selected.name }}'s page
                     </button>
@@ -77,7 +77,7 @@
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
                         <li ng-repeat="member in data.member.list">
-                            <a href="javascript:;" ng-click="Rover.browse.member(member)">
+                            <a href="javascript:;" ng-click="Rover.state.member.selected = member">
                                 {{ member.first_name +' '+ member.last_name }}
                             </a>
                         </li>
@@ -87,7 +87,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browse.member(data.member.selected)">
+                        ng-click="Rover.browseTo.member(data.member.selected)">
 
                         View {{ data.member.selected.first_name }}'s profile
                     </button>

@@ -16,10 +16,9 @@ angular.module('app.controllers')
         $scope.Rover = Rover;
 
         // Tie the local scope to the user-namespaced sessionStorage.
-        Rover.debug('Setting up sessionStorage...');
-        $scope.data = Rover.sessionStorage;
+        $scope.data = Rover.state;
 
-        // ...
+        // Set up the group namespace.
         Rover.debug('Setting up group data...');
         $scope.data.group = $scope.data.group || {};
         $scope.data.group.list = $scope.data.group.list || [];
@@ -28,7 +27,7 @@ angular.module('app.controllers')
 
         };
 
-        // ...
+        // Set up the member namespace.
         Rover.debug('Setting up member data...');
         $scope.data.member = $scope.data.member || {};
         $scope.data.member.list = $scope.data.member.list || [];
@@ -43,21 +42,10 @@ angular.module('app.controllers')
             age: ""
         };
 
-        // Notifies user that app is working in the background.
-        $scope.showLoading = function() {
-            $('.page-loading-overlay').removeClass("loaded");
-            $('.load_circle_wrapper').removeClass("loaded");
-        };
-        $scope.hideLoading = function() {
-            $('.page-loading-overlay').addClass("loaded");
-            $('.load_circle_wrapper').addClass("loaded");
-        };
-
         // Submits the "new team" form.
         $scope.submitNewTeamForm = function() {
 
-            Rover.log('submitNewTeamForm');
-
+            Rover.debug('submitNewTeamForm');
             Rover.addBackgroundProcess();
 
             $scope.data.new_team_form_data.sport_id = $scope.data.selected_sport.id;
@@ -183,6 +171,10 @@ angular.module('app.controllers')
                 }
             );
         };
+
+        //
+        // ...
+        //
 
         // Populate group list.
         Rover.debug('Checking group list on first load...');

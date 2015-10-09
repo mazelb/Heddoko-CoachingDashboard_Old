@@ -11,21 +11,17 @@
 
 	<section>
 		<div class="row">
-
 			<div class="col-sm-12">
-
 				<div class="panel panel-default">
-
 					<div class="panel-body">
-
 						<div class="text-left col-sm-6">
 							<h3>
 								Athlete
 							</h3>
 
-							<select ng-model="data.athlete.selected"
-									ng-selected="data.athlete.selected"
-									ng-options="athlete.first_name for athlete in data.athlete.list track by athlete.id" >
+							<select ng-model="data.member.selected"
+									ng-selected="data.member.selected"
+									ng-options="member.first_name for member in data.member.list track by member.id" >
 							</select>
 						</div>
 
@@ -57,9 +53,11 @@
 
 						<div class="panel-body col-sm-12 ng-scope">
 
-							<div ng-show="data.athlete.selected == null">Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form</div>
+							<div ng-show="data.member.selected == null">
+                                Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form
+                            </div>
 
-							<form ng-submit="submitFMSForm()" ng-hide="data.athlete.selected == null">
+							<form ng-submit="submitFMSForm()" ng-hide="data.member.selected == null">
 								<div class="row">
 									<div class="col-sm-3">
 										Deep Squat
