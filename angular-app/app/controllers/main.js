@@ -153,6 +153,8 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
     		Athletes.get($scope.data.group.selected.id).then(
+
+                // On success.
                 function(response) {
 
         			if (response.status === 200) {
@@ -166,6 +168,8 @@ angular.module('app.controllers')
 
                     Rover.doneBackgroundProcess();
     		    },
+
+                // On error.
                 function(response) {
                     Rover.doneBackgroundProcess();
                 }

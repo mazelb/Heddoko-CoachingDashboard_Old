@@ -1,9 +1,9 @@
 <header class="page-main-header">
     <div class="row">
-			<div class="col-sm-6">
-				<h4>Movement Data</h4>
-				<p>Choose player and category of movement</p>
-			</div>
+		<div class="col-sm-6">
+			<h4>Movement Data</h4>
+			<p>Choose player and category of movement</p>
+		</div>
     </div>
 </header>
 
@@ -18,9 +18,10 @@
 								Athlete
 							</h2>
 
-							<select ng-model="data.member.selected"
-									ng-selected="data.member.selected"
-									ng-options="member.first_name for member in data.member.list track by member.id" >
+							<select
+                                ng-model="data.member.selected"
+								ng-selected="data.member.selected"
+								ng-options="(member.first_name + ' ' + member.last_name) for member in data.member.list track by member.id">
 							</select>
 						</div>
 
@@ -34,7 +35,6 @@
 	</section>
 
 	<section>
-
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-default">
@@ -67,18 +67,18 @@
 
 								</div>-->
 
-								<a href="javascript:;" class="btn btn-primary btn-metro" ng-repeat="sport_movement in data.sport_movements" ng-click="data.selected_sport_movement = sport_movement;">
+								<a
+                                    href="javascript:;"
+                                    class="btn btn-primary btn-metro"
+                                    ng-repeat="sport_movement in data.sport_movements"
+                                    ng-click="data.selected_sport_movement = sport_movement;">
 									<!--<i class="fa fa-envelope"></i>-->
 									<span>{{sport_movement.name}}</span>
 								</a>
-
 							</div>
-
-
 						</div>
 
 						<div class="col-sm-6" ng-hide="data.selected_sport_movement == null">
-
 							<div class="row">
 								<div class="col-sm-4">
 									<!--picture here-->

@@ -113,7 +113,7 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     };
 
     // Retrieves the ID of an object.
-    this.getId: function(obj) {
+    this.getId = function(obj) {
         return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
     };
 

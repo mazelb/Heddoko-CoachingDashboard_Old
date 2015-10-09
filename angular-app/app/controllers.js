@@ -50,9 +50,9 @@ angular.module("app.controllers", [])
     	* @return void
     	*/
 
-    	Rover.sessionStorage.show_fms_edit = false;
+    	Rover.state.show_fms_edit = false;
     	$scope.waiting_server_response = false;
-    	Rover.sessionStorage.selected_fms_form = null;
+    	Rover.state.selected_fms_form = null;
 
     $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
 
@@ -74,7 +74,7 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-    		console.debug(Rover.sessionStorage.fms_form_data);
+    		console.debug(Rover.state.fms_form_data);
 
       FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
         .success(function(updated_fms_form_data) {
@@ -83,7 +83,7 @@ angular.module("app.controllers", [])
 
 
 
-          Rover.sessionStorage.fms_form_data = {}; //reset the form data upon successful FMS form submission
+          Rover.state.fms_form_data = {}; //reset the form data upon successful FMS form submission
           $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
     				loggit.logSuccess("FMS Form successfully submitted");
@@ -98,11 +98,11 @@ angular.module("app.controllers", [])
 
     		$scope.waiting_server_response = true;
 
-      FMSForm.update($scope.data.member.selected.id, Rover.sessionStorage.selected_fms_form)
+      FMSForm.update($scope.data.member.selected.id, Rover.state.selected_fms_form)
         .success(function(updated_fms_form_data) {
           $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
     				$scope.waiting_server_response = false;
-    				Rover.sessionStorage.show_fms_edit = false;
+    				Rover.state.show_fms_edit = false;
     				loggit.logSuccess("FMS Form successfully updated");
         })
         .error(function() {
@@ -117,37 +117,6 @@ angular.module("app.controllers", [])
     }
 ])
 
-// SportsController
-.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'Rover',
-  function($scope, $sessionStorage, Sports, SportMovements, Rover) {
-
-		/**
-		* @brief The sports controller takes care of retrieving sports and movement types from the back-end
-		* @param $scope, Sports, and SportMovements
-		* @return void
-		*/
-
-    Sports.get() //retrieve the list of all sports from the back-end
-		.success(function(sports_response) {
-			Rover.sessionStorage.sports = sports_response;
-
-			if (Rover.sessionStorage.sports.length > 0) {
-				Rover.sessionStorage.selected_sport = Rover.sessionStorage.sports[0]; //select the first sport by default
-			}
-		});
-
-    $scope.$watch('data.selected_sport', function() {
-		Rover.sessionStorage.selected_sport_movement = Rover.sessionStorage.sport_movements = null;
-
-		SportMovements.get(Rover.sessionStorage.selected_sport.id)
-			.success(function(sports_movements_response) {
-				Rover.sessionStorage.sport_movements = sports_movements_response;
-			});
-
-    }, true);
-  }
-])
-
 // MovementController.
 .controller("MovementController", ["$scope", '$sessionStorage', 'Movements', "loggit", 'Rover',
   function($scope, $sessionStorage, Movements, loggit, Rover) {
@@ -160,13 +129,13 @@ angular.module("app.controllers", [])
 
 	$scope.uploadMovements = function() {
 
-		Movements.upload($scope.data.member.selected.id, Rover.sessionStorage.selected_sport_movement.id, $scope.data.new_movement_submission_data)
+		Movements.upload($scope.data.member.selected.id, Rover.state.selected_sport_movement.id, $scope.data.new_movement_submission_data)
 		.error(function(err_msg) {
 			loggit.logError('error uploading movements to server');
 			console.log(err_msg);
 		})
 		.success(function(succ_msg) {
-			Rover.sessionStorage.selected_sport_movement = Rover.sessionStorage.new_movement_submission_data = null;
+			Rover.state.selected_sport_movement = Rover.state.new_movement_submission_data = null;
 			loggit.logSuccess('movements succesfully uploaded to server');
 			console.log(succ_msg);
 		});
