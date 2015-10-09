@@ -9,7 +9,6 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</div>
-
 			</li>
 
             <!-- Menu button (shows up on desktop views) -->
@@ -21,6 +20,15 @@
 
             <!-- Spacer, to account for space lost by removing menu button -->
             <li style="display: block; width: 20px; height: 1px;"></li>
+
+            <!-- Settings page -->
+            <li class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-default" ng-click="Rover.browseTo.settings()">
+                        Settings &nbsp;&nbsp;<i class="fa fa-cog"></i>
+                    </button>
+                </div>
+            </li>
 
             <!-- Group dropdown -->
 			<li ng-hide="data.group.list.length === 0">
@@ -95,7 +103,8 @@
 			</li>
 		</ul>
 
-		<ul class="nav-right-button list-unstyled" style="float:right">
+        <!-- Log out -->
+		<ul class="nav-right-button list-unstyled pull-right">
 			<li>
 				<a ng-click="endSession();" ng-href='/auth/logout' class="btn btn-logout">
 					LOGOUT &nbsp;&nbsp;<i class="fa fa-sign-out"></i>

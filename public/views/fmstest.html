@@ -39,25 +39,20 @@
 		<div class="row">
 
 			<div class="col-sm-12" ng-hide="waiting_server_response">
-
 				<div class="panel panel-default">
-
 					<div class="panel-body">
-
 						<div class="text-left col-sm-6">
 							<h3>
 								Add FMS Test Scores
 							</h3>
-
 						</div>
 
 						<div class="panel-body col-sm-12 ng-scope">
-
-							<div ng-show="data.member.selected == null">
+							<div ng-show="data.member.selected.id < 1">
                                 Select an athlete under 'Dashboard' in the sidebar before submitting an FMS Form
                             </div>
 
-							<form ng-submit="submitFMSForm()" ng-hide="data.member.selected == null">
+							<form ng-submit="submitFMSForm()" ng-hide="data.member.selected.id < 1">
 								<div class="row">
 									<div class="col-sm-3">
 										Deep Squat

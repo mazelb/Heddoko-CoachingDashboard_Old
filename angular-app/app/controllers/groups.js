@@ -6,10 +6,12 @@
  */
 angular.module('app.controllers')
 
-.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
+.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover', 'assetVersion',
+    function($scope, $routeParams, Rover, assetVersion) {
 
         $scope.params = $routeParams;
+
+        $scope.assetVersion = assetVersion;
 
     }
 ]);

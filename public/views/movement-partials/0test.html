@@ -147,9 +147,5 @@
 
 <!-- Temp fix -->
 <div class="row" ng-show="data.current_movement_page.disabled">
-    <div class="col-sm-12">
-        <h1 style="text-align: center; color: #ccc;">
-            In Development
-        </h1>
-    </div>
+    <div ng-include=" 'views/placeholder.html?' + assetVersion "></div>
 </div>

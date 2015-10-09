@@ -27,7 +27,7 @@ var app = angular.module("app", [
 .constant('assetVersion', _appAssetVersion)
 
 // Configures the application.
-.config(['$routeProvider',
+.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
@@ -55,6 +55,9 @@ var app = angular.module("app", [
         })
 
         // Other routes.
+        .when("/settings", {
+			templateUrl: "/views/settings.html?" + assetVersion
+		})
         .when("/movementsubmit", {
 			templateUrl: "/views/movementsubmit.html?" + assetVersion
 		}).when("/fmstest", {

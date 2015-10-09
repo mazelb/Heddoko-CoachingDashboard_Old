@@ -40,6 +40,12 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     // Shortcut to browse through app.
     this.browseTo = {
 
+        // Settings page.
+        settings: function() {
+            this.debug('Browsing to settings page.');
+            $location.path('/settings');
+        }.bind(this),
+
         // Dashboard index page.
         dashboard: function() {
             this.debug('Browsing to group dashboard index page.');

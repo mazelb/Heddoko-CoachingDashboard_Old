@@ -13883,7 +13883,7 @@ var app = angular.module("app", [
 .constant('assetVersion', _appAssetVersion)
 
 // Configures the application.
-.config(['$routeProvider',
+.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
@@ -13911,6 +13911,9 @@ var app = angular.module("app", [
         })
 
         // Other routes.
+        .when("/settings", {
+			templateUrl: "/views/settings.html?" + assetVersion
+		})
         .when("/movementsubmit", {
 			templateUrl: "/views/movementsubmit.html?" + assetVersion
 		}).when("/fmstest", {
@@ -14586,85 +14589,6 @@ angular.module("app.controllers", [])
           $scope.current_dashboard_page++;
         }
       };
-    }
-])
-
-// FMSFormController
-.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", 'Rover',
-    function($scope, $sessionStorage, FMSForm, loggit, Rover) {
-
-    	/**
-    	* @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
-    	* It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
-    	* Furthermore, it takes care of sending new FMS form data to the server
-    	* @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
-    	* @return void
-    	*/
-
-    	Rover.state.show_fms_edit = false;
-    	$scope.waiting_server_response = false;
-    	Rover.state.selected_fms_form = null;
-
-    $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
-
-      if (new_selected_athlete_value === null) {
-        return;
-      }
-
-      FMSForm.get($scope.data.member.selected.id)
-        .success(function(athletes_fms_forms_response) {
-          $scope.data.member.selected.fms_forms = athletes_fms_forms_response;
-        })
-        .error(function(error_msg) {
-          console.log('error retrieving forms from the database' + error_msg);
-        });
-
-    }, true);
-
-    $scope.submitFMSForm = function() {
-
-    		$scope.waiting_server_response = true;
-
-    		console.debug(Rover.state.fms_form_data);
-
-      FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
-        .success(function(updated_fms_form_data) {
-
-    				console.log(updated_fms_form_data);
-
-
-
-          Rover.state.fms_form_data = {}; //reset the form data upon successful FMS form submission
-          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-    				$scope.waiting_server_response = false;
-    				loggit.logSuccess("FMS Form successfully submitted");
-        })
-        .error(function(err) {
-    		loggit.logError("There was an error submitting the FMS Form");
-    		$scope.waiting_server_response = false;
-        });
-    };
-
-    $scope.updateFMS = function() {
-
-    		$scope.waiting_server_response = true;
-
-      FMSForm.update($scope.data.member.selected.id, Rover.state.selected_fms_form)
-        .success(function(updated_fms_form_data) {
-          $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-    				$scope.waiting_server_response = false;
-    				Rover.state.show_fms_edit = false;
-    				loggit.logSuccess("FMS Form successfully updated");
-        })
-        .error(function() {
-    		loggit.logError("There was an error while attempting to update the FMS Form");
-    		$scope.waiting_server_response = false;
-        });
-    };
-
-    $scope.fmsdisplay = function(form) {
-      $scope.data.selected_fms_form = form;
-    };
     }
 ])
 
@@ -16471,6 +16395,86 @@ angular.module("app.ui.ctrls", []).controller("NotifyCtrl", ["$scope", "loggit",
   }
 ]);
 ;/**
+ * @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
+ * It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
+ * Furthermore, it takes care of sending new FMS form data to the server
+ * @author Maxwell Mowbray (max@heddoko.com)
+ * @param $scope and FMSForm, the factory which allows for the sending and retrieving of FMS forms
+ * @return void
+ */
+angular.module('app.controllers')
+
+// FMSFormController
+.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", 'Rover', 'assetVersion',
+    function($scope, $sessionStorage, FMSForm, loggit, Rover, assetVersion) {
+
+    	Rover.state.show_fms_edit = false;
+    	$scope.waiting_server_response = false;
+    	Rover.state.selected_fms_form = null;
+
+        $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
+
+          if (new_selected_athlete_value === null) {
+            return;
+          }
+
+          FMSForm.get($scope.data.member.selected.id)
+            .success(function(athletes_fms_forms_response) {
+              $scope.data.member.selected.fms_forms = athletes_fms_forms_response;
+            })
+            .error(function(error_msg) {
+              console.log('error retrieving forms from the database' + error_msg);
+            });
+
+        }, true);
+
+        $scope.submitFMSForm = function() {
+
+        		$scope.waiting_server_response = true;
+
+        		console.debug(Rover.state.fms_form_data);
+
+          FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
+            .success(function(updated_fms_form_data) {
+
+        				console.log(updated_fms_form_data);
+
+
+
+              Rover.state.fms_form_data = {}; //reset the form data upon successful FMS form submission
+              $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+        				$scope.waiting_server_response = false;
+        				loggit.logSuccess("FMS Form successfully submitted");
+            })
+            .error(function(err) {
+        		loggit.logError("There was an error submitting the FMS Form");
+        		$scope.waiting_server_response = false;
+            });
+        };
+
+        $scope.updateFMS = function() {
+
+        		$scope.waiting_server_response = true;
+
+          FMSForm.update($scope.data.member.selected.id, Rover.state.selected_fms_form)
+            .success(function(updated_fms_form_data) {
+              $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+        				$scope.waiting_server_response = false;
+        				Rover.state.show_fms_edit = false;
+        				loggit.logSuccess("FMS Form successfully updated");
+            })
+            .error(function() {
+        		loggit.logError("There was an error while attempting to update the FMS Form");
+        		$scope.waiting_server_response = false;
+            });
+        };
+
+        $scope.fmsdisplay = function(form) {
+          $scope.data.selected_fms_form = form;
+        };
+    }
+]);
+;/**
  * @file    group.js
  * @brief   Controller for the dashbord's group page.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -16522,10 +16526,12 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
+.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover', 'assetVersion',
+    function($scope, $routeParams, Rover, assetVersion) {
 
         $scope.params = $routeParams;
+
+        $scope.assetVersion = assetVersion;
 
     }
 ]);
@@ -16846,7 +16852,7 @@ angular.module('app.controllers')
 
         // Populate sports list.
         Rover.debug('Checking sports list on first load...');
-    	if (Rover.state.sports.length === 0) {
+    	if (!Rover.state.sports || Rover.state.sports.length === 0) {
     		$scope.populateSportsList();
     	}
 
@@ -17728,6 +17734,12 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
     // Shortcut to browse through app.
     this.browseTo = {
+
+        // Settings page.
+        settings: function() {
+            this.debug('Browsing to settings page.');
+            $location.path('/settings');
+        }.bind(this),
 
         // Dashboard index page.
         dashboard: function() {

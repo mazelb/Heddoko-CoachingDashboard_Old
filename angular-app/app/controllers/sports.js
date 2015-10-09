@@ -40,7 +40,7 @@ angular.module('app.controllers')
 
         // Populate sports list.
         Rover.debug('Checking sports list on first load...');
-    	if (Rover.state.sports.length === 0) {
+    	if (!Rover.state.sports || Rover.state.sports.length === 0) {
     		$scope.populateSportsList();
     	}
 
