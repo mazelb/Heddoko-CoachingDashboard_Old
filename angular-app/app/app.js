@@ -16,7 +16,9 @@ var app = angular.module("app", [
 // Defines some constants.
 var _appVersion = '0.2.7';  // TODO: is there a better place to define this?
 var _appIsLocal =
-    (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false;
+    (window.location.hostname == 'localhost' ||
+        window.location.hostname.match(/.*\.local$/i) ||
+        window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
 
 app.constant('appVersion', _appVersion)

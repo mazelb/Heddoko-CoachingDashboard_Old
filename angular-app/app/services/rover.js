@@ -8,8 +8,10 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
     // Dev variables.
     this.timestamp = Date.now();
-    this.isLocal = (window.location.hostname == 'localhost' ||
-                window.location.hostname.match(/.*\.local$/i)) ? true : false;
+    this.isLocal =
+        (window.location.hostname == 'localhost' ||
+            window.location.hostname.match(/.*\.local$/i) ||
+            window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
     // User-specific hash. Used for user-specific data.
     this.userHash = $('meta[name="user-hash"]').attr('content');
@@ -85,7 +87,7 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         path: function(path) {
             this.debug('Browsing to path: ' + path);
             $location.path(path);
-        }
+        }.bind(this)
     };
     this.browse = this.browseTo;
 

@@ -11,10 +11,13 @@
         <!-- Selected side -->
 		<div
             ng-show="fms.current.iterations.length > 0"
-            ng-include src="'views/fms/live/partials/test-iterations.html?' + assetVersion">
+            ng-include src="'views/fms/live/partials/iterations.html?' + assetVersion">
         </div>
 
-        <!-- Videos -->
+        <!-- Demo videos -->
         <div ng-include src="'views/fms/demo/partials/test-layout-emphasized.html?' + assetVersion"></div>
+
+        <!-- Trials -->
+        <div ng-include src="'views/fms/live/partials/test-trials.html?' + assetVersion"></div>
 	</div>
 </div>

@@ -624,7 +624,7 @@ pre {
 
 .movement-left-column {
   width: 200px;
-  height: 480px;
+  height: 408px;
   background-color: #f5f6f8;
   float: left;
   position: relative; }
@@ -1106,9 +1106,6 @@ ul.team {
   background-color: #91decb;
   border-color: #91decb; }
 
-.breadcrumb-movement-sm {
-  height: 40px; }
-
 .breadcrumb-movement-sm > li {
   list-style: none;
   background-color: #E9D4C3;
@@ -1116,6 +1113,7 @@ ul.team {
   margin-right: 10px;
   height: 30px;
   width: 85px;
+  text-transform: uppercase;
   -ms-transform: skewX(-26deg);
   -webkit-transform: skewX(-26deg);
   transform: skewX(-26deg); }

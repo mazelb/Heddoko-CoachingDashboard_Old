@@ -10,13 +10,13 @@
 
     <!-- Movement tabs -->
     <li
-        ng-click="data.current_movement_page.latest_page = 0"
+        ng-click="Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/test')"
         ng-class="{'active': params.step == 'test'}">
 
         <a>Test</a>
     </li>
     <li
-        ng-click="data.current_movement_page.latest_page = 1"
+        ng-click="Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/analysis')"
         ng-class="{'active': params.step == 'analysis'}">
         <a>Analysis</a>
     </li>
@@ -24,7 +24,7 @@
         <a>Data</a>
     </li> -->
     <li
-        ng-click="data.current_movement_page.latest_page = 3"
+        ng-click="Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/summary')"
         ng-class="{'active': params.step == 'summary'}">
 
         <a>Summary</a>
