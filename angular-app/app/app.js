@@ -1,33 +1,33 @@
+/**
+ * @file    app.js
+ * @brief   Main angular application.
+ * @author  Maxwell (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ */
 
-/**************************
- Initialize the Angular App
- **************************/
-
-// App revision. Used for versioning assets.
-var _appVersion = '0.2.7';
-
-// Constant indicating if we're in a development environment or not.
-var _appIsLocal = (window.location.hostname == 'localhost' ||
-                window.location.hostname.match(/.*\.local$/i)) ? true : false;
-
-// Constant used for asset versioning.
-var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
-
+// Initializes the AngularJS application.
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
     "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
-    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover'
-])
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services'
+]);
 
-// App constants.
-.constant('appVersion', _appVersion)
-.constant('isLocalEnvironment', _appIsLocal)
-.constant('assetVersion', _appAssetVersion)
+// Defines some constants.
+var _appVersion = '0.2.7';  // TODO: is there a better place to define this?
+var _appIsLocal =
+    (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false;
+var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
+
+app.constant('appVersion', _appVersion)
+    .constant('isLocalEnvironment', _appIsLocal)
+    .constant('assetVersion', _appAssetVersion);
+
+// Initializes the 'app.services' module so we can add factories in separate files.
+var appServices = angular.module('app.services', ['app.rover']);
 
 // Configures the application.
-.config(['$routeProvider', 'assetVersion',
+app.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
@@ -54,6 +54,40 @@ var app = angular.module("app", [
             controller: 'DashboardMemberController'
         })
 
+        // Demo FMS routes.
+        .when('/fms/demo/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return '/views/fms/demo/'+ tmpl +'.html?'+ assetVersion;
+            },
+            controller: 'FMSDemoController'
+        })
+
+        // Live FMS routes.
+        .when('/fms/live/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return '/views/fms/live/'+ tmpl +'.html?' + assetVersion;
+            },
+            controller: 'FMSController'
+        })
+
         // Other routes.
         .when("/settings", {
 			templateUrl: "/views/settings.html?" + assetVersion
@@ -77,7 +111,7 @@ var app = angular.module("app", [
 ])
 
 // Runs the application.
-.run(["$rootScope", "$location", function ($rootScope, $location) {
+.run(["$rootScope", "$location", "Rover", function ($rootScope, $location, Rover) {
 
         // Removes the loading animation.
         // $(document).ready(function()
@@ -87,6 +121,9 @@ var app = angular.module("app", [
         //         $('.load_circle_wrapper').addClass("loaded");
         //     }, 1000);
         // });
+
+        console.log('Rover: ' + Rover.timestamp);
+
     }
 ]);
 

@@ -14,6 +14,11 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     // User-specific hash. Used for user-specific data.
     this.userHash = $('meta[name="user-hash"]').attr('content');
 
+    // User-namespaced session storage object.
+    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
+    this.sessionStorage = $sessionStorage[this.userHash];
+    this.state = $sessionStorage[this.userHash];
+
     // Counts the # of requests being made, and displays the loading icon accordingly.
     this.backgroundProcessCount = 0;
     this.addBackgroundProcess = function() {
@@ -74,7 +79,13 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
             this.debug('Browsing to member #' + id);
             $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
 
-        }.bind(this)
+        }.bind(this),
+
+        // General page.
+        path: function(path) {
+            this.debug('Browsing to path: ' + path);
+            $location.path(path);
+        }
     };
     this.browse = this.browseTo;
 
@@ -118,13 +129,19 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         $('.load_circle_wrapper').addClass("loaded");
     };
 
+    // TODO: create settings object in "this.state".
+    // TODO: if value doesn't exist, set it to defaultValue.
+    this.getConfig = function(key, defaultValue)
+    {
+        return defaultValue;
+    };
+    this.setConfig = function(key, value)
+    {
+        return value;
+    };
+
     // Retrieves the ID of an object.
     this.getId = function(obj) {
         return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
     };
-
-    // User-namespaced session storage object.
-    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-    this.sessionStorage = $sessionStorage[this.userHash];
-    this.state = $sessionStorage[this.userHash];
 });

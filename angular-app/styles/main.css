@@ -12,7 +12,7 @@ displayed here
 
 1 - General CSS
 2 - Typography
-3 - containers / Tables / Lists
+3 - Containers / Tables / Lists
 4 - Forms / Form Elements
 5 - Buttons and Links
 6 - Dropdowns / Toolbars / Navigation
@@ -99,6 +99,10 @@ a:hover, a:focus {
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px; }
+
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0; }
 
 /************************************
 2 - Typography
@@ -618,106 +622,6 @@ pre {
 .data_bottom_table tr.odd {
   background-color: #f1f1f3; }
 
-.breadcrumb-movement, .breadcrumb-movement-sm {
-  height: 40px;
-  font-style: italic;
-  font-weight: bold; }
-
-.breadcrumb-movement {
-  font-weight: bold;
-  height: 40px;
-  font-style: italic; }
-
-.breadcrumb-movement > li {
-  list-style: none;
-  background-color: #91decb;
-  float: left;
-  margin-right: 10px;
-  height: 40px;
-  width: 124px;
-  border: solid #91decb;
-  border-width: 5px;
-  -ms-transform: skewX(-26deg);
-  -webkit-transform: skewX(-26deg);
-  transform: skewX(-26deg); }
-
-.breadcrumb-movement > li > a {
-  display: block;
-  -ms-transform: skewX(26deg);
-  -webkit-transform: skewX(26deg);
-  transform: skewX(26deg);
-  color: white;
-  line-height: 30px;
-  text-align: center;
-  text-decoration: none; }
-
-.breadcrumb-movement > li:first-child {
-  background-color: transparent;
-  position: relative;
-  display: inline-block;
-  background-color: #91decb;
-  border-right: none;
-  width: 220px;
-  margin-left: 20px; }
-
-.breadcrumb-movement > li:first-child > div {
-  background-color: #f4f4f4;
-  height: 35px;
-  top: 0;
-  left: -5px;
-  position: relative;
-  top: -5px;
-  left: -6px; }
-
-.breadcrumb-movement > li:first-child > div > a {
-  top: 5px;
-  display: inline-block;
-  position: relative;
-  left: 5px;
-  margin-right: 5px;
-  line-height: 30px;
-  margin: 0 10px;
-  -ms-transform: skewX(26deg);
-  -webkit-transform: skewX(26deg);
-  transform: skewX(26deg);
-  color: black;
-  text-decoration: none; }
-
-.breadcrumb-movement > li:hover, .breadcrumb-movement > li.active {
-  background-color: #3dd5af;
-  border-color: #3dd5af; }
-
-.breadcrumb-movement > li:first-child:hover {
-  background-color: #91decb;
-  border-color: #91decb; }
-
-.breadcrumb-movement-sm {
-  height: 40px; }
-
-.breadcrumb-movement-sm > li {
-  list-style: none;
-  background-color: #E9D4C3;
-  float: left;
-  margin-right: 10px;
-  height: 30px;
-  width: 85px;
-  -ms-transform: skewX(-26deg);
-  -webkit-transform: skewX(-26deg);
-  transform: skewX(-26deg); }
-
-.breadcrumb-movement-sm > li > a {
-  display: block;
-  -ms-transform: skewX(26deg);
-  -webkit-transform: skewX(26deg);
-  transform: skewX(26deg);
-  color: white;
-  line-height: 30px;
-  text-align: center;
-  text-decoration: none; }
-
-.breadcrumb-movement-sm > li:hover, .breadcrumb-movement-sm > li.active {
-  background-color: #f48b4a; }
-
 .movement-left-column {
   width: 200px;
   height: 480px;
@@ -843,7 +747,7 @@ pre {
   color: #C05F44; }
 
 /************************************
-3 - containers / Tables / Lists
+3 - Containers / Tables / Lists
 *************************************/
 .container:before, .container:after {
   content: " ";
@@ -1126,6 +1030,108 @@ ul.team {
         margin-bottom: 0; }
     ul.team li .label {
       float: right; }
+
+.breadcrumb-movement, .breadcrumb-movement-sm {
+  height: 40px;
+  font-style: italic;
+  font-weight: bold; }
+
+.breadcrumb-movement {
+  font-weight: bold;
+  height: 40px;
+  font-style: italic; }
+
+.breadcrumb-movement > li {
+  list-style: none;
+  background-color: #91decb;
+  float: left;
+  margin-right: 10px;
+  height: 40px;
+  width: 124px;
+  border: solid #91decb;
+  border-width: 5px;
+  text-transform: uppercase;
+  -ms-transform: skewX(-26deg);
+  -webkit-transform: skewX(-26deg);
+  transform: skewX(-26deg); }
+
+.breadcrumb-movement > li > a {
+  display: block;
+  -ms-transform: skewX(26deg);
+  -webkit-transform: skewX(26deg);
+  transform: skewX(26deg);
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none; }
+
+.breadcrumb-movement > li:first-child {
+  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  background-color: #91decb;
+  border-right: none;
+  width: 220px;
+  margin-left: 20px;
+  text-transform: none; }
+
+.breadcrumb-movement > li:first-child > div {
+  background-color: #f4f4f4;
+  height: 35px;
+  top: 0;
+  left: -5px;
+  position: relative;
+  top: -5px;
+  left: -6px; }
+
+.breadcrumb-movement > li:first-child > div > a {
+  top: 5px;
+  display: inline-block;
+  position: relative;
+  left: 5px;
+  margin-right: 5px;
+  line-height: 30px;
+  margin: 0 10px;
+  -ms-transform: skewX(26deg);
+  -webkit-transform: skewX(26deg);
+  transform: skewX(26deg);
+  color: black;
+  text-decoration: none; }
+
+.breadcrumb-movement > li:hover, .breadcrumb-movement > li.active {
+  background-color: #3dd5af;
+  border-color: #3dd5af; }
+
+.breadcrumb-movement > li:first-child:hover {
+  background-color: #91decb;
+  border-color: #91decb; }
+
+.breadcrumb-movement-sm {
+  height: 40px; }
+
+.breadcrumb-movement-sm > li {
+  list-style: none;
+  background-color: #E9D4C3;
+  float: left;
+  margin-right: 10px;
+  height: 30px;
+  width: 85px;
+  -ms-transform: skewX(-26deg);
+  -webkit-transform: skewX(-26deg);
+  transform: skewX(-26deg); }
+
+.breadcrumb-movement-sm > li > a {
+  display: block;
+  -ms-transform: skewX(26deg);
+  -webkit-transform: skewX(26deg);
+  transform: skewX(26deg);
+  color: white;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none; }
+
+.breadcrumb-movement-sm > li:hover, .breadcrumb-movement-sm > li.active {
+  background-color: #f48b4a; }
 
 /************************************
 4 - Forms / Form Elements
@@ -5246,6 +5252,13 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
 
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ffd6d4; }
+
+.panel-group.panel-layout-emphasized {
+  height: 480px; }
+
+.panel-group.panel-layout-emphasized .panel-emphasized {
+  padding-left: 0px;
+  height: 408px; }
 
 .well {
   background-color: #f5f5f5;

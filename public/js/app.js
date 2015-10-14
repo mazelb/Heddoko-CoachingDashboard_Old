@@ -13854,36 +13854,36 @@ angular.module('ngCookies', ['ng']).
     }]);
 
 
-})(window, window.angular);;
-/**************************
- Initialize the Angular App
- **************************/
+})(window, window.angular);;/**
+ * @file    app.js
+ * @brief   Main angular application.
+ * @author  Maxwell (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ */
 
-// App revision. Used for versioning assets.
-var _appVersion = '0.2.7';
-
-// Constant indicating if we're in a development environment or not.
-var _appIsLocal = (window.location.hostname == 'localhost' ||
-                window.location.hostname.match(/.*\.local$/i)) ? true : false;
-
-// Constant used for asset versioning.
-var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
-
+// Initializes the AngularJS application.
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
     "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
-    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover'
-])
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services'
+]);
 
-// App constants.
-.constant('appVersion', _appVersion)
-.constant('isLocalEnvironment', _appIsLocal)
-.constant('assetVersion', _appAssetVersion)
+// Defines some constants.
+var _appVersion = '0.2.7';  // TODO: is there a better place to define this?
+var _appIsLocal =
+    (window.location.hostname == 'localhost' || window.location.hostname.match(/.*\.local$/i)) ? true : false;
+var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
+
+app.constant('appVersion', _appVersion)
+    .constant('isLocalEnvironment', _appIsLocal)
+    .constant('assetVersion', _appAssetVersion);
+
+// Initializes the 'app.services' module so we can add factories in separate files.
+var appServices = angular.module('app.services', ['app.rover']);
 
 // Configures the application.
-.config(['$routeProvider', 'assetVersion',
+app.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
@@ -13910,6 +13910,40 @@ var app = angular.module("app", [
             controller: 'DashboardMemberController'
         })
 
+        // Demo FMS routes.
+        .when('/fms/demo/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return '/views/fms/demo/'+ tmpl +'.html?'+ assetVersion;
+            },
+            controller: 'FMSDemoController'
+        })
+
+        // Live FMS routes.
+        .when('/fms/live/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return '/views/fms/live/'+ tmpl +'.html?' + assetVersion;
+            },
+            controller: 'FMSController'
+        })
+
         // Other routes.
         .when("/settings", {
 			templateUrl: "/views/settings.html?" + assetVersion
@@ -13933,7 +13967,7 @@ var app = angular.module("app", [
 ])
 
 // Runs the application.
-.run(["$rootScope", "$location", function ($rootScope, $location) {
+.run(["$rootScope", "$location", "Rover", function ($rootScope, $location, Rover) {
 
         // Removes the loading animation.
         // $(document).ready(function()
@@ -13943,6 +13977,9 @@ var app = angular.module("app", [
         //         $('.load_circle_wrapper').addClass("loaded");
         //     }, 1000);
         // });
+
+        console.log('Rover: ' + Rover.timestamp);
+
     }
 ]);
 
@@ -16395,6 +16432,69 @@ angular.module("app.ui.ctrls", []).controller("NotifyCtrl", ["$scope", "loggit",
   }
 ]);
 ;/**
+ * @file    fms.js
+ * @brief   Controller for demo FMS tests. Kept separate so that the actual FMS tests can be
+ *          developed independently.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('FMSDemoController', ['$scope', '$routeParams', 'FMSDemoFactory', 'Rover', 'assetVersion',
+    function($scope, $routeParams, FMSDemoFactory, Rover, assetVersion) {
+
+        Rover.debug('DemoFMSController');
+
+        $scope.params = $routeParams;
+        if (!$scope.params.step) {
+            $scope.params.step = 'test';
+        }
+
+        $scope.assetVersion = assetVersion;
+
+        $scope.fms = FMSDemoFactory.data;
+
+        // Starts demo test.
+        $scope.startTest = function()
+        {
+            FMSDemoFactory.data.current.isTestLive = true;
+
+            $('.demo-test').each(function() {
+                this.currentTime = 0;
+                this.play();
+            });
+        };
+
+        $scope.endTest = function()
+        {
+            FMSDemoFactory.data.current.isTestLive = false;
+
+            $('.demo-test').each(function() {
+                this.pause();
+            });
+        };
+
+    }
+]);
+;/**
+ * @file    fms.js
+ * @brief   Controller for general functional movement screening.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('FMSController', ['$scope', '$routeParams', 'Rover', 'assetVersion',
+    function($scope, $routeParams, Rover, assetVersion) {
+
+        Rover.debug('FMSController');
+
+        $scope.params = $routeParams;
+
+        $scope.assetVersion = assetVersion;
+    }
+]);
+;/**
  * @brief This is the FMS Form controller used on the FMS Form submission page and the previous FMS Form retrieval page
  * It keeps an eye on the currently selected athlete and retrieves their forms when that variable changes
  * Furthermore, it takes care of sending new FMS form data to the server
@@ -17694,6 +17794,40 @@ angular.module('app.controllers')
 
 });
 ;/**
+ * @file    demo.js
+ * @brief   The DemoService is a temporary factory used for the demo live FMS screens.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ */
+angular.module('app.services').service('FMSDemoFactory', function(Rover) {
+
+    // Setups up the FMS data.
+    Rover.state.fms_demo = Rover.state.fms_demo || {};
+    this.data = Rover.state.fms_demo;
+
+    //
+    var dataTemplate = {
+        isTestLive: false,
+        iterations: []
+    };
+
+    // List of demo FMS tests.
+    this.data.list = [
+
+        // Active Straight-Leg Raise
+        $.extend(true, {}, dataTemplate, {
+            id: 'aslr',
+            name: 'Active Straight-Leg Raise',
+            iterations: ['left', 'right']
+        })
+    ];
+
+    // Default demo: ASLR.
+    this.data.current = this.data.list[0];
+
+    // Default screen selection.
+    this.data.views = ['sagittal', 'coronal', 'transverse'];
+});
+;/**
  * @file    rover.js
  * @brief   The rover service is used throughout the app and should be made available to other
  *          modules and controllers through dependency injection.
@@ -17708,6 +17842,11 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
     // User-specific hash. Used for user-specific data.
     this.userHash = $('meta[name="user-hash"]').attr('content');
+
+    // User-namespaced session storage object.
+    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
+    this.sessionStorage = $sessionStorage[this.userHash];
+    this.state = $sessionStorage[this.userHash];
 
     // Counts the # of requests being made, and displays the loading icon accordingly.
     this.backgroundProcessCount = 0;
@@ -17769,7 +17908,13 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
             this.debug('Browsing to member #' + id);
             $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
 
-        }.bind(this)
+        }.bind(this),
+
+        // General page.
+        path: function(path) {
+            this.debug('Browsing to path: ' + path);
+            $location.path(path);
+        }
     };
     this.browse = this.browseTo;
 
@@ -17813,13 +17958,19 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         $('.load_circle_wrapper').addClass("loaded");
     };
 
+    // TODO: create settings object in "this.state".
+    // TODO: if value doesn't exist, set it to defaultValue.
+    this.getConfig = function(key, defaultValue)
+    {
+        return defaultValue;
+    };
+    this.setConfig = function(key, value)
+    {
+        return value;
+    };
+
     // Retrieves the ID of an object.
     this.getId = function(obj) {
         return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
     };
-
-    // User-namespaced session storage object.
-    $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-    this.sessionStorage = $sessionStorage[this.userHash];
-    this.state = $sessionStorage[this.userHash];
 });
