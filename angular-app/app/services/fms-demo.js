@@ -31,52 +31,19 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
         iteration: '',
         trials: [
             {
-                name: 'Trial #1',
+                name: 'Trial 1',
                 status: 'pending'
             },
             {
-                name: 'Trial #2',
+                name: 'Trial 2',
                 status: 'pending'
             },
             {
-                name: 'Trial #3',
+                name: 'Trial 3',
                 status: 'pending'
             }
         ],
-        testRuns: {},
-        init: function()
-        {
-            // Sets up the expected test runs.
-            var expectTestRuns = function(iterationName)
-            {
-                var runName = '', trial;
-
-                for (trial in this.trials)
-                {
-                    runName = iterationName + '.' + trial.name;
-
-                    this.testRuns[runName] =
-                    {
-                        status: 'pending'
-                    };
-                }
-
-            }.bind(this);
-
-            // Setup trials for each iteration.
-            if (this.iterations.length > 1)
-            {
-                for (var iteration in this.iterations)
-                {
-                    expectTestRuns(iteration);
-                }
-            }
-
-            // Single iteration for each trial.
-            else {
-                expectTestRuns('main');
-            }
-        }
+        testRuns: {}
     };
 
     // List of demo FMS tests.
@@ -93,8 +60,6 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
 
     // Default demo: ASLR.
     this.data.current = this.data.list[0];
-    Rover.debug('Current FMS...');
-    Rover.debug(this.data.current);
 
     // Default screen selection.
     this.data.views = ['sagittal', 'coronal', 'transverse'];

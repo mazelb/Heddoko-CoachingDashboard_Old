@@ -16472,6 +16472,8 @@ angular.module('app.controllers')
                     this.prepare();
                 }
 
+                Rover.debug('Starting run: ' + this.name);
+
                 this.setStatus('live');
                 $scope.isTestLive = true;
 
@@ -16485,6 +16487,8 @@ angular.module('app.controllers')
             // Stops a test run.
             end: function()
             {
+                Rover.debug('Ending run: ' + this.name);
+
                 this.setStatus('saved');
                 $scope.isTestLive = false;
 
@@ -16496,8 +16500,11 @@ angular.module('app.controllers')
                 this.moveToNextTrial();
             },
 
+            // Stops a test run and flags it as "pain".
             pain: function()
             {
+                Rover.debug('Ending run (with pain): ' + this.name);
+
                 this.setStatus('pain');
                 $scope.isTestLive = false;
 
@@ -16509,11 +16516,14 @@ angular.module('app.controllers')
                 this.moveToNextTrial();
             },
 
+            // Stops a test run without saving data.
             fault: function()
             {
+                Rover.debug('Restarting run: ' + this.name);
+
                 this.setStatus('pending');
                 $scope.isTestLive = false;
-                FMSDemoFactory.data.runs[this.name].numFaults++;
+                this.getRun().numFaults++;
 
                 // Stop demo videos...
                 $('.demo-test').each(function() {
@@ -16522,17 +16532,31 @@ angular.module('app.controllers')
                 });
             },
 
+            // Restarts a run.
+            reset: function()
+            {
+                // Performance check.
+                if (!this.exists()) {
+                    return;
+                }
+
+                // Reset an existing run.
+                this.getRun().status = 'pending';
+                this.getRun().numFaults = 0;
+            },
+
             // ...
             moveToNextTrial: function(iteration, skipOtherIterations)
             {
                 // Loop through trials in current or specified iteration.
-                var i, trial, name;
+                var i, trial, name, run;
                 for (i = 0; i < FMSDemoFactory.data.current.trials.length; i++)
                 {
                     // Check if trial has already been run.
                     trial = FMSDemoFactory.data.current.trials[i];
                     name = this.getName(trial, iteration);
-                    if (!FMSDemoFactory.data.runs[name] || FMSDemoFactory.data.runs[name] == 'pending')
+                    run = this.getRun(name);
+                    if (!run || run.status == 'pending')
                     {
                         // Automatically setup next trial.
                         FMSDemoFactory.data.current.trial = trial;
@@ -16563,6 +16587,9 @@ angular.module('app.controllers')
 
             submit: function()
             {
+                Rover.debug('Submitting demo FMS data...');
+
+                FMSDemoFactory.data.runs = {};
                 FMSDemoFactory.data.current.isTestSubmitted = true;
 
                 $('.demo-test').each(function() {
@@ -16585,11 +16612,18 @@ angular.module('app.controllers')
                 var key = this.getName();
                 Rover.debug('Preparing test run: ' + key);
 
+                // Check if test has already been run.
+                if (this.exists(key)) {
+                    Rover.debug('Test has already been run.');
+                    return;
+                }
+
                 // Finally, we create an object to store the test results.
                 this.name = key;
                 FMSDemoFactory.data.runs[key] = $.extend(true, {}, FMSDemoFactory.runDataTemplate, {});
             },
 
+            // ...
             getName: function(trial, iteration, test)
             {
                 // Retrieve default objects.
@@ -16599,6 +16633,25 @@ angular.module('app.controllers')
 
                 // Name format: "{fms_id}.{iteration}.{trial}"
                 return test.id + '.' + iteration + '.' + trial.name;
+            },
+
+            // Retrieves a test run.
+            getRun: function(key)
+            {
+                key = key || this.getName();
+                return FMSDemoFactory.data.runs[key] ? FMSDemoFactory.data.runs[key] : null;
+            },
+            getRunByTrial: function(trial) {
+                return this.getRun(this.getName(trial));
+            },
+
+            // Determines if a test has already been run.
+            exists: function(key)
+            {
+                key = key || this.getName();
+                var run = this.getRun(key);
+
+                return run ? (run.status != 'pending') : false;
             },
 
             setStatus: function(status)
@@ -16615,17 +16668,14 @@ angular.module('app.controllers')
                 // Get the status of a specific trial.
                 if (trial)
                 {
-                    var key = this.getName(trial);
+                    var key = this.getName(trial),
+                        run = this.getRun(key);
 
-                    return FMSDemoFactory.data.runs[key] ? FMSDemoFactory.data.runs[key].status : null;
+                    return run ? run.status : null;
                 }
 
                 // Or the current trial.
-                if (!this.name) {
-                    this.prepare();
-                }
-
-                return FMSDemoFactory.data.runs[this.name].status;
+                return this.name ? this.getRun().status : null;
             }
         };
 
@@ -16635,7 +16685,7 @@ angular.module('app.controllers')
             trialPane: false,
             planePane: false,
             playbackRatePane: false,
-            playbackRate: 1,
+            playbackRate: 0.5,
 
             play: function()
             {
@@ -16649,7 +16699,7 @@ angular.module('app.controllers')
             setPlaybackRate: function(rate)
             {
                 this.playbackRate = rate;
-                
+
                 // Update playback rate on demo videos...
                 $('.demo-analysis').each(function() {
                     this.playbackRate = rate;
@@ -16671,6 +16721,28 @@ angular.module('app.controllers')
                     this.pause();
                     this.currentTime = 0;
                 });
+            }
+        };
+
+        // Summary-related data.
+        $scope.summary =
+        {
+            joints:
+            {
+                all: false,
+                hip: true,
+                knee: false,
+                select: function(name)
+                {
+                    for (var joint in this)
+                    {
+                        if (typeof this[joint] == 'boolean')
+                        {
+                            // Select or unselect joint.
+                            this[joint] = (name == joint || name == 'all');
+                        }
+                    }
+                }
             }
         };
 
@@ -18030,52 +18102,19 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
         iteration: '',
         trials: [
             {
-                name: 'Trial #1',
+                name: 'Trial 1',
                 status: 'pending'
             },
             {
-                name: 'Trial #2',
+                name: 'Trial 2',
                 status: 'pending'
             },
             {
-                name: 'Trial #3',
+                name: 'Trial 3',
                 status: 'pending'
             }
         ],
-        testRuns: {},
-        init: function()
-        {
-            // Sets up the expected test runs.
-            var expectTestRuns = function(iterationName)
-            {
-                var runName = '', trial;
-
-                for (trial in this.trials)
-                {
-                    runName = iterationName + '.' + trial.name;
-
-                    this.testRuns[runName] =
-                    {
-                        status: 'pending'
-                    };
-                }
-
-            }.bind(this);
-
-            // Setup trials for each iteration.
-            if (this.iterations.length > 1)
-            {
-                for (var iteration in this.iterations)
-                {
-                    expectTestRuns(iteration);
-                }
-            }
-
-            // Single iteration for each trial.
-            else {
-                expectTestRuns('main');
-            }
-        }
+        testRuns: {}
     };
 
     // List of demo FMS tests.
@@ -18092,8 +18131,6 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
 
     // Default demo: ASLR.
     this.data.current = this.data.list[0];
-    Rover.debug('Current FMS...');
-    Rover.debug(this.data.current);
 
     // Default screen selection.
     this.data.views = ['sagittal', 'coronal', 'transverse'];
@@ -18104,7 +18141,8 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
+angular.module('app.rover', []).service('Rover',
+    function($window, $sessionStorage, $route, $location) {
 
     // Dev variables.
     this.timestamp = Date.now();
@@ -18118,7 +18156,6 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
     // User-namespaced session storage object.
     $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-    this.sessionStorage = $sessionStorage[this.userHash];
     this.state = $sessionStorage[this.userHash];
 
     // Counts the # of requests being made, and displays the loading icon accordingly.
@@ -18191,6 +18228,19 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     };
     this.browse = this.browseTo;
 
+    // Performs final tasks before logging out.
+    // TODO: implement a hooks system, where each controller can add their methods.
+    this.endSession = function()
+    {
+        // Clear the sessionStorage.
+        $sessionStorage[this.userHash] = {};
+
+        this.debug('Ending session...');
+
+        window.location.assign('/auth/logout');
+
+    }.bind(this);
+
     //
     // Shortcuts to update the application state.
     //
@@ -18219,6 +18269,9 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         if (console) {
             console.log(msg);
         }
+    };
+    this.alert = function(msg) {
+        $window.alert(msg);
     };
 
     // Displays or hides the loading animation.

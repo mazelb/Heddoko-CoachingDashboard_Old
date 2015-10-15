@@ -11,12 +11,27 @@
 
 						<div class="trial-label">
 							{{ trial.name }}
+                            <span
+                                ng-show="run.getRunByTrial(trial) && run.getRunByTrial(trial).numFaults > 0"
+                                style="font-size:.7em;color:#999;font-weight:normal;margin-left: 5px;position:absolute;">
+
+                                Faults: {{ run.getRunByTrial(trial).numFaults }}
+                            </span>
 						</div>
 
 						<div class="trial-status">
+
+                            <!-- Status text -->
 							<div class="col-sm-8">
-								<div ng-if="run.getStatus(trial) == 'saved'">Done</div>
-								<div ng-if="run.getStatus(trial) == 'pain'">Pain</div>
+								<div ng-if="run.getStatus(trial) == 'saved' && run.getRunByTrial(trial).numFaults == 0">
+								    No Fault
+								</div>
+								<div ng-if="run.getStatus(trial) == 'saved' && run.getRunByTrial(trial).numFaults > 0">
+								    Faults: {{ run.getRunByTrial(trial).numFaults }}
+								</div>
+								<div ng-if="run.getStatus(trial) == 'pain'">
+                                    Pain
+                                </div>
 							</div>
 
 							<div class="col-sm-4">
@@ -25,7 +40,7 @@
 							</div>
 						</div>
 					</div>
-					<div ng-click="test.submit()" ng-hide="fms.current.isTestSubmitted" class="movement-submit-button">
+					<div ng-click="run.submit()" ng-hide="fms.current.isTestSubmitted" class="movement-submit-button">
 						Submit Results
 					</div>
 					<div ng-show="fms.current.isTestSubmitted" class="movement-submit-button">

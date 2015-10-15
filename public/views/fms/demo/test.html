@@ -6,18 +6,27 @@
 	<div>
 
         <!-- Breadcrumbs -->
-        <div ng-include src="'views/fms/live/partials/breadcrumbs.html?' + assetVersion"></div>
+        <ng-include src="'views/fms/live/partials/breadcrumbs.html?' + assetVersion"></ng-include>
 
         <!-- Selected side -->
-		<div
+		<ng-include
             ng-show="fms.current.iterations.length > 0"
-            ng-include src="'views/fms/live/partials/iterations.html?' + assetVersion">
+            src="'views/fms/live/partials/iterations.html?' + assetVersion">
+        </ng-include>
+
+        <!-- Test run summary -->
+        <div class="row">
+            <div
+                class="col-sm-12 text-center"
+                style="margin: 10px auto 20px; font-weight: normal; color: #aaa;">
+                Current test run: <b>{{ fms.current.trial.name }}</b> / <b>{{ fms.current.iteration }}</b>
+            </div>
         </div>
 
         <!-- Demo videos -->
-        <div ng-include src="'views/fms/demo/partials/test-layout-emphasized.html?' + assetVersion"></div>
+        <ng-include src="'views/fms/demo/partials/test-layout-emphasized.html?' + assetVersion"></ng-include>
 
         <!-- Trials -->
-        <div ng-include src="'views/fms/live/partials/test-trials.html?' + assetVersion"></div>
+        <ng-include src="'views/fms/live/partials/test-trials.html?' + assetVersion"></ng-include>
 	</div>
 </div>

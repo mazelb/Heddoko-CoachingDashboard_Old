@@ -530,28 +530,6 @@ pre {
   position: absolute;
   /* vertical text rotation stuff */ }
 
-.summary-heat-gradient {
-  width: 420px;
-  height: 40px;
-  margin-left: auto;
-  margin-right: auto;
-  background: #ff2323;
-  /* Old browsers */
-  background: -moz-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ff2323), color-stop(25%, #ffff3a), color-stop(50%, #6cff5b), color-stop(75%, #ffff3a), color-stop(100%, red));
-  /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
-  /* Opera 11.10+ */
-  background: -ms-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
-  /* IE10+ */
-  background: linear-gradient(to right, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2323', endColorstr='#ff0000',GradientType=1 );
-  /* IE6-9 */ }
-
 .chartist-tooltip {
   position: absolute;
   display: inline-block;
@@ -626,8 +604,9 @@ pre {
   width: 200px;
   height: 408px;
   background-color: #f5f6f8;
-  float: left;
-  position: relative; }
+  position: relative;
+  color: #666;
+  text-transform: uppercase; }
 
 .movement-left-column.test-page > div {
   height: 56px;
@@ -641,6 +620,26 @@ pre {
   padding: 0;
   margin: 0; }
 
+.movement-left-column .checkbox {
+  margin: 14px auto;
+  height: 28px;
+  width: 28px;
+  border: 2px solid #666;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+.movement-left-column .checkbox.checked {
+  background-color: #999; }
+
+.movement-left-column > .video-controls {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  margin: 10px; }
+
 .hierarchy-2 {
   background-color: #E3E3E3;
   height: 36px;
@@ -648,7 +647,10 @@ pre {
   margin: 0; }
 
 .movement-left-column > div:hover {
-  background-color: white; }
+  background-color: #fff; }
+
+.movement-left-column > div.video-controls:hover {
+  background-color: transparent; }
 
 .large-cell-main {
   overflow: hidden; }
@@ -686,8 +688,8 @@ pre {
         padding: 0px; }
 
 .movement-trial-list > div {
-  height: 50px;
-  background-color: white;
+  min-height: 50px;
+  background-color: #fff;
   line-height: 50px;
   text-align: center; }
   .movement-trial-list > div > div.trial-label {
@@ -704,7 +706,8 @@ pre {
 .movement-trial-list > div.movement-submit-button {
   background-color: #f48b4a;
   color: white;
-  font-size: 130%; }
+  font-size: 130%;
+  text-align: center; }
 
 .callout-elem {
   margin: 20px 0;
@@ -6118,6 +6121,25 @@ img.img80_80 {
 .countTo_small {
   font-weight: 400;
   color: #2C2E30; }
+
+.linear-heat-gradient {
+  height: 40px;
+  background: #ff2323;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #ff2323), color-stop(25%, #ffff3a), color-stop(50%, #6cff5b), color-stop(75%, #ffff3a), color-stop(100%, red));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(left, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
+  /* IE10+ */
+  background: linear-gradient(to right, #ff2323 0%, #ffff3a 25%, #6cff5b 50%, #ffff3a 75%, red 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff2323', endColorstr='#ff0000',GradientType=1 );
+  /* IE6-9 */ }
 
 /************************************
 12 - Mail

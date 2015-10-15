@@ -4,7 +4,8 @@
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  */
-angular.module('app.rover', []).service('Rover', function($sessionStorage, $route, $location) {
+angular.module('app.rover', []).service('Rover',
+    function($window, $sessionStorage, $route, $location) {
 
     // Dev variables.
     this.timestamp = Date.now();
@@ -18,7 +19,6 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
 
     // User-namespaced session storage object.
     $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-    this.sessionStorage = $sessionStorage[this.userHash];
     this.state = $sessionStorage[this.userHash];
 
     // Counts the # of requests being made, and displays the loading icon accordingly.
@@ -91,6 +91,19 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
     };
     this.browse = this.browseTo;
 
+    // Performs final tasks before logging out.
+    // TODO: implement a hooks system, where each controller can add their methods.
+    this.endSession = function()
+    {
+        // Clear the sessionStorage.
+        $sessionStorage[this.userHash] = {};
+
+        this.debug('Ending session...');
+
+        window.location.assign('/auth/logout');
+
+    }.bind(this);
+
     //
     // Shortcuts to update the application state.
     //
@@ -119,6 +132,9 @@ angular.module('app.rover', []).service('Rover', function($sessionStorage, $rout
         if (console) {
             console.log(msg);
         }
+    };
+    this.alert = function(msg) {
+        $window.alert(msg);
     };
 
     // Displays or hides the loading animation.
