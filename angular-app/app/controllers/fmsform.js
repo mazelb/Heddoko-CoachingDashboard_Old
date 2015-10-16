@@ -16,6 +16,10 @@ angular.module('app.controllers')
     	$scope.waiting_server_response = false;
     	Rover.state.selected_fms_form = null;
 
+        // Demo data.
+        $scope.files = {};
+        // $scope.files.ds = {name: ''};
+
         $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
 
           if (new_selected_athlete_value === null) {
@@ -36,12 +40,12 @@ angular.module('app.controllers')
 
         		$scope.waiting_server_response = true;
 
-        		console.debug(Rover.state.fms_form_data);
+        		Rover.debug(Rover.state.fms_form_data);
 
           FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
             .success(function(updated_fms_form_data) {
 
-        				console.log(updated_fms_form_data);
+        				Rover.debug(updated_fms_form_data);
 
 
 
@@ -53,6 +57,7 @@ angular.module('app.controllers')
             .error(function(err) {
         		loggit.logError("There was an error submitting the FMS Form");
         		$scope.waiting_server_response = false;
+                Rover.debug(err);
             });
         };
 

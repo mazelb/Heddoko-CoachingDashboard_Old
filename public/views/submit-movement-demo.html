@@ -1,0 +1,183 @@
+<header class="page-main-header">
+    <div class="row">
+		<div class="col-sm-6">
+			<h4>Movement Data</h4>
+            <p ng-if="data.member.selected">
+                Submit movement data for
+                <b>
+                    {{ data.member.selected.first_name }} {{ data.member.selected.last_name }}
+                </b>
+            </p>
+		</div>
+    </div>
+</header>
+
+<div class="page page-dashboard">
+
+    <!-- Select a sport -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Choose a sport.
+                </div>
+                <div class="panel-body">
+                    <div class="btn-group">
+                        <button
+                            type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+
+                            {{ sports.selected.name }}
+                            <span class="caret"></span>
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="sport in sports.list">
+                                <a href="javascript:;" ng-click="sports.selected = sport">
+                                    {{ sport.name }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Select a movement -->
+    <div class="row" ng-hide="sports.selected == sports.default">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Select a movement.
+                </div>
+                <div class="panel-body">
+                    <a
+                        href="javascript:;"
+                        class="btn btn-primary btn-metro"
+                        ng-repeat="movement in movements.list"
+                        ng-click="movements.selected = movement;">
+                        <span>{{ movement.name }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit data -->
+    <div class="row" ng-hide="movements.selected == movements.default">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Submit data.
+                </div>
+                <div class="panel-body">
+
+                    <div class="row">
+
+                        <!-- Summary of data -->
+                        <div class="col-md-6">
+                            <h3>Summary</h3>
+
+                            <!-- Name -->
+                            <div class="row">
+                                <div class="col-sm-4 text-right">
+                                    Athlete
+                                </div>
+                                <div class="col-sm-8">
+                                    <b>{{data.member.selected.first_name}} {{data.member.selected.last_name}}</b>
+                                </div>
+                            </div>
+
+                            <!-- Sport -->
+                            <div class="row">
+                                <div class="col-sm-4 text-right">
+                                    Sport
+                                </div>
+                                <div class="col-sm-8">
+                                    <b>{{sports.selected.name}}</b>
+                                </div>
+                            </div>
+
+                            <!-- Movement -->
+                            <div class="row">
+                                <div class="col-sm-4 text-right">
+                                    Movement
+                                </div>
+                                <div class="col-sm-8">
+                                    <b>{{ movements.selected.name }}</b>
+                                </div>
+                            </div>
+
+                            <!-- Suit -->
+                            <div class="row">
+                                <div class="col-sm-4 text-right">
+                                    Suit No.
+                                </div>
+                                <div class="col-sm-8">
+                                    <b></b>
+                                </div>
+                            </div>
+
+                            <!-- Date -->
+                            <div class="row">
+                                <div class="col-sm-4 text-right">
+                                    Date
+                                </div>
+                                <div class="col-sm-8">
+                                    <b></b>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <div class="col-md-6">
+                            <form accept-charset="UTF-8">
+
+                                <!-- Upload button -->
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input
+                                            type="button"
+                                            ng-click="Rover.alert('Demo')"
+                                            class="btn btn-default"
+                                            value="Select a file">
+                                    </div>
+                                    <div class="col-md-9">
+                                        (none selected)
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <!-- Comments -->
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <textarea class="form-control" placeholder="Comments"></textarea>
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <!-- Submit -->
+                                <div class="row">
+                                    <div class="col-sm-12 text-center">
+                                        <input
+                                            type="submit"
+                                            ng-click="Rover.alert('Demo')"
+                                            class="btn btn-primary"
+                                            value="Submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

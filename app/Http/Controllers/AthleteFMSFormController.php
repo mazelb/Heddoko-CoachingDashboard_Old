@@ -23,11 +23,11 @@ class AthleteFMSFormController extends Controller {
 	{
 		$athletesFMSFormSubmissions = FMSFormSubmission::where('athlete_id', $athleteid)->get();
 		$fmsforms = array();
-		
+
 		foreach($athletesFMSFormSubmissions as $formsub){
 			array_push($fmsforms, FMSForm::find($formsub->fmsform_id));
 		}
-		
+
 		return $fmsforms;
 	}
 
@@ -41,11 +41,11 @@ class AthleteFMSFormController extends Controller {
 		if (!Entrust::hasRole('coach')) {
 			return 'you are not authorized to access this resource';
 		}
-	
+
 		//read in all of the uploaded movement files and store in an array
-	
+
 		$uploaded_movements = array();
-		
+
 		if (Input::hasFile('deepsquat_movement_file')) { $uploaded_movements['deepsquat'] = Input::file('deepsquat_movement_file'); }
 		if (Input::hasFile('Lhurdle_movement_file')) { $uploaded_movements['Lhurdle'] = Input::file('Lhurdle_movement_file'); }
 		if (Input::hasFile('Rhurdle_movement_file')) { $uploaded_movements['Rhurdle'] = Input::file('Rhurdle_movement_file'); }
@@ -64,47 +64,48 @@ class AthleteFMSFormController extends Controller {
 		if (Input::hasFile('posterior_movement_file')) { $uploaded_movements['posterior'] = Input::file('posterior_movement_file'); }
 
 		//create the fms form entry
-	
+
 		$newForm = FMSForm::create(Input::all());
-		$newForm->save();		
-		
+        $newForm->totalscore = 15;      // ??
+		$newForm->save();
+
 		$newFMSSubmission = FMSFormSubmission::create(['coach_id' => Auth::user()->coach->id,
 																									'athlete_id' => $athleteid,
 																									'fmsform_id' => $newForm->id,
 																									'comment' => Request::input('comment')]);
 		$newFMSSubmission->save();
-		
+
 		foreach($uploaded_movements as $movement_name => $movement_file){
-		
+
 			$new_movement_data = [];
-			
+
 			$new_movement_data['sportmovement_id'] = null;
 			$new_movement_data['movementsub_id'] = null;
 			$new_movement_data['fmsformsub_id'] = $newFMSSubmission->id;
 			$new_movement_data['name'] = 'FMS Movement ' . $movement_name;
-			
+
 			$new_movement = Movement::create($new_movement_data); //create and save the Model to the database
 
 			//copy the incoming movement file to local storage
-		
-			$destinationPath = storage_path('uploads');			
+
+			$destinationPath = storage_path('uploads');
 			$filename = 'fms_movement_'. $movement_name . '_form_id_' . $newForm->id . '.txt';
 
 			$movement_file->move($destinationPath, $filename);
-			
+
 			$new_movement_raw_entry = MovementRawEntry::create(['movement_id' => $new_movement->id,
 																'filename' => $filename]);;
 			$new_movement_raw_entry->save();
 
 		}
-		
+
 		$athletesFMSFormSubmissions = FMSFormSubmission::where('athlete_id', $athleteid)->get();
 		$fmsforms = array();
-		
+
 		foreach($athletesFMSFormSubmissions as $formsub){
 			array_push($fmsforms, FMSForm::find($formsub->fmsform_id));
 		}
-		
+
 		return $fmsforms;
 	}
 
@@ -117,15 +118,15 @@ class AthleteFMSFormController extends Controller {
 	public function update($athlete_id, $fmsformid)
 	{
 		$input = Request::all();
-		
+
 		$FMS_form_to_be_updated = FMSForm::findOrFail($fmsformid);
-		
+
 		$FMSFormFields = array(
-			'deepsquat', 
-			'deepsquatcomments', 
-			'Lhurdle', 
-			'Rhurdle', 
-			'hurdlecomments', 
+			'deepsquat',
+			'deepsquatcomments',
+			'Lhurdle',
+			'Rhurdle',
+			'hurdlecomments',
 			'Llunge',
 			'Rlunge',
 			'lungecomments',
@@ -138,7 +139,7 @@ class AthleteFMSFormController extends Controller {
 			'Lactive',
 			'Ractive',
 			'activecomments',
-			'trunk', 
+			'trunk',
 			'trunkcomments',
 			'press',
 			'presscomments',
@@ -167,14 +168,14 @@ class AthleteFMSFormController extends Controller {
 	{
 		$FMSFormInQuestion = FMSForm::find($fms_form_id);
 		$FMSFormInQuestion->delete();
-		
+
 		$athletesFMSFormSubmissions = FMSFormSubmission::where('athlete_id', $athlete_id)->get();
 		$fmsforms = array();
-		
+
 		foreach($athletesFMSFormSubmissions as $formsub){
 			array_push($fmsforms, FMSForm::find($formsub->fmsform_id));
 		}
-		
+
 		return $fmsforms;
 	}
 

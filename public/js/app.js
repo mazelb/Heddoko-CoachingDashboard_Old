@@ -13912,6 +13912,12 @@ app.config(['$routeProvider', 'assetVersion',
             controller: 'DashboardMemberController'
         })
 
+        // Movement data demo route.
+        .when('/submit-movement', {
+			templateUrl: "/views/submit-movement-demo.html?" + assetVersion,
+            controller: 'SubmitMovementDemoController'
+		})
+
         // Demo FMS routes.
         .when('/fms/demo/:name?/:step?',
         {
@@ -13950,9 +13956,7 @@ app.config(['$routeProvider', 'assetVersion',
         .when("/settings", {
 			templateUrl: "/views/settings.html?" + assetVersion
 		})
-        .when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html?" + assetVersion
-		}).when("/fmstest", {
+        .when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + assetVersion
 		}).when("/fmsdata", {
 			templateUrl: "/views/fmsdata.html?" + assetVersion
@@ -16788,6 +16792,10 @@ angular.module('app.controllers')
     	$scope.waiting_server_response = false;
     	Rover.state.selected_fms_form = null;
 
+        // Demo data.
+        $scope.files = {};
+        // $scope.files.ds = {name: ''};
+
         $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
 
           if (new_selected_athlete_value === null) {
@@ -16808,12 +16816,12 @@ angular.module('app.controllers')
 
         		$scope.waiting_server_response = true;
 
-        		console.debug(Rover.state.fms_form_data);
+        		Rover.debug(Rover.state.fms_form_data);
 
           FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
             .success(function(updated_fms_form_data) {
 
-        				console.log(updated_fms_form_data);
+        				Rover.debug(updated_fms_form_data);
 
 
 
@@ -16825,6 +16833,7 @@ angular.module('app.controllers')
             .error(function(err) {
         		loggit.logError("There was an error submitting the FMS Form");
         		$scope.waiting_server_response = false;
+                Rover.debug(err);
             });
         };
 
@@ -17187,14 +17196,33 @@ angular.module('app.controllers')
     }
 ]);
 ;/**
- * @brief   The sports controller takes care of retrieving sports and movement types from the back-end
- * @author  Maxwell Mowbray (max@heddoko.com), Francis Amankrah (frank@heddoko.com)
+ * @file    movement-data-demo.js
+ * @brief   Controller for movement-data-demo page.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'Rover',
-    function($scope, $sessionStorage, Sports, SportMovements, Rover) {
+.controller('SubmitMovementDemoController', ['$scope', 'Sports', 'SportMovements', 'Rover', 'assetVersion',
+    function($scope, Sports, SportMovements, Rover, assetVersion) {
 
+        Rover.debug('SubmitMovementDemoController');
+
+        $scope.assetVersion = assetVersion;
+
+        // Tie the local scope to the user-namespaced sessionStorage.
+        $scope.sports = Rover.state.movement_demo;
+
+        // Setup demo data.
+        Rover.debug('Setting up movement data...');
+        $scope.sports = $scope.sports || {};
+        $scope.sports.default = {name: 'None selected'};
+        $scope.sports.selected = $scope.sports.selected || $scope.sports.default;
+        $scope.movements = $scope.movements || {};
+        $scope.movements.default = {name: 'None selected'};
+        $scope.movements.selected = $scope.movements.selected || $scope.movements.default;
+
+        // Populates the sports list.
         $scope.populateSportsList = function() {
 
             // Show loading animation.
@@ -17208,13 +17236,15 @@ angular.module('app.controllers')
                 function(response) {
 
         			if (response.status === 200) {
-                        Rover.state.sports = response.data;
+                        $scope.sports.list = response.data;
                     }
 
                     // Select a default sport.
-            		if (Rover.state.sports.length > 0) {
-            			Rover.state.selected_sport = Rover.state.sports[0];
-            		}
+            		if ($scope.sports.list.length > 0) {
+            			$scope.sports.selected = $scope.sports.list[0];
+            		} else {
+                        $scope.sports.selected = $scope.sports.default;
+                    }
 
                     Rover.doneBackgroundProcess();
             	},
@@ -17228,18 +17258,120 @@ angular.module('app.controllers')
 
         // Populate sports list.
         Rover.debug('Checking sports list on first load...');
-    	if (!Rover.state.sports || Rover.state.sports.length === 0) {
+    	if (!$scope.sports.list) {
     		$scope.populateSportsList();
     	}
 
-        $scope.$watch('data.selected_sport', function() {
-        	Rover.state.selected_sport_movement = Rover.state.sport_movements = null;
-        	SportMovements.get(Rover.state.selected_sport.id)
-        		.success(function(sports_movements_response) {
-        			Rover.state.sport_movements = sports_movements_response;
-        		});
+        $scope.$watch('sports.selected', function()
+        {
+            // Show loading animation.
+            Rover.debug('Updating movements list...');
+            Rover.addBackgroundProcess();
 
+            // Reset sports movements.
+            $scope.movements.list = $scope.movements.selected = null;
+
+        	SportMovements.get($scope.sports.selected.id).then(
+
+                // On success.
+                function(response)
+                {
+                    if (response.status === 200) {
+                        $scope.movements.list = response.data;
+                    }
+
+                    // Select a default movement.
+            		if ($scope.movements.list.length > 0) {
+            			$scope.movements.selected = $scope.movements.list[0];
+            		} else {
+                        $scope.movements.selected = $scope.movements.default;
+                    }
+
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On failure.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
         }, true);
+    }
+]);
+;/**
+ * @brief   The sports controller takes care of retrieving sports and movement types from the back-end
+ * @author  Maxwell Mowbray (max@heddoko.com), Francis Amankrah (frank@heddoko.com)
+ */
+// angular.module('app.controllers')
+//
+// .controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'Rover',
+//     function($scope, $sessionStorage, Sports, SportMovements, Rover) {
+//
+//         $scope.populateSportsList = function() {
+//
+//             // Show loading animation.
+//             Rover.debug('Populating sports list...');
+//             Rover.addBackgroundProcess();
+//
+//             // Retrieve the list of all sports from the back-end
+//             Sports.get().then(
+//
+//                 // On success.
+//                 function(response) {
+//
+//         			if (response.status === 200) {
+//                         Rover.state.sports = response.data;
+//                     }
+//
+//                     // Select a default sport.
+//             		if (Rover.state.sports.length > 0) {
+//             			Rover.state.selected_sport = Rover.state.sports[0];
+//             		}
+//
+//                     Rover.doneBackgroundProcess();
+//             	},
+//
+//                 // On error.
+//                 function(response) {
+//                     Rover.doneBackgroundProcess();
+//                 }
+//             );
+//         };
+//
+//         // Populate sports list.
+//         Rover.debug('Checking sports list on first load...');
+//     	if (!Rover.state.sports || Rover.state.sports.length === 0) {
+//     		$scope.populateSportsList();
+//     	}
+//
+//         $scope.$watch('data.selected_sport', function() {
+//         	Rover.state.selected_sport_movement = Rover.state.sport_movements = null;
+//         	SportMovements.get(Rover.state.selected_sport.id)
+//         		.success(function(sports_movements_response) {
+//         			Rover.state.sport_movements = sports_movements_response;
+//         		});
+//
+//         }, true);
+//     }
+// ]);
+;/**
+ * @file    submit-fms-demo.js
+ * @brief   Temporary controller for submitting FMS tests.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ * @notes   This controller should probably combined with FMSControler sometime
+            in the future.
+ */
+angular.module('app.controllers')
+
+.controller('SubmitFMSDemoController', ['$scope', '$routeParams', 'Rover', 'assetVersion',
+    function($scope, $routeParams, Rover, assetVersion) {
+
+        Rover.debug('SubmitFMSDemoController');
+
+        $scope.params = $routeParams;
+
+        $scope.assetVersion = assetVersion;
     }
 ]);
 ;/*

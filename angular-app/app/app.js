@@ -56,6 +56,12 @@ app.config(['$routeProvider', 'assetVersion',
             controller: 'DashboardMemberController'
         })
 
+        // Movement data demo route.
+        .when('/submit-movement', {
+			templateUrl: "/views/submit-movement-demo.html?" + assetVersion,
+            controller: 'SubmitMovementDemoController'
+		})
+
         // Demo FMS routes.
         .when('/fms/demo/:name?/:step?',
         {
@@ -94,9 +100,7 @@ app.config(['$routeProvider', 'assetVersion',
         .when("/settings", {
 			templateUrl: "/views/settings.html?" + assetVersion
 		})
-        .when("/movementsubmit", {
-			templateUrl: "/views/movementsubmit.html?" + assetVersion
-		}).when("/fmstest", {
+        .when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + assetVersion
 		}).when("/fmsdata", {
 			templateUrl: "/views/fmsdata.html?" + assetVersion
