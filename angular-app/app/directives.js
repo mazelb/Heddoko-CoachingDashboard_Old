@@ -288,7 +288,7 @@ angular.module("app.chart.directives", []).directive("gaugeChart", [
  Custom directives for the app like custom background, minNavigation etc
  */
 
-angular.module("app.directives", []).directive("imgHolder", [
+angular.module("app.directives").directive("imgHolder", [
         function() {
             return {
                 link: function(scope, ele) {
@@ -506,7 +506,7 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
             };
         }
     ]).directive('fileModel', ['$parse', function ($parse) {
-		
+
 		/**
 		* @brief This is a custom Angular directive called 'file-model'
 		* It solves the problem that Angular doesn't have a built-in directive for binding inputs of type file (single or multi-file uploads) to a model.
@@ -514,13 +514,13 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
 		* @param void
 		* @return void
 		*/
-		 
+
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
             var model = $parse(attrs.fileModel);
             var modelSetter = model.assign;
-            
+
             element.bind('change', function(){
                 scope.$apply(function(){
                     modelSetter(scope, element[0].files); //this is the key line, where the files of the file input are bound to the scope
@@ -529,4 +529,3 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
         }
     };
 }]);
-

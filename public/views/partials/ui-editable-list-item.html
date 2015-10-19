@@ -1,0 +1,16 @@
+
+<!-- Used in the uiEditableListItem directive -->
+<div class="row">
+    <div class="col-sm-5 text-right">
+        {{ label }}
+    </div>
+
+    <div class="col-sm-7">
+        <b ng-hide="isEditing">
+            {{ value }}
+        </b>
+        <input ng-show="isEditing" type="text" value="{{ value }}">
+    </div>
+
+    {{ test }}
+</div>

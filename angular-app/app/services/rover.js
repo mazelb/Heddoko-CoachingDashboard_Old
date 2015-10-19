@@ -104,7 +104,20 @@ angular.module('app.rover', []).service('Rover',
     };
     this.browse = this.browseTo;
 
+    //
+    // Events.
+    //
+
+    // Stores all event callbacks.
+    this._events = {
+        onEndSession: []
+    };
+
     // Performs final tasks before logging out.
+    this.onEndSession = function()
+    {
+
+    };
     // TODO: implement a hooks system, where each controller can add their methods.
     this.endSession = function()
     {

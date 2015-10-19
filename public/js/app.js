@@ -13864,7 +13864,7 @@ angular.module('ngCookies', ['ng']).
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
-    "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
+    "app.controllers", 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services'
 ]);
@@ -13883,6 +13883,9 @@ app.constant('appVersion', _appVersion)
 
 // Initializes the 'app.services' module so we can add factories in separate files.
 var appServices = angular.module('app.services', ['app.rover']);
+
+// Initializes the 'app.directives' module so we can add directives in separate files.
+var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
 app.config(['$routeProvider', 'assetVersion',
@@ -14317,283 +14320,6 @@ angular.module('countTo', []).controller("countTo", ["$scope",
         };
 
     }]);
-;/**
- * @file backend.js
- * @brief This file defines the Factories for interfacing with the back-end (CRUD)
- * @author Maxwell Mowbray (max@heddoko.com)
- * @date June 2015
- */
-
-angular.module('backendHeddoko', [])
-
-/**
- * Teams factory.
- */
-.factory('Teams', function($http) {
-
-	return {
-
-		/**
-		* @brief Teams.get method used for fetching the active user's teams
-		* @param void
-		* @return list of user's teams
-		*/
-
-		get : function() {
-			return $http.get('/api/teams');
-		},
-
-		/**
-		* @brief Teams.create method used for creating a new team under the active user
-		* @param form data pertaining to a new team entry
-		* @return upon a successful addition of a new team, the back-end returns an updated teams list
-		*/
-
-		create : function(new_team_form_data) {
-			return $http({
-				method: 'POST',
-				url: '/api/teams',
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(new_team_form_data)
-			});
-		},
-
-		/**
-		* @brief This is the Teams.update method used for updating an existing team's details
-		* @param form data pertaining to updated team details
-		* @return upon a successful update of a team, the back-end returns a updated teams list
-		*/
-
-		update : function(team_id, updated_team_form_data) {
-			return $http({
-				method: 'PUT',
-				url: '/api/teams'/ + team_id,
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(updated_team_form_data)
-			});
-		},
-
-		/**
-		* @brief This is the Teams.destroy method used for removing a team under the active user
-		* @param id of the team to be destroyed
-		* @return void
-		*/
-
-		destroy : function(team_id) {
-			return $http.delete('/api/teams/' + team_id);
-		}
-
-	};
-})
-
-/**
- * Athletes factory.
- */
-.factory('Athletes', function($http) {
-
-	return {
-
-		/**
-		* @brief Athletes.get method used for fetching the athletes belonging to a given team
-		* @param team id
-		* @return list of athletes belonging to supplied team
-		*/
-
-		get : function(team_id) {
-			return $http.get('/api/teams/' + team_id + '/athletes');
-		},
-
-		/**
-		* @brief Athletes.create method used for creating a new Athlete, belonging to an existing team
-		* @param the id of the team under which to add the new athlete, and the new athlete's details
-		* @return upon a successful addition of a new team, the back-end returns an updated athlete's list
-		*/
-
-		create : function(team_id, new_athlete_form_data) {
-		    console.log(new_athlete_form_data);
-			    return $http({
-				    method: 'POST',
-				    url: '/api/teams/' + team_id + '/athletes',
-				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				    data: $.param(new_athlete_form_data)
-			});
-		}
-
-	};
-
-})
-
-.factory('FMSForm', function($http) {
-
-	return {
-
-		/**
-		* @brief FMSForm.get method used for fetching the fmsforms belonging to a supplied athlete
-		* @param id of athlete
-		* @return list of FMS Forms belonging to supplied athlete
-		*/
-
-		get : function(athlete_id) {
-			return $http.get('/api/athletes/' + athlete_id + '/fmsforms');
-		},
-
-		/**
-		* @brief FMSForm.create method used for creating a new FMS Form, belonging to an existing athlete
-		* @param the id of the athlete under which to add the new FMS Form, and the new FMS Form details
-		* @return upon a successful addition of a new team, the back-end returns an updated FMS Form list
-		*/
-
-		create : function(athlete_id, form_data, fms_form_movement_files) {
-
-			var fd = new FormData();
-
-			if (fms_form_movement_files){
-				if (fms_form_movement_files.deepsquat_movement_file) fd.append('deepsquat_movement_file', fms_form_movement_files.deepsquat_movement_file[0]);
-				if (fms_form_movement_files.Lhurdle_movement_file) fd.append('Lhurdle_movement_file', fms_form_movement_files.Lhurdle_movement_file[0]);
-				if (fms_form_movement_files.Rhurdle_movement_file) fd.append('Rhurdle_movement_file', fms_form_movement_files.Rhurdle_movement_file[0]);
-				if (fms_form_movement_files.Llunge_movement_file) fd.append('Llunge_movement_file', fms_form_movement_files.Llunge_movement_file[0]);
-				if (fms_form_movement_files.Rlunge_movement_file) fd.append('Rlunge_movement_file', fms_form_movement_files.Rlunge_movement_file[0]);
-				if (fms_form_movement_files.Lshoulder_movement_file) fd.append('Lshoulder_movement_file', fms_form_movement_files.Lshoulder_movement_file[0]);
-				if (fms_form_movement_files.Rshoulder_movement_file) fd.append('Rshoulder_movement_file', fms_form_movement_files.Rshoulder_movement_file[0]);
-				if (fms_form_movement_files.Limpingement_movement_file) fd.append('Limpingement_movement_file', fms_form_movement_files.Limpingement_movement_file[0]);
-				if (fms_form_movement_files.Rimpingement_movement_file) fd.append('Rimpingement_movement_file', fms_form_movement_files.Rimpingement_movement_file[0]);
-				if (fms_form_movement_files.Lactive_movement_file) fd.append('Lactive_movement_file', fms_form_movement_files.Lactive_movement_file[0]);
-				if (fms_form_movement_files.Ractive_movement_file) fd.append('Ractive_movement_file', fms_form_movement_files.Ractive_movement_file[0]);
-				if (fms_form_movement_files.trunk_movement_file) fd.append('trunk_movement_file', fms_form_movement_files.trunk_movement_file[0]);
-				if (fms_form_movement_files.press_movement_file) fd.append('press_movement_file', fms_form_movement_files.press_movement_file[0]);
-				if (fms_form_movement_files.Lrotary_movement_file) fd.append('Lrotary_movement_file', fms_form_movement_files.Lrotary_movement_file[0]);
-				if (fms_form_movement_files.Rrotary_movement_file) fd.append('Rrotary_movement_file', fms_form_movement_files.Rrotary_movement_file[0]);
-				if (fms_form_movement_files.posterior_movement_file) fd.append('posterior_movement_file', fms_form_movement_files.posterior_movement_file[0]);
-			}
-
-			//attach the numerical values of the fms form
-
-			fd.append('deepsquat', form_data.deepsquat);
-			fd.append('deepsquatcomments', form_data.deepsquatcomments);
-			fd.append('Lhurdle', form_data.Lhurdle);
-			fd.append('Rhurdle', form_data.Rhurdle);
-			fd.append('hurdlecomments', form_data.hurdlecomments);
-			fd.append('Llunge', form_data.Llunge);
-			fd.append('Rlunge', form_data.Rlunge);
-			fd.append('lungecomments', form_data.lungecomments);
-			fd.append('Lshoulder', form_data.Lshoulder);
-			fd.append('Rshoulder', form_data.Rshoulder);
-			fd.append('shouldercomments', form_data.shouldercomments);
-			fd.append('Limpingement', form_data.Limpingement);
-			fd.append('Rimpingement', form_data.Rimpingement);
-			fd.append('impingementcomments', form_data.impingementcomments);
-			fd.append('Lactive', form_data.Lactive);
-			fd.append('Ractive', form_data.Ractive);
-			fd.append('activecomments', form_data.activecomments);
-			fd.append('trunk', form_data.trunk);
-			fd.append('trunkcomments', form_data.trunkcomments);
-			fd.append('press', form_data.press);
-			fd.append('presscomments', form_data.presscomments);
-			fd.append('Lrotary', form_data.Lrotary);
-			fd.append('Rrotary', form_data.Rrotary);
-			fd.append('rotarycomments', form_data.rotarycomments);
-			fd.append('posterior', form_data.posterior);
-			fd.append('posteriorcomments', form_data.posteriorcomments);
-
-			fd.append('comment', form_data.comment);
-
-			return $http.post('/api/athletes/' + athlete_id + '/fmsforms', fd, {
-				transformRequest: angular.identity,
-				headers: {'Content-Type': undefined}
-			});
-
-		},
-
-		/**
-		* @brief This is the FMSForm.update method used for updating an existing FMS Form
-		* @param the id of the athlete that the FMS Form belongs to, and the form data pertaining to updated team details
-		* @return upon a successful update of a team, the back-end returns a updated FMS Form list
-		*/
-
-		update : function(athlete_id, updated_fms_form) {
-			return $http({
-				method: 'PUT',
-				url: '/api/athletes/' + athlete_id + '/fmsforms/' + updated_fms_form.id,
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(updated_fms_form)
-			});
-		},
-
-		/**
-		* @brief This is the FMSForm.destroy method used for deleting an FMS Form
-		* @param id of the FMS Form to be destroyed
-		* @return upon a successful deletion of an FMS Form, the back-end returns a updated FMS Form list
-		*/
-
-		destroy : function(athleteid, form_id) {
-			return $http.delete('/api/athletes/' + athleteid + '/fmsforms/' + form_id);
-		}
-	};
-
-})
-
-.factory('Sports', function($http) {
-
-	return {
-
-		/**
-		* @brief SportCategories.get method used for fetching the sports categories
-		* @param void
-		* @return list of sports categories
-		*/
-
-		get : function() {
-			return $http.get('/api/sports');
-		}
-	};
-
-})
-
-.factory('SportMovements', function($http) {
-
-	return {
-
-		/**
-		* @brief SportMovements.get method used for fetching the movements under a given sport category
-		* @param id of sport category
-		* @return list of sport movements belonging to supplied sport category
-		*/
-
-		get : function(sport_id) {
-			return $http.get('/api/sports/' + sport_id + '/sportmovements');
-		}
-
-	};
-})
-
-.factory('Movements', function($http) {
-
-	return {
-
-		/**
-		* @brief Movements.upload method used for uploading multiple movement files to the back-end
-		* @param id of athlete who conducted the movement(s), and the array of files to upload.
-		* @return null
-		*/
-
-		upload : function(athlete_id, sport_id, form_data) {
-
-			var fd = new FormData();
-
-			fd.append('sportID', sport_id);
-			fd.append('comment', form_data.comment);
-
-			for (i = 0; i < form_data.movement_files.length; i++) {
-				fd.append('movements[]', form_data.movement_files[i]);
-			}
-
-			return $http.post('/api/athletes/' + athlete_id + '/movements', fd, {
-				transformRequest: angular.identity,
-				headers: {'Content-Type': undefined}
-			});
-		}
-	};
-});
 ;/**
  * @file controllers.js
  * @brief This file controls the calls to the back end and the navigation within the dashboard
@@ -16873,6 +16599,12 @@ angular.module('app.controllers')
         $scope.isLocalEnvironment = isLocalEnvironment;
 
         // ...
+        $scope.DeleteGroup = function()
+        {
+            Rover.debug('Todo: delete group');
+        };
+
+        // Watch params.groupId for updates to the selected group.
         $scope.$watch('params.groupId', function(newId, oldId)
         {
             // Performance check.
@@ -16930,12 +16662,22 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion) {
+.controller('MainController',
+    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion, isLocalEnvironment) {
 
         // Save an instance of the "rover" variable in the scope.
         Rover.debug('MainController');
         $scope.Rover = Rover;
+
+        // Setup a "global" namespace to store variables that should be inherited
+        // in child scopes.
+        $scope.global =
+        {
+            'assetVersion': assetVersion,
+            'isLocal': isLocalEnvironment,
+            'state': Rover.state
+        };
 
         // Tie the local scope to the user-namespaced sessionStorage.
         $scope.data = Rover.state;
@@ -16996,7 +16738,10 @@ angular.module('app.controllers')
 
             Rover.debug('submitNewAthleteForm');
 
+            Rover.debug($scope.data.member.new);
+            Rover.debug(Rover.state.member.new);
             var athlete = $scope.data.member.new;
+            Rover.debug(athlete);
 
             // Format some variables.
             athlete.team_id = $scope.data.group.selected.id;
@@ -17008,6 +16753,8 @@ angular.module('app.controllers')
             athlete.previous_injuries = "";
             athlete.underlying_medical = "";
             athlete.notes = "";
+
+            Rover.debug(athlete);
 
             // Show loading animation.
             Rover.addBackgroundProcess();
@@ -17156,12 +16903,46 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('DashboardMemberController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
-
-        // Update the selected team.
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'FMSForm', 'Rover',
+    function($scope, $routeParams, FMSForm, Rover) {
 
         $scope.params = $routeParams;
+
+        // Port of old code.
+        $scope.fmsForms = {};
+
+        $scope.loadFMSForms = function()
+        {
+            FMSForm.get($scope.data.member.selected.id).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200) {
+                        $scope.fmsForms = response.data;
+                    }
+
+                    else {
+                        $scope.fmsForms = {};
+                    }
+
+                },
+
+                // On failure.
+                function(response) {
+
+                }
+            );
+        };
+
+        $scope.$watch('data.member.selected', function(oldMember, newMember)
+        {
+
+
+            // Load the FMS forms.
+            Rover.debug('Loading FMS forms...');
+            $scope.loadFMSForms();
+        });
 
         // Watch the "memberId" parameter to updated the selected member.
         $scope.$watch('params.memberId', function(newId, oldId)
@@ -17191,8 +16972,8 @@ angular.module('app.controllers')
             else {
                 Rover.error('Member #' + newId + ' not found.');
             }
-        }, true);
 
+        }, true);
     }
 ]);
 ;/**
@@ -17664,7 +17445,7 @@ angular.module("app.chart.directives", []).directive("gaugeChart", [
  Custom directives for the app like custom background, minNavigation etc
  */
 
-angular.module("app.directives", []).directive("imgHolder", [
+angular.module("app.directives").directive("imgHolder", [
         function() {
             return {
                 link: function(scope, ele) {
@@ -17882,7 +17663,7 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
             };
         }
     ]).directive('fileModel', ['$parse', function ($parse) {
-		
+
 		/**
 		* @brief This is a custom Angular directive called 'file-model'
 		* It solves the problem that Angular doesn't have a built-in directive for binding inputs of type file (single or multi-file uploads) to a model.
@@ -17890,13 +17671,13 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
 		* @param void
 		* @return void
 		*/
-		 
+
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
             var model = $parse(attrs.fileModel);
             var modelSetter = model.assign;
-            
+
             element.bind('change', function(){
                 scope.$apply(function(){
                     modelSetter(scope, element[0].files); //this is the key line, where the files of the file input are bound to the scope
@@ -17905,7 +17686,75 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
         }
     };
 }]);
+;/**
+ * @file    ui-editable-list.js
+ * @brief   Angular directive for editable list tables. Includes action buttons.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @note    Use as:
+ *              <div ui-editable-list-container>
+ *                  <div ui-editable-list-item label="Some Label" value="data.some.value">
+ *                  </div>
+ *              </div>
+ */
+angular.module('app.directives')
 
+.directive('uiEditableListContainer', function() {
+    return {
+        restrict: 'AE',
+        transclude: true,
+        controller: ['$scope', 'Rover', function($scope, Rover) {
+
+            // Editing flag.
+            $scope.isEditing = false;
+
+            // Stores list of items in this container.
+            $scope.items = [];
+            $scope.addItem = function(item) {
+                $scope.items.push(item);
+            };
+
+            // Edit actions.
+            $scope.edit = function()
+            {
+                // Turn on editing flag.
+                $scope.isEditing = true;
+                for (var item in $scope.items) {
+                    item.isEditing = true;
+                }
+            };
+
+            $scope.save = function()
+            {
+                // Turn off editing flag.
+                $scope.isEditing = false;
+                for (var item in $scope.items) {
+                    item.isEditing = false;
+                }
+            };
+
+            $scope.delete = function()
+            {
+                Rover.alert('Demo');
+            };
+        }],
+        templateUrl: 'views/partials/ui-editable-list-container.html'
+    };
+})
+
+.directive('uiEditableListItem', ['Rover', function(Rover) {
+    return {
+        require: '^uiEditableListContainer',
+        restrict: 'AE',
+        scope: {
+            label: '@label',
+            value: '=value'
+        },
+        link: function(scope, element, attrs, controller) {
+            controller.addItem(scope);
+        },
+        templateUrl: 'views/partials/ui-editable-list-item.html'
+    };
+}]);
 ;/* jshint ignore:start */
 (function(angular, factory) {
     'use strict';
@@ -18202,6 +18051,283 @@ angular.module('app.controllers')
 
 });
 ;/**
+ * @file    backend.js
+ * @brief   This file defines the Factories for interfacing with the back-end (CRUD)
+ * @author  Maxwell Mowbray (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ * @date    June 2015
+ */
+
+angular.module('backendHeddoko', [])
+
+/**
+ * Teams factory.
+ */
+.factory('Teams', function($http) {
+
+	return {
+
+		/**
+		* @brief Teams.get method used for fetching the active user's teams
+		* @param void
+		* @return list of user's teams
+		*/
+
+		get : function() {
+			return $http.get('/api/teams');
+		},
+
+		/**
+		* @brief Teams.create method used for creating a new team under the active user
+		* @param form data pertaining to a new team entry
+		* @return upon a successful addition of a new team, the back-end returns an updated teams list
+		*/
+
+		create : function(new_team_form_data) {
+			return $http({
+				method: 'POST',
+				url: '/api/teams',
+				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				data: $.param(new_team_form_data)
+			});
+		},
+
+		/**
+		* @brief This is the Teams.update method used for updating an existing team's details
+		* @param form data pertaining to updated team details
+		* @return upon a successful update of a team, the back-end returns a updated teams list
+		*/
+
+		update : function(team_id, updated_team_form_data) {
+			return $http({
+				method: 'PUT',
+				url: '/api/teams'/ + team_id,
+				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				data: $.param(updated_team_form_data)
+			});
+		},
+
+		/**
+		* @brief This is the Teams.destroy method used for removing a team under the active user
+		* @param id of the team to be destroyed
+		* @return void
+		*/
+
+		destroy : function(team_id) {
+			return $http.delete('/api/teams/' + team_id);
+		}
+
+	};
+})
+
+/**
+ * Athletes factory.
+ */
+.factory('Athletes', function($http) {
+
+	return {
+
+		/**
+		* @brief Athletes.get method used for fetching the athletes belonging to a given team
+		* @param team id
+		* @return list of athletes belonging to supplied team
+		*/
+
+		get : function(team_id) {
+			return $http.get('/api/teams/' + team_id + '/athletes');
+		},
+
+		/**
+		* @brief Athletes.create method used for creating a new Athlete, belonging to an existing team
+		* @param the id of the team under which to add the new athlete, and the new athlete's details
+		* @return upon a successful addition of a new team, the back-end returns an updated athlete's list
+		*/
+
+		create : function(team_id, new_athlete_form_data) {
+		    console.log(new_athlete_form_data);
+			    return $http({
+				    method: 'POST',
+				    url: '/api/teams/' + team_id + '/athletes',
+				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				    data: $.param(new_athlete_form_data)
+			});
+		}
+
+	};
+
+})
+
+.factory('FMSForm', function($http) {
+
+	return {
+
+		/**
+		* @brief FMSForm.get method used for fetching the fmsforms belonging to a supplied athlete
+		* @param id of athlete
+		* @return list of FMS Forms belonging to supplied athlete
+		*/
+
+		get : function(athlete_id) {
+			return $http.get('/api/athletes/' + athlete_id + '/fmsforms');
+		},
+
+		/**
+		* @brief FMSForm.create method used for creating a new FMS Form, belonging to an existing athlete
+		* @param the id of the athlete under which to add the new FMS Form, and the new FMS Form details
+		* @return upon a successful addition of a new team, the back-end returns an updated FMS Form list
+		*/
+
+		create : function(athlete_id, form_data, fms_form_movement_files) {
+
+			var fd = new FormData();
+
+			if (fms_form_movement_files){
+				if (fms_form_movement_files.deepsquat_movement_file) fd.append('deepsquat_movement_file', fms_form_movement_files.deepsquat_movement_file[0]);
+				if (fms_form_movement_files.Lhurdle_movement_file) fd.append('Lhurdle_movement_file', fms_form_movement_files.Lhurdle_movement_file[0]);
+				if (fms_form_movement_files.Rhurdle_movement_file) fd.append('Rhurdle_movement_file', fms_form_movement_files.Rhurdle_movement_file[0]);
+				if (fms_form_movement_files.Llunge_movement_file) fd.append('Llunge_movement_file', fms_form_movement_files.Llunge_movement_file[0]);
+				if (fms_form_movement_files.Rlunge_movement_file) fd.append('Rlunge_movement_file', fms_form_movement_files.Rlunge_movement_file[0]);
+				if (fms_form_movement_files.Lshoulder_movement_file) fd.append('Lshoulder_movement_file', fms_form_movement_files.Lshoulder_movement_file[0]);
+				if (fms_form_movement_files.Rshoulder_movement_file) fd.append('Rshoulder_movement_file', fms_form_movement_files.Rshoulder_movement_file[0]);
+				if (fms_form_movement_files.Limpingement_movement_file) fd.append('Limpingement_movement_file', fms_form_movement_files.Limpingement_movement_file[0]);
+				if (fms_form_movement_files.Rimpingement_movement_file) fd.append('Rimpingement_movement_file', fms_form_movement_files.Rimpingement_movement_file[0]);
+				if (fms_form_movement_files.Lactive_movement_file) fd.append('Lactive_movement_file', fms_form_movement_files.Lactive_movement_file[0]);
+				if (fms_form_movement_files.Ractive_movement_file) fd.append('Ractive_movement_file', fms_form_movement_files.Ractive_movement_file[0]);
+				if (fms_form_movement_files.trunk_movement_file) fd.append('trunk_movement_file', fms_form_movement_files.trunk_movement_file[0]);
+				if (fms_form_movement_files.press_movement_file) fd.append('press_movement_file', fms_form_movement_files.press_movement_file[0]);
+				if (fms_form_movement_files.Lrotary_movement_file) fd.append('Lrotary_movement_file', fms_form_movement_files.Lrotary_movement_file[0]);
+				if (fms_form_movement_files.Rrotary_movement_file) fd.append('Rrotary_movement_file', fms_form_movement_files.Rrotary_movement_file[0]);
+				if (fms_form_movement_files.posterior_movement_file) fd.append('posterior_movement_file', fms_form_movement_files.posterior_movement_file[0]);
+			}
+
+			//attach the numerical values of the fms form
+
+			fd.append('deepsquat', form_data.deepsquat);
+			fd.append('deepsquatcomments', form_data.deepsquatcomments);
+			fd.append('Lhurdle', form_data.Lhurdle);
+			fd.append('Rhurdle', form_data.Rhurdle);
+			fd.append('hurdlecomments', form_data.hurdlecomments);
+			fd.append('Llunge', form_data.Llunge);
+			fd.append('Rlunge', form_data.Rlunge);
+			fd.append('lungecomments', form_data.lungecomments);
+			fd.append('Lshoulder', form_data.Lshoulder);
+			fd.append('Rshoulder', form_data.Rshoulder);
+			fd.append('shouldercomments', form_data.shouldercomments);
+			fd.append('Limpingement', form_data.Limpingement);
+			fd.append('Rimpingement', form_data.Rimpingement);
+			fd.append('impingementcomments', form_data.impingementcomments);
+			fd.append('Lactive', form_data.Lactive);
+			fd.append('Ractive', form_data.Ractive);
+			fd.append('activecomments', form_data.activecomments);
+			fd.append('trunk', form_data.trunk);
+			fd.append('trunkcomments', form_data.trunkcomments);
+			fd.append('press', form_data.press);
+			fd.append('presscomments', form_data.presscomments);
+			fd.append('Lrotary', form_data.Lrotary);
+			fd.append('Rrotary', form_data.Rrotary);
+			fd.append('rotarycomments', form_data.rotarycomments);
+			fd.append('posterior', form_data.posterior);
+			fd.append('posteriorcomments', form_data.posteriorcomments);
+
+			fd.append('comment', form_data.comment);
+
+			return $http.post('/api/athletes/' + athlete_id + '/fmsforms', fd, {
+				transformRequest: angular.identity,
+				headers: {'Content-Type': undefined}
+			});
+
+		},
+
+		/**
+		* @brief This is the FMSForm.update method used for updating an existing FMS Form
+		* @param the id of the athlete that the FMS Form belongs to, and the form data pertaining to updated team details
+		* @return upon a successful update of a team, the back-end returns a updated FMS Form list
+		*/
+
+		update : function(athlete_id, updated_fms_form) {
+			return $http({
+				method: 'PUT',
+				url: '/api/athletes/' + athlete_id + '/fmsforms/' + updated_fms_form.id,
+				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				data: $.param(updated_fms_form)
+			});
+		},
+
+		/**
+		* @brief This is the FMSForm.destroy method used for deleting an FMS Form
+		* @param id of the FMS Form to be destroyed
+		* @return upon a successful deletion of an FMS Form, the back-end returns a updated FMS Form list
+		*/
+
+		destroy : function(athleteid, form_id) {
+			return $http.delete('/api/athletes/' + athleteid + '/fmsforms/' + form_id);
+		}
+	};
+
+})
+
+.factory('Sports', function($http) {
+
+	return {
+
+		/**
+		* @brief SportCategories.get method used for fetching the sports categories
+		* @param void
+		* @return list of sports categories
+		*/
+
+		get : function() {
+			return $http.get('/api/sports');
+		}
+	};
+
+})
+
+.factory('SportMovements', function($http) {
+
+	return {
+
+		/**
+		* @brief SportMovements.get method used for fetching the movements under a given sport category
+		* @param id of sport category
+		* @return list of sport movements belonging to supplied sport category
+		*/
+
+		get : function(sport_id) {
+			return $http.get('/api/sports/' + sport_id + '/sportmovements');
+		}
+
+	};
+})
+
+.factory('Movements', function($http) {
+
+	return {
+
+		/**
+		* @brief Movements.upload method used for uploading multiple movement files to the back-end
+		* @param id of athlete who conducted the movement(s), and the array of files to upload.
+		* @return null
+		*/
+
+		upload : function(athlete_id, sport_id, form_data) {
+
+			var fd = new FormData();
+
+			fd.append('sportID', sport_id);
+			fd.append('comment', form_data.comment);
+
+			for (i = 0; i < form_data.movement_files.length; i++) {
+				fd.append('movements[]', form_data.movement_files[i]);
+			}
+
+			return $http.post('/api/athletes/' + athlete_id + '/movements', fd, {
+				transformRequest: angular.identity,
+				headers: {'Content-Type': undefined}
+			});
+		}
+	};
+});
+;/**
  * @file    demo.js
  * @brief   The FMSDemoFactory is a temporary factory used for the demo "live FMS" screens.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -18373,7 +18499,20 @@ angular.module('app.rover', []).service('Rover',
     };
     this.browse = this.browseTo;
 
+    //
+    // Events.
+    //
+
+    // Stores all event callbacks.
+    this._events = {
+        onEndSession: []
+    };
+
     // Performs final tasks before logging out.
+    this.onEndSession = function()
+    {
+
+    };
     // TODO: implement a hooks system, where each controller can add their methods.
     this.endSession = function()
     {

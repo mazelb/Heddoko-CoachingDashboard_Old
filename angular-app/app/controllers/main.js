@@ -8,12 +8,22 @@
  */
 angular.module('app.controllers')
 
-.controller('MainController', ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion) {
+.controller('MainController',
+    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion, isLocalEnvironment) {
 
         // Save an instance of the "rover" variable in the scope.
         Rover.debug('MainController');
         $scope.Rover = Rover;
+
+        // Setup a "global" namespace to store variables that should be inherited
+        // in child scopes.
+        $scope.global =
+        {
+            'assetVersion': assetVersion,
+            'isLocal': isLocalEnvironment,
+            'state': Rover.state
+        };
 
         // Tie the local scope to the user-namespaced sessionStorage.
         $scope.data = Rover.state;
@@ -74,7 +84,10 @@ angular.module('app.controllers')
 
             Rover.debug('submitNewAthleteForm');
 
+            Rover.debug($scope.data.member.new);
+            Rover.debug(Rover.state.member.new);
             var athlete = $scope.data.member.new;
+            Rover.debug(athlete);
 
             // Format some variables.
             athlete.team_id = $scope.data.group.selected.id;
@@ -86,6 +99,8 @@ angular.module('app.controllers')
             athlete.previous_injuries = "";
             athlete.underlying_medical = "";
             athlete.notes = "";
+
+            Rover.debug(athlete);
 
             // Show loading animation.
             Rover.addBackgroundProcess();

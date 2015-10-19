@@ -15,6 +15,12 @@ angular.module('app.controllers')
         $scope.isLocalEnvironment = isLocalEnvironment;
 
         // ...
+        $scope.DeleteGroup = function()
+        {
+            Rover.debug('Todo: delete group');
+        };
+
+        // Watch params.groupId for updates to the selected group.
         $scope.$watch('params.groupId', function(newId, oldId)
         {
             // Performance check.

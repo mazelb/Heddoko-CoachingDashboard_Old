@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html class="no-js" data-ng-app="app">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,18 +13,18 @@
         <!-- Theme's own CSS file -->
         <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
     </head>
-    <body data-ng-app="app" id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="MainController">
+    <body id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="MainController">
 
         <div>
             <div data-ng-cloak="" class="no-print">
-                <aside data-ng-include=" 'views/navigation.html?' + assetVersion " id="nav-container">
+                <aside data-ng-include=" 'views/navigation.html?' + global.assetVersion " id="nav-container">
                 </aside>
             </div>
 
             <div class="view-container">
                 <div class="no-print">
                     <section
-                        data-ng-include=" 'views/header.html?' + assetVersion "
+                        data-ng-include=" 'views/header.html?' + global.assetVersion "
                         id="header"
                         class="top-header">
                     </section>
@@ -49,6 +49,6 @@
         </div>
 
         <script type="text/javascript" src="{{ asset('js/app.js?'. time()) }}"></script>
-        <!-- <script type="text/javascript" ng-src="js/app.js?@{{ assetVersion }}"></script> -->
+        <!-- <script type="text/javascript" ng-src="js/app.js?@{{ global.assetVersion }}"></script> -->
     </body>
 </html>

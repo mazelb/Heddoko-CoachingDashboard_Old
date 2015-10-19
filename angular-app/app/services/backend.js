@@ -1,8 +1,8 @@
 /**
- * @file backend.js
- * @brief This file defines the Factories for interfacing with the back-end (CRUD)
- * @author Maxwell Mowbray (max@heddoko.com)
- * @date June 2015
+ * @file    backend.js
+ * @brief   This file defines the Factories for interfacing with the back-end (CRUD)
+ * @author  Maxwell Mowbray (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ * @date    June 2015
  */
 
 angular.module('backendHeddoko', [])

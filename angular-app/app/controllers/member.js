@@ -6,12 +6,46 @@
  */
 angular.module('app.controllers')
 
-.controller('DashboardMemberController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
-
-        // Update the selected team.
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'FMSForm', 'Rover',
+    function($scope, $routeParams, FMSForm, Rover) {
 
         $scope.params = $routeParams;
+
+        // Port of old code.
+        $scope.fmsForms = {};
+
+        $scope.loadFMSForms = function()
+        {
+            FMSForm.get($scope.data.member.selected.id).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200) {
+                        $scope.fmsForms = response.data;
+                    }
+
+                    else {
+                        $scope.fmsForms = {};
+                    }
+
+                },
+
+                // On failure.
+                function(response) {
+
+                }
+            );
+        };
+
+        $scope.$watch('data.member.selected', function(oldMember, newMember)
+        {
+
+
+            // Load the FMS forms.
+            Rover.debug('Loading FMS forms...');
+            $scope.loadFMSForms();
+        });
 
         // Watch the "memberId" parameter to updated the selected member.
         $scope.$watch('params.memberId', function(newId, oldId)
@@ -41,7 +75,7 @@ angular.module('app.controllers')
             else {
                 Rover.error('Member #' + newId + ' not found.');
             }
-        }, true);
 
+        }, true);
     }
 ]);

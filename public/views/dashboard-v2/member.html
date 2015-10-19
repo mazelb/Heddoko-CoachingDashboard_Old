@@ -1,171 +1,30 @@
 
 <!-- Header -->
-<div ng-include src="'views/dashboard-v2/partials/header.html?' + assetVersion"></div>
+<div ng-include src="'views/dashboard-v2/partials/header.html?' + global.assetVersion"></div>
 
-<div class="page page-dashboard" data-ng-controller="FMSFormController">
+<div class="page page-dashboard">
 
     <!-- Breadcrumbs -->
-    <div ng-include src="'views/dashboard-v2/partials/breadcrumbs.html?' + assetVersion"></div>
+    <div ng-include src="'views/dashboard-v2/partials/breadcrumbs.html?' + global.assetVersion"></div>
+
+    <section>
+    	<div class="row">
+
+            <!-- Member details -->
+    		<div class="col-md-6 col-sm-12">
+                <div ng-include src="'views/dashboard-v2/member-partials/member-details.html?' + global.assetVersion"></div>
+    		</div>
+
+            <!-- Medical information -->
+    		<div class="col-md-6 col-sm-12">
+                <div ng-include src="'views/dashboard-v2/member-partials/medical.html?' + global.assetVersion"></div>
+    		</div>
+    	</div>
+    </section>
 
     <!-- Member page contents -->
 
     <div class="row">
-
-    	<div class="col-sm-6">
-
-    		<div class="panel panel-default">
-
-    			<div class="panel-body">
-
-    				<div class="text-left col-sm-4">
-    					<!-- <h3>Player Information</h3> -->
-    					<h3>
-    					    {{data.member.selected.first_name}} {{data.member.selected.last_name}}
-    					</h3>
-    				</div>
-
-    				<div class="panel-body col-sm-8 ng-scope">
-
-                        <!-- Profile created -->
-                        <div class="row">
-                            <div class="col-sm-5 text-right">Profile created</div>
-                            <div class="col-sm-7">
-                                <b>
-                                    {{ data.member.selected.created_at }}
-                                </b>
-                            </div>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="row">
-                            <div class="col-sm-5 text-right">Phone</div>
-                            <div class="col-sm-7"><b>+1 (514) 555-5555</b></div>
-                        </div>
-
-                        <!-- Sex -->
-                        <div class="row">
-                            <div class="col-sm-5 text-right">Sex</div>
-                            <div class="col-sm-7"><b></b></div>
-                        </div>
-
-                        <!-- Date of Birth -->
-                        <div class="row">
-                            <div class="col-sm-5 text-right">Date of Birth</div>
-                            <div class="col-sm-7"><b></b></div>
-                        </div>
-
-                        <!-- Height -->
-                        <div class="row">
-                            <div class="col-sm-5 text-right">Height</div>
-                            <!-- <div class="col-sm-7">
-                                <b>
-                                    {{ '' + Math.floor(data.member.selected.height_cm/30.48) }}'
-                                    {{ '' + Math.round((Number(data.member.selected.height_cm) % 30.48) * 12 /30.48) }}"
-                                    ({{data.member.selected.height_cm}} cm)
-                                </b>
-                            </div> -->
-                            <div class="col-sm-7">
-                                <b>
-                                    {{data.member.selected.height_cm}} cm
-                                </b>
-                            </div>
-                        </div>
-
-                        <!-- Weight -->
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <span class="pull-right">Weight</span>
-                            </div>
-                            <div class="col-sm-7"><b>{{data.member.selected.weight_cm}}</b></div>
-                        </div>
-
-                        <!-- Primary Sport -->
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <span class="pull-right">Primary Sport</span>
-                            </div>
-                            <div class="col-sm-7"><b>{{data.member.selected.primary_sport}}</b></div>
-                        </div>
-
-                        <!-- Primary Position -->
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <span class="pull-right">Primary Position</span>
-                            </div>
-                            <div class="col-sm-7"><b>{{data.member.selected.primary_position}}</b></div>
-                        </div>
-
-                        <!-- Hand/Leg Dominance -->
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <span class="pull-right">Hand/Leg Dominance</span>
-                            </div>
-                            <div class="col-sm-7"><b>{{data.member.selected.hand_leg_dominance}}</b></div>
-                        </div>
-
-    					<!-- <ul class="list-unstyled">
-    						<li>Profile Created <b class="pull-right">{{data.member.selected.created_at}}</b></li>
-    						<li>Phone <b class="pull-right">{{}}</b></li>
-    						<li>Sex <b class="pull-right">{{}}</b></li>
-    						<li>Date of birth <b class="pull-right">{{}}</b></li>
-    						<li>Height <b class="pull-right">{{data.member.selected.height_cm}}</b></li>
-    						<li>Weight <b class="pull-right">{{data.member.selected.weight_kg}}</b></li>
-    						<li>Primary Sport <b class="pull-right">{{data.member.selected.primary_sport}}</b></li>
-    						<li>Primary position <b class="pull-right">{{}}</b></li>
-    						<li>Hand/Leg dominance <b class="pull-right">{{data.member.selected.hand_leg_dominance}}</b></li>
-    					</ul> -->
-
-    				</div>
-    			</div>
-    		</div>
-
-    	</div>
-
-    	<div class="col-sm-3">
-
-    		<div class="panel panel-default">
-
-    			<div class="panel-body">
-
-    				<div class="text-left">
-    					<h3>Medical Information</h3>
-
-    				</div>
-
-    				<div class="panel-body ng-scope">
-                        <textarea class="form-control"></textarea>
-    				</div>
-    			</div>
-    		</div>
-
-    	</div>
-
-    	<div class="col-sm-3">
-
-    		<div class="panel panel-default">
-
-    			<div class="panel-body">
-
-    				<div class="text-left col-sm-6">
-    					<h3>Last FMS score</h3>
-
-    				</div>
-
-    				<div class="panel-body col-sm-8 ng-scope">
-
-
-    				</div>
-    			</div>
-    		</div>
-
-    	</div>
-
-    </div>
-
-    <div class="row" data-ng-controller="FMSFormController">
-
-
-
     	<div class="col-md-6">
     		<section class="panel panel-default">
     			<div class="panel-body">
@@ -177,7 +36,7 @@
     				</div>
 
     					<div morris-chart
-    							data-data="data.member.selected.fms_forms"
+    							data-data="fmsForms"
     							data-type="area"
     							data-xkey="created_at"
     							data-ykeys='["Lhurdle", "Rhurdle", "Llunge", "Rlunge"]'
@@ -206,7 +65,7 @@
     				<div class="panel-body ng-scope" data-ng-controller="morrisChartCtrl">
 
     					<div morris-chart
-    							data-data="data.member.selected.fms_forms"
+    							data-data="fmsForms"
     							data-type="line"
     							data-xkey="created_at"
     							data-ykeys='["totalscore"]'

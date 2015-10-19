@@ -8,7 +8,7 @@
 var app = angular.module("app", [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
-    "app.controllers", "app.directives", "app.form.validation", "app.ui.form.ctrls",
+    "app.controllers", 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services'
 ]);
@@ -27,6 +27,9 @@ app.constant('appVersion', _appVersion)
 
 // Initializes the 'app.services' module so we can add factories in separate files.
 var appServices = angular.module('app.services', ['app.rover']);
+
+// Initializes the 'app.directives' module so we can add directives in separate files.
+var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
 app.config(['$routeProvider', 'assetVersion',
