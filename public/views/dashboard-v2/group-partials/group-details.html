@@ -6,33 +6,16 @@
 
     <div class="panel-body">
 
-        <!-- Action buttons -->
-        <div class="row">
-            <div class="col-sm-12 btn-group">
-                <button
-                    type="button"
-                    ng-click="Rover.alert('Demo')"
-                    class="btn btn-default"
-                    name="button">
+        <div
+            data-ui-editable-list-container>
 
-                    Edit
-                </button>
-                <button
-                    type="button"
-                    ng-click="DeleteGroup()"
-                    class="btn btn-danger"
-                    name="button">
-
-                    Delete
-                </button>
+            <!-- Group name -->
+            <div
+                data-ui-editable-list-item
+                data-label="Name"
+                data-value="data.group.selected.name">
             </div>
-        </div>
 
-        <!-- Details -->
-        <div class="row">
-            <div class="col-sm-12">
-                ...
-            </div>
         </div>
 
     </div>

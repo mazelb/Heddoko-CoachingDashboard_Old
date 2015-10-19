@@ -52,11 +52,11 @@ angular.module('app.rover', []).service('Rover',
     // Shortcut to browse through app.
     this.browseTo = {
 
-        // Settings page.
-        settings: function() {
+        // Configuration page.
+        config: function() {
 
-            this.debug('Browsing to settings page.');
-            $location.path('/settings');
+            this.debug('Browsing to configuration page.');
+            $location.path('/config');
 
         }.bind(this),
 

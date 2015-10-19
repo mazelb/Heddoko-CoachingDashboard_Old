@@ -14,7 +14,7 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.2.8';  // TODO: is there a better place to define this?
+var _appVersion = '0.2.9';  // TODO: is there a better place to define this?
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -100,8 +100,8 @@ app.config(['$routeProvider', 'assetVersion',
         })
 
         // Other routes.
-        .when("/settings", {
-			templateUrl: "/views/settings.html?" + assetVersion
+        .when("/config", {
+			templateUrl: "/views/config.html?" + assetVersion
 		})
         .when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + assetVersion

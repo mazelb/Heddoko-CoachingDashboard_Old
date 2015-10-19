@@ -21,20 +21,15 @@
 
     <section>
     	<div class="row">
-    		<div class="col-sm-12">
 
-                <!-- New member form -->
-                <div ng-include src="'views/dashboard-v2/group-partials/new-member-form.html?' + assetVersion"></div>
-    		</div>
-    	</div>
-    </section>
-
-    <section ng-if="isLocalEnvironment">
-    	<div class="row">
-    		<div class="col-sm-12">
-
-                <!-- Group details -->
+            <!-- Group details -->
+            <div class="col-sm-12 col-md-6">
                 <div ng-include src="'views/dashboard-v2/group-partials/group-details.html?' + assetVersion"></div>
+    		</div>
+
+            <!-- New member form -->
+    		<div class="col-sm-12 col-md-6">
+                <div ng-include src="'views/dashboard-v2/group-partials/new-member-form.html?' + assetVersion"></div>
     		</div>
     	</div>
     </section>

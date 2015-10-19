@@ -20,9 +20,10 @@ angular.module('app.directives')
             $scope.isEditing = false;
 
             // Stores list of items in this container.
-            $scope.items = [];
-            $scope.addItem = function(item) {
-                $scope.items.push(item);
+            var items = $scope.items = [];
+            this.addItem = function(item) {
+                item.isEditing = false;
+                items.push(item);
             };
 
             // Edit actions.
@@ -30,18 +31,18 @@ angular.module('app.directives')
             {
                 // Turn on editing flag.
                 $scope.isEditing = true;
-                for (var item in $scope.items) {
+                angular.forEach(items, function(item) {
                     item.isEditing = true;
-                }
+                });
             };
 
             $scope.save = function()
             {
                 // Turn off editing flag.
                 $scope.isEditing = false;
-                for (var item in $scope.items) {
+                angular.forEach(items, function(item) {
                     item.isEditing = false;
-                }
+                });
             };
 
             $scope.delete = function()
@@ -59,7 +60,9 @@ angular.module('app.directives')
         restrict: 'AE',
         scope: {
             label: '@label',
-            value: '=value'
+            display: '@display',
+            value: '=value',
+            type: '@type'
         },
         link: function(scope, element, attrs, controller) {
             controller.addItem(scope);

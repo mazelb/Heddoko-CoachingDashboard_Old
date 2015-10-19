@@ -16,7 +16,7 @@ angular.module('app.controllers')
 
         $scope.loadFMSForms = function()
         {
-            FMSForm.get($scope.data.member.selected.id).then(
+            FMSForm.get(Rover.state.member.selected.id).then(
 
                 // On success.
                 function(response) {

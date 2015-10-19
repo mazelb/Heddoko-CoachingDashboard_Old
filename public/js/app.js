@@ -13870,7 +13870,7 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.2.8';  // TODO: is there a better place to define this?
+var _appVersion = '0.2.9';  // TODO: is there a better place to define this?
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -13956,8 +13956,8 @@ app.config(['$routeProvider', 'assetVersion',
         })
 
         // Other routes.
-        .when("/settings", {
-			templateUrl: "/views/settings.html?" + assetVersion
+        .when("/config", {
+			templateUrl: "/views/config.html?" + assetVersion
 		})
         .when("/fmstest", {
 			templateUrl: "/views/fmstest.html?" + assetVersion
@@ -16913,7 +16913,7 @@ angular.module('app.controllers')
 
         $scope.loadFMSForms = function()
         {
-            FMSForm.get($scope.data.member.selected.id).then(
+            FMSForm.get(Rover.state.member.selected.id).then(
 
                 // On success.
                 function(response) {
@@ -17708,9 +17708,10 @@ angular.module('app.directives')
             $scope.isEditing = false;
 
             // Stores list of items in this container.
-            $scope.items = [];
-            $scope.addItem = function(item) {
-                $scope.items.push(item);
+            var items = $scope.items = [];
+            this.addItem = function(item) {
+                item.isEditing = false;
+                items.push(item);
             };
 
             // Edit actions.
@@ -17718,18 +17719,18 @@ angular.module('app.directives')
             {
                 // Turn on editing flag.
                 $scope.isEditing = true;
-                for (var item in $scope.items) {
+                angular.forEach(items, function(item) {
                     item.isEditing = true;
-                }
+                });
             };
 
             $scope.save = function()
             {
                 // Turn off editing flag.
                 $scope.isEditing = false;
-                for (var item in $scope.items) {
+                angular.forEach(items, function(item) {
                     item.isEditing = false;
-                }
+                });
             };
 
             $scope.delete = function()
@@ -17747,7 +17748,9 @@ angular.module('app.directives')
         restrict: 'AE',
         scope: {
             label: '@label',
-            value: '=value'
+            display: '@display',
+            value: '=value',
+            type: '@type'
         },
         link: function(scope, element, attrs, controller) {
             controller.addItem(scope);
@@ -18447,11 +18450,11 @@ angular.module('app.rover', []).service('Rover',
     // Shortcut to browse through app.
     this.browseTo = {
 
-        // Settings page.
-        settings: function() {
+        // Configuration page.
+        config: function() {
 
-            this.debug('Browsing to settings page.');
-            $location.path('/settings');
+            this.debug('Browsing to configuration page.');
+            $location.path('/config');
 
         }.bind(this),
 

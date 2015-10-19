@@ -1,17 +1,29 @@
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        Add an Athlete
+    </div>
     <div class="panel-body">
-        <h2>Add an athlete</h2>
 
         <!-- Athlete picture -->
-        <div class="col-sm-2">
-            <a href="javascript:;" class="btn btn-primary btn-metro btn-metro-sm">
-                <object type="image/svg+xml" data="/images/sports/1.svg"/>
-            </a>
+        <div class="col-sm-4">
+            <div style="
+                display: block;
+                margin: 0 auto;
+                height: 120px;
+                width: 120px;
+                line-height: 120px;
+                font-size: .8em;
+                text-align: center;
+                cursor: pointer;
+                border: 1px solid #ccc;">
+
+                Photo
+            </div>
         </div>
 
         <!-- Athlete details -->
-        <div class="col-sm-10">
+        <div class="col-sm-8">
             <form ng-submit="submitNewAthleteForm()">
 
                 <!-- First name -->

@@ -12,74 +12,29 @@
 
             <!-- Member details -->
     		<div class="col-md-6 col-sm-12">
-                <div ng-include src="'views/dashboard-v2/member-partials/member-details.html?' + global.assetVersion"></div>
+                <div data-ng-include src="'views/dashboard-v2/member-partials/member-details.html?' + global.assetVersion"></div>
     		</div>
 
             <!-- Medical information -->
     		<div class="col-md-6 col-sm-12">
-                <div ng-include src="'views/dashboard-v2/member-partials/medical.html?' + global.assetVersion"></div>
+                <div data-ng-include src="'views/dashboard-v2/member-partials/medical.html?' + global.assetVersion"></div>
     		</div>
     	</div>
     </section>
 
-    <!-- Member page contents -->
+    <section>
+        <div class="row">
 
-    <div class="row">
-    	<div class="col-md-6">
-    		<section class="panel panel-default">
-    			<div class="panel-body">
-    				<div class="text-left col-sm-6">
-    					<h3>
-    						Test FMS Score Graphs
-    					</h3>
+            <!-- Test FMS -->
+            <div class="col-sm-12 col-md-6">
+                <div ng-include-src="'views/dashboard-v2/member-partials/test-fms-graph.html?' + global.assetVersion"></div>
+            </div>
 
-    				</div>
+            <!-- Total FMS -->
+            <div class="col-sm-12 col-md-6">
+                <div ng-include-src="'views/dashboard-v2/member-partials/total-fms-graph.html?' + global.assetVersion"></div>
+            </div>
+        </div>
+    </section>
 
-    					<div morris-chart
-    							data-data="fmsForms"
-    							data-type="area"
-    							data-xkey="created_at"
-    							data-ykeys='["Lhurdle", "Rhurdle", "Llunge", "Rlunge"]'
-    							data-labels='["Left Hurdle", "Right Hurdle", "Left Lunge", "Right Lunge"]'
-    							data-line-colors='["#383d43","#db5031","#c1bfc0"]'
-    							data-line-width="3"
-    					></div>
-
-    			</div>
-    		</section>
-    	</div>
-
-    	<div class="col-sm-6">
-
-    		<div class="panel panel-default">
-
-    			<div class="panel-body">
-
-    				<div class="text-left col-sm-6">
-    					<h3>
-    						Final FMS Score graph
-    					</h3>
-
-    				</div>
-
-    				<div class="panel-body ng-scope" data-ng-controller="morrisChartCtrl">
-
-    					<div morris-chart
-    							data-data="fmsForms"
-    							data-type="line"
-    							data-xkey="created_at"
-    							data-ykeys='["totalscore"]'
-    							data-labels='["total score"]'
-    							data-line-colors='["#383d43"]'
-    							data-line-width="3"
-    					></div>
-
-    				</div>
-    			</div>
-
-    		</div>
-
-    	</div>
-
-    </div>
 </div>
