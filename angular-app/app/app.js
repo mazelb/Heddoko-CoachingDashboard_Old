@@ -14,7 +14,7 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.2.7';  // TODO: is there a better place to define this?
+var _appVersion = '0.2.8';  // TODO: is there a better place to define this?
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -128,8 +128,7 @@ app.config(['$routeProvider', 'assetVersion',
         //     }, 1000);
         // });
 
-        console.log('Rover: ' + Rover.timestamp);
-
+        Rover.debug('Running app...');
     }
 ]);
 

@@ -11,15 +11,13 @@ angular.module('app.controllers')
     function($scope, $routeParams, FMSDemoFactory, Rover, assetVersion) {
 
         // Dev.
-        Rover.debug('DemoFMSController');
+        Rover.debug('FMSDemoController');
         $scope.isDemo = true;
         $scope.assetVersion = assetVersion;
 
         // Scope parameters.
         $scope.params = $routeParams;
-        if (!$scope.params.step) {
-            $scope.params.step = 'test';
-        }
+        $scope.params.step = $scope.params.step || 'test';
 
         // Other scope variables.
         $scope.isTestLive = false;

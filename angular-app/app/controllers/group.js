@@ -6,10 +6,13 @@
  */
 angular.module('app.controllers')
 
-.controller('DashboardGroupController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
+.controller('DashboardGroupController',
+    ['$scope', '$routeParams', 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $routeParams, Rover, assetVersion, isLocalEnvironment) {
 
         $scope.params = $routeParams;
+        $scope.assetVersion = assetVersion;
+        $scope.isLocalEnvironment = isLocalEnvironment;
 
         // ...
         $scope.$watch('params.groupId', function(newId, oldId)

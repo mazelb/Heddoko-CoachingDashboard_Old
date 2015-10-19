@@ -13870,7 +13870,7 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.2.7';  // TODO: is there a better place to define this?
+var _appVersion = '0.2.8';  // TODO: is there a better place to define this?
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -13984,8 +13984,7 @@ app.config(['$routeProvider', 'assetVersion',
         //     }, 1000);
         // });
 
-        console.log('Rover: ' + Rover.timestamp);
-
+        Rover.debug('Running app...');
     }
 ]);
 
@@ -16450,15 +16449,13 @@ angular.module('app.controllers')
     function($scope, $routeParams, FMSDemoFactory, Rover, assetVersion) {
 
         // Dev.
-        Rover.debug('DemoFMSController');
+        Rover.debug('FMSDemoController');
         $scope.isDemo = true;
         $scope.assetVersion = assetVersion;
 
         // Scope parameters.
         $scope.params = $routeParams;
-        if (!$scope.params.step) {
-            $scope.params.step = 'test';
-        }
+        $scope.params.step = $scope.params.step || 'test';
 
         // Other scope variables.
         $scope.isTestLive = false;
@@ -16867,10 +16864,13 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('DashboardGroupController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
+.controller('DashboardGroupController',
+    ['$scope', '$routeParams', 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $routeParams, Rover, assetVersion, isLocalEnvironment) {
 
         $scope.params = $routeParams;
+        $scope.assetVersion = assetVersion;
+        $scope.isLocalEnvironment = isLocalEnvironment;
 
         // ...
         $scope.$watch('params.groupId', function(newId, oldId)
@@ -18286,11 +18286,16 @@ angular.module('app.rover', []).service('Rover',
     // User-specific hash. Used for user-specific data.
     this.userHash = $('meta[name="user-hash"]').attr('content');
 
-    // User-namespaced session storage object.
+    // User-namespaced session storage object. This can be bound to the $scope variable
+    // through each controller.
     $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
     this.state = $sessionStorage[this.userHash];
 
+    // Configuration object.
+    this.state.config = this.state.config || {};
+
     // Counts the # of requests being made, and displays the loading icon accordingly.
+    // TODO: show a visual representation of the backgroundProcessCount variable.
     this.backgroundProcessCount = 0;
     this.addBackgroundProcess = function() {
 
@@ -18318,20 +18323,26 @@ angular.module('app.rover', []).service('Rover',
 
         // Settings page.
         settings: function() {
+
             this.debug('Browsing to settings page.');
             $location.path('/settings');
+
         }.bind(this),
 
         // Dashboard index page.
         dashboard: function() {
-            this.debug('Browsing to group dashboard index page.');
+
+            this.debug('Browsing to dashboard index page.');
             $location.path('/dashboard');
+
         }.bind(this),
 
-        // Group list page.
+        // Group listing page.
         groups: function() {
-            this.debug('Browsing to group dashboard groups.');
+
+            this.debug('Browsing to group listings page.');
             $location.path('/dashboard/list');
+
         }.bind(this),
 
         // Group page.
@@ -18354,8 +18365,10 @@ angular.module('app.rover', []).service('Rover',
 
         // General page.
         path: function(path) {
+
             this.debug('Browsing to path: ' + path);
             $location.path(path);
+
         }.bind(this)
     };
     this.browse = this.browseTo;
