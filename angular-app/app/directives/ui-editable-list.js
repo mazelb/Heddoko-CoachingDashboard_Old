@@ -10,10 +10,13 @@
  */
 angular.module('app.directives')
 
-.directive('uiEditableListContainer', function() {
+.directive('uiEditableListContainer', ['assetVersion', function(assetVersion) {
     return {
         restrict: 'AE',
         transclude: true,
+        scope: {
+            deleteResource: '=delete'
+        },
         controller: ['$scope', 'Rover', function($scope, Rover) {
 
             // Editing flag.
@@ -47,26 +50,28 @@ angular.module('app.directives')
 
             $scope.delete = function()
             {
-                Rover.alert('Demo');
+                $scope.deleteResource.apply();
             };
         }],
-        templateUrl: 'views/partials/ui-editable-list-container.html'
+        templateUrl: 'views/partials/ui-editable-list-container.html?' + assetVersion
     };
-})
+}])
 
-.directive('uiEditableListItem', ['Rover', function(Rover) {
-    return {
-        require: '^uiEditableListContainer',
-        restrict: 'AE',
-        scope: {
-            label: '@label',
-            display: '@display',
-            value: '=value',
-            type: '@type'
-        },
-        link: function(scope, element, attrs, controller) {
-            controller.addItem(scope);
-        },
-        templateUrl: 'views/partials/ui-editable-list-item.html'
-    };
-}]);
+.directive('uiEditableListItem', ['Rover', 'assetVersion',
+    function(Rover, assetVersion) {
+        return {
+            require: '^uiEditableListContainer',
+            restrict: 'AE',
+            scope: {
+                label: '@label',
+                display: '@display',
+                value: '=value',
+                type: '@type'
+            },
+            link: function(scope, element, attrs, controller) {
+                controller.addItem(scope);
+            },
+            templateUrl: 'views/partials/ui-editable-list-item.html?' + assetVersion
+        };
+    }
+]);

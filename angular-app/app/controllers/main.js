@@ -9,8 +9,8 @@
 angular.module('app.controllers')
 
 .controller('MainController',
-    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion, isLocalEnvironment) {
+    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "Sports", "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, assetVersion, isLocalEnvironment) {
 
         // Save an instance of the "rover" variable in the scope.
         Rover.debug('MainController');
@@ -28,7 +28,7 @@ angular.module('app.controllers')
         // Tie the local scope to the user-namespaced sessionStorage.
         $scope.data = Rover.state;
 
-        // Set up the group namespace.
+        // Load groups.
         Rover.debug('Setting up group data...');
         $scope.data.group = $scope.data.group || {};
         $scope.data.group.list = $scope.data.group.list || [];
@@ -37,12 +37,12 @@ angular.module('app.controllers')
 
         };
 
-        // Set up the member namespace.
-        Rover.debug('Setting up member data...');
-        $scope.data.member = $scope.data.member || {};
-        $scope.data.member.list = $scope.data.member.list || [];
-        $scope.data.member.selected = $scope.data.member.selected || {id: 0};
-        $scope.data.member.new = {
+        // Load profiles.
+        Rover.debug('Setting up profile data...');
+        $scope.data.profile = $scope.data.profile || {};
+        $scope.data.profile.list = $scope.data.profile.list || [];
+        $scope.data.profile.selected = $scope.data.profile.selected || {id: 0};
+        $scope.data.profile.new = {
             first_name: "",
             last_name: "",
             height: "",
@@ -51,6 +51,13 @@ angular.module('app.controllers')
             weight_lbs: "",
             age: ""
         };
+        $scope.data.member = $scope.data.profile;
+
+        // Load sports.
+        Rover.debug('Setting up sports data...');
+        $scope.data.sport = $scope.data.sport || {};
+        $scope.data.sport.list = $scope.data.sport.list || [];
+        $scope.data.sport.selected = $scope.data.sport.selected || {id: 0};
 
         // Submits the "new team" form.
         $scope.submitNewTeamForm = function() {
@@ -161,7 +168,7 @@ angular.module('app.controllers')
         };
 
         // Populates the athlete list.
-        $scope.populateMemberList = function() {
+        $scope.populateProfileList = function() {
 
             // Show loading animation.
             Rover.debug('Populating member list...');
@@ -191,6 +198,38 @@ angular.module('app.controllers')
             );
         };
 
+        // Populates the sports list.
+        $scope.populateSportsList = function() {
+
+            // Show loading animation.
+            Rover.debug('Populating sports list...');
+            Rover.addBackgroundProcess();
+
+            // Retrieve the list of all sports from the back-end
+            Sports.get().then(
+
+                // On success.
+                function(response) {
+
+        			if (response.status === 200) {
+                        Rover.state.sport.list = response.data;
+                    }
+
+                    // Select a default sport.
+            		if (Rover.state.sport.list.length > 0) {
+            			Rover.state.sport.selected = Rover.state.sport.list[0];
+            		}
+
+                    Rover.doneBackgroundProcess();
+            	},
+
+                // On error.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
         //
         // ...
         //
@@ -201,10 +240,16 @@ angular.module('app.controllers')
     		$scope.populateGroupList();
     	}
 
-        // Populate member list.
-        Rover.debug('Checking member list on first load...');
-    	if ($scope.data.member.list.length === 0) {
-    		$scope.populateMemberList();
+        // Populate profile list.
+        Rover.debug('Checking profile list on first load...');
+    	if ($scope.data.profile.list.length === 0) {
+    		$scope.populateProfileList();
+    	}
+
+        // Populate sports list.
+        Rover.debug('Checking sports list on first load...');
+    	if ($scope.data.sport.list.length === 0) {
+    		$scope.populateSportsList();
     	}
 
         // Update the athlete list as the selected team is modified.
@@ -237,7 +282,7 @@ angular.module('app.controllers')
             $scope.data.member.selected = {id: 0};
 
             // Update members list.
-    		$scope.populateMemberList();
+    		$scope.populateProfileList();
         }, true);
     }
 ]);

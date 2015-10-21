@@ -98,6 +98,10 @@ angular.module('backendHeddoko', [])
 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				    data: $.param(new_athlete_form_data)
 			});
+		},
+
+		destroy : function(team_id, id) {
+			return $http.delete('/api/teams/' + team_id + '/athletes/' + id);
 		}
 
 	};

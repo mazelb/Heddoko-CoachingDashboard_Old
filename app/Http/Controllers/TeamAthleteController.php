@@ -46,8 +46,25 @@ class TeamAthleteController extends Controller
 		$newAthleteData['underlying_medical'] = $request->input('underlying_medical');
 		$newAthleteData['notes'] = $request->input('notes');
 
-		Athlete::create($newAthleteData);
+		$profile = Athlete::create($newAthleteData);
 
-		return $active_team->athletes;
+		return [
+            'list' => $active_team->athletes,
+            'profile' => $profile
+        ];
 	}
+
+    /**
+     *
+     */
+    public function destroy($teamId, $id)
+    {
+        $team = Team::findOrFail($teamId);
+
+        $profile = $team->athletes()->findOrFail($id);
+
+        $profile->delete();
+
+        return $team->athletes;
+    }
 }

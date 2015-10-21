@@ -13870,7 +13870,7 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.2.9';  // TODO: is there a better place to define this?
+var _appVersion = '0.2.10';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -13894,6 +13894,21 @@ app.config(['$routeProvider', 'assetVersion',
         // Landing page.
         return $routeProvider.when('/', {
 			redirectTo: '/dashboard/list'
+		})
+
+        // Group routes.
+        .when("/group", {
+			redirectTo: "/groups"
+		})
+        .when("/groups", {
+            templateUrl: "/views/group/list.html?" + assetVersion,
+            controller: 'GroupController'
+		})
+
+        // Profile routes.
+        .when('/profile/create', {
+			templateUrl: "/views/profile/create.html?" + assetVersion,
+            controller: "ProfileController"
 		})
 
         // Dashboard routes.
@@ -16163,6 +16178,59 @@ angular.module("app.ui.ctrls", []).controller("NotifyCtrl", ["$scope", "loggit",
   }
 ]);
 ;/**
+ * @file    group.js
+ * @brief   Controller for the dashbord's group page.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('DashboardGroupController',
+    ['$scope', '$routeParams', 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $routeParams, Rover, assetVersion, isLocalEnvironment) {
+
+        $scope.params = $routeParams;
+        $scope.assetVersion = assetVersion;
+        $scope.isLocalEnvironment = isLocalEnvironment;
+
+        // ...
+        $scope.DeleteGroup = function()
+        {
+            Rover.debug('Todo: delete group');
+        };
+
+        // Watch params.groupId for updates to the selected group.
+        $scope.$watch('params.groupId', function(newId, oldId)
+        {
+            // Performance check.
+            if (newId === 0 || newId === $scope.data.group.selected.id || $scope.data.group.list.length < 1) {
+                return;
+            }
+
+            // Find the group to be updated.
+            var current, selected;
+            for (var i = 0; i < $scope.data.group.list.length; i++)
+            {
+                current = $scope.data.group.list[i];
+
+                if (current.id == newId) {
+                    selected = current;
+                    break;
+                }
+            }
+
+            if (selected) {
+                Rover.debug('Selecting group #' + newId + '...');
+                $scope.data.group.selected = selected;
+            }
+
+            else {
+                Rover.error('Group #' + newId + ' not found.');
+            }
+        }, true);
+    }
+]);
+;/**
  * @file    fms.js
  * @brief   Controller for demo FMS tests. Kept separate so that the actual FMS tests can be
  *          developed independently.
@@ -16584,55 +16652,17 @@ angular.module('app.controllers')
 ]);
 ;/**
  * @file    group.js
- * @brief   Controller for the dashbord's group page.
+ * @brief   Controller for group pages.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
  */
 angular.module('app.controllers')
 
-.controller('DashboardGroupController',
+.controller('GroupController',
     ['$scope', '$routeParams', 'Rover', 'assetVersion', 'isLocalEnvironment',
     function($scope, $routeParams, Rover, assetVersion, isLocalEnvironment) {
 
-        $scope.params = $routeParams;
-        $scope.assetVersion = assetVersion;
-        $scope.isLocalEnvironment = isLocalEnvironment;
-
-        // ...
-        $scope.DeleteGroup = function()
-        {
-            Rover.debug('Todo: delete group');
-        };
-
-        // Watch params.groupId for updates to the selected group.
-        $scope.$watch('params.groupId', function(newId, oldId)
-        {
-            // Performance check.
-            if (newId === 0 || newId === $scope.data.group.selected.id || $scope.data.group.list.length < 1) {
-                return;
-            }
-
-            // Find the group to be updated.
-            var current, selected;
-            for (var i = 0; i < $scope.data.group.list.length; i++)
-            {
-                current = $scope.data.group.list[i];
-
-                if (current.id == newId) {
-                    selected = current;
-                    break;
-                }
-            }
-
-            if (selected) {
-                Rover.debug('Selecting group #' + newId + '...');
-                $scope.data.group.selected = selected;
-            }
-
-            else {
-                Rover.error('Group #' + newId + ' not found.');
-            }
-        }, true);
+        
     }
 ]);
 ;/**
@@ -16663,8 +16693,8 @@ angular.module('app.controllers')
 angular.module('app.controllers')
 
 .controller('MainController',
-    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, $sessionStorage, Teams, Athletes, loggit, Rover, assetVersion, isLocalEnvironment) {
+    ["$scope", '$sessionStorage', 'Teams', 'Athletes', "Sports", "loggit", 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, assetVersion, isLocalEnvironment) {
 
         // Save an instance of the "rover" variable in the scope.
         Rover.debug('MainController');
@@ -16682,7 +16712,7 @@ angular.module('app.controllers')
         // Tie the local scope to the user-namespaced sessionStorage.
         $scope.data = Rover.state;
 
-        // Set up the group namespace.
+        // Load groups.
         Rover.debug('Setting up group data...');
         $scope.data.group = $scope.data.group || {};
         $scope.data.group.list = $scope.data.group.list || [];
@@ -16691,12 +16721,12 @@ angular.module('app.controllers')
 
         };
 
-        // Set up the member namespace.
-        Rover.debug('Setting up member data...');
-        $scope.data.member = $scope.data.member || {};
-        $scope.data.member.list = $scope.data.member.list || [];
-        $scope.data.member.selected = $scope.data.member.selected || {id: 0};
-        $scope.data.member.new = {
+        // Load profiles.
+        Rover.debug('Setting up profile data...');
+        $scope.data.profile = $scope.data.profile || {};
+        $scope.data.profile.list = $scope.data.profile.list || [];
+        $scope.data.profile.selected = $scope.data.profile.selected || {id: 0};
+        $scope.data.profile.new = {
             first_name: "",
             last_name: "",
             height: "",
@@ -16705,6 +16735,13 @@ angular.module('app.controllers')
             weight_lbs: "",
             age: ""
         };
+        $scope.data.member = $scope.data.profile;
+
+        // Load sports.
+        Rover.debug('Setting up sports data...');
+        $scope.data.sport = $scope.data.sport || {};
+        $scope.data.sport.list = $scope.data.sport.list || [];
+        $scope.data.sport.selected = $scope.data.sport.selected || {id: 0};
 
         // Submits the "new team" form.
         $scope.submitNewTeamForm = function() {
@@ -16815,7 +16852,7 @@ angular.module('app.controllers')
         };
 
         // Populates the athlete list.
-        $scope.populateMemberList = function() {
+        $scope.populateProfileList = function() {
 
             // Show loading animation.
             Rover.debug('Populating member list...');
@@ -16845,6 +16882,38 @@ angular.module('app.controllers')
             );
         };
 
+        // Populates the sports list.
+        $scope.populateSportsList = function() {
+
+            // Show loading animation.
+            Rover.debug('Populating sports list...');
+            Rover.addBackgroundProcess();
+
+            // Retrieve the list of all sports from the back-end
+            Sports.get().then(
+
+                // On success.
+                function(response) {
+
+        			if (response.status === 200) {
+                        Rover.state.sport.list = response.data;
+                    }
+
+                    // Select a default sport.
+            		if (Rover.state.sport.list.length > 0) {
+            			Rover.state.sport.selected = Rover.state.sport.list[0];
+            		}
+
+                    Rover.doneBackgroundProcess();
+            	},
+
+                // On error.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
         //
         // ...
         //
@@ -16855,10 +16924,16 @@ angular.module('app.controllers')
     		$scope.populateGroupList();
     	}
 
-        // Populate member list.
-        Rover.debug('Checking member list on first load...');
-    	if ($scope.data.member.list.length === 0) {
-    		$scope.populateMemberList();
+        // Populate profile list.
+        Rover.debug('Checking profile list on first load...');
+    	if ($scope.data.profile.list.length === 0) {
+    		$scope.populateProfileList();
+    	}
+
+        // Populate sports list.
+        Rover.debug('Checking sports list on first load...');
+    	if ($scope.data.sport.list.length === 0) {
+    		$scope.populateSportsList();
     	}
 
         // Update the athlete list as the selected team is modified.
@@ -16891,7 +16966,7 @@ angular.module('app.controllers')
             $scope.data.member.selected = {id: 0};
 
             // Update members list.
-    		$scope.populateMemberList();
+    		$scope.populateProfileList();
         }, true);
     }
 ]);
@@ -16903,10 +16978,35 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('DashboardMemberController', ['$scope', '$routeParams', 'FMSForm', 'Rover',
-    function($scope, $routeParams, FMSForm, Rover) {
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'Athletes', 'FMSForm', 'Rover',
+    function($scope, $routeParams, Athletes, FMSForm, Rover) {
 
         $scope.params = $routeParams;
+
+        $scope.deleteProfile = function()
+        {
+            // Show loading animation.
+            Rover.debug('Deleting profile...');
+            Rover.addBackgroundProcess();
+
+            Athletes.destroy($scope.data.group.selected.id, $scope.data.profile.selected.id).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200) {
+                        Rover.browseTo.group(Rover.state.group.selected);
+                    }
+
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On error.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
 
         // Port of old code.
         $scope.fmsForms = {};
@@ -17080,61 +17180,119 @@ angular.module('app.controllers')
     }
 ]);
 ;/**
+ * @file    profile.js
+ * @brief   Controller for profile view.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('ProfileController', ['$scope', 'Athletes', 'Rover',
+    function($scope, Athletes, Rover) {
+
+        // New profile details.
+        $scope.profile =
+        {
+            firstName: "",
+            lastName: "",
+            feet: "",
+            inches: "",
+            weightInPounds: "",
+            age: "",
+            groupId: Rover.state.group.selected.id,
+            sportName: ""
+        };
+
+        // Submits the new profile form.
+        $scope.createProfile = function()
+        {
+            Rover.debug('Creating profile...');
+
+            var form = $scope.profile;
+
+            //
+            var profile =
+            {
+                first_name: form.firstName,
+                last_name: form.lastName,
+                age: form.age,
+                team_id: form.groupId,
+                primary_sport: form.sportName,
+                primary_position: "",
+                hand_leg_dominance: "",
+                previous_injuries: "",
+                underlying_medical: "",
+                notes: ""
+            };
+
+            // Format height into cm.
+            profile.height_cm = Math.round((form.feet + form.inches / 12) * 30.48);
+
+            // Format weight in kg.
+            profile.weight_cm = Math.round(form.weightInPounds * 0.453592);
+
+            // Show loading animation.
+            Rover.addBackgroundProcess();
+
+            Athletes.create(profile.team_id, profile).then(
+
+                // On success.
+                function(response) {
+
+                    // Reset form.
+                    $scope.profile = {};
+
+                    if (response.status === 200) {
+                        $scope.data.profile.list = response.data.list;
+                    }
+
+                    Rover.doneBackgroundProcess();
+
+                    Rover.browseTo.profile(response.data.profile);
+                },
+
+                // On failure.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
+
+        // Deletes a profile
+        $scope.deleteProfile = function()
+        {
+            Rover.debug('Deleting profile...');
+        };
+
+    }
+]);
+;/**
  * @brief   The sports controller takes care of retrieving sports and movement types from the back-end
  * @author  Maxwell Mowbray (max@heddoko.com), Francis Amankrah (frank@heddoko.com)
  */
-// angular.module('app.controllers')
-//
-// .controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'Rover',
-//     function($scope, $sessionStorage, Sports, SportMovements, Rover) {
-//
-//         $scope.populateSportsList = function() {
-//
-//             // Show loading animation.
-//             Rover.debug('Populating sports list...');
-//             Rover.addBackgroundProcess();
-//
-//             // Retrieve the list of all sports from the back-end
-//             Sports.get().then(
-//
-//                 // On success.
-//                 function(response) {
-//
-//         			if (response.status === 200) {
-//                         Rover.state.sports = response.data;
-//                     }
-//
-//                     // Select a default sport.
-//             		if (Rover.state.sports.length > 0) {
-//             			Rover.state.selected_sport = Rover.state.sports[0];
-//             		}
-//
-//                     Rover.doneBackgroundProcess();
-//             	},
-//
-//                 // On error.
-//                 function(response) {
-//                     Rover.doneBackgroundProcess();
-//                 }
-//             );
-//         };
-//
-//         // Populate sports list.
-//         Rover.debug('Checking sports list on first load...');
-//     	if (!Rover.state.sports || Rover.state.sports.length === 0) {
-//     		$scope.populateSportsList();
-//     	}
-//
-//         $scope.$watch('data.selected_sport', function() {
-//         	Rover.state.selected_sport_movement = Rover.state.sport_movements = null;
-//         	SportMovements.get(Rover.state.selected_sport.id)
-//         		.success(function(sports_movements_response) {
-//         			Rover.state.sport_movements = sports_movements_response;
-//         		});
-//
-//         }, true);
-//     }
-// ]);
+angular.module('app.controllers')
+
+.controller("SportsController", ["$scope", '$sessionStorage', 'Sports', 'SportMovements', 'Rover',
+    function($scope, $sessionStorage, Sports, SportMovements, Rover) {
+
+        
+
+        // Populate sports list.
+        Rover.debug('Checking sports list on first load...');
+    	if (!Rover.state.sports || Rover.state.sports.length === 0) {
+    		$scope.populateSportsList();
+    	}
+
+        $scope.$watch('data.selected_sport', function() {
+        	Rover.state.selected_sport_movement = Rover.state.sport_movements = null;
+        	SportMovements.get(Rover.state.selected_sport.id)
+        		.success(function(sports_movements_response) {
+        			Rover.state.sport_movements = sports_movements_response;
+        		});
+
+        }, true);
+    }
+]);
 ;/**
  * @file    submit-fms-demo.js
  * @brief   Temporary controller for submitting FMS tests.
@@ -17153,6 +17311,21 @@ angular.module('app.controllers')
         $scope.params = $routeParams;
 
         $scope.assetVersion = assetVersion;
+    }
+]);
+;/**
+ * @file    team.js
+ * @brief   Team controller.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('TeamController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
+
+        $scope.params = $routeParams;
+
     }
 ]);
 ;/*
@@ -17698,10 +17871,13 @@ angular.module("app.ui.form.directives", []).directive("uiRangeSlider", [
  */
 angular.module('app.directives')
 
-.directive('uiEditableListContainer', function() {
+.directive('uiEditableListContainer', ['assetVersion', function(assetVersion) {
     return {
         restrict: 'AE',
         transclude: true,
+        scope: {
+            deleteResource: '=delete'
+        },
         controller: ['$scope', 'Rover', function($scope, Rover) {
 
             // Editing flag.
@@ -17735,29 +17911,31 @@ angular.module('app.directives')
 
             $scope.delete = function()
             {
-                Rover.alert('Demo');
+                $scope.deleteResource.apply();
             };
         }],
-        templateUrl: 'views/partials/ui-editable-list-container.html'
+        templateUrl: 'views/partials/ui-editable-list-container.html?' + assetVersion
     };
-})
+}])
 
-.directive('uiEditableListItem', ['Rover', function(Rover) {
-    return {
-        require: '^uiEditableListContainer',
-        restrict: 'AE',
-        scope: {
-            label: '@label',
-            display: '@display',
-            value: '=value',
-            type: '@type'
-        },
-        link: function(scope, element, attrs, controller) {
-            controller.addItem(scope);
-        },
-        templateUrl: 'views/partials/ui-editable-list-item.html'
-    };
-}]);
+.directive('uiEditableListItem', ['Rover', 'assetVersion',
+    function(Rover, assetVersion) {
+        return {
+            require: '^uiEditableListContainer',
+            restrict: 'AE',
+            scope: {
+                label: '@label',
+                display: '@display',
+                value: '=value',
+                type: '@type'
+            },
+            link: function(scope, element, attrs, controller) {
+                controller.addItem(scope);
+            },
+            templateUrl: 'views/partials/ui-editable-list-item.html?' + assetVersion
+        };
+    }
+]);
 ;/* jshint ignore:start */
 (function(angular, factory) {
     'use strict';
@@ -18153,6 +18331,10 @@ angular.module('backendHeddoko', [])
 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				    data: $.param(new_athlete_form_data)
 			});
+		},
+
+		destroy : function(team_id, id) {
+			return $http.delete('/api/teams/' + team_id + '/athletes/' + id);
 		}
 
 	};
@@ -18483,14 +18665,17 @@ angular.module('app.rover', []).service('Rover',
 
         }.bind(this),
 
-        // Member profile page.
-        member: function(member) {
+        // Profile page.
+        profile: function(profile) {
 
-            var id = this.getId(member);
-            this.debug('Browsing to member #' + id);
+            var id = this.getId(profile);
+            this.debug('Browsing to profile #' + id);
             $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
 
         }.bind(this),
+        member: function(profile) {
+            this.profile(profile);
+        },
 
         // General page.
         path: function(path) {

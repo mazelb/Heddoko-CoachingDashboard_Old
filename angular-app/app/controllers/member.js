@@ -6,10 +6,35 @@
  */
 angular.module('app.controllers')
 
-.controller('DashboardMemberController', ['$scope', '$routeParams', 'FMSForm', 'Rover',
-    function($scope, $routeParams, FMSForm, Rover) {
+.controller('DashboardMemberController', ['$scope', '$routeParams', 'Athletes', 'FMSForm', 'Rover',
+    function($scope, $routeParams, Athletes, FMSForm, Rover) {
 
         $scope.params = $routeParams;
+
+        $scope.deleteProfile = function()
+        {
+            // Show loading animation.
+            Rover.debug('Deleting profile...');
+            Rover.addBackgroundProcess();
+
+            Athletes.destroy($scope.data.group.selected.id, $scope.data.profile.selected.id).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200) {
+                        Rover.browseTo.group(Rover.state.group.selected);
+                    }
+
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On error.
+                function(response) {
+                    Rover.doneBackgroundProcess();
+                }
+            );
+        };
 
         // Port of old code.
         $scope.fmsForms = {};

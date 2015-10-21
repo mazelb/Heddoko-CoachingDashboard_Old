@@ -85,14 +85,17 @@ angular.module('app.rover', []).service('Rover',
 
         }.bind(this),
 
-        // Member profile page.
-        member: function(member) {
+        // Profile page.
+        profile: function(profile) {
 
-            var id = this.getId(member);
-            this.debug('Browsing to member #' + id);
+            var id = this.getId(profile);
+            this.debug('Browsing to profile #' + id);
             $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
 
         }.bind(this),
+        member: function(profile) {
+            this.profile(profile);
+        },
 
         // General page.
         path: function(path) {

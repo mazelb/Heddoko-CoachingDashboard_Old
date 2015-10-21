@@ -37,7 +37,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
 
 	Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-	Route::resource('teams.athletes', 'TeamAthleteController', ['only' => ['index', 'show', 'store']]);
+	Route::resource('teams.athletes', 'TeamAthleteController', ['only' => ['index', 'show', 'store', 'destroy']]);
 
 	Route::resource('athletes.fmsforms', 'AthleteFMSFormController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('athletes.movements', 'AthleteMovementController', ['only' => ['index', 'show', 'store']]);
