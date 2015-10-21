@@ -1,0 +1,67 @@
+
+<div class="page page-dashboard">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Breadcrumbs -->
+            <div class="col-sm-6">
+                <div data-ng-include="'views/partials/breadcrumbs.html?' + assetVersion"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="col-sm-6">
+                <div class="btn-group pull-right">
+
+                    <!-- Edit group button -->
+                    <button
+                        ng-show="data.group.selected.id > 0"
+                        ng-click="Rover.browseTo.path('group/edit')"
+                        class="btn btn-default">
+
+                        Edit <b>{{ group.name }}</b>
+                    </button>
+
+                    <!-- Create profile button -->
+                    <button
+                        ng-click="Rover.browseTo.path('profile/create')"
+                        class="btn btn-default">
+
+                        Add an Athlete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile list -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Athletes in {{ group.name }} ({{ group.sport_name }})
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ng-hide="data.profile.list.length > 1">
+                        The <b>{{ group.name }}</b> do not have any
+                        members yet. Add one above to get started!
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a
+                        href="javascript:;"
+                        class="btn btn-primary btn-metro"
+                        ng-repeat="profile in profiles"
+                        ng-click="Rover.browseTo.profile(profile)">
+
+                        <div class="btn-title">{{ profile.first_name }}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

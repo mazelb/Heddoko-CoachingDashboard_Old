@@ -32,47 +32,44 @@ var appServices = angular.module('app.services', ['app.rover']);
 var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
-app.config(['$routeProvider', 'assetVersion',
+app.config(["$routeProvider", "assetVersion",
     function($routeProvider, assetVersion) {
 
         // Landing page.
-        return $routeProvider.when('/', {
-			redirectTo: '/dashboard/list'
+        return $routeProvider.when("/", {
+			redirectTo: "/group/list"
 		})
 
         // Group routes.
-        .when("/group", {
-			redirectTo: "/groups"
-		})
-        .when("/groups", {
+        .when("/group/list", {
             templateUrl: "/views/group/list.html?" + assetVersion,
-            controller: 'GroupController'
+            controller: "GroupController"
+		})
+        .when("/group/view", {
+			redirectTo: "/profile/list"
+		})
+        .when('/group/create', {
+			templateUrl: "/views/group/create.html?" + assetVersion,
+            controller: "GroupController"
+		})
+        .when('/group/edit', {
+			templateUrl: "/views/group/edit.html?" + assetVersion,
+            controller: "GroupController"
 		})
 
         // Profile routes.
+        .when("/profile/list", {
+            templateUrl: "/views/profile/list.html?" + assetVersion,
+            controller: "ProfileController"
+		})
+        .when('/profile/view', {
+			templateUrl: "/views/profile/view.html?" + assetVersion,
+            controller: "ProfileController"
+		})
         .when('/profile/create', {
 			templateUrl: "/views/profile/create.html?" + assetVersion,
             controller: "ProfileController"
 		})
-
-        // Dashboard routes.
-        .when('/dashboard', {
-            redirectTo: '/dashboard/list'
-			// templateUrl: "/views/dashboard-v2/index.html?" + assetVersion,
-            // controller: 'DashboardIndexController'
-		})
-        .when('/dashboard/list', {
-			templateUrl: "/views/dashboard-v2/groups.html?" + assetVersion,
-            controller: 'DashboardGroupsController'
-		})
-        .when('/dashboard/:groupId', {
-            templateUrl: '/views/dashboard-v2/group.html?' + assetVersion,
-            controller: 'DashboardGroupController'
-        })
-        .when('/dashboard/:groupId/:memberId', {
-            templateUrl: '/views/dashboard-v2/member.html?' + assetVersion,
-            controller: 'DashboardMemberController'
-        })
 
         // Movement data demo route.
         .when('/submit-movement', {

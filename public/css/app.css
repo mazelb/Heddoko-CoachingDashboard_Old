@@ -6232,9 +6232,9 @@ label,
   font-weight: 300;
 }
 
- 
- html { 
-	background: url(/images/bg_home.jpg) no-repeat center center fixed; 
+
+ html {
+	background: url(/images/bg_home.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -6262,7 +6262,7 @@ header {
 	display: block;
 	width: 300px;
 	padding-top: 10px;
-	padding-left: 10px;	
+	padding-left: 10px;
 	float: left;
 }
 
@@ -6313,19 +6313,19 @@ h1 {
 }
 
 ::-webkit-input-placeholder {
-   color: black;
+   color: #999;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   color: black;  
+   color: #999;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: black;  
+   color: #999;
 }
 
-:-ms-input-placeholder {  
-   color: black;  
+:-ms-input-placeholder {
+   color: #999;
 }
 
  .container {
@@ -6334,5 +6334,5 @@ h1 {
 
 @font-face {
      font-family: Proxima Rg;
-     src: url('/fonts/ProximaNova-Regular.ttf'); 
+     src: url('/fonts/ProximaNova-Regular.ttf');
 }

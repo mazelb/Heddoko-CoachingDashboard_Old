@@ -8,20 +8,20 @@
         </div>
     </div>
 
-    <h1>Add an Athlete</h1>
+    <h1>Add a Team</h1>
     <br>
 
-    <form ng-submit="createProfile()">
+    <form ng-submit="createGroup()">
         <div class="row">
 
-            <!-- New profile form -->
+            <!-- New team form -->
             <div class="col-sm-12 col-md-8">
-                <div data-ng-include="'views/profile/partials/form.html?' + global.assetVersion"></div>
+                <div data-ng-include="'views/group/partials/form.html?' + global.assetVersion"></div>
             </div>
 
-            <!-- Profile picture -->
+            <!-- Team picture -->
         	<div class="col-sm-12 col-md-4">
-                <div data-ng-include src="'views/profile/partials/upload-photo.html?' + global.assetVersion"></div>
+                <div data-ng-include src="'views/group/partials/upload-photo.html?' + global.assetVersion"></div>
         	</div>
         </div>
 

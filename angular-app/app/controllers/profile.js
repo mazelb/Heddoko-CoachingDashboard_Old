@@ -6,8 +6,22 @@
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', 'Athletes', 'Rover',
-    function($scope, Athletes, Rover) {
+.controller('ProfileController', ['$scope', '$location', 'Athletes', 'Rover',
+    function($scope, $location, Athletes, Rover) {
+
+        Rover.debug('ProfileController');
+
+        // Current URL path.
+        $scope.currentPath = $location.path();
+
+        // Shortcut to the list of groups.
+        $scope.groups = $scope.global.state.group.list;
+
+        // Shortcut to the list of profiles.
+        $scope.profiles = $scope.global.state.profile.list;
+
+        // Shortcut to the list of sports.
+        $scope.sports = $scope.global.state.sport.list;
 
         // New profile details.
         $scope.profile =
@@ -18,7 +32,7 @@ angular.module('app.controllers')
             inches: "",
             weightInPounds: "",
             age: "",
-            groupId: Rover.state.group.selected.id,
+            groupId: $scope.data.group.selected.id,
             sportName: ""
         };
 

@@ -1,0 +1,96 @@
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ data.member.selected.first_name }}'s details
+    </div>
+
+    <div class="panel-body">
+
+        <div
+            data-ui-editable-list-container
+            data-delete="deleteProfile">
+
+            <!-- First name -->
+            <div
+                data-ui-editable-list-item
+                data-label="First Name"
+                data-value="data.member.selected.first_name">
+            </div>
+
+            <!-- Last name -->
+            <div
+                data-ui-editable-list-item
+                data-label="Last Name"
+                data-value="data.member.selected.last_name">
+            </div>
+
+            <!-- Profile creation date -->
+            <div
+                data-ui-editable-list-item
+                data-label="Profile created"
+                data-display="{{data.member.selected.created_at}}"
+                data-value="data.member.selected.created_at"
+                data-type="date">
+            </div>
+
+            <!-- Phone -->
+            <div
+                data-ui-editable-list-item
+                data-label="Phone"
+                data-value="'+1 (514) 555-5555'">
+            </div>
+
+            <!-- Sex -->
+            <div
+                data-ui-editable-list-item
+                data-label="Sex"
+                data-value=""
+                data-type="sex">
+            </div>
+
+            <!-- Date of Birth -->
+            <div
+                data-ui-editable-list-item
+                data-label="Date of Birth"
+                data-value="">
+            </div>
+
+            <!-- Height -->
+            <div
+                data-ui-editable-list-item
+                data-label="Height"
+                data-value="data.member.selected.height_cm">
+            </div>
+
+            <!-- Weight -->
+            <div
+                data-ui-editable-list-item
+                data-label="Weight"
+                data-value="data.member.selected.weight_cm">
+            </div>
+
+            <!-- Primary Sport -->
+            <div
+                data-ui-editable-list-item
+                data-label="Primary Sport"
+                data-value="data.member.selected.primary_sport">
+            </div>
+
+            <!-- Primary Position -->
+            <div
+                data-ui-editable-list-item
+                data-label="Primary Position"
+                data-value="data.member.selected.primary_position">
+            </div>
+
+            <!-- Hand/Leg Dominance -->
+            <div
+                data-ui-editable-list-item
+                data-label="Hand/Leg Dominance"
+                data-value="data.member.selected.hand_leg_dominance">
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -72,28 +72,48 @@ angular.module('app.rover', []).service('Rover',
         groups: function() {
 
             this.debug('Browsing to group listings page.');
-            $location.path('/dashboard/list');
+            $location.path('/group/list');
 
         }.bind(this),
 
         // Group page.
         group: function(group) {
 
-            var id = this.getId(group);
-            this.debug('Browsing to group #' + id);
-            $location.path('/dashboard/'+ id);
+            // Navigate to the selected group.
+            if (!group) {
+                group = this.state.group.selected;
+            }
+
+            // Or to a specified group.
+            else {
+                this.state.group.selected = group;
+            }
+
+            this.debug('Browsing to group #' + group.id);
+            $location.path('/profile/list');
 
         }.bind(this),
 
         // Profile page.
         profile: function(profile) {
 
-            var id = this.getId(profile);
-            this.debug('Browsing to profile #' + id);
-            $location.path('/dashboard/'+ this.state.group.selected.id +'/'+ id);
+            // Navigate to the selected profile.
+            if (!profile) {
+                profile = this.state.profile.selected;
+            }
+
+            // Or to a specified profile.
+            else {
+                this.state.profile.selected = profile;
+            }
+
+            this.debug('Browsing to profile #' + profile.id);
+            $location.path('/profile/view');
 
         }.bind(this),
         member: function(profile) {
+
+            this.debug('Rover.browseTo.member is deprecated...');
             this.profile(profile);
         },
 

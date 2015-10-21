@@ -53,7 +53,7 @@ angular.module('app.directives')
                 $scope.deleteResource.apply();
             };
         }],
-        templateUrl: 'views/partials/ui-editable-list-container.html?' + assetVersion
+        templateUrl: 'views/directive-partials/ui-editable-list-container.html?' + assetVersion
     };
 }])
 
@@ -71,7 +71,7 @@ angular.module('app.directives')
             link: function(scope, element, attrs, controller) {
                 controller.addItem(scope);
             },
-            templateUrl: 'views/partials/ui-editable-list-item.html?' + assetVersion
+            templateUrl: 'views/directive-partials/ui-editable-list-item.html?' + assetVersion
         };
     }
 ]);

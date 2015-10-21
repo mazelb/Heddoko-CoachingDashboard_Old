@@ -1,19 +1,24 @@
 
 <div class="page page-dashboard">
 
-    <!-- Breadcrumbs -->
-    <ol class="breadcrumb-alt">
-        <li>
-            <a class="active" href="javascript:;" ng-click="Rover.browseTo.path('/')">
-                Dashboard
-            </a>
-        </li>
-        <li>
-            <a class="active" href="javascript:;" ng-click="">
-                Teams
-            </a>
-        </li>
-    </ol>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Breadcrumbs -->
+            <div class="col-sm-6">
+                <div data-ng-include="'views/partials/breadcrumbs.html?' + assetVersion"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="col-sm-6">
+                <div class="btn-group pull-right">
+                    <button
+                        ng-click="Rover.browseTo.path('group/create')"
+                        class="btn btn-default">Add a Team</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- List of groups -->
     <div class="panel panel-default">
@@ -23,16 +28,16 @@
 
         <div class="panel-body">
             <div class="row">
-                <div ng-hide="data.group.list.length > 0" class="col-sm-12">
-                    You don't have any teams yet! Create one below to get started.
+                <div ng-hide="groups.length > 0" class="col-sm-12">
+                    You don't have any teams yet! Create one above to get started.
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
                     <a
-                        ng-repeat="group in data.group.list"
-                        ng-click="Rover.browse.group(group)"
+                        ng-repeat="group in groups"
+                        ng-click="Rover.browseTo.group(group)"
                         href="javascript:;"
                         class="btn btn-primary btn-metro">
 
@@ -41,7 +46,7 @@
                             type="image/svg+xml"
                             data="/images/sports/{{group.sport_id}}.svg" />
 
-                        <span>{{group.name}}</span>
+                        <span>{{ group.name }}</span>
                     </a>
                 </div>
             </div>
