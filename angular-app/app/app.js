@@ -5,7 +5,7 @@
  */
 
 // Initializes the AngularJS application.
-var app = angular.module("app", [
+var app = angular.module('app', [
     "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
     "app.controllers", 'app.directives', "app.form.validation", "app.ui.form.ctrls",
@@ -14,6 +14,8 @@ var app = angular.module("app", [
 ]);
 
 // Defines some constants.
+// TODO: find better place to set app version.
+// NOTE: also update in ...
 var _appVersion = '0.2.10';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||

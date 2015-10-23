@@ -2,7 +2,7 @@
 <div class="page page-dashboard">
 
     <!-- Breadcrumbs -->
-    <div ng-include src="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
+    <div data-ng-include="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
 
     <section>
     	<div class="row">
@@ -32,6 +32,23 @@
                 <div ng-include-src="'views/dashboard-v2/member-partials/total-fms-graph.html?' + global.assetVersion"></div>
             </div>
         </div>
+    </section>
+
+    <section data-ng-show="global.isLocal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Debug
+                        </div>
+
+                        <div class="panel-body">
+                            Profile alias: {{ profile }} <br> <br>
+                            Profile global: {{ global.state.profile.selected }} <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
 
 </div>

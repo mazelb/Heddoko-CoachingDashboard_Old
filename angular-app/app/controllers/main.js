@@ -5,7 +5,7 @@
  *          group changes.
  * @author  Maxwell Mowbray (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
  */
-angular.module("app.controllers")
+angular.module('app.controllers')
 
 .controller("MainController",
     ["$scope", "$sessionStorage", "Teams", "Athletes", "Sports", "loggit", "Rover", "assetVersion", "isLocalEnvironment",

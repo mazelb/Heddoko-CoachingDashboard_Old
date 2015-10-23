@@ -12,7 +12,7 @@
         <script src="{{ url('js/jquery.min.js') }}"></script>
 
         <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
-        <link rel="stylesheet" href="{{ url('css/app.css') . '?20151021' }}">
+        <link rel="stylesheet" href="{{ url('css/app.css') . '?20151023' }}">
 
 		<script>
 		    // Clear session storage to prevent data from one user showing up for another.

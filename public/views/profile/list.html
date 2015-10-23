@@ -15,7 +15,7 @@
 
                     <!-- Edit group button -->
                     <button
-                        ng-show="data.group.selected.id > 0"
+                        ng-show="group.id > 0"
                         ng-click="Rover.browseTo.path('group/edit')"
                         class="btn btn-default">
 
@@ -43,7 +43,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-12">
-                    <div ng-hide="data.profile.list.length > 1">
+                    <div ng-hide="global.state.profile.list.length > 1">
                         The <b>{{ group.name }}</b> do not have any
                         members yet. Add one above to get started!
                     </div>
@@ -55,7 +55,7 @@
                     <a
                         href="javascript:;"
                         class="btn btn-primary btn-metro"
-                        ng-repeat="profile in profiles"
+                        ng-repeat="profile in global.state.profile.list"
                         ng-click="Rover.browseTo.profile(profile)">
 
                         <div class="btn-title">{{ profile.first_name }}</div>

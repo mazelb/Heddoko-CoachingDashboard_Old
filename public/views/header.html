@@ -31,7 +31,7 @@
             </li>
 
             <!-- Group dropdown -->
-			<li ng-hide="data.group.list.length === 0">
+			<li ng-hide="global.state.group.list.length === 0">
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
@@ -42,14 +42,14 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ data.group.selected.name +' ('+ data.group.selected.sport_name +')' }}
+                        {{ global.state.group.selected.name +' ('+ global.state.group.selected.sport_name +')' }}
                         <span class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
-                        <li ng-repeat="group in data.group.list">
-                            <a href="javascript:;" ng-click="Rover.state.group.selected = group">
+                        <li ng-repeat="group in global.state.group.list">
+                            <a href="javascript:;" ng-click="global.state.group.selected = group">
                                 {{ group.name +' ('+ group.sport_name +')' }}
                             </a>
                         </li>
@@ -59,7 +59,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browseTo.group(data.group.selected)">
+                        ng-click="Rover.browseTo.group(global.state.group.selected)">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
@@ -67,7 +67,7 @@
             </li>
 
             <!-- Member dropdown -->
-			<li ng-hide="data.member.list.length === 0">
+			<li ng-hide="global.state.profile.list.length === 0">
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
@@ -78,15 +78,15 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ data.member.selected.first_name +' '+ data.member.selected.last_name }}
+                        {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}
                         <span class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
                     <ul class="dropdown-menu">
-                        <li ng-repeat="member in data.member.list">
-                            <a href="javascript:;" ng-click="Rover.state.member.selected = member">
-                                {{ member.first_name +' '+ member.last_name }}
+                        <li ng-repeat="profile in global.state.profile.list">
+                            <a href="javascript:;" ng-click="global.state.profile.selected = profile">
+                                {{ profile.first_name +' '+ profile.last_name }}
                             </a>
                         </li>
                     </ul>
@@ -95,12 +95,45 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        ng-click="Rover.browseTo.member(data.member.selected)">
+                        ng-click="Rover.browseTo.profile(global.state.profile.selected)">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
                 </div>
 			</li>
+
+            <li ng-show="global.isLocal">
+                <div class="btn-group">
+
+                    <!-- Face of dropdown -->
+                    <button
+                        type="button"
+                        class="btn btn-default dropdown-toggle"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+
+                        Dev
+                        <span class="caret"></span>
+                    </button>
+
+                    <!-- Contents of dropdown -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="javascript:;">
+                                Total groups: {{ global.state.group.list.length }} /
+                                Selected: {{ global.state.group.selected.name || 'None' }}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:;">
+                                Total profiles: {{ global.state.profile.list.length }} /
+                                Selected: {{ global.state.profile.selected.first_name || 'None' }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 		</ul>
 
         <!-- Log out -->

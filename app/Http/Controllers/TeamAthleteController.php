@@ -55,7 +55,11 @@ class TeamAthleteController extends Controller
 	}
 
     /**
+     * Removes a record from the database.
      *
+     * @param int $teamId
+     * @param int $id
+     * @return array
      */
     public function destroy($teamId, $id)
     {

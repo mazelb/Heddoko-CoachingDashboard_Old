@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <input
                         type="text"
-                        ng-model="profile.firstName"
+                        ng-model="profile.first_name"
                         placeholder="First Name"
                         class="form-control"
                         required>
@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <input
                         type="text"
-                        ng-model="profile.lastName"
+                        ng-model="profile.last_name"
                         placeholder="Last Name"
                         class="form-control"
                         required>
@@ -66,7 +66,7 @@
             <div class="col-sm-4 col-md-3">
                 <input
                     class="form-control"
-                    ng-model="profile.weightInPounds"
+                    ng-model="profile.weight_lbs"
                     placeholder="Weight (lbs)"
                     type="number"
                     min="50" max="500"
@@ -96,9 +96,9 @@
                 Team
             </div>
             <div class="col-sm-8 col-md-6">
-                <select ng-model="profile.groupId" class="form-control">
+                <select ng-model="profile.group_id" class="form-control">
                     <option
-                        ng-repeat="group in data.group.list"
+                        ng-repeat="group in groups"
                         value="{{ group.id }}">
                         {{ group.name }}
                     </option>
@@ -112,9 +112,9 @@
                 Sport
             </div>
             <div class="col-sm-8 col-md-6">
-                <select ng-model="profile.sportName" class="form-control">
+                <select ng-model="profile.primary_sport" class="form-control">
                     <option
-                        ng-repeat="sport in data.sport.list"
+                        ng-repeat="sport in sports"
                         value="{{ sport.name }}">
                         {{ sport.name }}
                     </option>
