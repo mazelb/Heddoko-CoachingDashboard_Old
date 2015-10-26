@@ -73,7 +73,47 @@
 
             <!-- Medical information -->
     		<div class="col-md-6 col-sm-12">
-                <div data-ng-include="'views/profile/partials/medical.html?' + global.assetVersion"></div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Medical Information
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.underlying_medical || 'No medical information provided.' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Previous Injuries
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.previous_injuries || 'No previous injuries' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Other Notes
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.notes || 'No other notes' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
     		</div>
     	</div>
     </section>

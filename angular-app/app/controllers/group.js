@@ -79,7 +79,31 @@ angular.module('app.controllers')
         $scope.updateGroup = function() {
 
             Rover.debug('Updating group...');
-            
+            Rover.addBackgroundProcess();
+
+            var form = $scope.group;
+
+            Teams.update(form.id, form).then(
+
+                // On success.
+                function(response) {
+
+                    Rover.doneBackgroundProcess();
+
+                    if (response.status === 200)
+                    {
+                        // Navigate to group page.
+                        Rover.browseTo.group();
+                    }
+                },
+
+                // On failure.
+                function(response) {
+                    Rover.debug('Could not update group: ' + response.responseText);
+                    Rover.doneBackgroundProcess();
+                }
+            );
+
         };
     }
 ]);

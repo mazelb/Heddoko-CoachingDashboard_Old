@@ -35,10 +35,10 @@
         </div>
 
         <!-- Loading overlay -->
-        <div class="page-loading-overlay">
+        <div class="page-loading-overlay loaded">
             <div class="loader-2"></div>
         </div>
-        <div class="load_circle_wrapper">
+        <div class="load_circle_wrapper loaded">
             <div class="loading_spinner">
                 <div id="wrap_spinner">
                     <div class="loading outer">

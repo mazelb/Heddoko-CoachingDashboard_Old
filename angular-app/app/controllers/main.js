@@ -154,6 +154,11 @@ angular.module('app.controllers')
     	// 	$scope.populateProfileList();
     	// }
 
+        // Select a default profile.
+        if ($scope.global.state.profile.list.length > 0 && $scope.global.state.profile.selected.id < 1) {
+            $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
+        }
+
         // Populate sports list.
         Rover.debug("Checking sports list on first load...");
     	if ($scope.global.state.sport.list.length === 0) {
@@ -184,6 +189,11 @@ angular.module('app.controllers')
             }
 
             Rover.debug('Selected group: ' + newGroup.id);
+
+            // Performance check, in case only a property of the group was changed.
+            if (newGroup.id === oldGroup.id) {
+                return;
+            }
 
             // TODO: load profiles that aren't associated with any group, or decide
             // this should be handled.

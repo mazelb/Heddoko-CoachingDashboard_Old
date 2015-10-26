@@ -6,7 +6,7 @@
 
             <!-- Breadcrumbs -->
             <div class="col-sm-12 col-md-6">
-                <div data-ng-include="'views/partials/breadcrumbs.html?' + assetVersion"></div>
+                <div data-ng-include="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
             </div>
 
             <!-- Actions -->
@@ -73,14 +73,14 @@
     <!-- Profile list -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            Athletes in {{ group.name }} ({{ group.sport_name }})
+            Athletes in {{ global.state.group.selected.name }} ({{ global.state.group.selected.sport_name }})
         </div>
 
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-12">
                     <div ng-show="global.state.profile.list.length === 0">
-                        The <b>{{ group.name }}</b> do not have any
+                        The <b>{{ global.state.group.selected.name }}</b> do not have any
                         members yet. Add one above to get started!
                     </div>
                 </div>
@@ -109,6 +109,7 @@
 
         <div class="panel-body">
             Profile list: {{ global.state.profile.list }} <br><br>
+            Selected profile: {{ global.state.profile.selected }}
         </div>
     </div>
 </div>

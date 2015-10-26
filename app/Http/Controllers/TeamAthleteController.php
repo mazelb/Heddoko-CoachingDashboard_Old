@@ -55,6 +55,43 @@ class TeamAthleteController extends Controller
 	}
 
     /**
+     * Updates a database record.
+     *
+     * @param int $groupId
+     * @param int $profileId
+     * @return array
+     */
+    public function update(Request $request, $groupId, $profileId)
+    {
+        $group = Team::findOrFail($groupId);
+
+        $profile = $group->athletes()->findOrFail($profileId);
+
+        $profile->fill($request->only([
+            'first_name',
+            'last_name',
+            'team_id',
+            'age',
+            'height_cm',
+            'weight_cm',
+            'primary_sport',
+            'primary_position',
+            'hand_leg_dominance',
+            'previous_injuries',
+            'underlying_medical',
+            'notes'
+        ]));
+
+        $profile->save();
+
+        // TODO: handle errors.
+		return [
+            'error' => null,
+            'list' => $group->athletes
+        ];
+    }
+
+    /**
      * Removes a record from the database.
      *
      * @param int $teamId

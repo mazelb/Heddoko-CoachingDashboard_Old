@@ -16734,7 +16734,31 @@ angular.module('app.controllers')
         $scope.updateGroup = function() {
 
             Rover.debug('Updating group...');
-            
+            Rover.addBackgroundProcess();
+
+            var form = $scope.group;
+
+            Teams.update(form.id, form).then(
+
+                // On success.
+                function(response) {
+
+                    Rover.doneBackgroundProcess();
+
+                    if (response.status === 200)
+                    {
+                        // Navigate to group page.
+                        Rover.browseTo.group();
+                    }
+                },
+
+                // On failure.
+                function(response) {
+                    Rover.debug('Could not update group: ' + response.responseText);
+                    Rover.doneBackgroundProcess();
+                }
+            );
+
         };
     }
 ]);
@@ -16911,6 +16935,11 @@ angular.module('app.controllers')
     	// 	$scope.populateProfileList();
     	// }
 
+        // Select a default profile.
+        if ($scope.global.state.profile.list.length > 0 && $scope.global.state.profile.selected.id < 1) {
+            $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
+        }
+
         // Populate sports list.
         Rover.debug("Checking sports list on first load...");
     	if ($scope.global.state.sport.list.length === 0) {
@@ -16941,6 +16970,11 @@ angular.module('app.controllers')
             }
 
             Rover.debug('Selected group: ' + newGroup.id);
+
+            // Performance check, in case only a property of the group was changed.
+            if (newGroup.id === oldGroup.id) {
+                return;
+            }
 
             // TODO: load profiles that aren't associated with any group, or decide
             // this should be handled.
@@ -17186,10 +17220,21 @@ angular.module('app.controllers')
         // Empty profile object for "new profile" form.
         if ($scope.currentPath == '/profile/create')
         {
+            // Select the group's sport as a default.
+            var defaultSport = $scope.global.state.sport.selected.name;
+            angular.forEach($scope.global.state.sport.list, function(sport, i) {
+                if (sport.id === $scope.global.state.group.selected.sport_id) {
+                    defaultSport = sport.name;
+                }
+            });
+
             $scope.profile =
             {
                 id: 0,
-                primary_sport: $scope.global.state.sport.selected.id,
+                primary_sport: defaultSport,
+                notes: '',
+                previous_injuries: '',
+                underlying_medical: '',
                 team_id: $scope.global.state.group.selected.id  // TODO: update field name when database is updated.
             };
         }
@@ -17211,10 +17256,21 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Extra profile fields.
-        $scope.profile.feet = '';       // TODO: calculate feet
-        $scope.profile.inches = '';     // TODO: calculate inches
-        $scope.profile.weight_lbs = $scope.profile.weight_cm;   // NOTE: temporary fix, until we update the database table.
+        // Calculate the amount of feet in the total height.
+        $scope.profile.feet = $scope.profile.height_cm > 0 ?
+            Math.floor($scope.profile.height_cm / 30.48) : '';
+
+        // Calculate the amount of inches in the remaining height.
+        $scope.profile.inches = $scope.profile.height_cm > 0 ?
+            Math.round(($scope.profile.height_cm % 30.48) / 2.54) : '';
+
+        // Calculate the weight in pounds.
+        Rover.debug('Original weight in kg: ' + $scope.profile.weight_cm);
+        Rover.debug('Converted weight in lbs: ' + Math.round($scope.profile.weight_cm / 0.453592));
+        $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
+            Math.round($scope.profile.weight_cm / 0.453592) : '';
+
+        // Temporary fix.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
 
         // Deletes a group and its profiles.
@@ -17269,9 +17325,9 @@ angular.module('app.controllers')
                 primary_sport: form.primary_sport,
                 primary_position: '',
                 hand_leg_dominance: '',
-                previous_injuries: '',
-                underlying_medical: '',
-                notes: ''
+                previous_injuries: form.previous_injuries,
+                underlying_medical: form.underlying_medical,
+                notes: form.notes
             };
 
             // Format height into cm.
@@ -17308,15 +17364,71 @@ angular.module('app.controllers')
         $scope.updateProfile = function() {
 
             Rover.debug('Updating profile...');
+            Rover.addBackgroundProcess();
 
+            var form = $scope.profile;
+
+            //
+            var profile = {
+                id: $scope.global.state.profile.selected.id,
+                first_name: form.first_name,
+                last_name: form.last_name,
+                age: form.age,
+                team_id: form.group_id, // TODO: update this once database is updated.
+                group_id: form.group_id,
+                primary_sport: form.primary_sport,
+                primary_position: '',
+                hand_leg_dominance: '',
+                previous_injuries: form.previous_injuries,
+                underlying_medical: form.underlying_medical,
+                notes: form.notes
+            };
+
+            // Format height into cm.
+            profile.height_cm = Math.round((form.feet + form.inches / 12) * 30.48);
+
+            // Format weight in kg.
+            profile.weight_cm = Math.round(form.weight_lbs * 0.453592);
+
+            // Update profile data.
+            Athletes.update(profile).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200)
+                    {
+                        // Update the list of profiles.
+                        $scope.global.state.profile.list = response.data.list;
+
+                        // Update the selected profile.
+                        angular.forEach(response.data.list, function(obj, i) {
+                            if (obj.id === profile.id) {
+                                $scope.global.state.profile.selected = obj;
+                            }
+                        });
+
+                        // Navigate to profile page.
+                        Rover.browseTo.profile();
+                    }
+
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On failure.
+                function(response) {
+
+                    Rover.debug('Could not update profile: ' + response.responseText);
+                    Rover.doneBackgroundProcess();
+                }
+            );
         };
 
         // Deletes a profile
         $scope.deleteProfile = function() {
 
-            Rover.debug('Deleting profile...');
-
             // Show loading animation.
+            Rover.debug('Deleting profile...');
             Rover.addBackgroundProcess();
 
             Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
@@ -18367,7 +18479,7 @@ angular.module('backendHeddoko', [])
 		update : function(team_id, updated_team_form_data) {
 			return $http({
 				method: 'PUT',
-				url: '/api/teams'/ + team_id,
+				url: '/api/teams/' + team_id,
 				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				data: $.param(updated_team_form_data)
 			});
@@ -18416,6 +18528,15 @@ angular.module('backendHeddoko', [])
 				    url: '/api/teams/' + team_id + '/athletes',
 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				    data: $.param(new_athlete_form_data)
+			});
+		},
+
+		update : function(profile) {
+			return $http({
+				method: 'PUT',
+				url: '/api/teams/'+ profile.group_id +'/athletes/'+ profile.id,
+				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				data: $.param(profile)
 			});
 		},
 

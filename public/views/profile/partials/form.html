@@ -96,10 +96,12 @@
                 Team
             </div>
             <div class="col-sm-8 col-md-6">
-                <select ng-model="profile.group_id" class="form-control">
+                <select ng-model="profile.group_id" class="form-control" required>
                     <option
                         ng-repeat="group in groups"
+                        ng-selected="group.id === profile.group_id"
                         value="{{ group.id }}">
+
                         {{ group.name }}
                     </option>
                 </select>
@@ -112,8 +114,11 @@
                 Sport
             </div>
             <div class="col-sm-8 col-md-6">
-                <select ng-model="profile.primary_sport" class="form-control">
-                    <option ng-repeat="sport in sports" value="{{ sport.name }}">
+                <select ng-model="profile.primary_sport" class="form-control" required>
+                    <option
+                        ng-repeat="sport in sports"
+                        ng-selected="sport.name == profile.primary_sport"
+                        value="{{ sport.name }}">
                         {{ sport.name }}
                     </option>
                 </select>

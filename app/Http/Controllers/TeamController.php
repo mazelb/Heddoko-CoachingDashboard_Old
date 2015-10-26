@@ -59,6 +59,28 @@ class TeamController extends Controller
 	}
 
     /**
+     * Updates a database record.
+     *
+     * @param int $id   ID of group to be updated.
+     * @return array
+     */
+    public function update(Request $request, $id)
+    {
+        $group = Team::findOrFail($id);
+
+        $group->fill($request->only(['name', 'sport_id']));
+
+        $group->save();
+
+        // Return list of groups.
+        // TODO: handle errors.
+        return [
+            'error' => null,
+            'list' => Auth::user()->coach->teams
+        ];
+    }
+
+    /**
      * Removes a record from the database.
      *
      * @param int $id   ID of group to remove.

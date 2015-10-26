@@ -6,30 +6,28 @@
 
     <div class="panel-body">
 
-        <div
-            data-ui-editable-list-container
-            data-delete="deleteProfile">
+        <div data-ui-editable-list-container>
 
             <!-- First name -->
             <div
                 data-ui-editable-list-item
                 data-label="First Name"
-                data-value="global.state.profile.selected.first_name">
+                data-value="profile.first_name">
             </div>
 
             <!-- Last name -->
             <div
                 data-ui-editable-list-item
                 data-label="Last Name"
-                data-value="global.state.profile.selected.last_name">
+                data-value="profile.last_name">
             </div>
 
             <!-- Profile creation date -->
             <div
                 data-ui-editable-list-item
                 data-label="Profile created"
-                data-display="{{ global.state.profile.selected.created_at }}"
-                data-value="global.state.profile.selected.created_at"
+                data-display="{{ profile.created_at }}"
+                data-value="profile.created_at"
                 data-type="date">
             </div>
 
@@ -59,35 +57,37 @@
             <div
                 data-ui-editable-list-item
                 data-label="Height"
-                data-value="global.state.profile.selected.height_cm">
+                data-display="{{ profile.feet }}&quot; {{ profile.inches }}'"
+                data-value="profile.height_cm">
             </div>
 
             <!-- Weight -->
             <div
                 data-ui-editable-list-item
                 data-label="Weight"
-                data-value="global.state.profile.selected.weight_lbs">
+                data-display="{{ profile.weight_lbs }} lbs"
+                data-value="profile.weight_lbs">
             </div>
 
             <!-- Primary Sport -->
             <div
                 data-ui-editable-list-item
                 data-label="Primary Sport"
-                data-value="global.state.profile.selected.primary_sport">
+                data-value="profile.primary_sport">
             </div>
 
             <!-- Primary Position -->
             <div
                 data-ui-editable-list-item
                 data-label="Primary Position"
-                data-value="global.state.profile.selected.primary_position">
+                data-value="profile.primary_position">
             </div>
 
             <!-- Hand/Leg Dominance -->
             <div
                 data-ui-editable-list-item
                 data-label="Hand/Leg Dominance"
-                data-value="global.state.profile.selected.hand_leg_dominance">
+                data-value="profile.hand_leg_dominance">
             </div>
 
         </div>

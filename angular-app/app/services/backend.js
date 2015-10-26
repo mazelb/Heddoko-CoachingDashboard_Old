@@ -48,7 +48,7 @@ angular.module('backendHeddoko', [])
 		update : function(team_id, updated_team_form_data) {
 			return $http({
 				method: 'PUT',
-				url: '/api/teams'/ + team_id,
+				url: '/api/teams/' + team_id,
 				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				data: $.param(updated_team_form_data)
 			});
@@ -97,6 +97,15 @@ angular.module('backendHeddoko', [])
 				    url: '/api/teams/' + team_id + '/athletes',
 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
 				    data: $.param(new_athlete_form_data)
+			});
+		},
+
+		update : function(profile) {
+			return $http({
+				method: 'PUT',
+				url: '/api/teams/'+ profile.group_id +'/athletes/'+ profile.id,
+				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+				data: $.param(profile)
 			});
 		},
 
