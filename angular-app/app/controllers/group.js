@@ -103,7 +103,6 @@ angular.module('app.controllers')
                     Rover.doneBackgroundProcess();
                 }
             );
-
         };
     }
 ]);

@@ -84,8 +84,15 @@ angular.module('app.controllers')
                 // On success.
                 function(response) {
 
-                    if (response.status === 200) {
+                    if (response.status === 200)
+                    {
+                        // Update group list.
                         $scope.global.state.group.list = response.data.list;
+
+                        // Update selected group.
+                        if (response.data.list.length > 0) {
+                            $scope.global.state.group.selected = response.data.list[0];
+                        }
                     }
 
                     Rover.doneBackgroundProcess();
