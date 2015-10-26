@@ -11,7 +11,7 @@
     <h1>Edit {{ group.name }}</h1>
     <br>
 
-    <form ng-submit="createGroup()">
+    <form ng-submit="submitGroupForm()">
         <div class="row">
 
             <!-- Edit form -->
@@ -28,8 +28,19 @@
         <!-- Action buttons -->
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-default">Save Changes</button>
+                <button type="submit" class="btn btn-default disabled">Save Changes</button>
             </div>
         </div>
     </form>
+
+    <!-- Debug -->
+    <div ng-show="global.isLocal">
+        <br><br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Debug</div>
+            <div class="panel-body">
+                Group data: {{ group }}
+            </div>
+        </div>
+    </div>
 </div>

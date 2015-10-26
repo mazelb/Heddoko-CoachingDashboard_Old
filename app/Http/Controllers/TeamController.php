@@ -10,8 +10,8 @@ use App\Models\Coach;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 
-class TeamController extends Controller {
-
+class TeamController extends Controller
+{
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -51,6 +51,39 @@ class TeamController extends Controller {
 
 		$newTeam = Team::create($newTeamData);
 
-		return Auth::user()->coach->teams;
+        // TODO: handle errors.
+        return [
+            'error' => null,
+            'list' => Auth::user()->coach->teams
+        ];
 	}
+
+    /**
+     * Removes a record from the database.
+     *
+     * @param int $id   ID of group to remove.
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $group = Team::with('athletes')->findOrFail($id);
+
+        // TODO: make whether profiles are deleted with groups or not configurable.
+        if (count($group->athletes))
+        {
+            foreach ($group->athletes as $profile) {
+                $profile->delete();
+            }
+        }
+
+        // Delete group.
+        $group->delete();
+
+        // Return list of groups.
+        // TODO: handle errors.
+        return [
+            'error' => null,
+            'list' => Auth::user()->coach->teams
+        ];
+    }
 }

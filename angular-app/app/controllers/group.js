@@ -22,7 +22,7 @@ angular.module('app.controllers')
             {
                 id: 0,
                 name: "",
-                sportId: ""
+                sport_id: $scope.global.state.sport.selected.id
             };
         }
 
@@ -37,32 +37,49 @@ angular.module('app.controllers')
         // Shortcut to the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Submits the "new team" form.
+        // Submits the "new group" form.
+        $scope.submitGroupForm = function() {
+            return $scope.group.id > 0 ? $scope.updateGroup() : $scope.createGroup();
+        };
+
+        // Creates a new group in the database.
         $scope.createGroup = function() {
 
             Rover.debug("Creating group...");
             Rover.addBackgroundProcess();
 
-            $scope.global.state.new_team_form_data.sport_id = $scope.global.state.selected_sport.id;
+            var form = $scope.group;
 
-            Teams.create($scope.global.state.new_team_form_data).then(
+            Teams.create(form).then(
+
+                // On success.
                 function(response) {
 
-                    $scope.global.state.new_team_form_data = null;
-
-                    if (response.status === 200) {
-                        $scope.global.state.group.list = response.data;
-                    }
-
-                    loggit.logSuccess("New Team successfully created");
-
                     Rover.doneBackgroundProcess();
+
+                    if (response.status === 200)
+                    {
+                        // Update the group list
+                        $scope.global.state.group.list = response.data.list;
+
+                        // Navigate to newly created group.
+                        var newGroupIndex = response.data.list.length - 1;
+                        Rover.browseTo.group($scope.global.state.group.list[newGroupIndex]);
+                    }
                 },
+
+                // On failure.
                 function(response) {
                     Rover.doneBackgroundProcess();
                 }
             );
         };
 
+        // Updates the details for an existing group.
+        $scope.updateGroup = function() {
+
+            Rover.debug('Updating group...');
+            
+        };
     }
 ]);

@@ -72,6 +72,10 @@ app.config(["$routeProvider", "assetVersion",
 			templateUrl: "/views/profile/create.html?" + assetVersion,
             controller: "ProfileController"
 		})
+        .when('/profile/edit', {
+			templateUrl: "/views/profile/edit.html?" + assetVersion,
+            controller: "ProfileController"
+		})
 
         // Movement data demo route.
         .when('/submit-movement', {

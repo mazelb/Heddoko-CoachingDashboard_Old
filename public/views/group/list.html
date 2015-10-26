@@ -23,12 +23,12 @@
     <!-- List of groups -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            Teams
+            Teams (total: {{ global.state.group.list.length }})
         </div>
 
         <div class="panel-body">
             <div class="row">
-                <div ng-hide="groups.length > 0" class="col-sm-12">
+                <div ng-hide="global.state.group.list.length > 0" class="col-sm-12">
                     You don't have any teams yet! Create one above to get started.
                 </div>
             </div>

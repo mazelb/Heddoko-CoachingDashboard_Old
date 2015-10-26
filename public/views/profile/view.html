@@ -1,8 +1,67 @@
 
 <div class="page page-dashboard">
 
-    <!-- Breadcrumbs -->
-    <div data-ng-include="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
+    <div class="row">
+        <!-- Breadcrumbs -->
+        <div class="col-sm-12 col-md-6">
+            <div data-ng-include="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-sm-12 col-md-6">
+            <div class="btn-group pull-right">
+
+                <!-- Delete profile button -->
+                <button
+                    ng-show="profile.id > 0"
+                    data-toggle="modal"
+                    data-target="#deleteProfileConfirmation"
+                    class="btn btn-danger">
+
+                    Delete <b>{{ profile.first_name }}</b>
+                </button>
+
+                <!-- Delete confirmation -->
+                <div class="modal fade" id="deleteProfileConfirmation">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p>
+                                    Are you sure you want to delete <b>{{ profile.first_name }}
+                                    {{ profile.last_name }}</b>'s profile?
+                                </p>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                    Yes, delete {{ profile.first_name }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit profile button -->
+                <button
+                    ng-show="profile.id > 0"
+                    ng-click="Rover.browseTo.path('profile/edit')"
+                    class="btn btn-default">
+
+                    Edit
+                </button>
+
+                <!-- Create profile button -->
+                <button
+                    ng-click="Rover.browseTo.path('profile/create')"
+                    class="btn btn-default">
+
+                    Add another athlete
+                </button>
+            </div>
+        </div>
+    </div>
 
     <section>
     	<div class="row">

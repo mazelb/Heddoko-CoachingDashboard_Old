@@ -78,9 +78,9 @@ angular.module('app.rover', []).service('Rover',
 
         // Group page.
         group: function(group) {
-
+            
             // Navigate to the selected group.
-            if (!group) {
+            if (group === undefined) {
                 group = this.state.group.selected;
             }
 

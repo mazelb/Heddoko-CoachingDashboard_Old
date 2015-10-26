@@ -11,7 +11,7 @@
     <h1>Add a Team</h1>
     <br>
 
-    <form ng-submit="createGroup()">
+    <form ng-submit="submitGroupForm()">
         <div class="row">
 
             <!-- New team form -->
@@ -32,4 +32,16 @@
             </div>
         </div>
     </form>
+
+    <!-- Debug -->
+    <div ng-show="global.isLocal">
+        <br><br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Debug</div>
+            <div class="panel-body">
+                Group data: {{ group }} <br>
+                Sports: {{ sports }}
+            </div>
+        </div>
+    </div>
 </div>

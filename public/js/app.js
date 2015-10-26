@@ -13928,6 +13928,10 @@ app.config(["$routeProvider", "assetVersion",
 			templateUrl: "/views/profile/create.html?" + assetVersion,
             controller: "ProfileController"
 		})
+        .when('/profile/edit', {
+			templateUrl: "/views/profile/edit.html?" + assetVersion,
+            controller: "ProfileController"
+		})
 
         // Movement data demo route.
         .when('/submit-movement', {
@@ -16673,7 +16677,7 @@ angular.module('app.controllers')
             {
                 id: 0,
                 name: "",
-                sportId: ""
+                sport_id: $scope.global.state.sport.selected.id
             };
         }
 
@@ -16688,33 +16692,50 @@ angular.module('app.controllers')
         // Shortcut to the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Submits the "new team" form.
+        // Submits the "new group" form.
+        $scope.submitGroupForm = function() {
+            return $scope.group.id > 0 ? $scope.updateGroup() : $scope.createGroup();
+        };
+
+        // Creates a new group in the database.
         $scope.createGroup = function() {
 
             Rover.debug("Creating group...");
             Rover.addBackgroundProcess();
 
-            $scope.global.state.new_team_form_data.sport_id = $scope.global.state.selected_sport.id;
+            var form = $scope.group;
 
-            Teams.create($scope.global.state.new_team_form_data).then(
+            Teams.create(form).then(
+
+                // On success.
                 function(response) {
 
-                    $scope.global.state.new_team_form_data = null;
-
-                    if (response.status === 200) {
-                        $scope.global.state.group.list = response.data;
-                    }
-
-                    loggit.logSuccess("New Team successfully created");
-
                     Rover.doneBackgroundProcess();
+
+                    if (response.status === 200)
+                    {
+                        // Update the group list
+                        $scope.global.state.group.list = response.data.list;
+
+                        // Navigate to newly created group.
+                        var newGroupIndex = response.data.list.length - 1;
+                        Rover.browseTo.group($scope.global.state.group.list[newGroupIndex]);
+                    }
                 },
+
+                // On failure.
                 function(response) {
                     Rover.doneBackgroundProcess();
                 }
             );
         };
 
+        // Updates the details for an existing group.
+        $scope.updateGroup = function() {
+
+            Rover.debug('Updating group...');
+            
+        };
     }
 ]);
 ;/**
@@ -16885,10 +16906,10 @@ angular.module('app.controllers')
     	}
 
         // Populate profile list.
-        Rover.debug("Checking profile list on first load...");
-    	if ($scope.global.state.profile.list.length === 0) {
-    		$scope.populateProfileList();
-    	}
+        // Rover.debug("Checking profile list on first load...");
+    	// if ($scope.global.state.profile.list.length === 0) {
+    	// 	$scope.populateProfileList();
+    	// }
 
         // Populate sports list.
         Rover.debug("Checking sports list on first load...");
@@ -16920,6 +16941,12 @@ angular.module('app.controllers')
             }
 
             Rover.debug('Selected group: ' + newGroup.id);
+
+            // TODO: load profiles that aren't associated with any group, or decide
+            // this should be handled.
+            if (newGroup.id < 1) {
+                return;
+            }
 
             // Reset members list.
             $scope.global.state.profile.list = [];
@@ -17147,13 +17174,30 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', '$location', 'Athletes', 'Rover',
-    function($scope, $location, Athletes, Rover) {
+.controller('ProfileController', ['$scope', '$location', 'Teams', 'Athletes', 'Rover',
+    function($scope, $location, Teams, Athletes, Rover) {
 
         Rover.debug('ProfileController');
 
         // Current URL path.
         $scope.currentPath = $location.path();
+        $scope.isProfilePage = true;
+
+        // Empty profile object for "new profile" form.
+        if ($scope.currentPath == '/profile/create')
+        {
+            $scope.profile =
+            {
+                id: 0,
+                primary_sport: $scope.global.state.sport.selected.id,
+                team_id: $scope.global.state.group.selected.id  // TODO: update field name when database is updated.
+            };
+        }
+
+        // Shortcut for the currently selected profile.
+        else {
+            $scope.profile = $scope.global.state.profile.selected;
+        }
 
         // Alias for the list of groups.
         $scope.groups = $scope.global.state.group.list;
@@ -17164,26 +17208,54 @@ angular.module('app.controllers')
         // Alias for the list of profiles.
         $scope.profiles = $scope.global.state.profile.list;
 
-        // Alias for the selected profile.
-        $scope.profile = $scope.global.state.profile.selected;
-
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
-
-        // Alias to selected profile OR empty profile object.
-        $scope.profile = $scope.global.state.profile.selected.id > 0 ?
-            $scope.global.state.profile.selected : {};
 
         // Extra profile fields.
         $scope.profile.feet = '';       // TODO: calculate feet
         $scope.profile.inches = '';     // TODO: calculate inches
         $scope.profile.weight_lbs = $scope.profile.weight_cm;   // NOTE: temporary fix, until we update the database table.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
-        $scope.profile.primary_sport = '';
+
+        // Deletes a group and its profiles.
+        $scope.deleteGroup = function() {
+
+            Rover.debug('Deleting group...');
+
+            // Show loading animation.
+            Rover.addBackgroundProcess();
+
+            Teams.destroy($scope.global.state.group.selected.id).then(
+
+                // On success.
+                function(response) {
+
+                    if (response.status === 200) {
+                        $scope.global.state.group.list = response.data.list;
+                    }
+
+                    Rover.doneBackgroundProcess();
+
+                    Rover.browseTo.path('/group/list');
+                },
+
+                // On failure.
+                function(response) {
+                    Rover.debug('Could not delete group: ' + response.responseText);
+                    Rover.doneBackgroundProcess();
+                }
+            );
+
+        };
 
         // Submits the new profile form.
+        $scope.submitProfileForm = function() {
+            return $scope.profile.id > 0 ? $scope.updateProfile() : $scope.createProfile();
+        };
+
+        // Creates a new profile in the database.
         $scope.createProfile = function() {
-            
+
             Rover.debug('Creating profile...');
 
             var form = $scope.profile;
@@ -17216,9 +17288,6 @@ angular.module('app.controllers')
                 // On success.
                 function(response) {
 
-                    // Reset form.
-                    $scope.profile = {};
-
                     if (response.status === 200) {
                         $scope.global.state.profile.list = response.data.list;
                     }
@@ -17230,9 +17299,16 @@ angular.module('app.controllers')
 
                 // On failure.
                 function(response) {
+                    Rover.debug('Could not create profile: ' + response.responseText);
                     Rover.doneBackgroundProcess();
                 }
             );
+        };
+
+        $scope.updateProfile = function() {
+
+            Rover.debug('Updating profile...');
+
         };
 
         // Deletes a profile
@@ -17243,17 +17319,21 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Athletes.destroy($scope.profile.group_id, $scope.profile).then(
+            Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
 
                 // On success.
                 function(response) {
 
-                    // Reset form.
-                    $scope.profile = {};
-
                     // If profile was deleted, update the local list of profiles.
-                    if (response.status === 200) {
-                        $scope.global.state.profile.list = response.data;
+                    if (response.status === 200)
+                    {
+                        // Update the list of profiles.
+                        $scope.global.state.profile.list = response.data.list;
+
+                        // Select another profile by default.
+                        if (response.data.list.length > 0) {
+                            $scope.global.state.profile.selected = response.data.list[0];
+                        }
                     }
 
                     // Send user to selected group's page.
@@ -18664,9 +18744,9 @@ angular.module('app.rover', []).service('Rover',
 
         // Group page.
         group: function(group) {
-
+            
             // Navigate to the selected group.
-            if (!group) {
+            if (group === undefined) {
                 group = this.state.group.selected;
             }
 

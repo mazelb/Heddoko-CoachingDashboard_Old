@@ -149,10 +149,10 @@ angular.module('app.controllers')
     	}
 
         // Populate profile list.
-        Rover.debug("Checking profile list on first load...");
-    	if ($scope.global.state.profile.list.length === 0) {
-    		$scope.populateProfileList();
-    	}
+        // Rover.debug("Checking profile list on first load...");
+    	// if ($scope.global.state.profile.list.length === 0) {
+    	// 	$scope.populateProfileList();
+    	// }
 
         // Populate sports list.
         Rover.debug("Checking sports list on first load...");
@@ -184,6 +184,12 @@ angular.module('app.controllers')
             }
 
             Rover.debug('Selected group: ' + newGroup.id);
+
+            // TODO: load profiles that aren't associated with any group, or decide
+            // this should be handled.
+            if (newGroup.id < 1) {
+                return;
+            }
 
             // Reset members list.
             $scope.global.state.profile.list = [];

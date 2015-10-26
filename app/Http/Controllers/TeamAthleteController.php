@@ -69,6 +69,10 @@ class TeamAthleteController extends Controller
 
         $profile->delete();
 
-        return $team->athletes;
+        // TODO: handle errors.
+		return [
+            'error' => null,
+            'list' => $team->athletes
+        ];
     }
 }

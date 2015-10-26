@@ -8,13 +8,13 @@
         </div>
     </div>
 
-    <h1>Add an Athlete</h1>
+    <h1>Edit {{ profile.first_name }}'s details</h1>
     <br>
 
     <form ng-submit="createProfile()">
         <div class="row">
 
-            <!-- New profile form -->
+            <!-- Edit form -->
             <div class="col-sm-12 col-md-8">
                 <div data-ng-include="'views/profile/partials/form.html?' + global.assetVersion"></div>
             </div>
@@ -28,17 +28,20 @@
         <!-- Action buttons -->
         <div class="row">
             <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default disabled">Save changes</button>
             </div>
         </div>
     </form>
 
-    <div ng-show="global.isLocal" class="panel panel-default">
-        <div class="panel-heading">Debug</div>
-        <div class="panel-body">
-            Profile: {{ profile }} <br><br>
-            Groups: {{ groups }} <br><br>
-            Selected group: {{ global.state.group.selected }}
+    <div ng-show="global.isLocal">
+        <br><br>
+        <div class="panel panel-default">
+            <div class="panel-heading">Debug</div>
+            <div class="panel-body">
+                Profile: {{ profile }} <br><br>
+                Groups: {{ groups }} <br><br>
+                Selected group: {{ global.state.group.selected }}
+            </div>
         </div>
     </div>
 </div>

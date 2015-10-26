@@ -113,9 +113,7 @@
             </div>
             <div class="col-sm-8 col-md-6">
                 <select ng-model="profile.primary_sport" class="form-control">
-                    <option
-                        ng-repeat="sport in sports"
-                        value="{{ sport.name }}">
+                    <option ng-repeat="sport in sports" value="{{ sport.name }}">
                         {{ sport.name }}
                     </option>
                 </select>
