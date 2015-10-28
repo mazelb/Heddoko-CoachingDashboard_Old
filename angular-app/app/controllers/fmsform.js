@@ -12,9 +12,9 @@ angular.module('app.controllers')
 .controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", 'Rover', 'assetVersion',
     function($scope, $sessionStorage, FMSForm, loggit, Rover, assetVersion) {
 
-    	Rover.state.show_fms_edit = false;
+    	$scope.data.show_fms_edit = false;
     	$scope.waiting_server_response = false;
-    	Rover.state.selected_fms_form = null;
+    	$scope.data.selected_fms_form = null;
 
         // Demo data.
         $scope.files = {};
@@ -70,14 +70,14 @@ angular.module('app.controllers')
 
         $scope.updateFMS = function() {
 
-        		$scope.waiting_server_response = true;
+        	$scope.waiting_server_response = true;
 
-          FMSForm.update($scope.data.member.selected.id, Rover.state.selected_fms_form)
+            FMSForm.update($scope.global.state.profile.selected.id, $scope.data.selected_fms_form)
             .success(function(updated_fms_form_data) {
-              $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-        				$scope.waiting_server_response = false;
-        				Rover.state.show_fms_edit = false;
-        				loggit.logSuccess("FMS Form successfully updated");
+                $scope.global.state.profile.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+				$scope.waiting_server_response = false;
+				Rover.state.show_fms_edit = false;
+				loggit.logSuccess("FMS Form successfully updated");
             })
             .error(function() {
         		loggit.logError("There was an error while attempting to update the FMS Form");
@@ -86,7 +86,18 @@ angular.module('app.controllers')
         };
 
         $scope.fmsdisplay = function(form) {
-          $scope.data.selected_fms_form = form;
+
+            form.deepsquatcomments = form.deepsquatcomments || '';
+            form.hurdlecomments = form.hurdlecomments || '';
+            form.lungecomments = form.lungecomments || '';
+            form.shouldercomments = form.shouldercomments || '';
+            form.impingementcomments = form.impingementcomments || '';
+            form.activecomments = form.activecomments || '';
+            form.trunkcomments = form.trunkcomments || '';
+            form.presscomments = form.presscomments || '';
+            form.rotarycomments = form.rotarycomments || '';
+            form.posteriorcomments = form.posteriorcomments || '';
+            $scope.data.selected_fms_form = form;
         };
     }
 ]);

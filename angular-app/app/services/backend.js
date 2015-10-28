@@ -163,31 +163,31 @@ angular.module('backendHeddoko', [])
 			//attach the numerical values of the fms form
 
 			fd.append('deepsquat', form_data.deepsquat);
-			fd.append('deepsquatcomments', form_data.deepsquatcomments);
+			fd.append('deepsquatcomments', form_data.deepsquatcomments || '');
 			fd.append('Lhurdle', form_data.Lhurdle);
 			fd.append('Rhurdle', form_data.Rhurdle);
-			fd.append('hurdlecomments', form_data.hurdlecomments);
+			fd.append('hurdlecomments', form_data.hurdlecomments || '');
 			fd.append('Llunge', form_data.Llunge);
 			fd.append('Rlunge', form_data.Rlunge);
-			fd.append('lungecomments', form_data.lungecomments);
+			fd.append('lungecomments', form_data.lungecomments || '');
 			fd.append('Lshoulder', form_data.Lshoulder);
 			fd.append('Rshoulder', form_data.Rshoulder);
-			fd.append('shouldercomments', form_data.shouldercomments);
+			fd.append('shouldercomments', form_data.shouldercomments || '');
 			fd.append('Limpingement', form_data.Limpingement);
 			fd.append('Rimpingement', form_data.Rimpingement);
-			fd.append('impingementcomments', form_data.impingementcomments);
+			fd.append('impingementcomments', form_data.impingementcomments || '');
 			fd.append('Lactive', form_data.Lactive);
 			fd.append('Ractive', form_data.Ractive);
-			fd.append('activecomments', form_data.activecomments);
+			fd.append('activecomments', form_data.activecomments || '');
 			fd.append('trunk', form_data.trunk);
-			fd.append('trunkcomments', form_data.trunkcomments);
+			fd.append('trunkcomments', form_data.trunkcomments || '');
 			fd.append('press', form_data.press);
-			fd.append('presscomments', form_data.presscomments);
+			fd.append('presscomments', form_data.presscomments || '');
 			fd.append('Lrotary', form_data.Lrotary);
 			fd.append('Rrotary', form_data.Rrotary);
-			fd.append('rotarycomments', form_data.rotarycomments);
+			fd.append('rotarycomments', form_data.rotarycomments || '');
 			fd.append('posterior', form_data.posterior);
-			fd.append('posteriorcomments', form_data.posteriorcomments);
+			fd.append('posteriorcomments', form_data.posteriorcomments || '');
 
 			fd.append('comment', form_data.comment);
 

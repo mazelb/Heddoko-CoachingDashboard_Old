@@ -56,32 +56,14 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Format created_at date.
-        $scope.profile.created_at_formatted =
-            $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
-
-        // Calculate the amount of feet in the total height.
-        $scope.profile.feet = $scope.profile.height_cm > 0 ?
-            Math.floor($scope.profile.height_cm / 30.48) : '';
-
-        // Calculate the amount of inches in the remaining height.
-        $scope.profile.inches = $scope.profile.height_cm > 0 ?
-            Math.round(($scope.profile.height_cm % 30.48) / 2.54) : '';
-
-        // Calculate the weight in pounds.
-        Rover.debug('Original weight in kg: ' + $scope.profile.weight_cm);
-        Rover.debug('Converted weight in lbs: ' + Math.round($scope.profile.weight_cm / 0.453592));
-        $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
-            Math.round($scope.profile.weight_cm / 0.453592) : '';
-
-        // TODO: rename these fields in the database.
-        $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
-
-
         // FMS tests...
         $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        if (!$scope.fmsForms && $scope.profile.id > 0)
-        {
+        if (!$scope.fmsForms && $scope.profile.id > 0) {
+            $scope.updateFMSForms();
+        }
+
+        $scope.updateFMSForms = function() {
+
             Rover.debug('Retrieving FMS forms...');
 
             FMSForm.get($scope.profile.id).then(
@@ -99,7 +81,7 @@ angular.module('app.controllers')
                     Rover.debug(response);
                 }
             );
-        }
+        };
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
@@ -137,6 +119,31 @@ angular.module('app.controllers')
                 }
             );
 
+        };
+
+        // Formats certain profile fields.
+        $scope.formatProfile = function() {
+
+            // Format created_at date.
+            $scope.profile.created_at_formatted =
+                $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
+
+            // Calculate the amount of feet in the total height.
+            $scope.profile.feet = $scope.profile.height_cm > 0 ?
+                Math.floor($scope.profile.height_cm / 30.48) : '';
+
+            // Calculate the amount of inches in the remaining height.
+            $scope.profile.inches = $scope.profile.height_cm > 0 ?
+                Math.round(($scope.profile.height_cm % 30.48) / 2.54) : '';
+
+            // Calculate the weight in pounds.
+            Rover.debug('Original weight in kg: ' + $scope.profile.weight_cm);
+            Rover.debug('Converted weight in lbs: ' + Math.round($scope.profile.weight_cm / 0.453592));
+            $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
+                Math.round($scope.profile.weight_cm / 0.453592) : '';
+
+            // TODO: rename these fields in the database.
+            $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
         };
 
         // Submits the new profile form.
@@ -297,5 +304,25 @@ angular.module('app.controllers')
                 }
             );
         };
+
+        $scope.$watch('global.state.profile.selected', function(newPro, oldPro)
+        {
+            // Performance check.
+            if (newPro.id === oldPro.id) {
+                return;
+            }
+
+            // Shortcut for the currently selected profile.
+            $scope.profile = $scope.global.state.profile.selected;
+
+            // Update FMS forms.
+            $scope.fmsForms = [];
+            $scope.updateFMSForms();
+
+            // Format profile fields.
+            $scope.formatProfile();
+        });
+
+        $scope.formatProfile();
     }
 ]);

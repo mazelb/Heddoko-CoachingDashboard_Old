@@ -16586,9 +16586,9 @@ angular.module('app.controllers')
 .controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", 'Rover', 'assetVersion',
     function($scope, $sessionStorage, FMSForm, loggit, Rover, assetVersion) {
 
-    	Rover.state.show_fms_edit = false;
+    	$scope.data.show_fms_edit = false;
     	$scope.waiting_server_response = false;
-    	Rover.state.selected_fms_form = null;
+    	$scope.data.selected_fms_form = null;
 
         // Demo data.
         $scope.files = {};
@@ -16644,14 +16644,14 @@ angular.module('app.controllers')
 
         $scope.updateFMS = function() {
 
-        		$scope.waiting_server_response = true;
+        	$scope.waiting_server_response = true;
 
-          FMSForm.update($scope.data.member.selected.id, Rover.state.selected_fms_form)
+            FMSForm.update($scope.global.state.profile.selected.id, $scope.data.selected_fms_form)
             .success(function(updated_fms_form_data) {
-              $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-        				$scope.waiting_server_response = false;
-        				Rover.state.show_fms_edit = false;
-        				loggit.logSuccess("FMS Form successfully updated");
+                $scope.global.state.profile.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
+				$scope.waiting_server_response = false;
+				Rover.state.show_fms_edit = false;
+				loggit.logSuccess("FMS Form successfully updated");
             })
             .error(function() {
         		loggit.logError("There was an error while attempting to update the FMS Form");
@@ -16660,7 +16660,18 @@ angular.module('app.controllers')
         };
 
         $scope.fmsdisplay = function(form) {
-          $scope.data.selected_fms_form = form;
+
+            form.deepsquatcomments = form.deepsquatcomments || '';
+            form.hurdlecomments = form.hurdlecomments || '';
+            form.lungecomments = form.lungecomments || '';
+            form.shouldercomments = form.shouldercomments || '';
+            form.impingementcomments = form.impingementcomments || '';
+            form.activecomments = form.activecomments || '';
+            form.trunkcomments = form.trunkcomments || '';
+            form.presscomments = form.presscomments || '';
+            form.rotarycomments = form.rotarycomments || '';
+            form.posteriorcomments = form.posteriorcomments || '';
+            $scope.data.selected_fms_form = form;
         };
     }
 ]);
@@ -17251,32 +17262,14 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Format created_at date.
-        $scope.profile.created_at_formatted =
-            $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
-
-        // Calculate the amount of feet in the total height.
-        $scope.profile.feet = $scope.profile.height_cm > 0 ?
-            Math.floor($scope.profile.height_cm / 30.48) : '';
-
-        // Calculate the amount of inches in the remaining height.
-        $scope.profile.inches = $scope.profile.height_cm > 0 ?
-            Math.round(($scope.profile.height_cm % 30.48) / 2.54) : '';
-
-        // Calculate the weight in pounds.
-        Rover.debug('Original weight in kg: ' + $scope.profile.weight_cm);
-        Rover.debug('Converted weight in lbs: ' + Math.round($scope.profile.weight_cm / 0.453592));
-        $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
-            Math.round($scope.profile.weight_cm / 0.453592) : '';
-
-        // TODO: rename these fields in the database.
-        $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
-
-
         // FMS tests...
         $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        if (!$scope.fmsForms && $scope.profile.id > 0)
-        {
+        if (!$scope.fmsForms && $scope.profile.id > 0) {
+            $scope.updateFMSForms();
+        }
+
+        $scope.updateFMSForms = function() {
+
             Rover.debug('Retrieving FMS forms...');
 
             FMSForm.get($scope.profile.id).then(
@@ -17294,7 +17287,7 @@ angular.module('app.controllers')
                     Rover.debug(response);
                 }
             );
-        }
+        };
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
@@ -17332,6 +17325,31 @@ angular.module('app.controllers')
                 }
             );
 
+        };
+
+        // Formats certain profile fields.
+        $scope.formatProfile = function() {
+
+            // Format created_at date.
+            $scope.profile.created_at_formatted =
+                $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
+
+            // Calculate the amount of feet in the total height.
+            $scope.profile.feet = $scope.profile.height_cm > 0 ?
+                Math.floor($scope.profile.height_cm / 30.48) : '';
+
+            // Calculate the amount of inches in the remaining height.
+            $scope.profile.inches = $scope.profile.height_cm > 0 ?
+                Math.round(($scope.profile.height_cm % 30.48) / 2.54) : '';
+
+            // Calculate the weight in pounds.
+            Rover.debug('Original weight in kg: ' + $scope.profile.weight_cm);
+            Rover.debug('Converted weight in lbs: ' + Math.round($scope.profile.weight_cm / 0.453592));
+            $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
+                Math.round($scope.profile.weight_cm / 0.453592) : '';
+
+            // TODO: rename these fields in the database.
+            $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
         };
 
         // Submits the new profile form.
@@ -17492,6 +17510,26 @@ angular.module('app.controllers')
                 }
             );
         };
+
+        $scope.$watch('global.state.profile.selected', function(newPro, oldPro)
+        {
+            // Performance check.
+            if (newPro.id === oldPro.id) {
+                return;
+            }
+
+            // Shortcut for the currently selected profile.
+            $scope.profile = $scope.global.state.profile.selected;
+
+            // Update FMS forms.
+            $scope.fmsForms = [];
+            $scope.updateFMSForms();
+
+            // Format profile fields.
+            $scope.formatProfile();
+        });
+
+        $scope.formatProfile();
     }
 ]);
 ;/**
@@ -18624,31 +18662,31 @@ angular.module('backendHeddoko', [])
 			//attach the numerical values of the fms form
 
 			fd.append('deepsquat', form_data.deepsquat);
-			fd.append('deepsquatcomments', form_data.deepsquatcomments);
+			fd.append('deepsquatcomments', form_data.deepsquatcomments || '');
 			fd.append('Lhurdle', form_data.Lhurdle);
 			fd.append('Rhurdle', form_data.Rhurdle);
-			fd.append('hurdlecomments', form_data.hurdlecomments);
+			fd.append('hurdlecomments', form_data.hurdlecomments || '');
 			fd.append('Llunge', form_data.Llunge);
 			fd.append('Rlunge', form_data.Rlunge);
-			fd.append('lungecomments', form_data.lungecomments);
+			fd.append('lungecomments', form_data.lungecomments || '');
 			fd.append('Lshoulder', form_data.Lshoulder);
 			fd.append('Rshoulder', form_data.Rshoulder);
-			fd.append('shouldercomments', form_data.shouldercomments);
+			fd.append('shouldercomments', form_data.shouldercomments || '');
 			fd.append('Limpingement', form_data.Limpingement);
 			fd.append('Rimpingement', form_data.Rimpingement);
-			fd.append('impingementcomments', form_data.impingementcomments);
+			fd.append('impingementcomments', form_data.impingementcomments || '');
 			fd.append('Lactive', form_data.Lactive);
 			fd.append('Ractive', form_data.Ractive);
-			fd.append('activecomments', form_data.activecomments);
+			fd.append('activecomments', form_data.activecomments || '');
 			fd.append('trunk', form_data.trunk);
-			fd.append('trunkcomments', form_data.trunkcomments);
+			fd.append('trunkcomments', form_data.trunkcomments || '');
 			fd.append('press', form_data.press);
-			fd.append('presscomments', form_data.presscomments);
+			fd.append('presscomments', form_data.presscomments || '');
 			fd.append('Lrotary', form_data.Lrotary);
 			fd.append('Rrotary', form_data.Rrotary);
-			fd.append('rotarycomments', form_data.rotarycomments);
+			fd.append('rotarycomments', form_data.rotarycomments || '');
 			fd.append('posterior', form_data.posterior);
-			fd.append('posteriorcomments', form_data.posteriorcomments);
+			fd.append('posteriorcomments', form_data.posteriorcomments || '');
 
 			fd.append('comment', form_data.comment);
 
