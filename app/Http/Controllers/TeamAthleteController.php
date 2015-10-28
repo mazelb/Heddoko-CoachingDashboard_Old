@@ -142,11 +142,16 @@ class TeamAthleteController extends Controller
 
         // Upload new avatar.
         $filePath = public_path() .'/demo/avatars';
-        $movedPhoto = $originalPhoto->move($filePath, $name .'.jpg');
+        $fileName = $name .'.'. $originalPhoto->getClientOriginalExtension();
+        $movedPhoto = $originalPhoto->move($filePath, $fileName);
+
+        // Save the source in the database record.
+        $profile->photo_src = '/demo/avatars/'. $fileName;
+        $profile->save();
 
         return [
             'error' => null,
-            'src' => '/demo/avatars/'. $name .'.jpg'
+            'photo_src' => $profile->photo_src
         ];
     }
 }

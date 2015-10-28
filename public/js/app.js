@@ -17312,11 +17312,6 @@ angular.module('app.controllers')
         $scope.sports = $scope.global.state.sport.list;
 
         // FMS tests...
-        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        if (!$scope.fmsForms && $scope.profile.id > 0) {
-            $scope.updateFMSForms();
-        }
-
         $scope.updateFMSForms = function() {
 
             Rover.debug('Retrieving FMS forms...');
@@ -17337,6 +17332,10 @@ angular.module('app.controllers')
                 }
             );
         };
+        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
+        if (!$scope.fmsForms && $scope.profile.id > 0) {
+            $scope.updateFMSForms();
+        }
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
