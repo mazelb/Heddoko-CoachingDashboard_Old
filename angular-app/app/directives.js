@@ -230,28 +230,28 @@ angular.module("app.chart.directives", []).directive("gaugeChart", [
                     switch (data = scope.data, attrs.type) {
                         case "line":
                             return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {
-                                element: ele[0],
-                                data: data,
-                                xkey: attrs.xkey,
-                                ykeys: JSON.parse(attrs.ykeys),
-                                labels: JSON.parse(attrs.labels),
-                                lineWidth: attrs.lineWidth || 2,
-                                lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"]
+                                'element': ele[0],
+                                'data': data,
+                                'xkey': attrs.xkey,
+                                'ykeys': JSON.parse(attrs.ykeys),
+                                'labels': JSON.parse(attrs.labels),
+                                'lineWidth': attrs.lineWidth || 2,
+                                'lineColors': colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"]
                             },chart = new Morris.Line(options),$(window).resize(function(){
                                 chart.redraw();
                             });
                         case "area":
                             return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {
-                                element: ele[0],
-                                data: data,
-                                xkey: attrs.xkey,
-                                ykeys: JSON.parse(attrs.ykeys),
-                                labels: JSON.parse(attrs.labels),
-                                lineWidth: attrs.lineWidth || 2,
-                                lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"],
-                                behaveLikeLine: attrs.behaveLikeLine || !1,
-                                fillOpacity: attrs.fillOpacity || "auto",
-                                pointSize: attrs.pointSize || 4
+                                'element': ele[0],
+                                'data': data,
+                                'xkey': attrs.xkey,
+                                'ykeys': JSON.parse(attrs.ykeys),
+                                'labels': JSON.parse(attrs.labels),
+                                'lineWidth': attrs.lineWidth || 2,
+                                'lineColors': colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"],
+                                'behaveLikeLine': attrs.behaveLikeLine || !1,
+                                'fillOpacity': attrs.fillOpacity || "auto",
+                                'pointSize': attrs.pointSize || 4
                             }, chart = new Morris.Area(options),$(window).resize(function(){
                                 chart.redraw();
                             });

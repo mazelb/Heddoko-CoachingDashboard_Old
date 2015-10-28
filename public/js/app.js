@@ -16594,15 +16594,15 @@ angular.module('app.controllers')
         $scope.files = {};
         // $scope.files.ds = {name: ''};
 
-        $scope.$watch('data.member.selected', function(new_selected_athlete_value) {
+        $scope.$watch('global.state.profile.selected', function(new_selected_athlete_value) {
 
           if (new_selected_athlete_value === null) {
             return;
           }
 
-          FMSForm.get($scope.data.member.selected.id)
+          FMSForm.get($scope.global.state.profile.selected.id)
             .success(function(athletes_fms_forms_response) {
-              $scope.data.member.selected.fms_forms = athletes_fms_forms_response;
+              $scope.global.state.profile.selected.fms_forms = athletes_fms_forms_response;
             })
             .error(function(error_msg) {
               console.log('error retrieving forms from the database' + error_msg);
@@ -16612,27 +16612,34 @@ angular.module('app.controllers')
 
         $scope.submitFMSForm = function() {
 
-        		$scope.waiting_server_response = true;
+    		$scope.waiting_server_response = true;
 
-        		Rover.debug(Rover.state.fms_form_data);
+            $scope.data.fms_form_data.totalscore = 19;
 
-          FMSForm.create($scope.data.member.selected.id, $scope.data.fms_form_data, $scope.data.fms_form_movement_files)
-            .success(function(updated_fms_form_data) {
+            Rover.debug('Submitting FMS form data...');
+    		Rover.debug($scope.data.fms_form_data);
 
-        				Rover.debug(updated_fms_form_data);
+            FMSForm.create(
+                $scope.global.state.profile.selected.id,
+                $scope.data.fms_form_data,
+                $scope.data.fms_form_movement_files
+            ).then(
+                function(response) {
 
+                    Rover.debug('Success.');
+                	Rover.debug(response.data);
 
-
-              Rover.state.fms_form_data = {}; //reset the form data upon successful FMS form submission
-              $scope.data.member.selected.fms_forms = updated_fms_form_data; //store the updated FMS forms sent back by the server
-        				$scope.waiting_server_response = false;
-        				loggit.logSuccess("FMS Form successfully submitted");
-            })
-            .error(function(err) {
-        		loggit.logError("There was an error submitting the FMS Form");
-        		$scope.waiting_server_response = false;
-                Rover.debug(err);
-            });
+                    $scope.data.fms_form_data = {}; //reset the form data upon successful FMS form submission
+                    $scope.global.state.profile.selected.fms_forms = response.data; //store the updated FMS forms sent back by the server
+        			$scope.waiting_server_response = false;
+        			loggit.logSuccess("FMS Form successfully submitted");
+                },
+                function(response) {
+                	loggit.logError("There was an error submitting the FMS Form");
+                	$scope.waiting_server_response = false;
+                    Rover.debug(response);
+                }
+            );
         };
 
         $scope.updateFMS = function() {
@@ -17265,7 +17272,9 @@ angular.module('app.controllers')
         // TODO: rename these fields in the database.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
 
+
         // FMS tests...
+        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
         if (!$scope.fmsForms && $scope.profile.id > 0)
         {
             Rover.debug('Retrieving FMS forms...');
@@ -17276,7 +17285,7 @@ angular.module('app.controllers')
                     if (response.status === 200) {
                         Rover.debug('Received FMS forms.');
                         Rover.debug(response.data);
-                        $scope.fmsForms = response.data[0];
+                        $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
                     }
                 },
 
@@ -17779,28 +17788,28 @@ angular.module("app.chart.directives", []).directive("gaugeChart", [
                     switch (data = scope.data, attrs.type) {
                         case "line":
                             return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {
-                                element: ele[0],
-                                data: data,
-                                xkey: attrs.xkey,
-                                ykeys: JSON.parse(attrs.ykeys),
-                                labels: JSON.parse(attrs.labels),
-                                lineWidth: attrs.lineWidth || 2,
-                                lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"]
+                                'element': ele[0],
+                                'data': data,
+                                'xkey': attrs.xkey,
+                                'ykeys': JSON.parse(attrs.ykeys),
+                                'labels': JSON.parse(attrs.labels),
+                                'lineWidth': attrs.lineWidth || 2,
+                                'lineColors': colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"]
                             },chart = new Morris.Line(options),$(window).resize(function(){
                                 chart.redraw();
                             });
                         case "area":
                             return colors = void 0 === attrs.lineColors || "" === attrs.lineColors ? null : JSON.parse(attrs.lineColors), options = {
-                                element: ele[0],
-                                data: data,
-                                xkey: attrs.xkey,
-                                ykeys: JSON.parse(attrs.ykeys),
-                                labels: JSON.parse(attrs.labels),
-                                lineWidth: attrs.lineWidth || 2,
-                                lineColors: colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"],
-                                behaveLikeLine: attrs.behaveLikeLine || !1,
-                                fillOpacity: attrs.fillOpacity || "auto",
-                                pointSize: attrs.pointSize || 4
+                                'element': ele[0],
+                                'data': data,
+                                'xkey': attrs.xkey,
+                                'ykeys': JSON.parse(attrs.ykeys),
+                                'labels': JSON.parse(attrs.labels),
+                                'lineWidth': attrs.lineWidth || 2,
+                                'lineColors': colors || ["#0b62a4", "#7a92a3", "#4da74d", "#afd8f8", "#edc240", "#cb4b4b", "#9440ed"],
+                                'behaveLikeLine': attrs.behaveLikeLine || !1,
+                                'fillOpacity': attrs.fillOpacity || "auto",
+                                'pointSize': attrs.pointSize || 4
                             }, chart = new Morris.Area(options),$(window).resize(function(){
                                 chart.redraw();
                             });
@@ -18642,6 +18651,8 @@ angular.module('backendHeddoko', [])
 			fd.append('posteriorcomments', form_data.posteriorcomments);
 
 			fd.append('comment', form_data.comment);
+
+			fd.append('totalscore', form_data.totalscore);
 
 			return $http.post('/api/athletes/' + athlete_id + '/fmsforms', fd, {
 				transformRequest: angular.identity,

@@ -77,7 +77,9 @@ angular.module('app.controllers')
         // TODO: rename these fields in the database.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
 
+
         // FMS tests...
+        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
         if (!$scope.fmsForms && $scope.profile.id > 0)
         {
             Rover.debug('Retrieving FMS forms...');
@@ -88,7 +90,7 @@ angular.module('app.controllers')
                     if (response.status === 200) {
                         Rover.debug('Received FMS forms.');
                         Rover.debug(response.data);
-                        $scope.fmsForms = response.data[0];
+                        $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
                     }
                 },
 

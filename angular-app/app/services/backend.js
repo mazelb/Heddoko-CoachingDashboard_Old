@@ -191,6 +191,8 @@ angular.module('backendHeddoko', [])
 
 			fd.append('comment', form_data.comment);
 
+			fd.append('totalscore', form_data.totalscore);
+
 			return $http.post('/api/athletes/' + athlete_id + '/fmsforms', fd, {
 				transformRequest: angular.identity,
 				headers: {'Content-Type': undefined}

@@ -8,11 +8,11 @@ class FMSForm extends Model {
     protected $table = 'fmsforms';
     protected $fillable = [
 		'athlete_id',
-		'deepsquat', 
-		'deepsquatcomments', 
-		'Lhurdle', 
-		'Rhurdle', 
-		'hurdlecomments', 
+		'deepsquat',
+		'deepsquatcomments',
+		'Lhurdle',
+		'Rhurdle',
+		'hurdlecomments',
 		'Llunge',
 		'Rlunge',
 		'lungecomments',
@@ -25,7 +25,7 @@ class FMSForm extends Model {
 		'Lactive',
 		'Ractive',
 		'activecomments',
-		'trunk', 
+		'trunk',
 		'trunkcomments',
 		'press',
 		'presscomments',
@@ -33,6 +33,8 @@ class FMSForm extends Model {
 		'Rrotary',
 		'rotarycomments',
 		'posterior',
-		'posteriorcomments'];
-		
+		'posteriorcomments',
+		'totalscore',
+    ];
+
 }

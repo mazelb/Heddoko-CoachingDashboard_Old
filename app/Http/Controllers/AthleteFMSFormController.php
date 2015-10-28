@@ -65,9 +65,27 @@ class AthleteFMSFormController extends Controller {
 
 		//create the fms form entry
 
-		$newForm = FMSForm::create(Input::all());
-        $newForm->totalscore = 15;      // ??
-		$newForm->save();
+        $formData = Input::all();
+        $formData['deepsquat'] = (int) $formData['deepsquat'];
+        $formData['Lhurdle'] = (int) $formData['Lhurdle'];
+        $formData['Rhurdle'] = (int) $formData['Rhurdle'];
+        $formData['Llunge'] = (int) $formData['Llunge'];
+        $formData['Rlunge'] = (int) $formData['Rlunge'];
+        $formData['Lshoulder'] = (int) $formData['Lshoulder'];
+        $formData['Rshoulder'] = (int) $formData['Rshoulder'];
+        $formData['Limpingement'] = (int) $formData['Limpingement'];
+        $formData['Rimpingement'] = (int) $formData['Rimpingement'];
+        $formData['Lactive'] = (int) $formData['Lactive'];
+        $formData['Ractive'] = (int) $formData['Ractive'];
+        $formData['trunk'] = (int) $formData['trunk'];
+        $formData['press'] = (int) $formData['press'];
+        $formData['Lrotary'] = (int) $formData['Lrotary'];
+        $formData['Rrotary'] = (int) $formData['Rrotary'];
+        $formData['posterior'] = (int) $formData['posterior'];
+        $formData['totalscore'] = (int) Input::get('totalscore', 19);
+		$newForm = FMSForm::create($formData);
+        // $newForm->totalscore = 15;      // ??
+		// $newForm->save();
 
 		$newFMSSubmission = FMSFormSubmission::create(['coach_id' => Auth::user()->coach->id,
 																									'athlete_id' => $athleteid,
