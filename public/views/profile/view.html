@@ -66,8 +66,16 @@
     <section>
     	<div class="row">
 
-            <!-- Member details -->
     		<div class="col-md-6 col-sm-12">
+
+                <!-- Avatar -->
+                <img
+                    ng-show="profile.photo_src.length > 0"
+                    src="{{ profile.photo_src + '?' + profile.updated_at }}"
+                    alt="{{ profile.first_name }}"
+                    style="margin: 5% 30%; width: 40%;">
+
+                <!-- Profile details -->
                 <div data-ng-include="'views/profile/partials/details.html?' + global.assetVersion"></div>
     		</div>
 
@@ -145,6 +153,7 @@
                         <div class="panel-body">
                             FMS Forms: {{ fmsForms }} <br><br>
                             Profile alias: {{ profile }} <br> <br>
+                            Profile avatar: {{ profile.photo_src }} <br> <br>
                             Profile global: {{ global.state.profile.selected }} <br> <br>
                         </div>
                     </div>

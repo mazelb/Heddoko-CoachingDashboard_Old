@@ -100,6 +100,11 @@ angular.module('app.controllers')
                         $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
                     }
 
+                    // If no profile exists, make sure we're not on the "/profile/view" page.
+                    else if ($scope.currentPath == '/profile/view') {
+                        Rover.browseTo.group();
+                    }
+
                     Rover.doneBackgroundProcess();
     		    },
 
@@ -205,7 +210,7 @@ angular.module('app.controllers')
             $scope.global.state.profile.list = [];
             $scope.global.state.profile.selected = {id: 0};
 
-            // Update members list.
+            // Update profiles list.
     		$scope.populateProfileList();
         }, true);
     }

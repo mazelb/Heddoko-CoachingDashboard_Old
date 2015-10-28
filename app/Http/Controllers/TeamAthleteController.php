@@ -129,8 +129,7 @@ class TeamAthleteController extends Controller
         // Check image.
         if (!$originalPhoto = $request->file('photo')) {
             return ['error' => 'File not received.'];
-        // } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
-        } elseif ($originalPhoto->getMimeType() != 'image/jpeg') {
+        } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
             return ['error' => 'Invalid MIME type.'];
         }
 
@@ -151,7 +150,8 @@ class TeamAthleteController extends Controller
 
         return [
             'error' => null,
-            'photo_src' => $profile->photo_src
+            'photo_src' => $profile->photo_src,
+            'list' => $group->athletes
         ];
     }
 }

@@ -92,7 +92,8 @@
                         href="javascript:;"
                         class="btn btn-primary btn-metro"
                         ng-repeat="profile in global.state.profile.list"
-                        ng-click="Rover.browseTo.profile(profile)">
+                        ng-click="Rover.browseTo.profile(profile)"
+                        style="background-image: url({{ profile.photo_src || '' }});background-size: cover;">
 
                         <div class="btn-title">{{ profile.first_name }}</div>
                     </a>

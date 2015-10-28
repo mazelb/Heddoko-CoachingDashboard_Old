@@ -124,11 +124,17 @@ angular.module('app.controllers')
 
                 // On success.
                 function(response) {
-
                     Rover.doneBackgroundProcess();
 
-                    if (response.status === 200)
-                    {
+                    if (response.status === 200) {
+
+                        // Update the avatar on the currently selected group.
+                        $scope.global.state.group.selected.photo_src = response.data.photo_src;
+                        $scope.group.photo_src = response.data.photo_src;
+
+                        // Update the list of groups.
+                        $scope.global.state.group.list = response.data.list;
+
                         Rover.debug(response.data);
                     }
                 },

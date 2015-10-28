@@ -16801,11 +16801,17 @@ angular.module('app.controllers')
 
                 // On success.
                 function(response) {
-
                     Rover.doneBackgroundProcess();
 
-                    if (response.status === 200)
-                    {
+                    if (response.status === 200) {
+
+                        // Update the avatar on the currently selected group.
+                        $scope.global.state.group.selected.photo_src = response.data.photo_src;
+                        $scope.group.photo_src = response.data.photo_src;
+
+                        // Update the list of groups.
+                        $scope.global.state.group.list = response.data.list;
+
                         Rover.debug(response.data);
                     }
                 },
@@ -16934,6 +16940,11 @@ angular.module('app.controllers')
                         $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
                     }
 
+                    // If no profile exists, make sure we're not on the "/profile/view" page.
+                    else if ($scope.currentPath == '/profile/view') {
+                        Rover.browseTo.group();
+                    }
+
                     Rover.doneBackgroundProcess();
     		    },
 
@@ -17039,7 +17050,7 @@ angular.module('app.controllers')
             $scope.global.state.profile.list = [];
             $scope.global.state.profile.selected = {id: 0};
 
-            // Update members list.
+            // Update profiles list.
     		$scope.populateProfileList();
         }, true);
     }
@@ -17379,8 +17390,8 @@ angular.module('app.controllers')
         $scope.formatProfile = function() {
 
             // Format created_at date.
-            $scope.profile.created_at_formatted =
-                $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
+            $scope.profile.created_at_formatted = $scope.profile.created_at.length > 0 ?
+                $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy') : '';
 
             // Calculate the amount of feet in the total height.
             $scope.profile.feet = $scope.profile.height_cm > 0 ?
@@ -17578,11 +17589,17 @@ angular.module('app.controllers')
 
                 // On success.
                 function(response) {
-
                     Rover.doneBackgroundProcess();
 
-                    if (response.status === 200)
-                    {
+                    if (response.status === 200) {
+
+                        // Update the avatar on the currently selected profile.
+                        $scope.global.state.profile.selected.photo_src = response.data.photo_src;
+                        $scope.profile.photo_src = response.data.photo_src;
+
+                        // Update the list of profiles.
+                        $scope.global.state.profile.list = response.data.list;
+
                         Rover.debug(response.data);
                     }
                 },

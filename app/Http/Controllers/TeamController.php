@@ -124,8 +124,7 @@ class TeamController extends Controller
         // Check image.
         if (!$originalPhoto = $request->file('photo')) {
             return ['error' => 'File not received.'];
-        // } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
-        } elseif ($originalPhoto->getMimeType() != 'image/jpeg') {
+        } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
             return ['error' => 'Invalid MIME type.'];
         }
 
@@ -137,11 +136,17 @@ class TeamController extends Controller
 
         // Upload new avatar.
         $filePath = public_path() .'/demo/avatars';
-        $movedPhoto = $originalPhoto->move($filePath, $name .'.jpg');
+        $fileName = $name .'.'. $originalPhoto->getClientOriginalExtension();
+        $movedPhoto = $originalPhoto->move($filePath, $fileName);
+
+        // Save the source in the database record.
+        $group->photo_src = '/demo/avatars/'. $fileName;
+        $group->save();
 
         return [
             'error' => null,
-            'src' => '/demo/avatars/'. $name .'.jpg'
+            'photo_src' => $group->photo_src,
+            'list' => Auth::user()->coach->teams
         ];
     }
 }

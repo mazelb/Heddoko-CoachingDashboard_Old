@@ -17,7 +17,7 @@ class Team extends Model
     /**
      * Attributes which are mass-assignable.
      */
-	protected $fillable = ['coach_id', 'sport_id', 'name'];
+	protected $fillable = ['coach_id', 'sport_id', 'name', 'photo_src'];
 
     /**
      * The attributes that should be hidden from the model's array form.
