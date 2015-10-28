@@ -62,8 +62,18 @@ angular.module('backendHeddoko', [])
 
 		destroy : function(team_id) {
 			return $http.delete('/api/teams/' + team_id);
-		}
+		},
 
+        /**
+         * Uploads an avatar.
+         *
+         * @param object group
+         * @param object fileData
+         * @return $http
+         */
+        avatar: function(groupId, fileData) {
+            return $http.post('/api/teams/'+ groupId +'/photo', {photo: fileData});
+        }
 	};
 })
 
@@ -111,10 +121,19 @@ angular.module('backendHeddoko', [])
 
 		destroy : function(team_id, id) {
 			return $http.delete('/api/teams/' + team_id + '/athletes/' + id);
-		}
+		},
 
+        /**
+         * Uploads an avatar.
+         *
+         * @param object group
+         * @param object fileData
+         * @return $http
+         */
+        avatar: function(groupId, profileId, fileData) {
+            return $http.post('/api/teams/'+ groupId +'/athletes/'+ profileId +'/photo', {photo: fileData});
+        }
 	};
-
 })
 
 .factory('FMSForm', function($http) {

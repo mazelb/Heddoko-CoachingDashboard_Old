@@ -108,4 +108,40 @@ class TeamController extends Controller
             'list' => Auth::user()->coach->teams
         ];
     }
+
+    /**
+     * Uploads an avatar.
+     *
+     * @param object $request
+     * @param int $groupId
+     * @return array
+     */
+    public function uploadPhoto(Request $request, $groupId)
+    {
+        // Make sure we have a valid team ID.
+        $group = Team::findOrFail($groupId);
+
+        // Check image.
+        if (!$originalPhoto = $request->file('photo')) {
+            return ['error' => 'File not received.'];
+        // } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
+        } elseif ($originalPhoto->getMimeType() != 'image/jpeg') {
+            return ['error' => 'Invalid MIME type.'];
+        }
+
+        // Delete existing avatars.
+        $name = 'team_'. $groupId;
+        foreach (glob(public_path() .'/demo/avatars/'. $name .'.*') as $existingPhoto) {
+            unlink($existingPhoto);
+        }
+
+        // Upload new avatar.
+        $filePath = public_path() .'/demo/avatars';
+        $movedPhoto = $originalPhoto->move($filePath, $name .'.jpg');
+
+        return [
+            'error' => null,
+            'src' => '/demo/avatars/'. $name .'.jpg'
+        ];
+    }
 }

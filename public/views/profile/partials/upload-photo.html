@@ -9,7 +9,7 @@
         <!-- Avatar preview -->
         <div class="row">
             <div class="col-sm-12">
-                <img ngf-src="file" style="width: 100%">
+                <img ngf-src="avatar" style="width: 100%">
             </div>
         </div>
         <br>
@@ -18,12 +18,11 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <button
-                    ng-hide="file"
-                    ngf-select
+                    ngf-select="uploadPhoto($file)"
                     ngf-drop
-                    ng-model="file"
-                    accept="image/*"
-                    ngf-pattern="'image/*'"
+                    ng-model="avatar"
+                    accept="image/jpeg"
+                    ngf-pattern="'image/jpeg'"
                     ngf-capture="'camera'"
                     ngf-min-height="100"
                     ngf-max-size="2MB"
@@ -31,8 +30,6 @@
 
                     Select or drag &amp; drop a photo
                 </button>
-
-                <span ng-show="file">(demo)</span>
             </div>
         </div>
     </div>

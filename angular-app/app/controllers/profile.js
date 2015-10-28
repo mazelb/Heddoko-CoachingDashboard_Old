@@ -305,6 +305,44 @@ angular.module('app.controllers')
             );
         };
 
+        // Uploads a profile avatar.
+        $scope.uploadPhoto = function(fileData) {
+
+            // Performance check.
+            if (!fileData) {
+                return;
+            }
+
+            Rover.debug('Uploading profile avatar...');
+            Rover.debug(fileData);
+            Rover.addBackgroundProcess();
+
+            Upload.upload({
+               url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
+               data: {photo: fileData}
+           }).then(
+
+                // On success.
+                function(response) {
+
+                    Rover.doneBackgroundProcess();
+
+                    if (response.status === 200)
+                    {
+                        Rover.debug(response.data);
+                    }
+                },
+
+                // On failure.
+                function(response) {
+                    $scope.avatar = null;
+                    Rover.doneBackgroundProcess();
+                    Rover.debug('Could not upload avatar: ' + response.responseText);
+                }
+            );
+
+        };
+
         $scope.$watch('global.state.profile.selected', function(newPro, oldPro)
         {
             // Performance check.
@@ -323,6 +361,8 @@ angular.module('app.controllers')
             $scope.formatProfile();
         });
 
-        $scope.formatProfile();
+        if ($scope.profile.id > 0) {
+            $scope.formatProfile();
+        }
     }
 ]);

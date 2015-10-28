@@ -112,4 +112,41 @@ class TeamAthleteController extends Controller
             'list' => $team->athletes
         ];
     }
+
+    /**
+     * Uploads an avatar.
+     *
+     * @param object $request
+     * @param int $groupId
+     * @param int $profileId
+     */
+    public function uploadPhoto(Request $request, $groupId, $profileId)
+    {
+        // Make sure we have a valid profile.
+        $group = Team::findOrFail($groupId);
+        $profile = $group->athletes()->findOrFail($profileId);
+
+        // Check image.
+        if (!$originalPhoto = $request->file('photo')) {
+            return ['error' => 'File not received.'];
+        // } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
+        } elseif ($originalPhoto->getMimeType() != 'image/jpeg') {
+            return ['error' => 'Invalid MIME type.'];
+        }
+
+        // Delete existing avatars.
+        $name = 'profile_'. $profileId;
+        foreach (glob(public_path() .'/demo/avatars/'. $name .'.*') as $existingPhoto) {
+            unlink($existingPhoto);
+        }
+
+        // Upload new avatar.
+        $filePath = public_path() .'/demo/avatars';
+        $movedPhoto = $originalPhoto->move($filePath, $name .'.jpg');
+
+        return [
+            'error' => null,
+            'src' => '/demo/avatars/'. $name .'.jpg'
+        ];
+    }
 }
