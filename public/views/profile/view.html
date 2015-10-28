@@ -118,17 +118,18 @@
     	</div>
     </section>
 
+    <!-- FMS graphs... To be reviewed -->
     <section>
         <div class="row">
 
-            <!-- Test FMS -->
+            <!-- Current test -->
             <div class="col-sm-12 col-md-6">
-                <div ng-include-src="'views/dashboard-v2/member-partials/test-fms-graph.html?' + global.assetVersion"></div>
+                <div data-ng-include="'views/profile/partials/current-fms-plot.html?' + global.assetVersion"></div>
             </div>
 
-            <!-- Total FMS -->
+            <!-- Final results -->
             <div class="col-sm-12 col-md-6">
-                <div ng-include-src="'views/dashboard-v2/member-partials/total-fms-graph.html?' + global.assetVersion"></div>
+                <div data-ng-include="'views/profile/partials/final-fms-plot.html?' + global.assetVersion"></div>
             </div>
         </div>
     </section>
@@ -149,5 +150,4 @@
                 </div>
             </div>
     </section>
-
 </div>

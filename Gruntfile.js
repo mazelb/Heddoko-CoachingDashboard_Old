@@ -112,6 +112,8 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
+
+                    // Main dependencides.
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'angular-app/scripts/gmap.js',
                     'bower_components/slimScroll/jquery.slimscroll.min.js',
@@ -120,8 +122,19 @@ module.exports = function(grunt) {
                     'bower_components/angular-route/angular-route.min.js',
                     'bower_components/angular-sanitize/angular-sanitize.min.js',
                     'bower_components/underscore/underscore-min.js',
+
+                    // ngFileUpload: Angular directive to upload files.
+                    // https://github.com/danialfarid/ng-file-upload
+                    'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
+                    'bower_components/ng-file-upload/ng-file-upload.min.js',
+
+                    // morris.js: creates charts.
+                    // http://morrisjs.github.io/morris.js/
                     'bower_components/raphael/raphael-min.js',
                     'bower_components/morrisjs/morris.min.js',
+
+                    // Flot: creates charts.
+                    // http://www.flotcharts.org/
                     'bower_components/flot/jquery.flot.js',
                     'bower_components/flot/jquery.flot.canvas.js',
                     'bower_components/flot/jquery.flot.categories.js',
@@ -133,7 +146,11 @@ module.exports = function(grunt) {
                     'bower_components/flot/jquery.flot.resize.js',
                     'bower_components/flot/jquery.flot.selection.js',
                     'bower_components/flot/jquery.flot.stack.js',
+
+                    // Chart.js: creates charts.
+                    // http://www.chartjs.org/
                     'bower_components/chartjs/Chart.min.js',
+
                     'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
                     'bower_components/easypie/dist/angular.easypiechart.min.js',
                     'bower_components/angular-wizard/dist/angular-wizard.js',
@@ -147,8 +164,6 @@ module.exports = function(grunt) {
                     'angular-app/scripts/extras.js',
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
-                    'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
-                    'bower_components/ng-file-upload/ng-file-upload.min.js',
                     'angular-app/app/**/*.js',
                     'angular-app/app/*.js'
                 ],

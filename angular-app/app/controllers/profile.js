@@ -6,8 +6,8 @@
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'Rover',
-    function($scope, $location, $filter, Upload, Teams, Athletes, Rover) {
+.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover',
+    function($scope, $location, $filter, Upload, Teams, Athletes, FMSForm, Rover) {
 
         Rover.debug('ProfileController');
 
@@ -77,6 +77,27 @@ angular.module('app.controllers')
         // TODO: rename these fields in the database.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
 
+        // FMS tests...
+        if (!$scope.fmsForms && $scope.profile.id > 0)
+        {
+            Rover.debug('Retrieving FMS forms...');
+
+            FMSForm.get($scope.profile.id).then(
+
+                function(response) {
+                    if (response.status === 200) {
+                        Rover.debug('Received FMS forms.');
+                        Rover.debug(response.data);
+                        $scope.fmsForms = response.data[0];
+                    }
+                },
+
+                function(response) {
+                    Rover.debug('Error retrieving FMS forms.');
+                    Rover.debug(response);
+                }
+            );
+        }
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
