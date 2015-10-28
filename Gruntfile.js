@@ -147,6 +147,8 @@ module.exports = function(grunt) {
                     'angular-app/scripts/extras.js',
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
+                    'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
+                    'bower_components/ng-file-upload/ng-file-upload.min.js',
                     'angular-app/app/**/*.js',
                     'angular-app/app/*.js'
                 ],

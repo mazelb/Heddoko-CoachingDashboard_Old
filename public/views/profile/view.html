@@ -18,7 +18,7 @@
                     data-target="#deleteProfileConfirmation"
                     class="btn btn-danger">
 
-                    Delete <b>{{ profile.first_name }}</b>
+                    Delete <b>{{ profile.first_name }}</b>'s profile
                 </button>
 
                 <!-- Delete confirmation -->
@@ -49,7 +49,7 @@
                     ng-click="Rover.browseTo.path('profile/edit')"
                     class="btn btn-default">
 
-                    Edit
+                    Edit <b>{{ profile.first_name }}</b>'s details
                 </button>
 
                 <!-- Create profile button -->

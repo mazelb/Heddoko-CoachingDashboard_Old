@@ -10,7 +10,8 @@ var app = angular.module('app', [
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
     "app.controllers", 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
-    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services'
+    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services',
+    'ngFileUpload'
 ]);
 
 // Defines some constants.

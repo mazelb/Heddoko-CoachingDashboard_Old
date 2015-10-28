@@ -5,7 +5,7 @@
  * @author  Francis Amankrah (frank@heddoko.com)
  */
 angular.module('app.rover', []).service('Rover',
-    function($window, $sessionStorage, $route, $location) {
+    function($window, $sessionStorage, $route, $location, $log) {
 
     // Dev variables.
     this.timestamp = Date.now();
@@ -78,7 +78,7 @@ angular.module('app.rover', []).service('Rover',
 
         // Group page.
         group: function(group) {
-            
+
             // Navigate to the selected group.
             if (group === undefined) {
                 group = this.state.group.selected;
@@ -173,14 +173,12 @@ angular.module('app.rover', []).service('Rover',
 
     // Logs a message to the console.
     this.debug = function(msg) {
-        if (this.isLocal && console) {
-            console.log(msg);
+        if (this.isLocal) {
+            $log.debug(msg);
         }
     };
     this.error = function(msg) {
-        if (console) {
-            console.log(msg);
-        }
+        $log.error(msg);
     };
     this.alert = function(msg) {
         $window.alert(msg);

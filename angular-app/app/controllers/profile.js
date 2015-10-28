@@ -6,8 +6,8 @@
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', '$location', 'Teams', 'Athletes', 'Rover',
-    function($scope, $location, Teams, Athletes, Rover) {
+.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'Rover',
+    function($scope, $location, $filter, Upload, Teams, Athletes, Rover) {
 
         Rover.debug('ProfileController');
 
@@ -33,6 +33,8 @@ angular.module('app.controllers')
                 notes: '',
                 previous_injuries: '',
                 underlying_medical: '',
+                primary_position: '',
+                sex: '',    // TODO: update field name when database is updated.
                 team_id: $scope.global.state.group.selected.id  // TODO: update field name when database is updated.
             };
         }
@@ -54,6 +56,10 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
+        // Format created_at date.
+        $scope.profile.created_at_formatted =
+            $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy');
+
         // Calculate the amount of feet in the total height.
         $scope.profile.feet = $scope.profile.height_cm > 0 ?
             Math.floor($scope.profile.height_cm / 30.48) : '';
@@ -68,8 +74,9 @@ angular.module('app.controllers')
         $scope.profile.weight_lbs = $scope.profile.weight_cm > 0 ?
             Math.round($scope.profile.weight_cm / 0.453592) : '';
 
-        // Temporary fix.
+        // TODO: rename these fields in the database.
         $scope.profile.group_id = $scope.profile.team_id || $scope.global.state.group.selected.id;
+
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
@@ -128,7 +135,7 @@ angular.module('app.controllers')
                 age: form.age,
                 team_id: form.group_id,
                 primary_sport: form.primary_sport,
-                primary_position: '',
+                primary_position: form.primary_position,
                 hand_leg_dominance: '',
                 previous_injuries: form.previous_injuries,
                 underlying_medical: form.underlying_medical,
@@ -182,7 +189,7 @@ angular.module('app.controllers')
                 team_id: form.group_id, // TODO: update this once database is updated.
                 group_id: form.group_id,
                 primary_sport: form.primary_sport,
-                primary_position: '',
+                primary_position: form.primary_position,
                 hand_leg_dominance: '',
                 previous_injuries: form.previous_injuries,
                 underlying_medical: form.underlying_medical,

@@ -11,8 +11,13 @@
         </a>
     </li>
     <li ng-show="isProfilePage && global.state.group.selected.id > 0">
-        <a class="active" href="javascript:;" ng-click="Rover.browseTo.group(global.state.group.selected)">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.group()">
             {{ global.state.group.selected.name }}
+        </a>
+    </li>
+    <li ng-show="isProfilePage && global.state.profile.selected.id > 0">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.profile()">
+            {{ global.state.profile.selected.first_name }}
         </a>
     </li>
     <li ng-show="currentPath == '/group/create'">

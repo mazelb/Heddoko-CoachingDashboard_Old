@@ -63,7 +63,7 @@
             <div class="col-sm-4 col-md-3 text-right">
                 Weight (lbs)
             </div>
-            <div class="col-sm-4 col-md-3">
+            <div class="col-sm-4 col-md-2">
                 <input
                     class="form-control"
                     ng-model="profile.weight_lbs"
@@ -122,6 +122,20 @@
                         {{ sport.name }}
                     </option>
                 </select>
+            </div>
+        </div>
+
+        <!-- Primary position -->
+        <div class="row form-group">
+            <div class="col-sm-4 col-md-3 text-right">
+                Primary Position
+            </div>
+            <div class="col-sm-8 col-md-6">
+                <input
+                    type="text"
+                    ng-model="profile.primary_position"
+                    placeholder="Primary Position"
+                    class="form-control">
             </div>
         </div>
     </div>
