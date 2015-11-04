@@ -13876,7 +13876,7 @@ var app = angular.module('app', [
 // Defines some constants.
 // TODO: find better place to set app version.
 // NOTE: also update in ...
-var _appVersion = '0.2.12';
+var _appVersion = '0.2.13';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||

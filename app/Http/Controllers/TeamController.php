@@ -144,6 +144,9 @@ class TeamController extends Controller
         $group->photo_src = '/demo/avatars/'. $fileName;
         $group->save();
 
+        // Update the "updated_at" field.
+        $profile->touch();
+
         return [
             'error' => null,
             'photo_src' => $group->photo_src,

@@ -149,6 +149,9 @@ class TeamAthleteController extends Controller
         $profile->photo_src = '/demo/avatars/'. $fileName;
         $profile->save();
 
+        // Update the "updated_at" field.
+        $profile->touch();
+
         return [
             'error' => null,
             'photo_src' => $profile->photo_src,
