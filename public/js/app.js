@@ -16823,7 +16823,6 @@ angular.module('app.controllers')
                     Rover.debug('Could not upload avatar: ' + response.responseText);
                 }
             );
-
         };
 
         $scope.$watch('global.state.group.selected', function(newGrp, oldGrp)
@@ -16836,6 +16835,21 @@ angular.module('app.controllers')
             // Shortcut for the currently selected group.
             $scope.group = $scope.global.state.group.selected;
         });
+    }
+]);
+;/**
+ * @file    groups.js
+ * @brief   Controller for the dashboard's groups page.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ */
+angular.module('app.controllers')
+
+.controller('DashboardGroupsController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
+
+        $scope.params = $routeParams;
+
     }
 ]);
 ;/**

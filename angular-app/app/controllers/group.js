@@ -146,7 +146,6 @@ angular.module('app.controllers')
                     Rover.debug('Could not upload avatar: ' + response.responseText);
                 }
             );
-
         };
 
         $scope.$watch('global.state.group.selected', function(newGrp, oldGrp)

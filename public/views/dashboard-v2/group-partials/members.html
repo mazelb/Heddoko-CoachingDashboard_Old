@@ -1,0 +1,27 @@
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="col-sm-12">
+            <h2>
+                {{ data.group.selected.name }} ({{ data.group.selected.sport_name }})
+            </h2>
+        </div>
+
+        <div class="col-sm-12">
+            <div ng-hide="data.member.list.length > 1">
+                The <b>{{ <data class="group"></data>.selected.name }}</b> team does not have any
+                athletes yet. Add one below to get started!
+            </div>
+
+            <!-- List of members -->
+            <a
+                href="javascript:;"
+                class="btn btn-primary btn-metro"
+                ng-repeat="member in data.member.list"
+                ng-click="Rover.browseTo.member(member)">
+
+                <div class="btn-title">{{ member.first_name }}</div>
+            </a>
+        </div>
+    </div>
+</div>

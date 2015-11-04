@@ -9,7 +9,7 @@
         <!-- Avatar preview -->
         <div class="row">
             <div class="col-sm-12">
-                <img ngf-src="avatar || profile.photo_src" style="width: 100%">
+                <img ngf-src="avatar || group.photo_src" style="width: 100%">
             </div>
         </div>
         <br>
@@ -21,8 +21,8 @@
                     ngf-select="uploadPhoto($file)"
                     ngf-drop
                     ng-model="avatar"
-                    accept="image/jpeg"
-                    ngf-pattern="'image/jpeg'"
+                    accept="image/*"
+                    ngf-pattern="'image/*'"
                     ngf-capture="'camera'"
                     ngf-min-height="100"
                     ngf-max-size="2MB"
