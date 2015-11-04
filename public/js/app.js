@@ -13876,7 +13876,7 @@ var app = angular.module('app', [
 // Defines some constants.
 // TODO: find better place to set app version.
 // NOTE: also update in ...
-var _appVersion = '0.2.10';
+var _appVersion = '0.2.11';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -16862,8 +16862,8 @@ angular.module('app.controllers')
 angular.module('app.controllers')
 
 .controller("MainController",
-    ["$scope", "$sessionStorage", "Teams", "Athletes", "Sports", "loggit", "Rover", "assetVersion", "isLocalEnvironment",
-    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, assetVersion, isLocalEnvironment) {
+    ["$scope", "$sessionStorage", "Teams", "Athletes", "Sports", "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
+    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
 
         // Save an instance of the "rover" variable in the scope.
         Rover.debug('MainController');
@@ -16872,6 +16872,7 @@ angular.module('app.controllers')
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
         $scope.global =
         {
+            'appVersion': appVersion,
             'assetVersion': assetVersion,
             'isLocal': isLocalEnvironment,
 
