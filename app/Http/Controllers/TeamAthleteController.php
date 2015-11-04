@@ -45,6 +45,7 @@ class TeamAthleteController extends Controller
 		$newAthleteData['previous_injuries'] = $request->input('previous_injuries');
 		$newAthleteData['underlying_medical'] = $request->input('underlying_medical');
 		$newAthleteData['notes'] = $request->input('notes');
+		$newAthleteData['photo_src'] = $request->input('photo_src', '');
 
 		$profile = Athlete::create($newAthleteData);
 

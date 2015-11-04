@@ -173,7 +173,9 @@ angular.module('app.rover', []).service('Rover',
 
     // Logs a message to the console.
     this.debug = function(msg) {
-        if (this.isLocal) {
+
+        // For now, we will always log debug messages.
+        if (this.isLocal || true) {
             $log.debug(msg);
         }
     };

@@ -9,7 +9,10 @@
         <!-- Avatar preview -->
         <div class="row">
             <div class="col-sm-12">
-                <img ngf-src="avatar || profile.photo_src" style="width: 100%">
+                <img
+                    ng-show="avatar || profile.photo_src"
+                    ngf-src="avatar || profile.photo_src"
+                    style="width: 100%">
             </div>
         </div>
         <br>
@@ -17,6 +20,11 @@
         <!-- Action buttons -->
         <div class="row">
             <div class="col-sm-12 text-center">
+                <span ng-show="profile.id < 1">
+                    Please create the profile <br>
+                    before uploading a photo. <br><br>
+                </span>
+
                 <button
                     ngf-select="uploadPhoto($file)"
                     ngf-drop
@@ -26,7 +34,7 @@
                     ngf-capture="'camera'"
                     ngf-min-height="100"
                     ngf-max-size="2MB"
-                    class="btn btn-default">
+                    ng-class="{'btn btn-default': true, 'disabled': profile.id < 1}">
 
                     Select or drag &amp; drop a photo
                 </button>

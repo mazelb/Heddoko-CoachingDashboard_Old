@@ -124,6 +124,7 @@ angular.module('app.controllers')
         $scope.formatProfile = function() {
 
             // Format created_at date.
+            $scope.profile.created_at = $scope.profile.created_at || '';
             $scope.profile.created_at_formatted = $scope.profile.created_at.length > 0 ?
                 $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy') : '';
 

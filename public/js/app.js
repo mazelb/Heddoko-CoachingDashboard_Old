@@ -13876,7 +13876,7 @@ var app = angular.module('app', [
 // Defines some constants.
 // TODO: find better place to set app version.
 // NOTE: also update in ...
-var _appVersion = '0.2.11';
+var _appVersion = '0.2.12';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -17405,6 +17405,7 @@ angular.module('app.controllers')
         $scope.formatProfile = function() {
 
             // Format created_at date.
+            $scope.profile.created_at = $scope.profile.created_at || '';
             $scope.profile.created_at_formatted = $scope.profile.created_at.length > 0 ?
                 $filter('date')($scope.profile.created_at.substr(0, 10), 'MMM d, yyyy') : '';
 
@@ -19169,7 +19170,9 @@ angular.module('app.rover', []).service('Rover',
 
     // Logs a message to the console.
     this.debug = function(msg) {
-        if (this.isLocal) {
+
+        // For now, we will always log debug messages.
+        if (this.isLocal || true) {
             $log.debug(msg);
         }
     };

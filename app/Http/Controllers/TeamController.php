@@ -48,6 +48,7 @@ class TeamController extends Controller
 		$newTeamData['coach_id'] = Auth::user()->coach->id;
 		$newTeamData['sport_id'] = $request->input('sport_id');
 		$newTeamData['name'] = $request->input('name');
+		$newTeamData['photo_src'] = $request->input('photo_src', '');
 
 		$newTeam = Team::create($newTeamData);
 
