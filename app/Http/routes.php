@@ -35,17 +35,37 @@ Route::get('/', ['middleware' => 'auth', function()
 
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
-    // Group endpoints.
+    // // Profile endpoints.
+    // Route::post('profile/{id}/photo', 'ProfileController@uploadPhoto');
+    // Route::resource('profile', 'ProfileController', [
+    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
+    // ]);
+    //
+    // // Movement data endpoints.
+    // Route::resource('profile.movement', 'MovementDataController', [
+    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
+    // ]);
+    //
+    // // Group endpoints.
+    // Route::post('group/{id}/photo', 'GroupController@uploadPhoto');
+    // Route::resource('group', 'GroupController', [
+    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
+    // ]);
+
+    //
+    // Old API.
+    //
+
 	Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
     Route::post('/teams/{id}/photo', 'TeamController@uploadPhoto');
 
-    // Profile endpoints.
+    // Replaced by "profiles"
 	Route::resource('teams.athletes', 'TeamAthleteController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
     Route::post('/teams/{groupId}/athletes/{profileId}/photo', 'TeamAthleteController@uploadPhoto');
 
-    // Other endpoints.
 	Route::resource('athletes.fmsforms', 'AthleteFMSFormController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('athletes.movements', 'AthleteMovementController', ['only' => ['index', 'show', 'store']]);
+
 	Route::resource('sports', 'SportsController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('sports.sportmovements', 'SportSportMovementController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 

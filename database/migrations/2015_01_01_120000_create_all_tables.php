@@ -17,31 +17,31 @@ class CreateAllTables extends Migration {
 			$table->increments('id');
 			$table->string('first_name');
 			$table->string('last_name');
-			
+
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
 
 			$table->rememberToken();
 			$table->timestamps();
 		});
-		
+
 		Schema::create('coaches', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->string('first_name');
 			$table->string('last_name');
 			$table->integer('user_id')->unsigned();
 			$table->foreign('user_id')->references('id')->on('users');
-			
+
 			$table->rememberToken();
 			$table->timestamps();
 		});
-		
+
 		Schema::create('sports', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->string('name');
 
 			$table->timestamps();
@@ -58,11 +58,11 @@ class CreateAllTables extends Migration {
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('sportmovements', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('sport_id')->unsigned();
 			$table->foreign('sport_id')->references('id')->on('sports');
 			$table->string('name');
@@ -73,15 +73,15 @@ class CreateAllTables extends Migration {
 		Schema::create('athletes', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->string('first_name');
 			$table->string('last_name');
-			
+
 			$table->integer('user_id')->unsigned()->nullable();
-			$table->foreign('user_id')->references('id')->on('users');			
+			$table->foreign('user_id')->references('id')->on('users');
 			$table->integer('team_id')->unsigned()->nullable();
 			$table->foreign('team_id')->references('id')->on('teams');
-			
+
 			$table->integer('age')->unsigned();
 			$table->integer('height_cm')->unsigned();
 			$table->integer('weight_cm')->unsigned();
@@ -91,14 +91,14 @@ class CreateAllTables extends Migration {
 			$table->string('previous_injuries');
 			$table->string('underlying_medical');
 			$table->string('notes');
-			
+
 			$table->timestamps();
-		});	
-		
+		});
+
 		Schema::create('movementsubmissions', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('coach_id')->unsigned();
 			$table->foreign('coach_id')->references('id')->on('coaches');
 			$table->integer('athlete_id')->unsigned();
@@ -108,7 +108,7 @@ class CreateAllTables extends Migration {
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('fmsforms', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -140,80 +140,80 @@ class CreateAllTables extends Migration {
 			$table->tinyInteger('posterior');
 			$table->string('posteriorcomments', 255);
 			$table->tinyInteger('totalscore');
-			
+
 			$table->timestamps();
 		});
-		
+
 		Schema::create('fmsformsubmissions', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('coach_id')->unsigned();
 			$table->foreign('coach_id')->references('id')->on('coaches');
 			$table->integer('athlete_id')->unsigned();
 			$table->foreign('athlete_id')->references('id')->on('athletes');
 			$table->integer('fmsform_id')->unsigned();
 			$table->foreign('fmsform_id')->references('id')->on('fmsforms');
-			
+
 			$table->string('comment');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('movements', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('sportmovement_id')->unsigned()->nullable();
 			$table->foreign('sportmovement_id')->references('id')->on('sportmovements');
 			$table->integer('movementsub_id')->unsigned()->nullable();
-			$table->foreign('movementsub_id')->references('id')->on('movementsubmissions');			
+			$table->foreign('movementsub_id')->references('id')->on('movementsubmissions');
 			$table->integer('fmsformsub_id')->unsigned()->nullable();
 			$table->foreign('fmsformsub_id')->references('id')->on('fmsformsubmissions');
-			
+
 			$table->string('name');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('movementrawentries', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('movement_id')->unsigned();
 			$table->foreign('movement_id')->references('id')->on('movements');
 			$table->string('filename')->unique();
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('frames', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('movement_id')->unsigned();
 			$table->foreign('movement_id')->references('id')->on('movements');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('nodcontainers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('frame_id')->unsigned();
 			$table->foreign('frame_id')->references('id')->on('frames');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('nodjoints', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('nod_container_id')->unsigned();
 			$table->foreign('nod_container_id')->references('id')->on('nodcontainers');
-			
+
 			$table->float('iInitRot1');
 			$table->float('iInitRot2');
 			$table->float('iInitRot3');
@@ -221,14 +221,14 @@ class CreateAllTables extends Migration {
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('nodsensors', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('nod_joint_id')->unsigned();
 			$table->foreign('nod_joint_id')->references('id')->on('nodjoints');
-			
+
 			$table->float('InitRot1');
 			$table->float('InitRot2');
 			$table->float('InitRot3');
@@ -244,38 +244,38 @@ class CreateAllTables extends Migration {
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('stretchcontainers', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('frame_id')->unsigned();
 			$table->foreign('frame_id')->references('id')->on('frames');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('stretchjoints', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('stretch_container_id')->unsigned();
 			$table->foreign('stretch_container_id')->references('id')->on('stretchcontainers');
-			
+
 			$table->float('curJointRotE1');
 			$table->float('curJointRotE2');
 			$table->float('curJointRotE3');
 
 			$table->timestamps();
 		});
-		
+
 		Schema::create('stretchsensors', function(Blueprint $table)
 		{
 			$table->increments('id');
-			
+
 			$table->integer('stretch_joint_id')->unsigned();
 			$table->foreign('stretch_joint_id')->references('id')->on('stretchjoints');
-			
+
 			$table->integer('CSValue1');
 			$table->integer('CSValue2');
 			$table->integer('CSValue3');
@@ -284,7 +284,7 @@ class CreateAllTables extends Migration {
 
 			$table->timestamps();
 		});
-	
+
 	}
 
 	/**
@@ -296,23 +296,23 @@ class CreateAllTables extends Migration {
 	{
 		Schema::drop('stretchsensors');
 		Schema::drop('nodsensors');
-		
+
 		Schema::drop('stretchjoints');
 		Schema::drop('nodjoints');
-		
+
 		Schema::drop('stretchcontainers');
 		Schema::drop('nodcontainers');
-		
+
 		Schema::drop('frames');
-		
+
 		Schema::drop('movements');
-		
+
 		Schema::drop('fmsforms');
 		Schema::drop('athletes');
 		Schema::drop('teams');
 		Schema::drop('coaches');
 		Schema::drop('admins');
-		
+
 		Schema::drop('sportmovements');
 		Schema::drop('sports');
 	}

@@ -1,8 +1,6 @@
 <?php
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class CreateUsersTable extends Migration
 {
     /**
@@ -21,12 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('dob', 16);
             $table->string('sex', 11); //'unspecified' is 11 characters long
             $table->string('mobile', 20);
-						
+
             $table->rememberToken();
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
