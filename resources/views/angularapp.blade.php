@@ -7,11 +7,6 @@
         <meta name="description" content="">
         <meta name="user-hash" content="{{ md5(Auth::id()) }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-
-        <!-- Theme's own CSS file -->
-        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
     </head>
     <body id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="MainController">
 
@@ -35,10 +30,10 @@
         </div>
 
         <!-- Loading overlay -->
-        <div class="page-loading-overlay loaded">
+        <div class="page-loading-overlay">
             <div class="loader-2"></div>
         </div>
-        <div class="load_circle_wrapper loaded">
+        <div class="load_circle_wrapper">
             <div class="loading_spinner">
                 <div id="wrap_spinner">
                     <div class="loading outer">
@@ -48,6 +43,12 @@
             </div>
         </div>
 
+        <!-- Fonts & stylesheets -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/app.js?'. time()) }}"></script>
         <!-- <script type="text/javascript" ng-src="js/app.js?@{{ global.assetVersion }}"></script> -->
     </body>

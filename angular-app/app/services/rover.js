@@ -26,8 +26,9 @@ angular.module('app.rover', []).service('Rover',
     this.state.config = this.state.config || {};
 
     // Counts the # of requests being made, and displays the loading icon accordingly.
+    // We start the counter at 1 and decrement it once the application is running.
     // TODO: show a visual representation of the backgroundProcessCount variable.
-    this.backgroundProcessCount = 0;
+    this.backgroundProcessCount = 1;
     this.addBackgroundProcess = function() {
 
         this.backgroundProcessCount++;

@@ -13998,18 +13998,15 @@ app.config(["$routeProvider", "assetVersion",
 ])
 
 // Runs the application.
-.run(["$rootScope", "$location", "Rover", function ($rootScope, $location, Rover) {
-
-        // Removes the loading animation.
-        // $(document).ready(function()
-        // {
-        //     setTimeout(function() {
-        //         $('.page-loading-overlay').addClass("loaded");
-        //         $('.load_circle_wrapper').addClass("loaded");
-        //     }, 1000);
-        // });
+.run(['$rootScope', '$location', 'Rover', function ($rootScope, $location, Rover) {
 
         Rover.debug('Running app...');
+
+        $(document).ready(function()
+        {
+            // Removes the loading animation.
+            Rover.doneBackgroundProcess();
+        });
     }
 ]);
 
@@ -19023,8 +19020,9 @@ angular.module('app.rover', []).service('Rover',
     this.state.config = this.state.config || {};
 
     // Counts the # of requests being made, and displays the loading icon accordingly.
+    // We start the counter at 1 and decrement it once the application is running.
     // TODO: show a visual representation of the backgroundProcessCount variable.
-    this.backgroundProcessCount = 0;
+    this.backgroundProcessCount = 1;
     this.addBackgroundProcess = function() {
 
         this.backgroundProcessCount++;

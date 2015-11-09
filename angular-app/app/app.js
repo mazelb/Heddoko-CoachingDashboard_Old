@@ -139,18 +139,15 @@ app.config(["$routeProvider", "assetVersion",
 ])
 
 // Runs the application.
-.run(["$rootScope", "$location", "Rover", function ($rootScope, $location, Rover) {
-
-        // Removes the loading animation.
-        // $(document).ready(function()
-        // {
-        //     setTimeout(function() {
-        //         $('.page-loading-overlay').addClass("loaded");
-        //         $('.load_circle_wrapper').addClass("loaded");
-        //     }, 1000);
-        // });
+.run(['$rootScope', '$location', 'Rover', function ($rootScope, $location, Rover) {
 
         Rover.debug('Running app...');
+
+        $(document).ready(function()
+        {
+            // Removes the loading animation.
+            Rover.doneBackgroundProcess();
+        });
     }
 ]);
 
