@@ -32,7 +32,8 @@ class UpdatesNov2015 extends Migration
 
 			$table->integer('belongs_to_id')->unsigned();
 			$table->string('belongs_to_type');
-			$table->string('src');
+			$table->string('mime_type');
+			$table->text('data_uri');
 
 			$table->timestamps();
 		});
