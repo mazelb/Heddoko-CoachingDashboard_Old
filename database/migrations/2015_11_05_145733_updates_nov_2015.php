@@ -43,20 +43,12 @@ class UpdatesNov2015 extends Migration
 		{
 			$table->increments('id');
 
-			$table->integer('user_id')->unsigned();
-			$table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
 			$table->string('first_name');
 			$table->string('last_name')->default('');
-			$table->integer('age')->unsigned()->nullable();
             $table->float('height')->unsigned()->nullable();        // In meters (SI units).
             $table->float('mass')->unsigned()->nullable();          // In kilograms (SI units).
             $table->timestamp('dob')->nullable();
-            $table->tinyInteger('gender')->unsigned()->default(0);  // 1: female, 2: male.
+            $table->tinyInteger('gender')->unsigned()->nullable();  // 1: female, 2: male.
             $table->string('phone')->default('');
             $table->string('email')->default('');
             $table->text('notes')->nullable();
@@ -333,7 +325,6 @@ class UpdatesNov2015 extends Migration
 
         $pivots = [
             ['group', 'profile'],
-            ['group', 'user'],
             ['movement', 'tag'],
             ['profile', 'tag'],
         ];
@@ -363,6 +354,50 @@ class UpdatesNov2015 extends Migration
                     ->onDelete('cascade');
     		});
         }
+
+        // The "manager_profile" pivot table follows a different convention.
+        Schema::create('manager_profile', function(Blueprint $table)
+        {
+            $table->increments('id');
+
+            // Reference the primary key on the first table.
+            $table->integer('manager_id')->unsigned();
+            $table->foreign('manager_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Reference the primary key on the second table.
+            $table->integer('profile_id')->unsigned();
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
+
+        // The "group_manager" pivot table follows a different convention.
+        Schema::create('group_manager', function(Blueprint $table)
+        {
+            $table->increments('id');
+
+            // Reference the primary key on the first table.
+            $table->integer('group_id')->unsigned();
+            $table->foreign('group_id')
+                ->references('id')
+                ->on('groups')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Reference the primary key on the second table.
+            $table->integer('manager_id')->unsigned();
+            $table->foreign('manager_id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -374,9 +409,10 @@ class UpdatesNov2015 extends Migration
     public function down()
     {
         // Drop pivot tables.
+        Schema::hasTable('group_manager') ?         Schema::drop('group_manager') : null;
+        Schema::hasTable('manager_profile') ?       Schema::drop('manager_profile') : null;
         Schema::hasTable('profile_tag') ?           Schema::drop('profile_tag') : null;
         Schema::hasTable('movement_tag') ?          Schema::drop('movement_tag') : null;
-        Schema::hasTable('group_user') ?            Schema::drop('group_user') : null;
         Schema::hasTable('group_profile') ?         Schema::drop('group_profile') : null;
 
         // Drop movement-related tables.

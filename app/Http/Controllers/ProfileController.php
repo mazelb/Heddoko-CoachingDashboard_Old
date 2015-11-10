@@ -4,6 +4,8 @@
  */
 namespace App\Http\Controllers;
 
+use Auth;
+
 use App\Models\Group;
 use App\Http\Requests;
 use App\Models\Profile;
@@ -51,9 +53,8 @@ class ProfileController extends Controller
             'user_id',
             'first_name',
             'last_name',
-            'age',
             'height',
-            'weight',
+            'mass',
             'dob',
             'gender',
             'phone',
@@ -65,8 +66,14 @@ class ProfileController extends Controller
         // Create new profile.
         $profile = Profile::create($data);
 
+        // Assign current user as a manager.
+        $profile->managers()->attach(Auth::id());
+
         // ...
-        return $profile;
+        return [
+            'list' => $this->index(),
+            'profile' => $profile
+        ];
     }
 
     /**

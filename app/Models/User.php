@@ -38,9 +38,16 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     protected $hidden = ['password', 'remember_token'];
 
     /**
+     * Profiles managed by this user.
+     */
+    public function profiles() {
+        return $this->belongsToMany('App\Models\Profile', 'manager_profile', 'manager_id', 'profile_id');
+    }
+
+    /**
      * Groups managed by this user.
      */
     public function groups() {
-        return $this->belongsToMany('App\Models\Group');
+        return $this->belongsToMany('App\Models\Group', 'group_manager', 'manager_id', 'group_id');
     }
 }

@@ -19,10 +19,8 @@ class Profile extends Model
      * Attributes which are mass-assignable.
      */
 	protected $fillable = [
-        'user_id',
         'first_name',
         'last_name',
-        'age',
         'height',
         'weight',
         'dob',
@@ -41,9 +39,9 @@ class Profile extends Model
     }
 
     /**
-     * Account associated with profile.
+     * Managers who manage this profile.
      */
-    public function user() {
-		return $this->belongsTo('App\Models\User');
-	}
+    public function managers() {
+        return $this->belongsToMany('App\Models\User', 'manager_profile', 'profile_id', 'manager_id');
+    }
 }
