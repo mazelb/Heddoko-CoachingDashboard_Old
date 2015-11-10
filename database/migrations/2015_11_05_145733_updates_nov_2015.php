@@ -332,33 +332,33 @@ class UpdatesNov2015 extends Migration
         //
 
         $pivots = [
-            'group' => 'profile',
-            'group' => 'user',
-            'movement' => 'tag',
-            'profile' => 'tag',
+            ['group', 'profile'],
+            ['group', 'user'],
+            ['movement', 'tag'],
+            ['profile', 'tag'],
         ];
 
-        foreach ($pivots as $table1 => $table2)
+        foreach ($pivots as $tableNames)
         {
-            $pivotName = $table1 .'_'. $table2;
+            $pivotName = $tableNames[0] .'_'. $tableNames[1];
 
-            Schema::create($pivotName, function(Blueprint $table) use ($table1, $table2)
+            Schema::create($pivotName, function(Blueprint $table) use ($tableNames)
     		{
     			$table->increments('id');
 
                 // Reference the primary key on the first table.
-    			$table->integer($table1 .'_id')->unsigned();
-                $table->foreign($table1 .'_id')
+    			$table->integer($tableNames[0] .'_id')->unsigned();
+                $table->foreign($tableNames[0] .'_id')
                     ->references('id')
-                    ->on($table1 .'s')
+                    ->on($tableNames[0] .'s')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
 
                 // Reference the primary key on the second table.
-    			$table->integer($table2 .'_id')->unsigned();
-                $table->foreign($table2 .'_id')
+    			$table->integer($tableNames[1] .'_id')->unsigned();
+                $table->foreign($tableNames[1] .'_id')
                     ->references('id')
-                    ->on($table2 .'s')
+                    ->on($tableNames[1] .'s')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
     		});

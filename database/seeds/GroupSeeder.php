@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Seeds the database with groups. This should be run after AccountSeeder.
+ */
 use App\Models\User;
 use App\Models\Group;
 use Illuminate\Database\Seeder;

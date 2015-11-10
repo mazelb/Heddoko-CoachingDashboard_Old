@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Seeds the database with user accounts. This should be run before GroupSeeder.
+ */
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Permission;
