@@ -14,7 +14,7 @@
 Route::get('/', ['middleware' => 'auth', function()
 {
     // Coaches dashboard.
-	if (Entrust::hasRole('coach'))
+	if (Entrust::hasRole('manager'))
     {
 		return view('angularapp');
 	}
@@ -35,25 +35,25 @@ Route::get('/', ['middleware' => 'auth', function()
 
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
-    // // Profile endpoints.
-    // Route::post('profile/{id}/photo', 'ProfileController@uploadPhoto');
-    // Route::resource('profile', 'ProfileController', [
-    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
-    // ]);
-    //
-    // // Movement data endpoints.
-    // Route::resource('profile.movement', 'MovementDataController', [
-    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
-    // ]);
-    //
-    // // Group endpoints.
-    // Route::post('group/{id}/photo', 'GroupController@uploadPhoto');
-    // Route::resource('group', 'GroupController', [
-    //     'only' => ['index', 'store', 'show', 'update', 'destroy']
-    // ]);
+    // Profile endpoints.
+    Route::post('profile/{id}/photo', 'ProfileController@updatePhoto');
+    Route::resource('profile', 'ProfileController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
+    // Movement data endpoints.
+    Route::resource('profile.movement', 'MovementDataController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
+    // Group endpoints.
+    Route::post('group/{id}/photo', 'GroupController@updatePhoto');
+    Route::resource('group', 'GroupController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
 
     //
-    // Old API.
+    // Deprecated.
     //
 
 	Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
@@ -71,15 +71,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 
 });
 
+// Authentication routes.
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
 
-/**
- * Redirects.
- */
-
+// Redirects.
 Route::get('home', function() {
     return redirect('/');
 });

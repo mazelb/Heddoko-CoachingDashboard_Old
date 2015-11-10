@@ -58,7 +58,7 @@
                     <!-- Link to group page -->
                     <button
                         type="button"
-                        class="btn btn-primary"
+                        class="btn btn-info"
                         ng-click="Rover.browseTo.group(global.state.group.selected)">
 
                         <i class="fa fa-angle-double-right"></i>
@@ -94,7 +94,7 @@
                     <!-- Link to profile page -->
                     <button
                         type="button"
-                        class="btn btn-primary"
+                        class="btn btn-info"
                         ng-click="Rover.browseTo.profile(global.state.profile.selected)">
 
                         <i class="fa fa-angle-double-right"></i>
@@ -137,9 +137,16 @@
 		</ul>
 
         <!-- Log out -->
-		<ul class="nav-right-button list-unstyled pull-right">
+		<!-- <ul class="nav-right-button list-unstyled pull-right">
 			<li>
 				<a ng-click="Rover.endSession()" class="btn btn-logout">
+					Logout &nbsp;&nbsp;<i class="fa fa-sign-out"></i>
+				</a>
+			</li>
+		</ul> -->
+		<ul class="nav-right-button list-unstyled pull-right">
+			<li>
+				<a ng-click="Rover.endSession()" class="btn btn-danger">
 					Logout &nbsp;&nbsp;<i class="fa fa-sign-out"></i>
 				</a>
 			</li>

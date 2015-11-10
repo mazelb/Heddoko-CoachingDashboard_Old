@@ -7,12 +7,16 @@
  */
 angular.module('app.controllers')
 
-.controller("MainController",
-    ["$scope", "$sessionStorage", "Teams", "Athletes", "Sports", "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
-    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
+.controller('MainController',
+    ['$scope', '$sessionStorage', '$localStorage',
+    'ProfileService', 'GroupService',
+    "Teams", "Athletes", "Sports",
+    "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
+    function($scope, $sessionStorage, $localStorage, ProfileService, GroupService, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
+
+        Rover.debug('MainController');
 
         // Save an instance of the "rover" variable in the scope.
-        Rover.debug('MainController');
         $scope.Rover = Rover;
 
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
@@ -21,6 +25,10 @@ angular.module('app.controllers')
             'appVersion': appVersion,
             'assetVersion': assetVersion,
             'isLocal': isLocalEnvironment,
+
+            // We use the localStorage and sessionStorage to persist data.
+            'localStorage': $localStorage[Rover.userHash],
+            'sessionStorage': $sessionStorage[Rover.userHash],
 
             // By tying the local scope to the sessionStorage, we can persist data until the user
             // logs out.
@@ -56,7 +64,8 @@ angular.module('app.controllers')
             Rover.debug('Populating group list...');
             Rover.addBackgroundProcess();
 
-    		Teams.get().then(
+    		// Teams.get().then(
+    		GroupService.get().then(
 
                 // On success.
                 function(response) {
@@ -87,7 +96,8 @@ angular.module('app.controllers')
             Rover.debug('Populating profile list...');
             Rover.addBackgroundProcess();
 
-    		Athletes.get($scope.global.state.group.selected.id).then(
+    		// Athletes.get($scope.global.state.group.selected.id).then(
+    		ProfileService.get($scope.global.state.group.selected.id).then(
 
                 // On success.
                 function(response) {

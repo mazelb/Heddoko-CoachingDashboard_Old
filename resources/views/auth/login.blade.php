@@ -4,8 +4,10 @@
 
 @section('content')
 
-<!-- Quote -->
-<h1 class="inspiring-quote">{{ Inspiring::quote() }}</h1>
+<!-- <h1 class="inspiring-quote">{{ Inspiring::quote() }}</h1> -->
+<h1 class="inspiring-quote">
+    More Than Just a Coach
+</h1>
 
 <div class="page-signin">
     <div class="main-body">

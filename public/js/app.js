@@ -13876,7 +13876,7 @@ var app = angular.module('app', [
 // Defines some constants.
 // TODO: find better place to set app version.
 // NOTE: also update in ...
-var _appVersion = '0.2.13';
+var _appVersion = '0.3.0';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -13894,12 +13894,12 @@ var appServices = angular.module('app.services', ['app.rover']);
 var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
-app.config(["$routeProvider", "assetVersion",
+app.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
-        return $routeProvider.when("/", {
-			redirectTo: "/group/list"
+        return $routeProvider.when('/', {
+			redirectTo: '/group/list'
 		})
 
         // Group routes.
@@ -13992,7 +13992,7 @@ app.config(["$routeProvider", "assetVersion",
 		}).when("/movements", {
 			templateUrl: "/views/movements.html?" + assetVersion
 		}).otherwise({
-			redirectTo: "/404"
+			redirectTo: "/"
 		});
     }
 ])
@@ -16681,8 +16681,8 @@ angular.module('app.controllers')
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$location', 'Teams', 'Upload', 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, $location, Teams, Upload, Rover, assetVersion, isLocalEnvironment) {
+    ['$scope', '$location', 'GroupService', 'Teams', 'Upload', 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $location, GroupService, Teams, Upload, Rover, assetVersion, isLocalEnvironment) {
 
         Rover.debug('GroupController');
 
@@ -16724,7 +16724,8 @@ angular.module('app.controllers')
 
             var form = $scope.group;
 
-            Teams.create(form).then(
+            // Teams.create(form).then(
+            GroupService.create(form).then(
 
                 // On success.
                 function(response) {
@@ -16757,7 +16758,8 @@ angular.module('app.controllers')
 
             var form = $scope.group;
 
-            Teams.update(form.id, form).then(
+            // Teams.update(form.id, form).then(
+            GroupService.update(form.id, form).then(
 
                 // On success.
                 function(response) {
@@ -16792,7 +16794,8 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
             Upload.upload({
-               url: '/api/teams/'+ $scope.group.id +'/photo',
+            //    url: '/api/teams/'+ $scope.group.id +'/photo',
+               url: '/api/group/'+ $scope.group.id +'/photo',
                data: {photo: fileData}
            }).then(
 
@@ -16858,12 +16861,16 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller("MainController",
-    ["$scope", "$sessionStorage", "Teams", "Athletes", "Sports", "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
-    function($scope, $sessionStorage, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
+.controller('MainController',
+    ['$scope', '$sessionStorage', '$localStorage',
+    'ProfileService', 'GroupService',
+    "Teams", "Athletes", "Sports",
+    "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
+    function($scope, $sessionStorage, $localStorage, ProfileService, GroupService, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
+
+        Rover.debug('MainController');
 
         // Save an instance of the "rover" variable in the scope.
-        Rover.debug('MainController');
         $scope.Rover = Rover;
 
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
@@ -16872,6 +16879,10 @@ angular.module('app.controllers')
             'appVersion': appVersion,
             'assetVersion': assetVersion,
             'isLocal': isLocalEnvironment,
+
+            // We use the localStorage and sessionStorage to persist data.
+            'localStorage': $localStorage[Rover.userHash],
+            'sessionStorage': $sessionStorage[Rover.userHash],
 
             // By tying the local scope to the sessionStorage, we can persist data until the user
             // logs out.
@@ -16907,7 +16918,8 @@ angular.module('app.controllers')
             Rover.debug('Populating group list...');
             Rover.addBackgroundProcess();
 
-    		Teams.get().then(
+    		// Teams.get().then(
+    		GroupService.get().then(
 
                 // On success.
                 function(response) {
@@ -16938,7 +16950,8 @@ angular.module('app.controllers')
             Rover.debug('Populating profile list...');
             Rover.addBackgroundProcess();
 
-    		Athletes.get($scope.global.state.group.selected.id).then(
+    		// Athletes.get($scope.global.state.group.selected.id).then(
+    		ProfileService.get($scope.global.state.group.selected.id).then(
 
                 // On success.
                 function(response) {
@@ -17284,7 +17297,7 @@ angular.module('app.controllers')
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover',
+.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
     function($scope, $location, $filter, Upload, Teams, Athletes, FMSForm, Rover) {
 
         Rover.debug('ProfileController');
@@ -17368,7 +17381,8 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Teams.destroy($scope.global.state.group.selected.id).then(
+            // Teams.destroy($scope.global.state.group.selected.id).then(
+            GroupService.destroy($scope.global.state.group.selected.id).then(
 
                 // On success.
                 function(response) {
@@ -17459,7 +17473,8 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Athletes.create(profile.team_id, profile).then(
+            // Athletes.create(profile.team_id, profile).then(
+            ProfileService.create(profile).then(
 
                 // On success.
                 function(response) {
@@ -17511,7 +17526,8 @@ angular.module('app.controllers')
             profile.weight_cm = Math.round(form.weight_lbs * 0.453592);
 
             // Update profile data.
-            Athletes.update(profile).then(
+            // Athletes.update(profile).then(
+            ProfileService.update(profile).then(
 
                 // On success.
                 function(response) {
@@ -17551,7 +17567,8 @@ angular.module('app.controllers')
             Rover.debug('Deleting profile...');
             Rover.addBackgroundProcess();
 
-            Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
+            // Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
+            ProfileService.destroy($scope.profile.group_id, $scope.profile.id).then(
 
                 // On success.
                 function(response) {
@@ -17596,7 +17613,8 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
             Upload.upload({
-               url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
+            //    url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
+               url: '/api/profile/'+ $scope.profile.id +'/photo',
                data: {photo: fileData}
            }).then(
 
@@ -18991,6 +19009,112 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
 
     // Default screen selection.
     this.data.views = ['sagittal', 'coronal', 'transverse'];
+});
+;/**
+ * @file    group.js
+ * @brief   This service handles group-related HTTP requests.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
+angular.module('app.services')
+
+.factory('GroupService', function($http) {
+
+    return {
+
+        /**
+         *
+         */
+        get: function() {
+			return $http.get('/api/group');
+		},
+
+        /**
+         *
+         */
+        create: function(data) {
+            return $http.post('/api/group', data);
+		},
+
+        /**
+         *
+         */
+        update: function(id, data) {
+            return $http.put('/api/group/' + id, data);
+		},
+
+        /**
+         *
+         */
+        destroy: function(id) {
+			return $http.delete('/api/group/' + id);
+		},
+
+        /**
+         * Updates the avatar.
+         *
+         * @param int id
+         * @param object fileData
+         * @return $http
+         */
+        setAvatar: function(id, fileData) {
+            return $http.post('/api/group/'+ id +'/photo', {image: fileData});
+        }
+    };
+});
+;/**
+ * @file    profile.js
+ * @brief   This service handles profile-related HTTP requests.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
+angular.module('app.services')
+
+.factory('ProfileService', function($http) {
+
+    return {
+
+        /**
+         *
+         */
+        get: function(groupId) {
+			return $http.get('/api/profile', {params: {
+                group: groupId
+            }});
+		},
+
+        /**
+         *
+         */
+        create: function(data) {
+            return $http.post('/api/profile', data);
+		},
+
+        /**
+         *
+         */
+        update: function(id, data) {
+            return $http.put('/api/profile/' + id, data);
+		},
+
+        /**
+         *
+         */
+        destroy: function(id) {
+			return $http.delete('/api/profile/' + id);
+		},
+
+        /**
+         * Updates the avatar.
+         *
+         * @param int id
+         * @param object fileData
+         * @return $http
+         */
+        setAvatar: function(id, fileData) {
+            return $http.post('/api/profile/'+ id +'/photo', {image: fileData});
+        }
+    };
 });
 ;/**
  * @file    rover.js

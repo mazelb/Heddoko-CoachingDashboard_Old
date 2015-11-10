@@ -6,7 +6,7 @@
  */
 angular.module('app.controllers')
 
-.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover',
+.controller('ProfileController', ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
     function($scope, $location, $filter, Upload, Teams, Athletes, FMSForm, Rover) {
 
         Rover.debug('ProfileController');
@@ -90,7 +90,8 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Teams.destroy($scope.global.state.group.selected.id).then(
+            // Teams.destroy($scope.global.state.group.selected.id).then(
+            GroupService.destroy($scope.global.state.group.selected.id).then(
 
                 // On success.
                 function(response) {
@@ -181,7 +182,8 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Athletes.create(profile.team_id, profile).then(
+            // Athletes.create(profile.team_id, profile).then(
+            ProfileService.create(profile).then(
 
                 // On success.
                 function(response) {
@@ -233,7 +235,8 @@ angular.module('app.controllers')
             profile.weight_cm = Math.round(form.weight_lbs * 0.453592);
 
             // Update profile data.
-            Athletes.update(profile).then(
+            // Athletes.update(profile).then(
+            ProfileService.update(profile).then(
 
                 // On success.
                 function(response) {
@@ -273,7 +276,8 @@ angular.module('app.controllers')
             Rover.debug('Deleting profile...');
             Rover.addBackgroundProcess();
 
-            Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
+            // Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
+            ProfileService.destroy($scope.profile.group_id, $scope.profile.id).then(
 
                 // On success.
                 function(response) {
@@ -318,7 +322,8 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
             Upload.upload({
-               url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
+            //    url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
+               url: '/api/profile/'+ $scope.profile.id +'/photo',
                data: {photo: fileData}
            }).then(
 

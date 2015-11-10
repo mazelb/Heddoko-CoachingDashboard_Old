@@ -7,8 +7,8 @@
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$location', 'Teams', 'Upload', 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, $location, Teams, Upload, Rover, assetVersion, isLocalEnvironment) {
+    ['$scope', '$location', 'GroupService', 'Teams', 'Upload', 'Rover', 'assetVersion', 'isLocalEnvironment',
+    function($scope, $location, GroupService, Teams, Upload, Rover, assetVersion, isLocalEnvironment) {
 
         Rover.debug('GroupController');
 
@@ -50,7 +50,8 @@ angular.module('app.controllers')
 
             var form = $scope.group;
 
-            Teams.create(form).then(
+            // Teams.create(form).then(
+            GroupService.create(form).then(
 
                 // On success.
                 function(response) {
@@ -83,7 +84,8 @@ angular.module('app.controllers')
 
             var form = $scope.group;
 
-            Teams.update(form.id, form).then(
+            // Teams.update(form.id, form).then(
+            GroupService.update(form.id, form).then(
 
                 // On success.
                 function(response) {
@@ -118,7 +120,8 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
             Upload.upload({
-               url: '/api/teams/'+ $scope.group.id +'/photo',
+            //    url: '/api/teams/'+ $scope.group.id +'/photo',
+               url: '/api/group/'+ $scope.group.id +'/photo',
                data: {photo: fileData}
            }).then(
 

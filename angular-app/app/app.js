@@ -17,7 +17,7 @@ var app = angular.module('app', [
 // Defines some constants.
 // TODO: find better place to set app version.
 // NOTE: also update in ...
-var _appVersion = '0.2.13';
+var _appVersion = '0.3.0';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -35,12 +35,12 @@ var appServices = angular.module('app.services', ['app.rover']);
 var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
-app.config(["$routeProvider", "assetVersion",
+app.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
 
         // Landing page.
-        return $routeProvider.when("/", {
-			redirectTo: "/group/list"
+        return $routeProvider.when('/', {
+			redirectTo: '/group/list'
 		})
 
         // Group routes.
@@ -133,7 +133,7 @@ app.config(["$routeProvider", "assetVersion",
 		}).when("/movements", {
 			templateUrl: "/views/movements.html?" + assetVersion
 		}).otherwise({
-			redirectTo: "/404"
+			redirectTo: "/"
 		});
     }
 ])
