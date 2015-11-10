@@ -1,5 +1,7 @@
 <?php
-
+/**
+ *
+ */
 namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
@@ -26,7 +28,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      *
      * @var array
      */
-    protected $fillable = [ 'email', 'username', 'password', 'city', 'dob', 'sex', 'mobile'];
+    protected $fillable = [ 'email', 'username', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -34,17 +36,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-		
-		public function coach()
-		{
-			return $this->hasOne('App\Models\Coach');
-		}
-		public function athlete()
-		{
-			return $this->hasOne('App\Models\Athlete');
-		}
-		public function admin()
-		{
-			return $this->hasOne('App\Models\Admin');
-		}
+
+    /**
+     * Groups managed by this user.
+     */
+    public function groups() {
+        return $this->belongsToMany('App\Models\Group');
+    }
 }
