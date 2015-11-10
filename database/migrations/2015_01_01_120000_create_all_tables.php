@@ -294,27 +294,32 @@ class CreateAllTables extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('stretchsensors');
-		Schema::drop('nodsensors');
+        // Added "Schema::hasTable" check to help smoothen migration rollbacks.
 
-		Schema::drop('stretchjoints');
-		Schema::drop('nodjoints');
+		Schema::hasTable('stretchsensors') ?  Schema::drop('stretchsensors') : null;
+		Schema::hasTable('nodsensors') ?      Schema::drop('nodsensors') : null;
 
-		Schema::drop('stretchcontainers');
-		Schema::drop('nodcontainers');
+		Schema::hasTable('stretchjoints') ?   Schema::drop('stretchjoints') : null;
+		Schema::hasTable('nodjoints') ?       Schema::drop('nodjoints') : null;
 
-		Schema::drop('frames');
+		Schema::hasTable('stretchcontainers') ? Schema::drop('stretchcontainers') : null;
+		Schema::hasTable('nodcontainers') ?   Schema::drop('nodcontainers') : null;
 
-		Schema::drop('movements');
+		Schema::hasTable('frames') ?          Schema::drop('frames') : null;
 
-		Schema::drop('fmsforms');
-		Schema::drop('athletes');
-		Schema::drop('teams');
-		Schema::drop('coaches');
-		Schema::drop('admins');
+		Schema::hasTable('movementrawentries') ? Schema::drop('movementrawentries') : null;
+		Schema::hasTable('movements') ?       Schema::drop('movements') : null;
+        Schema::hasTable('movementsubmissions') ? Schema::drop('movementsubmissions') : null;
+        Schema::hasTable('fmsformsubmissions') ? Schema::drop('fmsformsubmissions') : null;
 
-		Schema::drop('sportmovements');
-		Schema::drop('sports');
+		Schema::hasTable('athletes') ?        Schema::drop('athletes') : null;
+        Schema::hasTable('fmsforms') ?        Schema::drop('fmsforms') : null;
+		Schema::hasTable('teams') ?           Schema::drop('teams') : null;
+		Schema::hasTable('coaches') ?         Schema::drop('coaches') : null;
+		Schema::hasTable('admins') ?          Schema::drop('admins') : null;
+
+		Schema::hasTable('sportmovements') ?  Schema::drop('sportmovements') : null;
+		Schema::hasTable('sports') ?          Schema::drop('sports') : null;
 	}
 
 }

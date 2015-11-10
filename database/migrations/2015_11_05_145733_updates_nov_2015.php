@@ -22,7 +22,7 @@ class UpdatesNov2015 extends Migration
             $table->dropColumn('city', 'dob', 'sex', 'mobile');
 
             // Add a parameters column.
-            $table->text('config');
+            $table->text('config')->nullable();
         });
 
         // Create "images" table.
@@ -53,13 +53,14 @@ class UpdatesNov2015 extends Migration
 			$table->string('first_name');
 			$table->string('last_name')->default('');
 			$table->integer('age')->unsigned()->nullable();
-            $table->float('height')->nullable();        // In meters (SI units).
-            $table->float('mass')->nullable();          // In kilograms (SI units).
+            $table->float('height')->unsigned()->nullable();        // In meters (SI units).
+            $table->float('mass')->unsigned()->nullable();          // In kilograms (SI units).
             $table->timestamp('dob')->nullable();
-            $table->tinyInteger('gender')->default(0);  // 1: female, 2: male.
+            $table->tinyInteger('gender')->unsigned()->default(0);  // 1: female, 2: male.
             $table->string('phone')->default('');
-            $table->text('notes')->default('');
-            $table->text('meta')->default('');          // Other details in JSON format.
+            $table->string('email')->default('');
+            $table->text('notes')->nullable();
+            $table->text('meta')->nullable();           // Other details in JSON format.
 
 			$table->timestamps();
 		});
@@ -67,6 +68,9 @@ class UpdatesNov2015 extends Migration
         // Update "movements" table.
         Schema::table('movements', function ($table)
         {
+            $table->dropForeign('movements_sportmovement_id_foreign');
+            $table->dropForeign('movements_movementsub_id_foreign');
+            $table->dropForeign('movements_fmsformsub_id_foreign');
             $table->dropColumn('sportmovement_id', 'movementsub_id', 'fmsformsub_id');
 
             // Movements can be associated with profiles or FMS test trials.
@@ -77,6 +81,10 @@ class UpdatesNov2015 extends Migration
 			$table->integer('submitted_by')->unsigned()->nullable();
 			$table->foreign('submitted_by')->references('id')->on('users');
 
+            // Rename "name" to "title".
+            $table->dropColumn('name');
+            $table->string('title')->default('');
+
             // Start and end timestamps, indicating the range of useful frames.
             $table->integer('start_timestamp')->unsigned()->nullable();
             $table->integer('end_timestamp')->unsigned()->nullable();
@@ -85,36 +93,33 @@ class UpdatesNov2015 extends Migration
             $table->string('filename')->default('');
 
             // Other notes.
-            $table->text('notes')->default('');
+            $table->text('notes')->nullable();
         });
         Schema::drop('movementrawentries');
-
-        // Drop "movementsubmissions" table and aggregate the extra details in the "movements" table.
-		Schema::drop('movementsubmissions');
 
         // Use tags to classify movements instead.
 		Schema::drop('sportmovements');
 
         // Rename "teams" to "groups" for generalization and rebuild the table schema.
-		Schema::drop('teams');
 		Schema::create('groups', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('name');
 
             // Other details (JSON-encoded).
-            $table->text('meta')->default('');
+            $table->text('meta')->nullable();
 
 			$table->timestamps();
 		});
 
-        // Rename "sports" to "tags" for generalization.
-        Schema::rename('sports', 'tags');
-        Schema::table('tags', function ($table)
+        Schema::table('athletes', function(Blueprint $table)
         {
-            // Drop timestamps.
-            $table->dropTimestamps();
+            $table->dropForeign('athletes_team_id_foreign');
         });
+		Schema::drop('teams');
+
+        // Drop "movementsubmissions" table and aggregate the extra details in the "movements" table.
+		Schema::drop('movementsubmissions');
 
         // Drop "fmsformsubmissions" table.
 		Schema::drop('fmsformsubmissions');
@@ -124,6 +129,14 @@ class UpdatesNov2015 extends Migration
 
         // Drop "coaches" table (use "roles" instead).
 		Schema::drop('coaches');
+
+        // Rename "sports" to "tags" for generalization.
+        Schema::rename('sports', 'tags');
+        Schema::table('tags', function ($table)
+        {
+            // Drop timestamps.
+            $table->dropTimestamps();
+        });
 
         // Restructure "fmsforms" table.
         Schema::drop('fmsforms');
@@ -139,10 +152,10 @@ class UpdatesNov2015 extends Migration
                 ->onDelete('cascade');
 
             // Total score.
-            $table->tinyInterger('score')->unsigned()->nullable();
+            $table->tinyInteger('score')->unsigned()->nullable();
 
             // General notes.
-            $table->text('notes')->default('');
+            $table->text('notes')->nullable();
 
 			$table->timestamps();
 		});
@@ -160,159 +173,159 @@ class UpdatesNov2015 extends Migration
                 ->onDelete('cascade');
 
             // Test score.
-            $table->tinyInterger('score')->nullable();
+            $table->tinyInteger('score')->nullable();
 
             // General notes.
-            $table->text('notes')->default('');
+            $table->text('notes')->nullable();
 
 			$table->timestamps();
 		});
 
-        // Update "frames" table with a timestamp.
-        Schema::table('frames', function ($table)
-        {
-            // Timestamp in milliseconds.
-            $table->timestamp('timestamp');
-        });
+        // // Update "frames" table with a timestamp.
+        // Schema::table('frames', function ($table)
+        // {
+        //     // Timestamp in milliseconds.
+        //     $table->timestamp('timestamp');
+        // });
 
-        // Rename "Nod..." to "IMU..." and remove timestamps.
-        Schema::create('imu_containers', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('frame_id')->unsigned();
-			$table->foreign('frame_id')
-                ->references('id')
-                ->on('frames')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-		});
-        Schema::create('imu_joints', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('imu_container_id')->unsigned();
-			$table->foreign('imu_container_id')->references('id')->on('imu_containers')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-			$table->float('cur_joint_euler_1')->default(0.0);
-			$table->float('cur_joint_euler_2')->default(0.0);
-			$table->float('cur_joint_euler_3')->default(0.0);
-		});
-		Schema::create('imu_sensors', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('imu_joint_id')->unsigned();
-			$table->foreign('imu_joint_id')->references('id')->on('imu_joints')
-                ->onUpdate('cascade')->onDelete('cascade');
-
-			$table->float('init_rot_1')->default(0.0);
-			$table->float('init_rot_2')->default(0.0);
-			$table->float('init_rot_3')->default(0.0);
-			$table->float('init_rot_4')->default(0.0);
-			$table->float('cur_rot_1')->default(0.0);
-			$table->float('cur_rot_2')->default(0.0);
-			$table->float('cur_rot_3')->default(0.0);
-			$table->float('cur_rot_4')->default(0.0);
-			$table->float('cur_joint_euler_1')->default(0.0);
-			$table->float('cur_joint_euler_2')->default(0.0);
-			$table->float('cur_joint_euler_3')->default(0.0);
-			$table->float('cur_joint_euler_4')->default(0.0);
-		});
-        Schema::drop('nodsensors');
-        Schema::drop('nodjoints');
-        Schema::drop('nodcontainers');
+        // // Rename "Nod..." to "IMU..." and remove timestamps.
+        // Schema::create('imu_containers', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('frame_id')->unsigned();
+		// 	$table->foreign('frame_id')
+        //         ->references('id')
+        //         ->on('frames')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+		// });
+        // Schema::create('imu_joints', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('imu_container_id')->unsigned();
+		// 	$table->foreign('imu_container_id')->references('id')->on('imu_containers')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+        //
+		// 	$table->float('cur_joint_euler_1')->default(0.0);
+		// 	$table->float('cur_joint_euler_2')->default(0.0);
+		// 	$table->float('cur_joint_euler_3')->default(0.0);
+		// });
+		// Schema::create('imu_sensors', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('imu_joint_id')->unsigned();
+		// 	$table->foreign('imu_joint_id')->references('id')->on('imu_joints')
+        //         ->onUpdate('cascade')->onDelete('cascade');
+        //
+		// 	$table->float('init_rot_1')->default(0.0);
+		// 	$table->float('init_rot_2')->default(0.0);
+		// 	$table->float('init_rot_3')->default(0.0);
+		// 	$table->float('init_rot_4')->default(0.0);
+		// 	$table->float('cur_rot_1')->default(0.0);
+		// 	$table->float('cur_rot_2')->default(0.0);
+		// 	$table->float('cur_rot_3')->default(0.0);
+		// 	$table->float('cur_rot_4')->default(0.0);
+		// 	$table->float('cur_joint_euler_1')->default(0.0);
+		// 	$table->float('cur_joint_euler_2')->default(0.0);
+		// 	$table->float('cur_joint_euler_3')->default(0.0);
+		// 	$table->float('cur_joint_euler_4')->default(0.0);
+		// });
+        // Schema::drop('nodsensors');
+        // Schema::drop('nodjoints');
+        // Schema::drop('nodcontainers');
 
         // Rename "Stretch..." to "Fabric..." and remove timestamps.
-        Schema::create('fabric_containers', function(Blueprint $table)
-		{
-			$table->increments('id');
+        // Schema::create('fabric_containers', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('frame_id')->unsigned();
+		// 	$table->foreign('frame_id')
+        //         ->references('id')
+        //         ->on('frames')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+		// });
+		// Schema::create('fabric_joints', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('fabric_container_id')->unsigned();
+		// 	$table->foreign('fabric_container_id')
+        //         ->references('id')
+        //         ->on('fabric_containers')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+        //
+		// 	$table->float('cur_joint_euler_1')->default(0.0);
+		// 	$table->float('cur_joint_euler_2')->default(0.0);
+		// 	$table->float('cur_joint_euler_3')->default(0.0);
+		// });
+		// Schema::create('fabric_sensors', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('fabric_joint_id')->unsigned();
+		// 	$table->foreign('fabric_joint_id')
+        //         ->references('id')
+        //         ->on('fabric_joints')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+        //
+		// 	$table->integer('csv_value_1')->default(0);
+		// 	$table->integer('csv_value_2')->default(0);
+		// 	$table->integer('csv_value_3')->default(0);
+		// 	$table->integer('csv_value_4')->default(0);
+		// 	$table->integer('csv_value_5')->default(0);
+		// });
+        // Schema::drop('stretchsensors');
+        // Schema::drop('stretchjoints');
+        // Schema::drop('stretchcontainers');
 
-			$table->integer('frame_id')->unsigned();
-			$table->foreign('frame_id')
-                ->references('id')
-                ->on('frames')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-		});
-		Schema::create('fabric_joints', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('fabric_container_id')->unsigned();
-			$table->foreign('fabric_container_id')
-                ->references('id')
-                ->on('fabric_containers')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-			$table->float('cur_joint_euler_1')->default(0.0);
-			$table->float('cur_joint_euler_2')->default(0.0);
-			$table->float('cur_joint_euler_3')->default(0.0);
-		});
-		Schema::create('fabric_sensors', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('fabric_joint_id')->unsigned();
-			$table->foreign('fabric_joint_id')
-                ->references('id')
-                ->on('fabric_joints')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-			$table->integer('csv_value_1')->default(0);
-			$table->integer('csv_value_2')->default(0);
-			$table->integer('csv_value_3')->default(0);
-			$table->integer('csv_value_4')->default(0);
-			$table->integer('csv_value_5')->default(0);
-		});
-        Schema::drop('stretchsensors');
-        Schema::drop('stretchjoints');
-        Schema::drop('stretchcontainers');
-
-        // Create generic containers for future sensors.
-        Schema::create('generic_containers', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('frame_id')->unsigned();
-			$table->foreign('frame_id')
-                ->references('id')
-                ->on('frames')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-		});
-		Schema::create('generic_joints', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('generic_container_id')->unsigned();
-			$table->foreign('generic_container_id')
-                ->references('id')
-                ->on('generic_joints')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-			$table->float('cur_joint_euler_1')->default(0.0);
-			$table->float('cur_joint_euler_2')->default(0.0);
-			$table->float('cur_joint_euler_3')->default(0.0);
-		});
-		Schema::create('generic_sensors', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('generic_joint_id')->unsigned();
-			$table->foreign('generic_joint_id')
-                ->references('id')
-                ->on('generic_joints')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-            // JSON-encoded data.
-			$table->text('data')->default('');
-		});
+        // // Create generic containers for future sensors.
+        // Schema::create('generic_containers', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('frame_id')->unsigned();
+		// 	$table->foreign('frame_id')
+        //         ->references('id')
+        //         ->on('frames')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+		// });
+		// Schema::create('generic_joints', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('generic_container_id')->unsigned();
+		// 	$table->foreign('generic_container_id')
+        //         ->references('id')
+        //         ->on('generic_joints')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+        //
+		// 	$table->float('cur_joint_euler_1')->default(0.0);
+		// 	$table->float('cur_joint_euler_2')->default(0.0);
+		// 	$table->float('cur_joint_euler_3')->default(0.0);
+		// });
+		// Schema::create('generic_sensors', function(Blueprint $table)
+		// {
+		// 	$table->increments('id');
+        //
+		// 	$table->integer('generic_joint_id')->unsigned();
+		// 	$table->foreign('generic_joint_id')
+        //         ->references('id')
+        //         ->on('generic_joints')
+        //         ->onUpdate('cascade')
+        //         ->onDelete('cascade');
+        //
+        //     // JSON-encoded data.
+		// 	$table->text('data')->nullable();
+		// });
 
         //
         // Pivot tables.
@@ -320,6 +333,7 @@ class UpdatesNov2015 extends Migration
 
         $pivots = [
             'group' => 'profile',
+            'group' => 'user',
             'movement' => 'tag',
             'profile' => 'tag',
         ];
@@ -362,15 +376,22 @@ class UpdatesNov2015 extends Migration
         // Drop pivot tables.
         Schema::hasTable('profile_tag') ?           Schema::drop('profile_tag') : null;
         Schema::hasTable('movement_tag') ?          Schema::drop('movement_tag') : null;
+        Schema::hasTable('group_user') ?            Schema::drop('group_user') : null;
         Schema::hasTable('group_profile') ?         Schema::drop('group_profile') : null;
 
         // Drop movement-related tables.
         Schema::hasTable('generic_sensors') ?       Schema::drop('generic_sensors') : null;
         Schema::hasTable('generic_joints') ?        Schema::drop('generic_joints') : null;
         Schema::hasTable('generic_containers') ?    Schema::drop('generic_containers') : null;
+        Schema::hasTable('stretchsensors') ?        Schema::drop('stretchsensors') : null;
+        Schema::hasTable('stretchjoints') ?         Schema::drop('stretchjoints') : null;
+        Schema::hasTable('stretchcontainers') ?     Schema::drop('stretchcontainers') : null;
         Schema::hasTable('fabric_sensors') ?        Schema::drop('fabric_sensors') : null;
         Schema::hasTable('fabric_joints') ?         Schema::drop('fabric_joints') : null;
         Schema::hasTable('fabric_containers') ?     Schema::drop('fabric_containers') : null;
+        Schema::hasTable('nodsensors') ?            Schema::drop('nodsensors') : null;
+        Schema::hasTable('nodjoints') ?             Schema::drop('nodjoints') : null;
+        Schema::hasTable('nodcontainers') ?         Schema::drop('nodcontainers') : null;
         Schema::hasTable('imu_sensors') ?           Schema::drop('imu_sensors') : null;
         Schema::hasTable('imu_joints') ?            Schema::drop('imu_joints') : null;
         Schema::hasTable('imu_containers') ?        Schema::drop('imu_containers') : null;
@@ -380,6 +401,7 @@ class UpdatesNov2015 extends Migration
         Schema::hasTable('fms_test') ?      Schema::drop('fms_test') : null;
         Schema::hasTable('fms') ?           Schema::drop('fms') : null;
         Schema::hasTable('groups') ?        Schema::drop('groups') : null;
+        Schema::hasTable('movementrawentries') ? Schema::drop('movementrawentries') : null;
         Schema::hasTable('movements') ?     Schema::drop('movements') : null;
         Schema::hasTable('profiles') ?      Schema::drop('profiles') : null;
         Schema::hasTable('images') ?        Schema::drop('images') : null;

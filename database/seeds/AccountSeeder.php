@@ -1,23 +1,24 @@
 <?php
 
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
-/**
- *
- */
-class DemoDataSeeder extends Seeder
+class AccountSeeder extends Seeder
 {
     /**
-     * Generates demo data for the app.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        //
-        // User accounts.
-        //
+        $this->command->info('Clearing Users table.');
+
+        DB::table('users')->delete();
+
+        $this->command->info('Creating users which existed in October 2015');
 
         $demoUser = User::create([
 			'email' => 'demo@example.com',
@@ -67,21 +68,35 @@ class DemoDataSeeder extends Seeder
 			'password' => '$2y$10$vf/TyMxpezLdLjcppxpZcunED4Wsjxe4sgZb5LWdR1F6OFtzI1YBC',
             'created_at' => '2015-10-21 20:58:19'
 		]);
-        $frankUser = User::create([
-			'email' => 'frank@frnk.ca',
-			'username' => 'frank',
-			'password' => bcrypt('h3dd0k0'),
-            'created_at' => '2015-11-01 00:00:00'
-		]);
 
-        //
-        // Groups.
-        //
+        $this->command->info('Creating roles');
 
+        DB::table('roles')->delete();
+        DB::table('role_user')->delete();
 
-        //
-        // Profiles.
-        //
+        $admin = Role::create([
+            'name' => 'admin',
+            'display_name' => 'Administrator',
+            'description' => 'Manages the web app.'
+        ]);
 
+        $manager = Role::create([
+            'name' => 'manager',
+            'display_name' => 'Manager',
+            'description' => 'Manages one or more groups.'
+        ]);
+
+        $this->command->info('Attaching "manager" role to users.');
+
+        $manager->users()->attach([
+            $demoUser->id,
+            $demoUser2->id,
+            $sglivingstonUser->id,
+            $concordiaUser->id,
+            $charlotteUser->id,
+            $lzaneUser->id,
+            $sclarkUser->id,
+            $paoloUser->id
+        ]);
     }
 }
