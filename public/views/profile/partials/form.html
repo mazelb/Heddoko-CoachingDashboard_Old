@@ -96,9 +96,9 @@
             </div>
             <div class="col-sm-8 col-md-4">
                 <select ng-model="profile.gender" class="form-control">
-                    <option value="0" ng-selected="!profile.gender">(not specified)</option>
-                    <option value="1" ng-selected="profile.gender === 1">Female</option>
-                    <option value="2" ng-selected="profile.gender === 2">Male</option>
+                    <option value="" ng-selected="profile.gender == ''">(not specified)</option>
+                    <option value="female" ng-selected="profile.gender == 'female'">Female</option>
+                    <option value="male" ng-selected="profile.gender == 'male'">Male</option>
                 </select>
             </div>
         </div>

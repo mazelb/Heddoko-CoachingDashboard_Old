@@ -11,7 +11,12 @@ class Group extends Model
     /**
      * Attributes which are mass-assignable.
      */
-    protected $fillable = ['name', 'meta', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'name',
+        'meta',
+        'created_at',
+        'updated_at'
+    ];
 
     /**
      *

@@ -21,6 +21,11 @@ class UpdatesNov2015 extends Migration
             // We'll use the "profile" table to store and streamline this information.
             $table->dropColumn('city', 'dob', 'sex', 'mobile');
 
+            // Add columns.
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('phone')->nullable();
+
             // Add a parameters column.
             $table->text('config')->nullable();
         });
@@ -49,8 +54,8 @@ class UpdatesNov2015 extends Migration
             $table->float('mass')->unsigned()->nullable();          // In kilograms (SI units).
             $table->timestamp('dob')->nullable();
             $table->tinyInteger('gender')->unsigned()->nullable();  // 1: female, 2: male.
-            $table->string('phone')->default('');
-            $table->string('email')->default('');
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->text('notes')->nullable();
             $table->text('meta')->nullable();           // Other details in JSON format.
 
@@ -457,7 +462,7 @@ class UpdatesNov2015 extends Migration
             $table->string('sex', 11);
             $table->string('mobile', 20);
 
-            $table->dropColumn('config');
+            $table->dropColumn('config', 'first_name', 'last_name', 'phone');
         });
 
 

@@ -50,7 +50,6 @@ class ProfileController extends Controller
 
         // Retrieve profile data.
         $data = $this->request->only([
-            'user_id',
             'first_name',
             'last_name',
             'height',
@@ -68,6 +67,12 @@ class ProfileController extends Controller
 
         // Assign current user as a manager.
         $profile->managers()->attach(Auth::id());
+
+        // Attach associated group.
+        if ($this->request->has('groups'))
+        {
+            $profile->groups()->sync((array) $this->request->input('groups'));
+        }
 
         // ...
         return [
@@ -95,7 +100,36 @@ class ProfileController extends Controller
      */
     public function update($id)
     {
-        //
+        $profile = $this->getProfile($id);
+
+        // Update profile details.
+        $profile->fill($this->request->only([
+            'first_name',
+            'last_name',
+            'height',
+            'mass',
+            'dob',
+            'gender',
+            'phone',
+            'email',
+            'notes',
+            'meta'
+        ]));
+
+        // Save profile.
+        $profile->save();
+
+        // Attach associated group.
+        if ($this->request->has('groups'))
+        {
+            $profile->groups()->sync((array) $this->request->input('groups'));
+        }
+
+        // ...
+        return [
+            'list' => $this->index(),
+            'profile' => $profile
+        ];
     }
 
     /**

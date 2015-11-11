@@ -21,8 +21,7 @@ angular.module('app.controllers')
             $scope.group =
             {
                 id: 0,
-                name: "",
-                sport_id: $scope.global.state.sport.selected.id
+                name: ''
             };
         }
 

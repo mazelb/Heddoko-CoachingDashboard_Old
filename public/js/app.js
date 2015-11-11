@@ -16695,8 +16695,7 @@ angular.module('app.controllers')
             $scope.group =
             {
                 id: 0,
-                name: "",
-                sport_id: $scope.global.state.sport.selected.id
+                name: ''
             };
         }
 
@@ -17410,11 +17409,13 @@ angular.module('app.controllers')
 
             // Calculate the amount of feet in the total height.
             $scope.profile.feet = $scope.profile.height > 0 ?
-                Math.floor($scope.profile.height / 3.048) : '';
+                Math.floor($scope.profile.height / 0.3048) : '';
+            Rover.debug($scope.profile.feet + 'ft in ' + $scope.profile.height + 'm');
 
             // Calculate the amount of inches in the remaining height.
             $scope.profile.inches = $scope.profile.height > 0 ?
-                Math.round(($scope.profile.height % 3.048) / 2.54) : '';
+                Math.round((($scope.profile.height - $scope.profile.feet * 0.3048) / 0.3048) * 12) : '';
+            Rover.debug($scope.profile.inches + 'in remaining');
 
             // Calculate the weight in pounds.
             $scope.profile.weight_lbs = $scope.profile.mass > 0 ?
@@ -17434,10 +17435,18 @@ angular.module('app.controllers')
             var profile = $scope.profile;
 
             // Format height into meters.
-            profile.height = Math.round((profile.feet + profile.inches / 12) * 3.048);
+            profile.height = (profile.feet + profile.inches / 12) * 0.3048;
+            Rover.debug('Height: ' + profile.feet + '" ' + profile.inches + '\'');
+            Rover.debug('Height (converted): ' + profile.height);
 
             // Format mass in kg.
-            profile.mass = Math.round(profile.weight_lbs * 0.453592);
+            profile.mass = profile.weight_lbs * 0.453592;
+            Rover.debug('Weight: ' + profile.weight_lbs);
+            Rover.debug('Mass: ' + profile.mass);
+
+            // Add group info.
+            // TODO: allow multiple groups.
+            profile.groups = [$scope.global.state.group.selected.id];
 
             // Show loading animation.
             Rover.addBackgroundProcess();
@@ -17467,35 +17476,29 @@ angular.module('app.controllers')
         $scope.updateProfile = function() {
 
             Rover.debug('Updating profile...');
+
+            var profile = $scope.profile;
+
+            // Format height into meters.
+            profile.height = (profile.feet + profile.inches / 12) * 0.3048;
+            Rover.debug('Height: ' + profile.feet + '" ' + profile.inches + '\'');
+            Rover.debug('Height (converted): ' + profile.height);
+
+            // Format mass in kg.
+            profile.mass = profile.weight_lbs * 0.453592;
+            Rover.debug('Weight: ' + profile.weight_lbs);
+            Rover.debug('Mass: ' + profile.mass);
+
+            // Add group info.
+            // TODO: allow multiple groups.
+            profile.groups = [$scope.global.state.group.selected.id];
+
+            // Show loading animation.
             Rover.addBackgroundProcess();
-
-            var form = $scope.profile;
-
-            //
-            var profile = {
-                id: $scope.global.state.profile.selected.id,
-                first_name: form.first_name,
-                last_name: form.last_name,
-                age: form.age,
-                team_id: form.group_id, // TODO: update this once database is updated.
-                group_id: form.group_id,
-                primary_sport: form.primary_sport,
-                primary_position: form.primary_position,
-                hand_leg_dominance: '',
-                previous_injuries: form.previous_injuries,
-                underlying_medical: form.underlying_medical,
-                notes: form.notes
-            };
-
-            // Format height into cm.
-            profile.height_cm = Math.round((form.feet + form.inches / 12) * 30.48);
-
-            // Format weight in kg.
-            profile.weight_cm = Math.round(form.weight_lbs * 0.453592);
 
             // Update profile data.
             // Athletes.update(profile).then(
-            ProfileService.update(profile).then(
+            ProfileService.update(profile.id, profile).then(
 
                 // On success.
                 function(response) {
@@ -17536,7 +17539,7 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
 
             // Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
-            ProfileService.destroy($scope.profile.group_id, $scope.profile.id).then(
+            ProfileService.destroy($scope.profile.id).then(
 
                 // On success.
                 function(response) {
@@ -19046,9 +19049,11 @@ angular.module('app.services')
          *
          */
         get: function(groupId) {
-			return $http.get('/api/profile', {params: {
-                group: groupId
-            }});
+
+            // Request parameters.
+            var config = groupId ? {params: {group: groupId}} : {};
+
+			return $http.get('/api/profile', config);
 		},
 
         /**
