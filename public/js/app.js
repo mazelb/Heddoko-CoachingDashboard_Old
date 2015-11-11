@@ -13865,9 +13865,9 @@ angular.module('ngCookies', ['ng']).
 
 // Initializes the AngularJS application.
 var app = angular.module('app', [
-    "ngStorage", "ngRoute", "ngAnimate", "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
+    'ngStorage', 'ngRoute', 'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
-    "app.controllers", 'app.directives', "app.form.validation", "app.ui.form.ctrls",
+    'app.controllers', 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services',
     'ngFileUpload'
@@ -16580,8 +16580,8 @@ angular.module('app.controllers')
 angular.module('app.controllers')
 
 // FMSFormController
-.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', "loggit", 'Rover', 'assetVersion',
-    function($scope, $sessionStorage, FMSForm, loggit, Rover, assetVersion) {
+.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', 'FMSService', "loggit", 'Rover', 'assetVersion',
+    function($scope, $sessionStorage, FMSForm, FMSService, loggit, Rover, assetVersion) {
 
     	$scope.data.show_fms_edit = false;
     	$scope.waiting_server_response = false;
@@ -16597,13 +16597,22 @@ angular.module('app.controllers')
             return;
           }
 
-          FMSForm.get($scope.global.state.profile.selected.id)
-            .success(function(athletes_fms_forms_response) {
-              $scope.global.state.profile.selected.fms_forms = athletes_fms_forms_response;
-            })
-            .error(function(error_msg) {
-              console.log('error retrieving forms from the database' + error_msg);
-            });
+          FMSService.get($scope.global.state.profile.selected.id).then(
+              function(response) {
+                  $scope.global.state.profile.selected.fms_forms = response.data;
+              },
+              function(response) {
+                  Rover.debug('Could not retrieve forms: ' + response.statusText);
+              }
+          );
+
+        //   FMSForm.get($scope.global.state.profile.selected.id)
+        //     .success(function(athletes_fms_forms_response) {
+        //       $scope.global.state.profile.selected.fms_forms = athletes_fms_forms_response;
+        //     })
+        //     .error(function(error_msg) {
+        //       console.log('error retrieving forms from the database' + error_msg);
+        //     });
 
         }, true);
 
@@ -16611,32 +16620,134 @@ angular.module('app.controllers')
 
     		$scope.waiting_server_response = true;
 
-            $scope.data.fms_form_data.totalscore = 19;
-
             Rover.debug('Submitting FMS form data...');
-    		Rover.debug($scope.data.fms_form_data);
 
-            FMSForm.create(
-                $scope.global.state.profile.selected.id,
-                $scope.data.fms_form_data,
-                $scope.data.fms_form_movement_files
-            ).then(
+            var formData = $scope.data.fms_form_data;
+
+            // Format data to fit new db structure...
+            var fms = {
+                profile_id: $scope.global.state.profile.selected.id,
+                notes: formData.comment,
+                tests: [
+                    {
+                        title: 'Deep Squat',
+                        score: formData.deepsquat,
+                        notes: formData.deepsquatcomments
+                    },
+                    {
+                        title: 'Hurdle step (L)',
+                        score: formData.Lhurdle,
+                        notes: formData.Lhurdlecomments
+                    },
+                    {
+                        title: 'Hurdle step (R)',
+                        score: formData.Rhurdle,
+                        notes: formData.Rhurdlecomments
+                    },
+                    {
+                        title: 'Inline lunge (L)',
+                        score: formData.Llunge,
+                        notes: formData.Llungecomments
+                    },
+                    {
+                        title: 'Inline lunge (R)',
+                        score: formData.Rlunge,
+                        notes: formData.Rlungecomments
+                    },
+                    {
+                        title: 'Shoulder Mobility (L)',
+                        score: formData.Lshoulder,
+                        notes: formData.Lshouldercomments
+                    },
+                    {
+                        title: 'Shoulder Mobility (R)',
+                        score: formData.Rshoulder,
+                        notes: formData.Rshouldercomments
+                    },
+                    {
+                        title: 'Active straight-leg raise (L)',
+                        score: formData.Lactive,
+                        notes: formData.Lactivecomments
+                    },
+                    {
+                        title: 'Active straight-leg raise (R)',
+                        score: formData.Ractive,
+                        notes: formData.Ractivecomments
+                    },
+                    {
+                        title: 'Trunk stability push-up',
+                        score: formData.trunk,
+                        notes: formData.trunkcomments
+                    },
+                    {
+                        title: 'Rotary stability (L)',
+                        score: formData.Lrotary,
+                        notes: formData.Lrotarycomments
+                    },
+                    {
+                        title: 'Rotary stability (R)',
+                        score: formData.Rrotary,
+                        notes: formData.Rrotarycomments
+                    }
+                ]
+            };
+
+            // Calculate total score.
+            fms.score = 21;
+            // fms.score = formData.deepsquat +
+            //             Math.min(formData.Lhurdle, formData.Rhurdle) +
+            //             Math.min(formData.Llunge, formData.Rlunge) +
+            //             Math.min(formData.Lshoulder, formData.Rshoulder) +
+            //             Math.min(formData.Lactive, formData.Ractive) +
+            //             formData.trunk +
+            //             Math.min(formData.Lrotary, formData.Rrotary);
+
+            Rover.debug(fms);
+
+            FMSService.create(fms).then(
+
+                // On success.
                 function(response) {
 
-                    Rover.debug('Success.');
-                	Rover.debug(response.data);
+                    //reset the form data upon successful FMS form submission
+                    $scope.data.fms_form_data = {};
 
-                    $scope.data.fms_form_data = {}; //reset the form data upon successful FMS form submission
-                    $scope.global.state.profile.selected.fms_forms = response.data; //store the updated FMS forms sent back by the server
-        			$scope.waiting_server_response = false;
-        			loggit.logSuccess("FMS Form successfully submitted");
+                    //store the updated FMS forms sent back by the server
+                    $scope.global.state.profile.selected.fms_forms = response.data.fms;
+
+                    $scope.waiting_server_response = false;
+                    loggit.logSuccess("FMS Form successfully submitted");
                 },
+
+                // On error.
                 function(response) {
-                	loggit.logError("There was an error submitting the FMS Form");
+                    loggit.logError("There was an error submitting the FMS Form");
                 	$scope.waiting_server_response = false;
                     Rover.debug(response);
                 }
             );
+
+            // FMSForm.create(
+            //     $scope.global.state.profile.selected.id,
+            //     $scope.data.fms_form_data,
+            //     $scope.data.fms_form_movement_files
+            // ).then(
+            //     function(response) {
+            //
+            //         Rover.debug('Success.');
+            //     	Rover.debug(response.data);
+            //
+            //         $scope.data.fms_form_data = {}; //reset the form data upon successful FMS form submission
+            //         $scope.global.state.profile.selected.fms_forms = response.data; //store the updated FMS forms sent back by the server
+        	// 		$scope.waiting_server_response = false;
+        	// 		loggit.logSuccess("FMS Form successfully submitted");
+            //     },
+            //     function(response) {
+            //     	loggit.logError("There was an error submitting the FMS Form");
+            //     	$scope.waiting_server_response = false;
+            //         Rover.debug(response);
+            //     }
+            // );
         };
 
         $scope.updateFMS = function() {
@@ -18982,6 +19093,51 @@ angular.module('app.services').service('FMSDemoFactory', function(Rover) {
     this.data.views = ['sagittal', 'coronal', 'transverse'];
 });
 ;/**
+ * @file    fms.js
+ * @brief
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
+angular.module('app.services')
+
+.factory('FMSService', function($http) {
+
+    return {
+
+        /**
+         *
+         */
+        get: function(profileId) {
+
+            // Add profile ID to request parameters.
+            var config = profileId ? {params: {profile_id: profileId}} : {};
+
+			return $http.get('/api/fms', config);
+		},
+
+        /**
+         *
+         */
+        create: function(data) {
+            return $http.post('/api/fms', data);
+		},
+
+        /**
+         *
+         */
+        update: function(id, data) {
+            return $http.put('/api/fms/' + id, data);
+		},
+
+        /**
+         *
+         */
+        destroy: function(id) {
+			return $http.delete('/api/fms/' + id);
+		},
+    };
+});
+;/**
  * @file    group.js
  * @brief   This service handles group-related HTTP requests.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -19050,7 +19206,7 @@ angular.module('app.services')
          */
         get: function(groupId) {
 
-            // Request parameters.
+            // Add group ID to request parameters.
             var config = groupId ? {params: {group: groupId}} : {};
 
 			return $http.get('/api/profile', config);

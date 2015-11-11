@@ -46,6 +46,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
+    // FMS endpoints.
+    Route::resource('fms', 'FMSController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+    Route::resource('fms.test', 'FMSTestController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
     // Group endpoints.
     Route::post('group/{id}/photo', 'GroupController@updatePhoto');
     Route::resource('group', 'GroupController', [

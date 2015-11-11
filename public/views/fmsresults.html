@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-sm-6">
             <h4>FMS Results</h4>
-            <p ng-if="data.member.selected">
+            <p ng-if="global.state.profile.selected">
                 View FMS results for
                 <b>
-                    {{ data.member.selected.first_name }} {{ data.member.selected.last_name }}
+                    {{ global.state.profile.selected.first_name }} {{ global.state.profile.selected.last_name }}
                 </b>
             </p>
         </div>
@@ -24,11 +24,11 @@
 						</h3>
 					</div>
 
-					<div ng-show="data.member.selected.id < 1">
+					<div ng-show="global.state.profile.selected.id < 1">
                         Select an athlete under 'Dashboard' in the sidebar before viewing historical FMS data
                     </div>
 
-					<div ng-hide="data.member.selected.id < 1" class="panel-body ng-scope">
+					<div ng-hide="global.state.profile.selected.id < 1" class="panel-body ng-scope">
 						<table class="table">
 							<thead>
 								<tr>
@@ -42,13 +42,13 @@
 							<tbody>
 
 								<tr
-                                    ng-repeat="fmsform in data.member.selected.fms_forms track by fmsform.id"
+                                    ng-repeat="fmsform in global.state.profile.selected.fms_forms track by fmsform.id"
                                     ng-click="fmsdisplay(fmsform)">
 
 									<td>{{$index + 1}}</td>
 									<td>{{fmsform.created_at}}</td>
 									<td>
-										{{fmsform.totalscore}}
+										{{fmsform.score}}
 									</td>
 									<td>1</td>
 									<td><!--<span class="label label-warning">Missing</span>--></td>
@@ -59,7 +59,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div ng-show="data.member.selected.fms_forms.length == 0">0 FMS Forms found</div>
+					<div ng-show="global.state.profile.selected.fms_forms.length == 0">0 FMS Forms found</div>
 				</div>
 			</div>
 		</div>
@@ -77,7 +77,9 @@
 						select an FMS form on the left to view details
 					</div>
 
-					<label ng-hide="data.selected_fms_form == null" class="switch switch-info pull-right"><input type="checkbox" ng-model="data.show_fms_edit" class="ng-untouched ng-valid ng-dirty ng-valid-parse" ><i></i></label>
+					<label ng-hide="data.selected_fms_form == null" class="switch switch-info pull-right">
+                        <input type="checkbox" ng-model="data.show_fms_edit" class="ng-untouched ng-valid ng-dirty ng-valid-parse"><i></i>
+                    </label>
 
 					<div class="panel-body ng-scope" ng-show="data.selected_fms_form != null">
 
@@ -278,7 +280,7 @@
             </form>
 
 						<div ng-hide="!data.show_fms_edit">
-							<button type="button" class="btn btn-info btn-sm" ng-click="updateFMS();">Update this FMS Form</button>
+							<button type="button" class="btn btn-info btn-sm disabled" ng-click="updateFMS();">Update this FMS Form</button>
 						</div>
 
 

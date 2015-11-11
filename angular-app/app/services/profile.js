@@ -15,7 +15,7 @@ angular.module('app.services')
          */
         get: function(groupId) {
 
-            // Request parameters.
+            // Add group ID to request parameters.
             var config = groupId ? {params: {group: groupId}} : {};
 
 			return $http.get('/api/profile', config);

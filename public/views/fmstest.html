@@ -5,7 +5,7 @@
             <p ng-if="data.member.selected">
                 Submit FMS results for
                 <b>
-                    {{ data.member.selected.first_name }} {{ data.member.selected.last_name }}
+                    {{ global.state.profile.selected.first_name }} {{ global.state.profile.selected.last_name }}
                 </b>
             </p>
         </div>
@@ -61,7 +61,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lhurdle"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Lhurdlecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.hsl == null, 'btn-success': files.hsl != null}">
@@ -83,7 +83,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Rhurdle"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.hurdlecomments">
+										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.Rhurdlecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.hsr == null, 'btn-success': files.hsr != null}">
@@ -105,7 +105,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Llunge"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Llungecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.ill == null, 'btn-success': files.ill != null}">
@@ -127,7 +127,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Rlunge"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.lungecomments">
+										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.Rlungecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.ilr == null, 'btn-success': files.ilr != null}">
@@ -149,7 +149,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lshoulder"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Lshouldercomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.sml == null, 'btn-success': files.sml != null}">
@@ -171,7 +171,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Rshoulder"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.shouldercomments">
+										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.Rshouldercomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.smr == null, 'btn-success': files.smr != null}">
@@ -190,7 +190,7 @@
 										<label class="ui-checkbox"><input ng-model="data.fms_form_data.Limpingement" type="checkbox"><span>pain</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="" placeholder="Comments">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Limpingementcomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.ictl == null, 'btn-success': files.ictl != null}">
@@ -231,7 +231,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lactive"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Lactivecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.aslrl == null, 'btn-success': files.aslrl != null}">
@@ -253,7 +253,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Ractive"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.activecomments">
+										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.Ractivecomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.aslrr == null, 'btn-success': files.aslrr != null}">
@@ -316,7 +316,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Lrotary"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-                                        <input placeholder="Comments" type="text" name="name" value="">
+                                        <input placeholder="Comments" type="text" ng-model="data.fms_form_data.Lrotarycomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.rsl == null, 'btn-success': files.rsl != null}">
@@ -338,7 +338,7 @@
 										<label class="ui-radio"><input type="radio" value="3" ng-model="data.fms_form_data.Rrotary"><span>3</span></label>
 									</div>
 									<div class="col-sm-3">
-										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.rotarycomments">
+										<input placeholder="Comments" type="text" ng-model="data.fms_form_data.Rrotarycomments">
 									</div>
 									<div class="col-sm-3">
 										<span ng-class="{btn: true, 'btn-file': true, 'btn-default': files.rsr == null, 'btn-success': files.rsr != null}">

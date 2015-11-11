@@ -47,6 +47,13 @@ class Profile extends Model
     }
 
     /**
+     * Functional Movement Screenings belonging to this profile.
+     */
+    public function screenings() {
+        return $this->hasMany('App\Models\FMS');
+    }
+
+    /**
      * Accessor for $this->gender.
      *
      * @param int $gender

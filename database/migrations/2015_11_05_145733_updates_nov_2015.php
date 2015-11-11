@@ -169,6 +169,8 @@ class UpdatesNov2015 extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->string('title');
+
             // Test score.
             $table->tinyInteger('score')->nullable();
 
