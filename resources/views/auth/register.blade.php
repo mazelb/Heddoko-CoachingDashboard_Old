@@ -194,7 +194,7 @@
 						</div>
 
 						<div class="form-group">
-							<p style="color:white" class="text-muted text-small">By clicking on Sign up, you agree to our <a href="javascript:;">terms & conditions</a> and <a href="javascript:;">privacy policy</a></p>
+							<p style="color:white" class="text-muted text-small">By clicking on Sign up, you agree to our <a href="{{ url('terms') }}">terms & conditions</a> and <a href="{{ url('privacy') }}">privacy policy</a></p>
 							<div class="divider"></div>
 							<button type="submit" class="btn btn-primary btn-block btn-lg">Sign up</button>
 						</div>

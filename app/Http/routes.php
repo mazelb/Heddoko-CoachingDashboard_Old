@@ -85,6 +85,14 @@ Route::controllers([
 	'password' => 'Auth\PasswordController',
 ]);
 
+// Static pages.
+Route::get('privacy', function() {
+    return view('static.privacy');
+});
+Route::get('terms', function() {
+    return view('static.terms');
+});
+
 // Redirects.
 Route::get('home', function() {
     return redirect('/');
