@@ -265,9 +265,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
 
-    // grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
-    grunt.registerTask('dev', [ 'watch:dev' ]);
-    grunt.registerTask('watch', [ 'bower', 'watch:min' ]);
+    grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
+    grunt.registerTask('production', [ 'bower', 'watch:min' ]);
 
     grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['jshint', 'concat', 'uglify']);
