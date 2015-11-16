@@ -4,16 +4,11 @@
  */
 namespace App\Models;
 
-use App\Models\FMSTest;
+use App\Models\ScreeningTest;
 use Illuminate\Database\Eloquent\Model;
 
-class FMS extends Model
+class Screening extends Model
 {
-    /**
-     *
-     */
-    protected $table = 'fms';
-
     /**
      * Attributes which are mass-assignable.
      */
@@ -30,7 +25,7 @@ class FMS extends Model
      * Tests that are a part of thie Functional Movement Screening.
      */
     public function tests() {
-        return $this->hasMany('App\Models\FMSTest', 'fms_id');
+        return $this->hasMany('App\Models\ScreeningTest');
     }
 
     /**

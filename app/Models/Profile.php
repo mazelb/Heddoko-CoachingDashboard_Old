@@ -54,6 +54,13 @@ class Profile extends Model
     }
 
     /**
+     * Movements belonging to this profile.
+     */
+    public function movements() {
+        return $this->morphMany('App\Models\Movement', 'belongs_to');
+    }
+
+    /**
      * Accessor for $this->gender.
      *
      * @param int $gender
