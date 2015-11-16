@@ -1,5 +1,5 @@
 /**
- * @file    app.js
+ * @file    angular-app.js
  * @brief   Main angular application.
  * @author  Maxwell (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
  */
@@ -15,9 +15,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-// TODO: find better place to set app version.
-// NOTE: also update in ...
-var _appVersion = '0.3.0';
+var _appVersion = '0.3.1';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -40,11 +38,17 @@ app.config(['$routeProvider', 'assetVersion',
 
         // Landing page.
         return $routeProvider.when('/', {
-			redirectTo: '/group/list'
+			redirectTo: '/dashboard'
+		})
+
+        // Main dashboard.
+        .when('/dashboard', {
+            templateUrl: '/views/dashboard.html?' + assetVersion,
+            controller: 'DashboardController'
 		})
 
         // Group routes.
-        .when("/group/list", {
+        .when('/group/list', {
             templateUrl: "/views/group/list.html?" + assetVersion,
             controller: "GroupController"
 		})
@@ -133,7 +137,7 @@ app.config(['$routeProvider', 'assetVersion',
 		}).when("/movements", {
 			templateUrl: "/views/movements.html?" + assetVersion
 		}).otherwise({
-			redirectTo: "/"
+			redirectTo: '/'
 		});
     }
 ])

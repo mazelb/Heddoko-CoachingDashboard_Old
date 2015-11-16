@@ -1,0 +1,37 @@
+<header class="page-main-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>Old Dashboard (deprecated)</h4>
+            <p>
+                Welcome to the (old) dashboard!
+            </p>
+        </div>
+    </div>
+</header>
+
+<div class="page page-dashboard" data-ng-controller="FMSFormController">
+	<div ng-controller="StepController">
+		<ol class="breadcrumb-alt">
+			<li>
+                <a class="active" ng-click="current_dashboard_page=0">Teams</a>
+            </li>
+			<li ng-show="current_dashboard_page > 0">
+                <a class="active" ng-click="current_dashboard_page=1">Athletes</a>
+            </li>
+			<li ng-show="current_dashboard_page > 1">
+                <a class="active" ng-click="current_dashboard_page=2">Profiles</a>
+            </li>
+		</ol>
+		<div ng-switch="current_dashboard_page">
+			<div ng-switch-when="0">
+				<div ng-include src="'views/dashboard-partials/teams.html?' + Rover.assetVersion()"></div>
+			</div>
+			<div ng-switch-when="1">
+				<div ng-include src="'views/dashboard-partials/members.html?' + Rover.assetVersion()"></div>
+			</div>
+			<div ng-switch-when="2">
+				<div ng-include src="'views/dashboard-partials/profile.html?' + Rover.assetVersion()"></div>
+			</div>
+		</div>
+	</div>
+</div>

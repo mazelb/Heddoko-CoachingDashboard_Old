@@ -167,34 +167,54 @@ module.exports = function(grunt) {
 
                     // AngularJS files.
                     'resources/assets/js/**/*.js',
-                    // 'angular-app/app/**/*.js',
                     'resources/assets/js/*.js'
-                    // 'angular-app/app/*.js'
                 ],
                 dest: 'public/js/app.js'
             }
         },
 
         jshint: {
-            all: [ 'Gruntfile.js', 'angular-app/app/*.js', 'angular-app/app/**/*.js' ]
+            all: [
+                'Gruntfile.js',
+                'resources/assets/js/*.js',
+                'resources/assets/js/**/*.js'
+            ]
         },
 
         watch: {
             dev: {
                 files: [
                     'Gruntfile.js',
-                    'angular-app/app/*.js',
-                    'angular-app/app/**/*.js',
+                    'resources/assets/js/*.js',
+                    'resources/assets/js/**/*.js',
                     'angular-app/styles/*.scss'
                 ],
-                tasks: [ 'jshint','html2js:dist','copy:main', 'concat:dist', 'clean:temp', 'sass', 'cssmin' ],
+                // tasks: [ 'jshint', 'html2js:dist', 'copy:main', 'concat:dist', 'clean:temp', 'sass', 'cssmin' ],
+                tasks: [
+                    'jshint',
+                    'concat:dist',
+                    'sass'
+                ],
                 options: {
                     atBegin: true
                 }
             },
             min: {
-                files: [ 'Gruntfile.js', 'angular-app/app/*.js', 'angular-app/styles/*.scss' ],
-                tasks: [ 'jshint','html2js:dist','copy:main', 'concat:dist', 'clean:temp', 'uglify:dist','cssmin' ],
+                files: [
+                    'Gruntfile.js',
+                    'resources/assets/js/*.js',
+                    'resources/assets/js/**/*.js',
+                    'angular-app/styles/*.scss'
+                ],
+                tasks: [
+                    'jshint',
+                    'html2js:dist',
+                    'copy:main',
+                    'concat:dist',
+                    'clean:temp',
+                    'uglify:dist',
+                    'cssmin'
+                ],
                 options: {
                     atBegin: true
                 }
@@ -245,9 +265,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
 
-    grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
-    grunt.registerTask('minified', [ 'bower', 'watch:min' ]);
+    // grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
+    grunt.registerTask('dev', [ 'watch:dev' ]);
+    grunt.registerTask('watch', [ 'bower', 'watch:min' ]);
 
     grunt.registerTask('css', ['sass', 'cssmin']);
-    grunt.registerTask('js', ['jshint', 'concat'/*, 'uglify'*/]);
+    grunt.registerTask('js', ['jshint', 'concat', 'uglify']);
 };
