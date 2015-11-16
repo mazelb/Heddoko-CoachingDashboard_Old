@@ -19,57 +19,82 @@ module.exports = function(grunt) {
 
         copy: {
             main: {
-                files: [{
-                    //for bootstrap fonts
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/jquery/dist',
-                    src: ['jquery.min.js','jquery.min.map'],
-                    dest: 'public/js'
-                },{
-                    //for bootstrap fonts
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/bootstrap/dist',
-                    src: ['fonts/*.*'],
-                    dest: 'public'
-                },{
-                    //for weather fonts
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/weather-icons',
-                    src: ['font/*.*'],
-                    dest: 'public'
-                },{
-                    //for font-awesome
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components/font-awesome',
-                    src: ['fonts/*.*'],
-                    dest: 'public'
-                },
-                {
-                    //for Images
-                    expand: true,
-                    dot: true,
-                    cwd: 'angular-app/images',
-                    src: ['*.*','background/*','logo/*'],
-                    dest: 'public/images'
-                }]
+                files: [
+                    //
+                    // // jQuery
+                    // {
+                    //     expand: true,
+                    //     dot: true,
+                    //     cwd: 'bower_components/jquery/dist',
+                    //     src: ['jquery.min.js','jquery.min.map'],
+                    //     dest: 'public/js'
+                    // },
+                    //
+                    // // Bootstrap fonts
+                    // {
+                    //     expand: true,
+                    //     dot: true,
+                    //     cwd: 'bower_components/bootstrap/dist',
+                    //     src: ['fonts/*.*'],
+                    //     dest: 'public'
+                    // },
+                    //
+                    // // Weather icons
+                    // {
+                    //     expand: true,
+                    //     dot: true,
+                    //     cwd: 'bower_components/weather-icons',
+                    //     src: ['font/*.*'],
+                    //     dest: 'public'
+                    // },
+                    //
+                    // // Font-awesome
+                    // {
+                    //     expand: true,
+                    //     dot: true,
+                    //     cwd: 'bower_components/font-awesome',
+                    //     src: ['fonts/*.*'],
+                    //     dest: 'public'
+                    // },
+                    //
+                    // // Other images
+                    // {
+                    //     expand: true,
+                    //     dot: true,
+                    //     cwd: 'angular-app/images',
+                    //     src: ['*.*','background/*','logo/*'],
+                    //     dest: 'public/images'
+                    // }
+                ]
             }
         },
 
+        // uglify: {
+        //     dist: {
+        //         files: {
+        //             'public/js/app.js': [ 'public/js/app.js' ]
+        //         },
+        //         options: {
+        //             mangle: false,
+        //             preserveComments: 'some'
+        //         }
+        //     }
+        // },
+
         uglify: {
+            options: {
+                mangle: true
+            },
             dist: {
                 files: {
-                    'public/js/app.js': [ 'public/js/app.js' ]
-                },
-                options: {
-                    mangle: false,
-                    preserveComments: 'some'
+                    'resources/assets/build/scripts.js': [
+                        'resources/assets/js/**/*.js',
+                        'resources/assets/js/*.js'
+                    ]
                 }
             }
         },
+
         cssmin: {
             combine: {
                 files: {
@@ -79,6 +104,7 @@ module.exports = function(grunt) {
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
                         'bower_components/chartist/dist/chartist.min.css',
+                        'bower_components/intro.js/minified/introjs.min.css',
                         'angular-app/styles/main.css'
                     ]
                 }
@@ -151,6 +177,9 @@ module.exports = function(grunt) {
                     // http://www.chartjs.org/
                     'bower_components/chartjs/Chart.min.js',
 
+                    // Intro.js: for onboarding.
+                    'bower_components/intro.js/minified/intro.min.js',
+
                     'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
                     'bower_components/easypie/dist/angular.easypiechart.min.js',
                     'bower_components/angular-wizard/dist/angular-wizard.js',
@@ -165,16 +194,16 @@ module.exports = function(grunt) {
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
 
-                    // AngularJS files.
-                    'resources/assets/js/**/*.js',
-                    'resources/assets/js/*.js'
+                    // Application scripts.
+                    'resources/assets/build/scripts.js'
                 ],
+
                 dest: 'public/js/app.js'
             }
         },
 
         jshint: {
-            all: [
+            dist: [
                 'Gruntfile.js',
                 'resources/assets/js/*.js',
                 'resources/assets/js/**/*.js'
@@ -182,43 +211,62 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            dev: {
+            dist: {
                 files: [
                     'Gruntfile.js',
                     'resources/assets/js/*.js',
                     'resources/assets/js/**/*.js',
                     'angular-app/styles/*.scss'
                 ],
-                // tasks: [ 'jshint', 'html2js:dist', 'copy:main', 'concat:dist', 'clean:temp', 'sass', 'cssmin' ],
                 tasks: [
-                    'jshint',
+                    'jshint:dist',
+                    'uglify:dist',
+                    'clean:temp',
                     'concat:dist',
                     'sass'
                 ],
                 options: {
                     atBegin: true
                 }
-            },
-            min: {
-                files: [
-                    'Gruntfile.js',
-                    'resources/assets/js/*.js',
-                    'resources/assets/js/**/*.js',
-                    'angular-app/styles/*.scss'
-                ],
-                tasks: [
-                    'jshint',
-                    'html2js:dist',
-                    'copy:main',
-                    'concat:dist',
-                    'clean:temp',
-                    'uglify:dist',
-                    'cssmin'
-                ],
-                options: {
-                    atBegin: true
-                }
             }
+            // dev: {
+            //     files: [
+            //         'Gruntfile.js',
+            //         'resources/assets/js/*.js',
+            //         'resources/assets/js/**/*.js',
+            //         'angular-app/styles/*.scss'
+            //     ],
+            //     // tasks: [ 'jshint', 'html2js:dist', 'copy:main', 'concat:dist', 'clean:temp', 'sass', 'cssmin' ],
+            //     tasks: [
+            //         'jshint',
+            //         'concat:dist',
+            //         'sass',
+            //         'cssmin'
+            //     ],
+            //     options: {
+            //         atBegin: true
+            //     }
+            // },
+            // min: {
+            //     files: [
+            //         'Gruntfile.js',
+            //         'resources/assets/js/*.js',
+            //         'resources/assets/js/**/*.js',
+            //         'angular-app/styles/*.scss'
+            //     ],
+            //     tasks: [
+            //         'jshint',
+            //         'html2js:dist',
+            //         'copy:main',
+            //         'concat:dist',
+            //         'clean:temp',
+            //         'uglify:dist',
+            //         'cssmin'
+            //     ],
+            //     options: {
+            //         atBegin: true
+            //     }
+            // }
         },
 
         compress: {
@@ -265,9 +313,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-bower-task');
 
-    grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
-    grunt.registerTask('production', [ 'bower', 'watch:min' ]);
+    // grunt.registerTask('dev', [ 'bower', 'watch:dev' ]);
+    // grunt.registerTask('production', [ 'bower', 'watch:min' ]);
 
     grunt.registerTask('css', ['sass', 'cssmin']);
-    grunt.registerTask('js', ['jshint', 'concat', 'uglify']);
+    grunt.registerTask('js', ['jshint', 'uglify', 'concat']);
 };

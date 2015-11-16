@@ -10,7 +10,7 @@ angular.module('backendHeddoko', [])
 /**
  * Teams factory.
  */
-.factory('Teams', function($http) {
+.factory('Teams', ['$http', function($http) {
 
 	return {
 
@@ -75,12 +75,12 @@ angular.module('backendHeddoko', [])
             return $http.post('/api/teams/'+ groupId +'/photo', {photo: fileData});
         }
 	};
-})
+}])
 
 /**
  * Athletes factory.
  */
-.factory('Athletes', function($http) {
+.factory('Athletes', ['$http', function($http) {
 
 	return {
 
@@ -134,9 +134,9 @@ angular.module('backendHeddoko', [])
             return $http.post('/api/teams/'+ groupId +'/athletes/'+ profileId +'/photo', {photo: fileData});
         }
 	};
-})
+}])
 
-.factory('FMSForm', function($http) {
+.factory('FMSForm', ['$http', function($http) {
 
 	return {
 
@@ -245,9 +245,9 @@ angular.module('backendHeddoko', [])
 		}
 	};
 
-})
+}])
 
-.factory('Sports', function($http) {
+.factory('Sports', ['$http', function($http) {
 
 	return {
 
@@ -262,9 +262,9 @@ angular.module('backendHeddoko', [])
 		}
 	};
 
-})
+}])
 
-.factory('SportMovements', function($http) {
+.factory('SportMovements', ['$http', function($http) {
 
 	return {
 
@@ -279,9 +279,9 @@ angular.module('backendHeddoko', [])
 		}
 
 	};
-})
+}])
 
-.factory('Movements', function($http) {
+.factory('Movements', ['$http', function($http) {
 
 	return {
 
@@ -308,4 +308,4 @@ angular.module('backendHeddoko', [])
 			});
 		}
 	};
-});
+}]);

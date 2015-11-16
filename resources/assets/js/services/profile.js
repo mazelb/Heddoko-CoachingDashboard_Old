@@ -6,51 +6,53 @@
  */
 angular.module('app.services')
 
-.factory('ProfileService', function($http) {
+.factory('ProfileService', ['$http',
+    function($http) {
 
-    return {
+        return {
 
-        /**
-         *
-         */
-        get: function(groupId) {
+            /**
+             *
+             */
+            get: function(groupId) {
 
-            // Add group ID to request parameters.
-            var config = groupId ? {params: {group: groupId}} : {};
+                // Add group ID to request parameters.
+                var config = groupId ? {params: {group: groupId}} : {};
 
-			return $http.get('/api/profile', config);
-		},
+    			return $http.get('/api/profile', config);
+    		},
 
-        /**
-         *
-         */
-        create: function(data) {
-            return $http.post('/api/profile', data);
-		},
+            /**
+             *
+             */
+            create: function(data) {
+                return $http.post('/api/profile', data);
+    		},
 
-        /**
-         *
-         */
-        update: function(id, data) {
-            return $http.put('/api/profile/' + id, data);
-		},
+            /**
+             *
+             */
+            update: function(id, data) {
+                return $http.put('/api/profile/' + id, data);
+    		},
 
-        /**
-         *
-         */
-        destroy: function(id) {
-			return $http.delete('/api/profile/' + id);
-		},
+            /**
+             *
+             */
+            destroy: function(id) {
+    			return $http.delete('/api/profile/' + id);
+    		},
 
-        /**
-         * Updates the avatar.
-         *
-         * @param int id
-         * @param object fileData
-         * @return $http
-         */
-        setAvatar: function(id, fileData) {
-            return $http.post('/api/profile/'+ id +'/photo', {image: fileData});
-        }
-    };
-});
+            /**
+             * Updates the avatar.
+             *
+             * @param int id
+             * @param object fileData
+             * @return $http
+             */
+            setAvatar: function(id, fileData) {
+                return $http.post('/api/profile/'+ id +'/photo', {image: fileData});
+            }
+        };
+    }
+]);

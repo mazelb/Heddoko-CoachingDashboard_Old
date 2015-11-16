@@ -6,40 +6,42 @@
  */
 angular.module('app.services')
 
-.factory('FMSService', function($http) {
+.factory('FMSService', ['$http',
+    function($http) {
 
-    return {
+        return {
 
-        /**
-         *
-         */
-        get: function(profileId) {
+            /**
+             *
+             */
+            get: function(profileId) {
 
-            // Add profile ID to request parameters.
-            var config = profileId ? {params: {profile_id: profileId}} : {};
+                // Add profile ID to request parameters.
+                var config = profileId ? {params: {profile_id: profileId}} : {};
 
-			return $http.get('/api/fms', config);
-		},
+                return $http.get('/api/fms', config);
+            },
 
-        /**
-         *
-         */
-        create: function(data) {
-            return $http.post('/api/fms', data);
-		},
+            /**
+             *
+             */
+            create: function(data) {
+                return $http.post('/api/fms', data);
+            },
 
-        /**
-         *
-         */
-        update: function(id, data) {
-            return $http.put('/api/fms/' + id, data);
-		},
+            /**
+             *
+             */
+            update: function(id, data) {
+                return $http.put('/api/fms/' + id, data);
+            },
 
-        /**
-         *
-         */
-        destroy: function(id) {
-			return $http.delete('/api/fms/' + id);
-		},
-    };
-});
+            /**
+             *
+             */
+            destroy: function(id) {
+                return $http.delete('/api/fms/' + id);
+            },
+        };
+    }
+]);
