@@ -115,7 +115,7 @@ module.exports = function(grunt) {
 
                     // Main dependencides.
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'angular-app/scripts/gmap.js',
+                    // 'angular-app/scripts/gmap.js',
                     'bower_components/slimScroll/jquery.slimscroll.min.js',
                     'bower_components/angular/angular.min.js',
                     'bower_components/angular-animate/angular-animate.min.js',
@@ -164,8 +164,12 @@ module.exports = function(grunt) {
                     'angular-app/scripts/extras.js',
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
-                    'angular-app/app/**/*.js',
-                    'angular-app/app/*.js'
+
+                    // AngularJS files.
+                    'resources/assets/js/**/*.js',
+                    // 'angular-app/app/**/*.js',
+                    'resources/assets/js/*.js'
+                    // 'angular-app/app/*.js'
                 ],
                 dest: 'public/js/app.js'
             }
