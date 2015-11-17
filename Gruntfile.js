@@ -69,21 +69,11 @@ module.exports = function(grunt) {
             }
         },
 
-        // uglify: {
-        //     dist: {
-        //         files: {
-        //             'public/js/app.js': [ 'public/js/app.js' ]
-        //         },
-        //         options: {
-        //             mangle: false,
-        //             preserveComments: 'some'
-        //         }
-        //     }
-        // },
-
         uglify: {
             options: {
-                mangle: true
+                mangle: {
+                    except: ['jQuery', '$']
+                }
             },
             dist: {
                 files: {

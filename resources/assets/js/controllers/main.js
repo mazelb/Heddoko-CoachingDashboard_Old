@@ -9,10 +9,14 @@ angular.module('app.controllers')
 
 .controller('MainController',
     ['$scope', '$sessionStorage', '$localStorage',
-    'ProfileService', 'GroupService',
-    "Teams", "Athletes", "Sports",
-    "loggit", "Rover", 'appVersion', "assetVersion", "isLocalEnvironment",
-    function($scope, $sessionStorage, $localStorage, ProfileService, GroupService, Teams, Athletes, Sports, loggit, Rover, appVersion, assetVersion, isLocalEnvironment) {
+    'ProfileService', 'GroupService', 'OnboardingService',
+    "Teams", "Athletes", "Sports", "loggit",
+    'Rover', 'appVersion', 'assetVersion', 'isLocalEnvironment',
+    function(
+        $scope, $sessionStorage, $localStorage,
+        ProfileService, GroupService, OnboardingService,
+        Teams, Athletes, Sports, loggit,
+        Rover, appVersion, assetVersion, isLocalEnvironment) {
 
         Rover.debug('MainController');
 
@@ -32,7 +36,13 @@ angular.module('app.controllers')
 
             // By tying the local scope to the sessionStorage, we can persist data until the user
             // logs out.
-            'state': Rover.state
+            'state': Rover.state,
+
+            // Onboarding messages.
+            onboarding:
+            {
+                general: OnboardingService.general
+            }
         };
 
         // Tie the local scope to the user-namespaced sessionStorage.

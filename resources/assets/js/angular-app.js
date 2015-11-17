@@ -143,7 +143,8 @@ app.config(['$routeProvider', 'assetVersion',
 ])
 
 // Runs the application.
-.run(['$rootScope', '$location', 'Rover', function ($rootScope, $location, Rover) {
+.run(['$rootScope', '$location', 'Rover', 'OnboardingService',
+    function ($rootScope, $location, Rover, OnboardingService) {
 
         Rover.debug('Running app...');
 

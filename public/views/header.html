@@ -22,7 +22,7 @@
             <li style="display: block; width: 20px; height: 1px;"></li>
 
             <!-- Settings page -->
-            <li class="pull-right">
+            <li class="pull-right onboarding-general" data-step="1" data-intro="This is the settings button">
                 <div class="btn-group">
                     <button class="btn btn-default" ng-click="Rover.browseTo.config()">
                         Settings &nbsp;&nbsp;<i class="fa fa-cog"></i>
@@ -31,7 +31,12 @@
             </li>
 
             <!-- Group dropdown -->
-			<li ng-hide="global.state.group.list.length === 0">
+			<li
+                ng-hide="global.state.group.list.length === 0"
+                class="onboarding-general"
+                data-step="3"
+                data-intro="This is the groups button">
+
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
@@ -67,7 +72,12 @@
             </li>
 
             <!-- Member dropdown -->
-			<li ng-hide="global.state.profile.list.length === 0">
+			<li
+                ng-hide="global.state.profile.list.length === 0"
+                class="onboarding-general"
+                data-step="2"
+                data-intro="This is the profiles button">
+
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
