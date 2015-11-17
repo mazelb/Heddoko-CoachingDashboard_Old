@@ -93,24 +93,12 @@
                         class="btn btn-primary btn-metro"
                         ng-repeat="profile in global.state.profile.list"
                         ng-click="Rover.browseTo.profile(profile)"
-                        style="background-image: url({{ profile.photo_src || '' }});background-size: cover;">
+                        style="background-image: url({{ profile.avatar_src || '' }});background-size: cover;">
 
                         <div class="btn-title">{{ profile.first_name }}</div>
                     </a>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Debug -->
-    <div ng-show="global.isLocal" class="panel panel-default">
-        <div class="panel-heading">
-            Debug
-        </div>
-
-        <div class="panel-body">
-            Profile list: {{ global.state.profile.list }} <br><br>
-            Selected profile: {{ global.state.profile.selected }}
         </div>
     </div>
 </div>

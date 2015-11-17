@@ -1,6 +1,8 @@
 <?php
 /**
- *
+ * @brief   Handles profile actions.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Http\Controllers;
 
@@ -9,6 +11,7 @@ use Auth;
 use App\Models\Group;
 use App\Http\Requests;
 use App\Models\Profile;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -32,13 +35,15 @@ class ProfileController extends Controller
         // TODO: filter profiles somehow.
 
 
-        // Filter by group.
+        // Retrieve query builder.
         $groupId = (int) $this->request->input('group');
         if ($groupId && $group = Group::find($groupId)) {
-            return $group->profiles;
+            $builder = $group->profiles();
+        } else {
+            $builder = Profile::query();
         }
 
-        return Profile::all();
+        return $builder->with('avatar')->get();
     }
 
     /**
@@ -151,41 +156,32 @@ class ProfileController extends Controller
      *
      * @param int $id
      */
-    public function updatePhoto($id)
+    public function avatar($id)
     {
         // Make sure we have a valid profile.
-        $profile = $this->getProfile($id);
+        if (!$profile = Profile::find($id)) {
+            return response('Profile Not Found.', 404);
+        }
 
         // Check image.
-        if (!$originalPhoto = $this->request->file('photo')) {
-            return ['error' => 'File not received.'];
-        } elseif (!preg_match('#^(image/[a-z]+)$#', $originalPhoto->getMimeType())) {
-            return ['error' => 'Invalid MIME type.'];
+        if (!$original = $this->request->file('image')) {
+            return response('No File Received.', 400);
+        } elseif (!preg_match('#^(image/[a-z]+)$#', $original->getMimeType())) {
+            return response('Invalid MIME type.', 400);
         }
 
-        // Delete existing avatars.
-        $name = 'profile_'. $profileId;
-        foreach (glob(public_path() .'/demo/avatars/'. $name .'.*') as $existingPhoto) {
-            unlink($existingPhoto);
+        // Delete previous avatar.
+        if ($profile->avatar) {
+            $profile->avatar->delete();
         }
 
-        // Upload new avatar.
-        $filePath = public_path() .'/demo/avatars';
-        $fileName = $name .'.'. $originalPhoto->getClientOriginalExtension();
-        $movedPhoto = $originalPhoto->move($filePath, $fileName);
+        // Save avatar data.
+        $profile->avatar()->create([
+            'data_uri' => base64_encode(file_get_contents($original->getRealPath())),
+            'mime_type' => $original->getMimeType()
+        ]);
 
-        // Save the source in the database record.
-        $profile->photo_src = '/demo/avatars/'. $fileName;
-        $profile->save();
-
-        // Update the "updated_at" field.
-        $profile->touch();
-
-        return [
-            'error' => null,
-            'photo_src' => $profile->photo_src,
-            'list' => $group->athletes
-        ];
+        return response($profile->avatar, 200);
     }
 
     /**

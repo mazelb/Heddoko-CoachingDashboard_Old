@@ -36,7 +36,7 @@ Route::get('/', ['middleware' => 'auth', function()
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
     // Profile endpoints.
-    Route::post('profile/{id}/photo', 'ProfileController@updatePhoto');
+    Route::post('profile/{id}/avatar', 'ProfileController@avatar');
     Route::resource('profile', 'ProfileController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);

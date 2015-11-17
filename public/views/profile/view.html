@@ -1,5 +1,6 @@
 
-<div class="page page-dashboard">
+<!-- Profile summary -->
+<div ng-show="profile.id" class="page">
 
     <div class="row">
         <!-- Breadcrumbs -->
@@ -66,21 +67,25 @@
     <section>
     	<div class="row">
 
+            <!-- Avatar -->
     		<div class="col-md-6 col-sm-12">
-
-                <!-- Avatar -->
-                <img
-                    ng-show="profile.photo_src.length > 0"
-                    src="{{ profile.photo_src + '?' + profile.updated_at }}"
-                    alt="{{ profile.first_name }}"
-                    style="margin: 5% 30%; width: 40%;">
-
-                <!-- Profile details -->
-                <div data-ng-include="'views/profile/partials/details.html?' + global.assetVersion"></div>
+                <div class="text-center" style="margin: 5% 20%; width: 60%;">
+                    <ui-avatar
+                        data-upload-endpoint="uploadImageEndpoint"
+                        data-src="profile.avatar_src">
+                    </ui-avatar>
+                </div>
     		</div>
 
-            <!-- Medical information -->
-    		<div class="col-md-6 col-sm-12">
+            <!-- Profile details -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'views/profile/partials/details.html?' + global.assetVersion"></div>
+            </div>
+        </div>
+
+        <!-- Medical information -->
+        <div class="row">
+    		<div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Medical Information
@@ -152,12 +157,25 @@
 
                         <div class="panel-body">
                             FMS Forms: {{ fmsForms }} <br><br>
-                            Profile alias: {{ profile }} <br> <br>
-                            Profile avatar: {{ profile.photo_src }} <br> <br>
-                            Profile global: {{ global.state.profile.selected }} <br> <br>
+                            Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>
+                            Profile global: ({{ global.state.profile.selected.id }}) <br>
                         </div>
                     </div>
                 </div>
             </div>
     </section>
+</div>
+
+<!-- No profile selected -->
+<div ng-show="profile.id === 0" class="page">
+    <h1 class="text-center">No profile selected</h1>
+    <br>
+
+    <div class="text-center">
+        Please select a profile to view its details.
+        <br>
+
+        You can also take this opportunity to
+        <a ng-click="Rover.browseTo.path('profile/create')" href="javascript:;">create one</a>.
+    </div>
 </div>

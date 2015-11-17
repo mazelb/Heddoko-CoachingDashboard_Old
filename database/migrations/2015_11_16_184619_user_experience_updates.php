@@ -76,6 +76,16 @@ class UserExperienceUpdates extends Migration
             // Marker comment.
             $table->string('comment')->nullable();
         });
+
+        // Increase the length of dataURI field for images.
+        Schema::table('images', function(Blueprint $table)
+        {
+            $table->dropColumn('data_uri');
+        });
+        Schema::table('images', function(Blueprint $table)
+        {
+            $table->mediumText('data_uri');
+        });
     }
 
     /**
@@ -85,6 +95,16 @@ class UserExperienceUpdates extends Migration
      */
     public function down()
     {
+        // Reset length of dataURI field for images.
+        Schema::table('images', function(Blueprint $table)
+        {
+            $table->dropColumn('data_uri');
+        });
+        Schema::table('images', function(Blueprint $table)
+        {
+            $table->text('data_uri');
+        });
+
         // Drop "movement_markers" table.
         Schema::drop('movement_markers');
 

@@ -44,32 +44,6 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // FMS tests...
-        $scope.updateFMSForms = function() {
-
-            Rover.debug('Retrieving FMS forms...');
-
-            FMSForm.get($scope.profile.id).then(
-
-                function(response) {
-                    if (response.status === 200) {
-                        Rover.debug('Received FMS forms.');
-                        Rover.debug(response.data);
-                        $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
-                    }
-                },
-
-                function(response) {
-                    Rover.debug('Error retrieving FMS forms.');
-                    Rover.debug(response);
-                }
-            );
-        };
-        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        if (!$scope.fmsForms && $scope.profile.id > 0) {
-            $scope.updateFMSForms();
-        }
-
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
 
@@ -130,6 +104,10 @@ angular.module('app.controllers')
             // Calculate the weight in pounds.
             $scope.profile.weight_lbs = $scope.profile.mass > 0 ?
                 Math.round($scope.profile.mass / 0.453592) : '';
+
+            // Build avatar SRC from data uri and mime type.
+            $scope.profile.avatar_src = $scope.profile.avatar ?
+                'data:'+ $scope.profile.avatar.mime_type +';base64,'+ $scope.profile.avatar.data_uri : '';
         };
 
         // Submits the new profile form.
@@ -282,49 +260,74 @@ angular.module('app.controllers')
         };
 
         // Uploads a profile avatar.
-        $scope.uploadPhoto = function(fileData) {
+        $scope.uploadImageEndpoint = '/api/profile/'+ $scope.profile.id +'/avatar';
+        // $scope.uploadPhoto = function(fileData) {
+        //
+        //     // Performance check.
+        //     if (!fileData) {
+        //         return;
+        //     }
+        //
+        //     Rover.debug('Uploading profile avatar...');
+        //     Rover.debug(fileData);
+        //     Rover.addBackgroundProcess();
+        //
+        //     Upload.upload({
+        //        url: '/api/profile/'+ $scope.profile.id +'/avatar',
+        //        data: {photo: fileData}
+        //    }).then(
+        //
+        //         // On success.
+        //         function(response) {
+        //             Rover.doneBackgroundProcess();
+        //
+        //             if (response.status === 200) {
+        //
+        //                 // Update the avatar on the currently selected profile.
+        //                 $scope.global.state.profile.selected.photo_src = response.data.photo_src;
+        //                 $scope.profile.photo_src = response.data.photo_src;
+        //
+        //                 // Update the list of profiles.
+        //                 $scope.global.state.profile.list = response.data.list;
+        //
+        //                 Rover.debug(response.data);
+        //             }
+        //         },
+        //
+        //         // On failure.
+        //         function(response) {
+        //             $scope.avatar = null;
+        //             Rover.doneBackgroundProcess();
+        //             Rover.debug('Could not upload avatar: ' + response.responseText);
+        //         }
+        //     );
+        // };
 
-            // Performance check.
-            if (!fileData) {
-                return;
-            }
+        // FMS tests...
+        $scope.updateFMSForms = function() {
 
-            Rover.debug('Uploading profile avatar...');
-            Rover.debug(fileData);
-            Rover.addBackgroundProcess();
+            Rover.debug('Retrieving FMS forms...');
 
-            Upload.upload({
-            //    url: '/api/teams/'+ $scope.group.id +'/athletes/'+ $scope.profile.id +'/photo',
-               url: '/api/profile/'+ $scope.profile.id +'/photo',
-               data: {photo: fileData}
-           }).then(
+            FMSForm.get($scope.profile.id).then(
 
-                // On success.
                 function(response) {
-                    Rover.doneBackgroundProcess();
-
                     if (response.status === 200) {
-
-                        // Update the avatar on the currently selected profile.
-                        $scope.global.state.profile.selected.photo_src = response.data.photo_src;
-                        $scope.profile.photo_src = response.data.photo_src;
-
-                        // Update the list of profiles.
-                        $scope.global.state.profile.list = response.data.list;
-
+                        Rover.debug('Received FMS forms.');
                         Rover.debug(response.data);
+                        $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
                     }
                 },
 
-                // On failure.
                 function(response) {
-                    $scope.avatar = null;
-                    Rover.doneBackgroundProcess();
-                    Rover.debug('Could not upload avatar: ' + response.responseText);
+                    Rover.debug('Error retrieving FMS forms.');
+                    Rover.debug(response);
                 }
             );
-
         };
+        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
+        if (!$scope.fmsForms && $scope.profile.id > 0) {
+            $scope.updateFMSForms();
+        }
 
         $scope.$watch('global.state.profile.selected', function(newPro, oldPro)
         {

@@ -1,6 +1,8 @@
 <?php
 /**
- *
+ * @brief   Database model for profiles.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Models;
 
@@ -58,6 +60,13 @@ class Profile extends Model
      */
     public function movements() {
         return $this->morphMany('App\Models\Movement', 'belongs_to');
+    }
+
+    /**
+     * Profile avatar.
+     */
+    public function avatar() {
+        return $this->morphOne('App\Models\Image', 'belongs_to');
     }
 
     /**

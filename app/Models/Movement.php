@@ -41,7 +41,7 @@ class Movement extends Model
     /**
      * Profile or movement screening test this movement belongs to.
      */
-	public function belongsTo()
+	public function parent()
 	{
 		return $this->morphTo();
 	}
