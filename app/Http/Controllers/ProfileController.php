@@ -47,20 +47,9 @@ class ProfileController extends Controller
         $profiles = $builder->with('avatar')->get();
 
         // Resize avatars.
-        if (count($profiles))
-        {
-            foreach ($profiles as $profile)
-            {
-                if (!$profile->avatar) {
-                    continue;
-                }
-
-                $avatar = Image::make($profile->avatar->data_uri);
-                if ($avatar->width() > 60) {
-                    $avatar->widen(60);
-                }
-
-                $profile->avatar->data_uri = (string) $avatar->encode('data-url');
+        if (count($profiles)) {
+            foreach ($profiles as $profile) {
+                $profile->resizeAvatar(200);
             }
         }
 
@@ -191,7 +180,7 @@ class ProfileController extends Controller
      *
      * @param int $id
      */
-    public function avatar($id)
+    public function saveAvatar($id)
     {
         // Make sure we have a valid profile.
         if (!$profile = Profile::find($id)) {
@@ -211,20 +200,33 @@ class ProfileController extends Controller
         }
 
         // Save avatar data.
-        $profile->avatar()->create([
+        $avatar = $profile->avatar()->create([
             'data_uri' => base64_encode(file_get_contents($original->getRealPath())),
             'mime_type' => $original->getMimeType()
         ]);
 
-        return response($profile->avatar, 200);
+        return [
+            'list' => $this->index(),
+            'avatar' => $avatar
+        ];
     }
 
     /**
      *
      */
-    public function destroyPhoto($id)
+    public function destroyAvatar($id)
     {
+        // Make sure we have a valid profile.
+        if (!$profile = Profile::find($id)) {
+            return response('Profile Not Found.', 404);
+        }
 
+        // Delete avatar.
+        $profile->avatar()->delete();
+
+        return [
+            'list' => $this->index()
+        ];
     }
 
     /**

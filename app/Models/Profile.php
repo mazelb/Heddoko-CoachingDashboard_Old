@@ -6,6 +6,8 @@
  */
 namespace App\Models;
 
+use Image;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
@@ -33,6 +35,16 @@ class Profile extends Model
         'notes',
         'meta'
     ];
+
+    /**
+     * Attributes which should be appended to the model's array form.
+     */
+    protected $appends = ['avatar_src'];
+
+    /**
+     * Attributes which should be hidden from the models' array form.
+     */
+    protected $hidden = ['avatar'];
 
     /**
      * Groups profile belongs to.
@@ -67,6 +79,28 @@ class Profile extends Model
      */
     public function avatar() {
         return $this->morphOne('App\Models\Image', 'belongs_to');
+    }
+
+    /**
+     * Resizes the profile's avatar.
+     *
+     * @param int $width
+     */
+    public function resizeAvatar($width)
+    {
+        // Performance check.
+        if (!$this->avatar) {
+            return;
+        }
+
+        $avatar = Image::make($this->avatar->data_uri);
+
+        if ($avatar->width() > $width)
+        {
+            $avatar->widen($width);
+            $this->avatar->data_uri = (string) $avatar->encode('data-url');
+            $this->avatar->data_uri = preg_replace('/^(data:image\/[a-z]+;base64,)/', '', $this->avatar->data_uri);
+        }
     }
 
     /**
@@ -120,6 +154,16 @@ class Profile extends Model
         }
 
         $this->attributes['gender'] = $gender;
+    }
+
+    /**
+     * Accessor for $this->avatar_src.
+     *
+     * @param string $src
+     * @return string
+     */
+    public function getAvatarSrcAttribute($src = '') {
+        return $this->avatar ? 'data:'. $this->avatar->mime_type .';base64,'. $this->avatar->data_uri : '';
     }
 
     /**

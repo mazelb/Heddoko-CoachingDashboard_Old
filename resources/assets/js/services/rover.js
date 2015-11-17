@@ -6,8 +6,8 @@
  */
 angular.module('app.rover', [])
 
-.service('Rover', ['$window', '$sessionStorage', '$route', '$location', '$log',
-    function($window, $sessionStorage, $route, $location, $log) {
+.service('Rover', ['$window', '$sessionStorage', '$route', '$location', '$log', '$timeout',
+    function($window, $sessionStorage, $route, $location, $log, $timeout) {
 
         // Dev variables.
         this.timestamp = Date.now();
@@ -46,9 +46,13 @@ angular.module('app.rover', [])
             this.backgroundProcessCount--;
             this.debug('Background processes: ' + this.backgroundProcessCount);
 
-            // Remove loading animation.
-            if (this.backgroundProcessCount < 1) {
-                this.hideLoading();
+            // Remove loading animation. We delay this by half a second to let the app's
+            // bindings to update
+            if (this.backgroundProcessCount < 1)
+            {
+                $timeout(function() {
+                    this.hideLoading();
+                }.bind(this), 500);
             }
         }.bind(this);
 
@@ -154,20 +158,6 @@ angular.module('app.rover', [])
 
             window.location.assign('/auth/logout');
 
-        }.bind(this);
-
-        //
-        // Shortcuts to update the application state.
-        //
-
-        // Updates the selected group.
-        this.updateGroup = function(group) {
-            this.state.group.selected = group;
-        }.bind(this);
-
-        // Updates the selected member.
-        this.updateMember = function(member) {
-            this.state.member.selected = member;
         }.bind(this);
 
         //

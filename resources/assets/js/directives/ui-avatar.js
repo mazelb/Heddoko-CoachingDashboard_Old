@@ -45,10 +45,9 @@ angular.module('app.directives')
                         // Update image on success.
                         function(response) {
 
-                            // Update image source.
-                            $scope.avatarSrc = 'data:' + response.data.mime_type + ';base64,' + response.data.data_uri;
-
-                            // Remove uploading flag.
+                            $scope.avatarSrc =
+                                'data:' + response.data.avatar.mime_type +
+                                ';base64,' + response.data.avatar.data_uri;
                             $scope.isUploading = false;
                         },
 
@@ -56,12 +55,9 @@ angular.module('app.directives')
                         function(response) {
 
                             Rover.alert('Could not upload avatar. Please try again later.');
-
-                            // Remove uploading flag.
                             $scope.isUploading = false;
                         }
                     );
-
                 };
             }]
         };

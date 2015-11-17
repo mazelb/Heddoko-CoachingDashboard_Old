@@ -27,22 +27,8 @@
 
         <!-- Uploading notifier -->
         <i
-            ng-show="isUploading"
+            ng-show="isUploading && !avatarSrc"
             class="fa fa-spin fa-spinner"
             style="padding: 30px 40px; font-size: 5em;"></i>
     </button>
-
-    <!-- <button
-        ngf-select="uploadPhoto($file)"
-        ngf-drop
-        ng-model="avatar"
-        accept="image/*"
-        ngf-pattern="'image/*'"
-        ngf-capture="'camera'"
-        ngf-min-height="100"
-        ngf-max-size="2MB"
-        ng-class="{'btn btn-default': true, 'disabled': profile.id < 1 || true}">
-
-        Select or drag &amp; drop a photo
-    </button> -->
 </div>
