@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
 		"shpasser/gae-support-l5": "~1.0",
 		"zizaco/entrust": "dev-laravel-5",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "intervention/image": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

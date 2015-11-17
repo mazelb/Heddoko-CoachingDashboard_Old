@@ -21,21 +21,13 @@
             <!-- Spacer, to account for space lost by removing menu button -->
             <li style="display: block; width: 20px; height: 1px;"></li>
 
-            <!-- Settings page -->
-            <li class="pull-right onboarding-general" data-step="1" data-intro="This is the settings button">
-                <div class="btn-group">
-                    <button class="btn btn-default" ng-click="Rover.browseTo.config()">
-                        Settings &nbsp;&nbsp;<i class="fa fa-cog"></i>
-                    </button>
-                </div>
-            </li>
-
             <!-- Group dropdown -->
 			<li
                 ng-hide="global.state.group.list.length === 0"
                 class="onboarding-general"
-                data-step="3"
-                data-intro="This is the groups button">
+                data-step="2"
+                data-intro="Here is where you can find the groups you manage. The black arrow is a shortcut to view
+                            the <strong>{{ global.state.group.selected.name }}</strong>'s details.">
 
                 <div class="btn-group">
 
@@ -75,8 +67,11 @@
 			<li
                 ng-hide="global.state.profile.list.length === 0"
                 class="onboarding-general"
-                data-step="2"
-                data-intro="This is the profiles button">
+                data-step="3"
+                data-intro="Here is where you can find the profiles you manage. If a group is selected, the
+                            profiles listed will be restricted to that group. The black arrow is a
+                            shortcut to view <strong>{{ global.state.profile.selected.first_name }}
+                            </strong>'s details.">
 
                 <div class="btn-group">
 
@@ -142,6 +137,15 @@
                             </a>
                         </li>
                     </ul>
+                </div>
+            </li>
+
+            <!-- Settings page -->
+            <li class="pull-right onboarding-general" data-step="4" data-intro="This is the settings button">
+                <div class="btn-group">
+                    <button class="btn btn-default" ng-click="Rover.browseTo.config()">
+                        Settings &nbsp;&nbsp;<i class="fa fa-cog"></i>
+                    </button>
                 </div>
             </li>
 		</ul>
