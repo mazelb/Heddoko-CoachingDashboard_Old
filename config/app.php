@@ -111,7 +111,7 @@ return [
     'providers' => [
 
         /*
-         * Laravel Framework Service Providers...
+         * Laravel Framework Service Providers.
          */
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
@@ -138,21 +138,26 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Application Service Providers...
+         * Application Service Providers.
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-				
-				/*
-         * Google App Engine Support Service Provider...
+
+		/*
+         * Google App Engine Support Service Provider.
          */
-				Shpasser\GaeSupportL5\GaeSupportServiceProvider::class,
-				
-				/*
-				 * Entrust Roles/Permissions Service Provider...
-				 */
-				Zizaco\Entrust\EntrustServiceProvider::class,
+		Shpasser\GaeSupportL5\GaeSupportServiceProvider::class,
+
+		/*
+		 * Entrust Roles/Permissions Service Provider.
+		 */
+		Zizaco\Entrust\EntrustServiceProvider::class,
+
+        /*
+         * Intervention Image Service Provider.
+         */
+        Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -200,7 +205,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-				'Entrust' 	=> Zizaco\Entrust\EntrustFacade::class,
+		'Entrust' 	=> Zizaco\Entrust\EntrustFacade::class,
+        'Image'     => Intervention\Image\Facades\Image::class,
 
     ],
 

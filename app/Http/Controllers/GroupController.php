@@ -112,7 +112,21 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Make sure we have a valid group.
+        if (!$group = Group::with('avatar')->find($id)) {
+            return response('Group Not Found.', 404);
+        }
+
+        // Delete group avatar.
+        if ($group->avatar) {
+            $group->avatar->delete();
+        }
+
+        // Delete group and associated profiles.
+        $group->delete();
+
+        // Return remaining groups.
+        return $this->index();
     }
 
     /**

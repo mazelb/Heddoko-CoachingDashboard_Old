@@ -1,5 +1,4 @@
 /**
- * @file    profile.js
  * @brief   Controller for profile views.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015
@@ -7,8 +6,8 @@
 angular.module('app.controllers')
 
 .controller('ProfileController',
-    ['$scope', '$location', '$filter', 'Upload', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
-    function($scope, $location, $filter, Upload, Teams, Athletes, FMSForm, Rover, ProfileService, GroupService) {
+    ['$scope', '$location', '$filter', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
+    function($scope, $location, $filter, Teams, Athletes, FMSForm, Rover, ProfileService, GroupService) {
 
         Rover.debug('ProfileController');
 
@@ -55,22 +54,20 @@ angular.module('app.controllers')
             // Teams.destroy($scope.global.state.group.selected.id).then(
             GroupService.destroy($scope.global.state.group.selected.id).then(
 
-                // On success.
+                // On success, update group list and browse to groups page.
                 function(response) {
 
                     if (response.status === 200)
                     {
-                        // Update group list.
-                        $scope.global.state.group.list = response.data.list;
+                        $scope.global.state.group.list = response.data;
 
                         // Update selected group.
-                        if (response.data.list.length > 0) {
-                            $scope.global.state.group.selected = response.data.list[0];
+                        if (response.data.length > 0) {
+                            $scope.global.state.group.selected = response.data[0];
                         }
                     }
 
                     Rover.doneBackgroundProcess();
-
                     Rover.browseTo.path('/group/list');
                 },
 
@@ -80,7 +77,6 @@ angular.module('app.controllers')
                     Rover.doneBackgroundProcess();
                 }
             );
-
         };
 
         // Formats certain profile fields.
@@ -139,7 +135,7 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            ProfileService.create(profile).then(
+            ProfileService.create(profile, $scope.group.id).then(
 
                 // On success.
                 function(response) {
@@ -149,7 +145,6 @@ angular.module('app.controllers')
                     }
 
                     Rover.doneBackgroundProcess();
-
                     Rover.browseTo.profile(response.data.profile);
                 },
 
@@ -226,27 +221,23 @@ angular.module('app.controllers')
             Rover.debug('Deleting profile...');
             Rover.addBackgroundProcess();
 
-            // Athletes.destroy($scope.profile.group_id, $scope.profile.id).then(
             ProfileService.destroy($scope.profile.id).then(
 
-                // On success.
+                // On success, update profile list and browse to selected group.
                 function(response) {
 
                     // If profile was deleted, update the local list of profiles.
                     if (response.status === 200)
                     {
-                        // Update the list of profiles.
-                        $scope.global.state.profile.list = response.data.list;
+                        $scope.global.state.profile.list = response.data;
 
                         // Select another profile by default.
-                        if (response.data.list.length > 0) {
-                            $scope.global.state.profile.selected = response.data.list[0];
+                        if (response.data.length > 0) {
+                            $scope.global.state.profile.selected = response.data[0];
                         }
                     }
 
-                    // Send user to selected group's page.
                     Rover.browseTo.group();
-
                     Rover.doneBackgroundProcess();
                 },
 
@@ -259,49 +250,8 @@ angular.module('app.controllers')
             );
         };
 
-        // Uploads a profile avatar.
+        // POST endpoint for avatar uploads.
         $scope.uploadImageEndpoint = '/api/profile/'+ $scope.profile.id +'/avatar';
-        // $scope.uploadPhoto = function(fileData) {
-        //
-        //     // Performance check.
-        //     if (!fileData) {
-        //         return;
-        //     }
-        //
-        //     Rover.debug('Uploading profile avatar...');
-        //     Rover.debug(fileData);
-        //     Rover.addBackgroundProcess();
-        //
-        //     Upload.upload({
-        //        url: '/api/profile/'+ $scope.profile.id +'/avatar',
-        //        data: {photo: fileData}
-        //    }).then(
-        //
-        //         // On success.
-        //         function(response) {
-        //             Rover.doneBackgroundProcess();
-        //
-        //             if (response.status === 200) {
-        //
-        //                 // Update the avatar on the currently selected profile.
-        //                 $scope.global.state.profile.selected.photo_src = response.data.photo_src;
-        //                 $scope.profile.photo_src = response.data.photo_src;
-        //
-        //                 // Update the list of profiles.
-        //                 $scope.global.state.profile.list = response.data.list;
-        //
-        //                 Rover.debug(response.data);
-        //             }
-        //         },
-        //
-        //         // On failure.
-        //         function(response) {
-        //             $scope.avatar = null;
-        //             Rover.doneBackgroundProcess();
-        //             Rover.debug('Could not upload avatar: ' + response.responseText);
-        //         }
-        //     );
-        // };
 
         // FMS tests...
         $scope.updateFMSForms = function() {

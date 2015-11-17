@@ -7,11 +7,11 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Image;
 
 use App\Models\Group;
 use App\Http\Requests;
 use App\Models\Profile;
-use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -43,7 +43,28 @@ class ProfileController extends Controller
             $builder = Profile::query();
         }
 
-        return $builder->with('avatar')->get();
+        // Retrieve profiles.
+        $profiles = $builder->with('avatar')->get();
+
+        // Resize avatars.
+        if (count($profiles))
+        {
+            foreach ($profiles as $profile)
+            {
+                if (!$profile->avatar) {
+                    continue;
+                }
+
+                $avatar = Image::make($profile->avatar->data_uri);
+                if ($avatar->width() > 60) {
+                    $avatar->widen(60);
+                }
+
+                $profile->avatar->data_uri = (string) $avatar->encode('data-url');
+            }
+        }
+
+        return $profiles;
     }
 
     /**
@@ -148,7 +169,21 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Make sure we have a valid profile.
+        if (!$profile = Profile::with('avatar')->find($id)) {
+            return response('Profile Not Found.', 404);
+        }
+
+        // Delete avatar.
+        if ($profile->avatar) {
+            $profile->avatar->delete();
+        }
+
+        // Delete profile and associated groups/movements/screenings/tags.
+        $profile->delete();
+
+        // Return remaining groups.
+        return $this->index();
     }
 
     /**

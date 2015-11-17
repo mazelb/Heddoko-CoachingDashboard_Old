@@ -25,8 +25,12 @@ angular.module('app.services')
             /**
              *
              */
-            create: function(data) {
-                return $http.post('/api/profile', data);
+            create: function(data, groupId) {
+
+                // Add group ID to request parameters.
+                var config = groupId ? {params: {group: groupId}} : {};
+
+                return $http.post('/api/profile', data, config);
     		},
 
             /**
