@@ -67,11 +67,11 @@ body {
   -moz-osx-font-smoothing: grayscale !important; }
 
 ::selection {
-  background: #db5031;
+  background: #3bd6b2;
   color: #fff; }
 
 ::-moz-selection {
-  background: #db5031;
+  background: #3bd6b2;
   color: #fff; }
 
 span.block {
@@ -8468,4 +8468,4 @@ label {
 .c100.orange.dark:hover > span {
   color: #e08833; }
 
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=styles.css.map */

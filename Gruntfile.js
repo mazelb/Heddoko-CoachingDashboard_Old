@@ -95,7 +95,7 @@ module.exports = function(grunt) {
                         'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
                         'bower_components/chartist/dist/chartist.min.css',
                         'bower_components/intro.js/minified/introjs.min.css',
-                        'angular-app/styles/main.css'
+                        'resources/assets/build/styles.css'
                     ]
                 }
             },
@@ -206,7 +206,7 @@ module.exports = function(grunt) {
                     'Gruntfile.js',
                     'resources/assets/js/*.js',
                     'resources/assets/js/**/*.js',
-                    'angular-app/styles/*.scss'
+                    'resources/assets/sass/*.scss'
                 ],
                 tasks: [
                     'jshint:dist',
@@ -283,12 +283,22 @@ module.exports = function(grunt) {
 		sass: {
             dist: {
                 files: {
-                    'angular-app/styles/main.css': [
-                        'angular-app/styles/main.scss'
+                    'resources/assets/build/styles.css': [
+                        'resources/assets/sass/*.scss'
                     ]
                 }
             }
         }
+
+		// sass: {
+        //     dist: {
+        //         files: {
+        //             'angular-app/styles/main.css': [
+        //                 'angular-app/styles/main.scss'
+        //             ]
+        //         }
+        //     }
+        // }
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
