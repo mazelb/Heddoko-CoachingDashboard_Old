@@ -1,5 +1,8 @@
 /**
- * @file    group.js
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @brief   This service handles group-related HTTP requests.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015

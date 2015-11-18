@@ -1,5 +1,8 @@
 /**
- * @file    ui-editable-list.js
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @brief   Angular directive for editable list tables. Includes action buttons.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @note    Use as:
@@ -10,7 +13,7 @@
  */
 angular.module('app.directives')
 
-.directive('uiEditableListContainer', ['assetVersion', function(assetVersion) {
+.directive('uiEditableListContainer', function() {
     return {
         restrict: 'AE',
         transclude: true,
@@ -55,23 +58,21 @@ angular.module('app.directives')
         }],
         templateUrl: 'directive-partials/ui-editable-list-container.html'
     };
-}])
+})
 
-.directive('uiEditableListItem', [
-    function() {
-        return {
-            require: '^uiEditableListContainer',
-            restrict: 'AE',
-            scope: {
-                label: '@label',
-                display: '@display',
-                value: '=value',
-                type: '@type'
-            },
-            link: function(scope, element, attrs, controller) {
-                controller.addItem(scope);
-            },
-            templateUrl: 'directive-partials/ui-editable-list-item.html'
-        };
-    }
-]);
+.directive('uiEditableListItem', function() {
+    return {
+        require: '^uiEditableListContainer',
+        restrict: 'AE',
+        scope: {
+            label: '@label',
+            display: '@display',
+            value: '=value',
+            type: '@type'
+        },
+        link: function(scope, element, attrs, controller) {
+            controller.addItem(scope);
+        },
+        templateUrl: 'directive-partials/ui-editable-list-item.html'
+    };
+});

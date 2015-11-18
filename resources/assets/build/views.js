@@ -842,16 +842,19 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "\n" +
     "                    <!-- Link to group page -->\n" +
     "                    <button\n" +
+    "                        ng-click=\"Rover.browseTo.group(global.state.group.selected)\"\n" +
     "                        type=\"button\"\n" +
     "                        class=\"btn btn-info\"\n" +
-    "                        ng-click=\"Rover.browseTo.group(global.state.group.selected)\">\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        title=\"{{ global.state.group.selected.name }}'s page.\">\n" +
     "\n" +
     "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
     "                    </button>\n" +
     "                </div>\n" +
     "            </li>\n" +
     "\n" +
-    "            <!-- Member dropdown -->\n" +
+    "            <!-- Profile dropdown -->\n" +
     "			<li\n" +
     "                class=\"onboarding-general\"\n" +
     "                data-step=\"3\"\n" +
@@ -892,7 +895,10 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
     "                        ng-click=\"Rover.browseTo.profile(global.state.profile.selected)\"\n" +
     "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\">\n" +
+    "                        class=\"btn btn-info\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        title=\"{{ global.state.profile.selected.first_name }}'s page.\">\n" +
     "\n" +
     "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
     "                    </button>\n" +
@@ -945,8 +951,14 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "            <!-- Settings page -->\n" +
     "            <li class=\"pull-right onboarding-general\" data-step=\"4\" data-intro=\"This is the settings button\">\n" +
     "                <div class=\"btn-group\">\n" +
-    "                    <button class=\"btn btn-default\" ng-click=\"Rover.browseTo.config()\">\n" +
-    "                        Settings &nbsp;&nbsp;<i class=\"fa fa-cog\"></i>\n" +
+    "                    <button\n" +
+    "                        ng-click=\"Rover.browseTo.config()\"\n" +
+    "                        class=\"btn btn-default\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        title=\"Settings\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-cog\"></i>\n" +
     "                    </button>\n" +
     "                </div>\n" +
     "            </li>\n" +
@@ -962,8 +974,14 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "		</ul> -->\n" +
     "		<ul class=\"nav-right-button list-unstyled pull-right\">\n" +
     "			<li>\n" +
-    "				<a ng-click=\"Rover.endSession()\" class=\"btn btn-danger\">\n" +
-    "					Logout &nbsp;&nbsp;<i class=\"fa fa-sign-out\"></i>\n" +
+    "				<a\n" +
+    "                    ng-click=\"Rover.endSession()\"\n" +
+    "                    class=\"btn btn-danger\"\n" +
+    "                    data-toggle=\"tooltip\"\n" +
+    "                    data-placement=\"bottom\"\n" +
+    "                    title=\"Logout\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-sign-out\"></i>\n" +
     "				</a>\n" +
     "			</li>\n" +
     "		</ul>\n" +
@@ -1380,7 +1398,7 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
     "\n" +
     "        <!-- Uploading notifier -->\n" +
     "        <i\n" +
-    "            ng-show=\"isUploading && !avatarSrc\"\n" +
+    "            ng-show=\"isUploading\"\n" +
     "            class=\"fa fa-spin fa-spinner\"\n" +
     "            style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
     "    </button>\n" +
@@ -2899,9 +2917,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
     "        <div class=\"panel-heading\">Debug</div>\n" +
     "        <div class=\"panel-body\">\n" +
-    "            Profile: {{ profile }} <br><br>\n" +
-    "            Groups: {{ groups }} <br><br>\n" +
-    "            Selected group: {{ global.state.group.selected }}\n" +
+    "            Selected group: {{ global.state.group.selected.name }}\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -3005,10 +3021,7 @@ angular.module("profile/edit.html", []).run(["$templateCache", function($templat
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\">Debug</div>\n" +
     "            <div class=\"panel-body\">\n" +
-    "                Profile: {{ profile }} <br><br>\n" +
-    "                File data: {{ avatar }} <br><br>\n" +
-    "                Groups: {{ groups }} <br><br>\n" +
-    "                Selected group: {{ global.state.group.selected }}\n" +
+    "                Selected group: {{ global.state.group.selected.name }}\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -3405,6 +3418,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "<div ng-show=\"profile.id\" class=\"page\">\n" +
     "\n" +
     "    <div class=\"row\">\n" +
+    "\n" +
     "        <!-- Breadcrumbs -->\n" +
     "        <div class=\"col-sm-12 col-md-6\">\n" +
     "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
@@ -3419,6 +3433,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    ng-show=\"profile.id > 0\"\n" +
     "                    data-toggle=\"modal\"\n" +
     "                    data-target=\"#deleteProfileConfirmation\"\n" +
+    "                    data-toggle=\"tooltip\"\n" +
+    "                    title=\"Delete <b>{{ profile.first_name }}</b>'s profile\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
     "                    Delete <b>{{ profile.first_name }}</b>'s profile\n" +

@@ -1,4 +1,8 @@
 /**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @file    angular-app.js
  * @brief   Main angular application.
  * @author  Maxwell (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
@@ -15,7 +19,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.1';
+var _appVersion = '0.3.2';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -153,6 +157,11 @@ app.config(['$routeProvider', 'assetVersion',
         {
             // Removes the loading animation.
             Rover.doneBackgroundProcess();
+
+            // Enables tooltips.
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
         });
     }
 ]);

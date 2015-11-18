@@ -1,4 +1,8 @@
 /**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @brief   Controller for profile views.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    October 2015

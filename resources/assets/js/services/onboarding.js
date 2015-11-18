@@ -1,5 +1,8 @@
 /**
- * @file    onboarding.js
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @brief   This service takes care of onboarding visuals using Intro.js
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015

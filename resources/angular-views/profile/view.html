@@ -3,6 +3,7 @@
 <div ng-show="profile.id" class="page">
 
     <div class="row">
+
         <!-- Breadcrumbs -->
         <div class="col-sm-12 col-md-6">
             <div data-ng-include="'partials/breadcrumbs.html'"></div>
@@ -17,6 +18,8 @@
                     ng-show="profile.id > 0"
                     data-toggle="modal"
                     data-target="#deleteProfileConfirmation"
+                    data-toggle="tooltip"
+                    title="Delete <b>{{ profile.first_name }}</b>'s profile"
                     class="btn btn-danger">
 
                     Delete <b>{{ profile.first_name }}</b>'s profile

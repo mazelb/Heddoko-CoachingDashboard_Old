@@ -54,16 +54,19 @@
 
                     <!-- Link to group page -->
                     <button
+                        ng-click="Rover.browseTo.group(global.state.group.selected)"
                         type="button"
                         class="btn btn-info"
-                        ng-click="Rover.browseTo.group(global.state.group.selected)">
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="{{ global.state.group.selected.name }}'s page.">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
                 </div>
             </li>
 
-            <!-- Member dropdown -->
+            <!-- Profile dropdown -->
 			<li
                 class="onboarding-general"
                 data-step="3"
@@ -104,7 +107,10 @@
                         ng-hide="global.state.profile.list.length === 0"
                         ng-click="Rover.browseTo.profile(global.state.profile.selected)"
                         type="button"
-                        class="btn btn-info">
+                        class="btn btn-info"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="{{ global.state.profile.selected.first_name }}'s page.">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
@@ -157,8 +163,14 @@
             <!-- Settings page -->
             <li class="pull-right onboarding-general" data-step="4" data-intro="This is the settings button">
                 <div class="btn-group">
-                    <button class="btn btn-default" ng-click="Rover.browseTo.config()">
-                        Settings &nbsp;&nbsp;<i class="fa fa-cog"></i>
+                    <button
+                        ng-click="Rover.browseTo.config()"
+                        class="btn btn-default"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="Settings">
+
+                        <i class="fa fa-cog"></i>
                     </button>
                 </div>
             </li>
@@ -174,8 +186,14 @@
 		</ul> -->
 		<ul class="nav-right-button list-unstyled pull-right">
 			<li>
-				<a ng-click="Rover.endSession()" class="btn btn-danger">
-					Logout &nbsp;&nbsp;<i class="fa fa-sign-out"></i>
+				<a
+                    ng-click="Rover.endSession()"
+                    class="btn btn-danger"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Logout">
+
+                    <i class="fa fa-sign-out"></i>
 				</a>
 			</li>
 		</ul>

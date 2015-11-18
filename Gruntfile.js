@@ -1,6 +1,10 @@
 /*jslint node: true */
 "use strict";
 
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved
+ */
+
 module.exports = function(grunt) {
 
     grunt.initConfig({
@@ -212,7 +216,7 @@ module.exports = function(grunt) {
             },
             add_banner: {
                 options: {
-                    banner: '/* Heddoko Stylesheet */'
+                    banner: '/* Copyright Heddoko(TM) 2015, all rights reserved */'
                 },
                 files: {
                     'public/css/main.css': ['public/css/main.css']
