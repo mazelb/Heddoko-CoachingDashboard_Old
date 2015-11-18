@@ -8,7 +8,7 @@
 var app = angular.module('app', [
     'ngStorage', 'ngRoute', 'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
-    'app.controllers', 'app.directives', "app.form.validation", "app.ui.form.ctrls",
+    'app.views', 'app.controllers', 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services',
     'ngFileUpload'
@@ -43,49 +43,49 @@ app.config(['$routeProvider', 'assetVersion',
 
         // Main dashboard.
         .when('/dashboard', {
-            templateUrl: '/views/dashboard.html?' + assetVersion,
+            templateUrl: 'dashboard.html',
             controller: 'DashboardController'
 		})
 
         // Group routes.
         .when('/group/list', {
-            templateUrl: "/views/group/list.html?" + assetVersion,
+            templateUrl: "group/list.html",
             controller: "GroupController"
 		})
         .when('/group/view', {
-            templateUrl: '/views/group/view.html?' + assetVersion,
+            templateUrl: 'group/view.html',
             controller: 'GroupController'
 		})
         .when('/group/create', {
-			templateUrl: "/views/group/create.html?" + assetVersion,
+			templateUrl: "group/create.html",
             controller: "GroupController"
 		})
         .when('/group/edit', {
-			templateUrl: '/views/group/edit.html?' + assetVersion,
+			templateUrl: 'group/edit.html',
             controller: 'GroupController'
 		})
 
         // Profile routes.
         .when("/profile/list", {
-            templateUrl: "/views/profile/list.html?" + assetVersion,
+            templateUrl: "profile/list.html",
             controller: "ProfileController"
 		})
         .when('/profile/view', {
-			templateUrl: "/views/profile/view.html?" + assetVersion,
+			templateUrl: "profile/view.html",
             controller: "ProfileController"
 		})
         .when('/profile/create', {
-			templateUrl: "/views/profile/create.html?" + assetVersion,
+			templateUrl: "profile/create.html",
             controller: "ProfileController"
 		})
         .when('/profile/edit', {
-			templateUrl: "/views/profile/edit.html?" + assetVersion,
+			templateUrl: "profile/edit.html",
             controller: "ProfileController"
 		})
 
         // Movement data demo route.
         .when('/submit-movement', {
-			templateUrl: "/views/submit-movement-demo.html?" + assetVersion,
+			templateUrl: "submit-movement-demo.html",
             controller: 'SubmitMovementDemoController'
 		})
 
@@ -101,7 +101,7 @@ app.config(['$routeProvider', 'assetVersion',
                     tmpl = 'test';
                 }
 
-                return '/views/fms/demo/'+ tmpl +'.html?'+ assetVersion;
+                return 'fms/demo/'+ tmpl +'.html';
             },
             controller: 'FMSDemoController'
         })
@@ -118,25 +118,25 @@ app.config(['$routeProvider', 'assetVersion',
                     tmpl = 'test';
                 }
 
-                return '/views/fms/live/'+ tmpl +'.html?' + assetVersion;
+                return 'fms/live/'+ tmpl +'.html';
             },
             controller: 'FMSController'
         })
 
         // Other routes.
         .when("/config", {
-			templateUrl: "/views/config.html?" + assetVersion
+			templateUrl: "config.html"
 		})
         .when("/fmstest", {
-			templateUrl: "/views/fmstest.html?" + assetVersion
+			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {
-			templateUrl: "/views/fmsdata.html?" + assetVersion
+			templateUrl: "fmsdata.html"
 		}).when("/fmsresults", {
-			templateUrl: "/views/fmsresults.html?" + assetVersion
+			templateUrl: "fmsresults.html"
 		}).when("/movementscreen", {
-			templateUrl: "/views/movementscreen.html?" + assetVersion
+			templateUrl: "movementscreen.html"
 		}).when("/movements", {
-			templateUrl: "/views/movements.html?" + assetVersion
+			templateUrl: "movements.html"
 		}).otherwise({
 			redirectTo: '/'
 		});

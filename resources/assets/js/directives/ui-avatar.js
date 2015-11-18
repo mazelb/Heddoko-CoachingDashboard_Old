@@ -3,11 +3,6 @@
  * @brief   Angular directive for editable avatars.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
- * @note    Use as:
- *              <div ui-editable-list-container>
- *                  <div ui-editable-list-item label="Some Label" value="data.some.value">
- *                  </div>
- *              </div>
  */
 angular.module('app.directives')
 
@@ -16,7 +11,7 @@ angular.module('app.directives')
         return {
             restrict: 'E',
             transclude: true,
-            templateUrl: 'views/directive-partials/ui-avatar.html?' + assetVersion,
+            templateUrl: 'directive-partials/ui-avatar.html',
             scope: {
                 avatarSrc: '=src',
                 uploadEndpoint: '=',

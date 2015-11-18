@@ -8,18 +8,18 @@
         <meta name="user-hash" content="{{ md5(Auth::id()) }}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     </head>
-    <body id="app" data-custom-background="" data-off-canvas-nav="" data-ng-controller="MainController">
+    <body id="app" data-ng-controller="MainController">
 
         <div>
             <div data-ng-cloak="" class="no-print">
-                <aside data-ng-include=" 'views/navigation.html?' + global.assetVersion " id="nav-container">
+                <aside data-ng-include=" 'navigation.html' " id="nav-container">
                 </aside>
             </div>
 
             <div class="view-container">
                 <div class="no-print">
                     <section
-                        data-ng-include=" 'views/header.html?' + global.assetVersion "
+                        data-ng-include=" 'header.html' "
                         id="header"
                         class="top-header">
                     </section>

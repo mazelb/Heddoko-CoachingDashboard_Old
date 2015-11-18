@@ -13663,6 +13663,3592 @@ var Chartist = {
 return Chartist;
 
 }));
-;!function(t,e){"function"==typeof define&&define.amd?define(["angular","chartist"],e):"object"==typeof exports?module.exports=e(require("angular"),require("chartist")):t.angularChartist=e(t.angular,t.Chartist)}(this,function(t,e){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(){return{restrict:"EA",scope:{data:"=chartistData",chartType:"@chartistChartType",events:"&chartistEvents",chartOptions:"&chartistChartOptions",responsiveOptions:"&chartistResponsiveOptions"},controller:"AngularChartistCtrl"}}var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),i=function(){function t(e,r){var a=this;n(this,t),this.data=e.data,this.chartType=e.chartType,this.events=e.events()||{},this.options=e.chartOptions()||null,this.responsiveOptions=e.responsiveOptions()||null,this.element=r[0],this.renderChart(),e.$watch(function(){return{data:e.data,chartType:e.chartType,chartOptions:e.chartOptions()}},this.update.bind(this),!0),e.$on("$destroy",function(){a.chart&&a.chart.detach()})}return a(t,[{key:"bindEvents",value:function(){var t=this;Object.keys(this.events).forEach(function(e){t.chart.on(e,t.events[e])})}},{key:"renderChart",value:function(){return this.data?(this.chart=e[this.chartType](this.element,this.data,this.options,this.responsiveOptions),this.bindEvents(),this.chart):void 0}},{key:"update",value:function(t,e){this.chartType=t.chartType,this.data=t.data,this.options=t.chartOptions,this.chart&&t.chartType===e.chartType?this.chart.update(this.data,this.options):this.renderChart()}}]),t}();i.$inject=["$scope","$element"],r.$inject=[];var s=t.module("angular-chartist",[]).controller("AngularChartistCtrl",i).directive("chartist",r);return s});;var app=angular.module("app",["ngStorage","ngRoute","ngAnimate","ui.bootstrap","easypiechart","mgo-angular-wizard","textAngular","ui.tree","ngMap","ngTagsInput","app.ui.ctrls","app.ui.services","app.controllers","app.directives","app.form.validation","app.ui.form.ctrls","app.ui.form.directives","app.tables","app.map","app.task","app.chart.ctrls","app.chart.directives","countTo","backendHeddoko","angular-chartist","app.rover","app.services","ngFileUpload"]),_appVersion="0.3.1",_appIsLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,_appAssetVersion=_appIsLocal?Date.now():_appVersion;app.constant("appVersion",_appVersion).constant("isLocalEnvironment",_appIsLocal).constant("assetVersion",_appAssetVersion);var appServices=angular.module("app.services",["app.rover"]),appDirectives=angular.module("app.directives",["app.rover"]);app.config(["$routeProvider","assetVersion",function(a,b){return a.when("/",{redirectTo:"/dashboard"}).when("/dashboard",{templateUrl:"/views/dashboard.html?"+b,controller:"DashboardController"}).when("/group/list",{templateUrl:"/views/group/list.html?"+b,controller:"GroupController"}).when("/group/view",{templateUrl:"/views/group/view.html?"+b,controller:"GroupController"}).when("/group/create",{templateUrl:"/views/group/create.html?"+b,controller:"GroupController"}).when("/group/edit",{templateUrl:"/views/group/edit.html?"+b,controller:"GroupController"}).when("/profile/list",{templateUrl:"/views/profile/list.html?"+b,controller:"ProfileController"}).when("/profile/view",{templateUrl:"/views/profile/view.html?"+b,controller:"ProfileController"}).when("/profile/create",{templateUrl:"/views/profile/create.html?"+b,controller:"ProfileController"}).when("/profile/edit",{templateUrl:"/views/profile/edit.html?"+b,controller:"ProfileController"}).when("/submit-movement",{templateUrl:"/views/submit-movement-demo.html?"+b,controller:"SubmitMovementDemoController"}).when("/fms/demo/:name?/:step?",{templateUrl:function(a){var c="index";return a.step?c=a.step:a.name&&(c="test"),"/views/fms/demo/"+c+".html?"+b},controller:"FMSDemoController"}).when("/fms/live/:name?/:step?",{templateUrl:function(a){var c="index";return a.step?c=a.step:a.name&&(c="test"),"/views/fms/live/"+c+".html?"+b},controller:"FMSController"}).when("/config",{templateUrl:"/views/config.html?"+b}).when("/fmstest",{templateUrl:"/views/fmstest.html?"+b}).when("/fmsdata",{templateUrl:"/views/fmsdata.html?"+b}).when("/fmsresults",{templateUrl:"/views/fmsresults.html?"+b}).when("/movementscreen",{templateUrl:"/views/movementscreen.html?"+b}).when("/movements",{templateUrl:"/views/movements.html?"+b}).otherwise({redirectTo:"/"})}]).run(["$rootScope","$location","Rover","OnboardingService",function(a,b,c,d){c.debug("Running app..."),$(document).ready(function(){c.doneBackgroundProcess()})}]),angular.module("app.map",[]).directive("uiJqvmap",[function(){return{restrict:"A",scope:{options:"="},link:function(a,b){var c;return c=a.options,b.vectorMap(c)}}}]).controller("jqvmapCtrl",["$scope",function(a){var b;return b={af:"16.63",al:"11.58",dz:"158.97",ao:"85.81",ag:"1.1",ar:"351.02",am:"8.83",au:"1219.72",at:"366.26",az:"52.17",bs:"7.54",bh:"21.73",bd:"105.4",bb:"3.96",by:"52.89",be:"461.33",bz:"1.43",bj:"6.49",bt:"1.4",bo:"19.18",ba:"16.2",bw:"12.5",br:"2023.53",bn:"11.96",bg:"44.84",bf:"8.67",bi:"1.47",kh:"11.36",cm:"21.88",ca:"1563.66",cv:"1.57",cf:"2.11",td:"7.59",cl:"199.18",cn:"5745.13",co:"283.11",km:"0.56",cd:"12.6",cg:"11.88",cr:"35.02",ci:"22.38",hr:"59.92",cy:"22.75",cz:"195.23",dk:"304.56",dj:"1.14",dm:"0.38","do":"50.87",ec:"61.49",eg:"216.83",sv:"21.8",gq:"14.55",er:"2.25",ee:"19.22",et:"30.94",fj:"3.15",fi:"231.98",fr:"2555.44",ga:"12.56",gm:"1.04",ge:"11.23",de:"3305.9",gh:"18.06",gr:"305.01",gd:"0.65",gt:"40.77",gn:"4.34",gw:"0.83",gy:"2.2",ht:"6.5",hn:"15.34",hk:"226.49",hu:"132.28",is:"12.77","in":"1430.02",id:"695.06",ir:"337.9",iq:"84.14",ie:"204.14",il:"201.25",it:"2036.69",jm:"13.74",jp:"5390.9",jo:"27.13",kz:"129.76",ke:"32.42",ki:"0.15",kr:"986.26",undefined:"5.73",kw:"117.32",kg:"4.44",la:"6.34",lv:"23.39",lb:"39.15",ls:"1.8",lr:"0.98",ly:"77.91",lt:"35.73",lu:"52.43",mk:"9.58",mg:"8.33",mw:"5.04",my:"218.95",mv:"1.43",ml:"9.08",mt:"7.8",mr:"3.49",mu:"9.43",mx:"1004.04",md:"5.36",mn:"5.81",me:"3.88",ma:"91.7",mz:"10.21",mm:"35.65",na:"11.45",np:"15.11",nl:"770.31",nz:"138",ni:"6.38",ne:"5.6",ng:"206.66",no:"413.51",om:"53.78",pk:"174.79",pa:"27.2",pg:"8.81",py:"17.17",pe:"153.55",ph:"189.06",pl:"438.88",pt:"223.7",qa:"126.52",ro:"158.39",ru:"1476.91",rw:"5.69",ws:"0.55",st:"0.19",sa:"434.44",sn:"12.66",rs:"38.92",sc:"0.92",sl:"1.9",sg:"217.38",sk:"86.26",si:"46.44",sb:"0.67",za:"354.41",es:"1374.78",lk:"48.24",kn:"0.56",lc:"1",vc:"0.58",sd:"65.93",sr:"3.3",sz:"3.17",se:"444.59",ch:"522.44",sy:"59.63",tw:"426.98",tj:"5.58",tz:"22.43",th:"312.61",tl:"0.62",tg:"3.07",to:"0.3",tt:"21.2",tn:"43.86",tr:"729.05",tm:0,ug:"17.12",ua:"136.56",ae:"239.65",gb:"2258.57",us:"14624.18",uy:"40.71",uz:"37.72",vu:"0.72",ve:"285.21",vn:"101.99",ye:"30.02",zm:"15.69",zw:"5.57"},a.worldMap={map:"world_en",backgroundColor:null,color:"#ffffff",hoverOpacity:.7,selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,values:b,scaleColors:["#F1EFF0","#c1bfc0"],normalizeFunction:"polynomial"},a.USAMap={map:"usa_en",backgroundColor:null,color:"#ffffff",selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,selectedRegion:"MO"},a.europeMap={map:"europe_en",backgroundColor:null,color:"#ffffff",hoverOpacity:.7,selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,values:b,scaleColors:["#F1EFF0","#c1bfc0"],normalizeFunction:"polynomial"}}]),angular.module("countTo",[]).controller("countTo",["$scope",function(a){return a.countersmall1={countTo:20,countFrom:0},a.countersmall2={countTo:42,countFrom:0},a.countersmall3={countTo:90,countFrom:0},a.countersmall1dash={countTo:420,countFrom:0},a.countersmall2dash={countTo:742,countFrom:0},a.countersmall3dash={countTo:100,countFrom:0}}]).directive("countTo",["$timeout",function(a){return{replace:!1,scope:!0,link:function(b,c,d){var e,f,g,h,i,j,k,l=c[0],m=function(){f=30,i=0,b.timoutId=null,j=parseInt(d.countTo)||0,b.value=parseInt(d.value,10)||0,g=1e3*parseFloat(d.duration)||0,h=Math.ceil(g/f),k=(j-b.value)/h,e=b.value},n=function(){b.timoutId=a(function(){e+=k,i++,i>=h?(a.cancel(b.timoutId),e=j,l.textContent=j):(l.textContent=Math.round(e),n())},f)},o=function(){b.timoutId&&a.cancel(b.timoutId),m(),n()};return d.$observe("countTo",function(a){a&&o()}),d.$observe("value",function(a){o()}),!0}}}]),function(a,b,c){"use strict";b.module("ngCookies",["ng"]).factory("$cookies",["$rootScope","$browser",function(a,d){function e(){var a,e,f,i;for(a in h)k(g[a])&&d.cookies(a,c);for(a in g)e=g[a],b.isString(e)||(e=""+e,g[a]=e),e!==h[a]&&(d.cookies(a,e),i=!0);if(i){i=!1,f=d.cookies();for(a in g)g[a]!==f[a]&&(k(f[a])?delete g[a]:g[a]=f[a],i=!0)}}var f,g={},h={},i=!1,j=b.copy,k=b.isUndefined;return d.addPollFn(function(){var b=d.cookies();f!=b&&(f=b,j(b,h),j(b,g),i&&a.$apply())})(),i=!0,a.$watch(e),g}]).factory("$cookieStore",["$cookies",function(a){return{get:function(c){var d=a[c];return d?b.fromJson(d):d},put:function(c,d){a[c]=b.toJson(d)},remove:function(b){delete a[b]}}}])}(window,window.angular),angular.module("app.controllers",[]).controller("StepController",["$scope","Rover",function(a,b){var c={select_and_create_team:0,view_team_members:1,view_athlete_stats:2};a.current_dashboard_page=c.select_and_create_team,a.backwardsStep=function(){a.current_dashboard_page>0&&a.current_dashboard_page--},a.forwardsStep=function(){a.current_dashboard_page<3&&a.current_dashboard_page++}}]).controller("MovementController",["$scope","$sessionStorage","Movements","loggit","Rover",function(a,b,c,d,e){a.uploadMovements=function(){c.upload(a.data.member.selected.id,e.state.selected_sport_movement.id,a.data.new_movement_submission_data).error(function(a){d.logError("error uploading movements to server"),console.log(a)}).success(function(a){e.state.selected_sport_movement=e.state.new_movement_submission_data=null,d.logSuccess("movements succesfully uploaded to server"),console.log(a)})}}]).controller("MovementScreenController",["$scope","$sessionStorage","loggit","MovementStore","$document","Rover",function(a,b,c,d,e,f){a.select_movement=function(a){d.current_movement_page=a},a.data=d,a.SelectTrial=function(a){d.current_movement_page.active_trial=a},a.StartTest=function(){d.current_movement_page.active_side.active_trial.status="recording",document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("FrontVideoPlayer").play(),document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").play(),document.getElementById("SideVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").play()},a.EndTest=function(){document.getElementById("FrontVideoPlayer").pause(),document.getElementById("TopVideoPlayer").pause(),document.getElementById("SideVideoPlayer").pause(),"recording"==d.current_movement_page.active_side.active_trial.status&&(d.current_movement_page.active_side.active_trial.status="stopped")},a.IndicateTestPain=function(){d.current_movement_page.active_side.active_trial.status="pain",document.getElementById("FrontVideoPlayer").pause(),document.getElementById("TopVideoPlayer").pause(),document.getElementById("SideVideoPlayer").pause()},a.CancelCurrentTrial=function(){document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0,d.current_movement_page.active_side.active_trial.status="idle"},a.SaveCurrentTrial=function(){d.current_movement_page.active_side.active_trial.status="saved";var a=d.current_movement_page.active_side.trials.indexOf(d.current_movement_page.active_side.active_trial);a<d.current_movement_page.active_side.trials.length&&(d.current_movement_page.active_side.active_trial=d.current_movement_page.active_side.trials[a+1],document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0)},a.SaveCurrentTrialPain=function(){d.current_movement_page.active_side.active_trial.status="saved_pain";var a=d.current_movement_page.active_side.trials.indexOf(d.current_movement_page.active_side.active_trial);a<d.current_movement_page.active_side.trials.length&&(d.current_movement_page.active_side.active_trial=d.current_movement_page.active_side.trials[a+1],document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0)},a.SubmitTest=function(){document.getElementById("FrontVideoPlayer").currentTime=0,d.current_movement_page.submitted=!0,d.current_movement_page.active_side==d.current_movement_page.sides[0]&&(d.current_movement_page.active_side.test_page_data.other_side_warning=!0)},a.PlayAnalysisVideo=function(){var a=d.current_movement_page.analysis_page_data.playback_rate||1;console.log("Playback rate: "+a),document.getElementById("AnalysisSideVideoPlayer").playbackRate=document.getElementById("AnalysisFrontVideoPlayer").playbackRate=document.getElementById("AnalysisHorizontalVideoPlayer").playbackRate=a,document.getElementById("AnalysisSideVideoPlayer").play(),document.getElementById("AnalysisFrontVideoPlayer").play(),document.getElementById("AnalysisHorizontalVideoPlayer").play()},a.ForwardAnalysisVideo=function(){},a.PauseAnalysisVideo=function(){document.getElementById("AnalysisSideVideoPlayer").pause(),document.getElementById("AnalysisFrontVideoPlayer").pause(),document.getElementById("AnalysisHorizontalVideoPlayer").pause()},a.ResetAnalysisVideo=function(){document.getElementById("AnalysisSideVideoPlayer").pause(),document.getElementById("AnalysisSideVideoPlayer").currentTime=0,document.getElementById("AnalysisFrontVideoPlayer").pause(),document.getElementById("AnalysisFrontVideoPlayer").currentTime=0,document.getElementById("AnalysisHorizontalVideoPlayer").pause(),document.getElementById("AnalysisHorizontalVideoPlayer").currentTime=0},a.tbl_data=[];for(var g=0;5>g;g++)a.tbl_data.push({});a.DataTableToggleMovSel=function(b){b.data_tbl_selected=!b.data_tbl_selected;var c=[],e=[];for(g=0;g<d.current_movement_page.active_side.active_trial.joints.length;g++)for(var f=0;f<d.current_movement_page.active_side.active_trial.joints[g].movements.length;f++)d.current_movement_page.active_side.active_trial.joints[g].movements[f].data_tbl_selected?e.push({val:d.current_movement_page.active_side.active_trial.joints[g].movements[f].name}):e.push({});for(c.push(e),g=0;4>g;g++){for(var h=[],i=0;i<d.current_movement_page.active_side.active_trial.joints.length;i++)for(var j=0;j<d.current_movement_page.active_side.active_trial.joints[i].movements.length;j++)d.current_movement_page.active_side.active_trial.joints[i].movements[j].data_tbl_selected?h.push({val:"0.1"+g}):h.push({});c.push(h)}a.tbl_data=c},a.UpdateDataGraphSeries=function(){a.lineData.series=[];for(var b=0;b<d.current_movement_page.active_side.active_trial.joints.length;b++)for(var c=0;c<d.current_movement_page.active_side.active_trial.joints[b].movements.length;c++)(a.data.current_movement_page.data_page_data.see_all||d.current_movement_page.active_side.active_trial.joints[b].movements[c].data_graph_selected)&&a.lineData.series.push(d.current_movement_page.active_side.active_trial.joints[b].movements[c].series_data)},a.ToggleSelectMovement=function(a,b){if(a.selected){a.selected=!1;var c=b.indexOf(a);c>-1&&b.splice(c,1)}else a.selected=!0,b.push(a)},a.InitializeGraph=function(){a.lineData={labels:["0","10","20","30","40","50","60","70","80","90","100"],series:[]},a.lineOptions={axisY:{referenceValue:100,type:Chartist.FixedScaleAxis,ticks:[25,50,75,100]},axisX:{showGrid:!1,labelInterpolationFnc:function(a){return a+"%"}},showPoint:!1};var b=$(".movement_data_chart"),c=b.append('<div class="chartist-tooltip"></div>').find(".chartist-tooltip").hide();b.on("mouseenter",".ct-line",function(){var a=$(this),b=a.parent().attr("ct:series-name");c.html(b).show()}),b.on("mouseleave",".ct-line",function(){c.hide()}),b.on("mousemove",function(a){c.css({left:(a.offsetX||a.originalEvent.layerX)-c.width()/2-10,top:(a.offsetY||a.originalEvent.layerY)-c.height()-40,background:"#F4C63D"})})}}]),angular.module("app.chart.ctrls",[]).controller("chartingCtrl",["$scope",function(a){return a.easypie1={percent:25,options:{animate:{duration:100,enabled:!0},barColor:"#c1bfc0",lineCap:"round",size:130,lineWidth:8},name:"Bounce rate"},a.easypie2={percent:35,options:{animate:{duration:100,enabled:!0},barColor:"#383d43",lineCap:"round",size:130,lineWidth:8},name:"Daily active user activation"},a.easypie3={percent:87,options:{animate:{duration:100,enabled:!0},barColor:"#db5031",lineCap:"round",size:130,lineWidth:8},name:"registration / unique visit"},a.easypiesmall1={percent:25,options:{animate:{duration:100,enabled:!0},barColor:"#c1bfc0",lineCap:"round",size:67,lineWidth:5},name:"Bounce rate"},a.easypiesmall2={percent:35,options:{animate:{duration:100,enabled:!0},barColor:"#383d43",lineCap:"round",size:67,lineWidth:5},name:"Daily active user activation"},a.easypiesmall3={percent:87,options:{animate:{duration:100,enabled:!0},barColor:"#db5031",lineCap:"round",size:67,lineWidth:5},name:"registration / unique visit"}}]).controller("gaugeCtrl",["$scope",function(a){return a.gauge1={gaugeData:{maxValue:3e3,animationSpeed:100,val:1075},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#c1bfc0",colorStop:"#c1bfc0",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#c1bfc0"],[1,"#c1bfc0"]]}},a.gauge2={gaugeData:{maxValue:3e3,animationSpeed:100,val:1300},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#383d43",colorStop:"#383d43",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#383d43"],[1,"#383d43"]]}},a.gauge3={gaugeData:{maxValue:3e3,animationSpeed:100,val:1500},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#db5031",colorStop:"#db5031",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#db5031"],[1,"#db5031"]]}}}]).controller("morrisChartCtrl",["$scope",function(a){return a.mainData=[{month:"2013-01",xbox:294e3,will:136e3,playstation:244e3},{month:"2013-02",xbox:228e3,will:335e3,playstation:127e3},{month:"2013-03",xbox:199e3,will:159e3,playstation:13e4},{month:"2013-04",xbox:174e3,will:16e4,playstation:82e3},{month:"2013-05",xbox:255e3,will:318e3,playstation:82e3},{month:"2013-06",xbox:298400,will:401800,playstation:98600},{month:"2013-07",xbox:37e4,will:225e3,playstation:159e3},{month:"2013-08",xbox:376700,will:303600,playstation:13e4},{month:"2013-09",xbox:527800,will:301e3,playstation:119400}],a.simpleData=[{year:"2008",value:22},{year:"2009",value:10},{year:"2010",value:5},{year:"2011",value:5},{year:"2012",value:20},{year:"2013",value:19}],a.comboData=[{year:"2008",a:20,b:16,c:12},{year:"2009",a:10,b:22,c:30},{year:"2010",a:5,b:14,c:20},{year:"2011",a:5,b:12,c:19},{year:"2012",a:20,b:19,c:13},{year:"2013",a:28,b:22,c:20}],a.donutData=[{label:"Download Sales",value:12},{label:"In-Store Sales",value:30},{label:"Mail-Order Sales",value:20},{label:"Online Sales",value:19}]}]).controller("chartjsCtrl",["$scope",function(a){return a.chartjsLine={labels:["January","February","March","April","May","June","July"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.5)",strokeColor:"rgba(56, 61, 67, 0.5)",pointColor:"#fff",pointStrokeColor:"#fff",pointHighlightFill:"rgba(56, 61, 67, 0.5)",pointHighlightStroke:"rgba(220,220,220,1)",data:[65,59,80,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 0.8)",pointColor:"#fff",pointStrokeColor:"#fff",pointHighlightFill:"rgba(219, 80, 49, 0.8)",pointHighlightStroke:"rgba(151,187,205,1)",data:[28,48,40,19,86,27,90]}]},a.chartjsBar={labels:["January","February","March","April","May","June","July"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.5)",strokeColor:"rgba(56, 61, 67, 0.5)",highlightFill:"rgba(56, 61, 67, 0.8)",highlightStroke:"rgba(56, 61, 67, 0.8)",data:[65,59,80,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 0.8)",highlightFill:"rgba(219, 80, 49, 0.9)",highlightStroke:"rgba(219, 80, 49, 0.9)",data:[28,48,40,19,86,27,90]}]},a.chartjsRadar={labels:["Eating","Drinking","Sleeping","Designing","Coding","Cycling","Running"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.8)",strokeColor:"rgba(56, 61, 67, 1)",pointColor:"rgba(56, 61, 67, 1)",pointStrokeColor:"#fff",pointHighlightFill:"#fff",pointHighlightStroke:"rgba(56, 61, 67, 1)",data:[65,59,90,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 1)",pointColor:"rgba(219, 80, 49, 0.8)",pointStrokeColor:"#fff",pointHighlightFill:"#fff",pointHighlightStroke:"rgba(219, 80, 49, 0.8)",data:[28,48,40,19,96,27,100]}]},a.chartjsPolarArea=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#fef9d9",highlight:"#fef9d9",label:"Yellow"},{value:40,color:"#c1bfc0",highlight:"#c1bfc0",label:"Grey"},{value:120,color:"#503f3c",highlight:"#503f3c",label:"Dark Brown"}],a.chartjsPie=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#c1bfc0",highlight:"#c1bfc0",label:"Gray"}],a.chartjsDoughnut=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#c1bfc0",highlight:"#c1bfc0",label:"Gray"}]}]).controller("flotChartCtrl",["$scope",function(a){var b,c,d;return d={},d.data1=[[1,15],[2,20],[3,14],[4,10],[5,10],[6,20],[7,28],[8,26],[9,22],[10,23],[11,24]],d.data2=[[1,9],[2,15],[3,17],[4,21],[5,16],[6,15],[7,13],[8,15],[9,29],[10,21],[11,29]],a.line1={},a.line1.data=[{data:d.data1,label:"New visitors",lines:{fill:!0}},{data:d.data2,label:"Returning visitors",lines:{fill:!1}}],a.line1.options={series:{lines:{show:!0,fill:!1,lineWidth:3,fillColor:{colors:[{opacity:.3},{opacity:.3}]}},points:{show:!0,lineWidth:3,fill:!0,fillColor:"#ffffff",symbol:"circle",radius:5},shadowSize:0},colors:["#c1bfc0","#db5031"],tooltip:!0,tooltipOpts:{defaultTheme:!1},grid:{hoverable:!0,clickable:!0,tickColor:"#f9f9f9",borderWidth:1,borderColor:"#eeeeee"},xaxis:{ticks:[[1,"Jan."],[2,"Feb."],[3,"Mar."],[4,"Apr."],[5,"May"],[6,"June"],[7,"July"],[8,"Aug."],[9,"Sept."],[10,"Oct."],[11,"Nov."],[12,"Dec."]]}},b={},b.data1=[[2007,15],[2008,20],[2009,10],[2010,5],[2011,5],[2012,20],[2013,28]],b.data2=[[2007,15],[2008,16],[2009,22],[2010,14],[2011,12],[2012,19],[2013,22]],a.area={},a.area.data=[{data:b.data1,label:"Value A",lines:{fill:!0}},{data:b.data2,label:"Value B",points:{show:!0},yaxis:2}],a.area.options={series:{lines:{lineWidth:3,show:!0,fill:!1},points:{show:!0,lineWidth:3,fill:!0,fillColor:"#ffffff",symbol:"circle",radius:5},shadowSize:0},grid:{hoverable:!0,clickable:!0,tickColor:"#f9f9f9",borderWidth:1,borderColor:"#eeeeee"},colors:["#c1bfc0","#db5031"],tooltip:!0,tooltipOpts:{defaultTheme:!1},xaxis:{mode:"time"},yaxes:[{},{position:"right"}]},c={},c.data1=[[2008,20],[2009,10],[2010,5],[2011,5],[2012,20],[2013,28]],c.data2=[[2008,16],[2009,22],[2010,14],[2011,12],[2012,19],[2013,22]],c.data3=[[2008,12],[2009,30],[2010,20],[2011,19],[2012,13],[2013,20]],a.barChart={},a.barChart.data=[{label:"Value A",data:c.data1},{label:"Value B",data:c.data2},{label:"Value C",data:c.data3}],a.barChart.options={series:{stack:!0,bars:{show:!0,fill:1,barWidth:.3,align:"center",horizontal:!1,order:1}},grid:{hoverable:!0,borderWidth:1,borderColor:"#eeeeee"},tooltip:!0,tooltipOpts:{defaultTheme:!1},colors:["#383d43","#db5031","#fef9d9"]},a.pieChart={},a.pieChart.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19}],a.pieChart.options={series:{pie:{show:!0}},legend:{show:!0},grid:{hoverable:!0,clickable:!0},colors:["#383d43","#db5031","#fef9d9","#503f3c"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}},a.donutChart={},a.donutChart.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19}],a.donutChart.options={series:{pie:{show:!0,innerRadius:.5}},legend:{show:!0},grid:{hoverable:!0,clickable:!0},colors:["#383d43","#db5031","#c1bfc0","#503f3c"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}},a.donutChart2={},a.donutChart2.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19},{label:"Direct Sales",data:15}],a.donutChart2.options={series:{pie:{show:!0,innerRadius:.5}},legend:{show:!1},grid:{hoverable:!0,clickable:!0},colors:["#2693E9","#F5862C","#43B040","#619CC4","#6D90C5"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}}}]).controller("flotChartCtrl.realtime",["$scope",function(){}]).controller("sparklineCtrl",["$scope",function(a){return a.demoData1={sparkData:[3,1,2,2,4,6,4,5,2,4,5,3,4,6,4,7],sparkOptions:{type:"line",lineColor:"#fff",highlightLineColor:"#fff",fillColor:"#383d43",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100%",height:"150px"}},a.simpleChart1={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"line",lineColor:"#db5031",fillColor:"#c1bfc0",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100px",height:"50px"}},a.simpleChart2={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#db5031",width:"100px",height:"50px"}},a.simpleChartlong={sparkData:[1,3,2,5,4,2,1,7,1,8,4,3,5,2,4,5,1,7,1,8],sparkOptions:{type:"bar",barColor:"#c1bfc0",width:"250px",height:"30px"}},a.simpleChart2long={sparkData:[3,1,2,3,5,3,4,2,5,4,2,6,2,4,3,1],sparkOptions:{type:"bar",barColor:"#383d43",width:"200px",height:"30px"}},a.simpleChart2info={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#FFFFFF",width:"100px",height:"30px"}},a.simpleChart3={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"pie",sliceColors:["#383d43","#db5031","#c1bfc0","#fef9d9","#503f3c","#365340"],width:"50px",height:"50px"}},a.tristateChart1={sparkData:[1,2,-3,-5,3,1,-4,2],sparkOptions:{type:"tristate",posBarColor:"#383d43",negBarColor:"#c1bfc0",width:"100%",height:"50px"}},a.largeChart1={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"line",lineColor:"#db5031",highlightLineColor:"#7ACBEE",fillColor:"#c1bfc0",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100%",height:"150px"}},a.largeChart2={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#383d43",barWidth:10,width:"100%",height:"150px"}},a.largeChart3={sparkData:[3,1,2,3,5],sparkOptions:{type:"pie",sliceColors:["#383d43","#db5031","#c1bfc0","#fef9d9","#503f3c","#365340"],width:"150px",height:"150px"}}}]),angular.module("app.task",[]).factory("taskStorage",function(){var a,b;return b="tasks",a='[ {"title": "Call customer X", "completed": true}, {"title": "Review marketing system", "completed": true}, {"title": "Do the twist!", "completed": false}, {"title": "Watch over the mars scheme", "completed": false}, {"title": "Complete proposal for spaceship", "completed": false}, {"title": "Do inventory of everything", "completed": false} ]',{get:function(){return JSON.parse(sessionStorage.getItem(b)||a)},put:function(a){return sessionStorage.setItem(b,JSON.stringify(a))}}}).controller("taskCtrl",["$scope","taskStorage","filterFilter","$rootScope","loggit",function(a,b,c,d,e){var f;return f=a.tasks=b.get(),a.newTask="",a.countTasksLeft=c(f,{completed:!1}).length,a.editedTask=null,a.statusFilter={completed:!1},a.filter=function(b){switch(b){case"all":a.statusFilter="";break;case"active":a.statusFilter={completed:!1};break;case"completed":a.statusFilter={completed:!0}}},a.add=function(){var c;return c=a.newTask.trim(),0!==c.length?(f.push({title:c,completed:!1}),e.logSuccess('New task added : "'+c+'"'),b.put(f),a.newTask="",a.countTasksLeft++):void 0},a.edit=function(b){a.editedTask=b},a.doneEditing=function(c){return a.editedTask=null,c.title=c.title.trim(),c.title?e.log("Task was updated"):a.remove(c),b.put(f)},a.remove=function(c){var d;return a.countTasksLeft-=c.completed?0:1,d=a.tasks.indexOf(c),a.tasks.splice(d,1),b.put(f),e.logError("Task was removed")},a.completed=function(c){return a.countTasksLeft+=c.completed?-1:1,b.put(f),c.completed?a.countTasksLeft>0?e.log(1===a.countTasksLeft?"Only "+a.countTasksLeft+" task left":"Well done! Only "+a.countTasksLeft+" tasks left"):e.logSuccess("Yay!! All tasks are done :)"):void 0},a.clearCompleted=function(){return a.tasks=f=f.filter(function(a){return!a.completed}),b.put(f)},a.markAll=function(c){return f.forEach(function(a){a.completed=c}),a.countTasksLeft=c?0:f.length,b.put(f),c?e.logSuccess("Yay!! All tasks are done :)"):void 0},a.$watch("countTasksLeft == 0",function(b){a.allChecked=b}),a.$watch("countTasksLeft",function(a){d.$broadcast("taskRemaining:changed",a)})}]),angular.module("app.form.validation",[]).controller("wizardFormCtrl",["$scope",function(a){return a.wizard={firstName:"some name",lastName:"",email:"",password:"",age:"",address:""},a.isValidateStep1=function(){return void 0},a.finishedWizard=function(){return void 0}}]).controller("formConstraintsCtrl",["$scope",function(a){var b;return a.form={required:"",minlength:"",maxlength:"",length_rage:"",type_something:"",confirm_type:"",foo:"",email:"",url:"",num:"",minVal:"",maxVal:"",valRange:"",pattern:""},b=angular.copy(a.form),a.revert=function(){return a.form=angular.copy(b),a.form_constraints.$setPristine()},a.canRevert=function(){return!angular.equals(a.form,b)||!a.form_constraints.$pristine},a.canSubmit=function(){return a.form_constraints.$valid&&!angular.equals(a.form,b)}}]).controller("signinCtrl",["$scope",function(a){var b;return a.user={email:"",password:""},a.showInfoOnSubmit=!1,b=angular.copy(a.user),a.revert=function(){return a.user=angular.copy(b),a.form_signin.$setPristine()},a.canRevert=function(){return!angular.equals(a.user,b)||!a.form_signin.$pristine},a.canSubmit=function(){return a.form_signin.$valid&&!angular.equals(a.user,b)},a.submitForm=function(){return a.showInfoOnSubmit=!0,a.revert()}}]).controller("signupCtrl",["$scope",function(a){var b;return a.user={name:"",email:"",password:"",confirmPassword:"",age:""},a.showInfoOnSubmit=!1,b=angular.copy(a.user),a.revert=function(){return a.user=angular.copy(b),a.form_signup.$setPristine(),a.form_signup.confirmPassword.$setPristine()},a.canRevert=function(){return!angular.equals(a.user,b)||!a.form_signup.$pristine},a.canSubmit=function(){return a.form_signup.$valid&&!angular.equals(a.user,b)},a.submitForm=function(){return a.showInfoOnSubmit=!0,a.revert()}}]).directive("validateEquals",[function(){return{require:"ngModel",link:function(a,b,c,d){var e;return e=function(b){var e;return e=b===a.$eval(c.validateEquals),d.$setValidity("equal",e),"function"==typeof e?e({value:void 0}):void 0},d.$parsers.push(e),d.$formatters.push(e),a.$watch(c.validateEquals,function(a,b){return a!==b?d.$setViewValue(d.$ViewValue):void 0})}}}]),angular.module("app.ui.form.ctrls",[]).controller("TagsDemoCtrl",["$scope",function(a){a.tags=["foo","bar"]}]).controller("DatepickerDemoCtrl",["$scope",function(a){return a.today=function(){a.dt=new Date},a.today(),a.showWeeks=!0,a.toggleWeeks=function(){a.showWeeks=!a.showWeeks},a.clear=function(){a.dt=null},a.disabled=function(a,b){return"day"===b&&(0===a.getDay()||6===a.getDay())},a.toggleMin=function(){var b;a.minDate=null!==(b=a.minDate)?b:{"null":new Date}},a.toggleMin(),a.open=function(b){return b.preventDefault(),b.stopPropagation(),a.opened=!0},a.dateOptions={"year-format":"'yy'","starting-day":1},a.formats=["dd-MMMM-yyyy","yyyy/MM/dd","shortDate"],a.format=a.formats[0]}]).controller("TimepickerDemoCtrl",["$scope",function(a){return a.mytime=new Date,a.hstep=1,a.mstep=15,a.options={hstep:[1,2,3],mstep:[1,5,10,15,25,30]},a.ismeridian=!0,a.toggleMode=function(){a.ismeridian=!a.ismeridian},a.update=function(){var b;return b=new Date,b.setHours(14),b.setMinutes(0),a.mytime=b},a.changed=function(){return void 0},a.clear=function(){a.mytime=null}}]).controller("TypeaheadCtrl",["$scope",function(a){return a.selected=void 0,a.states=["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}]).controller("RatingDemoCtrl",["$scope",function(a){return a.rate=7,a.max=10,a.isReadonly=!1,a.hoveringOver=function(b){return a.overStar=b,a.percent=100*(b/a.max)},a.ratingStates=[{stateOn:"glyphicon-ok-sign",stateOff:"glyphicon-ok-circle"},{stateOn:"glyphicon-star",stateOff:"glyphicon-star-empty"},{stateOn:"glyphicon-heart",stateOff:"glyphicon-ban-circle"},{stateOn:"glyphicon-heart"},{stateOff:"glyphicon-off"}]}]),angular.module("app.tables",[]).controller("tableCtrl",["$scope","$filter",function(a,b){var c;return a.stores=[{name:"Nijiya Market",price:"$$",sales:292,rating:4},{name:"Eat On Monday Truck",price:"$",sales:119,rating:4.3},{name:"Tea Era",price:"$",
-sales:874,rating:4},{name:"Rogers Deli",price:"$",sales:347,rating:4.2},{name:"MoBowl",price:"$$$",sales:24,rating:4.6},{name:"The Milk Pail Market",price:"$",sales:543,rating:4.5},{name:"Nob Hill Foods",price:"$$",sales:874,rating:4},{name:"Scratch",price:"$$$",sales:643,rating:3.6},{name:"Gochi Japanese Fusion Tapas",price:"$$$",sales:56,rating:4.1},{name:"Cost Plus World Market",price:"$$",sales:79,rating:4},{name:"Bumble Bee Health Foods",price:"$$",sales:43,rating:4.3},{name:"Costco",price:"$$",sales:219,rating:3.6},{name:"Red Rock Coffee Co",price:"$",sales:765,rating:4.1},{name:"99 Ranch Market",price:"$",sales:181,rating:3.4},{name:"Mi Pueblo Food Center",price:"$",sales:78,rating:4},{name:"Cucina Venti",price:"$$",sales:163,rating:3.3},{name:"Sufi Coffee Shop",price:"$",sales:113,rating:3.3},{name:"Dana Street Roasting",price:"$",sales:316,rating:4.1},{name:"Pearl Cafe",price:"$",sales:173,rating:3.4},{name:"Posh Bagel",price:"$",sales:140,rating:4},{name:"Artisan Wine Depot",price:"$$",sales:26,rating:4.1},{name:"Hong Kong Chinese Bakery",price:"$",sales:182,rating:3.4},{name:"Starbucks",price:"$$",sales:97,rating:3.7},{name:"Tapioca Express",price:"$",sales:301,rating:3},{name:"House of Bagels",price:"$",sales:82,rating:4.4}],a.searchKeywords="",a.filteredStores=[],a.row="",a.select=function(b){var c,d;return d=(b-1)*a.numPerPage,c=d+a.numPerPage,a.currentPageStores=a.filteredStores.slice(d,c)},a.onFilterChange=function(){return a.select(1),a.currentPage=1,a.row=""},a.onNumPerPageChange=function(){return a.select(1),a.currentPage=1},a.onOrderChange=function(){return a.select(1),a.currentPage=1},a.search=function(){return a.filteredStores=b("filter")(a.stores,a.searchKeywords),a.onFilterChange()},a.order=function(c){return a.row!==c?(a.row=c,a.filteredStores=b("orderBy")(a.stores,c),a.onOrderChange()):void 0},a.numPerPageOpt=[3,5,10,20],a.numPerPage=a.numPerPageOpt[2],a.currentPage=1,a.currentPageStores=[],c=function(){return a.search(),a.select(a.currentPage)},a.search()}]),angular.module("app.ui.ctrls",[]).controller("NotifyCtrl",["$scope","loggit",function(a,b){a.notify=function(a){switch(a){case"info":return b.log("Hello! This is an alert of the info importance level.");case"success":return b.logSuccess("Great! You did something successfully.");case"warning":return b.logWarning("Warning! Something that happened that is not critical but important.");case"error":return b.logError("Error! Something went terribly wrong and needs your attention.")}}}]).controller("AlertDemoCtrl",["$scope",function(a){a.alerts=[{type:"success",msg:"Great! You did something successfully."},{type:"info",msg:"Hello! This is an alert of the info importance level."},{type:"warning",msg:"Warning! Something that happened that is not critical but important."},{type:"danger",msg:"Error! Something went terribly wrong and needs your attention."}],a.addAlert=function(){a.alerts.push({msg:"Another alert!"})},a.closeAlert=function(b){a.alerts.splice(b,1)}}]).controller("ProgressDemoCtrl",["$scope",function(a){a.max=200,a.random=function(){var b,c=Math.floor(100*Math.random()+1);b=25>c?"success":50>c?"info":75>c?"warning":"danger",a.showWarning="danger"===b||"warning"===b,a.dynamic=c,a.type=b},a.random(),a.randomStacked=function(){a.stacked=[];for(var b=["success","info","warning","danger"],c=0,d=Math.floor(4*Math.random()+1);d>c;c++){var e=Math.floor(4*Math.random());a.stacked.push({value:Math.floor(30*Math.random()+1),type:b[e]})}},a.randomStacked()}]).controller("AccordionDemoCtrl",["$scope",function(a){return a.oneAtATime=!0,a.groups=[{title:"First Group Header",content:"First Group Body"},{title:"Second Group Header",content:"Second Group Body"},{title:"Third Group Header",content:"Third Group Body"}],a.items=["Item 1","Item 2","Item 3"],a.status={isFirstOpen:!0,isFirstOpen1:!0,isFirstOpen2:!0,isFirstOpen3:!0,isFirstOpen4:!0,isFirstOpen5:!0,isFirstOpen6:!0},a.addItem=function(){var b;b=a.items.length+1,a.items.push("Item "+b)}}]).controller("CollapseDemoCtrl",["$scope",function(a){a.isCollapsed=!1}]).controller("ModalDemoCtrl",["$scope","$modal","$log",function(a,b,c){a.items=["item1","item2","item3"],a.open=function(d){var e=b.open({templateUrl:"myModalContent.html",controller:"ModalInstanceCtrl",size:d,resolve:{items:function(){return a.items}}});e.result.then(function(b){a.selected=b},function(){c.info("Modal dismissed at: "+new Date)})}}]).controller("ModalInstanceCtrl",["$scope","$modalInstance","items",function(a,b,c){a.items=c,a.selected={item:a.items[0]},a.ok=function(){b.close(a.selected.item)},a.cancel=function(){b.dismiss("cancel")}}]).controller("PaginationDemoCtrl",["$scope",function(a){a.totalItems=64,a.currentPage=4,a.setPage=function(b){a.currentPage=b},a.pageChanged=function(){console.log("Page changed to: "+a.currentPage)},a.maxSize=5,a.bigTotalItems=175,a.bigCurrentPage=1}]).controller("MapDemoCtrl",["$scope","$http","$interval",function(a,b,c){var d,e;for(e=[],d=0;8>d;)e[d]=new google.maps.Marker({title:"Marker: "+d}),d++;a.GenerateMapMarkers=function(){var b,c,f,g,h;for(b=new Date,a.date=b.toLocaleString(),h=Math.floor(4*Math.random())+4,d=0;h>d;)c=38.73+Math.random()/100,f=-9.14+Math.random()/100,g=new google.maps.LatLng(c,f),e[d].setPosition(g),e[d].setMap(a.map),d++},c(a.GenerateMapMarkers,2e3)}]).controller("TreeDemoCtrl",["$scope",function(a){a.list=[{id:1,title:"1. dragon-breath",items:[]},{id:2,title:"2. moiré-vision",items:[{id:21,title:"2.1. tofu-animation",items:[{id:211,title:"2.1.1. spooky-giraffe",items:[]},{id:212,title:"2.1.2. bubble-burst",items:[]}]},{id:22,title:"2.2. barehand-atomsplitting",items:[]}]},{id:3,title:"3. unicorn-zapper",items:[]},{id:4,title:"4. romantic-transclusion",items:[]}],a.callbacks={},a.remove=function(a){a.remove()},a.toggle=function(a){a.toggle()},a.newSubItem=function(a){var b=a.$modelValue;b.items.push({id:10*b.id+b.items.length,title:b.title+"."+(b.items.length+1),items:[]})}}]),angular.module("app.controllers").controller("DashboardGroupController",["$scope","$routeParams","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d,e){a.params=b,a.assetVersion=d,a.isLocalEnvironment=e,a.DeleteGroup=function(){c.debug("Todo: delete group")},a.$watch("params.groupId",function(b,d){if(!(0===b||b===a.data.group.selected.id||a.data.group.list.length<1)){for(var e,f,g=0;g<a.data.group.list.length;g++)if(e=a.data.group.list[g],e.id==b){f=e;break}f?(c.debug("Selecting group #"+b+"..."),a.data.group.selected=f):c.error("Group #"+b+" not found.")}},!0)}]),angular.module("app.controllers").controller("DashboardController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("FMSDemoController",["$scope","$routeParams","FMSDemoFactory","Rover","assetVersion",function(a,b,c,d,e){d.debug("FMSDemoController"),a.isDemo=!0,a.assetVersion=e,a.params=b,a.params.step=a.params.step||"test",a.isTestLive=!1,a.fms=c.data,a.run={name:null,start:function(){this.name||this.prepare(),d.debug("Starting run: "+this.name),this.setStatus("live"),a.isTestLive=!0,$(".demo-test").each(function(){this.currentTime=0,this.play()})},end:function(){d.debug("Ending run: "+this.name),this.setStatus("saved"),a.isTestLive=!1,$(".demo-test").each(function(){this.pause()}),this.moveToNextTrial()},pain:function(){d.debug("Ending run (with pain): "+this.name),this.setStatus("pain"),a.isTestLive=!1,$(".demo-test").each(function(){this.pause()}),this.moveToNextTrial()},fault:function(){d.debug("Restarting run: "+this.name),this.setStatus("pending"),a.isTestLive=!1,this.getRun().numFaults++,$(".demo-test").each(function(){this.pause(),this.currentTime=0})},reset:function(){this.exists()&&(this.getRun().status="pending",this.getRun().numFaults=0)},moveToNextTrial:function(a,b){var e,f,g,h;for(e=0;e<c.data.current.trials.length;e++)if(f=c.data.current.trials[e],g=this.getName(f,a),h=this.getRun(g),!h||"pending"==h.status)return c.data.current.trial=f,c.data.current.iteration=a||c.data.current.iteration,this.prepare(),$(".demo-test").each(function(){this.currentTime=0}),d.debug("Automatic next trial: "+g),!0;if(!b&&c.data.current.iterations.length>1)for(e=0;e<c.data.current.iterations.length;e++)if(this.moveToNextTrial(c.data.current.iterations[e],!0))return!0},submit:function(){d.debug("Submitting demo FMS data..."),c.data.runs={},c.data.current.isTestSubmitted=!0,$(".demo-test").each(function(){this.currentTime=0})},prepare:function(){(!c.data.current.iteration||c.data.current.iteration.length<1)&&(c.data.current.iteration="main"),c.data.current.trial||(c.data.current.trial=c.data.current.trials[0]);var a=this.getName();return d.debug("Preparing test run: "+a),this.exists(a)?void d.debug("Test has already been run."):(this.name=a,void(c.data.runs[a]=$.extend(!0,{},c.runDataTemplate,{})))},getName:function(a,b,d){return a=a||c.data.current.trial||c.data.current.trials[0],b=b||c.data.current.iteration||"main",d=d||c.data.current,d.id+"."+b+"."+a.name},getRun:function(a){return a=a||this.getName(),c.data.runs[a]?c.data.runs[a]:null},getRunByTrial:function(a){return this.getRun(this.getName(a))},exists:function(a){a=a||this.getName();var b=this.getRun(a);return b?"pending"!=b.status:!1},setStatus:function(a){this.name||this.prepare(),c.data.runs[this.name].status=a},getStatus:function(a){if(a){var b=this.getName(a),c=this.getRun(b);return c?c.status:null}return this.name?this.getRun().status:null}},a.analysis={trialPane:!1,planePane:!1,playbackRatePane:!1,playbackRate:.5,play:function(){$(".demo-analysis").each(function(){this.currentTime=0,this.play()})},setPlaybackRate:function(a){this.playbackRate=a,$(".demo-analysis").each(function(){this.playbackRate=a})},pause:function(){$(".demo-analysis").each(function(){this.pause()})},reset:function(){$(".demo-analysis").each(function(){this.pause(),this.currentTime=0})}},a.summary={joints:{all:!1,hip:!0,knee:!1,select:function(a){for(var b in this)"boolean"==typeof this[b]&&(this[b]=a==b||"all"==a)}}},c.data.current.trial||(c.data.current.trial=c.data.current.trials[0])}]),angular.module("app.controllers").controller("FMSController",["$scope","$routeParams","Rover","assetVersion",function(a,b,c,d){c.debug("FMSController"),a.params=b,a.assetVersion=d}]),angular.module("app.controllers").controller("FMSFormController",["$scope","$sessionStorage","FMSForm","FMSService","loggit","Rover","assetVersion",function(a,b,c,d,e,f,g){a.data.show_fms_edit=!1,a.waiting_server_response=!1,a.data.selected_fms_form=null,a.files={},a.$watch("global.state.profile.selected",function(b){null!==b&&d.get(a.global.state.profile.selected.id).then(function(b){a.global.state.profile.selected.fms_forms=b.data},function(a){f.debug("Could not retrieve forms: "+a.statusText)})},!0),a.submitFMSForm=function(){a.waiting_server_response=!0,f.debug("Submitting FMS form data...");var b=a.data.fms_form_data,c={profile_id:a.global.state.profile.selected.id,notes:b.comment,tests:[{title:"Deep Squat",score:b.deepsquat,notes:b.deepsquatcomments},{title:"Hurdle step (L)",score:b.Lhurdle,notes:b.Lhurdlecomments},{title:"Hurdle step (R)",score:b.Rhurdle,notes:b.Rhurdlecomments},{title:"Inline lunge (L)",score:b.Llunge,notes:b.Llungecomments},{title:"Inline lunge (R)",score:b.Rlunge,notes:b.Rlungecomments},{title:"Shoulder Mobility (L)",score:b.Lshoulder,notes:b.Lshouldercomments},{title:"Shoulder Mobility (R)",score:b.Rshoulder,notes:b.Rshouldercomments},{title:"Active straight-leg raise (L)",score:b.Lactive,notes:b.Lactivecomments},{title:"Active straight-leg raise (R)",score:b.Ractive,notes:b.Ractivecomments},{title:"Trunk stability push-up",score:b.trunk,notes:b.trunkcomments},{title:"Rotary stability (L)",score:b.Lrotary,notes:b.Lrotarycomments},{title:"Rotary stability (R)",score:b.Rrotary,notes:b.Rrotarycomments}]};c.score=21,f.debug(c),d.create(c).then(function(b){a.data.fms_form_data={},a.global.state.profile.selected.fms_forms=b.data.fms,a.waiting_server_response=!1,e.logSuccess("FMS Form successfully submitted")},function(b){e.logError("There was an error submitting the FMS Form"),a.waiting_server_response=!1,f.debug(b)})},a.updateFMS=function(){a.waiting_server_response=!0,c.update(a.global.state.profile.selected.id,a.data.selected_fms_form).success(function(b){a.global.state.profile.selected.fms_forms=b,a.waiting_server_response=!1,f.state.show_fms_edit=!1,e.logSuccess("FMS Form successfully updated")}).error(function(){e.logError("There was an error while attempting to update the FMS Form"),a.waiting_server_response=!1})},a.fmsdisplay=function(b){b.deepsquatcomments=b.deepsquatcomments||"",b.hurdlecomments=b.hurdlecomments||"",b.lungecomments=b.lungecomments||"",b.shouldercomments=b.shouldercomments||"",b.impingementcomments=b.impingementcomments||"",b.activecomments=b.activecomments||"",b.trunkcomments=b.trunkcomments||"",b.presscomments=b.presscomments||"",b.rotarycomments=b.rotarycomments||"",b.posteriorcomments=b.posteriorcomments||"",a.data.selected_fms_form=b}}]),angular.module("app.controllers").controller("GroupController",["$scope","$location","GroupService","Teams","Upload","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d,e,f,g,h){f.debug("GroupController"),a.currentPath=b.path(),"/group/create"==a.currentPath?a.group={id:0,name:""}:a.group=a.global.state.group.selected,a.groups=a.global.state.group.list,a.sports=a.global.state.sport.list,a.submitGroupForm=function(){return a.group.id>0?a.updateGroup():a.createGroup()},a.createGroup=function(){f.debug("Creating group..."),f.addBackgroundProcess();var b=a.group;c.create(b).then(function(b){if(f.doneBackgroundProcess(),200===b.status){a.global.state.group.list=b.data.list;var c=b.data.list.length-1;f.browseTo.group(a.global.state.group.list[c])}},function(a){f.doneBackgroundProcess()})},a.updateGroup=function(){f.debug("Updating group..."),f.addBackgroundProcess();var b=a.group;c.update(b.id,b).then(function(a){f.doneBackgroundProcess(),200===a.status&&f.browseTo.group()},function(a){f.debug("Could not update group: "+a.responseText),f.doneBackgroundProcess()})},a.deleteGroup=function(){f.debug("Deleting group..."),f.addBackgroundProcess(),c.destroy(a.global.state.group.selected.id).then(function(b){200===b.status&&(a.global.state.group.list=b.data,b.data.length>0&&(a.global.state.group.selected=b.data[0])),f.doneBackgroundProcess(),f.browseTo.path("/group/list")},function(a){f.debug("Could not delete group: "+a.responseText),f.doneBackgroundProcess()})},a.uploadAvatarEndpoint="/api/group/"+a.group.id+"/avatar",a.uploadAvatarCallback=function(){a.global.state.group.selected.avatar_src=a.group.avatar_src=this.avatar_src,a.global.state.group.list=this.list},a.$watch("global.state.group.selected",function(b,c){b.id!==c.id&&(a.group=a.global.state.group.selected)})}]),angular.module("app.controllers").controller("DashboardGroupsController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("MainController",["$scope","$sessionStorage","$localStorage","ProfileService","GroupService","OnboardingService","Teams","Athletes","Sports","loggit","Rover","appVersion","assetVersion","isLocalEnvironment",function(a,b,c,d,e,f,g,h,i,j,k,l,m,n){k.debug("MainController"),a.Rover=k,a.global={appVersion:l,assetVersion:m,isLocal:n,localStorage:c[k.userHash],sessionStorage:b[k.userHash],state:k.state,onboarding:{general:f.general}},a.data=k.state,k.debug("Setting up group data..."),a.global.state.group=a.global.state.group||{},a.global.state.group.list=a.global.state.group.list||[],a.global.state.group.selected=a.global.state.group.selected||{id:0},k.debug("Setting up profile data..."),a.global.state.profile=a.global.state.profile||{},a.global.state.profile.list=a.global.state.profile.list||[],a.global.state.profile.selected=a.global.state.selected||{id:0},a.data.member=a.global.state.profile,k.debug("Setting up sports data..."),a.global.state.sport=a.global.state.sport||{},a.global.state.sport.list=a.global.state.sport.list||[],a.global.state.sport.selected=a.global.state.sport.selected||{id:0},a.populateGroupList=function(){k.debug("Populating group list..."),k.addBackgroundProcess(),e.get().then(function(b){200===b.status&&(a.global.state.group.list=b.data),a.global.state.group.selected.id<1&&a.global.state.group.list.length>0&&(a.global.state.group.selected=a.global.state.group.list[0]),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},a.populateProfileList=function(){k.debug("Populating profile list..."),k.addBackgroundProcess(),d.get(a.global.state.group.selected.id).then(function(b){200===b.status&&(a.global.state.profile.list=b.data),a.global.state.profile.selected.id<1&&a.global.state.profile.list.length>0?a.global.state.profile.selected=a.global.state.profile.list[0]:"/profile/view"==a.currentPath&&k.browseTo.group(),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},a.populateSportsList=function(){k.debug("Populating sports list..."),k.addBackgroundProcess(),i.get().then(function(b){200===b.status&&(a.global.state.sport.list=b.data),a.global.state.sport.selected.id<1&&a.global.state.sport.list.length>0&&(a.global.state.sport.selected=k.state.sport.list[0]),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},k.debug("Checking group list on first load..."),0===a.global.state.group.list.length&&a.populateGroupList(),a.global.state.profile.list.length>0&&a.global.state.profile.selected.id<1&&(a.global.state.profile.selected=a.global.state.profile.list[0]),k.debug("Checking sports list on first load..."),0===a.global.state.sport.list.length&&a.populateSportsList(),a.$watch("global.state.group.selected",function(b,c){if(0!==b){if("number"==typeof b||"string"==typeof b){var d=Number(b);return $.each(a.global.state.group.list,function(a,c){c.id==d&&(b=c)}),void(a.global.state.group.selected=b)}k.debug("Selected group: "+b.id),b.id!==c.id&&(b.id<1||(a.global.state.profile.list=[],a.global.state.profile.selected={id:0},a.populateProfileList()))}},!0)}]),angular.module("app.controllers").controller("DashboardMemberController",["$scope","$routeParams","Athletes","FMSForm","Rover",function(a,b,c,d,e){a.params=b,a.deleteProfile=function(){e.debug("Deleting profile..."),e.addBackgroundProcess(),c.destroy(a.data.group.selected.id,a.data.profile.selected.id).then(function(a){200===a.status&&e.browseTo.group(e.state.group.selected),e.doneBackgroundProcess()},function(a){e.doneBackgroundProcess()})},a.fmsForms={},a.loadFMSForms=function(){d.get(e.state.member.selected.id).then(function(b){200===b.status?a.fmsForms=b.data:a.fmsForms={}},function(a){})},a.$watch("data.member.selected",function(b,c){e.debug("Loading FMS forms..."),a.loadFMSForms()}),a.$watch("params.memberId",function(b,c){if(!(0===b||b===a.data.member.selected.id||a.data.member.list.length<1)){for(var d,f,g=0;g<a.data.member.list.length;g++)if(d=a.data.member.list[g],d.id==b){f=d;break}f?(e.debug("Selecting member #"+b+"..."),a.data.member.selected=f):e.error("Member #"+b+" not found.")}},!0)}]),angular.module("app.controllers").controller("SubmitMovementDemoController",["$scope","Sports","SportMovements","Rover","assetVersion",function(a,b,c,d,e){d.debug("SubmitMovementDemoController"),a.assetVersion=e,a.sports=d.state.movement_demo,d.debug("Setting up movement data..."),a.sports=a.sports||{},a.sports["default"]={name:"None selected"},a.sports.selected=a.sports.selected||a.sports["default"],a.movements=a.movements||{},a.movements["default"]={name:"None selected"},a.movements.selected=a.movements.selected||a.movements["default"],a.populateSportsList=function(){d.debug("Populating sports list..."),d.addBackgroundProcess(),b.get().then(function(b){200===b.status&&(a.sports.list=b.data),a.sports.list.length>0?a.sports.selected=a.sports.list[0]:a.sports.selected=a.sports["default"],d.doneBackgroundProcess()},function(a){d.doneBackgroundProcess()})},d.debug("Checking sports list on first load..."),a.sports.list||a.populateSportsList(),a.$watch("sports.selected",function(){d.debug("Updating movements list..."),d.addBackgroundProcess(),a.movements.list=a.movements.selected=null,c.get(a.sports.selected.id).then(function(b){200===b.status&&(a.movements.list=b.data),a.movements.list.length>0?a.movements.selected=a.movements.list[0]:a.movements.selected=a.movements["default"],d.doneBackgroundProcess()},function(a){d.doneBackgroundProcess()})},!0)}]),angular.module("app.controllers").controller("ProfileController",["$scope","$location","$filter","Teams","Athletes","FMSForm","Rover","ProfileService","GroupService",function(a,b,c,d,e,f,g,h,i){g.debug("ProfileController"),a.currentPath=b.path(),a.isProfilePage=!0,"/profile/create"==a.currentPath?a.profile={id:0,notes:"",gender:""}:a.profile=a.global.state.profile.selected,a.groups=a.global.state.group.list,a.group=a.global.state.group.selected,a.profiles=a.global.state.profile.list,a.sports=a.global.state.sport.list,a.submitProfileForm=function(){return a.profile.id>0?a.updateProfile():a.createProfile()},a.createProfile=function(){g.addBackgroundProcess(),g.debug("Creating profile...");var b=h.formatForStorage(a.profile);b.groups=[a.global.state.group.selected.id],h.create(b,a.group.id).then(function(b){a.global.state.profile.list=b.data.list,g.browseTo.profile(b.data.profile),g.doneBackgroundProcess()},function(a){g.debug("Could not create profile: "+a.responseText),g.doneBackgroundProcess()})},a.updateProfile=function(){g.addBackgroundProcess(),g.debug("Updating profile...");var b=h.formatForStorage(a.profile);b.groups=[a.global.state.group.selected.id],h.update(b.id,b).then(function(c){a.global.state.profile.list=c.data.list,angular.forEach(c.data.list,function(c,d){c.id===b.id&&(a.global.state.profile.selected=c)}),g.browseTo.profile(),g.doneBackgroundProcess()},function(a){g.debug("Could not update profile: "+a.responseText),g.doneBackgroundProcess()})},a.deleteProfile=function(){g.debug("Deleting profile..."),g.addBackgroundProcess(),h.destroy(a.profile.id).then(function(b){a.global.state.profile.list=b.data,b.data.length>0&&(a.global.state.profile.selected=b.data[0]),g.browseTo.group(),g.doneBackgroundProcess()},function(a){g.debug("Could not delete profile: "+a.responseText),g.doneBackgroundProcess()})},a.uploadAvatarEndpoint="/api/profile/"+a.profile.id+"/avatar",a.uploadAvatarCallback=function(){a.global.state.profile.selected.avatar_src=a.profile.avatar_src=this.avatar_src,a.global.state.profile.list=this.list},a.updateFMSForms=function(){g.debug("Retrieving FMS forms..."),f.get(a.profile.id).then(function(b){200===b.status&&(g.debug("Received FMS forms."),g.debug(b.data),a.global.state.profile.selected.fms_forms=a.fmsForms=b.data)},function(a){g.debug("Error retrieving FMS forms."),g.debug(a)})},a.fmsForms=a.global.state.profile.selected.fms_forms,!a.fmsForms&&a.profile.id>0&&a.updateFMSForms(),a.$watch("global.state.profile.selected",function(b,c){b.id!==c.id&&(a.profile=a.global.state.profile.selected,a.fmsForms=[],a.updateFMSForms(),a.profile=h.formatForDisplay(a.profile))}),a.profile.id>0&&(a.profile=h.formatForDisplay(a.profile))}]),angular.module("app.controllers").controller("SportsController",["$scope","$sessionStorage","Sports","SportMovements","Rover",function(a,b,c,d,e){e.debug("Checking sports list on first load..."),e.state.sports&&0!==e.state.sports.length||a.populateSportsList(),a.$watch("data.selected_sport",function(){e.state.selected_sport_movement=e.state.sport_movements=null,d.get(e.state.selected_sport.id).success(function(a){e.state.sport_movements=a})},!0)}]),angular.module("app.controllers").controller("SubmitFMSDemoController",["$scope","$routeParams","Rover","assetVersion",function(a,b,c,d){c.debug("SubmitFMSDemoController"),a.params=b,a.assetVersion=d}]),angular.module("app.controllers").controller("TeamController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("TestController",["$scope","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d){b.debug("TestController")}]),angular.module("app.chart.directives",[]).directive("gaugeChart",[function(){return{scope:{gaugeData:"=",gaugeOptions:"="},link:function(a,b){var c,d,e;c=a.gaugeData,e=a.gaugeOptions,d=new Gauge(b[0]).setOptions(e),d.maxValue=c.maxValue,d.animationSpeed=c.animationSpeed,d.set(c.val)}}}]).directive("chart",function(){var a=600,b=400;return{restrict:"E",template:"<canvas></canvas>",scope:{chartObject:"=value",data:"="},link:function(c,d,e){var f,g=d.find("canvas")[0],h=g.getContext("2d"),i={type:e.type||"Line",width:e.width||a,height:e.height||b};g.width=i.width,g.height=i.height,f=new Chart(h);var j=e.type;f[j](c.data,i),c.$watch(function(){return c.chartObject},function(a){if(a){var b=i.type;f[b](c.chartObject.data,c.chartObject.options)}})}}}).directive("flotChart",[function(){return{restrict:"A",scope:{data:"=",options:"="},link:function(a,b){var c,d,e,f;f=a.data;var g=0;if($.each(f,function(a,b){b.color=g,++g}),$(b[0]).parent().find(".choices").length>0){var h=$(b[0]).parent().find(".choices");h.html(""),$.each(f,function(a,b){h.append("<br/><div class='choice-item'><label for='id"+a+"' class='ui-checkbox'><input name='"+a+"' type='checkbox' id='id"+a+"' checked='checked' value='option1'><span>"+b.label+"</span></label></div>")});var i=function(){var c=[];h.find("input:checked").each(function(){var a=$(this).attr("name");a&&f[a]&&c.push(f[a])}),c.length>0&&$.plot(b[0],c,a.options)};h.find("input").click(i)}return c=a.data,d=a.options,e=$.plot(b[0],c,d)}}}]).directive("flotChartRealtime",[function(){return{restrict:"A",link:function(a,b){var c,d,e,f,g,h;return c=[],f=300,d=function(){var a,b,d,e;for(c.length>0&&(c=c.slice(1));c.length<f;)b=c.length>0?c[c.length-1]:50,e=b+10*Math.random()-5,0>e?e=0:e>100&&(e=100),c.push(e);for(d=[],a=0;a<c.length;)d.push([a,c[a]]),++a;return d},g=function(){e.setData([d()]),e.draw(),setTimeout(g,h)},c=[],f=300,h=200,e=$.plot(b[0],[d()],{series:{lines:{show:!0,fill:!0},shadowSize:0},yaxis:{min:0,max:100,show:!0,color:"#f5f5f5"},xaxis:{show:!0,color:"#f5f5f5"},grid:{hoverable:!0,borderWidth:1,borderColor:"#fff"},colors:["#383d43"]}),g()}}}]).directive("sparkline",[function(){return{scope:{sparkData:"=",sparkOptions:"="},link:function(a,b){var c,d,e,f;c=a.sparkData,d=a.sparkOptions,e=void 0,f=function(){b.sparkline(c,d)},$(window).resize(function(){return clearTimeout(e),e=setTimeout(f,200)}),f()}}}]).directive("morrisChart",[function(){return{scope:{data:"="},link:function(a,b,c){var d,e,f,g,h;switch(e=a.data,c.type){case"line":return d=void 0===c.lineColors||""===c.lineColors?null:JSON.parse(c.lineColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),lineWidth:c.lineWidth||2,lineColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"]},h=new Morris.Line(g),$(window).resize(function(){h.redraw()});case"area":return d=void 0===c.lineColors||""===c.lineColors?null:JSON.parse(c.lineColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),lineWidth:c.lineWidth||2,lineColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"],behaveLikeLine:c.behaveLikeLine||!1,fillOpacity:c.fillOpacity||"auto",pointSize:c.pointSize||4},h=new Morris.Area(g),$(window).resize(function(){h.redraw()});case"bar":return d=void 0===c.barColors||""===c.barColors?null:JSON.parse(c.barColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),barColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"],stacked:c.stacked||null},h=new Morris.Bar(g),$(window).resize(function(){});case"donut":return d=void 0===c.colors||""===c.colors?null:JSON.parse(c.colors),g={element:b[0],data:e,colors:d||["#0B62A4","#3980B5","#679DC6","#95BBD7","#B0CCE1","#095791","#095085","#083E67","#052C48","#042135"]},c.formatter&&(f=new Function("y","data",c.formatter),g.formatter=f),h=new Morris.Donut(g),$(window).resize(function(){h.redraw()})}}}}]),angular.module("app.directives").directive("imgHolder",[function(){return{link:function(a,b){return Holder.run({images:b[0]})}}}]).directive("customBackground",function(){return{controller:["$scope","$element","$location",function(a,b,c){var d,e;return e=function(){return c.path()},d=function(a){switch(b.removeClass("body-home body-special body-tasks body-lock"),a){case"/":return b.addClass("body-home");case"/404":case"/pages/500":case"/pages/signin":case"/pages/signup":case"/pages/forgot":return b.addClass("body-special");case"/pages/lock-screen":return b.addClass("body-special body-lock");case"/tasks":return b.addClass("body-tasks")}},d(c.path()),a.$watch(e,function(a,b){return a!==b?d(c.path()):void 0})}]}}).directive("uiColorSwitch",[function(){return{restrict:"A",link:function(a,b){return b.find(".color-option").on("click",function(a){var b,c,d;if(b=$(this),c=void 0,d=b.data("style"),"loulou"===d)c="styles/main.css",$('link[href^="styles/main"]').attr("href",c);else{if(!d)return!1;d="-"+d,c="styles/main"+d+".css",$('link[href^="styles/main"]').attr("href",c)}return a.preventDefault()})}}}]).directive("toggleMinNav",["$rootScope",function(a){return{link:function(b,c){var d,e,f,g,h,i;return h=$("#app"),f=$(window),e=$("#nav-container"),d=$("#content"),c.on("click",function(b){h.hasClass("nav-min")?h.removeClass("nav-min"):(h.addClass("nav-min"),a.$broadcast("minNav:enabled"),b.preventDefault())}),g=void 0,i=function(){var a;return a=f.width(),980>a?h.addClass("nav-min"):void 0},initResize=function(){var a;return a=f.width(),980>a?h.addClass("nav-min"):h.removeClass("nav-min")},f.resize(function(){var a;return clearTimeout(a),a=setTimeout(i,300)}),initResize()}}}]).directive("collapseNav",[function(){return{link:function(a,b){var c,d,e,f,g;return e=b.find("ul").parent("li"),e.append('<i class="fa fa-arrow-circle-o-right icon-has-ul"></i>'),c=e.children("a"),f=b.children("li").not(e),d=f.children("a"),g=$("#app"),c.on("click",function(a){var b,c;return g.hasClass("nav-min")?!1:(c=$(this),b=c.parent("li"),e.not(b).removeClass("open").find("ul").slideUp(),b.toggleClass("open").find("ul").stop().slideToggle(),a.preventDefault())}),d.on("click",function(){return e.removeClass("open").find("ul").slideUp()}),a.$on("minNav:enabled",function(){return e.removeClass("open").find("ul").slideUp()})}}}]).directive("highlightActive",[function(){return{controller:["$scope","$element","$attrs","$location",function(a,b,c,d){var e,f,g;return f=b.find("a"),g=function(){return d.path()},e=function(a,b){return b="#"+b,angular.forEach(a,function(a){var c,d,e;return d=angular.element(a),c=d.parent("li"),e=d.attr("href"),c.hasClass("active")&&c.removeClass("active"),0===b.indexOf(e)?c.addClass("active"):void 0})},e(f,d.path()),a.$watch(g,function(a,b){return a!==b?e(f,d.path()):void 0})}]}}]).directive("toggleOffCanvas",[function(){return{link:function(a,b){return b.on("click",function(){return $("#app").toggleClass("on-canvas").toggleClass("nav-min")})}}}]).directive("slimScroll",[function(){return{link:function(a,b,c){return b.slimScroll({height:c.scrollHeight||"100%"})}}}]).directive("goBack",[function(){return{restrict:"A",controller:["$scope","$element","$window",function(a,b,c){return b.on("click",function(){return c.history.back()})}]}}]),angular.module("app.ui.form.directives",[]).directive("uiRangeSlider",[function(){return{restrict:"A",link:function(a,b){return b.slider()}}}]).directive("uiFileUpload",[function(){return{restrict:"A",link:function(a,b){return b.bootstrapFileInput()}}}]).directive("uiSpinner",[function(){return{restrict:"A",compile:function(a){return a.addClass("ui-spinner"),{post:function(){return a.spinner()}}}}}]).directive("uiWizardForm",[function(){return{link:function(a,b){return b.steps()}}}]).directive("fileModel",["$parse",function(a){return{restrict:"A",link:function(b,c,d){var e=a(d.fileModel),f=e.assign;c.bind("change",function(){b.$apply(function(){f(b,c[0].files)})})}}}]),angular.module("app.directives").directive("uiAvatar",["assetVersion",function(a){
-return{restrict:"E",transclude:!0,templateUrl:"views/directive-partials/ui-avatar.html?"+a,scope:{avatarSrc:"=src",uploadEndpoint:"=",successCallback:"="},controller:["$scope","$timeout","Upload","Rover",function(a,b,c,d){a.isUploading=!1,a.upload=function(e){e&&(a.isUploading=!0,d.debug("Uploading avatar..."),c.upload({url:a.uploadEndpoint,data:{image:e}}).then(function(c){a.avatarSrc="data:"+c.data.avatar.mime_type+";base64,"+c.data.avatar.data_uri,a.isUploading=!1,"function"==typeof a.successCallback&&b(function(){a.successCallback.call(c.data)})},function(b){d.alert("Could not upload avatar. Please try again later."),a.isUploading=!1}))}}]}}]),angular.module("app.directives").directive("uiEditableListContainer",["assetVersion",function(a){return{restrict:"AE",transclude:!0,scope:{deleteResource:"=delete"},controller:["$scope","Rover",function(a,b){a.isEditing=!1;var c=a.items=[];this.addItem=function(a){a.isEditing=!1,c.push(a)},a.edit=function(){a.isEditing=!0,angular.forEach(c,function(a){a.isEditing=!0})},a.save=function(){a.isEditing=!1,angular.forEach(c,function(a){a.isEditing=!1})},a["delete"]=function(){a.deleteResource.apply()}}],templateUrl:"views/directive-partials/ui-editable-list-container.html?"+a}}]).directive("uiEditableListItem",["Rover","assetVersion",function(a,b){return{require:"^uiEditableListContainer",restrict:"AE",scope:{label:"@label",display:"@display",value:"=value",type:"@type"},link:function(a,b,c,d){d.addItem(a)},templateUrl:"views/directive-partials/ui-editable-list-item.html?"+b}}]),function(a,b){"use strict";return"function"==typeof define&&define.amd?void define("ngStorage",["angular"],function(a){return b(a)}):b(a)}("undefined"==typeof angular?null:angular,function(a){"use strict";function b(b){return["$rootScope","$window","$log","$timeout",function(c,d,e,f){function g(a){var b=d[a];if(b&&"localStorage"===a){var c="__"+Math.round(1e7*Math.random());try{localStorage.setItem(c,c),localStorage.removeItem(c)}catch(e){b=!1}}return b}var h,i,j=g(b)||(e.warn("This browser does not support Web Storage!"),{setItem:function(){},getItem:function(){}}),k={$default:function(b){for(var c in b)a.isDefined(k[c])||(k[c]=b[c]);return k},$reset:function(a){for(var b in k)"$"===b[0]||delete k[b];return k.$default(a)}};try{j=d[b],j.length}catch(l){e.warn("This browser does not support Web Storage!"),j={}}for(var m,n=0,o=j.length;o>n;n++)(m=j.key(n))&&"ngStorage-"===m.slice(0,10)&&(k[m.slice(10)]=a.fromJson(j.getItem(m)));return h=a.copy(k),c.$watch(function(){var b;i||(i=f(function(){if(i=null,!a.equals(k,h)){b=a.copy(h),a.forEach(k,function(c,d){a.isDefined(c)&&"$"!==d[0]&&j.setItem("ngStorage-"+d,a.toJson(c)),delete b[d]});for(var c in b)j.removeItem("ngStorage-"+c);h=a.copy(k)}},100,!1))}),"localStorage"===b&&d.addEventListener&&d.addEventListener("storage",function(b){"ngStorage-"===b.key.slice(0,10)&&(b.newValue?k[b.key.slice(10)]=a.fromJson(b.newValue):delete k[b.key.slice(10)],h=a.copy(k),c.$apply())}),k}]}a.module("ngStorage",[]).factory("$localStorage",b("localStorage")).factory("$sessionStorage",b("sessionStorage"))}),angular.module("app.ui.services",[]).factory("loggit",[function(){var a;return toastr.options={closeButton:!0,positionClass:"toast-bottom-left",timeOut:"3000"},a=function(a,b){return toastr[b](a)},{log:function(b){a(b,"info")},logWarning:function(b){a(b,"warning")},logSuccess:function(b){a(b,"success")},logError:function(b){a(b,"error")}}}]),angular.module("app.controllers").service("MovementStore",function(){for(var a=["Deep Squat","Hurdle Step","Inline Lunge","Shoulder Mobility","Impingement (C. Test)","Active Straight Leg Raise","Trunk Stability Pushup","Press-up (C. Test)","Rotary Stability","Posterior Rocking (C. Test)"],b={test:0,analysis:1,data:2,summary:3},c=[],d=0;d<a.length;d++){var e={};if(e.name=a[d],e.url=e.name.toLowerCase().replace(" (c. test)","").split(" ").join("_"),e.latest_page=b.test,e.score=Math.floor(4*Math.random()+1),e.test_page_data={},e.analysis_page_data={},e.data_page_data={},e.summary_page_data={},5==d){var f=["LEFT","RIGHT"],g=3;e.sides=[];for(var h=0;h<f.length;h++)e.sides.push({name:f[h]});e.active_side=e.sides[0];for(var i=0;i<e.sides.length;i++){e.sides[i].trials=[];for(var j=0;g>j;j++)e.sides[i].trials.push({name:"Trial "+(j+1),status:"idle",joints:[{name:"HIP",movements:[{name:"Flexion/Extension",left_deg:108,right_deg:97,series_data:{name:"Hip Flexion",data:[0,15,20,60,70,90,80,75,60,45,0]}}]},{name:"KNEE",movements:[{name:"Flexion/Extension",left_deg:108,right_deg:97,series_data:{name:"Knee Flexion",data:[0,5,20,50,65,80,80,80,75,60,0]}}]}]});e.sides[i].active_trial=e.sides[i].trials[0]}}else e.sides=[{name:"TEST",trials:[{name:"Trial 1",status:"idle",joints:[]},{name:"Trial 2",status:"idle",joints:[]}]}],e.active_trial=e.sides[0].trials[0],e.disabled=!0;c.push(e)}return{movement_pages:c}}),angular.module("backendHeddoko",[]).factory("Teams",["$http",function(a){return{get:function(){return a.get("/api/teams")},create:function(b){return a({method:"POST",url:"/api/teams",headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(b)})},update:function(b,c){return a({method:"PUT",url:"/api/teams/"+b,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},destroy:function(b){return a["delete"]("/api/teams/"+b)},avatar:function(b,c){return a.post("/api/teams/"+b+"/photo",{photo:c})}}}]).factory("Athletes",["$http",function(a){return{get:function(b){return a.get("/api/teams/"+b+"/athletes")},create:function(b,c){return console.log(c),a({method:"POST",url:"/api/teams/"+b+"/athletes",headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},update:function(b){return a({method:"PUT",url:"/api/teams/"+b.group_id+"/athletes/"+b.id,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(b)})},destroy:function(b,c){return a["delete"]("/api/teams/"+b+"/athletes/"+c)},avatar:function(b,c,d){return a.post("/api/teams/"+b+"/athletes/"+c+"/photo",{photo:d})}}}]).factory("FMSForm",["$http",function(a){return{get:function(b){return a.get("/api/athletes/"+b+"/fmsforms")},create:function(b,c,d){var e=new FormData;return d&&(d.deepsquat_movement_file&&e.append("deepsquat_movement_file",d.deepsquat_movement_file[0]),d.Lhurdle_movement_file&&e.append("Lhurdle_movement_file",d.Lhurdle_movement_file[0]),d.Rhurdle_movement_file&&e.append("Rhurdle_movement_file",d.Rhurdle_movement_file[0]),d.Llunge_movement_file&&e.append("Llunge_movement_file",d.Llunge_movement_file[0]),d.Rlunge_movement_file&&e.append("Rlunge_movement_file",d.Rlunge_movement_file[0]),d.Lshoulder_movement_file&&e.append("Lshoulder_movement_file",d.Lshoulder_movement_file[0]),d.Rshoulder_movement_file&&e.append("Rshoulder_movement_file",d.Rshoulder_movement_file[0]),d.Limpingement_movement_file&&e.append("Limpingement_movement_file",d.Limpingement_movement_file[0]),d.Rimpingement_movement_file&&e.append("Rimpingement_movement_file",d.Rimpingement_movement_file[0]),d.Lactive_movement_file&&e.append("Lactive_movement_file",d.Lactive_movement_file[0]),d.Ractive_movement_file&&e.append("Ractive_movement_file",d.Ractive_movement_file[0]),d.trunk_movement_file&&e.append("trunk_movement_file",d.trunk_movement_file[0]),d.press_movement_file&&e.append("press_movement_file",d.press_movement_file[0]),d.Lrotary_movement_file&&e.append("Lrotary_movement_file",d.Lrotary_movement_file[0]),d.Rrotary_movement_file&&e.append("Rrotary_movement_file",d.Rrotary_movement_file[0]),d.posterior_movement_file&&e.append("posterior_movement_file",d.posterior_movement_file[0])),e.append("deepsquat",c.deepsquat),e.append("deepsquatcomments",c.deepsquatcomments||""),e.append("Lhurdle",c.Lhurdle),e.append("Rhurdle",c.Rhurdle),e.append("hurdlecomments",c.hurdlecomments||""),e.append("Llunge",c.Llunge),e.append("Rlunge",c.Rlunge),e.append("lungecomments",c.lungecomments||""),e.append("Lshoulder",c.Lshoulder),e.append("Rshoulder",c.Rshoulder),e.append("shouldercomments",c.shouldercomments||""),e.append("Limpingement",c.Limpingement),e.append("Rimpingement",c.Rimpingement),e.append("impingementcomments",c.impingementcomments||""),e.append("Lactive",c.Lactive),e.append("Ractive",c.Ractive),e.append("activecomments",c.activecomments||""),e.append("trunk",c.trunk),e.append("trunkcomments",c.trunkcomments||""),e.append("press",c.press),e.append("presscomments",c.presscomments||""),e.append("Lrotary",c.Lrotary),e.append("Rrotary",c.Rrotary),e.append("rotarycomments",c.rotarycomments||""),e.append("posterior",c.posterior),e.append("posteriorcomments",c.posteriorcomments||""),e.append("comment",c.comment),e.append("totalscore",c.totalscore),a.post("/api/athletes/"+b+"/fmsforms",e,{transformRequest:angular.identity,headers:{"Content-Type":void 0}})},update:function(b,c){return a({method:"PUT",url:"/api/athletes/"+b+"/fmsforms/"+c.id,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},destroy:function(b,c){return a["delete"]("/api/athletes/"+b+"/fmsforms/"+c)}}}]).factory("Sports",["$http",function(a){return{get:function(){return a.get("/api/sports")}}}]).factory("SportMovements",["$http",function(a){return{get:function(b){return a.get("/api/sports/"+b+"/sportmovements")}}}]).factory("Movements",["$http",function(a){return{upload:function(b,c,d){var e=new FormData;for(e.append("sportID",c),e.append("comment",d.comment),i=0;i<d.movement_files.length;i++)e.append("movements[]",d.movement_files[i]);return a.post("/api/athletes/"+b+"/movements",e,{transformRequest:angular.identity,headers:{"Content-Type":void 0}})}}}]),angular.module("app.services").service("FMSDemoFactory",["Rover",function(a){a.state.fms_demo=a.state.fms_demo||{},this.data=a.state.fms_demo,this.data.runs=this.data.runs||{},this.runDataTemplate={status:"pending",numFaults:0};var b={isTestLive:!1,isTestSubmitted:!1,iterations:[],iteration:"",trials:[{name:"Trial 1",status:"pending"},{name:"Trial 2",status:"pending"},{name:"Trial 3",status:"pending"}],testRuns:{}};this.data.list=[$.extend(!0,{},b,{id:"aslr",name:"Active Straight-Leg Raise",iterations:["left","right"],iteration:"left"})],this.data.current=this.data.list[0],this.data.views=["sagittal","coronal","transverse"]}]),angular.module("app.services").factory("FMSService",["$http",function(a){return{get:function(b){var c=b?{params:{profile_id:b}}:{};return a.get("/api/fms",c)},create:function(b){return a.post("/api/fms",b)},update:function(b,c){return a.put("/api/fms/"+b,c)},destroy:function(b){return a["delete"]("/api/fms/"+b)}}}]),angular.module("app.services").factory("GroupService",["$http",function(a){return{get:function(){return a.get("/api/group")},create:function(b){return a.post("/api/group",b)},update:function(b,c){return a.put("/api/group/"+b,c)},destroy:function(b){return a["delete"]("/api/group/"+b)},setAvatar:function(b,c){return a.post("/api/group/"+b+"/photo",{image:c})}}}]),angular.module("app.services").service("OnboardingService",["$timeout","Rover",function(a,b){this.getOptions=function(a){var b,c=[],d=[],e=$(a).length;return angular.forEach($(a),function(a){b=$(a).data("step")?$(a).data("step"):e,c[b]={element:a,intro:$(a).data("intro"),position:$(a).data("position")||"bottom"},e++}),angular.forEach(c,function(a){d.push(a)}),{steps:d,showStepNumbers:!1,showBullets:!0,exitOnOverlayClick:!0,exitOnEsc:!0,nextLabel:'<i class="fa fa-angle-double-right"></i>',prevLabel:'<i class="fa fa-angle-double-left"></i>',skipLabel:"I'll do this later",doneLabel:"Thanks!"}},this.general=function(a){var b=introJs();b.setOptions(this.getOptions(".onboarding-general")),"number"==typeof a?b.goToStep(a).start():b.start()}.bind(this)}]),angular.module("app.services").factory("ProfileService",["$http","$filter",function(a,b){return{get:function(b){var c=b?{params:{group:b}}:{};return a.get("/api/profile",c)},create:function(b,c){var d=c?{params:{group:c}}:{};return a.post("/api/profile",b,d)},update:function(b,c){return a.put("/api/profile/"+b,c)},destroy:function(b){return a["delete"]("/api/profile/"+b)},destroyAvatar:function(b){return a["delete"]("/api/profile/"+b+"/avatar")},setAvatar:function(b,c){return a.post("/api/profile/"+b+"/photo",{image:c})},formatForDisplay:function(a){return a.created_at=a.created_at||"",a.created_at_formatted=a.created_at.length>0?b("date")(a.created_at.substr(0,10),"MMM d, yyyy"):"",a.feet=a.height>0?Math.floor(a.height/.3048):"",a.inches=a.height>0?Math.round(12*(a.height/.3048-a.feet)):"",a.weight_lbs=a.mass>0?Math.round(a.mass/.453592):"",a},formatForStorage:function(a){return a.height=.3048*(a.feet+a.inches/12),a.mass=.453592*a.weight_lbs,a}}}]),angular.module("app.rover",[]).service("Rover",["$window","$sessionStorage","$route","$location","$log","$timeout",function(a,b,c,d,e,f){this.timestamp=Date.now(),this.isLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,this.userHash=$('meta[name="user-hash"]').attr("content"),b[this.userHash]=b[this.userHash]||{},this.state=b[this.userHash],this.state.config=this.state.config||{},this.backgroundProcessCount=1,this.addBackgroundProcess=function(){this.backgroundProcessCount++,this.debug("Background processes: "+this.backgroundProcessCount),1===this.backgroundProcessCount&&this.showLoading()}.bind(this),this.doneBackgroundProcess=function(){this.backgroundProcessCount--,this.debug("Background processes: "+this.backgroundProcessCount),this.backgroundProcessCount<1&&f(function(){this.hideLoading()}.bind(this),500)}.bind(this),this.browseTo={config:function(){this.debug("Browsing to configuration page."),d.path("/config")}.bind(this),dashboard:function(){this.debug("Browsing to dashboard index page."),d.path("/dashboard")}.bind(this),groups:function(){this.debug("Browsing to group listings page."),d.path("/group/list")}.bind(this),group:function(a){void 0===a?a=this.state.group.selected:this.state.group.selected=a,this.debug("Browsing to group #"+a.id),d.path("/group/view")}.bind(this),profile:function(a){a?this.state.profile.selected=a:a=this.state.profile.selected,this.debug("Browsing to profile #"+a.id),d.path("/profile/view")}.bind(this),member:function(a){this.debug("Rover.browseTo.member is deprecated..."),this.profile(a)},path:function(a){this.debug("Browsing to path: "+a),d.path(a)}.bind(this)},this.browse=this.browseTo,this._events={onEndSession:[]},this.onEndSession=function(){},this.endSession=function(){b[this.userHash]={},this.debug("Ending session..."),window.location.assign("/auth/logout")}.bind(this),this.debug=function(a){this.isLocal,e.debug(a)},this.error=function(a){e.error(a)},this.alert=function(b){a.alert(b)},this.showLoading=function(){$(".page-loading-overlay").removeClass("loaded"),$(".load_circle_wrapper").removeClass("loaded")},this.hideLoading=function(){$(".page-loading-overlay").addClass("loaded"),$(".load_circle_wrapper").addClass("loaded")},this.getConfig=function(a,b){return b},this.setConfig=function(a,b){return b},this.getId=function(a){return["string","numder"].indexOf(typeof a)>0?Number(a):Number(a.id)}}]);
+;!function(t,e){"function"==typeof define&&define.amd?define(["angular","chartist"],e):"object"==typeof exports?module.exports=e(require("angular"),require("chartist")):t.angularChartist=e(t.angular,t.Chartist)}(this,function(t,e){"use strict";function n(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function r(){return{restrict:"EA",scope:{data:"=chartistData",chartType:"@chartistChartType",events:"&chartistEvents",chartOptions:"&chartistChartOptions",responsiveOptions:"&chartistResponsiveOptions"},controller:"AngularChartistCtrl"}}var a=function(){function t(t,e){for(var n=0;n<e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&&t(e.prototype,n),r&&t(e,r),e}}(),i=function(){function t(e,r){var a=this;n(this,t),this.data=e.data,this.chartType=e.chartType,this.events=e.events()||{},this.options=e.chartOptions()||null,this.responsiveOptions=e.responsiveOptions()||null,this.element=r[0],this.renderChart(),e.$watch(function(){return{data:e.data,chartType:e.chartType,chartOptions:e.chartOptions()}},this.update.bind(this),!0),e.$on("$destroy",function(){a.chart&&a.chart.detach()})}return a(t,[{key:"bindEvents",value:function(){var t=this;Object.keys(this.events).forEach(function(e){t.chart.on(e,t.events[e])})}},{key:"renderChart",value:function(){return this.data?(this.chart=e[this.chartType](this.element,this.data,this.options,this.responsiveOptions),this.bindEvents(),this.chart):void 0}},{key:"update",value:function(t,e){this.chartType=t.chartType,this.data=t.data,this.options=t.chartOptions,this.chart&&t.chartType===e.chartType?this.chart.update(this.data,this.options):this.renderChart()}}]),t}();i.$inject=["$scope","$element"],r.$inject=[];var s=t.module("angular-chartist",[]).controller("AngularChartistCtrl",i).directive("chartist",r);return s});;angular.module('app.views', ['config.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/form.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+
+angular.module("config.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("config.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div ng-include=\" 'placeholder.html' \"></div>\n" +
+    "</header>\n" +
+    "");
+}]);
+
+angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("dashboard.html",
+    "<!-- Title -->\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\">\n" +
+    "        <h1 class=\"text-center\">\n" +
+    "            Welcome to your dashboard.\n" +
+    "        </h1>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- Main tasks -->\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12 col-md-4 text-right\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
+    "            <span>\n" +
+    "                Upload/Record <br>\n" +
+    "                a Movement\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-12 col-md-4 text-center\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
+    "            <span>\n" +
+    "                Analyze <br>\n" +
+    "                a Movement\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-12 col-md-4 text-left\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
+    "            <span>\n" +
+    "                Compare <br>\n" +
+    "                Movements\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- Quick actions -->\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12 text-center\">\n" +
+    "        <div class=\"btn-group\">\n" +
+    "\n" +
+    "            <!-- Profile list -->\n" +
+    "            <a href=\"#/profile/list\" class=\"btn btn-default\">\n" +
+    "                See my athletes\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- Group list -->\n" +
+    "            <a href=\"#/group/list\" class=\"btn btn-default\">\n" +
+    "                See my teams\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- Onboarding link -->\n" +
+    "            <button ng-click=\"global.onboarding.general()\" class=\"btn btn-primary\">\n" +
+    "                Show me around\n" +
+    "            </button>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fmsresults.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fmsresults.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "            <h4>FMS Results</h4>\n" +
+    "            <p ng-if=\"global.state.profile.selected\">\n" +
+    "                View FMS results for\n" +
+    "                <b>\n" +
+    "                    {{ global.state.profile.selected.first_name }} {{ global.state.profile.selected.last_name }}\n" +
+    "                </b>\n" +
+    "            </p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</header>\n" +
+    "<div class=\"page page-dashboard\" data-ng-controller=\"FMSFormController\">\n" +
+    "\n" +
+    "	<div class=\"row\">\n" +
+    "		<div class=\"col-sm-6\">\n" +
+    "			<div class=\"panel panel-default\">\n" +
+    "				<div class=\"panel-body\">\n" +
+    "					<div class=\"text-left col-sm-6\">\n" +
+    "						<h3>\n" +
+    "							Athlete's FMS Score History\n" +
+    "						</h3>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div ng-show=\"global.state.profile.selected.id < 1\">\n" +
+    "                        Select an athlete under 'Dashboard' in the sidebar before viewing historical FMS data\n" +
+    "                    </div>\n" +
+    "\n" +
+    "					<div ng-hide=\"global.state.profile.selected.id < 1\" class=\"panel-body ng-scope\">\n" +
+    "						<table class=\"table\">\n" +
+    "							<thead>\n" +
+    "								<tr>\n" +
+    "									<th>#</th>\n" +
+    "									<th>Date</th>\n" +
+    "									<th>Final Score</th>\n" +
+    "									<th>Suit no.</th>\n" +
+    "									<th>Data</th>\n" +
+    "								</tr>\n" +
+    "							</thead>\n" +
+    "							<tbody>\n" +
+    "\n" +
+    "								<tr\n" +
+    "                                    ng-repeat=\"fmsform in global.state.profile.selected.fms_forms track by fmsform.id\"\n" +
+    "                                    ng-click=\"fmsdisplay(fmsform)\">\n" +
+    "\n" +
+    "									<td>{{$index + 1}}</td>\n" +
+    "									<td>{{fmsform.created_at}}</td>\n" +
+    "									<td>\n" +
+    "										{{fmsform.score}}\n" +
+    "									</td>\n" +
+    "									<td>1</td>\n" +
+    "									<td><!--<span class=\"label label-warning\">Missing</span>--></td>\n" +
+    "\n" +
+    "\n" +
+    "								</tr>\n" +
+    "\n" +
+    "							</tbody>\n" +
+    "						</table>\n" +
+    "					</div>\n" +
+    "					<div ng-show=\"global.state.profile.selected.fms_forms.length == 0\">0 FMS Forms found</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "		<div class=\"col-sm-6\">\n" +
+    "			<div class=\"panel panel-default\">\n" +
+    "				<div class=\"panel-body\">\n" +
+    "					<div class=\"text-left col-sm-6\">\n" +
+    "						<h3>\n" +
+    "							FMS Details\n" +
+    "						</h3>\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<div class=\"panel-body ng-scope\" ng-show=\"data.selected_fms_form == null\">\n" +
+    "						select an FMS form on the left to view details\n" +
+    "					</div>\n" +
+    "\n" +
+    "					<label ng-hide=\"data.selected_fms_form == null\" class=\"switch switch-info pull-right\">\n" +
+    "                        <input type=\"checkbox\" ng-model=\"data.show_fms_edit\" class=\"ng-untouched ng-valid ng-dirty ng-valid-parse\"><i></i>\n" +
+    "                    </label>\n" +
+    "\n" +
+    "					<div class=\"panel-body ng-scope\" ng-show=\"data.selected_fms_form != null\">\n" +
+    "\n" +
+    "						</br></br></br>\n" +
+    "						<form class=\"form-horizontal ng-pristine ng-valid\">\n" +
+    "							<fieldset ng-disabled=\"!data.show_fms_edit\">\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Deep squat</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.deepsquat\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.deepsquat\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.deepsquat\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.deepsquat\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.deepsquatcomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Hurdle step L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Lhurdle\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Lhurdle\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Lhurdle\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Lhurdle\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Hurdle step R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Rhurdle\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Rhurdle\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Rhurdle\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Rhurdle\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.hurdlecomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Inline lunge step L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Llunge\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Llunge\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Llunge\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Llunge\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Inline lunge step R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Rlunge\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Rlunge\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Rlunge\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Rlunge\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.lungecomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Shoulder Mobility L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Lshoulder\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Lshoulder\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Lshoulder\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Lshoulder\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Shoulder Mobility R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Rshoulder\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Rshoulder\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Rshoulder\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Rshoulder\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.shouldercomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Impingement clearing test L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Limpingement\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Limpingement\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Limpingement\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Limpingement\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Impingement clearing test R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Rimpingement\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Rimpingement\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Rimpingement\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Rimpingement\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.impingementcomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Active straight-leg raise L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Lactive\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Lactive\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Lactive\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Lactive\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Active straight-leg raise R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Ractive\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Ractive\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Ractive\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Ractive\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.activecomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Trunk stability pushup</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.trunk\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.trunk\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.trunk\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.trunk\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.trunkcomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Press-up clearing test</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.press\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.press\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.press\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.press\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.presscomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Rotary stability L</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Lrotary\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Lrotary\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Lrotary\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Lrotary\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Rotary stability R</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.Rrotary\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.Rrotary\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.Rrotary\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.Rrotary\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.rotarycomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "								<div class=\"form-group\">\n" +
+    "									<label for=\"\" class=\"col-sm-2\">Posterior rocking clearing test</label>\n" +
+    "									<div class=\"col-sm-6\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.selected_fms_form.posterior\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.selected_fms_form.posterior\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.selected_fms_form.posterior\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.selected_fms_form.posterior\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-4\">\n" +
+    "											<input type=\"text\" class=\"form-control\" ng-model=\"data.selected_fms_form.posteriorcomments\">\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "							</fieldset>\n" +
+    "\n" +
+    "            </form>\n" +
+    "\n" +
+    "						<div ng-hide=\"!data.show_fms_edit\">\n" +
+    "							<button type=\"button\" class=\"btn btn-info btn-sm disabled\" ng-click=\"updateFMS();\">Update this FMS Form</button>\n" +
+    "						</div>\n" +
+    "\n" +
+    "\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "\n" +
+    "	</div>\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fmstest.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fmstest.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "            <h4>Submit FMS Results</h4>\n" +
+    "            <p ng-if=\"data.member.selected\">\n" +
+    "                Submit FMS results for\n" +
+    "                <b>\n" +
+    "                    {{ global.state.profile.selected.first_name }} {{ global.state.profile.selected.last_name }}\n" +
+    "                </b>\n" +
+    "            </p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</header>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard\" data-ng-controller=\"FMSFormController\">\n" +
+    "\n" +
+    "	<section>\n" +
+    "		<div class=\"row\">\n" +
+    "\n" +
+    "			<div class=\"col-sm-12\" ng-hide=\"waiting_server_response\">\n" +
+    "				<div class=\"panel panel-default\">\n" +
+    "					<div class=\"panel-body\">\n" +
+    "						<div class=\"text-left col-sm-6\">\n" +
+    "							<h3>\n" +
+    "								Add FMS Test Scores\n" +
+    "							</h3>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"panel-body col-sm-12 ng-scope\">\n" +
+    "							<form ng-submit=\"submitFMSForm()\" ng-hide=\"data.member.selected.id < 1\">\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Deep Squat\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.deepsquat\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.deepsquat\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.deepsquat\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.deepsquat\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.deepsquatcomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.ds == null, 'btn-success': files.ds != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.ds\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Hurdle step (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Lhurdle\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Lhurdle\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Lhurdle\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Lhurdle\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Lhurdlecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.hsl == null, 'btn-success': files.hsl != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.hsl\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Hurdle step (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Rhurdle\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Rhurdle\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Rhurdle\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Rhurdle\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Rhurdlecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.hsr == null, 'btn-success': files.hsr != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.hsr\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Inline lunge (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Llunge\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Llunge\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Llunge\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Llunge\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Llungecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.ill == null, 'btn-success': files.ill != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.ill\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Inline lunge (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Rlunge\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Rlunge\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Rlunge\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Rlunge\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Rlungecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.ilr == null, 'btn-success': files.ilr != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.ilr\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Shoulder Mobility (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Lshoulder\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Lshoulder\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Lshoulder\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Lshoulder\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Lshouldercomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.sml == null, 'btn-success': files.sml != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.sml\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Shoulder Mobility (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Rshoulder\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Rshoulder\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Rshoulder\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Rshoulder\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Rshouldercomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.smr == null, 'btn-success': files.smr != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.smr\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Impingement clearing test (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-checkbox\"><input ng-model=\"data.fms_form_data.Limpingement\" type=\"checkbox\"><span>pain</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Limpingementcomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.ictl == null, 'btn-success': files.ictl != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.ictl\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Impingement clearing test (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-checkbox\"><input ng-model=\"data.fms_form_data.Rimpingement\" type=\"checkbox\"><span>pain</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.impingementcomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.ictr == null, 'btn-success': files.ictr != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.ictr\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Active straight-leg raise (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Lactive\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Lactive\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Lactive\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Lactive\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Lactivecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.aslrl == null, 'btn-success': files.aslrl != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.aslrl\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Active straight-leg raise (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Ractive\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Ractive\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Ractive\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Ractive\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Ractivecomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.aslrr == null, 'btn-success': files.aslrr != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.aslrr\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Trunk stability push-up\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.trunk\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.trunk\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.trunk\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.trunk\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.trunkcomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.tspu == null, 'btn-success': files.tspu != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.tspu\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Press-up clearing test\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-checkbox\"><input ng-model=\"data.fms_form_data.press\" type=\"checkbox\"><span>pain</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.presscomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.puct == null, 'btn-success': files.puct != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.puct\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Rotary stability (L)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Lrotary\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Lrotary\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Lrotary\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Lrotary\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "                                        <input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Lrotarycomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.rsl == null, 'btn-success': files.rsl != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.rsl\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Rotary stability (R)\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"0\" ng-model=\"data.fms_form_data.Rrotary\"><span>0</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"1\" ng-model=\"data.fms_form_data.Rrotary\"><span>1</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"2\" ng-model=\"data.fms_form_data.Rrotary\"><span>2</span></label>\n" +
+    "										<label class=\"ui-radio\"><input type=\"radio\" value=\"3\" ng-model=\"data.fms_form_data.Rrotary\"><span>3</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.Rrotarycomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.rsr == null, 'btn-success': files.rsr != null}\">\n" +
+    "    Select Movement File <input type=\"file\" file-model=\"files.rsr\">\n" +
+    "</span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										Posterior rocking clearing test\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<label class=\"ui-checkbox\"><input ng-model=\"data.fms_form_data.posterior\" type=\"checkbox\"><span>pain</span></label>\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<input placeholder=\"Comments\" type=\"text\" ng-model=\"data.fms_form_data.posteriorcomments\">\n" +
+    "									</div>\n" +
+    "									<div class=\"col-sm-3\">\n" +
+    "										<span ng-class=\"{btn: true, 'btn-file': true, 'btn-default': files.prct == null, 'btn-success': files.prct != null}\">\n" +
+    "                                            Select Movement File <input type=\"file\" file-model=\"files.prct\">\n" +
+    "                                        </span>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "								<div class=\"row\">\n" +
+    "									<div class=\"col-sm-12\">\n" +
+    "										<h3>Other Comments</h3>\n" +
+    "										<textarea name=\"\" id=\"\" class=\"form-control\" ng-model=\"data.fms_form_data.comment\"></textarea>\n" +
+    "										<br>\n" +
+    "\n" +
+    "										<div class=\"text-center\">\n" +
+    "											<button type=\"submit\" class=\"btn btn-primary\">Submit Results and Movement Files</button>\n" +
+    "										</div>\n" +
+    "									</div>\n" +
+    "								</div>\n" +
+    "							</form>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</section>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("header.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("header.html",
+    "<header class=\"clearfix\">\n" +
+    "	<div class=\"top-nav\">\n" +
+    "		<ul class=\"nav-left list-unstyled\">\n" +
+    "\n" +
+    "            <!-- Menu button (shows up in mobile views) -->\n" +
+    "			<li>\n" +
+    "				<div class=\"menu-button\" toggle-off-canvas>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "				</div>\n" +
+    "			</li>\n" +
+    "\n" +
+    "            <!-- Menu button (shows up on desktop views) -->\n" +
+    "			<!-- <li>\n" +
+    "				<a href=\"#/\" data-toggle-min-nav class=\"toggle-min\">\n" +
+    "                    <i class=\"fa fa-bars\"></i>\n" +
+    "                </a>\n" +
+    "			</li> -->\n" +
+    "\n" +
+    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
+    "            <li style=\"display: block; width: 20px; height: 1px;\"></li>\n" +
+    "\n" +
+    "            <!-- Group dropdown -->\n" +
+    "			<li\n" +
+    "                ng-hide=\"global.state.group.list.length === 0\"\n" +
+    "                class=\"onboarding-general\"\n" +
+    "                data-step=\"2\"\n" +
+    "                data-intro=\"Here is where you can find the groups you manage. The black arrow is a shortcut to view\n" +
+    "                            the <strong>{{ global.state.group.selected.name }}</strong>'s details.\">\n" +
+    "\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        {{ global.state.group.selected.name }}\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul class=\"dropdown-menu\">\n" +
+    "                        <li ng-repeat=\"group in global.state.group.list\">\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.group.selected = group\">\n" +
+    "                                {{ group.name }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "\n" +
+    "                    <!-- Link to group page -->\n" +
+    "                    <button\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\"\n" +
+    "                        ng-click=\"Rover.browseTo.group(global.state.group.selected)\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <!-- Member dropdown -->\n" +
+    "			<li\n" +
+    "                class=\"onboarding-general\"\n" +
+    "                data-step=\"3\"\n" +
+    "                data-intro=\"Here is where you can find the profiles you manage. If a group is selected, the\n" +
+    "                            profiles listed will be restricted to that group. The black arrow is a\n" +
+    "                            shortcut to view <strong>{{ global.state.profile.selected.first_name }}\n" +
+    "                            </strong>'s details.\">\n" +
+    "\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul\n" +
+    "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
+    "                        class=\"dropdown-menu\">\n" +
+    "\n" +
+    "                        <li ng-repeat=\"profile in global.state.profile.list\">\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.profile.selected = profile\">\n" +
+    "                                {{ profile.first_name +' '+ profile.last_name }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "\n" +
+    "                    <!-- Link to profile page -->\n" +
+    "                    <button\n" +
+    "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
+    "                        ng-click=\"Rover.browseTo.profile(global.state.profile.selected)\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Create new profile button -->\n" +
+    "                    <button\n" +
+    "                        ng-show=\"global.state.profile.list.length === 0\"\n" +
+    "                        ng-click=\"Rover.browseTo.path('/profile/create')\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default\">\n" +
+    "\n" +
+    "                        Create profile\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "			</li>\n" +
+    "\n" +
+    "            <li ng-show=\"global.isLocal\">\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        Dev\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul class=\"dropdown-menu\">\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\">\n" +
+    "                                Total groups: {{ global.state.group.list.length }} /\n" +
+    "                                Selected: {{ global.state.group.selected.name || 'None' }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\">\n" +
+    "                                Total profiles: {{ global.state.profile.list.length }} /\n" +
+    "                                Selected: {{ global.state.profile.selected.first_name || 'None' }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <!-- Settings page -->\n" +
+    "            <li class=\"pull-right onboarding-general\" data-step=\"4\" data-intro=\"This is the settings button\">\n" +
+    "                <div class=\"btn-group\">\n" +
+    "                    <button class=\"btn btn-default\" ng-click=\"Rover.browseTo.config()\">\n" +
+    "                        Settings &nbsp;&nbsp;<i class=\"fa fa-cog\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "		</ul>\n" +
+    "\n" +
+    "        <!-- Log out -->\n" +
+    "		<!-- <ul class=\"nav-right-button list-unstyled pull-right\">\n" +
+    "			<li>\n" +
+    "				<a ng-click=\"Rover.endSession()\" class=\"btn btn-logout\">\n" +
+    "					Logout &nbsp;&nbsp;<i class=\"fa fa-sign-out\"></i>\n" +
+    "				</a>\n" +
+    "			</li>\n" +
+    "		</ul> -->\n" +
+    "		<ul class=\"nav-right-button list-unstyled pull-right\">\n" +
+    "			<li>\n" +
+    "				<a ng-click=\"Rover.endSession()\" class=\"btn btn-danger\">\n" +
+    "					Logout &nbsp;&nbsp;<i class=\"fa fa-sign-out\"></i>\n" +
+    "				</a>\n" +
+    "			</li>\n" +
+    "		</ul>\n" +
+    "	</div>\n" +
+    "</header>\n" +
+    "");
+}]);
+
+angular.module("movements.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movements.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "            <h4>Movement Screen</h4>\n" +
+    "            <p>Start your tests</p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</header>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard movement-pages\" ng-controller=\"MovementScreenController\">\n" +
+    "	<div>\n" +
+    "		<ol class=\"breadcrumb-movement\">\n" +
+    "\n" +
+    "            <!-- Movement title -->\n" +
+    "			<li>\n" +
+    "				<div style=\"text-align:center;\">\n" +
+    "					<a>{{ data.current_movement_page.name || \"Choose a movement\" }}</a>\n" +
+    "				</div>\n" +
+    "			</li>\n" +
+    "\n" +
+    "            <!-- Movement tabs -->\n" +
+    "			<li\n" +
+    "                ng-click=\"data.current_movement_page.latest_page = 0\"\n" +
+    "                ng-class=\"{'active':data.current_movement_page.latest_page == 0}\">\n" +
+    "\n" +
+    "                <a>TEST</a>\n" +
+    "            </li>\n" +
+    "			<li\n" +
+    "                ng-click=\"data.current_movement_page.latest_page = 1\"\n" +
+    "                ng-class=\"{'active':data.current_movement_page.latest_page == 1}\">\n" +
+    "                <a>ANALYSIS</a>\n" +
+    "            </li>\n" +
+    "			<!-- <li ng-click=\"data.current_movement_page.latest_page = 2\" ng-class=\"{'active':data.current_movement_page.latest_page == 2}\">\n" +
+    "                <a>DATA</a>\n" +
+    "            </li> -->\n" +
+    "			<li\n" +
+    "                ng-click=\"data.current_movement_page.latest_page = 3\"\n" +
+    "                ng-class=\"{'active':data.current_movement_page.latest_page == 3}\">\n" +
+    "\n" +
+    "                <a>SUMMARY</a>\n" +
+    "            </li>\n" +
+    "		</ol>\n" +
+    "\n" +
+    "        <!-- Selected side -->\n" +
+    "		<ol class=\"breadcrumb-movement-sm\" ng-show=\"true\"> <!-- ng-show=\"data.current_movement.left_and_right == true\" -->\n" +
+    "			<li\n" +
+    "                ng-repeat=\"side in data.current_movement_page.sides\"\n" +
+    "                ng-click=\"data.current_movement_page.active_side = side\"\n" +
+    "                ng-class=\"{'active': side == data.current_movement_page.active_side}\">\n" +
+    "\n" +
+    "                <a >{{side.name}}</a>\n" +
+    "            </li>\n" +
+    "		</ol>\n" +
+    "\n" +
+    "		<div ng-switch=\"data.current_movement_page.latest_page\">\n" +
+    "			<div ng-switch-when=\"0\">\n" +
+    "				<div ng-include=\"'movement-partials/0test.html?' + Date.now()\"></div>\n" +
+    "			</div>\n" +
+    "			<div ng-switch-when=\"1\">\n" +
+    "				<div ng-include=\"'movement-partials/1analysis.html?' + Date.now()\"></div>\n" +
+    "			</div>\n" +
+    "			<div ng-switch-when=\"2\">\n" +
+    "				<div ng-include=\"'movement-partials/2data.html?' + Date.now()\"></div>\n" +
+    "			</div>\n" +
+    "			<div ng-switch-when=\"3\">\n" +
+    "				<div ng-include=\"'movement-partials/3summary.html?' + Date.now()\"></div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("navigation.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("navigation.html",
+    "<div class=\"logo\">\n" +
+    "    <div class=\"logo-container\">\n" +
+    "        <img src=\"../../images/logo/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
+    "        <img src=\"../../images/logo/heddoko_logo_2.svg\" alt=\"Heddoko\" class=\"logo2\">\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div id=\"nav-wrapper\">\n" +
+    "    <ul id=\"nav\" data-slim-scroll data-collapse-nav data-highlight-active>\n" +
+    "\n" +
+    "        <!-- Landing page -->\n" +
+    "        <li\n" +
+    "            class=\"onboarding-general\"\n" +
+    "            data-step=\"1\"\n" +
+    "            data-intro=\"This is a shortcut to your dashboard.\"\n" +
+    "            data-position=\"right\">\n" +
+    "            <a href=\"#/dashboard\"><span>dashboard</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- List of groups -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/group/list\"><span>teams</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- Submit movement data form -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/submit-movement\"><span>submit movement data</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- Submit FMS test form -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/fmstest\"><span>submit fms test results</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- FMS results page -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/fmsresults\"><span>fms results</span></a>\n" +
+    "		</li>\n" +
+    "\n" +
+    "        <!-- Live FMS pages. -->\n" +
+    "        <li>\n" +
+    "            <!-- TODO: Call this Live FMS? -->\n" +
+    "            <a href=\"#/fms/live\">Movement Screen</a>\n" +
+    "\n" +
+    "            <!-- TODO: Use ng-repeat when ready -->\n" +
+    "            <ul style=\"display: block\">\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/ds\"><span>Deep Squat</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/hs\"><span>Hurdle Step</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/il\"><span>Inline Lunge</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/sm\"><span>Shoulder Mobility</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/sm\"><span>Impingement (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/demo/aslr\"><span>Active Straight-Leg Raise</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/tspu\"><span>Trunk Stability Push-Up</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/pu\"><span>Press-Up (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/rs\"><span>Rotary Stability</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/ps\"><span>Posterior Rocking (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em;\">\n" +
+    "            {{ global.appVersion }}\n" +
+    "		</li>\n" +
+    "\n" +
+    "		<!-- <li ng-controller=\"MovementScreenController\" ng-show=\"Rover.isLocal == true\">\n" +
+    "            <a href=\"#/movements\"><span>movement screen</span></a>\n" +
+    "			<ul style=\"display: block;\">\n" +
+    "                <li ng-repeat=\"movement_page in data.movement_pages\">\n" +
+    "					<a\n" +
+    "                        href=\"#/movements\"\n" +
+    "                        ng-click=\"select_movement(movement_page)\">\n" +
+    "\n" +
+    "                        <i ng-if=\"movement_page.submitted\" class=\"fa fa-2x fa-check\" style=\"color:white;\"></i>\n" +
+    "                        <span>{{movement_page.name}}</span>\n" +
+    "                    </a>\n" +
+    "				</li>\n" +
+    "            </ul>\n" +
+    "        </li> -->\n" +
+    "    </ul>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("placeholder.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("placeholder.html",
+    "<!-- Temporary page -->\n" +
+    "<div class=\"col-sm-12\">\n" +
+    "    <h1 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h1>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("submit-movement-demo.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("submit-movement-demo.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div class=\"row\">\n" +
+    "		<div class=\"col-sm-6\">\n" +
+    "			<h4>Movement Data</h4>\n" +
+    "            <p ng-if=\"data.member.selected\">\n" +
+    "                Submit movement data for\n" +
+    "                <b>\n" +
+    "                    {{ data.member.selected.first_name }} {{ data.member.selected.last_name }}\n" +
+    "                </b>\n" +
+    "            </p>\n" +
+    "		</div>\n" +
+    "    </div>\n" +
+    "</header>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <!-- Select a sport -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    1. Choose a sport.\n" +
+    "                </div>\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <div class=\"btn-group\">\n" +
+    "                        <button\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
+    "\n" +
+    "                            {{ sports.selected.name }}\n" +
+    "                            <span class=\"caret\"></span>\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li ng-repeat=\"sport in sports.list\">\n" +
+    "                                <a href=\"javascript:;\" ng-click=\"sports.selected = sport\">\n" +
+    "                                    {{ sport.name }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select a movement -->\n" +
+    "    <div class=\"row\" ng-hide=\"sports.selected == sports.default\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    2. Select a movement.\n" +
+    "                </div>\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <a\n" +
+    "                        href=\"javascript:;\"\n" +
+    "                        class=\"btn btn-primary btn-metro\"\n" +
+    "                        ng-repeat=\"movement in movements.list\"\n" +
+    "                        ng-click=\"movements.selected = movement;\">\n" +
+    "                        <span>{{ movement.name }}</span>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Submit data -->\n" +
+    "    <div class=\"row\" ng-hide=\"movements.selected == movements.default\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    3. Submit data.\n" +
+    "                </div>\n" +
+    "                <div class=\"panel-body\">\n" +
+    "\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                        <!-- Summary of data -->\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <h3>Summary</h3>\n" +
+    "\n" +
+    "                            <!-- Name -->\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-sm-4 text-right\">\n" +
+    "                                    Athlete\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-8\">\n" +
+    "                                    <b>{{data.member.selected.first_name}} {{data.member.selected.last_name}}</b>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Sport -->\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-sm-4 text-right\">\n" +
+    "                                    Sport\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-8\">\n" +
+    "                                    <b>{{sports.selected.name}}</b>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Movement -->\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-sm-4 text-right\">\n" +
+    "                                    Movement\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-8\">\n" +
+    "                                    <b>{{ movements.selected.name }}</b>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Suit -->\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-sm-4 text-right\">\n" +
+    "                                    Suit No.\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-8\">\n" +
+    "                                    <b></b>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Date -->\n" +
+    "                            <div class=\"row\">\n" +
+    "                                <div class=\"col-sm-4 text-right\">\n" +
+    "                                    Date\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-sm-8\">\n" +
+    "                                    <b></b>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Form -->\n" +
+    "                        <div class=\"col-md-6\">\n" +
+    "                            <form accept-charset=\"UTF-8\">\n" +
+    "\n" +
+    "                                <!-- Upload button -->\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-md-3\">\n" +
+    "                                        <input\n" +
+    "                                            type=\"button\"\n" +
+    "                                            ng-click=\"Rover.alert('Demo')\"\n" +
+    "                                            class=\"btn btn-default\"\n" +
+    "                                            value=\"Select a file\">\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"col-md-9\">\n" +
+    "                                        (none selected)\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "                                <!-- Comments -->\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-12\">\n" +
+    "                                        <textarea class=\"form-control\" placeholder=\"Comments\"></textarea>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "\n" +
+    "                                <br>\n" +
+    "\n" +
+    "                                <!-- Submit -->\n" +
+    "                                <div class=\"row\">\n" +
+    "                                    <div class=\"col-sm-12 text-center\">\n" +
+    "                                        <input\n" +
+    "                                            type=\"submit\"\n" +
+    "                                            ng-click=\"Rover.alert('Demo')\"\n" +
+    "                                            class=\"btn btn-primary\"\n" +
+    "                                            value=\"Submit\">\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </form>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-avatar.html",
+    "<div style=\"position: relative;\">\n" +
+    "\n" +
+    "    <!-- Upload button -->\n" +
+    "    <button\n" +
+    "        ngf-select=\"upload($file)\"\n" +
+    "        ngf-drop\n" +
+    "        accept=\"image/*\"\n" +
+    "        ngf-pattern=\"'image/*'\"\n" +
+    "        ngf-capture=\"'camera'\"\n" +
+    "        ngf-min-height=\"100\"\n" +
+    "        ngf-max-size=\"2MB\"\n" +
+    "        class=\"btn btn-default\"\n" +
+    "        style=\"padding: 0;\">\n" +
+    "\n" +
+    "        <!-- Avatar -->\n" +
+    "        <img\n" +
+    "            ng-show=\"avatarSrc && !isUploading\"\n" +
+    "            src=\"{{ avatarSrc }}\"\n" +
+    "            style=\"width: 100%\">\n" +
+    "\n" +
+    "        <!-- Avatar placeholder -->\n" +
+    "        <i\n" +
+    "            ng-hide=\"avatarSrc || isUploading\"\n" +
+    "            class=\"fa fa-user\"\n" +
+    "            style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "\n" +
+    "        <!-- Uploading notifier -->\n" +
+    "        <i\n" +
+    "            ng-show=\"isUploading && !avatarSrc\"\n" +
+    "            class=\"fa fa-spin fa-spinner\"\n" +
+    "            style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "    </button>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-editable-list-container.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-list-container.html",
+    "<!-- Used in the uiEditableListContainer directive -->\n" +
+    "<!-- <div class=\"row\">\n" +
+    "    <div class=\"col-sm-12 btn-group text-right\">\n" +
+    "\n" +
+    "        <button type=\"button\" ng-click=\"delete()\" ng-hide=\"isEditing\" class=\"btn btn-danger\">\n" +
+    "            Delete\n" +
+    "        </button>\n" +
+    "        <button type=\"button\" ng-click=\"edit()\" ng-hide=\"isEditing\" class=\"btn btn-default\">\n" +
+    "            Edit\n" +
+    "        </button>\n" +
+    "        <button type=\"button\" ng-click=\"save()\" ng-show=\"isEditing\" class=\"btn btn-success\">\n" +
+    "            Save\n" +
+    "        </button>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<br> -->\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12\" ng-transclude></div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-list-item.html",
+    "<!-- Used in the uiEditableListItem directive -->\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-4 text-right\">\n" +
+    "        {{ label }}\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-8\">\n" +
+    "        <b ng-hide=\"isEditing\" ng-switch=\"type\">\n" +
+    "\n" +
+    "            <!-- Date -->\n" +
+    "            <span ng-switch-when=\"date\">\n" +
+    "                {{ display || value | date:'MMMM d, yyyy' }}\n" +
+    "\n" +
+    "                <input ng-show=\"isEditing\" ng-model=\"value\" type=\"text\" class=\"form-control\">\n" +
+    "            </span>\n" +
+    "\n" +
+    "            <!-- Sex -->\n" +
+    "            <span ng-switch-when=\"sex\">\n" +
+    "                {{ value }}\n" +
+    "                \n" +
+    "                <select ng-show=\"isEditing\" ng-model=\"value\" ng-selected=\"value\" class=\"form-control\">\n" +
+    "                    <option value=\"female\">Female</option>\n" +
+    "                    <option value=\"male\">Male</option>\n" +
+    "                </select>\n" +
+    "            </span>\n" +
+    "\n" +
+    "            <!-- Default -->\n" +
+    "            <span ng-switch-default>\n" +
+    "                {{ display || value }}\n" +
+    "\n" +
+    "                <input ng-show=\"isEditing\" ng-model=\"value\" type=\"text\" class=\"form-control\">\n" +
+    "            </span>\n" +
+    "        </b>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/analysis.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/analysis.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard movement-pages\">\n" +
+    "	<div>\n" +
+    "\n" +
+    "        <!-- Breadcrumbs -->\n" +
+    "        <div ng-include src=\"'fms/live/partials/breadcrumbs.html'\"></div>\n" +
+    "\n" +
+    "        <!-- Selected side -->\n" +
+    "		<div\n" +
+    "            ng-show=\"fms.current.iterations.length > 0\"\n" +
+    "            ng-include src=\"'fms/live/partials/iterations.html'\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Demo videos -->\n" +
+    "        <div ng-include src=\"'fms/demo/partials/analysis-layout-emphasized.html'\"></div>\n" +
+    "\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/index.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard movement-pages\">\n" +
+    "	<div>\n" +
+    "		{{ params }}\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/analysis-coronal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/analysis-coronal.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Front/Coronal\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-analysis\" style=\"width: 100%;\">\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/coronal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/coronal.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/analysis-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/analysis-layout-emphasized.html",
+    "<div class=\"col-sm-12 panel-group panel-layout-emphasized\">\n" +
+    "\n" +
+    "    <!-- Emphasized view -->\n" +
+    "    <div class=\"col-sm-9 no-gutter panel panel-default panel-emphasized\">\n" +
+    "            <div class=\"col-sm-3\">\n" +
+    "                <ng-include src=\"'fms/live/partials/analysis-menu.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-sm-9\">\n" +
+    "                <ng-include src=\"'fms/demo/partials/analysis-'+ fms.views[0] +'.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Secondary views -->\n" +
+    "    <div class=\"col-sm-3\">\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/analysis-'+ fms.views[1] +'.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/analysis-'+ fms.views[2] +'.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/analysis-sagittal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/analysis-sagittal.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Side/Sagittal\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-analysis\" style=\"margin: 0 20%; width: 60%;\">\n" +
+    "        <source ng-src=\"../../../../demo/aslr/analysis/sagittal.webm\" type=\"video/webm\"/>\n" +
+    "        <source src=\"../../../../demo/aslr/analysis/sagittal.mp4\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/analysis-transverse.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/analysis-transverse.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Horizontal/Transverse\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-analysis\" style=\"width: 100%;\">\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/transverse.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/transverse.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/summary-content.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/summary-content.html",
+    "<div class=\"panel-body\">\n" +
+    "\n" +
+    "    <!-- Total score -->\n" +
+    "    <div class=\"col-sm-4\"\n" +
+    "         style=\"height: 40px; line-height: 40px; background-color: #89c443; color: #333;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-9\">Total Score</div>\n" +
+    "        <div class=\"col-sm-3\">3</div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <br>\n" +
+    "    <br>\n" +
+    "    <br>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <!-- Hip results -->\n" +
+    "    <table class=\"table table-striped\" ng-show=\"summary.joints.hip\">\n" +
+    "\n" +
+    "        <!-- Dummy heading -->\n" +
+    "        <thead style=\"background-color: #d1d2d4; font-weight: bold; color: #333;\">\n" +
+    "            <tr>\n" +
+    "                <td>Hip</td>\n" +
+    "                <td class=\"text-center\">Left</td>\n" +
+    "                <td class=\"text-center\">Right</td>\n" +
+    "                <td class=\"text-center\">Difference</td>\n" +
+    "            </tr>\n" +
+    "        </thead>\n" +
+    "\n" +
+    "        <!-- Dummy results -->\n" +
+    "        <tbody style=\"font-weight: normal; color: #333;\">\n" +
+    "            <tr>\n" +
+    "                <td>Flexion/Extension</td>\n" +
+    "                <td class=\"text-center\">92</td>\n" +
+    "                <td class=\"text-center\">110</td>\n" +
+    "                <td class=\"text-center\" style=\"background-color: #ed3941;\">18</td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "                <td>Abduction/Adduction</td>\n" +
+    "                <td class=\"text-center\">19</td>\n" +
+    "                <td class=\"text-center\">20</td>\n" +
+    "                <td class=\"text-center\" style=\"background-color: #89c443;\">1</td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "                <td>Internal/External Rot.</td>\n" +
+    "                <td class=\"text-center\">11</td>\n" +
+    "                <td class=\"text-center\">18</td>\n" +
+    "                <td class=\"text-center\" style=\"background-color: #f48b4a;\">7</td>\n" +
+    "            </tr>\n" +
+    "        </tbody>\n" +
+    "    </table>\n" +
+    "\n" +
+    "    <div\n" +
+    "        ng-show=\"summary.joints.hip\"\n" +
+    "        class=\"col-sm-6 col-sm-offset-3\"\n" +
+    "        style=\"margin-top: 10px; margin-bottom: 60px;\">\n" +
+    "\n" +
+    "        <div class=\"row\">\n" +
+    "            <span class=\"pull-left\">\n" +
+    "                <b>Left</b>\n" +
+    "            </span>\n" +
+    "            <span class=\"pull-right\">\n" +
+    "                <b>Right</b>\n" +
+    "            </span>\n" +
+    "        </div>\n" +
+    "        <div class=\"row linear-heat-gradient\">\n" +
+    "            <div style=\"\n" +
+    "                position: absolute;\n" +
+    "                bottom: -5%;\n" +
+    "                left: 60%;\n" +
+    "                display: block;\n" +
+    "                height: 75%;\n" +
+    "                width: 2px;\n" +
+    "                background-color: #000;\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Knee results -->\n" +
+    "    <table class=\"table table-striped\" ng-show=\"summary.joints.knee\">\n" +
+    "\n" +
+    "        <!-- Dummy heading -->\n" +
+    "        <thead style=\"background-color: #d1d2d4; font-weight: bold; color: #333;\">\n" +
+    "            <tr>\n" +
+    "                <td>Knee</td>\n" +
+    "                <td class=\"text-center\">Left</td>\n" +
+    "                <td class=\"text-center\">Right</td>\n" +
+    "                <td class=\"text-center\">Difference</td>\n" +
+    "            </tr>\n" +
+    "        </thead>\n" +
+    "\n" +
+    "        <!-- Dummy results -->\n" +
+    "        <tbody style=\"font-weight: normal; color: #333;\">\n" +
+    "            <tr>\n" +
+    "                <td>Flexion/Extension</td>\n" +
+    "                <td class=\"text-center\">120</td>\n" +
+    "                <td class=\"text-center\">109</td>\n" +
+    "                <td class=\"text-center\" style=\"background-color: #f48b4a;\">11</td>\n" +
+    "            </tr>\n" +
+    "            <tr>\n" +
+    "                <td>Internal/External Rot.</td>\n" +
+    "                <td class=\"text-center\">2</td>\n" +
+    "                <td class=\"text-center\">18</td>\n" +
+    "                <td class=\"text-center\" style=\"background-color: #ed3941;\">16</td>\n" +
+    "            </tr>\n" +
+    "        </tbody>\n" +
+    "    </table>\n" +
+    "\n" +
+    "    <div\n" +
+    "        ng-show=\"summary.joints.knee\"\n" +
+    "        class=\"col-sm-6 col-sm-offset-3\"\n" +
+    "        style=\"margin-top: 10px; margin-bottom: 60px;\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <span class=\"pull-left\">\n" +
+    "                <b>Left</b>\n" +
+    "            </span>\n" +
+    "            <span class=\"pull-right\">\n" +
+    "                <b>Right</b>\n" +
+    "            </span>\n" +
+    "        </div>\n" +
+    "        <div class=\"row linear-heat-gradient\">\n" +
+    "            <div style=\"\n" +
+    "                position: absolute;\n" +
+    "                bottom: -5%;\n" +
+    "                left: 52%;\n" +
+    "                display: block;\n" +
+    "                height: 75%;\n" +
+    "                width: 2px;\n" +
+    "                background-color: #000;\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/summary-layout.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/summary-layout.html",
+    "<div class=\"col-sm-12 panel-group\">\n" +
+    "\n" +
+    "    <div class=\"col-sm-9 no-gutter panel panel-default\" style=\"padding-left: 0px; height: 700px;\">\n" +
+    "            <div class=\"col-sm-3\" style=\"height: 700px;\">\n" +
+    "                <ng-include src=\"'fms/demo/partials/summary-menu.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Demo summary content -->\n" +
+    "            <div class=\"col-sm-9\" style=\"height: 700px;\">\n" +
+    "                <ng-include src=\"'fms/demo/partials/summary-content.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-3\">\n" +
+    "\n" +
+    "        <!-- Movement overview -->\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/summary-movement-overview.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Overall score -->\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/summary-overall-scores.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Legend -->\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/live/partials/summary-legend.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/summary-menu.html",
+    "<div class=\"movement-left-column non-test-pages\" style=\"height: 100%\">\n" +
+    "\n" +
+    "    <!-- Select trial -->\n" +
+    "    <div\n" +
+    "        ng-hide=\"analysis.playbackRatePane || analysis.planePane\"\n" +
+    "        ng-click=\"analysis.trialPane = !analysis.trialPane; analysis.playbackRatePane = false;\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "        <div class=\"col-sm-8\" style=\"height:56px;\">\n" +
+    "            {{ fms.current.trial.name }}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i ng-show=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-up\" />\n" +
+    "            <i ng-hide=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-down\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-if=\"analysis.trialPane\"\n" +
+    "        ng-repeat=\"trial in fms.current.trials\"\n" +
+    "        ng-click=\"fms.current.trial = trial; analysis.trialPane = false;\"\n" +
+    "        class=\"row hierarchy-2\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            {{trial.name}}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" ng-click=\"joint.selected = !joint.selected\">\n" +
+    "            <i ng-show=\"fms.current.trial == trial\" style=\"line-height:inherit;\" class=\"fa fa-2x fa-check\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select all joints -->\n" +
+    "    <div\n" +
+    "        ng-click=\"summary.joints.select('all');\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\" style=\"height: 56px; color: #333;\">\n" +
+    "            Select All\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <div ng-hide=\"summary.joints.all\" class=\"checkbox\"></div>\n" +
+    "            <div ng-show=\"summary.joints.all\" class=\"checked checkbox\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select Hip -->\n" +
+    "    <div\n" +
+    "        ng-click=\"summary.joints.select('hip');\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\" style=\"height: 56px; color: #333;\">\n" +
+    "            Hip\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <div ng-hide=\"summary.joints.hip\" class=\"checkbox\"></div>\n" +
+    "            <div ng-show=\"summary.joints.hip\" class=\"checked checkbox\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select Knee -->\n" +
+    "    <div\n" +
+    "        ng-click=\"summary.joints.select('knee');\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\" style=\"height: 56px; color: #333;\">\n" +
+    "            Knee\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <div ng-hide=\"summary.joints.knee\" class=\"checkbox\"></div>\n" +
+    "            <div ng-show=\"summary.joints.knee\" class=\"checked checkbox\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/summary-movement-overview.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/summary-movement-overview.html",
+    "<div class=\"panel-heading text-center\">\n" +
+    "    Movement Overview\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <div>\n" +
+    "        <div class=\"text-left col-sm-12\">\n" +
+    "            <h2 style=\"margin:0\";>\n" +
+    "                <b style=\"font-size:40%\">Left</b>\n" +
+    "            </h2>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"panel-body col-sm-12\">\n" +
+    "        <img\n" +
+    "            ng-src=\"{{ '../../../../demo/aslr/summary/heat_map_left.png' }}\"\n" +
+    "            style=\"height:100%;display:block;margin:auto;\">\n" +
+    "    </div>\n" +
+    "    <div>\n" +
+    "        <div class=\"text-left col-sm-12\">\n" +
+    "            <h2 style=\"margin:0\">\n" +
+    "                <b style=\"font-size:40%\">Right</b>\n" +
+    "            </h2>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"panel-body col-sm-12\">\n" +
+    "        <img\n" +
+    "            ng-src=\"{{ '../../../../demo/aslr/summary/heat_map_left.png' }}\"\n" +
+    "            style=\"height:100%;display:block;margin:auto;\">\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/summary-overall-scores.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/summary-overall-scores.html",
+    "<div class=\"panel-heading text-center\">\n" +
+    "    Overall Score\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body text-left\">\n" +
+    "\n" +
+    "    <!-- Total score -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            Total Test Score\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"row \">\n" +
+    "        <div class=\"col-sm-12 no-gutter\">\n" +
+    "            <div class=\"col-sm-1\" style=\"background-color: #f48b4a\">&nbsp;</div>\n" +
+    "            <div class=\"col-sm-1\" style=\"background-color: #ed3941\">&nbsp;</div>\n" +
+    "            <div class=\"col-sm-2\" style=\"background-color: #89c443\">&nbsp;</div>\n" +
+    "            <div class=\"col-sm-1\" style=\"background-color: #ed3941\">&nbsp;</div>\n" +
+    "            <div class=\"col-sm-2\" style=\"background-color: #89c443\">&nbsp;</div>\n" +
+    "            <div class=\"col-sm-4 text-center\" style=\"background-color: black; color: white\">15/21</div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <!-- Movement Efficiency -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 text-left\">\n" +
+    "            Movement Efficiency\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div style=\"position: relative; margin: 0 auto; height: 120px; width: 120px;\">\n" +
+    "                <div class=\"c100 p71 green\">\n" +
+    "                    <span>71%</span>\n" +
+    "                    <div class=\"slice\">\n" +
+    "                        <div class=\"bar\"></div>\n" +
+    "                        <div class=\"fill\"></div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/test-coronal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/test-coronal.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Front/Coronal\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-test\" style=\"width: 100%;\">\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/coronal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/coronal.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/test-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/test-layout-emphasized.html",
+    "<div class=\"col-sm-12 panel-group panel-layout-emphasized\">\n" +
+    "\n" +
+    "    <!-- Emphasized view -->\n" +
+    "    <div class=\"col-sm-9 no-gutter panel panel-default panel-emphasized\">\n" +
+    "            <div class=\"col-sm-3\">\n" +
+    "                <ng-include src=\"'fms/live/partials/test-menu.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-sm-9\">\n" +
+    "                <ng-include src=\"'fms/demo/partials/test-'+ fms.views[0] +'.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Secondary views -->\n" +
+    "    <div class=\"col-sm-3\">\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/test-'+ fms.views[1] +'.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-12 panel panel-default\">\n" +
+    "            <ng-include src=\"'fms/demo/partials/test-'+ fms.views[2] +'.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/test-sagittal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/test-sagittal.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Side/Sagittal\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-test\" style=\"margin: 0 20%; width: 60%;\">\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/sagittal.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/partials/test-transverse.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/partials/test-transverse.html",
+    "<div class=\"panel-heading text-right\">\n" +
+    "    Horizontal/Transverse\n" +
+    "</div>\n" +
+    "\n" +
+    "<div class=\"panel-body\">\n" +
+    "    <video class=\"demo-test\" style=\"width: 100%;\">\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/transverse.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/transverse.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "        Sorry, your browser doesn't support HTML5 video.\n" +
+    "    </video>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/summary.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/summary.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard movement-pages\">\n" +
+    "	<div>\n" +
+    "\n" +
+    "        <!-- Breadcrumbs -->\n" +
+    "        <div ng-include src=\"'fms/live/partials/breadcrumbs.html'\"></div>\n" +
+    "\n" +
+    "        <!-- Demo summary -->\n" +
+    "        <div ng-include src=\"'fms/demo/partials/summary-layout.html'\"></div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/demo/test.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/demo/test.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<div class=\"page page-dashboard movement-pages\">\n" +
+    "	<div>\n" +
+    "\n" +
+    "        <!-- Breadcrumbs -->\n" +
+    "        <ng-include src=\"'fms/live/partials/breadcrumbs.html'\"></ng-include>\n" +
+    "\n" +
+    "        <!-- Selected side -->\n" +
+    "		<ng-include\n" +
+    "            ng-show=\"fms.current.iterations.length > 0\"\n" +
+    "            src=\"'fms/live/partials/iterations.html'\">\n" +
+    "        </ng-include>\n" +
+    "\n" +
+    "        <!-- Test run summary -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div\n" +
+    "                class=\"col-sm-12 text-center\"\n" +
+    "                style=\"margin: 10px auto 20px; font-weight: normal; color: #aaa;\">\n" +
+    "                Current test run: <b>{{ fms.current.trial.name }}</b> / <b>{{ fms.current.iteration }}</b>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Demo videos -->\n" +
+    "        <ng-include src=\"'fms/demo/partials/test-layout-emphasized.html'\"></ng-include>\n" +
+    "\n" +
+    "        <!-- Trials -->\n" +
+    "        <ng-include src=\"'fms/live/partials/test-trials.html'\"></ng-include>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/analysis.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/analysis.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<!-- Temporary placeholder -->\n" +
+    "<ng-include src=\"'placeholder.html'\"></ng-include>\n" +
+    "");
+}]);
+
+angular.module("fms/live/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/index.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<!-- Temporary placeholder -->\n" +
+    "<ng-include src=\"'placeholder.html' + assetVersion\"></ng-include>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/analysis-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/analysis-menu.html",
+    "<div class=\"movement-left-column non-test-pages\">\n" +
+    "\n" +
+    "    <!-- Select trial -->\n" +
+    "    <div\n" +
+    "        ng-hide=\"analysis.playbackRatePane || analysis.planePane\"\n" +
+    "        ng-click=\"analysis.trialPane = !analysis.trialPane; analysis.playbackRatePane = false;\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "        <div class=\"col-sm-8\" style=\"height:56px;\">\n" +
+    "            {{ fms.current.trial.name }}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i ng-show=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-up\" />\n" +
+    "            <i ng-hide=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-down\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-if=\"analysis.trialPane\"\n" +
+    "        ng-repeat=\"trial in fms.current.trials\"\n" +
+    "        ng-click=\"fms.current.trial = trial; analysis.trialPane = false;\"\n" +
+    "        class=\"row hierarchy-2\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            {{trial.name}}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" ng-click=\"joint.selected = !joint.selected\">\n" +
+    "            <i ng-show=\"fms.current.trial == trial\" style=\"line-height:inherit;\" class=\"fa fa-2x fa-check\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select plane -->\n" +
+    "    <div\n" +
+    "        ng-hide=\"analysis.playbackRatePane || analysis.trialPane\"\n" +
+    "        ng-click=\"Rover.alert('Demo')\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"height:56px;margin:0;line-height:56px;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            Plane\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-down\"/>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select playback rate -->\n" +
+    "    <div\n" +
+    "        ng-click=\"analysis.playbackRatePane = !analysis.playbackRatePane; analysis.trialPane = false\"\n" +
+    "        ng-hide=\"analysis.trialPane || analysis.planePane\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"height:56px;margin:0;line-height:56px;\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            Speed ({{ analysis.playbackRate }}x)\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i ng-hide=\"analysis.playbackRatePane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-down\" />\n" +
+    "            <i ng-show=\"analysis.playbackRatePane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-up\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-if=\"analysis.playbackRatePane\"\n" +
+    "        ng-repeat=\"playbackRate in [0.5, 1, 5, 25]\"\n" +
+    "        ng-click=\"analysis.setPlaybackRate(playbackRate); analysis.playbackRatePane = false;\"\n" +
+    "        class=\"row hierarchy-2\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            {{ playbackRate }}x\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-sm-4\">\n" +
+    "            <i ng-if=\"analysis.playbackRate == playbackRate\" style=\"line-height:inherit;\" class=\"fa fa-2x fa-check\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Show angles -->\n" +
+    "    <div ng-click=\"Rover.alert('Demo')\" class=\"row\" style=\"height:56px;margin:0;line-height:56px;\">\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            Angles\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i style=\"line-height:inherit;\" class=\"fa fa-2x fa-check-square-o\"/>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Playback controls -->\n" +
+    "    <div class=\"video-controls\">\n" +
+    "        <i ng-click=\"analysis.play()\" class=\"fa fa-2x fa-play\" style=\"margin-right:5px;\"/>\n" +
+    "        <i ng-click=\"Rover.alert('Demo')\" class=\"fa fa-2x fa-forward\" style=\"margin-right:5px;\"/>\n" +
+    "        <i ng-click=\"analysis.pause()\" class=\"fa fa-2x fa-pause\" style=\"margin-right:5px;\" />\n" +
+    "        <i ng-click=\"analysis.reset()\" class=\"fa fa-2x fa-undo fa-flip-vertical\" />\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/breadcrumbs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/breadcrumbs.html",
+    "<ol class=\"breadcrumb-movement\">\n" +
+    "\n" +
+    "    <!-- Movement title -->\n" +
+    "    <li>\n" +
+    "        <div>\n" +
+    "            <a>{{ fms.current.name }}</a>\n" +
+    "        </div>\n" +
+    "    </li>\n" +
+    "\n" +
+    "    <!-- Movement tabs -->\n" +
+    "    <li\n" +
+    "        ng-click=\"Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/test')\"\n" +
+    "        ng-class=\"{'active': params.step == 'test'}\">\n" +
+    "\n" +
+    "        <a>Test</a>\n" +
+    "    </li>\n" +
+    "    <li\n" +
+    "        ng-click=\"Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/analysis')\"\n" +
+    "        ng-class=\"{'active': params.step == 'analysis'}\">\n" +
+    "        <a>Analysis</a>\n" +
+    "    </li>\n" +
+    "    <!-- <li ng-click=\"data.current_movement_page.latest_page = 2\" ng-class=\"{'active':data.current_movement_page.latest_page == 2}\">\n" +
+    "        <a>Data</a>\n" +
+    "    </li> -->\n" +
+    "    <li\n" +
+    "        ng-click=\"Rover.browseTo.path('/fms/'+ (isDemo ? 'demo' : 'live') +'/'+ fms.current.id +'/summary')\"\n" +
+    "        ng-class=\"{'active': params.step == 'summary'}\">\n" +
+    "\n" +
+    "        <a>Summary</a>\n" +
+    "    </li>\n" +
+    "</ol>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/header.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/header.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-6\">\n" +
+    "            <h4>Functional Movement Screening</h4>\n" +
+    "            <p>Start your tests</p>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</header>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/iterations.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/iterations.html",
+    "<ol class=\"breadcrumb-movement-sm\">\n" +
+    "    <li\n" +
+    "        ng-click=\"fms.current.iteration = iteration\"\n" +
+    "        ng-class=\"{'active': iteration == fms.current.iteration}\"\n" +
+    "        ng-repeat=\"iteration in fms.current.iterations\">\n" +
+    "        \n" +
+    "        <a>\n" +
+    "            {{ iteration }}\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "</ol>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/summary-legend.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/summary-legend.html",
+    "<div class=\"panel-heading text-center\">\n" +
+    "    Thresholds\n" +
+    "    <br>\n" +
+    "    <small style=\"font-size: 0.8em; color: #aaa; text-transform: none;\">\n" +
+    "        (in degrees)\n" +
+    "    </small>\n" +
+    "</div>\n" +
+    "<div class=\"panel-body\">\n" +
+    "\n" +
+    "    <div class=\"row no-gutter\" style=\"margin:0; height:32px; color:#89c443;\">\n" +
+    "        <div class=\"col-sm-3\">\n" +
+    "            <b>0-5&deg;</b>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-9\">\n" +
+    "            <b>Within reasonable movement standards</b>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row no-gutter\" style=\"margin:0;height:32px;color:#f48b4a;\">\n" +
+    "        <div class=\"col-sm-3\">\n" +
+    "            <b>5-15&deg;</b>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-9\">\n" +
+    "            <b>Area of concern</b>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"row no-gutter\" style=\"margin:0;height:32px;color:#ed3941;\">\n" +
+    "        <div class=\"col-sm-3\">\n" +
+    "            <b>15&deg;+</b>\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-9\">\n" +
+    "            <b>Area to address</b>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/summary-menu.html",
+    "<div class=\"movement-left-column non-test-pages\" style=\"height: 100%\">\n" +
+    "\n" +
+    "    <!-- Select trial -->\n" +
+    "    <div\n" +
+    "        ng-hide=\"analysis.playbackRatePane || analysis.planePane\"\n" +
+    "        ng-click=\"analysis.trialPane = !analysis.trialPane; analysis.playbackRatePane = false;\"\n" +
+    "        class=\"row\"\n" +
+    "        style=\"padding:0;\">\n" +
+    "        <div class=\"col-sm-8\" style=\"height:56px;\">\n" +
+    "            {{ fms.current.trial.name }}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" style=\"height:56px;\">\n" +
+    "            <i ng-show=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-up\" />\n" +
+    "            <i ng-hide=\"analysis.trialPane\" style=\"line-height:inherit;transform:scale(1, 1.5);\" class=\"fa fa-2x fa-caret-down\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-if=\"analysis.trialPane\"\n" +
+    "        ng-repeat=\"trial in fms.current.trials\"\n" +
+    "        ng-click=\"fms.current.trial = trial; analysis.trialPane = false;\"\n" +
+    "        class=\"row hierarchy-2\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-8\">\n" +
+    "            {{trial.name}}\n" +
+    "        </div>\n" +
+    "        <div class=\"col-sm-4\" ng-click=\"joint.selected = !joint.selected\">\n" +
+    "            <i ng-show=\"fms.current.trial == trial\" style=\"line-height:inherit;\" class=\"fa fa-2x fa-check\" />\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/test-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/test-menu.html",
+    "<div class=\"movement-left-column test-page\">\n" +
+    "    <div\n" +
+    "        ng-click=\"run.start()\"\n" +
+    "        ng-show=\"isTestLive == false && !run.exists()\"\n" +
+    "        style=\"background-color: #89c443; color: #fff;\">\n" +
+    "        Start\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-click=\"run.end()\"\n" +
+    "        ng-show=\"isTestLive == true\"\n" +
+    "        style=\"background-color: #ed3941; color: #fff;\">\n" +
+    "        Stop\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-click=\"run.pain()\"\n" +
+    "        ng-show=\"isTestLive == true\"\n" +
+    "        style=\"background-color: #f48b4a; color: #fff;\">\n" +
+    "        Pain\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-click=\"run.fault()\"\n" +
+    "        ng-show=\"isTestLive == true\"\n" +
+    "        style=\"background-color: #f48b4a; color: #fff;\">\n" +
+    "        Fault\n" +
+    "    </div>\n" +
+    "    <div\n" +
+    "        ng-click=\"run.reset()\"\n" +
+    "        ng-show=\"isTestLive == false && run.exists()\"\n" +
+    "        style=\"color:#f48b4a;\">\n" +
+    "        Rerun the test\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/partials/test-trials.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/partials/test-trials.html",
+    "<div class=\"row\">\n" +
+    "	<div class=\"col-sm-4\">\n" +
+    "		<div class=\"panel panel-default\">\n" +
+    "			<div class=\"panel-body\" style=\"padding:0px;\">\n" +
+    "				<div class=\"col-sm-12 ng-scope movement-trial-list\" style=\"padding:0px;\">\n" +
+    "					<div\n" +
+    "                        ng-repeat=\"trial in fms.current.trials\"\n" +
+    "                        ng-click=\"fms.current.trial = trial;run.name = null\"\n" +
+    "                        ng-class=\"{'active': trial == fms.current.trial}\">\n" +
+    "\n" +
+    "						<div class=\"trial-label\">\n" +
+    "							{{ trial.name }}\n" +
+    "                            <span\n" +
+    "                                ng-show=\"run.getRunByTrial(trial) && run.getRunByTrial(trial).numFaults > 0\"\n" +
+    "                                style=\"font-size:.7em;color:#999;font-weight:normal;margin-left: 5px;position:absolute;\">\n" +
+    "\n" +
+    "                                Faults: {{ run.getRunByTrial(trial).numFaults }}\n" +
+    "                            </span>\n" +
+    "						</div>\n" +
+    "\n" +
+    "						<div class=\"trial-status\">\n" +
+    "\n" +
+    "                            <!-- Status text -->\n" +
+    "							<div class=\"col-sm-8\">\n" +
+    "								<div ng-if=\"run.getStatus(trial) == 'saved' && run.getRunByTrial(trial).numFaults == 0\">\n" +
+    "								    No Fault\n" +
+    "								</div>\n" +
+    "								<div ng-if=\"run.getStatus(trial) == 'saved' && run.getRunByTrial(trial).numFaults > 0\">\n" +
+    "								    Faults: {{ run.getRunByTrial(trial).numFaults }}\n" +
+    "								</div>\n" +
+    "								<div ng-if=\"run.getStatus(trial) == 'pain'\">\n" +
+    "                                    Pain\n" +
+    "                                </div>\n" +
+    "							</div>\n" +
+    "\n" +
+    "							<div class=\"col-sm-4\">\n" +
+    "								<img ng-if=\"run.getStatus(trial) == 'live'\" class=\"pull-right\" src=\"../../images/ui/lock_open.png\" alt=\"unsaved\" style=\"height:40px;margin-top:5px;\" />\n" +
+    "								<img ng-if=\"run.getStatus(trial) == 'saved' || run.getStatus(trial) =='pain'\" class=\"pull-right\" src=\"../../images/ui/lock_closed.png\" alt=\"saved\" style=\"height:40px;margin-top:5px;\" />\n" +
+    "							</div>\n" +
+    "						</div>\n" +
+    "					</div>\n" +
+    "					<div ng-click=\"run.submit()\" ng-hide=\"fms.current.isTestSubmitted\" class=\"movement-submit-button\">\n" +
+    "						Submit Results\n" +
+    "					</div>\n" +
+    "					<div ng-show=\"fms.current.isTestSubmitted\" class=\"movement-submit-button\">\n" +
+    "						Results Successfully Submitted\n" +
+    "					</div>\n" +
+    "				</div>\n" +
+    "			</div>\n" +
+    "		</div>\n" +
+    "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/live/summary.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/summary.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<!-- Temporary placeholder -->\n" +
+    "<ng-include src=\"'placeholder.html'\"></ng-include>\n" +
+    "");
+}]);
+
+angular.module("fms/live/test.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/live/test.html",
+    "<!-- Header -->\n" +
+    "<div ng-include src=\"'fms/live/partials/header.html'\"></div>\n" +
+    "\n" +
+    "<!-- Temporary placeholder -->\n" +
+    "<ng-include src=\"'placeholder.html'\"></ng-include>\n" +
+    "");
+}]);
+
+angular.module("group/create.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/create.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <!-- Breadcrumbs -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <h1>Add a Team</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <form ng-submit=\"submitGroupForm()\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- New team form -->\n" +
+    "            <div class=\"col-sm-12 col-md-8\">\n" +
+    "                <div data-ng-include=\"'group/partials/form.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Team picture -->\n" +
+    "        	<div class=\"col-sm-12 col-md-4\">\n" +
+    "                <div data-ng-include src=\"'group/partials/upload-photo.html'\"></div>\n" +
+    "        	</div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "    <!-- Debug -->\n" +
+    "    <div ng-show=\"global.isLocal\">\n" +
+    "        <br><br>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">Debug</div>\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                Group data: {{ group }} <br><br>\n" +
+    "                Sports: {{ sports }} <br><br>\n" +
+    "                File data: {{ avatar }}\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/edit.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/edit.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <!-- Breadcrumbs -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <h1>Edit {{ group.name }}</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <form ng-submit=\"submitGroupForm()\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Edit form -->\n" +
+    "            <div class=\"col-sm-12 col-md-8\">\n" +
+    "                <div data-ng-include=\"'group/partials/form.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Team picture -->\n" +
+    "        	<div class=\"col-sm-12 col-md-4\">\n" +
+    "                <div data-ng-include src=\"'group/partials/upload-photo.html'\"></div>\n" +
+    "        	</div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <button type=\"submit\" class=\"btn btn-default\">Save Changes</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "    <!-- Debug -->\n" +
+    "    <div ng-show=\"global.isLocal\">\n" +
+    "        <br><br>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">Debug</div>\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                Group data: {{ group }} <br><br>\n" +
+    "                File data: {{ avatar }}\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/list.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/list.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "            <!-- Breadcrumbs -->\n" +
+    "            <div class=\"col-sm-6\">\n" +
+    "                <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Actions -->\n" +
+    "            <div class=\"col-sm-6\">\n" +
+    "                <div class=\"btn-group pull-right\">\n" +
+    "                    <button\n" +
+    "                        ng-click=\"Rover.browseTo.path('group/create')\"\n" +
+    "                        class=\"btn btn-default\">Add a Team</button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- List of groups -->\n" +
+    "    <div class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">\n" +
+    "            Teams (total: {{ global.state.group.list.length }})\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"panel-body\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div ng-hide=\"global.state.group.list.length > 0\" class=\"col-sm-12\">\n" +
+    "                    You don't have any teams yet! Create one above to get started.\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <a\n" +
+    "                        ng-repeat=\"group in global.state.group.list\"\n" +
+    "                        ng-click=\"Rover.browseTo.group(group)\"\n" +
+    "                        href=\"javascript:;\"\n" +
+    "                        class=\"btn btn-primary btn-metro\"\n" +
+    "                        style=\"background-image: url({{ group.avatar_src || '' }});background-size: cover;\">\n" +
+    "\n" +
+    "                        <!-- <object\n" +
+    "                            ng-hide=\"group.avatar_src\"\n" +
+    "                            style=\"pointer-events:none;\"\n" +
+    "                            type=\"image/svg+xml\"\n" +
+    "                            data=\"/images/sports/{{group.sport_id}}.svg\" /> -->\n" +
+    "\n" +
+    "                        <span>{{ group.name }}</span>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/partials/details.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/partials/details.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        {{ global.state.group.selected.name }}'s details\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <div data-ui-editable-list-container>\n" +
+    "\n" +
+    "            <!-- Group name -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Name\"\n" +
+    "                data-value=\"group.name\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/partials/form.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/partials/form.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Team Details\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <!-- Name -->\n" +
+    "        <div class=\"form-group\">\n" +
+    "            <input\n" +
+    "                type=\"text\"\n" +
+    "                ng-model=\"group.name\"\n" +
+    "                placeholder=\"Name\"\n" +
+    "                class=\"form-control\"\n" +
+    "                required>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Sport -->\n" +
+    "        <!-- <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-2\">\n" +
+    "                Sport\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8\">\n" +
+    "                <select ng-model=\"group.sport_id\" class=\"form-control\" required>\n" +
+    "                    <option\n" +
+    "                        ng-repeat=\"sport in sports\"\n" +
+    "                        ng-selected=\"sport.id === group.sport_id\"\n" +
+    "                        value=\"{{ sport.id }}\">\n" +
+    "                        {{ sport.name }}\n" +
+    "                    </option>\n" +
+    "                </select>\n" +
+    "            </div>\n" +
+    "        </div> -->\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/partials/upload-photo.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/partials/upload-photo.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Avatar\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <!-- Avatar preview -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
+    "                <img\n" +
+    "                    ng-show=\"avatar || group.photo_src\"\n" +
+    "                    ngf-src=\"avatar || group.photo_src\"\n" +
+    "                    style=\"width: 100%\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <span ng-show=\"group.id < 1\">\n" +
+    "                    Please create the team <br>\n" +
+    "                    before uploading a photo. <br><br>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <span ng-show=\"group.id >= 1\">\n" +
+    "                    Temporarily disabled. <br><br>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <button\n" +
+    "                    ngf-select=\"uploadPhoto($file)\"\n" +
+    "                    ngf-drop\n" +
+    "                    ng-model=\"avatar\"\n" +
+    "                    accept=\"image/*\"\n" +
+    "                    ngf-pattern=\"'image/*'\"\n" +
+    "                    ngf-capture=\"'camera'\"\n" +
+    "                    ngf-min-height=\"100\"\n" +
+    "                    ngf-max-size=\"2MB\"\n" +
+    "                    ng-class=\"{'btn btn-default': true, 'disabled': group.id < 1 || true}\">\n" +
+    "\n" +
+    "                    Select or drag &amp; drop a photo\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("group/view.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("group/view.html",
+    "<!-- Group summary -->\n" +
+    "<div ng-show=\"group.id\" class=\"page\">\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "\n" +
+    "        <!-- Breadcrumbs -->\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Actions -->\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div class=\"btn-group pull-right\">\n" +
+    "\n" +
+    "                <!-- Delete group button -->\n" +
+    "                <button\n" +
+    "                    ng-show=\"group.id > 0\"\n" +
+    "                    data-toggle=\"modal\"\n" +
+    "                    data-target=\"#deleteGroupConfirmation\"\n" +
+    "                    class=\"btn btn-danger\">\n" +
+    "\n" +
+    "                    Delete <b>{{ group.name }}</b>\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Delete confirmation -->\n" +
+    "                <div class=\"modal fade\" id=\"deleteGroupConfirmation\">\n" +
+    "                    <div class=\"modal-dialog\">\n" +
+    "                        <div class=\"modal-content\">\n" +
+    "                            <div class=\"modal-body\">\n" +
+    "                                <p ng-show=\"global.state.profile.list.length > 0\">\n" +
+    "                                    Are you sure you want to delete <b>{{ group.name }}</b>\n" +
+    "                                    and the {{ global.state.profile.list.length }}\n" +
+    "                                    associated athletes?\n" +
+    "                                </p>\n" +
+    "                                <p ng-show=\"global.state.profile.list.length === 0\">\n" +
+    "                                    Are you sure you want to delete <b>{{ group.name }}</b>?\n" +
+    "                                </p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"modal-footer text-center\">\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                    Cancel\n" +
+    "                                </button>\n" +
+    "                                <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                    Yes, delete {{ group.name }}\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Edit group button -->\n" +
+    "                <button\n" +
+    "                    ng-show=\"group.id > 0\"\n" +
+    "                    ng-click=\"Rover.browseTo.path('group/edit')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    Edit <b>{{ group.name }}</b>\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Create profile button -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"Rover.browseTo.path('profile/create')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    Add an athlete\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <section>\n" +
+    "    	<div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Avatar -->\n" +
+    "    		<div class=\"col-md-6 col-sm-12\">\n" +
+    "                <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "                    <ui-avatar\n" +
+    "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
+    "                        data-success-callback=\"uploadAvatarCallback\"\n" +
+    "                        data-src=\"group.avatar_src\">\n" +
+    "                    </ui-avatar>\n" +
+    "                </div>\n" +
+    "    		</div>\n" +
+    "\n" +
+    "            <!-- Group details -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div data-ng-include=\"'group/partials/details.html'\"></div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </section>\n" +
+    "\n" +
+    "    <section data-ng-show=\"global.isLocal\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <div class=\"panel panel-default\">\n" +
+    "                        <div class=\"panel-heading\">\n" +
+    "                            Debug\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"panel-body\">\n" +
+    "                            Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>\n" +
+    "                            Global: {{ global.state.group.selected.name }} <br>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "    </section>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- No group selected -->\n" +
+    "<div ng-show=\"group.id === 0\" class=\"page\">\n" +
+    "    <h1 class=\"text-center\">No group selected</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"text-center\">\n" +
+    "        Please select a group to view its details.\n" +
+    "        <br>\n" +
+    "\n" +
+    "        You can also take this opportunity to\n" +
+    "        <a ng-click=\"Rover.browseTo.path('group/create')\" href=\"javascript:;\">create one</a>.\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/breadcrumbs.html",
+    "<ol class=\"breadcrumb-alt\">\n" +
+    "    <li>\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.path('/')\">\n" +
+    "            Dashboard\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "    <li ng-show=\"global.state.group.selected.id > 0\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.path('/group/list')\">\n" +
+    "            Teams\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "    <li ng-show=\"isProfilePage && global.state.group.selected.id > 0\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.group()\">\n" +
+    "            {{ global.state.group.selected.name }}\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "    <li ng-show=\"currentPath == '/profile/view'\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.profile()\">\n" +
+    "            {{ global.state.profile.selected.first_name }}\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "    <li ng-show=\"currentPath == '/group/create'\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"\">\n" +
+    "            Create a Team\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "    <li ng-show=\"currentPath == '/profile/create'\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"\">\n" +
+    "            Add an athlete\n" +
+    "        </a>\n" +
+    "    </li>\n" +
+    "</ol>\n" +
+    "");
+}]);
+
+angular.module("profile/create.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/create.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <!-- Breadcrumbs -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <h1>Add an Athlete</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <form ng-submit=\"createProfile()\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- New profile form -->\n" +
+    "            <div class=\"col-sm-12 col-md-8\">\n" +
+    "                <div data-ng-include=\"'profile/partials/form.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Profile picture -->\n" +
+    "        	<div class=\"col-sm-12 col-md-4\">\n" +
+    "                <div data-ng-include=\"'profile/partials/upload-photo.html'\"></div>\n" +
+    "        	</div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">Debug</div>\n" +
+    "        <div class=\"panel-body\">\n" +
+    "            Profile: {{ profile }} <br><br>\n" +
+    "            Groups: {{ groups }} <br><br>\n" +
+    "            Selected group: {{ global.state.group.selected }}\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/edit.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/edit.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <!-- Breadcrumbs -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <h1>Edit {{ profile.first_name }}'s details</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <form ng-submit=\"submitProfileForm()\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Edit form -->\n" +
+    "            <div class=\"col-sm-12 col-md-8\">\n" +
+    "                <div data-ng-include=\"'profile/partials/form.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Profile picture -->\n" +
+    "        	<div class=\"col-sm-12 col-md-4\">\n" +
+    "                <div data-ng-include=\"'profile/partials/upload-photo.html'\"></div>\n" +
+    "        	</div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Medical information -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Medical Information\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <textarea ng-model=\"profile.underlying_medical\" class=\"form-control\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Previous injuries -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Previous Injuries\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <textarea ng-model=\"profile.previous_injuries\" class=\"form-control\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Other notes -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 col-md-6 col-md-offset-3\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Other Notes\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <textarea ng-model=\"profile.notes\" class=\"form-control\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <button type=\"submit\" class=\"btn btn-default\">Save changes</button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </form>\n" +
+    "\n" +
+    "    <div ng-show=\"global.isLocal\">\n" +
+    "        <br><br>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">Debug</div>\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                Profile: {{ profile }} <br><br>\n" +
+    "                File data: {{ avatar }} <br><br>\n" +
+    "                Groups: {{ groups }} <br><br>\n" +
+    "                Selected group: {{ global.state.group.selected }}\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/list.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/list.html",
+    "<div class=\"page page-dashboard\">\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "            <!-- Breadcrumbs -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Profile list -->\n" +
+    "    <div class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">\n" +
+    "            Athletes in {{ global.state.group.selected.name }}\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"panel-body\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <div ng-show=\"global.state.profile.list.length === 0\">\n" +
+    "                        The <b>{{ global.state.group.selected.name }}</b> do not have any\n" +
+    "                        members yet. Add one above to get started!\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <a\n" +
+    "                        href=\"javascript:;\"\n" +
+    "                        class=\"btn btn-primary btn-metro\"\n" +
+    "                        ng-repeat=\"profile in global.state.profile.list\"\n" +
+    "                        ng-click=\"Rover.browseTo.profile(profile)\"\n" +
+    "                        style=\"background-image: url({{ profile.avatar_src || '' }});background-size: cover;\">\n" +
+    "\n" +
+    "                        <div class=\"btn-title\">{{ profile.first_name }}</div>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/current-fms-plot.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/current-fms-plot.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Test FMS Score Graph\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "        <div\n" +
+    "            morris-chart\n" +
+    "            data-type=\"area\"\n" +
+    "            data-data=\"fmsForms\"\n" +
+    "            data-xkey=\"created_at\"\n" +
+    "            data-ykeys='[\"Lhurdle\", \"Rhurdle\", \"Llunge\", \"Rlunge\"]'\n" +
+    "            data-labels='[\"Left Hurdle\", \"Right Hurdle\", \"Left Lunge\", \"Right Lunge\"]'\n" +
+    "            data-line-colors='[\"#383d43\",\"#db5031\",\"#c1bfc0\"]'\n" +
+    "            data-line-width=\"3\">\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/details.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/details.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        {{ global.state.profile.selected.first_name }}'s details\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <div data-ui-editable-list-container>\n" +
+    "\n" +
+    "            <!-- First name -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"First Name\"\n" +
+    "                data-value=\"profile.first_name\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Last name -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Last Name\"\n" +
+    "                data-value=\"profile.last_name\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Height -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Height\"\n" +
+    "                data-display=\"{{ profile.feet }}' {{ profile.inches }}&quot;\"\n" +
+    "                data-value=\"profile.height\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Weight -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Weight\"\n" +
+    "                data-display=\"{{ profile.weight_lbs }} lbs\"\n" +
+    "                data-value=\"profile.weight_lbs\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Date of Birth -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Date of Birth\"\n" +
+    "                data-value=\"\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Gender -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Gender\"\n" +
+    "                data-value=\"profile.gender\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Phone -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Phone #\"\n" +
+    "                data-value=\"profile.phone\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Email -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Email\"\n" +
+    "                data-value=\"profile.email\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Profile creation date -->\n" +
+    "            <div\n" +
+    "                data-ui-editable-list-item\n" +
+    "                data-label=\"Profile Created\"\n" +
+    "                data-display=\"{{ profile.created_at_formatted }}\"\n" +
+    "                data-value=\"profile.created_at\"\n" +
+    "                data-type=\"date\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/final-fms-plot.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/final-fms-plot.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Total FMS Score Graph\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "        <div class=\"panel-body ng-scope\" data-ng-controller=\"morrisChartCtrl\">\n" +
+    "\n" +
+    "            <div\n" +
+    "                morris-chart\n" +
+    "                data-type=\"line\"\n" +
+    "                data-data=\"fmsForms\"\n" +
+    "                data-xkey=\"created_at\"\n" +
+    "                data-ykeys='[\"totalscore\"]'\n" +
+    "                data-labels='[\"total score\"]'\n" +
+    "                data-line-colors='[\"#383d43\"]'\n" +
+    "                data-line-width=\"3\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/form.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/form.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Profile Details\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- First name -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <input\n" +
+    "                        type=\"text\"\n" +
+    "                        ng-model=\"profile.first_name\"\n" +
+    "                        placeholder=\"First Name\"\n" +
+    "                        class=\"form-control\"\n" +
+    "                        required>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Last name -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div class=\"form-group\">\n" +
+    "                    <input\n" +
+    "                        type=\"text\"\n" +
+    "                        ng-model=\"profile.last_name\"\n" +
+    "                        placeholder=\"Last Name\"\n" +
+    "                        class=\"form-control\"\n" +
+    "                        required>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Height -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Height (ft / in)\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                <input\n" +
+    "                    type=\"number\"\n" +
+    "                    min=\"1\" max=\"10\"\n" +
+    "                    ng-model=\"profile.feet\"\n" +
+    "                    placeholder=\"Feet\"\n" +
+    "                    class=\"form-control\"\n" +
+    "                    required>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                <input\n" +
+    "                    type=\"number\"\n" +
+    "                    min=\"0\" max=\"11\"\n" +
+    "                    ng-model=\"profile.inches\"\n" +
+    "                    placeholder=\"Inches\"\n" +
+    "                    class=\"form-control\"\n" +
+    "                    required>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Weight -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Weight (lbs)\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                <input\n" +
+    "                    class=\"form-control\"\n" +
+    "                    ng-model=\"profile.weight_lbs\"\n" +
+    "                    placeholder=\"Weight\"\n" +
+    "                    type=\"number\"\n" +
+    "                    min=\"1\" max=\"1000\" step=\"0.01\"\n" +
+    "                    required>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Date of birth -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Date of Birth\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                <input\n" +
+    "                    class=\"form-control\"\n" +
+    "                    ng-model=\"profile.dob\"\n" +
+    "                    placeholder=\"DOB\"\n" +
+    "                    type=\"text\"\n" +
+    "                    disabled>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Gender -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Gender\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                <select ng-model=\"profile.gender\" class=\"form-control\">\n" +
+    "                    <option value=\"\" ng-selected=\"profile.gender == ''\">(not specified)</option>\n" +
+    "                    <option value=\"female\" ng-selected=\"profile.gender == 'female'\">Female</option>\n" +
+    "                    <option value=\"male\" ng-selected=\"profile.gender == 'male'\">Male</option>\n" +
+    "                </select>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Email -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Email\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8 col-md-6\">\n" +
+    "                <input\n" +
+    "                    class=\"form-control\"\n" +
+    "                    ng-model=\"profile.email\"\n" +
+    "                    placeholder=\"email@example.com\"\n" +
+    "                    type=\"email\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Phone number -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Phone\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                <input\n" +
+    "                    class=\"form-control\"\n" +
+    "                    ng-model=\"profile.phone\"\n" +
+    "                    placeholder=\"555-555-5555\"\n" +
+    "                    type=\"tel\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Notes -->\n" +
+    "        <div class=\"row form-group\">\n" +
+    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                Notes\n" +
+    "            </div>\n" +
+    "            <div class=\"col-sm-8 col-md-9\">\n" +
+    "                <textarea class=\"form-control\" ng-model=\"profile.notes\" placeholder=\"...\"></textarea>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/upload-photo.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/upload-photo.html",
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        Avatar\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"panel-body\">\n" +
+    "\n" +
+    "        <!-- Avatar preview -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
+    "                <img\n" +
+    "                    ng-show=\"avatar || profile.photo_src\"\n" +
+    "                    ngf-src=\"avatar || profile.photo_src\"\n" +
+    "                    style=\"width: 100%\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <span ng-show=\"profile.id < 1\">\n" +
+    "                    Please create the profile <br>\n" +
+    "                    before uploading a photo. <br><br>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <span ng-show=\"profile.id >= 1\">\n" +
+    "                    Temporarily disabled. <br><br>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <button\n" +
+    "                    ngf-select=\"uploadPhoto($file)\"\n" +
+    "                    ngf-drop\n" +
+    "                    ng-model=\"avatar\"\n" +
+    "                    accept=\"image/*\"\n" +
+    "                    ngf-pattern=\"'image/*'\"\n" +
+    "                    ngf-capture=\"'camera'\"\n" +
+    "                    ngf-min-height=\"100\"\n" +
+    "                    ngf-max-size=\"2MB\"\n" +
+    "                    ng-class=\"{'btn btn-default': true, 'disabled': profile.id < 1 || true}\">\n" +
+    "\n" +
+    "                    Select or drag &amp; drop a photo\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("profile/view.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/view.html",
+    "<!-- Profile summary -->\n" +
+    "<div ng-show=\"profile.id\" class=\"page\">\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <!-- Breadcrumbs -->\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Actions -->\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div class=\"btn-group pull-right\">\n" +
+    "\n" +
+    "                <!-- Delete profile button -->\n" +
+    "                <button\n" +
+    "                    ng-show=\"profile.id > 0\"\n" +
+    "                    data-toggle=\"modal\"\n" +
+    "                    data-target=\"#deleteProfileConfirmation\"\n" +
+    "                    class=\"btn btn-danger\">\n" +
+    "\n" +
+    "                    Delete <b>{{ profile.first_name }}</b>'s profile\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Delete confirmation -->\n" +
+    "                <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
+    "                    <div class=\"modal-dialog\">\n" +
+    "                        <div class=\"modal-content\">\n" +
+    "                            <div class=\"modal-body\">\n" +
+    "                                <p>\n" +
+    "                                    Are you sure you want to delete <b>{{ profile.first_name }}\n" +
+    "                                    {{ profile.last_name }}</b>'s profile?\n" +
+    "                                </p>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"modal-footer text-center\">\n" +
+    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                    Cancel\n" +
+    "                                </button>\n" +
+    "                                <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                    Yes, delete {{ profile.first_name }}\n" +
+    "                                </button>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Edit profile button -->\n" +
+    "                <button\n" +
+    "                    ng-show=\"profile.id > 0\"\n" +
+    "                    ng-click=\"Rover.browseTo.path('profile/edit')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    Edit <b>{{ profile.first_name }}</b>'s details\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Create profile button -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"Rover.browseTo.path('profile/create')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    Add another athlete\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <section>\n" +
+    "    	<div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Avatar -->\n" +
+    "    		<div class=\"col-md-6 col-sm-12\">\n" +
+    "                <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "                    <ui-avatar\n" +
+    "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
+    "                        data-success-callback=\"uploadAvatarCallback\"\n" +
+    "                        data-src=\"profile.avatar_src\">\n" +
+    "                    </ui-avatar>\n" +
+    "                </div>\n" +
+    "    		</div>\n" +
+    "\n" +
+    "            <!-- Profile details -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div data-ng-include=\"'profile/partials/details.html'\"></div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Medical information -->\n" +
+    "        <div class=\"row\">\n" +
+    "    		<div class=\"col-sm-12\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Medical Information\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                {{ profile.underlying_medical || 'No medical information provided.' }}\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Previous Injuries\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                {{ profile.previous_injuries || 'No previous injuries' }}\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Other Notes\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                {{ profile.notes || 'No other notes' }}\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "    		</div>\n" +
+    "    	</div>\n" +
+    "    </section>\n" +
+    "\n" +
+    "    <!-- FMS graphs... To be reviewed -->\n" +
+    "    <section ng-show=\"fmsForms.length > 0\">\n" +
+    "        <div class=\"row\">\n" +
+    "\n" +
+    "            <!-- Current test -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div data-ng-include=\"'profile/partials/current-fms-plot.html'\"></div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Final results -->\n" +
+    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                <div data-ng-include=\"'profile/partials/final-fms-plot.html'\"></div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </section>\n" +
+    "\n" +
+    "    <section data-ng-show=\"global.isLocal\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <div class=\"panel panel-default\">\n" +
+    "                        <div class=\"panel-heading\">\n" +
+    "                            Debug\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"panel-body\">\n" +
+    "                            FMS Forms: {{ fmsForms }} <br><br>\n" +
+    "                            Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>\n" +
+    "                            Profile global: ({{ global.state.profile.selected.id }}) <br>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "    </section>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- No profile selected -->\n" +
+    "<div ng-show=\"profile.id === 0\" class=\"page\">\n" +
+    "    <h1 class=\"text-center\">No profile selected</h1>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"text-center\">\n" +
+    "        Please select a profile to view its details.\n" +
+    "        <br>\n" +
+    "\n" +
+    "        You can also take this opportunity to\n" +
+    "        <a ng-click=\"Rover.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+;var app=angular.module("app",["ngStorage","ngRoute","ngAnimate","ui.bootstrap","easypiechart","mgo-angular-wizard","textAngular","ui.tree","ngMap","ngTagsInput","app.ui.ctrls","app.ui.services","app.views","app.controllers","app.directives","app.form.validation","app.ui.form.ctrls","app.ui.form.directives","app.tables","app.map","app.task","app.chart.ctrls","app.chart.directives","countTo","backendHeddoko","angular-chartist","app.rover","app.services","ngFileUpload"]),_appVersion="0.3.1",_appIsLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,_appAssetVersion=_appIsLocal?Date.now():_appVersion;app.constant("appVersion",_appVersion).constant("isLocalEnvironment",_appIsLocal).constant("assetVersion",_appAssetVersion);var appServices=angular.module("app.services",["app.rover"]),appDirectives=angular.module("app.directives",["app.rover"]);app.config(["$routeProvider","assetVersion",function(a,b){return a.when("/",{redirectTo:"/dashboard"}).when("/dashboard",{templateUrl:"dashboard.html",controller:"DashboardController"}).when("/group/list",{templateUrl:"group/list.html",controller:"GroupController"}).when("/group/view",{templateUrl:"group/view.html",controller:"GroupController"}).when("/group/create",{templateUrl:"group/create.html",controller:"GroupController"}).when("/group/edit",{templateUrl:"group/edit.html",controller:"GroupController"}).when("/profile/list",{templateUrl:"profile/list.html",controller:"ProfileController"}).when("/profile/view",{templateUrl:"profile/view.html",controller:"ProfileController"}).when("/profile/create",{templateUrl:"profile/create.html",controller:"ProfileController"}).when("/profile/edit",{templateUrl:"profile/edit.html",controller:"ProfileController"}).when("/submit-movement",{templateUrl:"submit-movement-demo.html",controller:"SubmitMovementDemoController"}).when("/fms/demo/:name?/:step?",{templateUrl:function(a){var b="index";return a.step?b=a.step:a.name&&(b="test"),"fms/demo/"+b+".html"},controller:"FMSDemoController"}).when("/fms/live/:name?/:step?",{templateUrl:function(a){var b="index";return a.step?b=a.step:a.name&&(b="test"),"fms/live/"+b+".html"},controller:"FMSController"}).when("/config",{templateUrl:"config.html"}).when("/fmstest",{templateUrl:"fmstest.html"}).when("/fmsdata",{templateUrl:"fmsdata.html"}).when("/fmsresults",{templateUrl:"fmsresults.html"}).when("/movementscreen",{templateUrl:"movementscreen.html"}).when("/movements",{templateUrl:"movements.html"}).otherwise({redirectTo:"/"})}]).run(["$rootScope","$location","Rover","OnboardingService",function(a,b,c,d){c.debug("Running app..."),$(document).ready(function(){c.doneBackgroundProcess()})}]),angular.module("app.map",[]).directive("uiJqvmap",[function(){return{restrict:"A",scope:{options:"="},link:function(a,b){var c;return c=a.options,b.vectorMap(c)}}}]).controller("jqvmapCtrl",["$scope",function(a){var b;return b={af:"16.63",al:"11.58",dz:"158.97",ao:"85.81",ag:"1.1",ar:"351.02",am:"8.83",au:"1219.72",at:"366.26",az:"52.17",bs:"7.54",bh:"21.73",bd:"105.4",bb:"3.96",by:"52.89",be:"461.33",bz:"1.43",bj:"6.49",bt:"1.4",bo:"19.18",ba:"16.2",bw:"12.5",br:"2023.53",bn:"11.96",bg:"44.84",bf:"8.67",bi:"1.47",kh:"11.36",cm:"21.88",ca:"1563.66",cv:"1.57",cf:"2.11",td:"7.59",cl:"199.18",cn:"5745.13",co:"283.11",km:"0.56",cd:"12.6",cg:"11.88",cr:"35.02",ci:"22.38",hr:"59.92",cy:"22.75",cz:"195.23",dk:"304.56",dj:"1.14",dm:"0.38","do":"50.87",ec:"61.49",eg:"216.83",sv:"21.8",gq:"14.55",er:"2.25",ee:"19.22",et:"30.94",fj:"3.15",fi:"231.98",fr:"2555.44",ga:"12.56",gm:"1.04",ge:"11.23",de:"3305.9",gh:"18.06",gr:"305.01",gd:"0.65",gt:"40.77",gn:"4.34",gw:"0.83",gy:"2.2",ht:"6.5",hn:"15.34",hk:"226.49",hu:"132.28",is:"12.77","in":"1430.02",id:"695.06",ir:"337.9",iq:"84.14",ie:"204.14",il:"201.25",it:"2036.69",jm:"13.74",jp:"5390.9",jo:"27.13",kz:"129.76",ke:"32.42",ki:"0.15",kr:"986.26",undefined:"5.73",kw:"117.32",kg:"4.44",la:"6.34",lv:"23.39",lb:"39.15",ls:"1.8",lr:"0.98",ly:"77.91",lt:"35.73",lu:"52.43",mk:"9.58",mg:"8.33",mw:"5.04",my:"218.95",mv:"1.43",ml:"9.08",mt:"7.8",mr:"3.49",mu:"9.43",mx:"1004.04",md:"5.36",mn:"5.81",me:"3.88",ma:"91.7",mz:"10.21",mm:"35.65",na:"11.45",np:"15.11",nl:"770.31",nz:"138",ni:"6.38",ne:"5.6",ng:"206.66",no:"413.51",om:"53.78",pk:"174.79",pa:"27.2",pg:"8.81",py:"17.17",pe:"153.55",ph:"189.06",pl:"438.88",pt:"223.7",qa:"126.52",ro:"158.39",ru:"1476.91",rw:"5.69",ws:"0.55",st:"0.19",sa:"434.44",sn:"12.66",rs:"38.92",sc:"0.92",sl:"1.9",sg:"217.38",sk:"86.26",si:"46.44",sb:"0.67",za:"354.41",es:"1374.78",lk:"48.24",kn:"0.56",lc:"1",vc:"0.58",sd:"65.93",sr:"3.3",sz:"3.17",se:"444.59",ch:"522.44",sy:"59.63",tw:"426.98",tj:"5.58",tz:"22.43",th:"312.61",tl:"0.62",tg:"3.07",to:"0.3",tt:"21.2",tn:"43.86",tr:"729.05",tm:0,ug:"17.12",ua:"136.56",ae:"239.65",gb:"2258.57",us:"14624.18",uy:"40.71",uz:"37.72",vu:"0.72",ve:"285.21",vn:"101.99",ye:"30.02",zm:"15.69",zw:"5.57"},a.worldMap={map:"world_en",backgroundColor:null,color:"#ffffff",hoverOpacity:.7,selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,values:b,scaleColors:["#F1EFF0","#c1bfc0"],normalizeFunction:"polynomial"},a.USAMap={map:"usa_en",backgroundColor:null,color:"#ffffff",selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,selectedRegion:"MO"},a.europeMap={map:"europe_en",backgroundColor:null,color:"#ffffff",hoverOpacity:.7,selectedColor:"#db5031",hoverColor:"#db5031",enableZoom:!0,showTooltip:!0,values:b,scaleColors:["#F1EFF0","#c1bfc0"],normalizeFunction:"polynomial"}}]),angular.module("countTo",[]).controller("countTo",["$scope",function(a){return a.countersmall1={countTo:20,countFrom:0},a.countersmall2={countTo:42,countFrom:0},a.countersmall3={countTo:90,countFrom:0},a.countersmall1dash={countTo:420,countFrom:0},a.countersmall2dash={countTo:742,countFrom:0},a.countersmall3dash={countTo:100,countFrom:0}}]).directive("countTo",["$timeout",function(a){return{replace:!1,scope:!0,link:function(b,c,d){var e,f,g,h,i,j,k,l=c[0],m=function(){f=30,i=0,b.timoutId=null,j=parseInt(d.countTo)||0,b.value=parseInt(d.value,10)||0,g=1e3*parseFloat(d.duration)||0,h=Math.ceil(g/f),k=(j-b.value)/h,e=b.value},n=function(){b.timoutId=a(function(){e+=k,i++,i>=h?(a.cancel(b.timoutId),e=j,l.textContent=j):(l.textContent=Math.round(e),n())},f)},o=function(){b.timoutId&&a.cancel(b.timoutId),m(),n()};return d.$observe("countTo",function(a){a&&o()}),d.$observe("value",function(a){o()}),!0}}}]),function(a,b,c){"use strict";b.module("ngCookies",["ng"]).factory("$cookies",["$rootScope","$browser",function(a,d){function e(){var a,e,f,i;for(a in h)k(g[a])&&d.cookies(a,c);for(a in g)e=g[a],b.isString(e)||(e=""+e,g[a]=e),e!==h[a]&&(d.cookies(a,e),i=!0);if(i){i=!1,f=d.cookies();for(a in g)g[a]!==f[a]&&(k(f[a])?delete g[a]:g[a]=f[a],i=!0)}}var f,g={},h={},i=!1,j=b.copy,k=b.isUndefined;return d.addPollFn(function(){var b=d.cookies();f!=b&&(f=b,j(b,h),j(b,g),i&&a.$apply())})(),i=!0,a.$watch(e),g}]).factory("$cookieStore",["$cookies",function(a){return{get:function(c){var d=a[c];return d?b.fromJson(d):d},put:function(c,d){a[c]=b.toJson(d)},remove:function(b){delete a[b]}}}])}(window,window.angular),angular.module("app.controllers",[]).controller("StepController",["$scope","Rover",function(a,b){var c={select_and_create_team:0,view_team_members:1,view_athlete_stats:2};a.current_dashboard_page=c.select_and_create_team,a.backwardsStep=function(){a.current_dashboard_page>0&&a.current_dashboard_page--},a.forwardsStep=function(){a.current_dashboard_page<3&&a.current_dashboard_page++}}]).controller("MovementController",["$scope","$sessionStorage","Movements","loggit","Rover",function(a,b,c,d,e){a.uploadMovements=function(){c.upload(a.data.member.selected.id,e.state.selected_sport_movement.id,a.data.new_movement_submission_data).error(function(a){d.logError("error uploading movements to server"),console.log(a)}).success(function(a){e.state.selected_sport_movement=e.state.new_movement_submission_data=null,d.logSuccess("movements succesfully uploaded to server"),console.log(a)})}}]).controller("MovementScreenController",["$scope","$sessionStorage","loggit","MovementStore","$document","Rover",function(a,b,c,d,e,f){a.select_movement=function(a){d.current_movement_page=a},a.data=d,a.SelectTrial=function(a){d.current_movement_page.active_trial=a},a.StartTest=function(){d.current_movement_page.active_side.active_trial.status="recording",document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("FrontVideoPlayer").play(),document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").play(),document.getElementById("SideVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").play()},a.EndTest=function(){document.getElementById("FrontVideoPlayer").pause(),document.getElementById("TopVideoPlayer").pause(),document.getElementById("SideVideoPlayer").pause(),"recording"==d.current_movement_page.active_side.active_trial.status&&(d.current_movement_page.active_side.active_trial.status="stopped")},a.IndicateTestPain=function(){d.current_movement_page.active_side.active_trial.status="pain",document.getElementById("FrontVideoPlayer").pause(),document.getElementById("TopVideoPlayer").pause(),document.getElementById("SideVideoPlayer").pause()},a.CancelCurrentTrial=function(){document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0,d.current_movement_page.active_side.active_trial.status="idle"},a.SaveCurrentTrial=function(){d.current_movement_page.active_side.active_trial.status="saved";var a=d.current_movement_page.active_side.trials.indexOf(d.current_movement_page.active_side.active_trial);a<d.current_movement_page.active_side.trials.length&&(d.current_movement_page.active_side.active_trial=d.current_movement_page.active_side.trials[a+1],document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0)},a.SaveCurrentTrialPain=function(){d.current_movement_page.active_side.active_trial.status="saved_pain";var a=d.current_movement_page.active_side.trials.indexOf(d.current_movement_page.active_side.active_trial);a<d.current_movement_page.active_side.trials.length&&(d.current_movement_page.active_side.active_trial=d.current_movement_page.active_side.trials[a+1],document.getElementById("FrontVideoPlayer").currentTime=0,document.getElementById("TopVideoPlayer").currentTime=0,document.getElementById("SideVideoPlayer").currentTime=0)},a.SubmitTest=function(){document.getElementById("FrontVideoPlayer").currentTime=0,d.current_movement_page.submitted=!0,d.current_movement_page.active_side==d.current_movement_page.sides[0]&&(d.current_movement_page.active_side.test_page_data.other_side_warning=!0)},a.PlayAnalysisVideo=function(){var a=d.current_movement_page.analysis_page_data.playback_rate||1;console.log("Playback rate: "+a),document.getElementById("AnalysisSideVideoPlayer").playbackRate=document.getElementById("AnalysisFrontVideoPlayer").playbackRate=document.getElementById("AnalysisHorizontalVideoPlayer").playbackRate=a,document.getElementById("AnalysisSideVideoPlayer").play(),document.getElementById("AnalysisFrontVideoPlayer").play(),document.getElementById("AnalysisHorizontalVideoPlayer").play()},a.ForwardAnalysisVideo=function(){},a.PauseAnalysisVideo=function(){document.getElementById("AnalysisSideVideoPlayer").pause(),document.getElementById("AnalysisFrontVideoPlayer").pause(),document.getElementById("AnalysisHorizontalVideoPlayer").pause()},a.ResetAnalysisVideo=function(){document.getElementById("AnalysisSideVideoPlayer").pause(),document.getElementById("AnalysisSideVideoPlayer").currentTime=0,document.getElementById("AnalysisFrontVideoPlayer").pause(),document.getElementById("AnalysisFrontVideoPlayer").currentTime=0,document.getElementById("AnalysisHorizontalVideoPlayer").pause(),document.getElementById("AnalysisHorizontalVideoPlayer").currentTime=0},a.tbl_data=[];for(var g=0;5>g;g++)a.tbl_data.push({});a.DataTableToggleMovSel=function(b){b.data_tbl_selected=!b.data_tbl_selected;var c=[],e=[];for(g=0;g<d.current_movement_page.active_side.active_trial.joints.length;g++)for(var f=0;f<d.current_movement_page.active_side.active_trial.joints[g].movements.length;f++)d.current_movement_page.active_side.active_trial.joints[g].movements[f].data_tbl_selected?e.push({val:d.current_movement_page.active_side.active_trial.joints[g].movements[f].name}):e.push({});for(c.push(e),g=0;4>g;g++){for(var h=[],i=0;i<d.current_movement_page.active_side.active_trial.joints.length;i++)for(var j=0;j<d.current_movement_page.active_side.active_trial.joints[i].movements.length;j++)d.current_movement_page.active_side.active_trial.joints[i].movements[j].data_tbl_selected?h.push({val:"0.1"+g}):h.push({});c.push(h)}a.tbl_data=c},a.UpdateDataGraphSeries=function(){a.lineData.series=[];for(var b=0;b<d.current_movement_page.active_side.active_trial.joints.length;b++)for(var c=0;c<d.current_movement_page.active_side.active_trial.joints[b].movements.length;c++)(a.data.current_movement_page.data_page_data.see_all||d.current_movement_page.active_side.active_trial.joints[b].movements[c].data_graph_selected)&&a.lineData.series.push(d.current_movement_page.active_side.active_trial.joints[b].movements[c].series_data)},a.ToggleSelectMovement=function(a,b){if(a.selected){a.selected=!1;var c=b.indexOf(a);c>-1&&b.splice(c,1)}else a.selected=!0,b.push(a)},a.InitializeGraph=function(){a.lineData={labels:["0","10","20","30","40","50","60","70","80","90","100"],series:[]},a.lineOptions={axisY:{referenceValue:100,type:Chartist.FixedScaleAxis,ticks:[25,50,75,100]},axisX:{showGrid:!1,labelInterpolationFnc:function(a){return a+"%"}},showPoint:!1};var b=$(".movement_data_chart"),c=b.append('<div class="chartist-tooltip"></div>').find(".chartist-tooltip").hide();b.on("mouseenter",".ct-line",function(){var a=$(this),b=a.parent().attr("ct:series-name");c.html(b).show()}),b.on("mouseleave",".ct-line",function(){c.hide()}),b.on("mousemove",function(a){c.css({left:(a.offsetX||a.originalEvent.layerX)-c.width()/2-10,top:(a.offsetY||a.originalEvent.layerY)-c.height()-40,background:"#F4C63D"})})}}]),angular.module("app.chart.ctrls",[]).controller("chartingCtrl",["$scope",function(a){return a.easypie1={percent:25,options:{animate:{duration:100,enabled:!0},barColor:"#c1bfc0",lineCap:"round",size:130,lineWidth:8},name:"Bounce rate"},a.easypie2={percent:35,options:{animate:{duration:100,enabled:!0},barColor:"#383d43",lineCap:"round",size:130,lineWidth:8},name:"Daily active user activation"},a.easypie3={percent:87,options:{animate:{duration:100,enabled:!0},barColor:"#db5031",lineCap:"round",size:130,lineWidth:8},name:"registration / unique visit"},a.easypiesmall1={percent:25,options:{animate:{duration:100,enabled:!0},barColor:"#c1bfc0",lineCap:"round",size:67,lineWidth:5},name:"Bounce rate"},a.easypiesmall2={percent:35,options:{animate:{duration:100,enabled:!0},barColor:"#383d43",lineCap:"round",size:67,lineWidth:5},name:"Daily active user activation"},a.easypiesmall3={percent:87,options:{animate:{duration:100,enabled:!0},barColor:"#db5031",lineCap:"round",size:67,lineWidth:5},name:"registration / unique visit"}}]).controller("gaugeCtrl",["$scope",function(a){return a.gauge1={gaugeData:{maxValue:3e3,animationSpeed:100,val:1075},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#c1bfc0",colorStop:"#c1bfc0",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#c1bfc0"],[1,"#c1bfc0"]]}},a.gauge2={gaugeData:{maxValue:3e3,animationSpeed:100,val:1300},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#383d43",colorStop:"#383d43",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#383d43"],[1,"#383d43"]]}},a.gauge3={gaugeData:{maxValue:3e3,animationSpeed:100,val:1500},gaugeOptions:{lines:12,angle:0,lineWidth:.47,pointer:{length:.6,strokeWidth:.03,color:"#555555"},limitMax:"false",colorStart:"#db5031",colorStop:"#db5031",strokeColor:"#F5F5F5",generateGradient:!0,percentColors:[[0,"#db5031"],[1,"#db5031"]]}}}]).controller("morrisChartCtrl",["$scope",function(a){return a.mainData=[{month:"2013-01",xbox:294e3,will:136e3,playstation:244e3},{month:"2013-02",xbox:228e3,will:335e3,playstation:127e3},{month:"2013-03",xbox:199e3,will:159e3,playstation:13e4},{month:"2013-04",xbox:174e3,will:16e4,playstation:82e3},{month:"2013-05",xbox:255e3,will:318e3,playstation:82e3},{month:"2013-06",xbox:298400,will:401800,playstation:98600},{month:"2013-07",xbox:37e4,will:225e3,playstation:159e3},{month:"2013-08",xbox:376700,will:303600,playstation:13e4},{month:"2013-09",xbox:527800,will:301e3,playstation:119400}],a.simpleData=[{year:"2008",value:22},{year:"2009",value:10},{year:"2010",value:5},{year:"2011",value:5},{year:"2012",value:20},{year:"2013",value:19}],a.comboData=[{year:"2008",a:20,b:16,c:12},{year:"2009",a:10,b:22,c:30},{year:"2010",a:5,b:14,c:20},{year:"2011",a:5,b:12,c:19},{year:"2012",a:20,b:19,c:13},{year:"2013",a:28,b:22,c:20}],a.donutData=[{label:"Download Sales",value:12},{label:"In-Store Sales",value:30},{label:"Mail-Order Sales",value:20},{label:"Online Sales",value:19}]}]).controller("chartjsCtrl",["$scope",function(a){return a.chartjsLine={labels:["January","February","March","April","May","June","July"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.5)",strokeColor:"rgba(56, 61, 67, 0.5)",pointColor:"#fff",pointStrokeColor:"#fff",pointHighlightFill:"rgba(56, 61, 67, 0.5)",pointHighlightStroke:"rgba(220,220,220,1)",data:[65,59,80,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 0.8)",pointColor:"#fff",pointStrokeColor:"#fff",pointHighlightFill:"rgba(219, 80, 49, 0.8)",pointHighlightStroke:"rgba(151,187,205,1)",data:[28,48,40,19,86,27,90]}]},a.chartjsBar={labels:["January","February","March","April","May","June","July"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.5)",strokeColor:"rgba(56, 61, 67, 0.5)",highlightFill:"rgba(56, 61, 67, 0.8)",highlightStroke:"rgba(56, 61, 67, 0.8)",data:[65,59,80,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 0.8)",highlightFill:"rgba(219, 80, 49, 0.9)",highlightStroke:"rgba(219, 80, 49, 0.9)",data:[28,48,40,19,86,27,90]}]},a.chartjsRadar={labels:["Eating","Drinking","Sleeping","Designing","Coding","Cycling","Running"],datasets:[{label:"My First dataset",fillColor:"rgba(56, 61, 67, 0.8)",strokeColor:"rgba(56, 61, 67, 1)",pointColor:"rgba(56, 61, 67, 1)",pointStrokeColor:"#fff",pointHighlightFill:"#fff",pointHighlightStroke:"rgba(56, 61, 67, 1)",data:[65,59,90,81,56,55,40]},{label:"My Second dataset",fillColor:"rgba(219, 80, 49, 0.8)",strokeColor:"rgba(219, 80, 49, 1)",pointColor:"rgba(219, 80, 49, 0.8)",pointStrokeColor:"#fff",pointHighlightFill:"#fff",pointHighlightStroke:"rgba(219, 80, 49, 0.8)",data:[28,48,40,19,96,27,100]}]},a.chartjsPolarArea=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#fef9d9",highlight:"#fef9d9",label:"Yellow"},{value:40,color:"#c1bfc0",highlight:"#c1bfc0",label:"Grey"},{value:120,color:"#503f3c",highlight:"#503f3c",label:"Dark Brown"}],a.chartjsPie=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#c1bfc0",highlight:"#c1bfc0",label:"Gray"}],a.chartjsDoughnut=[{value:300,color:"#383d43",highlight:"#383d43",label:"Blue"},{value:50,color:"#db5031",highlight:"#db5031",label:"Orange"},{value:100,color:"#c1bfc0",highlight:"#c1bfc0",label:"Gray"}]}]).controller("flotChartCtrl",["$scope",function(a){var b,c,d;return d={},d.data1=[[1,15],[2,20],[3,14],[4,10],[5,10],[6,20],[7,28],[8,26],[9,22],[10,23],[11,24]],d.data2=[[1,9],[2,15],[3,17],[4,21],[5,16],[6,15],[7,13],[8,15],[9,29],[10,21],[11,29]],a.line1={},a.line1.data=[{data:d.data1,label:"New visitors",lines:{fill:!0}},{data:d.data2,label:"Returning visitors",lines:{fill:!1}}],a.line1.options={series:{lines:{show:!0,fill:!1,lineWidth:3,fillColor:{colors:[{opacity:.3},{opacity:.3}]}},points:{show:!0,lineWidth:3,fill:!0,fillColor:"#ffffff",symbol:"circle",radius:5},shadowSize:0},colors:["#c1bfc0","#db5031"],tooltip:!0,tooltipOpts:{defaultTheme:!1},grid:{hoverable:!0,clickable:!0,tickColor:"#f9f9f9",borderWidth:1,borderColor:"#eeeeee"},xaxis:{ticks:[[1,"Jan."],[2,"Feb."],[3,"Mar."],[4,"Apr."],[5,"May"],[6,"June"],[7,"July"],[8,"Aug."],[9,"Sept."],[10,"Oct."],[11,"Nov."],[12,"Dec."]]}},b={},b.data1=[[2007,15],[2008,20],[2009,10],[2010,5],[2011,5],[2012,20],[2013,28]],b.data2=[[2007,15],[2008,16],[2009,22],[2010,14],[2011,12],[2012,19],[2013,22]],a.area={},a.area.data=[{data:b.data1,label:"Value A",lines:{fill:!0}},{data:b.data2,label:"Value B",points:{show:!0},yaxis:2}],a.area.options={series:{lines:{lineWidth:3,show:!0,fill:!1},points:{show:!0,lineWidth:3,fill:!0,fillColor:"#ffffff",symbol:"circle",radius:5},shadowSize:0},grid:{hoverable:!0,clickable:!0,tickColor:"#f9f9f9",borderWidth:1,borderColor:"#eeeeee"},colors:["#c1bfc0","#db5031"],tooltip:!0,tooltipOpts:{defaultTheme:!1},xaxis:{mode:"time"},yaxes:[{},{position:"right"}]},c={},c.data1=[[2008,20],[2009,10],[2010,5],[2011,5],[2012,20],[2013,28]],c.data2=[[2008,16],[2009,22],[2010,14],[2011,12],[2012,19],[2013,22]],c.data3=[[2008,12],[2009,30],[2010,20],[2011,19],[2012,13],[2013,20]],a.barChart={},a.barChart.data=[{label:"Value A",data:c.data1},{label:"Value B",data:c.data2},{label:"Value C",data:c.data3}],a.barChart.options={series:{stack:!0,bars:{show:!0,fill:1,barWidth:.3,align:"center",horizontal:!1,order:1}},grid:{hoverable:!0,borderWidth:1,borderColor:"#eeeeee"},tooltip:!0,tooltipOpts:{defaultTheme:!1},colors:["#383d43","#db5031","#fef9d9"]},a.pieChart={},a.pieChart.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19}],a.pieChart.options={series:{pie:{show:!0}},legend:{show:!0},grid:{hoverable:!0,clickable:!0},colors:["#383d43","#db5031","#fef9d9","#503f3c"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}},a.donutChart={},a.donutChart.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19}],a.donutChart.options={series:{pie:{show:!0,innerRadius:.5}},legend:{show:!0},grid:{hoverable:!0,clickable:!0},colors:["#383d43","#db5031","#c1bfc0","#503f3c"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}},a.donutChart2={},a.donutChart2.data=[{label:"Download Sales",data:12},{label:"In-Store Sales",data:30},{label:"Mail-Order Sales",data:20},{label:"Online Sales",data:19},{label:"Direct Sales",data:15}],a.donutChart2.options={series:{pie:{show:!0,innerRadius:.5}},legend:{show:!1},grid:{hoverable:!0,clickable:!0},colors:["#2693E9","#F5862C","#43B040","#619CC4","#6D90C5"],tooltip:!0,tooltipOpts:{content:"%p.0%, %s",defaultTheme:!1}}}]).controller("flotChartCtrl.realtime",["$scope",function(){}]).controller("sparklineCtrl",["$scope",function(a){return a.demoData1={sparkData:[3,1,2,2,4,6,4,5,2,4,5,3,4,6,4,7],sparkOptions:{type:"line",lineColor:"#fff",highlightLineColor:"#fff",fillColor:"#383d43",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100%",height:"150px"}},a.simpleChart1={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"line",lineColor:"#db5031",fillColor:"#c1bfc0",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100px",height:"50px"}},a.simpleChart2={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#db5031",width:"100px",height:"50px"}},a.simpleChartlong={sparkData:[1,3,2,5,4,2,1,7,1,8,4,3,5,2,4,5,1,7,1,8],sparkOptions:{type:"bar",barColor:"#c1bfc0",width:"250px",height:"30px"}},a.simpleChart2long={sparkData:[3,1,2,3,5,3,4,2,5,4,2,6,2,4,3,1],sparkOptions:{type:"bar",barColor:"#383d43",width:"200px",height:"30px"}},a.simpleChart2info={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#FFFFFF",width:"100px",height:"30px"}},a.simpleChart3={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"pie",sliceColors:["#383d43","#db5031","#c1bfc0","#fef9d9","#503f3c","#365340"],width:"50px",height:"50px"}},a.tristateChart1={sparkData:[1,2,-3,-5,3,1,-4,2],sparkOptions:{type:"tristate",posBarColor:"#383d43",negBarColor:"#c1bfc0",width:"100%",height:"50px"}},a.largeChart1={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"line",lineColor:"#db5031",highlightLineColor:"#7ACBEE",fillColor:"#c1bfc0",spotColor:!1,minSpotColor:!1,maxSpotColor:!1,width:"100%",height:"150px"}},a.largeChart2={sparkData:[3,1,2,3,5,3,4,2],sparkOptions:{type:"bar",barColor:"#383d43",barWidth:10,width:"100%",height:"150px"}},a.largeChart3={sparkData:[3,1,2,3,5],sparkOptions:{type:"pie",sliceColors:["#383d43","#db5031","#c1bfc0","#fef9d9","#503f3c","#365340"],width:"150px",height:"150px"}}}]),angular.module("app.task",[]).factory("taskStorage",function(){var a,b;return b="tasks",a='[ {"title": "Call customer X", "completed": true}, {"title": "Review marketing system", "completed": true}, {"title": "Do the twist!", "completed": false}, {"title": "Watch over the mars scheme", "completed": false}, {"title": "Complete proposal for spaceship", "completed": false}, {"title": "Do inventory of everything", "completed": false} ]',{get:function(){return JSON.parse(sessionStorage.getItem(b)||a)},put:function(a){return sessionStorage.setItem(b,JSON.stringify(a))}}}).controller("taskCtrl",["$scope","taskStorage","filterFilter","$rootScope","loggit",function(a,b,c,d,e){var f;return f=a.tasks=b.get(),a.newTask="",a.countTasksLeft=c(f,{completed:!1}).length,a.editedTask=null,a.statusFilter={completed:!1},a.filter=function(b){switch(b){case"all":a.statusFilter="";break;case"active":a.statusFilter={completed:!1};break;case"completed":a.statusFilter={completed:!0}}},a.add=function(){var c;return c=a.newTask.trim(),0!==c.length?(f.push({title:c,completed:!1}),e.logSuccess('New task added : "'+c+'"'),b.put(f),a.newTask="",a.countTasksLeft++):void 0},a.edit=function(b){a.editedTask=b},a.doneEditing=function(c){return a.editedTask=null,c.title=c.title.trim(),c.title?e.log("Task was updated"):a.remove(c),b.put(f)},a.remove=function(c){var d;return a.countTasksLeft-=c.completed?0:1,d=a.tasks.indexOf(c),a.tasks.splice(d,1),b.put(f),e.logError("Task was removed")},a.completed=function(c){return a.countTasksLeft+=c.completed?-1:1,b.put(f),c.completed?a.countTasksLeft>0?e.log(1===a.countTasksLeft?"Only "+a.countTasksLeft+" task left":"Well done! Only "+a.countTasksLeft+" tasks left"):e.logSuccess("Yay!! All tasks are done :)"):void 0},a.clearCompleted=function(){return a.tasks=f=f.filter(function(a){return!a.completed}),b.put(f)},a.markAll=function(c){return f.forEach(function(a){a.completed=c}),a.countTasksLeft=c?0:f.length,b.put(f),c?e.logSuccess("Yay!! All tasks are done :)"):void 0},a.$watch("countTasksLeft == 0",function(b){a.allChecked=b}),a.$watch("countTasksLeft",function(a){d.$broadcast("taskRemaining:changed",a)})}]),angular.module("app.form.validation",[]).controller("wizardFormCtrl",["$scope",function(a){return a.wizard={firstName:"some name",lastName:"",email:"",password:"",age:"",address:""},a.isValidateStep1=function(){return void 0},a.finishedWizard=function(){return void 0}}]).controller("formConstraintsCtrl",["$scope",function(a){var b;return a.form={required:"",minlength:"",maxlength:"",length_rage:"",type_something:"",confirm_type:"",foo:"",email:"",url:"",num:"",minVal:"",maxVal:"",valRange:"",pattern:""},b=angular.copy(a.form),a.revert=function(){return a.form=angular.copy(b),a.form_constraints.$setPristine()},a.canRevert=function(){return!angular.equals(a.form,b)||!a.form_constraints.$pristine},a.canSubmit=function(){return a.form_constraints.$valid&&!angular.equals(a.form,b)}}]).controller("signinCtrl",["$scope",function(a){var b;return a.user={email:"",password:""},a.showInfoOnSubmit=!1,b=angular.copy(a.user),a.revert=function(){return a.user=angular.copy(b),a.form_signin.$setPristine()},a.canRevert=function(){return!angular.equals(a.user,b)||!a.form_signin.$pristine},a.canSubmit=function(){return a.form_signin.$valid&&!angular.equals(a.user,b)},a.submitForm=function(){return a.showInfoOnSubmit=!0,a.revert()}}]).controller("signupCtrl",["$scope",function(a){var b;return a.user={name:"",email:"",password:"",confirmPassword:"",age:""},a.showInfoOnSubmit=!1,b=angular.copy(a.user),a.revert=function(){return a.user=angular.copy(b),a.form_signup.$setPristine(),a.form_signup.confirmPassword.$setPristine()},a.canRevert=function(){return!angular.equals(a.user,b)||!a.form_signup.$pristine},a.canSubmit=function(){return a.form_signup.$valid&&!angular.equals(a.user,b)},a.submitForm=function(){return a.showInfoOnSubmit=!0,a.revert()}}]).directive("validateEquals",[function(){return{require:"ngModel",link:function(a,b,c,d){var e;return e=function(b){var e;return e=b===a.$eval(c.validateEquals),d.$setValidity("equal",e),"function"==typeof e?e({value:void 0}):void 0},d.$parsers.push(e),d.$formatters.push(e),a.$watch(c.validateEquals,function(a,b){return a!==b?d.$setViewValue(d.$ViewValue):void 0})}}}]),angular.module("app.ui.form.ctrls",[]).controller("TagsDemoCtrl",["$scope",function(a){a.tags=["foo","bar"]}]).controller("DatepickerDemoCtrl",["$scope",function(a){return a.today=function(){a.dt=new Date},a.today(),a.showWeeks=!0,a.toggleWeeks=function(){a.showWeeks=!a.showWeeks},a.clear=function(){a.dt=null},a.disabled=function(a,b){return"day"===b&&(0===a.getDay()||6===a.getDay())},a.toggleMin=function(){var b;a.minDate=null!==(b=a.minDate)?b:{"null":new Date}},a.toggleMin(),a.open=function(b){return b.preventDefault(),b.stopPropagation(),a.opened=!0},a.dateOptions={"year-format":"'yy'","starting-day":1},a.formats=["dd-MMMM-yyyy","yyyy/MM/dd","shortDate"],a.format=a.formats[0]}]).controller("TimepickerDemoCtrl",["$scope",function(a){return a.mytime=new Date,a.hstep=1,a.mstep=15,a.options={hstep:[1,2,3],mstep:[1,5,10,15,25,30]},a.ismeridian=!0,a.toggleMode=function(){a.ismeridian=!a.ismeridian},a.update=function(){var b;return b=new Date,b.setHours(14),b.setMinutes(0),a.mytime=b},a.changed=function(){return void 0},a.clear=function(){a.mytime=null}}]).controller("TypeaheadCtrl",["$scope",function(a){return a.selected=void 0,a.states=["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]}]).controller("RatingDemoCtrl",["$scope",function(a){return a.rate=7,a.max=10,a.isReadonly=!1,a.hoveringOver=function(b){return a.overStar=b,a.percent=100*(b/a.max)},a.ratingStates=[{stateOn:"glyphicon-ok-sign",stateOff:"glyphicon-ok-circle"},{stateOn:"glyphicon-star",stateOff:"glyphicon-star-empty"},{stateOn:"glyphicon-heart",stateOff:"glyphicon-ban-circle"},{stateOn:"glyphicon-heart"},{stateOff:"glyphicon-off"}]}]),angular.module("app.tables",[]).controller("tableCtrl",["$scope","$filter",function(a,b){var c;return a.stores=[{name:"Nijiya Market",price:"$$",sales:292,rating:4},{name:"Eat On Monday Truck",price:"$",sales:119,rating:4.3},{name:"Tea Era",price:"$",sales:874,rating:4},{name:"Rogers Deli",price:"$",sales:347,rating:4.2},{name:"MoBowl",price:"$$$",sales:24,rating:4.6},{name:"The Milk Pail Market",price:"$",sales:543,
+rating:4.5},{name:"Nob Hill Foods",price:"$$",sales:874,rating:4},{name:"Scratch",price:"$$$",sales:643,rating:3.6},{name:"Gochi Japanese Fusion Tapas",price:"$$$",sales:56,rating:4.1},{name:"Cost Plus World Market",price:"$$",sales:79,rating:4},{name:"Bumble Bee Health Foods",price:"$$",sales:43,rating:4.3},{name:"Costco",price:"$$",sales:219,rating:3.6},{name:"Red Rock Coffee Co",price:"$",sales:765,rating:4.1},{name:"99 Ranch Market",price:"$",sales:181,rating:3.4},{name:"Mi Pueblo Food Center",price:"$",sales:78,rating:4},{name:"Cucina Venti",price:"$$",sales:163,rating:3.3},{name:"Sufi Coffee Shop",price:"$",sales:113,rating:3.3},{name:"Dana Street Roasting",price:"$",sales:316,rating:4.1},{name:"Pearl Cafe",price:"$",sales:173,rating:3.4},{name:"Posh Bagel",price:"$",sales:140,rating:4},{name:"Artisan Wine Depot",price:"$$",sales:26,rating:4.1},{name:"Hong Kong Chinese Bakery",price:"$",sales:182,rating:3.4},{name:"Starbucks",price:"$$",sales:97,rating:3.7},{name:"Tapioca Express",price:"$",sales:301,rating:3},{name:"House of Bagels",price:"$",sales:82,rating:4.4}],a.searchKeywords="",a.filteredStores=[],a.row="",a.select=function(b){var c,d;return d=(b-1)*a.numPerPage,c=d+a.numPerPage,a.currentPageStores=a.filteredStores.slice(d,c)},a.onFilterChange=function(){return a.select(1),a.currentPage=1,a.row=""},a.onNumPerPageChange=function(){return a.select(1),a.currentPage=1},a.onOrderChange=function(){return a.select(1),a.currentPage=1},a.search=function(){return a.filteredStores=b("filter")(a.stores,a.searchKeywords),a.onFilterChange()},a.order=function(c){return a.row!==c?(a.row=c,a.filteredStores=b("orderBy")(a.stores,c),a.onOrderChange()):void 0},a.numPerPageOpt=[3,5,10,20],a.numPerPage=a.numPerPageOpt[2],a.currentPage=1,a.currentPageStores=[],c=function(){return a.search(),a.select(a.currentPage)},a.search()}]),angular.module("app.ui.ctrls",[]).controller("NotifyCtrl",["$scope","loggit",function(a,b){a.notify=function(a){switch(a){case"info":return b.log("Hello! This is an alert of the info importance level.");case"success":return b.logSuccess("Great! You did something successfully.");case"warning":return b.logWarning("Warning! Something that happened that is not critical but important.");case"error":return b.logError("Error! Something went terribly wrong and needs your attention.")}}}]).controller("AlertDemoCtrl",["$scope",function(a){a.alerts=[{type:"success",msg:"Great! You did something successfully."},{type:"info",msg:"Hello! This is an alert of the info importance level."},{type:"warning",msg:"Warning! Something that happened that is not critical but important."},{type:"danger",msg:"Error! Something went terribly wrong and needs your attention."}],a.addAlert=function(){a.alerts.push({msg:"Another alert!"})},a.closeAlert=function(b){a.alerts.splice(b,1)}}]).controller("ProgressDemoCtrl",["$scope",function(a){a.max=200,a.random=function(){var b,c=Math.floor(100*Math.random()+1);b=25>c?"success":50>c?"info":75>c?"warning":"danger",a.showWarning="danger"===b||"warning"===b,a.dynamic=c,a.type=b},a.random(),a.randomStacked=function(){a.stacked=[];for(var b=["success","info","warning","danger"],c=0,d=Math.floor(4*Math.random()+1);d>c;c++){var e=Math.floor(4*Math.random());a.stacked.push({value:Math.floor(30*Math.random()+1),type:b[e]})}},a.randomStacked()}]).controller("AccordionDemoCtrl",["$scope",function(a){return a.oneAtATime=!0,a.groups=[{title:"First Group Header",content:"First Group Body"},{title:"Second Group Header",content:"Second Group Body"},{title:"Third Group Header",content:"Third Group Body"}],a.items=["Item 1","Item 2","Item 3"],a.status={isFirstOpen:!0,isFirstOpen1:!0,isFirstOpen2:!0,isFirstOpen3:!0,isFirstOpen4:!0,isFirstOpen5:!0,isFirstOpen6:!0},a.addItem=function(){var b;b=a.items.length+1,a.items.push("Item "+b)}}]).controller("CollapseDemoCtrl",["$scope",function(a){a.isCollapsed=!1}]).controller("ModalDemoCtrl",["$scope","$modal","$log",function(a,b,c){a.items=["item1","item2","item3"],a.open=function(d){var e=b.open({templateUrl:"myModalContent.html",controller:"ModalInstanceCtrl",size:d,resolve:{items:function(){return a.items}}});e.result.then(function(b){a.selected=b},function(){c.info("Modal dismissed at: "+new Date)})}}]).controller("ModalInstanceCtrl",["$scope","$modalInstance","items",function(a,b,c){a.items=c,a.selected={item:a.items[0]},a.ok=function(){b.close(a.selected.item)},a.cancel=function(){b.dismiss("cancel")}}]).controller("PaginationDemoCtrl",["$scope",function(a){a.totalItems=64,a.currentPage=4,a.setPage=function(b){a.currentPage=b},a.pageChanged=function(){console.log("Page changed to: "+a.currentPage)},a.maxSize=5,a.bigTotalItems=175,a.bigCurrentPage=1}]).controller("MapDemoCtrl",["$scope","$http","$interval",function(a,b,c){var d,e;for(e=[],d=0;8>d;)e[d]=new google.maps.Marker({title:"Marker: "+d}),d++;a.GenerateMapMarkers=function(){var b,c,f,g,h;for(b=new Date,a.date=b.toLocaleString(),h=Math.floor(4*Math.random())+4,d=0;h>d;)c=38.73+Math.random()/100,f=-9.14+Math.random()/100,g=new google.maps.LatLng(c,f),e[d].setPosition(g),e[d].setMap(a.map),d++},c(a.GenerateMapMarkers,2e3)}]).controller("TreeDemoCtrl",["$scope",function(a){a.list=[{id:1,title:"1. dragon-breath",items:[]},{id:2,title:"2. moiré-vision",items:[{id:21,title:"2.1. tofu-animation",items:[{id:211,title:"2.1.1. spooky-giraffe",items:[]},{id:212,title:"2.1.2. bubble-burst",items:[]}]},{id:22,title:"2.2. barehand-atomsplitting",items:[]}]},{id:3,title:"3. unicorn-zapper",items:[]},{id:4,title:"4. romantic-transclusion",items:[]}],a.callbacks={},a.remove=function(a){a.remove()},a.toggle=function(a){a.toggle()},a.newSubItem=function(a){var b=a.$modelValue;b.items.push({id:10*b.id+b.items.length,title:b.title+"."+(b.items.length+1),items:[]})}}]),angular.module("app.controllers").controller("DashboardGroupController",["$scope","$routeParams","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d,e){a.params=b,a.assetVersion=d,a.isLocalEnvironment=e,a.DeleteGroup=function(){c.debug("Todo: delete group")},a.$watch("params.groupId",function(b,d){if(!(0===b||b===a.data.group.selected.id||a.data.group.list.length<1)){for(var e,f,g=0;g<a.data.group.list.length;g++)if(e=a.data.group.list[g],e.id==b){f=e;break}f?(c.debug("Selecting group #"+b+"..."),a.data.group.selected=f):c.error("Group #"+b+" not found.")}},!0)}]),angular.module("app.controllers").controller("DashboardController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("FMSDemoController",["$scope","$routeParams","FMSDemoFactory","Rover","assetVersion",function(a,b,c,d,e){d.debug("FMSDemoController"),a.isDemo=!0,a.assetVersion=e,a.params=b,a.params.step=a.params.step||"test",a.isTestLive=!1,a.fms=c.data,a.run={name:null,start:function(){this.name||this.prepare(),d.debug("Starting run: "+this.name),this.setStatus("live"),a.isTestLive=!0,$(".demo-test").each(function(){this.currentTime=0,this.play()})},end:function(){d.debug("Ending run: "+this.name),this.setStatus("saved"),a.isTestLive=!1,$(".demo-test").each(function(){this.pause()}),this.moveToNextTrial()},pain:function(){d.debug("Ending run (with pain): "+this.name),this.setStatus("pain"),a.isTestLive=!1,$(".demo-test").each(function(){this.pause()}),this.moveToNextTrial()},fault:function(){d.debug("Restarting run: "+this.name),this.setStatus("pending"),a.isTestLive=!1,this.getRun().numFaults++,$(".demo-test").each(function(){this.pause(),this.currentTime=0})},reset:function(){this.exists()&&(this.getRun().status="pending",this.getRun().numFaults=0)},moveToNextTrial:function(a,b){var e,f,g,h;for(e=0;e<c.data.current.trials.length;e++)if(f=c.data.current.trials[e],g=this.getName(f,a),h=this.getRun(g),!h||"pending"==h.status)return c.data.current.trial=f,c.data.current.iteration=a||c.data.current.iteration,this.prepare(),$(".demo-test").each(function(){this.currentTime=0}),d.debug("Automatic next trial: "+g),!0;if(!b&&c.data.current.iterations.length>1)for(e=0;e<c.data.current.iterations.length;e++)if(this.moveToNextTrial(c.data.current.iterations[e],!0))return!0},submit:function(){d.debug("Submitting demo FMS data..."),c.data.runs={},c.data.current.isTestSubmitted=!0,$(".demo-test").each(function(){this.currentTime=0})},prepare:function(){(!c.data.current.iteration||c.data.current.iteration.length<1)&&(c.data.current.iteration="main"),c.data.current.trial||(c.data.current.trial=c.data.current.trials[0]);var a=this.getName();return d.debug("Preparing test run: "+a),this.exists(a)?void d.debug("Test has already been run."):(this.name=a,void(c.data.runs[a]=$.extend(!0,{},c.runDataTemplate,{})))},getName:function(a,b,d){return a=a||c.data.current.trial||c.data.current.trials[0],b=b||c.data.current.iteration||"main",d=d||c.data.current,d.id+"."+b+"."+a.name},getRun:function(a){return a=a||this.getName(),c.data.runs[a]?c.data.runs[a]:null},getRunByTrial:function(a){return this.getRun(this.getName(a))},exists:function(a){a=a||this.getName();var b=this.getRun(a);return b?"pending"!=b.status:!1},setStatus:function(a){this.name||this.prepare(),c.data.runs[this.name].status=a},getStatus:function(a){if(a){var b=this.getName(a),c=this.getRun(b);return c?c.status:null}return this.name?this.getRun().status:null}},a.analysis={trialPane:!1,planePane:!1,playbackRatePane:!1,playbackRate:.5,play:function(){$(".demo-analysis").each(function(){this.currentTime=0,this.play()})},setPlaybackRate:function(a){this.playbackRate=a,$(".demo-analysis").each(function(){this.playbackRate=a})},pause:function(){$(".demo-analysis").each(function(){this.pause()})},reset:function(){$(".demo-analysis").each(function(){this.pause(),this.currentTime=0})}},a.summary={joints:{all:!1,hip:!0,knee:!1,select:function(a){for(var b in this)"boolean"==typeof this[b]&&(this[b]=a==b||"all"==a)}}},c.data.current.trial||(c.data.current.trial=c.data.current.trials[0])}]),angular.module("app.controllers").controller("FMSController",["$scope","$routeParams","Rover","assetVersion",function(a,b,c,d){c.debug("FMSController"),a.params=b,a.assetVersion=d}]),angular.module("app.controllers").controller("FMSFormController",["$scope","$sessionStorage","FMSForm","FMSService","loggit","Rover","assetVersion",function(a,b,c,d,e,f,g){a.data.show_fms_edit=!1,a.waiting_server_response=!1,a.data.selected_fms_form=null,a.files={},a.$watch("global.state.profile.selected",function(b){null!==b&&d.get(a.global.state.profile.selected.id).then(function(b){a.global.state.profile.selected.fms_forms=b.data},function(a){f.debug("Could not retrieve forms: "+a.statusText)})},!0),a.submitFMSForm=function(){a.waiting_server_response=!0,f.debug("Submitting FMS form data...");var b=a.data.fms_form_data,c={profile_id:a.global.state.profile.selected.id,notes:b.comment,tests:[{title:"Deep Squat",score:b.deepsquat,notes:b.deepsquatcomments},{title:"Hurdle step (L)",score:b.Lhurdle,notes:b.Lhurdlecomments},{title:"Hurdle step (R)",score:b.Rhurdle,notes:b.Rhurdlecomments},{title:"Inline lunge (L)",score:b.Llunge,notes:b.Llungecomments},{title:"Inline lunge (R)",score:b.Rlunge,notes:b.Rlungecomments},{title:"Shoulder Mobility (L)",score:b.Lshoulder,notes:b.Lshouldercomments},{title:"Shoulder Mobility (R)",score:b.Rshoulder,notes:b.Rshouldercomments},{title:"Active straight-leg raise (L)",score:b.Lactive,notes:b.Lactivecomments},{title:"Active straight-leg raise (R)",score:b.Ractive,notes:b.Ractivecomments},{title:"Trunk stability push-up",score:b.trunk,notes:b.trunkcomments},{title:"Rotary stability (L)",score:b.Lrotary,notes:b.Lrotarycomments},{title:"Rotary stability (R)",score:b.Rrotary,notes:b.Rrotarycomments}]};c.score=21,f.debug(c),d.create(c).then(function(b){a.data.fms_form_data={},a.global.state.profile.selected.fms_forms=b.data.fms,a.waiting_server_response=!1,e.logSuccess("FMS Form successfully submitted")},function(b){e.logError("There was an error submitting the FMS Form"),a.waiting_server_response=!1,f.debug(b)})},a.updateFMS=function(){a.waiting_server_response=!0,c.update(a.global.state.profile.selected.id,a.data.selected_fms_form).success(function(b){a.global.state.profile.selected.fms_forms=b,a.waiting_server_response=!1,f.state.show_fms_edit=!1,e.logSuccess("FMS Form successfully updated")}).error(function(){e.logError("There was an error while attempting to update the FMS Form"),a.waiting_server_response=!1})},a.fmsdisplay=function(b){b.deepsquatcomments=b.deepsquatcomments||"",b.hurdlecomments=b.hurdlecomments||"",b.lungecomments=b.lungecomments||"",b.shouldercomments=b.shouldercomments||"",b.impingementcomments=b.impingementcomments||"",b.activecomments=b.activecomments||"",b.trunkcomments=b.trunkcomments||"",b.presscomments=b.presscomments||"",b.rotarycomments=b.rotarycomments||"",b.posteriorcomments=b.posteriorcomments||"",a.data.selected_fms_form=b}}]),angular.module("app.controllers").controller("GroupController",["$scope","$location","GroupService","Teams","Upload","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d,e,f,g,h){f.debug("GroupController"),a.currentPath=b.path(),"/group/create"==a.currentPath?a.group={id:0,name:""}:a.group=a.global.state.group.selected,a.groups=a.global.state.group.list,a.sports=a.global.state.sport.list,a.submitGroupForm=function(){return a.group.id>0?a.updateGroup():a.createGroup()},a.createGroup=function(){f.debug("Creating group..."),f.addBackgroundProcess();var b=a.group;c.create(b).then(function(b){if(f.doneBackgroundProcess(),200===b.status){a.global.state.group.list=b.data.list;var c=b.data.list.length-1;f.browseTo.group(a.global.state.group.list[c])}},function(a){f.doneBackgroundProcess()})},a.updateGroup=function(){f.debug("Updating group..."),f.addBackgroundProcess();var b=a.group;c.update(b.id,b).then(function(a){f.doneBackgroundProcess(),200===a.status&&f.browseTo.group()},function(a){f.debug("Could not update group: "+a.responseText),f.doneBackgroundProcess()})},a.deleteGroup=function(){f.debug("Deleting group..."),f.addBackgroundProcess(),c.destroy(a.global.state.group.selected.id).then(function(b){200===b.status&&(a.global.state.group.list=b.data,b.data.length>0&&(a.global.state.group.selected=b.data[0])),f.doneBackgroundProcess(),f.browseTo.path("/group/list")},function(a){f.debug("Could not delete group: "+a.responseText),f.doneBackgroundProcess()})},a.uploadAvatarEndpoint="/api/group/"+a.group.id+"/avatar",a.uploadAvatarCallback=function(){a.global.state.group.selected.avatar_src=a.group.avatar_src=this.avatar_src,a.global.state.group.list=this.list},a.$watch("global.state.group.selected",function(b,c){b.id!==c.id&&(a.group=a.global.state.group.selected)})}]),angular.module("app.controllers").controller("DashboardGroupsController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("MainController",["$scope","$sessionStorage","$localStorage","ProfileService","GroupService","OnboardingService","Teams","Athletes","Sports","loggit","Rover","appVersion","assetVersion","isLocalEnvironment",function(a,b,c,d,e,f,g,h,i,j,k,l,m,n){k.debug("MainController"),a.Rover=k,a.global={appVersion:l,assetVersion:m,isLocal:n,localStorage:c[k.userHash],sessionStorage:b[k.userHash],state:k.state,onboarding:{general:f.general}},a.data=k.state,k.debug("Setting up group data..."),a.global.state.group=a.global.state.group||{},a.global.state.group.list=a.global.state.group.list||[],a.global.state.group.selected=a.global.state.group.selected||{id:0},k.debug("Setting up profile data..."),a.global.state.profile=a.global.state.profile||{},a.global.state.profile.list=a.global.state.profile.list||[],a.global.state.profile.selected=a.global.state.selected||{id:0},a.data.member=a.global.state.profile,k.debug("Setting up sports data..."),a.global.state.sport=a.global.state.sport||{},a.global.state.sport.list=a.global.state.sport.list||[],a.global.state.sport.selected=a.global.state.sport.selected||{id:0},a.populateGroupList=function(){k.debug("Populating group list..."),k.addBackgroundProcess(),e.get().then(function(b){200===b.status&&(a.global.state.group.list=b.data),a.global.state.group.selected.id<1&&a.global.state.group.list.length>0&&(a.global.state.group.selected=a.global.state.group.list[0]),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},a.populateProfileList=function(){k.debug("Populating profile list..."),k.addBackgroundProcess(),d.get(a.global.state.group.selected.id).then(function(b){200===b.status&&(a.global.state.profile.list=b.data),a.global.state.profile.selected.id<1&&a.global.state.profile.list.length>0?a.global.state.profile.selected=a.global.state.profile.list[0]:"/profile/view"==a.currentPath&&k.browseTo.group(),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},a.populateSportsList=function(){k.debug("Populating sports list..."),k.addBackgroundProcess(),i.get().then(function(b){200===b.status&&(a.global.state.sport.list=b.data),a.global.state.sport.selected.id<1&&a.global.state.sport.list.length>0&&(a.global.state.sport.selected=k.state.sport.list[0]),k.doneBackgroundProcess()},function(a){k.doneBackgroundProcess()})},k.debug("Checking group list on first load..."),0===a.global.state.group.list.length&&a.populateGroupList(),a.global.state.profile.list.length>0&&a.global.state.profile.selected.id<1&&(a.global.state.profile.selected=a.global.state.profile.list[0]),k.debug("Checking sports list on first load..."),0===a.global.state.sport.list.length&&a.populateSportsList(),a.$watch("global.state.group.selected",function(b,c){if(0!==b){if("number"==typeof b||"string"==typeof b){var d=Number(b);return $.each(a.global.state.group.list,function(a,c){c.id==d&&(b=c)}),void(a.global.state.group.selected=b)}k.debug("Selected group: "+b.id),b.id!==c.id&&(b.id<1||(a.global.state.profile.list=[],a.global.state.profile.selected={id:0},a.populateProfileList()))}},!0)}]),angular.module("app.controllers").controller("DashboardMemberController",["$scope","$routeParams","Athletes","FMSForm","Rover",function(a,b,c,d,e){a.params=b,a.deleteProfile=function(){e.debug("Deleting profile..."),e.addBackgroundProcess(),c.destroy(a.data.group.selected.id,a.data.profile.selected.id).then(function(a){200===a.status&&e.browseTo.group(e.state.group.selected),e.doneBackgroundProcess()},function(a){e.doneBackgroundProcess()})},a.fmsForms={},a.loadFMSForms=function(){d.get(e.state.member.selected.id).then(function(b){200===b.status?a.fmsForms=b.data:a.fmsForms={}},function(a){})},a.$watch("data.member.selected",function(b,c){e.debug("Loading FMS forms..."),a.loadFMSForms()}),a.$watch("params.memberId",function(b,c){if(!(0===b||b===a.data.member.selected.id||a.data.member.list.length<1)){for(var d,f,g=0;g<a.data.member.list.length;g++)if(d=a.data.member.list[g],d.id==b){f=d;break}f?(e.debug("Selecting member #"+b+"..."),a.data.member.selected=f):e.error("Member #"+b+" not found.")}},!0)}]),angular.module("app.controllers").controller("SubmitMovementDemoController",["$scope","Sports","SportMovements","Rover","assetVersion",function(a,b,c,d,e){d.debug("SubmitMovementDemoController"),a.assetVersion=e,a.sports=d.state.movement_demo,d.debug("Setting up movement data..."),a.sports=a.sports||{},a.sports["default"]={name:"None selected"},a.sports.selected=a.sports.selected||a.sports["default"],a.movements=a.movements||{},a.movements["default"]={name:"None selected"},a.movements.selected=a.movements.selected||a.movements["default"],a.populateSportsList=function(){d.debug("Populating sports list..."),d.addBackgroundProcess(),b.get().then(function(b){200===b.status&&(a.sports.list=b.data),a.sports.list.length>0?a.sports.selected=a.sports.list[0]:a.sports.selected=a.sports["default"],d.doneBackgroundProcess()},function(a){d.doneBackgroundProcess()})},d.debug("Checking sports list on first load..."),a.sports.list||a.populateSportsList(),a.$watch("sports.selected",function(){d.debug("Updating movements list..."),d.addBackgroundProcess(),a.movements.list=a.movements.selected=null,c.get(a.sports.selected.id).then(function(b){200===b.status&&(a.movements.list=b.data),a.movements.list.length>0?a.movements.selected=a.movements.list[0]:a.movements.selected=a.movements["default"],d.doneBackgroundProcess()},function(a){d.doneBackgroundProcess()})},!0)}]),angular.module("app.controllers").controller("ProfileController",["$scope","$location","$filter","Teams","Athletes","FMSForm","Rover","ProfileService","GroupService",function(a,b,c,d,e,f,g,h,i){g.debug("ProfileController"),a.currentPath=b.path(),a.isProfilePage=!0,"/profile/create"==a.currentPath?a.profile={id:0,notes:"",gender:""}:a.profile=a.global.state.profile.selected,a.groups=a.global.state.group.list,a.group=a.global.state.group.selected,a.profiles=a.global.state.profile.list,a.sports=a.global.state.sport.list,a.submitProfileForm=function(){return a.profile.id>0?a.updateProfile():a.createProfile()},a.createProfile=function(){g.addBackgroundProcess(),g.debug("Creating profile...");var b=h.formatForStorage(a.profile);b.groups=[a.global.state.group.selected.id],h.create(b,a.group.id).then(function(b){a.global.state.profile.list=b.data.list,g.browseTo.profile(b.data.profile),g.doneBackgroundProcess()},function(a){g.debug("Could not create profile: "+a.responseText),g.doneBackgroundProcess()})},a.updateProfile=function(){g.addBackgroundProcess(),g.debug("Updating profile...");var b=h.formatForStorage(a.profile);b.groups=[a.global.state.group.selected.id],h.update(b.id,b).then(function(c){a.global.state.profile.list=c.data.list,angular.forEach(c.data.list,function(c,d){c.id===b.id&&(a.global.state.profile.selected=c)}),g.browseTo.profile(),g.doneBackgroundProcess()},function(a){g.debug("Could not update profile: "+a.responseText),g.doneBackgroundProcess()})},a.deleteProfile=function(){g.debug("Deleting profile..."),g.addBackgroundProcess(),h.destroy(a.profile.id).then(function(b){a.global.state.profile.list=b.data,b.data.length>0&&(a.global.state.profile.selected=b.data[0]),g.browseTo.group(),g.doneBackgroundProcess()},function(a){g.debug("Could not delete profile: "+a.responseText),g.doneBackgroundProcess()})},a.uploadAvatarEndpoint="/api/profile/"+a.profile.id+"/avatar",a.uploadAvatarCallback=function(){a.global.state.profile.selected.avatar_src=a.profile.avatar_src=this.avatar_src,a.global.state.profile.list=this.list},a.updateFMSForms=function(){g.debug("Retrieving FMS forms..."),f.get(a.profile.id).then(function(b){200===b.status&&(g.debug("Received FMS forms."),g.debug(b.data),a.global.state.profile.selected.fms_forms=a.fmsForms=b.data)},function(a){g.debug("Error retrieving FMS forms."),g.debug(a)})},a.fmsForms=a.global.state.profile.selected.fms_forms,!a.fmsForms&&a.profile.id>0&&a.updateFMSForms(),a.$watch("global.state.profile.selected",function(b,c){b.id!==c.id&&(a.profile=a.global.state.profile.selected,a.fmsForms=[],a.updateFMSForms(),a.profile=h.formatForDisplay(a.profile))}),a.profile.id>0&&(a.profile=h.formatForDisplay(a.profile))}]),angular.module("app.controllers").controller("SportsController",["$scope","$sessionStorage","Sports","SportMovements","Rover",function(a,b,c,d,e){e.debug("Checking sports list on first load..."),e.state.sports&&0!==e.state.sports.length||a.populateSportsList(),a.$watch("data.selected_sport",function(){e.state.selected_sport_movement=e.state.sport_movements=null,d.get(e.state.selected_sport.id).success(function(a){e.state.sport_movements=a})},!0)}]),angular.module("app.controllers").controller("SubmitFMSDemoController",["$scope","$routeParams","Rover","assetVersion",function(a,b,c,d){c.debug("SubmitFMSDemoController"),a.params=b,a.assetVersion=d}]),angular.module("app.controllers").controller("TeamController",["$scope","$routeParams","Rover",function(a,b,c){a.params=b}]),angular.module("app.controllers").controller("TestController",["$scope","Rover","assetVersion","isLocalEnvironment",function(a,b,c,d){b.debug("TestController")}]),angular.module("app.chart.directives",[]).directive("gaugeChart",[function(){return{scope:{gaugeData:"=",gaugeOptions:"="},link:function(a,b){var c,d,e;c=a.gaugeData,e=a.gaugeOptions,d=new Gauge(b[0]).setOptions(e),d.maxValue=c.maxValue,d.animationSpeed=c.animationSpeed,d.set(c.val)}}}]).directive("chart",function(){var a=600,b=400;return{restrict:"E",template:"<canvas></canvas>",scope:{chartObject:"=value",data:"="},link:function(c,d,e){var f,g=d.find("canvas")[0],h=g.getContext("2d"),i={type:e.type||"Line",width:e.width||a,height:e.height||b};g.width=i.width,g.height=i.height,f=new Chart(h);var j=e.type;f[j](c.data,i),c.$watch(function(){return c.chartObject},function(a){if(a){var b=i.type;f[b](c.chartObject.data,c.chartObject.options)}})}}}).directive("flotChart",[function(){return{restrict:"A",scope:{data:"=",options:"="},link:function(a,b){var c,d,e,f;f=a.data;var g=0;if($.each(f,function(a,b){b.color=g,++g}),$(b[0]).parent().find(".choices").length>0){var h=$(b[0]).parent().find(".choices");h.html(""),$.each(f,function(a,b){h.append("<br/><div class='choice-item'><label for='id"+a+"' class='ui-checkbox'><input name='"+a+"' type='checkbox' id='id"+a+"' checked='checked' value='option1'><span>"+b.label+"</span></label></div>")});var i=function(){var c=[];h.find("input:checked").each(function(){var a=$(this).attr("name");a&&f[a]&&c.push(f[a])}),c.length>0&&$.plot(b[0],c,a.options)};h.find("input").click(i)}return c=a.data,d=a.options,e=$.plot(b[0],c,d)}}}]).directive("flotChartRealtime",[function(){return{restrict:"A",link:function(a,b){var c,d,e,f,g,h;return c=[],f=300,d=function(){var a,b,d,e;for(c.length>0&&(c=c.slice(1));c.length<f;)b=c.length>0?c[c.length-1]:50,e=b+10*Math.random()-5,0>e?e=0:e>100&&(e=100),c.push(e);for(d=[],a=0;a<c.length;)d.push([a,c[a]]),++a;return d},g=function(){e.setData([d()]),e.draw(),setTimeout(g,h)},c=[],f=300,h=200,e=$.plot(b[0],[d()],{series:{lines:{show:!0,fill:!0},shadowSize:0},yaxis:{min:0,max:100,show:!0,color:"#f5f5f5"},xaxis:{show:!0,color:"#f5f5f5"},grid:{hoverable:!0,borderWidth:1,borderColor:"#fff"},colors:["#383d43"]}),g()}}}]).directive("sparkline",[function(){return{scope:{sparkData:"=",sparkOptions:"="},link:function(a,b){var c,d,e,f;c=a.sparkData,d=a.sparkOptions,e=void 0,f=function(){b.sparkline(c,d)},$(window).resize(function(){return clearTimeout(e),e=setTimeout(f,200)}),f()}}}]).directive("morrisChart",[function(){return{scope:{data:"="},link:function(a,b,c){var d,e,f,g,h;switch(e=a.data,c.type){case"line":return d=void 0===c.lineColors||""===c.lineColors?null:JSON.parse(c.lineColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),lineWidth:c.lineWidth||2,lineColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"]},h=new Morris.Line(g),$(window).resize(function(){h.redraw()});case"area":return d=void 0===c.lineColors||""===c.lineColors?null:JSON.parse(c.lineColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),lineWidth:c.lineWidth||2,lineColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"],behaveLikeLine:c.behaveLikeLine||!1,fillOpacity:c.fillOpacity||"auto",pointSize:c.pointSize||4},h=new Morris.Area(g),$(window).resize(function(){h.redraw()});case"bar":return d=void 0===c.barColors||""===c.barColors?null:JSON.parse(c.barColors),g={element:b[0],data:e,xkey:c.xkey,ykeys:JSON.parse(c.ykeys),labels:JSON.parse(c.labels),barColors:d||["#0b62a4","#7a92a3","#4da74d","#afd8f8","#edc240","#cb4b4b","#9440ed"],stacked:c.stacked||null},h=new Morris.Bar(g),$(window).resize(function(){});case"donut":return d=void 0===c.colors||""===c.colors?null:JSON.parse(c.colors),g={element:b[0],data:e,colors:d||["#0B62A4","#3980B5","#679DC6","#95BBD7","#B0CCE1","#095791","#095085","#083E67","#052C48","#042135"]},c.formatter&&(f=new Function("y","data",c.formatter),g.formatter=f),h=new Morris.Donut(g),$(window).resize(function(){h.redraw()})}}}}]),angular.module("app.directives").directive("imgHolder",[function(){return{link:function(a,b){return Holder.run({images:b[0]})}}}]).directive("customBackground",function(){return{controller:["$scope","$element","$location",function(a,b,c){var d,e;return e=function(){return c.path()},d=function(a){switch(b.removeClass("body-home body-special body-tasks body-lock"),a){case"/":return b.addClass("body-home");case"/404":case"/pages/500":case"/pages/signin":case"/pages/signup":case"/pages/forgot":return b.addClass("body-special");case"/pages/lock-screen":return b.addClass("body-special body-lock");case"/tasks":return b.addClass("body-tasks")}},d(c.path()),a.$watch(e,function(a,b){return a!==b?d(c.path()):void 0})}]}}).directive("uiColorSwitch",[function(){return{restrict:"A",link:function(a,b){return b.find(".color-option").on("click",function(a){var b,c,d;if(b=$(this),c=void 0,d=b.data("style"),"loulou"===d)c="styles/main.css",$('link[href^="styles/main"]').attr("href",c);else{if(!d)return!1;d="-"+d,c="styles/main"+d+".css",$('link[href^="styles/main"]').attr("href",c)}return a.preventDefault()})}}}]).directive("toggleMinNav",["$rootScope",function(a){return{link:function(b,c){var d,e,f,g,h,i;return h=$("#app"),f=$(window),e=$("#nav-container"),d=$("#content"),c.on("click",function(b){h.hasClass("nav-min")?h.removeClass("nav-min"):(h.addClass("nav-min"),a.$broadcast("minNav:enabled"),b.preventDefault())}),g=void 0,i=function(){var a;return a=f.width(),980>a?h.addClass("nav-min"):void 0},initResize=function(){var a;return a=f.width(),980>a?h.addClass("nav-min"):h.removeClass("nav-min")},f.resize(function(){var a;return clearTimeout(a),a=setTimeout(i,300)}),initResize()}}}]).directive("collapseNav",[function(){return{link:function(a,b){var c,d,e,f,g;return e=b.find("ul").parent("li"),e.append('<i class="fa fa-arrow-circle-o-right icon-has-ul"></i>'),c=e.children("a"),f=b.children("li").not(e),d=f.children("a"),g=$("#app"),c.on("click",function(a){var b,c;return g.hasClass("nav-min")?!1:(c=$(this),b=c.parent("li"),e.not(b).removeClass("open").find("ul").slideUp(),b.toggleClass("open").find("ul").stop().slideToggle(),a.preventDefault())}),d.on("click",function(){return e.removeClass("open").find("ul").slideUp()}),a.$on("minNav:enabled",function(){return e.removeClass("open").find("ul").slideUp()})}}}]).directive("highlightActive",[function(){return{controller:["$scope","$element","$attrs","$location",function(a,b,c,d){var e,f,g;return f=b.find("a"),g=function(){return d.path()},e=function(a,b){return b="#"+b,angular.forEach(a,function(a){var c,d,e;return d=angular.element(a),c=d.parent("li"),e=d.attr("href"),c.hasClass("active")&&c.removeClass("active"),0===b.indexOf(e)?c.addClass("active"):void 0})},e(f,d.path()),a.$watch(g,function(a,b){return a!==b?e(f,d.path()):void 0})}]}}]).directive("toggleOffCanvas",[function(){return{link:function(a,b){return b.on("click",function(){return $("#app").toggleClass("on-canvas").toggleClass("nav-min")})}}}]).directive("slimScroll",[function(){return{link:function(a,b,c){return b.slimScroll({height:c.scrollHeight||"100%"})}}}]).directive("goBack",[function(){return{restrict:"A",controller:["$scope","$element","$window",function(a,b,c){return b.on("click",function(){return c.history.back()})}]}}]),angular.module("app.ui.form.directives",[]).directive("uiRangeSlider",[function(){return{restrict:"A",link:function(a,b){return b.slider()}}}]).directive("uiFileUpload",[function(){return{restrict:"A",link:function(a,b){return b.bootstrapFileInput()}}}]).directive("uiSpinner",[function(){return{restrict:"A",compile:function(a){return a.addClass("ui-spinner"),{post:function(){return a.spinner()}}}}}]).directive("uiWizardForm",[function(){return{link:function(a,b){return b.steps()}}}]).directive("fileModel",["$parse",function(a){return{restrict:"A",link:function(b,c,d){var e=a(d.fileModel),f=e.assign;c.bind("change",function(){b.$apply(function(){f(b,c[0].files)})})}}}]),angular.module("app.directives").directive("uiAvatar",["assetVersion",function(a){return{restrict:"E",transclude:!0,templateUrl:"directive-partials/ui-avatar.html",scope:{avatarSrc:"=src",
+uploadEndpoint:"=",successCallback:"="},controller:["$scope","$timeout","Upload","Rover",function(a,b,c,d){a.isUploading=!1,a.upload=function(e){e&&(a.isUploading=!0,d.debug("Uploading avatar..."),c.upload({url:a.uploadEndpoint,data:{image:e}}).then(function(c){a.avatarSrc="data:"+c.data.avatar.mime_type+";base64,"+c.data.avatar.data_uri,a.isUploading=!1,"function"==typeof a.successCallback&&b(function(){a.successCallback.call(c.data)})},function(b){d.alert("Could not upload avatar. Please try again later."),a.isUploading=!1}))}}]}}]),angular.module("app.directives").directive("uiEditableListContainer",["assetVersion",function(a){return{restrict:"AE",transclude:!0,scope:{deleteResource:"=delete"},controller:["$scope","Rover",function(a,b){a.isEditing=!1;var c=a.items=[];this.addItem=function(a){a.isEditing=!1,c.push(a)},a.edit=function(){a.isEditing=!0,angular.forEach(c,function(a){a.isEditing=!0})},a.save=function(){a.isEditing=!1,angular.forEach(c,function(a){a.isEditing=!1})},a["delete"]=function(){a.deleteResource.apply()}}],templateUrl:"directive-partials/ui-editable-list-container.html"}}]).directive("uiEditableListItem",[function(){return{require:"^uiEditableListContainer",restrict:"AE",scope:{label:"@label",display:"@display",value:"=value",type:"@type"},link:function(a,b,c,d){d.addItem(a)},templateUrl:"directive-partials/ui-editable-list-item.html"}}]),function(a,b){"use strict";return"function"==typeof define&&define.amd?void define("ngStorage",["angular"],function(a){return b(a)}):b(a)}("undefined"==typeof angular?null:angular,function(a){"use strict";function b(b){return["$rootScope","$window","$log","$timeout",function(c,d,e,f){function g(a){var b=d[a];if(b&&"localStorage"===a){var c="__"+Math.round(1e7*Math.random());try{localStorage.setItem(c,c),localStorage.removeItem(c)}catch(e){b=!1}}return b}var h,i,j=g(b)||(e.warn("This browser does not support Web Storage!"),{setItem:function(){},getItem:function(){}}),k={$default:function(b){for(var c in b)a.isDefined(k[c])||(k[c]=b[c]);return k},$reset:function(a){for(var b in k)"$"===b[0]||delete k[b];return k.$default(a)}};try{j=d[b],j.length}catch(l){e.warn("This browser does not support Web Storage!"),j={}}for(var m,n=0,o=j.length;o>n;n++)(m=j.key(n))&&"ngStorage-"===m.slice(0,10)&&(k[m.slice(10)]=a.fromJson(j.getItem(m)));return h=a.copy(k),c.$watch(function(){var b;i||(i=f(function(){if(i=null,!a.equals(k,h)){b=a.copy(h),a.forEach(k,function(c,d){a.isDefined(c)&&"$"!==d[0]&&j.setItem("ngStorage-"+d,a.toJson(c)),delete b[d]});for(var c in b)j.removeItem("ngStorage-"+c);h=a.copy(k)}},100,!1))}),"localStorage"===b&&d.addEventListener&&d.addEventListener("storage",function(b){"ngStorage-"===b.key.slice(0,10)&&(b.newValue?k[b.key.slice(10)]=a.fromJson(b.newValue):delete k[b.key.slice(10)],h=a.copy(k),c.$apply())}),k}]}a.module("ngStorage",[]).factory("$localStorage",b("localStorage")).factory("$sessionStorage",b("sessionStorage"))}),angular.module("app.ui.services",[]).factory("loggit",[function(){var a;return toastr.options={closeButton:!0,positionClass:"toast-bottom-left",timeOut:"3000"},a=function(a,b){return toastr[b](a)},{log:function(b){a(b,"info")},logWarning:function(b){a(b,"warning")},logSuccess:function(b){a(b,"success")},logError:function(b){a(b,"error")}}}]),angular.module("app.controllers").service("MovementStore",function(){for(var a=["Deep Squat","Hurdle Step","Inline Lunge","Shoulder Mobility","Impingement (C. Test)","Active Straight Leg Raise","Trunk Stability Pushup","Press-up (C. Test)","Rotary Stability","Posterior Rocking (C. Test)"],b={test:0,analysis:1,data:2,summary:3},c=[],d=0;d<a.length;d++){var e={};if(e.name=a[d],e.url=e.name.toLowerCase().replace(" (c. test)","").split(" ").join("_"),e.latest_page=b.test,e.score=Math.floor(4*Math.random()+1),e.test_page_data={},e.analysis_page_data={},e.data_page_data={},e.summary_page_data={},5==d){var f=["LEFT","RIGHT"],g=3;e.sides=[];for(var h=0;h<f.length;h++)e.sides.push({name:f[h]});e.active_side=e.sides[0];for(var i=0;i<e.sides.length;i++){e.sides[i].trials=[];for(var j=0;g>j;j++)e.sides[i].trials.push({name:"Trial "+(j+1),status:"idle",joints:[{name:"HIP",movements:[{name:"Flexion/Extension",left_deg:108,right_deg:97,series_data:{name:"Hip Flexion",data:[0,15,20,60,70,90,80,75,60,45,0]}}]},{name:"KNEE",movements:[{name:"Flexion/Extension",left_deg:108,right_deg:97,series_data:{name:"Knee Flexion",data:[0,5,20,50,65,80,80,80,75,60,0]}}]}]});e.sides[i].active_trial=e.sides[i].trials[0]}}else e.sides=[{name:"TEST",trials:[{name:"Trial 1",status:"idle",joints:[]},{name:"Trial 2",status:"idle",joints:[]}]}],e.active_trial=e.sides[0].trials[0],e.disabled=!0;c.push(e)}return{movement_pages:c}}),angular.module("backendHeddoko",[]).factory("Teams",["$http",function(a){return{get:function(){return a.get("/api/teams")},create:function(b){return a({method:"POST",url:"/api/teams",headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(b)})},update:function(b,c){return a({method:"PUT",url:"/api/teams/"+b,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},destroy:function(b){return a["delete"]("/api/teams/"+b)},avatar:function(b,c){return a.post("/api/teams/"+b+"/photo",{photo:c})}}}]).factory("Athletes",["$http",function(a){return{get:function(b){return a.get("/api/teams/"+b+"/athletes")},create:function(b,c){return console.log(c),a({method:"POST",url:"/api/teams/"+b+"/athletes",headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},update:function(b){return a({method:"PUT",url:"/api/teams/"+b.group_id+"/athletes/"+b.id,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(b)})},destroy:function(b,c){return a["delete"]("/api/teams/"+b+"/athletes/"+c)},avatar:function(b,c,d){return a.post("/api/teams/"+b+"/athletes/"+c+"/photo",{photo:d})}}}]).factory("FMSForm",["$http",function(a){return{get:function(b){return a.get("/api/athletes/"+b+"/fmsforms")},create:function(b,c,d){var e=new FormData;return d&&(d.deepsquat_movement_file&&e.append("deepsquat_movement_file",d.deepsquat_movement_file[0]),d.Lhurdle_movement_file&&e.append("Lhurdle_movement_file",d.Lhurdle_movement_file[0]),d.Rhurdle_movement_file&&e.append("Rhurdle_movement_file",d.Rhurdle_movement_file[0]),d.Llunge_movement_file&&e.append("Llunge_movement_file",d.Llunge_movement_file[0]),d.Rlunge_movement_file&&e.append("Rlunge_movement_file",d.Rlunge_movement_file[0]),d.Lshoulder_movement_file&&e.append("Lshoulder_movement_file",d.Lshoulder_movement_file[0]),d.Rshoulder_movement_file&&e.append("Rshoulder_movement_file",d.Rshoulder_movement_file[0]),d.Limpingement_movement_file&&e.append("Limpingement_movement_file",d.Limpingement_movement_file[0]),d.Rimpingement_movement_file&&e.append("Rimpingement_movement_file",d.Rimpingement_movement_file[0]),d.Lactive_movement_file&&e.append("Lactive_movement_file",d.Lactive_movement_file[0]),d.Ractive_movement_file&&e.append("Ractive_movement_file",d.Ractive_movement_file[0]),d.trunk_movement_file&&e.append("trunk_movement_file",d.trunk_movement_file[0]),d.press_movement_file&&e.append("press_movement_file",d.press_movement_file[0]),d.Lrotary_movement_file&&e.append("Lrotary_movement_file",d.Lrotary_movement_file[0]),d.Rrotary_movement_file&&e.append("Rrotary_movement_file",d.Rrotary_movement_file[0]),d.posterior_movement_file&&e.append("posterior_movement_file",d.posterior_movement_file[0])),e.append("deepsquat",c.deepsquat),e.append("deepsquatcomments",c.deepsquatcomments||""),e.append("Lhurdle",c.Lhurdle),e.append("Rhurdle",c.Rhurdle),e.append("hurdlecomments",c.hurdlecomments||""),e.append("Llunge",c.Llunge),e.append("Rlunge",c.Rlunge),e.append("lungecomments",c.lungecomments||""),e.append("Lshoulder",c.Lshoulder),e.append("Rshoulder",c.Rshoulder),e.append("shouldercomments",c.shouldercomments||""),e.append("Limpingement",c.Limpingement),e.append("Rimpingement",c.Rimpingement),e.append("impingementcomments",c.impingementcomments||""),e.append("Lactive",c.Lactive),e.append("Ractive",c.Ractive),e.append("activecomments",c.activecomments||""),e.append("trunk",c.trunk),e.append("trunkcomments",c.trunkcomments||""),e.append("press",c.press),e.append("presscomments",c.presscomments||""),e.append("Lrotary",c.Lrotary),e.append("Rrotary",c.Rrotary),e.append("rotarycomments",c.rotarycomments||""),e.append("posterior",c.posterior),e.append("posteriorcomments",c.posteriorcomments||""),e.append("comment",c.comment),e.append("totalscore",c.totalscore),a.post("/api/athletes/"+b+"/fmsforms",e,{transformRequest:angular.identity,headers:{"Content-Type":void 0}})},update:function(b,c){return a({method:"PUT",url:"/api/athletes/"+b+"/fmsforms/"+c.id,headers:{"Content-Type":"application/x-www-form-urlencoded"},data:$.param(c)})},destroy:function(b,c){return a["delete"]("/api/athletes/"+b+"/fmsforms/"+c)}}}]).factory("Sports",["$http",function(a){return{get:function(){return a.get("/api/sports")}}}]).factory("SportMovements",["$http",function(a){return{get:function(b){return a.get("/api/sports/"+b+"/sportmovements")}}}]).factory("Movements",["$http",function(a){return{upload:function(b,c,d){var e=new FormData;for(e.append("sportID",c),e.append("comment",d.comment),i=0;i<d.movement_files.length;i++)e.append("movements[]",d.movement_files[i]);return a.post("/api/athletes/"+b+"/movements",e,{transformRequest:angular.identity,headers:{"Content-Type":void 0}})}}}]),angular.module("app.services").service("FMSDemoFactory",["Rover",function(a){a.state.fms_demo=a.state.fms_demo||{},this.data=a.state.fms_demo,this.data.runs=this.data.runs||{},this.runDataTemplate={status:"pending",numFaults:0};var b={isTestLive:!1,isTestSubmitted:!1,iterations:[],iteration:"",trials:[{name:"Trial 1",status:"pending"},{name:"Trial 2",status:"pending"},{name:"Trial 3",status:"pending"}],testRuns:{}};this.data.list=[$.extend(!0,{},b,{id:"aslr",name:"Active Straight-Leg Raise",iterations:["left","right"],iteration:"left"})],this.data.current=this.data.list[0],this.data.views=["sagittal","coronal","transverse"]}]),angular.module("app.services").factory("FMSService",["$http",function(a){return{get:function(b){var c=b?{params:{profile_id:b}}:{};return a.get("/api/fms",c)},create:function(b){return a.post("/api/fms",b)},update:function(b,c){return a.put("/api/fms/"+b,c)},destroy:function(b){return a["delete"]("/api/fms/"+b)}}}]),angular.module("app.services").factory("GroupService",["$http",function(a){return{get:function(){return a.get("/api/group")},create:function(b){return a.post("/api/group",b)},update:function(b,c){return a.put("/api/group/"+b,c)},destroy:function(b){return a["delete"]("/api/group/"+b)},setAvatar:function(b,c){return a.post("/api/group/"+b+"/photo",{image:c})}}}]),angular.module("app.services").service("OnboardingService",["$timeout","Rover",function(a,b){this.getOptions=function(a){var b,c=[],d=[],e=$(a).length;return angular.forEach($(a),function(a){b=$(a).data("step")?$(a).data("step"):e,c[b]={element:a,intro:$(a).data("intro"),position:$(a).data("position")||"bottom"},e++}),angular.forEach(c,function(a){d.push(a)}),{steps:d,showStepNumbers:!1,showBullets:!0,exitOnOverlayClick:!0,exitOnEsc:!0,nextLabel:'<i class="fa fa-angle-double-right"></i>',prevLabel:'<i class="fa fa-angle-double-left"></i>',skipLabel:"I'll do this later",doneLabel:"Thanks!"}},this.general=function(a){var b=introJs();b.setOptions(this.getOptions(".onboarding-general")),"number"==typeof a?b.goToStep(a).start():b.start()}.bind(this)}]),angular.module("app.services").factory("ProfileService",["$http","$filter",function(a,b){return{get:function(b){var c=b?{params:{group:b}}:{};return a.get("/api/profile",c)},create:function(b,c){var d=c?{params:{group:c}}:{};return a.post("/api/profile",b,d)},update:function(b,c){return a.put("/api/profile/"+b,c)},destroy:function(b){return a["delete"]("/api/profile/"+b)},destroyAvatar:function(b){return a["delete"]("/api/profile/"+b+"/avatar")},setAvatar:function(b,c){return a.post("/api/profile/"+b+"/photo",{image:c})},formatForDisplay:function(a){return a.created_at=a.created_at||"",a.created_at_formatted=a.created_at.length>0?b("date")(a.created_at.substr(0,10),"MMM d, yyyy"):"",a.feet=a.height>0?Math.floor(a.height/.3048):"",a.inches=a.height>0?Math.round(12*(a.height/.3048-a.feet)):"",a.weight_lbs=a.mass>0?Math.round(a.mass/.453592):"",a},formatForStorage:function(a){return a.height=.3048*(a.feet+a.inches/12),a.mass=.453592*a.weight_lbs,a}}}]),angular.module("app.rover",[]).service("Rover",["$window","$sessionStorage","$route","$location","$log","$timeout",function(a,b,c,d,e,f){this.timestamp=Date.now(),this.isLocal="localhost"==window.location.hostname||window.location.hostname.match(/.*\.local$/i)||window.location.hostname.match(/.*\.vagrant$/i)?!0:!1,this.userHash=$('meta[name="user-hash"]').attr("content"),b[this.userHash]=b[this.userHash]||{},this.state=b[this.userHash],this.state.config=this.state.config||{},this.backgroundProcessCount=1,this.addBackgroundProcess=function(){this.backgroundProcessCount++,this.debug("Background processes: "+this.backgroundProcessCount),1===this.backgroundProcessCount&&this.showLoading()}.bind(this),this.doneBackgroundProcess=function(){this.backgroundProcessCount--,this.debug("Background processes: "+this.backgroundProcessCount),this.backgroundProcessCount<1&&f(function(){this.hideLoading()}.bind(this),500)}.bind(this),this.browseTo={config:function(){this.debug("Browsing to configuration page."),d.path("/config")}.bind(this),dashboard:function(){this.debug("Browsing to dashboard index page."),d.path("/dashboard")}.bind(this),groups:function(){this.debug("Browsing to group listings page."),d.path("/group/list")}.bind(this),group:function(a){void 0===a?a=this.state.group.selected:this.state.group.selected=a,this.debug("Browsing to group #"+a.id),d.path("/group/view")}.bind(this),profile:function(a){a?this.state.profile.selected=a:a=this.state.profile.selected,this.debug("Browsing to profile #"+a.id),d.path("/profile/view")}.bind(this),member:function(a){this.debug("Rover.browseTo.member is deprecated..."),this.profile(a)},path:function(a){this.debug("Browsing to path: "+a),d.path(a)}.bind(this)},this.browse=this.browseTo,this._events={onEndSession:[]},this.onEndSession=function(){},this.endSession=function(){b[this.userHash]={},this.debug("Ending session..."),window.location.assign("/auth/logout")}.bind(this),this.debug=function(a){this.isLocal,e.debug(a)},this.error=function(a){e.error(a)},this.alert=function(b){a.alert(b)},this.showLoading=function(){$(".page-loading-overlay").removeClass("loaded"),$(".load_circle_wrapper").removeClass("loaded")},this.hideLoading=function(){$(".page-loading-overlay").addClass("loaded"),$(".load_circle_wrapper").addClass("loaded")},this.getConfig=function(a,b){return b},this.setConfig=function(a,b){return b},this.getId=function(a){return["string","numder"].indexOf(typeof a)>0?Number(a):Number(a.id)}}]);

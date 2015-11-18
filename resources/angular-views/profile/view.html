@@ -1,0 +1,182 @@
+
+<!-- Profile summary -->
+<div ng-show="profile.id" class="page">
+
+    <div class="row">
+        <!-- Breadcrumbs -->
+        <div class="col-sm-12 col-md-6">
+            <div data-ng-include="'partials/breadcrumbs.html'"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-sm-12 col-md-6">
+            <div class="btn-group pull-right">
+
+                <!-- Delete profile button -->
+                <button
+                    ng-show="profile.id > 0"
+                    data-toggle="modal"
+                    data-target="#deleteProfileConfirmation"
+                    class="btn btn-danger">
+
+                    Delete <b>{{ profile.first_name }}</b>'s profile
+                </button>
+
+                <!-- Delete confirmation -->
+                <div class="modal fade" id="deleteProfileConfirmation">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p>
+                                    Are you sure you want to delete <b>{{ profile.first_name }}
+                                    {{ profile.last_name }}</b>'s profile?
+                                </p>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                    Yes, delete {{ profile.first_name }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit profile button -->
+                <button
+                    ng-show="profile.id > 0"
+                    ng-click="Rover.browseTo.path('profile/edit')"
+                    class="btn btn-default">
+
+                    Edit <b>{{ profile.first_name }}</b>'s details
+                </button>
+
+                <!-- Create profile button -->
+                <button
+                    ng-click="Rover.browseTo.path('profile/create')"
+                    class="btn btn-default">
+
+                    Add another athlete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section>
+    	<div class="row">
+
+            <!-- Avatar -->
+    		<div class="col-md-6 col-sm-12">
+                <div class="text-center" style="margin: 5% 20%; width: 60%;">
+                    <ui-avatar
+                        data-upload-endpoint="uploadAvatarEndpoint"
+                        data-success-callback="uploadAvatarCallback"
+                        data-src="profile.avatar_src">
+                    </ui-avatar>
+                </div>
+    		</div>
+
+            <!-- Profile details -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'profile/partials/details.html'"></div>
+            </div>
+        </div>
+
+        <!-- Medical information -->
+        <div class="row">
+    		<div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Medical Information
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.underlying_medical || 'No medical information provided.' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Previous Injuries
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.previous_injuries || 'No previous injuries' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Other Notes
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ profile.notes || 'No other notes' }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+    </section>
+
+    <!-- FMS graphs... To be reviewed -->
+    <section ng-show="fmsForms.length > 0">
+        <div class="row">
+
+            <!-- Current test -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'profile/partials/current-fms-plot.html'"></div>
+            </div>
+
+            <!-- Final results -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'profile/partials/final-fms-plot.html'"></div>
+            </div>
+        </div>
+    </section>
+
+    <section data-ng-show="global.isLocal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Debug
+                        </div>
+
+                        <div class="panel-body">
+                            FMS Forms: {{ fmsForms }} <br><br>
+                            Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>
+                            Profile global: ({{ global.state.profile.selected.id }}) <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>
+
+<!-- No profile selected -->
+<div ng-show="profile.id === 0" class="page">
+    <h1 class="text-center">No profile selected</h1>
+    <br>
+
+    <div class="text-center">
+        Please select a profile to view its details.
+        <br>
+
+        You can also take this opportunity to
+        <a ng-click="Rover.browseTo.path('profile/create')" href="javascript:;">create one</a>.
+    </div>
+</div>

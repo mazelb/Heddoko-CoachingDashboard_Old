@@ -53,12 +53,12 @@ angular.module('app.directives')
                 $scope.deleteResource.apply();
             };
         }],
-        templateUrl: 'views/directive-partials/ui-editable-list-container.html?' + assetVersion
+        templateUrl: 'directive-partials/ui-editable-list-container.html'
     };
 }])
 
-.directive('uiEditableListItem', ['Rover', 'assetVersion',
-    function(Rover, assetVersion) {
+.directive('uiEditableListItem', [
+    function() {
         return {
             require: '^uiEditableListContainer',
             restrict: 'AE',
@@ -71,7 +71,7 @@ angular.module('app.directives')
             link: function(scope, element, attrs, controller) {
                 controller.addItem(scope);
             },
-            templateUrl: 'views/directive-partials/ui-editable-list-item.html?' + assetVersion
+            templateUrl: 'directive-partials/ui-editable-list-item.html'
         };
     }
 ]);

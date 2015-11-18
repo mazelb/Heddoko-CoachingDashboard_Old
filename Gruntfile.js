@@ -17,6 +17,12 @@ module.exports = function(grunt) {
             }
         },
 
+        // clean: {
+        //     temp: {
+        //         src: [ 'tmp' ]
+        //     }
+        // },
+
         copy: {
             main: {
                 files: [
@@ -69,6 +75,14 @@ module.exports = function(grunt) {
             }
         },
 
+        jshint: {
+            dist: [
+                'Gruntfile.js',
+                'resources/assets/js/*.js',
+                'resources/assets/js/**/*.js'
+            ]
+        },
+
         uglify: {
             options: {
                 mangle: {
@@ -85,40 +99,17 @@ module.exports = function(grunt) {
             }
         },
 
-        cssmin: {
-            combine: {
-                files: {
-                    'public/css/main.css': [
-                        'bower_components/fontawesome/css/font-awesome.min.css',
-                        'bower_components/weather-icons/css/weather-icons.min.css',
-                        'bower_components/bootstrap/dist/css/bootstrap.min.css',
-                        'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
-                        'bower_components/chartist/dist/chartist.min.css',
-                        'bower_components/intro.js/minified/introjs.min.css',
-                        'resources/assets/build/styles.css'
-                    ]
-                }
-            },
-            add_banner: {
-                options: {
-                    banner: '/* My minified admin css file */'
-                },
-                files: {
-                    'public/css/main.css': ['public/css/main.css']
-                }
-            }
-        },
-
         html2js: {
+            options: {
+                base: 'resources/angular-views',
+                module: 'app.views'
+            },
             dist: {
-                src: [ 'angular-app/app/views/*.html','angular-app/app/views/charts/*.html','angular-app/app/views/forms/*.html','angular-app/app/views/mail/*.html','angular-app/app/views/maps/*.html','angular-app/app/views/pages/*.html','angular-app/app/views/tables/*.html','angular-app/app/views/tables/*.html','angular-app/app/views/tasks/*.html','angular-app/app/views/ui_elements/*.html' ],
-                dest: 'tmp/views.js'
-            }
-        },
-
-        clean: {
-            temp: {
-                src: [ 'tmp' ]
+                src: [
+                    'resources/angular-views/*.html',
+                    'resources/angular-views/**/*.html'
+                ],
+                dest: 'resources/assets/build/views.js'
             }
         },
 
@@ -184,6 +175,9 @@ module.exports = function(grunt) {
                     'bower_components/chartist/dist/chartist.js',
                     'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
 
+                    // Pre-compiled Angular views.
+                    'resources/assets/build/views.js',
+
                     // Application scripts.
                     'resources/assets/build/scripts.js'
                 ],
@@ -192,28 +186,58 @@ module.exports = function(grunt) {
             }
         },
 
-        jshint: {
-            dist: [
-                'Gruntfile.js',
-                'resources/assets/js/*.js',
-                'resources/assets/js/**/*.js'
-            ]
+		sass: {
+            dist: {
+                files: {
+                    'resources/assets/build/styles.css': [
+                        'resources/assets/sass/*.scss'
+                    ]
+                }
+            }
+        },
+
+        cssmin: {
+            combine: {
+                files: {
+                    'public/css/main.css': [
+                        'bower_components/fontawesome/css/font-awesome.min.css',
+                        'bower_components/weather-icons/css/weather-icons.min.css',
+                        'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                        'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+                        'bower_components/chartist/dist/chartist.min.css',
+                        'bower_components/intro.js/minified/introjs.min.css',
+                        'resources/assets/build/styles.css'
+                    ]
+                }
+            },
+            add_banner: {
+                options: {
+                    banner: '/* Heddoko Stylesheet */'
+                },
+                files: {
+                    'public/css/main.css': ['public/css/main.css']
+                }
+            }
         },
 
         watch: {
             dist: {
                 files: [
                     'Gruntfile.js',
+                    'resources/angular-views/*.html',
+                    'resources/angular-views/**/*.html',
                     'resources/assets/js/*.js',
                     'resources/assets/js/**/*.js',
                     'resources/assets/sass/*.scss'
                 ],
                 tasks: [
+                    // 'clean:temp',
                     'jshint:dist',
                     'uglify:dist',
-                    'clean:temp',
+                    'html2js:dist',
                     'concat:dist',
-                    'sass'
+                    'sass',
+                    'cssmin'
                 ],
                 options: {
                     atBegin: true
@@ -278,27 +302,7 @@ module.exports = function(grunt) {
                     dest: 'app/'
                 }]
             }
-        },
-
-		sass: {
-            dist: {
-                files: {
-                    'resources/assets/build/styles.css': [
-                        'resources/assets/sass/*.scss'
-                    ]
-                }
-            }
         }
-
-		// sass: {
-        //     dist: {
-        //         files: {
-        //             'angular-app/styles/main.css': [
-        //                 'angular-app/styles/main.scss'
-        //             ]
-        //         }
-        //     }
-        // }
     });
 
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -317,5 +321,5 @@ module.exports = function(grunt) {
     // grunt.registerTask('production', [ 'bower', 'watch:min' ]);
 
     grunt.registerTask('css', ['sass', 'cssmin']);
-    grunt.registerTask('js', ['jshint', 'uglify', 'concat']);
+    grunt.registerTask('js', ['jshint', 'uglify', 'html2js', 'concat']);
 };

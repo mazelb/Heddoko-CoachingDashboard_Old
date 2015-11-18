@@ -1,0 +1,45 @@
+
+<div class="page page-dashboard">
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Breadcrumbs -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'partials/breadcrumbs.html'"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile list -->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Athletes in {{ global.state.group.selected.name }}
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ng-show="global.state.profile.list.length === 0">
+                        The <b>{{ global.state.group.selected.name }}</b> do not have any
+                        members yet. Add one above to get started!
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <a
+                        href="javascript:;"
+                        class="btn btn-primary btn-metro"
+                        ng-repeat="profile in global.state.profile.list"
+                        ng-click="Rover.browseTo.profile(profile)"
+                        style="background-image: url({{ profile.avatar_src || '' }});background-size: cover;">
+
+                        <div class="btn-title">{{ profile.first_name }}</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

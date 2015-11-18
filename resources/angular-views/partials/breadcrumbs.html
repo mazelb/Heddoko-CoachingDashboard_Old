@@ -1,0 +1,33 @@
+
+<ol class="breadcrumb-alt">
+    <li>
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.path('/')">
+            Dashboard
+        </a>
+    </li>
+    <li ng-show="global.state.group.selected.id > 0">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.path('/group/list')">
+            Teams
+        </a>
+    </li>
+    <li ng-show="isProfilePage && global.state.group.selected.id > 0">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.group()">
+            {{ global.state.group.selected.name }}
+        </a>
+    </li>
+    <li ng-show="currentPath == '/profile/view'">
+        <a class="active" href="javascript:;" ng-click="Rover.browseTo.profile()">
+            {{ global.state.profile.selected.first_name }}
+        </a>
+    </li>
+    <li ng-show="currentPath == '/group/create'">
+        <a class="active" href="javascript:;" ng-click="">
+            Create a Team
+        </a>
+    </li>
+    <li ng-show="currentPath == '/profile/create'">
+        <a class="active" href="javascript:;" ng-click="">
+            Add an athlete
+        </a>
+    </li>
+</ol>
