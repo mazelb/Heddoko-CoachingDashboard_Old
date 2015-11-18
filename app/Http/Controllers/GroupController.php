@@ -70,7 +70,12 @@ class GroupController extends Controller
      */
     public function show($id)
     {
-        //
+        // Make sure we have a valid group.
+        if (!$group = Auth::user()->groups()->find($id)) {
+            return response('Group Not Found.', 404);
+        }
+
+        return $group;
     }
 
     /**
@@ -130,19 +135,58 @@ class GroupController extends Controller
     }
 
     /**
+     * Saves the avatar for a group.
      *
+     * @param int $id
      */
-    public function updatePhoto($id)
+    public function saveAvatar($id)
     {
+        // Make sure we have a valid group.
+        if (!$group = Group::find($id)) {
+            return response('Group Not Found.', 404);
+        }
 
+        // Check image.
+        if (!$original = $this->request->file('image')) {
+            return response('No File Received.', 400);
+        } elseif (!preg_match('#^(image/[a-z]+)$#', $original->getMimeType())) {
+            return response('Invalid MIME type.', 400);
+        }
+
+        // Delete previous avatar.
+        if ($group->avatar) {
+            $group->avatar->delete();
+        }
+
+        // Save avatar data.
+        $avatar = $group->avatar()->create([
+            'data_uri' => base64_encode(file_get_contents($original->getRealPath())),
+            'mime_type' => $original->getMimeType()
+        ]);
+
+        return [
+            'list' => $this->index(),
+            'avatar' => $avatar,
+            'avatar_src' => $avatar->src
+        ];
     }
 
     /**
      *
      */
-    public function destroyPhoto($id)
+    public function destroyAvatar($id)
     {
+        // Make sure we have a valid profile.
+        if (!$group = Group::find($id)) {
+            return response('Group Not Found.', 404);
+        }
 
+        // Delete avatar.
+        $group->avatar()->delete();
+
+        return [
+            'list' => $this->index()
+        ];
     }
 
     /**

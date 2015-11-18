@@ -52,16 +52,17 @@ app.config(['$routeProvider', 'assetVersion',
             templateUrl: "/views/group/list.html?" + assetVersion,
             controller: "GroupController"
 		})
-        .when("/group/view", {
-			redirectTo: "/profile/list"
+        .when('/group/view', {
+            templateUrl: '/views/group/view.html?' + assetVersion,
+            controller: 'GroupController'
 		})
         .when('/group/create', {
 			templateUrl: "/views/group/create.html?" + assetVersion,
             controller: "GroupController"
 		})
         .when('/group/edit', {
-			templateUrl: "/views/group/edit.html?" + assetVersion,
-            controller: "GroupController"
+			templateUrl: '/views/group/edit.html?' + assetVersion,
+            controller: 'GroupController'
 		})
 
         // Profile routes.

@@ -40,13 +40,13 @@
                         ng-click="Rover.browseTo.group(group)"
                         href="javascript:;"
                         class="btn btn-primary btn-metro"
-                        style="background-image: url({{ group.photo_src || '' }});background-size: cover;">
+                        style="background-image: url({{ group.avatar_src || '' }});background-size: cover;">
 
-                        <object
-                            ng-hide="group.photo_src"
+                        <!-- <object
+                            ng-hide="group.avatar_src"
                             style="pointer-events:none;"
                             type="image/svg+xml"
-                            data="/images/sports/{{group.sport_id}}.svg" />
+                            data="/images/sports/{{group.sport_id}}.svg" /> -->
 
                         <span>{{ group.name }}</span>
                     </a>

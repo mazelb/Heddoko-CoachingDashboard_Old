@@ -6,12 +6,13 @@
  */
 namespace App\Models;
 
-use Image;
-
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasAvatarTrait as HasAvatar;
 
 class Profile extends Model
 {
+    use HasAvatar;
+
     //
     // Constants representing gender options.
     //
@@ -75,35 +76,6 @@ class Profile extends Model
     }
 
     /**
-     * Profile avatar.
-     */
-    public function avatar() {
-        return $this->morphOne('App\Models\Image', 'belongs_to');
-    }
-
-    /**
-     * Resizes the profile's avatar.
-     *
-     * @param int $width
-     */
-    public function resizeAvatar($width)
-    {
-        // Performance check.
-        if (!$this->avatar) {
-            return;
-        }
-
-        $avatar = Image::make($this->avatar->data_uri);
-
-        if ($avatar->width() > $width)
-        {
-            $avatar->widen($width);
-            $this->avatar->data_uri = (string) $avatar->encode('data-url');
-            $this->avatar->data_uri = preg_replace('/^(data:image\/[a-z]+;base64,)/', '', $this->avatar->data_uri);
-        }
-    }
-
-    /**
      * Accessor for $this->gender.
      *
      * @param int $gender
@@ -154,16 +126,6 @@ class Profile extends Model
         }
 
         $this->attributes['gender'] = $gender;
-    }
-
-    /**
-     * Accessor for $this->avatar_src.
-     *
-     * @param string $src
-     * @return string
-     */
-    public function getAvatarSrcAttribute($src = '') {
-        return $this->avatar ? 'data:'. $this->avatar->mime_type .';base64,'. $this->avatar->data_uri : '';
     }
 
     /**

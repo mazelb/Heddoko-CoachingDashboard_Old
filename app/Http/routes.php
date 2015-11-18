@@ -42,6 +42,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
+    // Group endpoints.
+    Route::post('group/{id}/avatar', 'GroupController@saveAvatar');
+    Route::delete('group/{id}/avatar', 'GroupController@destroyAvatar');
+    Route::resource('group', 'GroupController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
     // Movement data endpoints.
     Route::resource('profile.movement', 'MovementDataController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
@@ -52,12 +59,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
     Route::resource('fms.test', 'FMSTestController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
-
-    // Group endpoints.
-    Route::post('group/{id}/photo', 'GroupController@updatePhoto');
-    Route::resource('group', 'GroupController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 

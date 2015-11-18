@@ -1,13 +1,18 @@
 <?php
 /**
- *
+ * @brief   Database model for groups.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasAvatarTrait as HasAvatar;
 
 class Group extends Model
 {
+    use HasAvatar;
+
     /**
      * Attributes which are mass-assignable.
      */
@@ -19,9 +24,14 @@ class Group extends Model
     ];
 
     /**
-     *
+     * Attributes which should be appended to the model's array form.
      */
-    protected $hidden = ['pivot'];
+    protected $appends = ['avatar_src'];
+
+    /**
+     * Attributes which should be hidden from the models' array form.
+     */
+    protected $hidden = ['avatar', 'pivot'];
 
     /**
      * Profiles beloning to this group.
@@ -35,12 +45,5 @@ class Group extends Model
      */
     public function managers() {
         return $this->belongsToMany('App\Models\User', 'group_manager', 'group_id', 'manager_id');
-    }
-
-    /**
-     * Group avatar.
-     */
-    public function avatar() {
-        return $this->morphOne('App\Models\Image', 'belongs_to');
     }
 }

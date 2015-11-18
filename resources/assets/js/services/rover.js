@@ -97,7 +97,8 @@ angular.module('app.rover', [])
                 }
 
                 this.debug('Browsing to group #' + group.id);
-                $location.path('/profile/list');
+                // $location.path('/profile/list');
+                $location.path('/group/view');
 
             }.bind(this),
 

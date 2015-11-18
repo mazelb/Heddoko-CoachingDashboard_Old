@@ -1,0 +1,123 @@
+
+<!-- Group summary -->
+<div ng-show="group.id" class="page">
+
+    <div class="row">
+
+        <!-- Breadcrumbs -->
+        <div class="col-sm-12 col-md-6">
+            <div data-ng-include="'views/partials/breadcrumbs.html?' + global.assetVersion"></div>
+        </div>
+
+        <!-- Actions -->
+        <div class="col-sm-12 col-md-6">
+            <div class="btn-group pull-right">
+
+                <!-- Delete group button -->
+                <button
+                    ng-show="group.id > 0"
+                    data-toggle="modal"
+                    data-target="#deleteGroupConfirmation"
+                    class="btn btn-danger">
+
+                    Delete <b>{{ group.name }}</b>
+                </button>
+
+                <!-- Delete confirmation -->
+                <div class="modal fade" id="deleteGroupConfirmation">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p ng-show="global.state.profile.list.length > 0">
+                                    Are you sure you want to delete <b>{{ group.name }}</b>
+                                    and the {{ global.state.profile.list.length }}
+                                    associated athletes?
+                                </p>
+                                <p ng-show="global.state.profile.list.length === 0">
+                                    Are you sure you want to delete <b>{{ group.name }}</b>?
+                                </p>
+                            </div>
+                            <div class="modal-footer text-center">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                    Yes, delete {{ group.name }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit group button -->
+                <button
+                    ng-show="group.id > 0"
+                    ng-click="Rover.browseTo.path('group/edit')"
+                    class="btn btn-default">
+
+                    Edit <b>{{ group.name }}</b>
+                </button>
+
+                <!-- Create profile button -->
+                <button
+                    ng-click="Rover.browseTo.path('profile/create')"
+                    class="btn btn-default">
+
+                    Add an athlete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section>
+    	<div class="row">
+
+            <!-- Avatar -->
+    		<div class="col-md-6 col-sm-12">
+                <div class="text-center" style="margin: 5% 20%; width: 60%;">
+                    <ui-avatar
+                        data-upload-endpoint="uploadAvatarEndpoint"
+                        data-success-callback="uploadAvatarCallback"
+                        data-src="group.avatar_src">
+                    </ui-avatar>
+                </div>
+    		</div>
+
+            <!-- Group details -->
+            <div class="col-sm-12 col-md-6">
+                <div data-ng-include="'views/group/partials/details.html?' + global.assetVersion"></div>
+            </div>
+        </div>
+    </section>
+
+    <section data-ng-show="global.isLocal">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Debug
+                        </div>
+
+                        <div class="panel-body">
+                            Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>
+                            Global: {{ global.state.group.selected.name }} <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+</div>
+
+<!-- No group selected -->
+<div ng-show="group.id === 0" class="page">
+    <h1 class="text-center">No group selected</h1>
+    <br>
+
+    <div class="text-center">
+        Please select a group to view its details.
+        <br>
+
+        You can also take this opportunity to
+        <a ng-click="Rover.browseTo.path('group/create')" href="javascript:;">create one</a>.
+    </div>
+</div>

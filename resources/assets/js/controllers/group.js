@@ -106,48 +106,53 @@ angular.module('app.controllers')
             );
         };
 
-        // Uploads an avatar for the group.
-        $scope.uploadPhoto = function(fileData) {
+        // Deletes a group and its profiles.
+        $scope.deleteGroup = function() {
 
-            // Performance check.
-            if (!fileData) {
-                return;
-            }
+            Rover.debug('Deleting group...');
 
-            Rover.debug('Uploading group avatar...');
-            Rover.debug(fileData);
+            // Show loading animation.
             Rover.addBackgroundProcess();
 
-            Upload.upload({
-            //    url: '/api/teams/'+ $scope.group.id +'/photo',
-               url: '/api/group/'+ $scope.group.id +'/photo',
-               data: {photo: fileData}
-           }).then(
+            // Teams.destroy($scope.global.state.group.selected.id).then(
+            GroupService.destroy($scope.global.state.group.selected.id).then(
 
-                // On success.
+                // On success, update group list and browse to groups page.
                 function(response) {
-                    Rover.doneBackgroundProcess();
 
-                    if (response.status === 200) {
+                    if (response.status === 200)
+                    {
+                        $scope.global.state.group.list = response.data;
 
-                        // Update the avatar on the currently selected group.
-                        $scope.global.state.group.selected.photo_src = response.data.photo_src;
-                        $scope.group.photo_src = response.data.photo_src;
-
-                        // Update the list of groups.
-                        $scope.global.state.group.list = response.data.list;
-
-                        Rover.debug(response.data);
+                        // Update selected group.
+                        if (response.data.length > 0) {
+                            $scope.global.state.group.selected = response.data[0];
+                        }
                     }
+
+                    Rover.doneBackgroundProcess();
+                    Rover.browseTo.path('/group/list');
                 },
 
                 // On failure.
                 function(response) {
-                    $scope.avatar = null;
+                    Rover.debug('Could not delete group: ' + response.responseText);
                     Rover.doneBackgroundProcess();
-                    Rover.debug('Could not upload avatar: ' + response.responseText);
                 }
             );
+        };
+
+        // POST endpoint for avatar uploads.
+        $scope.uploadAvatarEndpoint = '/api/group/'+ $scope.group.id +'/avatar';
+
+        // Callback for avatar uploads.
+        $scope.uploadAvatarCallback = function() {
+
+            // Update the avatar on the currently selected group.
+            $scope.global.state.group.selected.avatar_src = $scope.group.avatar_src = this.avatar_src;
+
+            // Update the list of groups.
+            $scope.global.state.group.list = this.list;
         };
 
         $scope.$watch('global.state.group.selected', function(newGrp, oldGrp)

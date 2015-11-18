@@ -19,47 +19,57 @@ angular.module('app.directives')
             templateUrl: 'views/directive-partials/ui-avatar.html?' + assetVersion,
             scope: {
                 avatarSrc: '=src',
-                uploadEndpoint: '='
+                uploadEndpoint: '=',
+                successCallback: '='
             },
-            controller: ['$scope', 'Upload', 'Rover', function($scope, Upload, Rover) {
+            controller: ['$scope', '$timeout', 'Upload', 'Rover',
+                function($scope, $timeout, Upload, Rover) {
 
-                // Uploading flag.
-                $scope.isUploading = false;
+                    // Uploading flag.
+                    $scope.isUploading = false;
 
-                // Uploads a photo.
-                $scope.upload = function(image) {
+                    // Uploads a photo.
+                    $scope.upload = function(image) {
 
-                    // Performance check.
-                    if (!image) {
-                        return;
-                    }
-
-                    // Upload image.
-                    $scope.isUploading = true;
-                    Rover.debug('Uploading avatar...');
-                    Upload.upload({
-                        url: $scope.uploadEndpoint,
-                        data: {'image': image}
-                    }).then(
-
-                        // Update image on success.
-                        function(response) {
-
-                            $scope.avatarSrc =
-                                'data:' + response.data.avatar.mime_type +
-                                ';base64,' + response.data.avatar.data_uri;
-                            $scope.isUploading = false;
-                        },
-
-                        // Notify user on failure.
-                        function(response) {
-
-                            Rover.alert('Could not upload avatar. Please try again later.');
-                            $scope.isUploading = false;
+                        // Performance check.
+                        if (!image) {
+                            return;
                         }
-                    );
-                };
-            }]
+
+                        // Upload image.
+                        $scope.isUploading = true;
+                        Rover.debug('Uploading avatar...');
+                        Upload.upload({
+                            url: $scope.uploadEndpoint,
+                            data: {'image': image}
+                        }).then(
+
+                            // Update image on success.
+                            function(response) {
+
+                                $scope.avatarSrc =
+                                    'data:' + response.data.avatar.mime_type +
+                                    ';base64,' + response.data.avatar.data_uri;
+                                $scope.isUploading = false;
+
+                                // Call successCallback if one was provided.
+                                if (typeof $scope.successCallback == 'function') {
+                                    $timeout(function() {
+                                        $scope.successCallback.call(response.data);
+                                    });
+                                }
+                            },
+
+                            // Notify user on failure.
+                            function(response) {
+
+                                Rover.alert('Could not upload avatar. Please try again later.');
+                                $scope.isUploading = false;
+                            }
+                        );
+                    };
+                }
+            ]
         };
     }
 ]);

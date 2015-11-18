@@ -43,42 +43,6 @@ angular.module('app.controllers')
         // Alias for the list of sports.
         $scope.sports = $scope.global.state.sport.list;
 
-        // Deletes a group and its profiles.
-        $scope.deleteGroup = function() {
-
-            Rover.debug('Deleting group...');
-
-            // Show loading animation.
-            Rover.addBackgroundProcess();
-
-            // Teams.destroy($scope.global.state.group.selected.id).then(
-            GroupService.destroy($scope.global.state.group.selected.id).then(
-
-                // On success, update group list and browse to groups page.
-                function(response) {
-
-                    if (response.status === 200)
-                    {
-                        $scope.global.state.group.list = response.data;
-
-                        // Update selected group.
-                        if (response.data.length > 0) {
-                            $scope.global.state.group.selected = response.data[0];
-                        }
-                    }
-
-                    Rover.doneBackgroundProcess();
-                    Rover.browseTo.path('/group/list');
-                },
-
-                // On failure.
-                function(response) {
-                    Rover.debug('Could not delete group: ' + response.responseText);
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
         // Submits the new profile form.
         $scope.submitProfileForm = function() {
             return $scope.profile.id > 0 ? $scope.updateProfile() : $scope.createProfile();
@@ -183,7 +147,17 @@ angular.module('app.controllers')
         };
 
         // POST endpoint for avatar uploads.
-        $scope.uploadImageEndpoint = '/api/profile/'+ $scope.profile.id +'/avatar';
+        $scope.uploadAvatarEndpoint = '/api/profile/'+ $scope.profile.id +'/avatar';
+
+        // Callback for avatar uploads.
+        $scope.uploadAvatarCallback = function() {
+
+            // Update the avatar on the currently selected profile.
+            $scope.global.state.profile.selected.avatar_src = $scope.profile.avatar_src = this.avatar_src;
+
+            // Update the list of profiles.
+            $scope.global.state.profile.list = this.list;
+        };
 
         // FMS tests...
         $scope.updateFMSForms = function() {

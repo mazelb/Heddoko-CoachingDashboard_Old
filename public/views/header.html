@@ -65,7 +65,6 @@
 
             <!-- Member dropdown -->
 			<li
-                ng-hide="global.state.profile.list.length === 0"
                 class="onboarding-general"
                 data-step="3"
                 data-intro="Here is where you can find the profiles you manage. If a group is selected, the
@@ -77,6 +76,7 @@
 
                     <!-- Face of dropdown -->
                     <button
+                        ng-hide="global.state.profile.list.length === 0"
                         type="button"
                         class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
@@ -88,7 +88,10 @@
                     </button>
 
                     <!-- Contents of dropdown -->
-                    <ul class="dropdown-menu">
+                    <ul
+                        ng-hide="global.state.profile.list.length === 0"
+                        class="dropdown-menu">
+
                         <li ng-repeat="profile in global.state.profile.list">
                             <a href="javascript:;" ng-click="global.state.profile.selected = profile">
                                 {{ profile.first_name +' '+ profile.last_name }}
@@ -98,11 +101,22 @@
 
                     <!-- Link to profile page -->
                     <button
+                        ng-hide="global.state.profile.list.length === 0"
+                        ng-click="Rover.browseTo.profile(global.state.profile.selected)"
                         type="button"
-                        class="btn btn-info"
-                        ng-click="Rover.browseTo.profile(global.state.profile.selected)">
+                        class="btn btn-info">
 
                         <i class="fa fa-angle-double-right"></i>
+                    </button>
+
+                    <!-- Create new profile button -->
+                    <button
+                        ng-show="global.state.profile.list.length === 0"
+                        ng-click="Rover.browseTo.path('/profile/create')"
+                        type="button"
+                        class="btn btn-default">
+
+                        Create profile
                     </button>
                 </div>
 			</li>
