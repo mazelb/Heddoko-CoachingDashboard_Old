@@ -40,6 +40,10 @@ angular.module('app.services')
              *
              */
             update: function(id, data) {
+
+                // Add group ID to request parameters.
+                var config = (data.groups && data.groups.length) ? {params: {group: data.groups[0]}} : {};
+
                 return $http.put('/api/profile/' + id, data);
     		},
 
@@ -106,13 +110,38 @@ angular.module('app.services')
              */
             formatForStorage: function(profile) {
 
+                // Only copy relevant details.
+                var formatted =
+                {
+                    id: profile.id,
+                    first_name: profile.first_name || '',
+                    last_name: profile.last_name || '',
+                    height: profile.height || 0.0,
+                    mass: profile.mass || 0.0,
+                    dob: profile.dob || '',
+                    gender: profile.gender || '',
+                    phone: profile.phone || '',
+                    email: profile.email || '',
+                    notes: profile.notes || '',
+                    meta: profile.meta || ''
+                };
+
                 // Format height into meters.
-                profile.height = (profile.feet + profile.inches / 12) * 0.3048;
+                formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
 
                 // Format mass in kg.
-                profile.mass = profile.weight_lbs * 0.453592;
+                formatted.mass = profile.weight_lbs * 0.453592;
 
-                return profile;
+                // Format groups into an array of IDs.
+                if (profile.groups && profile.groups.length > 0 && profile.groups[0].id)
+                {
+                    formatted.groups = [];
+                    angular.forEach(profile.groups, function(group) {
+                        formatted.groups.push(group.id);
+                    });
+                }
+
+                return formatted;
             }
         };
     }

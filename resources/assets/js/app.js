@@ -128,9 +128,10 @@ app.config(['$routeProvider', 'assetVersion',
         })
 
         // Other routes.
-        .when("/config", {
-			templateUrl: "config.html"
+        .when('/settings', {
+			templateUrl: 'settings.html'
 		})
+
         .when("/fmstest", {
 			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {
@@ -153,8 +154,10 @@ app.config(['$routeProvider', 'assetVersion',
 
         Rover.debug('Running app...');
 
-        $(document).ready(function()
-        {
+        $(document).ready(function() {
+
+            Rover.debug('DOM ready');
+            
             // Removes the loading animation.
             Rover.doneBackgroundProcess();
 

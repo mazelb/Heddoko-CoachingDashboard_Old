@@ -32,10 +32,7 @@ angular.module('app.controllers')
 
             // We use the localStorage and sessionStorage to persist data.
             'localStorage': $localStorage[Rover.userHash],
-            'sessionStorage': $sessionStorage[Rover.userHash],
-
-            // By tying the local scope to the sessionStorage, we can persist data until the user
-            // logs out.
+            'sessionStorage': Rover.state,
             'state': Rover.state,
 
             // Onboarding messages.
@@ -62,10 +59,10 @@ angular.module('app.controllers')
         $scope.data.member = $scope.global.state.profile;
 
         // Setup sports data.
-        Rover.debug('Setting up sports data...');
-        $scope.global.state.sport = $scope.global.state.sport || {};
-        $scope.global.state.sport.list = $scope.global.state.sport.list || [];
-        $scope.global.state.sport.selected = $scope.global.state.sport.selected || {id: 0};
+        // Rover.debug('Setting up sports data...');
+        // $scope.global.state.sport = $scope.global.state.sport || {};
+        // $scope.global.state.sport.list = $scope.global.state.sport.list || [];
+        // $scope.global.state.sport.selected = $scope.global.state.sport.selected || {id: 0};
 
         // Populates the team list.
         $scope.populateGroupList = function() {
@@ -186,10 +183,10 @@ angular.module('app.controllers')
         }
 
         // Populate sports list.
-        Rover.debug("Checking sports list on first load...");
-    	if ($scope.global.state.sport.list.length === 0) {
-    		$scope.populateSportsList();
-    	}
+        // Rover.debug("Checking sports list on first load...");
+    	// if ($scope.global.state.sport.list.length === 0) {
+    	// 	$scope.populateSportsList();
+    	// }
 
         // Update the profile list as the selected group is updated.
         $scope.$watch('global.state.group.selected', function(newGroup, oldGroup)

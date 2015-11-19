@@ -1,36 +1,58 @@
 
-<!-- Used in the uiEditableListItem directive -->
 <div class="row">
     <div class="col-sm-4 text-right">
         {{ label }}
     </div>
 
-    <div class="col-sm-8">
-        <b ng-hide="isEditing" ng-switch="type">
+    <div class="col-sm-8" ng-switch="inputType">
 
-            <!-- Date -->
-            <span ng-switch-when="date">
-                {{ display || value | date:'MMMM d, yyyy' }}
+        <!-- Date -->
+        <div ng-switch-when="date">
+            <b ng-show="state != 'editing'">
+                {{ display || model[key] | date:'MMMM d, yyyy' }}
+            </b>
 
-                <input ng-show="isEditing" ng-model="value" type="text" class="form-control">
-            </span>
+            <input
+                ng-show="state == 'editing'"
+                ng-model="model[key]"
+                ng-disabled="isDisabled"
+                ng-required="isRequired"
+                type="text"
+                class="form-control">
+        </div>
 
-            <!-- Sex -->
-            <span ng-switch-when="sex">
-                {{ value }}
-                
-                <select ng-show="isEditing" ng-model="value" ng-selected="value" class="form-control">
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                </select>
-            </span>
+        <!-- Gender -->
+        <div ng-switch-when="gender">
+            <b ng-show="state != 'editing'">
+                {{ model[key] }}
+            </b>
 
-            <!-- Default -->
-            <span ng-switch-default>
-                {{ display || value }}
+            <select
+                ng-show="state == 'editing'"
+                ng-model="model[key]"
+                ng-selected="model[key]"
+                ng-disabled="isDisabled"
+                ng-required="isRequired"
+                class="form-control">
 
-                <input ng-show="isEditing" ng-model="value" type="text" class="form-control">
-            </span>
-        </b>
+                <option value="female">Female</option>
+                <option value="male">Male</option>
+            </select>
+        </div>
+
+        <!-- Default -->
+        <div ng-switch-default>
+            <b ng-show="state != 'editing'">
+                {{ display || model[key] }}
+            </b>
+
+            <input
+                ng-show="state == 'editing'"
+                ng-model="model[key]"
+                ng-disabled="isDisabled"
+                ng-required="isRequired"
+                type="text"
+                class="form-control">
+        </div>
     </div>
 </div>

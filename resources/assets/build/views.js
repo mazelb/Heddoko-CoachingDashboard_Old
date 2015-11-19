@@ -1,12 +1,4 @@
-angular.module('app.views', ['config.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/form.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
-
-angular.module("config.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("config.html",
-    "<header class=\"page-main-header\">\n" +
-    "    <div ng-include=\" 'placeholder.html' \"></div>\n" +
-    "</header>\n" +
-    "");
-}]);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/form.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -947,43 +939,47 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "                    </ul>\n" +
     "                </div>\n" +
     "            </li>\n" +
-    "\n" +
-    "            <!-- Settings page -->\n" +
-    "            <li class=\"pull-right onboarding-general\" data-step=\"4\" data-intro=\"This is the settings button\">\n" +
-    "                <div class=\"btn-group\">\n" +
-    "                    <button\n" +
-    "                        ng-click=\"Rover.browseTo.config()\"\n" +
-    "                        class=\"btn btn-default\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        title=\"Settings\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-cog\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
     "		</ul>\n" +
     "\n" +
-    "        <!-- Log out -->\n" +
-    "		<!-- <ul class=\"nav-right-button list-unstyled pull-right\">\n" +
-    "			<li>\n" +
-    "				<a ng-click=\"Rover.endSession()\" class=\"btn btn-logout\">\n" +
-    "					Logout &nbsp;&nbsp;<i class=\"fa fa-sign-out\"></i>\n" +
-    "				</a>\n" +
-    "			</li>\n" +
-    "		</ul> -->\n" +
+    "        <!-- Other shortcuts (pulled to right) -->\n" +
     "		<ul class=\"nav-right-button list-unstyled pull-right\">\n" +
-    "			<li>\n" +
-    "				<a\n" +
+    "            <div class=\"btn-group\">\n" +
+    "\n" +
+    "                <!-- Settings -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"Rover.browseTo.config()\"\n" +
+    "                    class=\"btn btn-default onboarding-general\"\n" +
+    "                    data-step=\"4\"\n" +
+    "                    data-intro=\"Click this button to edit your settings\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-cog fa-fw\"></i>\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Onboarding -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.onboarding.general()\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn btn-default onboarding-general\"\n" +
+    "                    data-step=\"6\"\n" +
+    "                    data-intro=\"Click here whenever you want to see this again\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-question fa-fw\"></i>\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Sign out -->\n" +
+    "                <button\n" +
     "                    ng-click=\"Rover.endSession()\"\n" +
-    "                    class=\"btn btn-danger\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn btn-logout onboarding-general\"\n" +
     "                    data-toggle=\"tooltip\"\n" +
     "                    data-placement=\"bottom\"\n" +
+    "                    data-step=\"5\"\n" +
+    "                    data-intro=\"Use this button when you're ready to log out\"\n" +
     "                    title=\"Logout\">\n" +
     "\n" +
-    "                    <i class=\"fa fa-sign-out\"></i>\n" +
-    "				</a>\n" +
-    "			</li>\n" +
+    "                    <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
+    "                </button>\n" +
+    "            </div>\n" +
     "		</ul>\n" +
     "	</div>\n" +
     "</header>\n" +
@@ -1177,6 +1173,14 @@ angular.module("placeholder.html", []).run(["$templateCache", function($template
     "        In Development\n" +
     "    </h1>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("settings.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("settings.html",
+    "<header class=\"page-main-header\">\n" +
+    "    <div ng-include=\" 'placeholder.html' \"></div>\n" +
+    "</header>\n" +
     "");
 }]);
 
@@ -1408,65 +1412,96 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
 
 angular.module("directive-partials/ui-editable-list-container.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-list-container.html",
-    "<!-- Used in the uiEditableListContainer directive -->\n" +
-    "<!-- <div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 btn-group text-right\">\n" +
+    "<div class=\"panel panel-default\">\n" +
+    "    <div class=\"panel-heading\">\n" +
+    "        {{ heading }}\n" +
     "\n" +
-    "        <button type=\"button\" ng-click=\"delete()\" ng-hide=\"isEditing\" class=\"btn btn-danger\">\n" +
-    "            Delete\n" +
-    "        </button>\n" +
-    "        <button type=\"button\" ng-click=\"edit()\" ng-hide=\"isEditing\" class=\"btn btn-default\">\n" +
-    "            Edit\n" +
-    "        </button>\n" +
-    "        <button type=\"button\" ng-click=\"save()\" ng-show=\"isEditing\" class=\"btn btn-success\">\n" +
-    "            Save\n" +
-    "        </button>\n" +
+    "        <!-- Action buttons -->\n" +
+    "        <div class=\"pull-right\">\n" +
+    "            <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
+    "                Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
+    "            </span>\n" +
+    "            <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
+    "                Edit &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
+    "            </span>\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
     "\n" +
-    "<br> -->\n" +
+    "    <div class=\"panel-body\">\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12\" ng-transclude></div>\n" +
+    "        <div class=\"row\" ng-switch=\"state\">\n" +
+    "\n" +
+    "            <!-- Working animation -->\n" +
+    "            <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
+    "                <i ng-show=\"isSaving\" class=\"fa fa-spin fa-3x fa-spinner\"></i>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Model fields -->\n" +
+    "            <div ng-switch-default ng-transclude class=\"col-sm-12\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
 
 angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-list-item.html",
-    "<!-- Used in the uiEditableListItem directive -->\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-4 text-right\">\n" +
     "        {{ label }}\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-8\">\n" +
-    "        <b ng-hide=\"isEditing\" ng-switch=\"type\">\n" +
+    "    <div class=\"col-sm-8\" ng-switch=\"inputType\">\n" +
     "\n" +
-    "            <!-- Date -->\n" +
-    "            <span ng-switch-when=\"date\">\n" +
-    "                {{ display || value | date:'MMMM d, yyyy' }}\n" +
+    "        <!-- Date -->\n" +
+    "        <div ng-switch-when=\"date\">\n" +
+    "            <b ng-show=\"state != 'editing'\">\n" +
+    "                {{ display || model[key] | date:'MMMM d, yyyy' }}\n" +
+    "            </b>\n" +
     "\n" +
-    "                <input ng-show=\"isEditing\" ng-model=\"value\" type=\"text\" class=\"form-control\">\n" +
-    "            </span>\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Sex -->\n" +
-    "            <span ng-switch-when=\"sex\">\n" +
-    "                {{ value }}\n" +
-    "                \n" +
-    "                <select ng-show=\"isEditing\" ng-model=\"value\" ng-selected=\"value\" class=\"form-control\">\n" +
-    "                    <option value=\"female\">Female</option>\n" +
-    "                    <option value=\"male\">Male</option>\n" +
-    "                </select>\n" +
-    "            </span>\n" +
+    "        <!-- Gender -->\n" +
+    "        <div ng-switch-when=\"gender\">\n" +
+    "            <b ng-show=\"state != 'editing'\">\n" +
+    "                {{ model[key] }}\n" +
+    "            </b>\n" +
     "\n" +
-    "            <!-- Default -->\n" +
-    "            <span ng-switch-default>\n" +
-    "                {{ display || value }}\n" +
+    "            <select\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                ng-selected=\"model[key]\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                class=\"form-control\">\n" +
     "\n" +
-    "                <input ng-show=\"isEditing\" ng-model=\"value\" type=\"text\" class=\"form-control\">\n" +
-    "            </span>\n" +
-    "        </b>\n" +
+    "                <option value=\"female\">Female</option>\n" +
+    "                <option value=\"male\">Male</option>\n" +
+    "            </select>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Default -->\n" +
+    "        <div ng-switch-default>\n" +
+    "            <b ng-show=\"state != 'editing'\">\n" +
+    "                {{ display || model[key] }}\n" +
+    "            </b>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -3103,85 +3138,91 @@ angular.module("profile/partials/current-fms-plot.html", []).run(["$templateCach
 
 angular.module("profile/partials/details.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/partials/details.html",
-    "<div class=\"panel panel-default\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        {{ global.state.profile.selected.first_name }}'s details\n" +
+    "<div\n" +
+    "    data-ui-editable-list-container\n" +
+    "    data-model=\"profile\"\n" +
+    "    data-save=\"saveProfileDetails\"\n" +
+    "    data-save-callback=\"saveProfileDetailsCallback\"\n" +
+    "    data-heading=\"{{ global.state.profile.selected.first_name }}'s details\">\n" +
+    "\n" +
+    "    <!-- First name -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"First Name\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"first_name\"\n" +
+    "        data-required=\"true\">\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"panel-body\">\n" +
-    "\n" +
-    "        <div data-ui-editable-list-container>\n" +
-    "\n" +
-    "            <!-- First name -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"First Name\"\n" +
-    "                data-value=\"profile.first_name\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Last name -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Last Name\"\n" +
-    "                data-value=\"profile.last_name\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Height -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Height\"\n" +
-    "                data-display=\"{{ profile.feet }}' {{ profile.inches }}&quot;\"\n" +
-    "                data-value=\"profile.height\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Weight -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Weight\"\n" +
-    "                data-display=\"{{ profile.weight_lbs }} lbs\"\n" +
-    "                data-value=\"profile.weight_lbs\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Date of Birth -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Date of Birth\"\n" +
-    "                data-value=\"\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Gender -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Gender\"\n" +
-    "                data-value=\"profile.gender\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Phone -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Phone #\"\n" +
-    "                data-value=\"profile.phone\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Email -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Email\"\n" +
-    "                data-value=\"profile.email\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Profile creation date -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Profile Created\"\n" +
-    "                data-display=\"{{ profile.created_at_formatted }}\"\n" +
-    "                data-value=\"profile.created_at\"\n" +
-    "                data-type=\"date\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "        </div>\n" +
-    "\n" +
+    "    <!-- Last name -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Last Name\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"last_name\">\n" +
     "    </div>\n" +
+    "\n" +
+    "    <!-- Height -->\n" +
+    "    <!-- <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Height\"\n" +
+    "        data-display=\"{{ profile.feet }}' {{ profile.inches }}&quot;\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"height\">\n" +
+    "    </div> -->\n" +
+    "\n" +
+    "    <!-- Weight -->\n" +
+    "    <!-- <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Weight\"\n" +
+    "        data-display=\"{{ profile.weight_lbs }} lbs\"\n" +
+    "        data-value=\"profile.weight_lbs\"\n" +
+    "        data-disabled=\"true\">\n" +
+    "    </div> -->\n" +
+    "\n" +
+    "    <!-- Date of Birth -->\n" +
+    "    <!-- <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Date of Birth\"\n" +
+    "        data-value=\"\"\n" +
+    "        data-disabled=\"true\">\n" +
+    "    </div> -->\n" +
+    "\n" +
+    "    <!-- Gender -->\n" +
+    "    <!-- <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Gender\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"gender\"\n" +
+    "        data-type=\"gender\">\n" +
+    "    </div> -->\n" +
+    "\n" +
+    "    <!-- Phone -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Phone #\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"phone\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Email -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Email\"\n" +
+    "        data-model=\"profile\"\n" +
+    "        data-key=\"email\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Profile creation date -->\n" +
+    "    <!-- <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Profile Created\"\n" +
+    "        data-display=\"{{ profile.created_at_formatted }}\"\n" +
+    "        data-value=\"profile.created_at\"\n" +
+    "        data-type=\"date\"\n" +
+    "        data-disabled=\"true\">\n" +
+    "    </div> -->\n" +
+    "\n" +
     "</div>\n" +
     "");
 }]);

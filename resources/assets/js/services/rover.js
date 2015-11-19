@@ -46,7 +46,10 @@ angular.module('app.rover', [])
         }.bind(this);
         this.doneBackgroundProcess = function() {
 
-            this.backgroundProcessCount--;
+            if (this.backgroundProcessCount > 0) {
+                this.backgroundProcessCount--;
+            }
+
             this.debug('Background processes: ' + this.backgroundProcessCount);
 
             // Remove loading animation. We delay this by half a second to let the app's
@@ -56,6 +59,8 @@ angular.module('app.rover', [])
                 $timeout(function() {
                     this.hideLoading();
                 }.bind(this), 500);
+
+                return;
             }
         }.bind(this);
 
@@ -66,7 +71,7 @@ angular.module('app.rover', [])
             config: function() {
 
                 this.debug('Browsing to configuration page.');
-                $location.path('/config');
+                $location.path('/settings');
 
             }.bind(this),
 
@@ -122,11 +127,6 @@ angular.module('app.rover', [])
                 $location.path('/profile/view');
 
             }.bind(this),
-            member: function(profile) {
-
-                this.debug('Rover.browseTo.member is deprecated...');
-                this.profile(profile);
-            },
 
             // General page.
             path: function(path) {

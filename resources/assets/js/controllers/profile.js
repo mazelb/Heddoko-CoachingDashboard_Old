@@ -45,7 +45,7 @@ angular.module('app.controllers')
         $scope.profiles = $scope.global.state.profile.list;
 
         // Alias for the list of sports.
-        $scope.sports = $scope.global.state.sport.list;
+        // $scope.sports = $scope.global.state.sport.list;
 
         // Submits the new profile form.
         $scope.submitProfileForm = function() {
@@ -79,6 +79,41 @@ angular.module('app.controllers')
                     Rover.doneBackgroundProcess();
                 }
             );
+        };
+
+        // Saves a profile through the uiEditableListContainer directive.
+        $scope.saveProfileDetails = function() {
+            Rover.debug('Saving profile details...');
+
+            profile = ProfileService.formatForStorage($scope.profile);
+
+            return ProfileService.update(profile.id, profile);
+        };
+
+        // Callback for uiEditableListContainer directive.
+        $scope.saveProfileDetailsCallback = function(profileSaved) {
+
+            // Update profile list.
+            if (profileSaved) {
+                $scope.global.state.profile.list = $scope.groups = this.list;
+
+                // Update the selected profile.
+                angular.forEach(this.list, function(obj, i) {
+                    if (obj.id === $scope.profile.id) {
+                        $scope.global.state.profile.selected =  $scope.profile = obj;
+                    }
+                });
+
+                // Navigate to profile page.
+                Rover.browseTo.profile();
+            }
+
+            //
+            else {
+                Rover.alert('Could not save profile details. Please try again later.');
+            }
+
+            Rover.doneBackgroundProcess();
         };
 
         $scope.updateProfile = function() {
@@ -164,30 +199,30 @@ angular.module('app.controllers')
         };
 
         // FMS tests...
-        $scope.updateFMSForms = function() {
-
-            Rover.debug('Retrieving FMS forms...');
-
-            FMSForm.get($scope.profile.id).then(
-
-                function(response) {
-                    if (response.status === 200) {
-                        Rover.debug('Received FMS forms.');
-                        Rover.debug(response.data);
-                        $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
-                    }
-                },
-
-                function(response) {
-                    Rover.debug('Error retrieving FMS forms.');
-                    Rover.debug(response);
-                }
-            );
-        };
-        $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        if (!$scope.fmsForms && $scope.profile.id > 0) {
-            $scope.updateFMSForms();
-        }
+        // $scope.updateFMSForms = function() {
+        //
+        //     Rover.debug('Retrieving FMS forms...');
+        //
+        //     FMSForm.get($scope.profile.id).then(
+        //
+        //         function(response) {
+        //             if (response.status === 200) {
+        //                 Rover.debug('Received FMS forms.');
+        //                 Rover.debug(response.data);
+        //                 $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
+        //             }
+        //         },
+        //
+        //         function(response) {
+        //             Rover.debug('Error retrieving FMS forms.');
+        //             Rover.debug(response);
+        //         }
+        //     );
+        // };
+        // $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
+        // if (!$scope.fmsForms && $scope.profile.id > 0) {
+        //     $scope.updateFMSForms();
+        // }
 
         $scope.$watch('global.state.profile.selected', function(newPro, oldPro)
         {
@@ -200,8 +235,8 @@ angular.module('app.controllers')
             $scope.profile = $scope.global.state.profile.selected;
 
             // Update FMS forms.
-            $scope.fmsForms = [];
-            $scope.updateFMSForms();
+            // $scope.fmsForms = [];
+            // $scope.updateFMSForms();
 
             // Format profile fields.
             $scope.profile = ProfileService.formatForDisplay($scope.profile);

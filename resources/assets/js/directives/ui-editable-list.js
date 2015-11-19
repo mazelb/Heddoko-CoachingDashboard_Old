@@ -6,7 +6,7 @@
  * @brief   Angular directive for editable list tables. Includes action buttons.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @note    Use as:
- *              <div ui-editable-list-container>
+ *              <div ui-editable-list-container data-heading="Some Heading">
  *                  <div ui-editable-list-item label="Some Label" value="data.some.value">
  *                  </div>
  *              </div>
@@ -18,37 +18,62 @@ angular.module('app.directives')
         restrict: 'AE',
         transclude: true,
         scope: {
+            heading: '@',
+            resource: '=model',
+            saveResource: '=save',
+            saveResourceCallback: '=saveCallback',
             deleteResource: '=delete'
         },
         controller: ['$scope', 'Rover', function($scope, Rover) {
 
-            // Editing flag.
-            $scope.isEditing = false;
+            // Represents current state of directive.
+            $scope.state = 'idle';
 
             // Stores list of items in this container.
             var items = $scope.items = [];
             this.addItem = function(item) {
-                item.isEditing = false;
+                item.state = $scope.state;
+                item.model = $scope.resource;
                 items.push(item);
             };
 
             // Edit actions.
             $scope.edit = function()
             {
-                // Turn on editing flag.
-                $scope.isEditing = true;
+                // Switch state to "editing".
+                $scope.state = 'editing';
                 angular.forEach(items, function(item) {
-                    item.isEditing = true;
+                    item.state = $scope.state;
                 });
             };
 
             $scope.save = function()
             {
-                // Turn off editing flag.
-                $scope.isEditing = false;
+                // Switch state to "saving".
+                $scope.state = 'saving';
                 angular.forEach(items, function(item) {
-                    item.isEditing = false;
+                    item.state = $scope.state;
                 });
+
+                // Save resource.
+                $scope.saveResource.call().then(
+                    function(response) {
+                        $scope.state = 'idle';
+                        $scope.saveResourceCallback.call(response.data, true);
+
+                        angular.forEach(items, function(item) {
+                            item.state = $scope.state;
+                        });
+                    },
+                    function(response) {
+                        $scope.state = 'idle';
+                        $scope.saveResourceCallback.call(response.data, false);
+
+                        angular.forEach(items, function(item) {
+                            item.state = $scope.state;
+                        });
+                    }
+                );
             };
 
             $scope.delete = function()
@@ -65,12 +90,16 @@ angular.module('app.directives')
         require: '^uiEditableListContainer',
         restrict: 'AE',
         scope: {
-            label: '@label',
-            display: '@display',
-            value: '=value',
-            type: '@type'
+            // model: '=',
+            label: '@',
+            display: '@',
+            key: '@',
+            inputType: '@type',
+            isRequired: '=required',
+            isDisabled: '=disabled'
         },
         link: function(scope, element, attrs, controller) {
+
             controller.addItem(scope);
         },
         templateUrl: 'directive-partials/ui-editable-list-item.html'

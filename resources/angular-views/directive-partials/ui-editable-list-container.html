@@ -1,22 +1,31 @@
 
-<!-- Used in the uiEditableListContainer directive -->
-<!-- <div class="row">
-    <div class="col-sm-12 btn-group text-right">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        {{ heading }}
 
-        <button type="button" ng-click="delete()" ng-hide="isEditing" class="btn btn-danger">
-            Delete
-        </button>
-        <button type="button" ng-click="edit()" ng-hide="isEditing" class="btn btn-default">
-            Edit
-        </button>
-        <button type="button" ng-click="save()" ng-show="isEditing" class="btn btn-success">
-            Save
-        </button>
+        <!-- Action buttons -->
+        <div class="pull-right">
+            <span ng-click="save()" ng-show="state == 'editing'">
+                Save &nbsp; <i class="fa fa-toggle-on"></i>
+            </span>
+            <span ng-click="edit()" ng-show="state == 'idle'">
+                Edit &nbsp; <i class="fa fa-toggle-off"></i>
+            </span>
+        </div>
     </div>
-</div>
 
-<br> -->
+    <div class="panel-body">
 
-<div class="row">
-    <div class="col-sm-12" ng-transclude></div>
+        <div class="row" ng-switch="state">
+
+            <!-- Working animation -->
+            <div ng-switch-when="saving" class="text-center" style="padding: 20px 0;">
+                <i ng-show="isSaving" class="fa fa-spin fa-3x fa-spinner"></i>
+            </div>
+
+            <!-- Model fields -->
+            <div ng-switch-default ng-transclude class="col-sm-12">
+            </div>
+        </div>
+    </div>
 </div>

@@ -159,43 +159,47 @@
                     </ul>
                 </div>
             </li>
-
-            <!-- Settings page -->
-            <li class="pull-right onboarding-general" data-step="4" data-intro="This is the settings button">
-                <div class="btn-group">
-                    <button
-                        ng-click="Rover.browseTo.config()"
-                        class="btn btn-default"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        title="Settings">
-
-                        <i class="fa fa-cog"></i>
-                    </button>
-                </div>
-            </li>
 		</ul>
 
-        <!-- Log out -->
-		<!-- <ul class="nav-right-button list-unstyled pull-right">
-			<li>
-				<a ng-click="Rover.endSession()" class="btn btn-logout">
-					Logout &nbsp;&nbsp;<i class="fa fa-sign-out"></i>
-				</a>
-			</li>
-		</ul> -->
+        <!-- Other shortcuts (pulled to right) -->
 		<ul class="nav-right-button list-unstyled pull-right">
-			<li>
-				<a
+            <div class="btn-group">
+
+                <!-- Settings -->
+                <button
+                    ng-click="Rover.browseTo.config()"
+                    class="btn btn-default onboarding-general"
+                    data-step="4"
+                    data-intro="Click this button to edit your settings">
+
+                    <i class="fa fa-cog fa-fw"></i>
+                </button>
+
+                <!-- Onboarding -->
+                <button
+                    ng-click="global.onboarding.general()"
+                    type="button"
+                    class="btn btn-default onboarding-general"
+                    data-step="6"
+                    data-intro="Click here whenever you want to see this again">
+
+                    <i class="fa fa-question fa-fw"></i>
+                </button>
+
+                <!-- Sign out -->
+                <button
                     ng-click="Rover.endSession()"
-                    class="btn btn-danger"
+                    type="button"
+                    class="btn btn-logout onboarding-general"
                     data-toggle="tooltip"
                     data-placement="bottom"
+                    data-step="5"
+                    data-intro="Use this button when you're ready to log out"
                     title="Logout">
 
-                    <i class="fa fa-sign-out"></i>
-				</a>
-			</li>
+                    <i class="fa fa-sign-out fa-fw"></i>
+                </button>
+            </div>
 		</ul>
 	</div>
 </header>

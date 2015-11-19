@@ -1,81 +1,87 @@
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        {{ global.state.profile.selected.first_name }}'s details
+<div
+    data-ui-editable-list-container
+    data-model="profile"
+    data-save="saveProfileDetails"
+    data-save-callback="saveProfileDetailsCallback"
+    data-heading="{{ global.state.profile.selected.first_name }}'s details">
+
+    <!-- First name -->
+    <div
+        data-ui-editable-list-item
+        data-label="First Name"
+        data-model="profile"
+        data-key="first_name"
+        data-required="true">
     </div>
 
-    <div class="panel-body">
-
-        <div data-ui-editable-list-container>
-
-            <!-- First name -->
-            <div
-                data-ui-editable-list-item
-                data-label="First Name"
-                data-value="profile.first_name">
-            </div>
-
-            <!-- Last name -->
-            <div
-                data-ui-editable-list-item
-                data-label="Last Name"
-                data-value="profile.last_name">
-            </div>
-
-            <!-- Height -->
-            <div
-                data-ui-editable-list-item
-                data-label="Height"
-                data-display="{{ profile.feet }}' {{ profile.inches }}&quot;"
-                data-value="profile.height">
-            </div>
-
-            <!-- Weight -->
-            <div
-                data-ui-editable-list-item
-                data-label="Weight"
-                data-display="{{ profile.weight_lbs }} lbs"
-                data-value="profile.weight_lbs">
-            </div>
-
-            <!-- Date of Birth -->
-            <div
-                data-ui-editable-list-item
-                data-label="Date of Birth"
-                data-value="">
-            </div>
-
-            <!-- Gender -->
-            <div
-                data-ui-editable-list-item
-                data-label="Gender"
-                data-value="profile.gender">
-            </div>
-
-            <!-- Phone -->
-            <div
-                data-ui-editable-list-item
-                data-label="Phone #"
-                data-value="profile.phone">
-            </div>
-
-            <!-- Email -->
-            <div
-                data-ui-editable-list-item
-                data-label="Email"
-                data-value="profile.email">
-            </div>
-
-            <!-- Profile creation date -->
-            <div
-                data-ui-editable-list-item
-                data-label="Profile Created"
-                data-display="{{ profile.created_at_formatted }}"
-                data-value="profile.created_at"
-                data-type="date">
-            </div>
-
-        </div>
-
+    <!-- Last name -->
+    <div
+        data-ui-editable-list-item
+        data-label="Last Name"
+        data-model="profile"
+        data-key="last_name">
     </div>
+
+    <!-- Height -->
+    <!-- <div
+        data-ui-editable-list-item
+        data-label="Height"
+        data-display="{{ profile.feet }}' {{ profile.inches }}&quot;"
+        data-model="profile"
+        data-key="height">
+    </div> -->
+
+    <!-- Weight -->
+    <!-- <div
+        data-ui-editable-list-item
+        data-label="Weight"
+        data-display="{{ profile.weight_lbs }} lbs"
+        data-value="profile.weight_lbs"
+        data-disabled="true">
+    </div> -->
+
+    <!-- Date of Birth -->
+    <!-- <div
+        data-ui-editable-list-item
+        data-label="Date of Birth"
+        data-value=""
+        data-disabled="true">
+    </div> -->
+
+    <!-- Gender -->
+    <!-- <div
+        data-ui-editable-list-item
+        data-label="Gender"
+        data-model="profile"
+        data-key="gender"
+        data-type="gender">
+    </div> -->
+
+    <!-- Phone -->
+    <div
+        data-ui-editable-list-item
+        data-label="Phone #"
+        data-model="profile"
+        data-key="phone">
+    </div>
+
+    <!-- Email -->
+    <div
+        data-ui-editable-list-item
+        data-label="Email"
+        data-model="profile"
+        data-key="email">
+    </div>
+
+    <!-- Profile creation date -->
+    <!-- <div
+        data-ui-editable-list-item
+        data-label="Profile Created"
+        data-display="{{ profile.created_at_formatted }}"
+        data-value="profile.created_at"
+        data-type="date"
+        data-disabled="true">
+    </div> -->
+
 </div>

@@ -118,7 +118,10 @@ class ProfileController extends Controller
      */
     public function update($id)
     {
-        $profile = $this->getProfile($id);
+        // Make sure we have a valid profile.
+        if (!$profile = Profile::find($id)) {
+            return response('Profile Not Found.', 404);
+        }
 
         // Update profile details.
         $profile->fill($this->request->only([
@@ -228,18 +231,5 @@ class ProfileController extends Controller
         return [
             'list' => $this->index()
         ];
-    }
-
-    /**
-     * Shortcut to retrieve a profile and make sure it exists.
-     *
-     * @param int $id
-     * @return \App\Models\Profile|null
-     */
-    protected function getProfile($id)
-    {
-        // TODO: check if profile exists. If it doesn't, send a useful error message.
-
-        return Profile::findOrFail($id);
     }
 }

@@ -37,7 +37,7 @@ angular.module('app.controllers')
         $scope.groups = $scope.global.state.group.list;
 
         // Shortcut to the list of sports.
-        $scope.sports = $scope.global.state.sport.list;
+        // $scope.sports = $scope.global.state.sport.list;
 
         // Submits the "new group" form.
         $scope.submitGroupForm = function() {
