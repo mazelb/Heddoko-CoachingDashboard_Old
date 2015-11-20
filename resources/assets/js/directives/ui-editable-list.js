@@ -106,10 +106,18 @@ angular.module('app.directives')
             // Initialize fields.
             switch (attrs.type)
             {
+                case 'date':
                 case 'datetime':
                     // Format display label.
+                    var angularFormat = 'MMMM d, yyyy', momentFormat = 'MMMM D, YYYY';
+                    if (attrs.type == 'date') {
+                        momentFormat += ' (h:mm a)';
+                        angularFormat += ' (h:mm a)';
+                    }
+
+                    scope.format = angularFormat;
                     scope.timestamp = scope.model[scope.key].replace(' ', 'T') + '-05:00';
-                    scope.timestamp = $filter('date')(scope.timestamp, 'MMMM d, yyyy (h:mm a)');
+                    scope.timestamp = $filter('date')(scope.timestamp, angularFormat);
 
                     // Create a datetime picker.
                     if (!attrs.disabled) {
@@ -117,7 +125,7 @@ angular.module('app.directives')
 
                             // Create date picker.
                             $(element).find('input[type="datetime"]').datetimepicker({
-                                format: 'MMMM D, YYYY (h:mm a)'
+                                format: momentFormat
                             })
 
                             // Attach "onChange" event.

@@ -7,9 +7,23 @@
     <div class="col-sm-8" ng-switch="inputType">
 
         <!-- Date -->
+        <div ng-switch-when="date">
+            <b ng-show="state != 'editing'">
+                {{ timestamp | date:format }}
+            </b>
+
+            <input
+                ng-show="state == 'editing'"
+                ng-disabled="isDisabled"
+                ng-required="isRequired"
+                type="datetime"
+                class="form-control">
+        </div>
+
+        <!-- Date & time -->
         <div ng-switch-when="datetime">
             <b ng-show="state != 'editing'">
-                {{ timestamp | date:'MMMM d, yyyy (h:mm a)' }}
+                {{ timestamp | date:format }}
             </b>
 
             <input

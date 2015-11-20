@@ -1455,9 +1455,23 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "    <div class=\"col-sm-8\" ng-switch=\"inputType\">\n" +
     "\n" +
     "        <!-- Date -->\n" +
+    "        <div ng-switch-when=\"date\">\n" +
+    "            <b ng-show=\"state != 'editing'\">\n" +
+    "                {{ timestamp | date:format }}\n" +
+    "            </b>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"datetime\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Date & time -->\n" +
     "        <div ng-switch-when=\"datetime\">\n" +
     "            <b ng-show=\"state != 'editing'\">\n" +
-    "                {{ timestamp | date:'MMMM d, yyyy (h:mm a)' }}\n" +
+    "                {{ timestamp | date:format }}\n" +
     "            </b>\n" +
     "\n" +
     "            <input\n" +
@@ -3338,7 +3352,7 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Date of Birth\"\n" +
     "        data-key=\"dob\"\n" +
-    "        data-type=\"datetime\">\n" +
+    "        data-type=\"date\">\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Gender -->\n" +
@@ -3546,7 +3560,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
-    "                                {{ profile.underlying_medical || 'No medical information provided.' }}\n" +
+    "                                {{ profile.medical_history || 'No medical information provided.' }}\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3560,7 +3574,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    <div class=\"panel-body\">\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
-    "                                {{ profile.previous_injuries || 'No previous injuries' }}\n" +
+    "                                {{ profile.injuries || 'No previous injuries' }}\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
