@@ -10,7 +10,6 @@
     <div
         data-ui-editable-list-item
         data-label="First Name"
-        data-model="profile"
         data-key="first_name"
         data-required="true">
     </div>
@@ -19,7 +18,6 @@
     <div
         data-ui-editable-list-item
         data-label="Last Name"
-        data-model="profile"
         data-key="last_name">
     </div>
 
@@ -42,27 +40,25 @@
     </div> -->
 
     <!-- Date of Birth -->
-    <!-- <div
+    <div
         data-ui-editable-list-item
         data-label="Date of Birth"
-        data-value=""
-        data-disabled="true">
-    </div> -->
+        data-key="dob"
+        data-type="datetime">
+    </div>
 
     <!-- Gender -->
-    <!-- <div
+    <div
         data-ui-editable-list-item
         data-label="Gender"
-        data-model="profile"
         data-key="gender"
         data-type="gender">
-    </div> -->
+    </div>
 
     <!-- Phone -->
     <div
         data-ui-editable-list-item
         data-label="Phone #"
-        data-model="profile"
         data-key="phone">
     </div>
 
@@ -70,18 +66,16 @@
     <div
         data-ui-editable-list-item
         data-label="Email"
-        data-model="profile"
         data-key="email">
     </div>
 
     <!-- Profile creation date -->
-    <!-- <div
+    <div
         data-ui-editable-list-item
         data-label="Profile Created"
-        data-display="{{ profile.created_at_formatted }}"
-        data-value="profile.created_at"
-        data-type="date"
+        data-key="created_at"
+        data-type="datetime"
         data-disabled="true">
-    </div> -->
+    </div>
 
 </div>

@@ -122,6 +122,8 @@ angular.module('app.services')
                     gender: profile.gender || '',
                     phone: profile.phone || '',
                     email: profile.email || '',
+                    medical_history: profile.medical_history || '',
+                    injuries: profile.injuries || '',
                     notes: profile.notes || '',
                     meta: profile.meta || ''
                 };

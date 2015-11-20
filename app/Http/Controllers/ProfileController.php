@@ -76,6 +76,8 @@ class ProfileController extends Controller
             'gender',
             'phone',
             'email',
+            'medical_history',
+            'injuries',
             'notes',
             'meta'
         ]);
@@ -107,7 +109,14 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        // Make sure we have a valid profile.
+        if (!$profile = Profile::find($id)) {
+            return response('Profile Not Found.', 404);
+        }
+
+        // TODO: who is authorized to access profiles?
+
+        return $profile;
     }
 
     /**

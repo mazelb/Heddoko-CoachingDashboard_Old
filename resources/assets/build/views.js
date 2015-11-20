@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/form.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -1412,7 +1412,7 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
 
 angular.module("directive-partials/ui-editable-list-container.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-list-container.html",
-    "<div class=\"panel panel-default\">\n" +
+    "<div class=\"panel panel-default ui-editable-list-container\">\n" +
     "    <div class=\"panel-heading\">\n" +
     "        {{ heading }}\n" +
     "\n" +
@@ -1433,7 +1433,7 @@ angular.module("directive-partials/ui-editable-list-container.html", []).run(["$
     "\n" +
     "            <!-- Working animation -->\n" +
     "            <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
-    "                <i ng-show=\"isSaving\" class=\"fa fa-spin fa-3x fa-spinner\"></i>\n" +
+    "                <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- Model fields -->\n" +
@@ -1447,25 +1447,24 @@ angular.module("directive-partials/ui-editable-list-container.html", []).run(["$
 
 angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-list-item.html",
-    "<div class=\"row\">\n" +
+    "<div class=\"row ui-editable-list-item\">\n" +
     "    <div class=\"col-sm-4 text-right\">\n" +
-    "        {{ label }}\n" +
+    "        {{ label }} <span ng-show=\"isRequired && state == 'editing'\">*</span>\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-8\" ng-switch=\"inputType\">\n" +
     "\n" +
     "        <!-- Date -->\n" +
-    "        <div ng-switch-when=\"date\">\n" +
+    "        <div ng-switch-when=\"datetime\">\n" +
     "            <b ng-show=\"state != 'editing'\">\n" +
-    "                {{ display || model[key] | date:'MMMM d, yyyy' }}\n" +
+    "                {{ timestamp | date:'MMMM d, yyyy (h:mm a)' }}\n" +
     "            </b>\n" +
     "\n" +
     "            <input\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-model=\"model[key]\"\n" +
     "                ng-disabled=\"isDisabled\"\n" +
     "                ng-required=\"isRequired\"\n" +
-    "                type=\"text\"\n" +
+    "                type=\"datetime\"\n" +
     "                class=\"form-control\">\n" +
     "        </div>\n" +
     "\n" +
@@ -2931,14 +2930,170 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "        <div class=\"row\">\n" +
     "\n" +
     "            <!-- New profile form -->\n" +
-    "            <div class=\"col-sm-12 col-md-8\">\n" +
-    "                <div data-ng-include=\"'profile/partials/form.html'\"></div>\n" +
-    "            </div>\n" +
+    "            <div class=\"col-sm-12\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Profile Details\n" +
+    "                    </div>\n" +
     "\n" +
-    "            <!-- Profile picture -->\n" +
-    "        	<div class=\"col-sm-12 col-md-4\">\n" +
-    "                <div data-ng-include=\"'profile/partials/upload-photo.html'\"></div>\n" +
-    "        	</div>\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "\n" +
+    "                            <!-- First name -->\n" +
+    "                            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                                <div class=\"form-group\">\n" +
+    "                                    <input\n" +
+    "                                        type=\"text\"\n" +
+    "                                        ng-model=\"profile.first_name\"\n" +
+    "                                        placeholder=\"First Name\"\n" +
+    "                                        class=\"form-control\"\n" +
+    "                                        required>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Last name -->\n" +
+    "                            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                                <div class=\"form-group\">\n" +
+    "                                    <input\n" +
+    "                                        type=\"text\"\n" +
+    "                                        ng-model=\"profile.last_name\"\n" +
+    "                                        placeholder=\"Last Name\"\n" +
+    "                                        class=\"form-control\"\n" +
+    "                                        required>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Height -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Height (ft / in)\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                                <input\n" +
+    "                                    type=\"number\"\n" +
+    "                                    min=\"1\" max=\"10\"\n" +
+    "                                    ng-model=\"profile.feet\"\n" +
+    "                                    placeholder=\"Feet\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    required>\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                                <input\n" +
+    "                                    type=\"number\"\n" +
+    "                                    min=\"0\" max=\"11\"\n" +
+    "                                    ng-model=\"profile.inches\"\n" +
+    "                                    placeholder=\"Inches\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    required>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Weight -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Weight (lbs)\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                                <input\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    ng-model=\"profile.weight_lbs\"\n" +
+    "                                    placeholder=\"Weight\"\n" +
+    "                                    type=\"number\"\n" +
+    "                                    min=\"1\" max=\"1000\" step=\"0.01\"\n" +
+    "                                    required>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Date of birth -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Date of Birth\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                                <input\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    ng-model=\"profile.dob\"\n" +
+    "                                    placeholder=\"DOB\"\n" +
+    "                                    type=\"text\"\n" +
+    "                                    disabled>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Gender -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Gender\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                                <select ng-model=\"profile.gender\" class=\"form-control\">\n" +
+    "                                    <option value=\"\" ng-selected=\"profile.gender == ''\">(not specified)</option>\n" +
+    "                                    <option value=\"female\" ng-selected=\"profile.gender == 'female'\">Female</option>\n" +
+    "                                    <option value=\"male\" ng-selected=\"profile.gender == 'male'\">Male</option>\n" +
+    "                                </select>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Email -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Email\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-6\">\n" +
+    "                                <input\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    ng-model=\"profile.email\"\n" +
+    "                                    placeholder=\"email@example.com\"\n" +
+    "                                    type=\"email\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Phone number -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Phone\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-4\">\n" +
+    "                                <input\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    ng-model=\"profile.phone\"\n" +
+    "                                    placeholder=\"555-555-5555\"\n" +
+    "                                    type=\"tel\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Medical history -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Medical History\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-9\">\n" +
+    "                                <textarea class=\"form-control\" ng-model=\"profile.medical_history\" placeholder=\"...\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Previous injuries -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Previous Injuries\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-9\">\n" +
+    "                                <textarea class=\"form-control\" ng-model=\"profile.injuries\" placeholder=\"...\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Notes -->\n" +
+    "                        <div class=\"row form-group\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                Other Notes\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-8 col-md-9\">\n" +
+    "                                <textarea class=\"form-control\" ng-model=\"profile.notes\" placeholder=\"...\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Action buttons -->\n" +
@@ -3149,7 +3304,6 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"First Name\"\n" +
-    "        data-model=\"profile\"\n" +
     "        data-key=\"first_name\"\n" +
     "        data-required=\"true\">\n" +
     "    </div>\n" +
@@ -3158,7 +3312,6 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Last Name\"\n" +
-    "        data-model=\"profile\"\n" +
     "        data-key=\"last_name\">\n" +
     "    </div>\n" +
     "\n" +
@@ -3181,27 +3334,25 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    </div> -->\n" +
     "\n" +
     "    <!-- Date of Birth -->\n" +
-    "    <!-- <div\n" +
+    "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Date of Birth\"\n" +
-    "        data-value=\"\"\n" +
-    "        data-disabled=\"true\">\n" +
-    "    </div> -->\n" +
+    "        data-key=\"dob\"\n" +
+    "        data-type=\"datetime\">\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Gender -->\n" +
-    "    <!-- <div\n" +
+    "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Gender\"\n" +
-    "        data-model=\"profile\"\n" +
     "        data-key=\"gender\"\n" +
     "        data-type=\"gender\">\n" +
-    "    </div> -->\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Phone -->\n" +
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Phone #\"\n" +
-    "        data-model=\"profile\"\n" +
     "        data-key=\"phone\">\n" +
     "    </div>\n" +
     "\n" +
@@ -3209,19 +3360,17 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Email\"\n" +
-    "        data-model=\"profile\"\n" +
     "        data-key=\"email\">\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Profile creation date -->\n" +
-    "    <!-- <div\n" +
+    "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Profile Created\"\n" +
-    "        data-display=\"{{ profile.created_at_formatted }}\"\n" +
-    "        data-value=\"profile.created_at\"\n" +
-    "        data-type=\"date\"\n" +
+    "        data-key=\"created_at\"\n" +
+    "        data-type=\"datetime\"\n" +
     "        data-disabled=\"true\">\n" +
-    "    </div> -->\n" +
+    "    </div>\n" +
     "\n" +
     "</div>\n" +
     "");
@@ -3246,154 +3395,6 @@ angular.module("profile/partials/final-fms-plot.html", []).run(["$templateCache"
     "                data-labels='[\"total score\"]'\n" +
     "                data-line-colors='[\"#383d43\"]'\n" +
     "                data-line-width=\"3\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("profile/partials/form.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("profile/partials/form.html",
-    "<div class=\"panel panel-default\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        Profile Details\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"panel-body\">\n" +
-    "\n" +
-    "        <div class=\"row\">\n" +
-    "\n" +
-    "            <!-- First name -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <input\n" +
-    "                        type=\"text\"\n" +
-    "                        ng-model=\"profile.first_name\"\n" +
-    "                        placeholder=\"First Name\"\n" +
-    "                        class=\"form-control\"\n" +
-    "                        required>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Last name -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div class=\"form-group\">\n" +
-    "                    <input\n" +
-    "                        type=\"text\"\n" +
-    "                        ng-model=\"profile.last_name\"\n" +
-    "                        placeholder=\"Last Name\"\n" +
-    "                        class=\"form-control\"\n" +
-    "                        required>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Height -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Height (ft / in)\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-4 col-md-3\">\n" +
-    "                <input\n" +
-    "                    type=\"number\"\n" +
-    "                    min=\"1\" max=\"10\"\n" +
-    "                    ng-model=\"profile.feet\"\n" +
-    "                    placeholder=\"Feet\"\n" +
-    "                    class=\"form-control\"\n" +
-    "                    required>\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-4 col-md-3\">\n" +
-    "                <input\n" +
-    "                    type=\"number\"\n" +
-    "                    min=\"0\" max=\"11\"\n" +
-    "                    ng-model=\"profile.inches\"\n" +
-    "                    placeholder=\"Inches\"\n" +
-    "                    class=\"form-control\"\n" +
-    "                    required>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Weight -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Weight (lbs)\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-4 col-md-3\">\n" +
-    "                <input\n" +
-    "                    class=\"form-control\"\n" +
-    "                    ng-model=\"profile.weight_lbs\"\n" +
-    "                    placeholder=\"Weight\"\n" +
-    "                    type=\"number\"\n" +
-    "                    min=\"1\" max=\"1000\" step=\"0.01\"\n" +
-    "                    required>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Date of birth -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Date of Birth\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 col-md-4\">\n" +
-    "                <input\n" +
-    "                    class=\"form-control\"\n" +
-    "                    ng-model=\"profile.dob\"\n" +
-    "                    placeholder=\"DOB\"\n" +
-    "                    type=\"text\"\n" +
-    "                    disabled>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Gender -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Gender\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 col-md-4\">\n" +
-    "                <select ng-model=\"profile.gender\" class=\"form-control\">\n" +
-    "                    <option value=\"\" ng-selected=\"profile.gender == ''\">(not specified)</option>\n" +
-    "                    <option value=\"female\" ng-selected=\"profile.gender == 'female'\">Female</option>\n" +
-    "                    <option value=\"male\" ng-selected=\"profile.gender == 'male'\">Male</option>\n" +
-    "                </select>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Email -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Email\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 col-md-6\">\n" +
-    "                <input\n" +
-    "                    class=\"form-control\"\n" +
-    "                    ng-model=\"profile.email\"\n" +
-    "                    placeholder=\"email@example.com\"\n" +
-    "                    type=\"email\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Phone number -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Phone\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 col-md-4\">\n" +
-    "                <input\n" +
-    "                    class=\"form-control\"\n" +
-    "                    ng-model=\"profile.phone\"\n" +
-    "                    placeholder=\"555-555-5555\"\n" +
-    "                    type=\"tel\">\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Notes -->\n" +
-    "        <div class=\"row form-group\">\n" +
-    "            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                Notes\n" +
-    "            </div>\n" +
-    "            <div class=\"col-sm-8 col-md-9\">\n" +
-    "                <textarea class=\"form-control\" ng-model=\"profile.notes\" placeholder=\"...\"></textarea>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -3502,15 +3503,6 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "\n" +
-    "                <!-- Edit profile button -->\n" +
-    "                <button\n" +
-    "                    ng-show=\"profile.id > 0\"\n" +
-    "                    ng-click=\"Rover.browseTo.path('profile/edit')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
-    "\n" +
-    "                    Edit <b>{{ profile.first_name }}</b>'s details\n" +
-    "                </button>\n" +
     "\n" +
     "                <!-- Create profile button -->\n" +
     "                <button\n" +

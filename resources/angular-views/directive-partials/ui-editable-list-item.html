@@ -1,23 +1,22 @@
 
-<div class="row">
+<div class="row ui-editable-list-item">
     <div class="col-sm-4 text-right">
-        {{ label }}
+        {{ label }} <span ng-show="isRequired && state == 'editing'">*</span>
     </div>
 
     <div class="col-sm-8" ng-switch="inputType">
 
         <!-- Date -->
-        <div ng-switch-when="date">
+        <div ng-switch-when="datetime">
             <b ng-show="state != 'editing'">
-                {{ display || model[key] | date:'MMMM d, yyyy' }}
+                {{ timestamp | date:'MMMM d, yyyy (h:mm a)' }}
             </b>
 
             <input
                 ng-show="state == 'editing'"
-                ng-model="model[key]"
                 ng-disabled="isDisabled"
                 ng-required="isRequired"
-                type="text"
+                type="datetime"
                 class="form-control">
         </div>
 

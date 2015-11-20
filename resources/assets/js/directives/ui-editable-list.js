@@ -85,7 +85,7 @@ angular.module('app.directives')
     };
 })
 
-.directive('uiEditableListItem', function() {
+.directive('uiEditableListItem', ['$filter', '$timeout', function($filter, $timeout) {
     return {
         require: '^uiEditableListContainer',
         restrict: 'AE',
@@ -100,8 +100,38 @@ angular.module('app.directives')
         },
         link: function(scope, element, attrs, controller) {
 
+            // Link item to controller.
             controller.addItem(scope);
+
+            // Initialize fields.
+            switch (attrs.type)
+            {
+                case 'datetime':
+                    // Format display label.
+                    scope.timestamp = scope.model[scope.key].replace(' ', 'T') + '-05:00';
+                    scope.timestamp = $filter('date')(scope.timestamp, 'MMMM d, yyyy (h:mm a)');
+
+                    // Create a datetime picker.
+                    if (!attrs.disabled) {
+                        $timeout(function() {
+
+                            // Create date picker.
+                            $(element).find('input[type="datetime"]').datetimepicker({
+                                format: 'MMMM D, YYYY (h:mm a)'
+                            })
+
+                            // Attach "onChange" event.
+                            .on('dp.change', function(e) {
+                                scope.model[scope.key] = e.date.format('YYYY-MM-DD HH:mm:ss');
+                            })
+
+                            // Set date.
+                            .data('DateTimePicker').date(scope.timestamp);
+                        });
+                    }
+                    break;
+            }
         },
         templateUrl: 'directive-partials/ui-editable-list-item.html'
     };
-});
+}]);

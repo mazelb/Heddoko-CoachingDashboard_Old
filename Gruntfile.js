@@ -139,6 +139,13 @@ module.exports = function(grunt) {
                     'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
                     'bower_components/ng-file-upload/ng-file-upload.min.js',
 
+                    // Intro.js: for onboarding.
+                    'bower_components/intro.js/minified/intro.min.js',
+
+                    // Bootstrap 3 Datepicker.
+                    'bower_components/moment/min/moment.min.js',
+                    'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+
                     // morris.js: creates charts.
                     // http://morrisjs.github.io/morris.js/
                     'bower_components/raphael/raphael-min.js',
@@ -161,9 +168,6 @@ module.exports = function(grunt) {
                     // Chart.js: creates charts.
                     // http://www.chartjs.org/
                     'bower_components/chartjs/Chart.min.js',
-
-                    // Intro.js: for onboarding.
-                    'bower_components/intro.js/minified/intro.min.js',
 
                     'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
                     'bower_components/easypie/dist/angular.easypiechart.min.js',
@@ -209,7 +213,14 @@ module.exports = function(grunt) {
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
                         'bower_components/chartist/dist/chartist.min.css',
+
+                        // Intro.js: for onboarding.
                         'bower_components/intro.js/minified/introjs.min.css',
+
+                        // Bootstrap 3 Datepicker.
+                        'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+
+                        // Application styles.
                         'resources/assets/build/styles.css'
                     ]
                 }

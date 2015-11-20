@@ -33,6 +33,8 @@ class Profile extends Model
         'gender',
         'phone',
         'email',
+        'medical_history',
+        'injuries',
         'notes',
         'meta'
     ];

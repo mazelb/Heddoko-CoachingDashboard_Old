@@ -47,15 +47,6 @@
                     </div>
                 </div>
 
-                <!-- Edit profile button -->
-                <button
-                    ng-show="profile.id > 0"
-                    ng-click="Rover.browseTo.path('profile/edit')"
-                    class="btn btn-default">
-
-                    Edit <b>{{ profile.first_name }}</b>'s details
-                </button>
-
                 <!-- Create profile button -->
                 <button
                     ng-click="Rover.browseTo.path('profile/create')"

@@ -86,6 +86,13 @@ class UserExperienceUpdates extends Migration
         {
             $table->mediumText('data_uri');
         });
+
+        // Add a few fields to the "profiles" table.
+        Schema::table('profiles', function(Blueprint $table)
+        {
+            $table->text('medical_history')->nullable();
+            $table->text('injuries')->nullable();
+        });
     }
 
     /**
@@ -95,6 +102,12 @@ class UserExperienceUpdates extends Migration
      */
     public function down()
     {
+        // Remove new fields in "profiles" table.
+        Schema::table('profiles', function(Blueprint $table)
+        {
+            $table->dropColumn('medical_history', 'injuries');
+        });
+
         // Reset length of dataURI field for images.
         Schema::table('images', function(Blueprint $table)
         {
