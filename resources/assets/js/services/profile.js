@@ -128,11 +128,11 @@ angular.module('app.services')
                     meta: profile.meta || ''
                 };
 
-                // Format height into meters.
-                formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
-
-                // Format mass in kg.
-                formatted.mass = profile.weight_lbs * 0.453592;
+                // // Format height into meters.
+                // formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
+                //
+                // // Format mass in kg.
+                // formatted.mass = profile.weight_lbs * 0.453592;
 
                 // Format groups into an array of IDs.
                 if (profile.groups && profile.groups.length > 0 && profile.groups[0].id)

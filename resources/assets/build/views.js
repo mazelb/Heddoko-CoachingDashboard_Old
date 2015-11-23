@@ -20,8 +20,13 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "<br>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12 col-md-4 text-right\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
-    "            <span>\n" +
+    "        <a\n" +
+    "            ng-click=\"Rover.alert('In Development.')\"\n" +
+    "            href=\"javascript:;\"\n" +
+    "            class=\"text-center\"\n" +
+    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
+    "\n" +
+    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
     "                Upload/Record <br>\n" +
     "                a Movement\n" +
     "            </span>\n" +
@@ -29,8 +34,13 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-4 text-center\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
-    "            <span>\n" +
+    "        <a\n" +
+    "            ng-click=\"Rover.alert('In Development.')\"\n" +
+    "            href=\"javascript:;\"\n" +
+    "            class=\"text-center\"\n" +
+    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
+    "\n" +
+    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
     "                Analyze <br>\n" +
     "                a Movement\n" +
     "            </span>\n" +
@@ -38,8 +48,13 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-4 text-left\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"btn btn-primary btn-metro text-center\">\n" +
-    "            <span>\n" +
+    "        <a\n" +
+    "            ng-click=\"Rover.alert('In Development.')\"\n" +
+    "            href=\"javascript:;\"\n" +
+    "            class=\"text-center\"\n" +
+    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
+    "            \n" +
+    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
     "                Compare <br>\n" +
     "                Movements\n" +
     "            </span>\n" +
@@ -1424,6 +1439,9 @@ angular.module("directive-partials/ui-editable-list-container.html", []).run(["$
     "            <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
     "                Edit &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
     "            </span>\n" +
+    "            <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
+    "                <i class=\"fa fa-toggle-off\"></i>\n" +
+    "            </span>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -1482,6 +1500,76 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "                class=\"form-control\">\n" +
     "        </div>\n" +
     "\n" +
+    "        <!-- Length -->\n" +
+    "        <div ng-switch-when=\"length\">\n" +
+    "\n" +
+    "            <!-- Display string & unit selector -->\n" +
+    "            <div ng-show=\"state != 'editing'\" class=\"row no-gutter\">\n" +
+    "                <div class=\"col-sm-1\">\n" +
+    "                    <div class=\"dropdown text-center\">\n" +
+    "                        <a href=\"javascript:;\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\">\n" +
+    "                            <i class=\"fa fa-cog\" style=\"color: #ccc;\"></i>\n" +
+    "                        </a>\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li ng-repeat=\"unit in units\">\n" +
+    "                                <a ng-click=\"updateUnit(unit)\" href=\"javascript:;\">\n" +
+    "                                    {{ unit }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-11\">\n" +
+    "                    <b>\n" +
+    "                        {{ data.lengthStr }}\n" +
+    "                    </b>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Feet & inches -->\n" +
+    "            <div class=\"row\" ng-show=\"state == 'editing' && config.unitForLength == 'ft/in'\">\n" +
+    "                <div class=\"col-sm-6\">\n" +
+    "                    <div class=\"input-group\">\n" +
+    "                        <input\n" +
+    "                            ng-model=\"data.lengthFeet\"\n" +
+    "                            ng-disabled=\"isDisabled\"\n" +
+    "                            ng-required=\"isRequired\"\n" +
+    "                            ng-blur=\"updateModel()\"\n" +
+    "                            ng-change=\"updateModel()\"\n" +
+    "                            type=\"number\" min=\"1\" max=\"10\"\n" +
+    "                            class=\"form-control\">\n" +
+    "                        <span class=\"input-group-addon\">&apos;</span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-sm-6\">\n" +
+    "                    <div class=\"input-group\">\n" +
+    "                        <input\n" +
+    "                            ng-model=\"data.lengthInches\"\n" +
+    "                            ng-disabled=\"isDisabled\"\n" +
+    "                            ng-required=\"isRequired\"\n" +
+    "                            ng-blur=\"updateModel()\"\n" +
+    "                            ng-change=\"updateModel()\"\n" +
+    "                            type=\"number\" min=\"0\" max=\"11\"\n" +
+    "                            class=\"form-control\">\n" +
+    "                        <span class=\"input-group-addon\">&quot;</span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- All other supported units -->\n" +
+    "            <div class=\"input-group\" ng-show=\"state == 'editing' && config.unitForLength != 'ft/in'\">\n" +
+    "                <span class=\"input-group-addon\">{{ config.unitForLength }}</span>\n" +
+    "                <input\n" +
+    "                    ng-model=\"data.lengthVal\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    ng-blur=\"updateModel()\"\n" +
+    "                    type=\"number\" step=\"0.01\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
     "        <!-- Gender -->\n" +
     "        <div ng-switch-when=\"gender\">\n" +
     "            <b ng-show=\"state != 'editing'\">\n" +
@@ -1499,6 +1587,45 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "                <option value=\"female\">Female</option>\n" +
     "                <option value=\"male\">Male</option>\n" +
     "            </select>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Mass -->\n" +
+    "        <div ng-switch-when=\"mass\">\n" +
+    "\n" +
+    "            <!-- Display string & unit selector -->\n" +
+    "            <div ng-show=\"state != 'editing'\" class=\"row no-gutter\">\n" +
+    "                <div class=\"col-sm-1\">\n" +
+    "                    <div class=\"dropdown text-center\">\n" +
+    "                        <a href=\"javascript:;\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\">\n" +
+    "                            <i class=\"fa fa-cog\" style=\"color: #ccc;\"></i>\n" +
+    "                        </a>\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li ng-repeat=\"unit in units\">\n" +
+    "                                <a ng-click=\"updateUnit(unit)\" href=\"javascript:;\">\n" +
+    "                                    {{ unit }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-11\">\n" +
+    "                    <b>\n" +
+    "                        {{ data.massStr }}\n" +
+    "                    </b>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div class=\"input-group\" ng-show=\"state == 'editing'\">\n" +
+    "                <span class=\"input-group-addon\">{{ config.unitForMass }}</span>\n" +
+    "                <input\n" +
+    "                    ng-model=\"data.massVal\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    ng-blur=\"updateModel()\"\n" +
+    "                    type=\"number\" step=\"0.01\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Default -->\n" +
@@ -3309,7 +3436,7 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
   $templateCache.put("profile/partials/details.html",
     "<div\n" +
     "    data-ui-editable-list-container\n" +
-    "    data-model=\"profile\"\n" +
+    "    data-model=\"global.state.profile.selected\"\n" +
     "    data-save=\"saveProfileDetails\"\n" +
     "    data-save-callback=\"saveProfileDetailsCallback\"\n" +
     "    data-heading=\"{{ global.state.profile.selected.first_name }}'s details\">\n" +
@@ -3330,22 +3457,20 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    </div>\n" +
     "\n" +
     "    <!-- Height -->\n" +
-    "    <!-- <div\n" +
+    "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Height\"\n" +
-    "        data-display=\"{{ profile.feet }}' {{ profile.inches }}&quot;\"\n" +
-    "        data-model=\"profile\"\n" +
-    "        data-key=\"height\">\n" +
-    "    </div> -->\n" +
+    "        data-key=\"height\"\n" +
+    "        data-type=\"length\">\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Weight -->\n" +
-    "    <!-- <div\n" +
+    "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Weight\"\n" +
-    "        data-display=\"{{ profile.weight_lbs }} lbs\"\n" +
-    "        data-value=\"profile.weight_lbs\"\n" +
-    "        data-disabled=\"true\">\n" +
-    "    </div> -->\n" +
+    "        data-key=\"mass\"\n" +
+    "        data-type=\"mass\">\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Date of Birth -->\n" +
     "    <div\n" +

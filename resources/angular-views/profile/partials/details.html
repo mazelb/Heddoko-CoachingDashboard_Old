@@ -1,7 +1,7 @@
 
 <div
     data-ui-editable-list-container
-    data-model="profile"
+    data-model="global.state.profile.selected"
     data-save="saveProfileDetails"
     data-save-callback="saveProfileDetailsCallback"
     data-heading="{{ global.state.profile.selected.first_name }}'s details">
@@ -22,22 +22,20 @@
     </div>
 
     <!-- Height -->
-    <!-- <div
+    <div
         data-ui-editable-list-item
         data-label="Height"
-        data-display="{{ profile.feet }}' {{ profile.inches }}&quot;"
-        data-model="profile"
-        data-key="height">
-    </div> -->
+        data-key="height"
+        data-type="length">
+    </div>
 
     <!-- Weight -->
-    <!-- <div
+    <div
         data-ui-editable-list-item
         data-label="Weight"
-        data-display="{{ profile.weight_lbs }} lbs"
-        data-value="profile.weight_lbs"
-        data-disabled="true">
-    </div> -->
+        data-key="mass"
+        data-type="mass">
+    </div>
 
     <!-- Date of Birth -->
     <div

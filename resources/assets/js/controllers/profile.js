@@ -83,9 +83,8 @@ angular.module('app.controllers')
 
         // Saves a profile through the uiEditableListContainer directive.
         $scope.saveProfileDetails = function() {
-            Rover.debug('Saving profile details...');
 
-            profile = ProfileService.formatForStorage($scope.profile);
+            profile = ProfileService.formatForStorage($scope.global.state.profile.selected);
 
             return ProfileService.update(profile.id, profile);
         };

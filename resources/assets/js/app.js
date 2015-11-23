@@ -19,7 +19,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.2';
+var _appVersion = '0.3.3';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -157,7 +157,7 @@ app.config(['$routeProvider', 'assetVersion',
         $(document).ready(function() {
 
             Rover.debug('DOM ready');
-            
+
             // Removes the loading animation.
             Rover.doneBackgroundProcess();
 
