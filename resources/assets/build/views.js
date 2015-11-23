@@ -1403,23 +1403,24 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
     "        class=\"btn btn-default\"\n" +
     "        style=\"padding: 0;\">\n" +
     "\n" +
-    "        <!-- Avatar -->\n" +
-    "        <img\n" +
-    "            ng-show=\"avatarSrc && !isUploading\"\n" +
-    "            src=\"{{ avatarSrc }}\"\n" +
-    "            style=\"width: 100%\">\n" +
+    "        <span ng-switch=\"status\">\n" +
     "\n" +
-    "        <!-- Avatar placeholder -->\n" +
-    "        <i\n" +
-    "            ng-hide=\"avatarSrc || isUploading\"\n" +
-    "            class=\"fa fa-user\"\n" +
-    "            style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "            <!-- Avatar -->\n" +
+    "            <img ng-switch-when=\"uploaded\" src=\"{{ avatarSrc }}\" style=\"width: 100%\">\n" +
     "\n" +
-    "        <!-- Uploading notifier -->\n" +
-    "        <i\n" +
-    "            ng-show=\"isUploading\"\n" +
-    "            class=\"fa fa-spin fa-spinner\"\n" +
-    "            style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "            <!-- Avatar placeholder -->\n" +
+    "            <i\n" +
+    "                ng-switch-when=\"none\"\n" +
+    "                class=\"fa fa-user\"\n" +
+    "                style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "\n" +
+    "            <!-- Uploading notifier -->\n" +
+    "            <i\n" +
+    "                ng-switch-when=\"uploading\"\n" +
+    "                class=\"fa fa-spin fa-spinner\"\n" +
+    "                style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "\n" +
+    "        </span>\n" +
     "    </button>\n" +
     "</div>\n" +
     "");
@@ -2978,21 +2979,56 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        </div>\n" +
     "    </section>\n" +
     "\n" +
-    "    <section data-ng-show=\"global.isLocal\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-sm-12\">\n" +
-    "                    <div class=\"panel panel-default\">\n" +
-    "                        <div class=\"panel-heading\">\n" +
-    "                            Debug\n" +
-    "                        </div>\n" +
+    "    <section>\n" +
     "\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>\n" +
-    "                            Global: {{ global.state.group.selected.name }} <br>\n" +
+    "        <!-- Profile list -->\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">\n" +
+    "                Athletes in {{ global.state.group.selected.name }}\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-sm-12\">\n" +
+    "                        <div ng-show=\"global.state.profile.list.length === 0\">\n" +
+    "                            The <b>{{ global.state.group.selected.name }}</b> do not have any\n" +
+    "                            members yet. Add one above to get started!\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
+    "\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-sm-12\">\n" +
+    "                        <a\n" +
+    "                            href=\"javascript:;\"\n" +
+    "                            class=\"btn btn-primary btn-metro\"\n" +
+    "                            ng-repeat=\"profile in global.state.profile.list\"\n" +
+    "                            ng-click=\"Rover.browseTo.profile(profile)\"\n" +
+    "                            style=\"background-image: url({{ profile.avatar_src || '' }});background-size: cover;\">\n" +
+    "\n" +
+    "                            <div class=\"btn-title\">{{ profile.first_name }}</div>\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
+    "        </div>\n" +
+    "    </section>\n" +
+    "\n" +
+    "    <section ng-show=\"global.isLocal\">\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Debug\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>\n" +
+    "                        Global: {{ global.state.group.selected.name }} <br>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </section>\n" +
     "</div>\n" +
     "\n" +

@@ -22,8 +22,8 @@ angular.module('app.directives')
         controller: ['$scope', '$timeout', 'Upload', 'Rover',
             function($scope, $timeout, Upload, Rover) {
 
-                // Uploading flag.
-                $scope.isUploading = false;
+                // Represents current state of directive.
+                $scope.status = $scope.avatarSrc ? 'uploaded' : 'none';
 
                 // Uploads a photo.
                 $scope.upload = function(image) {
@@ -34,7 +34,7 @@ angular.module('app.directives')
                     }
 
                     // Upload image.
-                    $scope.isUploading = true;
+                    $scope.status = 'uploading';
                     Rover.debug('Uploading avatar...');
                     Upload.upload({
                         url: $scope.uploadEndpoint,
@@ -47,7 +47,7 @@ angular.module('app.directives')
                             $scope.avatarSrc =
                                 'data:' + response.data.avatar.mime_type +
                                 ';base64,' + response.data.avatar.data_uri;
-                            $scope.isUploading = false;
+                            $scope.status = 'uploaded';
 
                             // Call successCallback if one was provided.
                             if (typeof $scope.successCallback == 'function') {
@@ -61,7 +61,7 @@ angular.module('app.directives')
                         function(response) {
 
                             Rover.alert('Could not upload avatar. Please try again later.');
-                            $scope.isUploading = false;
+                            $scope.status = $scope.avatarSrc ? 'uploaded' : 'none';
                         }
                     );
                 };

@@ -13,22 +13,23 @@
         class="btn btn-default"
         style="padding: 0;">
 
-        <!-- Avatar -->
-        <img
-            ng-show="avatarSrc && !isUploading"
-            src="{{ avatarSrc }}"
-            style="width: 100%">
+        <span ng-switch="status">
 
-        <!-- Avatar placeholder -->
-        <i
-            ng-hide="avatarSrc || isUploading"
-            class="fa fa-user"
-            style="padding: 30px 40px; font-size: 5em;"></i>
+            <!-- Avatar -->
+            <img ng-switch-when="uploaded" src="{{ avatarSrc }}" style="width: 100%">
 
-        <!-- Uploading notifier -->
-        <i
-            ng-show="isUploading"
-            class="fa fa-spin fa-spinner"
-            style="padding: 30px 40px; font-size: 5em;"></i>
+            <!-- Avatar placeholder -->
+            <i
+                ng-switch-when="none"
+                class="fa fa-user"
+                style="padding: 30px 40px; font-size: 5em;"></i>
+
+            <!-- Uploading notifier -->
+            <i
+                ng-switch-when="uploading"
+                class="fa fa-spin fa-spinner"
+                style="padding: 30px 40px; font-size: 5em;"></i>
+
+        </span>
     </button>
 </div>
