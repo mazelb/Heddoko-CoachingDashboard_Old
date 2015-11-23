@@ -146,6 +146,10 @@ module.exports = function(grunt) {
                     'bower_components/moment/min/moment.min.js',
                     'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
 
+                    // Selectize: select boxes with AJAX options.
+                    'bower_components/selectize/dist/js/standalone/selectize.min.js',
+                    'bower_components/angular-selectize2/dist/angular-selectize.js',
+
                     // morris.js: creates charts.
                     // http://morrisjs.github.io/morris.js/
                     'bower_components/raphael/raphael-min.js',
@@ -219,6 +223,9 @@ module.exports = function(grunt) {
 
                         // Bootstrap 3 Datepicker.
                         'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+
+                        // Selectize.
+                        'bower_components/selectize/dist/css/selectize.bootstrap3.css',
 
                         // Application styles.
                         'resources/assets/build/styles.css'

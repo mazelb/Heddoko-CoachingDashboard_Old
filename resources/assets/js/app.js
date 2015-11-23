@@ -12,6 +12,7 @@
 var app = angular.module('app', [
     'ngStorage', 'ngRoute', 'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
+    'selectize',
     'app.views', 'app.controllers', 'app.directives', "app.form.validation", "app.ui.form.ctrls",
     "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
     "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services',
@@ -19,7 +20,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.3';
+var _appVersion = '0.3.4';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -39,6 +40,7 @@ var appDirectives = angular.module('app.directives', ['app.rover']);
 // Configures the application.
 app.config(['$routeProvider', 'assetVersion',
     function($routeProvider, assetVersion) {
+        console.log('a.c');
 
         // Landing page.
         return $routeProvider.when('/', {

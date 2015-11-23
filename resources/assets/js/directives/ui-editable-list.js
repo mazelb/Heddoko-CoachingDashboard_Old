@@ -327,6 +327,21 @@ angular.module('app.directives')
                             scope.updateUnit(scope.config.unitForMass);
                         });
                         break;
+
+                    case 'tag':
+
+                        // Config object for Selectize.
+                        scope.config = {create:true, maxItems:10};
+
+                        // Demo options.
+                        scope.options = [];
+
+                        scope.model = '';
+                        break;
+
+                    default:
+                        // Default length value.
+                        scope.model[scope.key] = scope.model[scope.key] || '';
                 }
             },
             templateUrl: 'directive-partials/ui-editable-list-item.html'

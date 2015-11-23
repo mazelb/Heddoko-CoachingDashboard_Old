@@ -185,12 +185,12 @@ angular.module('app.rover', [])
 
         // Displays or hides the loading animation.
         this.showLoading = function() {
-            $('.page-loading-overlay').removeClass("loaded");
-            $('.load_circle_wrapper').removeClass("loaded");
+            $('.page-loading-overlay').removeClass('loaded');
+            $('.load_circle_wrapper').removeClass('loaded');
         };
         this.hideLoading = function() {
-            $('.page-loading-overlay').addClass("loaded");
-            $('.load_circle_wrapper').addClass("loaded");
+            $('.page-loading-overlay').addClass('loaded');
+            $('.load_circle_wrapper').addClass('loaded');
         };
 
         // TODO: create settings object in "this.state".

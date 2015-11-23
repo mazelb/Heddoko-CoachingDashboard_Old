@@ -1629,6 +1629,22 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
+    "        <!-- Tag -->\n" +
+    "        <div ng-switch-when=\"tag\">\n" +
+    "            <b ng-show=\"state != 'editing'\">\n" +
+    "                <span style=\"color: #ccc;\">(in development)</span>\n" +
+    "            </b>\n" +
+    "\n" +
+    "            <div ng-show=\"state == 'editing'\">\n" +
+    "                <selectize\n" +
+    "                    ng-model=\"model[key]\"\n" +
+    "                    class=\"form-control\"\n" +
+    "                    config=\"config\"\n" +
+    "                    options=\"options\">\n" +
+    "                </selectize>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
     "        <!-- Default -->\n" +
     "        <div ng-switch-default>\n" +
     "            <b ng-show=\"state != 'editing'\">\n" +
@@ -2790,6 +2806,14 @@ angular.module("group/partials/details.html", []).run(["$templateCache", functio
     "        data-key=\"name\"\n" +
     "        data-required=\"true\">\n" +
     "    </div>\n" +
+    "\n" +
+    "    <!-- Tags -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Activities\"\n" +
+    "        data-key=\"tags\"\n" +
+    "        data-type=\"tag\">\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3541,6 +3565,14 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "        data-key=\"created_at\"\n" +
     "        data-type=\"datetime\"\n" +
     "        data-disabled=\"true\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Tags -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Activities\"\n" +
+    "        data-key=\"tags\"\n" +
+    "        data-type=\"tag\">\n" +
     "    </div>\n" +
     "\n" +
     "</div>\n" +

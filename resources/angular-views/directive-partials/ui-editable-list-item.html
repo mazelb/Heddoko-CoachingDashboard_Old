@@ -162,6 +162,22 @@
             </div>
         </div>
 
+        <!-- Tag -->
+        <div ng-switch-when="tag">
+            <b ng-show="state != 'editing'">
+                <span style="color: #ccc;">(in development)</span>
+            </b>
+
+            <div ng-show="state == 'editing'">
+                <selectize
+                    ng-model="model[key]"
+                    class="form-control"
+                    config="config"
+                    options="options">
+                </selectize>
+            </div>
+        </div>
+
         <!-- Default -->
         <div ng-switch-default>
             <b ng-show="state != 'editing'">
