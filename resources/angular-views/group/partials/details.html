@@ -1,20 +1,16 @@
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        {{ global.state.group.selected.name }}'s details
-    </div>
+<div
+    data-ui-editable-list-container
+    data-model="global.state.group.selected"
+    data-save="saveGroupDetails"
+    data-save-callback="saveGroupDetailsCallback"
+    data-heading="{{ global.state.group.selected.name }}'s details">
 
-    <div class="panel-body">
-
-        <div data-ui-editable-list-container>
-
-            <!-- Group name -->
-            <div
-                data-ui-editable-list-item
-                data-label="Name"
-                data-value="group.name">
-            </div>
-
-        </div>
+    <!-- Group name -->
+    <div
+        data-ui-editable-list-item
+        data-label="Name"
+        data-key="name"
+        data-required="true">
     </div>
 </div>

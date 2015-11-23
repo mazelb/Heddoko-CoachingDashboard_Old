@@ -78,6 +78,33 @@ angular.module('app.controllers')
             );
         };
 
+        // Saves a profile through the uiEditableListContainer directive.
+        $scope.saveGroupDetails = function() {
+            return GroupService.update(
+                $scope.global.state.profile.selected.id,
+                $scope.global.state.profile.selected
+            );
+        };
+
+        // Callback for uiEditableListContainer directive.
+        $scope.saveGroupDetailsCallback = function(saved) {
+
+            // Update group list.
+            if (saved) {
+                $scope.global.state.group.list = $scope.groups = this.list;
+
+                // Navigate to group page.
+                Rover.browseTo.group();
+            }
+
+            //
+            else {
+                Rover.alert('Could not save profile details. Please try again later.');
+            }
+
+            Rover.doneBackgroundProcess();
+        };
+
         // Updates the details for an existing group.
         $scope.updateGroup = function() {
 

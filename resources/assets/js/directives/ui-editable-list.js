@@ -55,9 +55,7 @@ angular.module('app.directives')
 
             // Saves changes.
             $scope.save = function() {
-
                 Rover.debug('Saving model...');
-                Rover.debug(items);
 
                 // Switch state to "saving".
                 $scope.state = 'saving';

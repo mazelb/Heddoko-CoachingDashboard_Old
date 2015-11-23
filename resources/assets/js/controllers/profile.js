@@ -94,7 +94,7 @@ angular.module('app.controllers')
 
             // Update profile list.
             if (profileSaved) {
-                $scope.global.state.profile.list = $scope.groups = this.list;
+                $scope.global.state.profile.list = $scope.profiles = this.list;
 
                 // Update the selected profile.
                 angular.forEach(this.list, function(obj, i) {

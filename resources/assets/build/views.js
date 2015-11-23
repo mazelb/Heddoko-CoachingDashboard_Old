@@ -2775,23 +2775,19 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
 
 angular.module("group/partials/details.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("group/partials/details.html",
-    "<div class=\"panel panel-default\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        {{ global.state.group.selected.name }}'s details\n" +
-    "    </div>\n" +
+    "<div\n" +
+    "    data-ui-editable-list-container\n" +
+    "    data-model=\"global.state.group.selected\"\n" +
+    "    data-save=\"saveGroupDetails\"\n" +
+    "    data-save-callback=\"saveGroupDetailsCallback\"\n" +
+    "    data-heading=\"{{ global.state.group.selected.name }}'s details\">\n" +
     "\n" +
-    "    <div class=\"panel-body\">\n" +
-    "\n" +
-    "        <div data-ui-editable-list-container>\n" +
-    "\n" +
-    "            <!-- Group name -->\n" +
-    "            <div\n" +
-    "                data-ui-editable-list-item\n" +
-    "                data-label=\"Name\"\n" +
-    "                data-value=\"group.name\">\n" +
-    "            </div>\n" +
-    "\n" +
-    "        </div>\n" +
+    "    <!-- Group name -->\n" +
+    "    <div\n" +
+    "        data-ui-editable-list-item\n" +
+    "        data-label=\"Name\"\n" +
+    "        data-key=\"name\"\n" +
+    "        data-required=\"true\">\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
