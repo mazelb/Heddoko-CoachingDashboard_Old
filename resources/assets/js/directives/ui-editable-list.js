@@ -102,8 +102,8 @@ angular.module('app.directives')
     };
 })
 
-.directive('uiEditableListItem', ['$filter', '$timeout', 'Rover',
-    function($filter, $timeout, Rover) {
+.directive('uiEditableListItem', ['$filter', '$timeout', '$http', 'Rover',
+    function($filter, $timeout, $http, Rover) {
         return {
             require: '^uiEditableListContainer',
             restrict: 'AE',
@@ -331,12 +331,40 @@ angular.module('app.directives')
                     case 'tag':
 
                         // Config object for Selectize.
-                        scope.config = {create:true, maxItems:10};
-
-                        // Demo options.
-                        scope.options = [];
-
                         scope.model = '';
+                        scope.options = [];
+                        scope.config = {
+                            create: true,
+                            valueField: 'title',
+                            labelField: 'title',
+                            searchField: 'title',
+                            render: {
+                                option: function(item, escape) {
+                                    return '<div>' + escape(item.title) +'</div>';
+                                }
+                            },
+                            load: function(query, callback) {
+
+                                // Performance check.
+                                Rover.debug(query);
+                                if (!query || !query.length) {
+                                    return callback();
+                                }
+
+                                $http.get('/api/tag/search', {
+                                    params: {
+                                        query: query
+                                    }
+                                }).then(
+                                    function(response) {
+                                        callback(response.data);
+                                    },
+                                    function(response) {
+                                        callback();
+                                    }
+                                );
+                            }
+                        };
                         break;
 
                     default:

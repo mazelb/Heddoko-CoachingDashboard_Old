@@ -1638,7 +1638,7 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "            <div ng-show=\"state == 'editing'\">\n" +
     "                <selectize\n" +
     "                    ng-model=\"model[key]\"\n" +
-    "                    class=\"form-control\"\n" +
+    "                    class=\"form-control text-left\"\n" +
     "                    config=\"config\"\n" +
     "                    options=\"options\">\n" +
     "                </selectize>\n" +
