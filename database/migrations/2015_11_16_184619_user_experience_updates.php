@@ -93,6 +93,12 @@ class UserExperienceUpdates extends Migration
             $table->text('medical_history')->nullable();
             $table->text('injuries')->nullable();
         });
+
+        // Rename "name" column to "title" in "tags" table.
+        Schema::table('tags', function(Blueprint $table)
+        {
+            $table->renameColumn('name', 'title');
+        });
     }
 
     /**
@@ -102,6 +108,12 @@ class UserExperienceUpdates extends Migration
      */
     public function down()
     {
+        // Revert name change on "tags" table.
+        Schema::table('tags', function(Blueprint $table)
+        {
+            $table->renameColumn('title', 'name');
+        });
+
         // Remove new fields in "profiles" table.
         Schema::table('profiles', function(Blueprint $table)
         {

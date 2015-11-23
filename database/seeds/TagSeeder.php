@@ -1,6 +1,9 @@
 <?php
-
+/**
+ * Seeds the database with sample tags.
+ */
 use App\Models\User;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 /**
@@ -45,11 +48,41 @@ class TagSeeder extends Seeder
             'Trap Bar Deadlift', 'Travelling Lunges',
             'Wide Grip Behind the Neck Push Jerk', 'Wide Grip Deadlift',
 
+            // Popular sports.
+
             // Additional tags.
             'Barbell',
             'Dumbbell',
             'Narrow Grip',
             'Wide Grip',
         ];
+
+        // We'll only add those tags that aren't already in the database.
+        $skip = Tag::whereIn('title', $tags)->lists('title');
+        if (count($skip)) {
+            $filteredTags = array_where($skip, function($key, $title) use ($tags) {
+                return !in_array($title, $tags);
+            });
+        }
+
+        // If no tags exist, add them all.
+        else {
+            $filteredTags = $tags;
+        }
+
+        // Performance check.
+        if (!count($filteredTags)) {
+            $this->command->info('No new tags.');
+            return;
+        }
+
+        // Create tags one by one.
+        $total = 0;
+        $this->command->info('Adding '. count($filteredTags) .' of '. count($tags) .' tags...');
+        foreach ($filteredTags as $tag) {
+            Tag::create(['title' => $tag]);
+        }
+
+        $this->command->info('Done.');
     }
 }
