@@ -20,7 +20,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.4';
+var _appVersion = '0.3.5';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -90,6 +90,12 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
         .when('/profile/edit', {
 			templateUrl: "profile/edit.html",
             controller: "ProfileController"
+		})
+
+        // Data import route.
+        .when('/import', {
+			templateUrl: 'import.html',
+            controller: 'ImportController'
 		})
 
         // Movement data demo route.

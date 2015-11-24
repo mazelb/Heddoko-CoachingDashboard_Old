@@ -18,14 +18,17 @@
             <div class="col-sm-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Profile Details
+                        Fields marked * are required
                     </div>
 
                     <div class="panel-body">
-                        <div class="row">
 
-                            <!-- First name -->
-                            <div class="col-sm-12 col-md-6">
+                        <!-- First & last name -->
+                        <div class="row">
+                            <div class="col-sm-4 col-md-3 text-right">
+                                First &amp; Last Name *
+                            </div>
+                            <div class="col-sm-4 col-md-4">
                                 <div class="form-group">
                                     <input
                                         type="text"
@@ -35,9 +38,7 @@
                                         required>
                                 </div>
                             </div>
-
-                            <!-- Last name -->
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-sm-4 col-md-5">
                                 <div class="form-group">
                                     <input
                                         type="text"
@@ -52,9 +53,9 @@
                         <!-- Height -->
                         <div class="row form-group">
                             <div class="col-sm-4 col-md-3 text-right">
-                                Height (ft / in)
+                                Height (ft / in) *
                             </div>
-                            <div class="col-sm-4 col-md-3">
+                            <div class="col-sm-4 col-md-2">
                                 <input
                                     type="number"
                                     min="1" max="10"
@@ -63,23 +64,22 @@
                                     class="form-control"
                                     required>
                             </div>
-                            <div class="col-sm-4 col-md-3">
+                            <div class="col-sm-4 col-md-2">
                                 <input
                                     type="number"
                                     min="0" max="11"
                                     ng-model="profile.inches"
                                     placeholder="Inches"
-                                    class="form-control"
-                                    required>
+                                    class="form-control">
                             </div>
                         </div>
 
                         <!-- Weight -->
                         <div class="row form-group">
                             <div class="col-sm-4 col-md-3 text-right">
-                                Weight (lbs)
+                                Weight (lbs) *
                             </div>
-                            <div class="col-sm-4 col-md-3">
+                            <div class="col-sm-8 col-md-2">
                                 <input
                                     class="form-control"
                                     ng-model="profile.weight_lbs"

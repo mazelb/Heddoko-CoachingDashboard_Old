@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'import.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -13,61 +13,63 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "</div>\n" +
     "\n" +
     "<!-- Main tasks -->\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 col-md-4 text-right\">\n" +
-    "        <a\n" +
-    "            ng-click=\"Rover.alert('In Development.')\"\n" +
-    "            href=\"javascript:;\"\n" +
-    "            class=\"text-center\"\n" +
-    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
-    "\n" +
-    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
-    "                Upload/Record <br>\n" +
-    "                a Movement\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"col-sm-12 col-md-4 text-center\">\n" +
-    "        <a\n" +
-    "            ng-click=\"Rover.alert('In Development.')\"\n" +
-    "            href=\"javascript:;\"\n" +
-    "            class=\"text-center\"\n" +
-    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
-    "\n" +
-    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
+    "    <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
     "                Analyze <br>\n" +
     "                a Movement\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-12 col-md-4 text-left\">\n" +
-    "        <a\n" +
-    "            ng-click=\"Rover.alert('In Development.')\"\n" +
-    "            href=\"javascript:;\"\n" +
-    "            class=\"text-center\"\n" +
-    "            style=\"display: inline-block; height: 200px; width: 200px; border: 2px solid #333;\">\n" +
-    "            \n" +
-    "            <span style=\"display: inline-block; margin: 75px auto 0;\">\n" +
-    "                Compare <br>\n" +
-    "                Movements\n" +
+    "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
+    "                Compare Two or<br>\n" +
+    "                More Movements\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
+    "                Compare FMS <br>\n" +
+    "                Results\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
+    "        <a href=\"#/import\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
+    "                Upload One or <br>\n" +
+    "                More Movements\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
+    "                Record a Live<br>\n" +
+    "                Movement\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
+    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "            <span>\n" +
+    "                Start a FMS\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<!-- Quick actions -->\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12 text-center\">\n" +
     "        <div class=\"btn-group\">\n" +
@@ -1037,6 +1039,16 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "		</ul>\n" +
     "	</div>\n" +
     "</header>\n" +
+    "");
+}]);
+
+angular.module("import.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("import.html",
+    "<div class=\"page\">\n" +
+    "    <h1 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h1>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -3213,14 +3225,17 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "            <div class=\"col-sm-12\">\n" +
     "                <div class=\"panel panel-default\">\n" +
     "                    <div class=\"panel-heading\">\n" +
-    "                        Profile Details\n" +
+    "                        Fields marked * are required\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"row\">\n" +
     "\n" +
-    "                            <!-- First name -->\n" +
-    "                            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                        <!-- First & last name -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
+    "                                First &amp; Last Name *\n" +
+    "                            </div>\n" +
+    "                            <div class=\"col-sm-4 col-md-4\">\n" +
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
@@ -3230,9 +3245,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                        required>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
-    "\n" +
-    "                            <!-- Last name -->\n" +
-    "                            <div class=\"col-sm-12 col-md-6\">\n" +
+    "                            <div class=\"col-sm-4 col-md-5\">\n" +
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
@@ -3247,9 +3260,9 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                        <!-- Height -->\n" +
     "                        <div class=\"row form-group\">\n" +
     "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                                Height (ft / in)\n" +
+    "                                Height (ft / in) *\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                            <div class=\"col-sm-4 col-md-2\">\n" +
     "                                <input\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"1\" max=\"10\"\n" +
@@ -3258,23 +3271,22 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                    class=\"form-control\"\n" +
     "                                    required>\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                            <div class=\"col-sm-4 col-md-2\">\n" +
     "                                <input\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"0\" max=\"11\"\n" +
     "                                    ng-model=\"profile.inches\"\n" +
     "                                    placeholder=\"Inches\"\n" +
-    "                                    class=\"form-control\"\n" +
-    "                                    required>\n" +
+    "                                    class=\"form-control\">\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
     "                        <!-- Weight -->\n" +
     "                        <div class=\"row form-group\">\n" +
     "                            <div class=\"col-sm-4 col-md-3 text-right\">\n" +
-    "                                Weight (lbs)\n" +
+    "                                Weight (lbs) *\n" +
     "                            </div>\n" +
-    "                            <div class=\"col-sm-4 col-md-3\">\n" +
+    "                            <div class=\"col-sm-8 col-md-2\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
     "                                    ng-model=\"profile.weight_lbs\"\n" +
@@ -3836,7 +3848,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "        <!-- General notes -->\n" +
     "        <div class=\"row\">\n" +
-    "    		<div class=\"col-sm-12\">\n" +
+    "    		<div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Medical Information\"\n" +
     "                    data-model=\"global.state.profile.selected\"\n" +
@@ -3845,7 +3857,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                </ui-editable-field>\n" +
+    "            </div>\n" +
     "\n" +
+    "            <div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Previous Injuries\"\n" +
     "                    data-model=\"global.state.profile.selected\"\n" +
@@ -3854,7 +3868,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                </ui-editable-field>\n" +
+    "            </div>\n" +
     "\n" +
+    "            <div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Other Notes\"\n" +
     "                    data-model=\"global.state.profile.selected\"\n" +
