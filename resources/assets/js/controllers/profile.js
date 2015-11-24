@@ -25,6 +25,9 @@ angular.module('app.controllers')
             $scope.profile =
             {
                 id: 0,
+                feet: 0,
+                inches: 0,
+                weight_lbs: 0,
                 notes: '',
                 gender: ''
             };
@@ -43,14 +46,6 @@ angular.module('app.controllers')
 
         // Alias for the list of profiles.
         $scope.profiles = $scope.global.state.profile.list;
-
-        // Alias for the list of sports.
-        // $scope.sports = $scope.global.state.sport.list;
-
-        // Submits the new profile form.
-        $scope.submitProfileForm = function() {
-            return $scope.profile.id > 0 ? $scope.updateProfile() : $scope.createProfile();
-        };
 
         // Creates a new profile in the database.
         $scope.createProfile = function() {

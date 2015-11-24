@@ -201,9 +201,7 @@ module.exports = function(grunt) {
 		sass: {
             dist: {
                 files: {
-                    'resources/assets/build/styles.css': [
-                        'resources/assets/sass/*.scss'
-                    ]
+                    'resources/assets/build/styles.css': 'resources/assets/sass/main.scss'
                 }
             }
         },
@@ -250,7 +248,8 @@ module.exports = function(grunt) {
                     'resources/angular-views/**/*.html',
                     'resources/assets/js/*.js',
                     'resources/assets/js/**/*.js',
-                    'resources/assets/sass/*.scss'
+                    'resources/assets/sass/*.scss',
+                    'resources/assets/sass/**/*.scss'
                 ],
                 tasks: [
                     // 'clean:temp',

@@ -8468,4 +8468,11 @@ label {
 .c100.orange.dark:hover > span {
   color: #e08833; }
 
+.some-test-style {
+  color: #eec95a;
+  background-color: #eec95a; }
+
+.some-test-style {
+  border: none; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -1,6 +1,6 @@
 
 <!-- Profile summary -->
-<div ng-show="profile.id" class="page">
+<div ng-hide="profile.id === 0" class="page">
 
     <div class="row">
 
@@ -78,50 +78,35 @@
             </div>
         </div>
 
-        <!-- Medical information -->
+        <!-- General notes -->
         <div class="row">
     		<div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Medical Information
-                    </div>
+                <ui-editable-field
+                    data-heading="Medical Information"
+                    data-model="global.state.profile.selected"
+                    data-key="medical_history"
+                    data-empty="No medical information provided."
+                    data-save="saveProfileDetails"
+                    data-save-callback="saveProfileDetailsCallback">
+                </ui-editable-field>
 
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                {{ profile.medical_history || 'No medical information provided.' }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ui-editable-field
+                    data-heading="Previous Injuries"
+                    data-model="global.state.profile.selected"
+                    data-key="injuries"
+                    data-empty="No previous injuries."
+                    data-save="saveProfileDetails"
+                    data-save-callback="saveProfileDetailsCallback">
+                </ui-editable-field>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Previous Injuries
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                {{ profile.injuries || 'No previous injuries' }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Other Notes
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                {{ profile.notes || 'No other notes' }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ui-editable-field
+                    data-heading="Other Notes"
+                    data-model="global.state.profile.selected"
+                    data-key="notes"
+                    data-empty="No other notes."
+                    data-save="saveProfileDetails"
+                    data-save-callback="saveProfileDetailsCallback">
+                </ui-editable-field>
     		</div>
     	</div>
     </section>

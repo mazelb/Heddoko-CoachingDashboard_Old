@@ -14,7 +14,12 @@
     <!-- Profile list -->
     <div class="panel panel-default">
         <div class="panel-heading">
-            Athletes in {{ global.state.group.selected.name }}
+            <span ng-show="global.state.group.selected.id > 0">
+                Athletes in {{ global.state.group.selected.name }}
+            </span>
+            <span ng-show="global.state.group.selected.id === 0">
+                List of all your athletes
+            </span>
         </div>
 
         <div class="panel-body">

@@ -42,7 +42,7 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
     function($routeProvider, assetVersion, isLocalEnvironment) {
 
         if (isLocalEnvironment) {
-            console.log('Configuring App.');
+            console.log('Configuring App...');
         }
 
         // Landing page.

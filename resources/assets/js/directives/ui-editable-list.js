@@ -13,6 +13,9 @@
  */
 angular.module('app.directives')
 
+/**
+ * Directive for a list of model properties. Contains one or more uiEditableListItem.
+ */
 .directive('uiEditableListContainer', function() {
     return {
         restrict: 'AE',
@@ -102,6 +105,9 @@ angular.module('app.directives')
     };
 })
 
+/**
+ * Directive for properties of a model. Meant to be used inside uiEditableListContainer.
+ */
 .directive('uiEditableListItem', ['$filter', '$timeout', '$http', 'Rover',
     function($filter, $timeout, $http, Rover) {
         return {
@@ -170,12 +176,25 @@ angular.module('app.directives')
                         }
                         break;
 
+                    // Gender.
+                    case 'gender':
+                        if (scope.model[scope.key] && scope.model[scope.key].length > 0) {
+                            scope.display = scope.model[scope.key].charAt(0).toUpperCase() +
+                                scope.model[scope.key].slice(1);
+                        }
+
+                        else {
+                            scope.display = '';
+                        }
+
+                        break;
+
                     // Height, Length
                     case 'length':
 
                         // Supported length units.
                         scope.config.unitForLength = scope.config.unitForLength || 'm';
-                        scope.units = ['mm', 'cm', 'm', 'in', 'ft/in'];
+                        scope.units = [/*'mm', */'cm', 'm', 'in', 'ft/in'];
 
                         // Default length value.
                         scope.model[scope.key] = scope.model[scope.key] || 0.0;
@@ -260,7 +279,7 @@ angular.module('app.directives')
 
                         // Supported mass units.
                         scope.config.unitForMass = scope.config.unitForMass || 'kg';
-                        scope.units = ['g', 'kg', 'lbs', 'stone'];
+                        scope.units = [/*'g', */'kg', 'lbs', 'stone'];
 
                         // Default mass value.
                         scope.model[scope.key] = scope.model[scope.key] || 0.0;
@@ -375,4 +394,63 @@ angular.module('app.directives')
             templateUrl: 'directive-partials/ui-editable-list-item.html'
         };
     }
-]);
+])
+
+/**
+ * Directive for general fields that aren't part of a list.
+ */
+.directive('uiEditableField', function() {
+    return {
+        restrict: 'AE',
+        scope: {
+            heading: '@',
+            model: '=',
+            key: '@',
+            empty: '@',
+            saveResource: '=save',
+            saveResourceCallback: '=saveCallback',
+            deleteResource: '=delete'
+        },
+        controller: ['$scope', 'Rover', function($scope, Rover) {
+
+            // Represents current state of directive.
+            $scope.state = 'idle';
+
+            // Switch state to "editing".
+            $scope.edit = function() {
+                $scope.state = 'editing';
+            };
+
+            // Saves changes.
+            $scope.save = function() {
+                Rover.debug('Saving model...');
+
+                // Switch state to "saving".
+                $scope.state = 'saving';
+
+                // Save resource.
+                $scope.saveResource.call().then(
+                    function(response) {
+                        $scope.state = 'idle';
+                        $scope.saveResourceCallback.call(response.data, true);
+                    },
+                    function(response) {
+                        $scope.state = 'idle';
+                        $scope.saveResourceCallback.call(response.data, false);
+                    }
+                );
+            };
+
+            // Deletes a model.
+            $scope.delete = function() {
+                $scope.deleteResource.apply();
+            };
+
+            // Watches for updates to model from outside the directive.
+            $scope.$watch('model', function(model) {
+                $scope.state = 'idle';
+            });
+        }],
+        templateUrl: 'directive-partials/ui-editable-field.html'
+    };
+});

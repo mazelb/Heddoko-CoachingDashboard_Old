@@ -49,7 +49,7 @@ class ProfileController extends Controller
         // Resize avatars.
         if (count($profiles)) {
             foreach ($profiles as $profile) {
-                $profile->resizeAvatar(200);
+                $profile->resizeAvatar(400);
             }
         }
 
@@ -142,6 +142,8 @@ class ProfileController extends Controller
             'gender',
             'phone',
             'email',
+            'medical_history',
+            'injuries',
             'notes',
             'meta'
         ]));

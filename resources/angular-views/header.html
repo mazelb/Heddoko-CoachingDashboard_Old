@@ -22,8 +22,8 @@
             <li style="display: block; width: 20px; height: 1px;"></li>
 
             <!-- Group dropdown -->
+            <!-- Generally, we want to keep the user from selecting another group while we're loading data -->
 			<li
-                ng-hide="global.state.group.list.length === 0"
                 class="onboarding-general"
                 data-step="2"
                 data-intro="Here is where you can find the groups you manage. The black arrow is a shortcut to view
@@ -33,18 +33,28 @@
 
                     <!-- Face of dropdown -->
                     <button
+                        ng-hide="global.data.isFetchingGroups"
+                        ng-disabled="global.data.isFetchingProfiles"
                         type="button"
                         class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ global.state.group.selected.name }}
-                        <span class="caret"></span>
+                        {{ global.state.group.selected.name || '(no team selected)' }}
+                        <span ng-hide="global.data.isFetchingProfiles" class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
-                    <ul class="dropdown-menu">
+                    <ul
+                        ng-hide="global.data.isFetchingGroups || global.data.isFetchingProfiles"
+                        class="dropdown-menu">
+
+                        <li>
+                            <a href="javascript:;" ng-click="global.state.group.selected = {id: 0}">
+                                (none)
+                            </a>
+                        </li>
                         <li ng-repeat="group in global.state.group.list">
                             <a href="javascript:;" ng-click="global.state.group.selected = group">
                                 {{ group.name }}
@@ -52,14 +62,25 @@
                         </li>
                     </ul>
 
+                    <!-- Loading animation, indicating that groups are being fetched -->
+                    <button
+                        ng-show="global.data.isFetchingGroups ||
+                            (global.data.isFetchingProfiles && global.state.group.selected.id === 0)"
+                        type="button"
+                        class="btn btn-info">
+
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </button>
+
                     <!-- Link to group page -->
                     <button
-                        ng-click="Rover.browseTo.group(global.state.group.selected)"
+                        ng-hide="global.state.group.selected.id === 0 || global.data.isFetchingGroups"
+                        ng-click="global.browseTo.group(global.state.group.selected)"
                         type="button"
                         class="btn btn-info"
                         data-toggle="tooltip"
                         data-placement="bottom"
-                        title="{{ global.state.group.selected.name }}'s page.">
+                        title="Team page">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
@@ -68,6 +89,7 @@
 
             <!-- Profile dropdown -->
 			<li
+                ng-show="global.state.group.selected.id > 0"
                 class="onboarding-general"
                 data-step="3"
                 data-intro="Here is where you can find the profiles you manage. If a group is selected, the
@@ -86,15 +108,23 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}
+                        <span ng-show="global.state.profile.selected.id > 0">
+                            {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}
+                        </span>
+                        <span ng-show="global.state.profile.selected.id === 0">
+                            {{ '(no athlete selected)' }}
+                        </span>
+
                         <span class="caret"></span>
                     </button>
 
                     <!-- Contents of dropdown -->
-                    <ul
-                        ng-hide="global.state.profile.list.length === 0"
-                        class="dropdown-menu">
-
+                    <ul ng-hide="global.state.profile.list.length === 0" class="dropdown-menu">
+                        <li>
+                            <a href="javascript:;" ng-click="global.state.profile.selected = {id: 0}">
+                                (none)
+                            </a>
+                        </li>
                         <li ng-repeat="profile in global.state.profile.list">
                             <a href="javascript:;" ng-click="global.state.profile.selected = profile">
                                 {{ profile.first_name +' '+ profile.last_name }}
@@ -102,23 +132,32 @@
                         </li>
                     </ul>
 
+                    <!-- Loading animation, indicating that profiles are being fetched -->
+                    <button
+                        ng-show="global.data.isFetchingProfiles"
+                        type="button"
+                        class="btn btn-info">
+
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </button>
+
                     <!-- Link to profile page -->
                     <button
-                        ng-hide="global.state.profile.list.length === 0"
-                        ng-click="Rover.browseTo.profile(global.state.profile.selected)"
+                        ng-show="global.state.profile.selected.id > 0 && !global.data.isFetchingProfiles"
+                        ng-click="global.browseTo.profile(global.state.profile.selected)"
                         type="button"
                         class="btn btn-info"
                         data-toggle="tooltip"
                         data-placement="bottom"
-                        title="{{ global.state.profile.selected.first_name }}'s page.">
+                        title="Athlete page">
 
                         <i class="fa fa-angle-double-right"></i>
                     </button>
 
                     <!-- Create new profile button -->
                     <button
-                        ng-show="global.state.profile.list.length === 0"
-                        ng-click="Rover.browseTo.path('/profile/create')"
+                        ng-show="global.state.profile.list.length === 0 && !global.data.isFetchingProfiles"
+                        ng-click="global.browseTo.path('/profile/create')"
                         type="button"
                         class="btn btn-default">
 
@@ -167,7 +206,7 @@
 
                 <!-- Settings -->
                 <button
-                    ng-click="Rover.browseTo.config()"
+                    ng-click="global.browseTo.config()"
                     class="btn btn-default onboarding-general"
                     data-step="4"
                     data-intro="Click this button to edit your settings">
@@ -188,7 +227,7 @@
 
                 <!-- Sign out -->
                 <button
-                    ng-click="Rover.endSession()"
+                    ng-click="global.endSession()"
                     type="button"
                     class="btn btn-logout onboarding-general"
                     data-toggle="tooltip"

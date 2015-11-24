@@ -1,0 +1,108 @@
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project:	Admin theme
+Version:	1.1
+Ownership:  Joao Garin
+
+Table of contents :
+
+To go directly to one of these categories simply search for the topic as it is
+displayed here
+
+1 - General CSS
+2 - Typography
+3 - Containers / Tables / Lists
+4 - Forms / Form Elements
+5 - Buttons and Links
+6 - Dropdowns / Toolbars / Navigation
+7 - Labels / Alerts / Progress Bars
+8 - Panels / Modals / Tooltips
+9 - Dividers / Spacings
+10 - Animations
+11 - Icons / Images
+12 - Mail
+13 - Profile
+14 - Pricing / Ribbons
+15 - Charts / Charting widgets
+16 - Messages
+17 - Custom Pages
+18 - Pie Charts
+
+Color paletter :
+
+Green - #383d43
+Orange - #db5031
+Light gray - #c1bfc0
+Yellow - #fef9d9
+Dark brown - #302624
+
+-------------------------------------------------------------------*/
+
+$green: #45825A;
+$blue:#383d43;
+$blue-dark: #272b2f;
+$orange:#db5031;
+$light-gray:#c1bfc0;
+$yellow:#fef9d9;
+$dark-brown: #503f3c;
+$warning:#eec95a;
+$danger:#C05F44;
+$info-alt:#8170ca;
+$heddokogreen:#3bd6b2;
+$silver:#cbd4e3;
+$orangeaccent:#ff8d46;
+
+@mixin transform($transform){
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@mixin transition($transition){
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition:$transition;
+  transition: $transition;
+}
+
+@mixin animation($animation){
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -ms-animation: $animation;
+  -o-animation:$animation;
+  animation: $animation;
+}
+
+@mixin box-shadow($box-shadow){
+  -webkit-box-shadow: $box-shadow;
+  -moz-box-shadow: $box-shadow;
+  -ms-box-shadow: $box-shadow;
+  -o-box-shadow: $box-shadow;
+  box-shadow: $box-shadow;
+}
+
+@mixin border-radius($border-radius){
+  -webkit-border-radius: $border-radius;
+  -moz-border-radius: $border-radius;
+  -ms-border-radius: $border-radius;
+  -o-border-radius: $border-radius;
+  border-radius: $border-radius;
+}
+
+@mixin vendor-prefix($name, $argument) {
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}

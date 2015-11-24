@@ -20,20 +20,29 @@ angular.module('app.controllers')
 
         Rover.debug('MainController');
 
-        // Save an instance of the "rover" variable in the scope.
+        // This makes the rover accessible to some views.
         $scope.Rover = Rover;
 
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
         $scope.global =
         {
-            'appVersion': appVersion,
-            'assetVersion': assetVersion,
-            'isLocal': isLocalEnvironment,
+            // Information about the application.
+            appVersion: appVersion,
+            assetVersion: assetVersion,
+            isLocal: isLocalEnvironment,
 
-            // We use the localStorage and sessionStorage to persist data.
-            'localStorage': $localStorage[Rover.userHash],
-            'sessionStorage': Rover.state,
-            'state': Rover.state,
+            // The localStorage persists across user sessions.
+            store: Rover.store,
+
+            // The sessionStorage persists throughout a single user session.
+            state: Rover.state,
+
+            // The data object is ephemeral, and will reset at the end of the user session.
+            data: {},
+
+            // Helper methods.
+            endSession: Rover.endSession,
+            browseTo: Rover.browseTo,
 
             // Onboarding messages.
             onboarding:
@@ -42,36 +51,27 @@ angular.module('app.controllers')
             }
         };
 
-        // Tie the local scope to the user-namespaced sessionStorage.
-        $scope.data = Rover.state;
-
         // Setup group data.
-        Rover.debug("Setting up group data...");
+        Rover.debug('Setting up group data...');
         $scope.global.state.group = $scope.global.state.group || {};
         $scope.global.state.group.list = $scope.global.state.group.list || [];
         $scope.global.state.group.selected = $scope.global.state.group.selected || {id: 0};
+        $scope.global.store.groupId = $scope.global.store.groupId || 0;
 
         // Setup profile data.
         Rover.debug('Setting up profile data...');
         $scope.global.state.profile = $scope.global.state.profile || {};
         $scope.global.state.profile.list = $scope.global.state.profile.list || [];
         $scope.global.state.profile.selected = $scope.global.state.selected || {id: 0};
-        $scope.data.member = $scope.global.state.profile;
+        $scope.global.store.profileId = $scope.global.store.profileId || 0;
 
-        // Setup sports data.
-        // Rover.debug('Setting up sports data...');
-        // $scope.global.state.sport = $scope.global.state.sport || {};
-        // $scope.global.state.sport.list = $scope.global.state.sport.list || [];
-        // $scope.global.state.sport.selected = $scope.global.state.sport.selected || {id: 0};
-
-        // Populates the team list.
-        $scope.populateGroupList = function() {
+        // Fetches all groups available to currently authenticated user.
+        $scope.fetchGroups = function() {
 
             // Show loading animation.
-            Rover.debug('Populating group list...');
-            Rover.addBackgroundProcess();
+            Rover.debug('Fetching groups...');
+            $scope.global.data.isFetchingGroups = true;
 
-    		// Teams.get().then(
     		GroupService.get().then(
 
                 // On success.
@@ -82,28 +82,44 @@ angular.module('app.controllers')
                     }
 
                     // Select a default group.
-                    if ($scope.global.state.group.selected.id < 1 && $scope.global.state.group.list.length > 0) {
-                        $scope.global.state.group.selected = $scope.global.state.group.list[0];
+                    if ($scope.global.state.group.selected.id === 0 &&
+                        $scope.global.state.group.list.length > 0)
+                    {
+                        // If a group was previously selected, find that selected group.
+                        if ($scope.global.store.groupId > 0)
+                        {
+                            angular.forEach($scope.global.state.group.list, function(group) {
+                                if (group.id === $scope.global.store.groupId) {
+                                    $scope.global.state.group.selected = group;
+                                }
+                            });
+                        }
+
+                        // Else, choose the first available group.
+                        if ($scope.global.state.group.selected.id === 0)
+                        {
+                            $scope.global.store.groupId = $scope.global.state.group.list[0].id;
+                            $scope.global.state.group.selected = $scope.global.state.group.list[0];
+                        }
                     }
 
-                    Rover.doneBackgroundProcess();
+                    $scope.global.data.isFetchingGroups = false;
         		},
 
                 // On error.
                 function(response) {
-                    Rover.doneBackgroundProcess();
+                    $scope.global.data.isFetchingGroups = false;
                 }
             );
         };
 
-        // Populates the profile list.
-        $scope.populateProfileList = function() {
+        // Fetches profiles available to authenticated user, filtered by the selected group.
+        $scope.fetchProfiles = function() {
 
             // Show loading animation.
-            Rover.debug('Populating profile list...');
-            Rover.addBackgroundProcess();
+            Rover.debug('Fetching profiles...');
+            $scope.global.data.isFetchingProfiles = true;
 
-    		// Athletes.get($scope.global.state.group.selected.id).then(
     		ProfileService.get($scope.global.state.group.selected.id).then(
 
                 // On success.
@@ -114,83 +130,67 @@ angular.module('app.controllers')
                     }
 
                     // Select a default profile.
-                    if ($scope.global.state.profile.selected.id < 1 && $scope.global.state.profile.list.length > 0) {
-                        $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
+                    if ($scope.global.state.profile.selected.id === 0 &&
+                        $scope.global.state.profile.list.length > 0 &&
+                        $scope.global.state.group.selected.id > 0)
+                    {
+                        // If a profile was previously selected, find that selected profile.
+                        if ($scope.global.store.profileId > 0)
+                        {
+                            Rover.debug('Looking for profile #' + $scope.global.store.profileId);
+
+                            angular.forEach($scope.global.state.profile.list, function(profile) {
+                                if (profile.id === $scope.global.store.profileId) {
+                                    $scope.global.state.profile.selected = profile;
+                                }
+                            });
+                        }
+
+                        // Else, choose the first available profile.
+                        if ($scope.global.state.profile.selected.id === 0)
+                        {
+                            Rover.debug('Defaulting to profile #' + $scope.global.state.profile.list[0].id);
+
+                            $scope.global.store.profileId = $scope.global.state.profile.list[0].id;
+                            $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
+                        }
                     }
 
                     // If no profile exists, make sure we're not on the "/profile/view" page.
-                    else if ($scope.currentPath == '/profile/view') {
-                        Rover.browseTo.group();
-                    }
+                    // else if ($scope.currentPath == '/profile/view') {
+                    //     Rover.browseTo.group();
+                    // }
 
-                    Rover.doneBackgroundProcess();
+                    $scope.global.data.isFetchingProfiles = false;
     		    },
 
                 // On error.
                 function(response) {
-                    Rover.doneBackgroundProcess();
-                }
-            );
-        };
-
-        // Populates the sports list.
-        $scope.populateSportsList = function() {
-
-            // Show loading animation.
-            Rover.debug('Populating sports list...');
-            Rover.addBackgroundProcess();
-
-            // Retrieve the list of all sports from the back-end
-            Sports.get().then(
-
-                // On success.
-                function(response) {
-
-        			if (response.status === 200) {
-                        $scope.global.state.sport.list = response.data;
-                    }
-
-                    // Select a default sport.
-            		if ($scope.global.state.sport.selected.id < 1 && $scope.global.state.sport.list.length > 0) {
-            			$scope.global.state.sport.selected = Rover.state.sport.list[0];
-            		}
-
-                    Rover.doneBackgroundProcess();
-            	},
-
-                // On error.
-                function(response) {
-                    Rover.doneBackgroundProcess();
+                    $scope.global.data.isFetchingProfiles = false;
                 }
             );
         };
 
         // Populate group list.
-        Rover.debug("Checking group list on first load...");
     	if ($scope.global.state.group.list.length === 0) {
-    		$scope.populateGroupList();
+    		$scope.fetchGroups();
     	}
 
-        // Populate profile list.
-        // Rover.debug("Checking profile list on first load...");
-    	// if ($scope.global.state.profile.list.length === 0) {
-    	// 	$scope.populateProfileList();
-    	// }
-
         // Select a default profile.
-        if ($scope.global.state.profile.list.length > 0 && $scope.global.state.profile.selected.id < 1) {
-            $scope.global.state.profile.selected = $scope.global.state.profile.list[0];
+        if ($scope.global.state.profile.selected.id === 0 &&
+            $scope.global.store.profileId > 0 &&
+            $scope.global.state.profile.list.length > 0) {
+
+            angular.forEach($scope.global.state.profile.list, function(profile) {
+                if (profile.id === $scope.global.store.profileId) {
+                    $scope.global.state.profile.selected = profile;
+                }
+            });
         }
 
-        // Populate sports list.
-        // Rover.debug("Checking sports list on first load...");
-    	// if ($scope.global.state.sport.list.length === 0) {
-    	// 	$scope.populateSportsList();
-    	// }
+        // Watches the selected group.
+        $scope.$watch('global.state.group.selected', function(newGroup, oldGroup) {
 
-        // Update the profile list as the selected group is updated.
-        $scope.$watch('global.state.group.selected', function(newGroup, oldGroup)
-        {
             // Performance check.
             if (newGroup === 0) {
                 return;
@@ -200,8 +200,7 @@ angular.module('app.controllers')
             if (typeof newGroup == 'number' || typeof newGroup == 'string')
             {
                 var id = Number(newGroup);
-                $.each($scope.global.state.group.list, function(index, group)
-                {
+                angular.forEach($scope.global.state.group.list, function(group) {
                     if (group.id == id) {
                         newGroup = group;
                     }
@@ -218,18 +217,42 @@ angular.module('app.controllers')
                 return;
             }
 
-            // TODO: load profiles that aren't associated with any group, or decide
-            // this should be handled.
-            if (newGroup.id < 1) {
-                return;
-            }
+            // Save selection.
+            Rover.store.groupId = newGroup.id;
 
-            // Reset members list.
+            // Reset profile data.
             $scope.global.state.profile.list = [];
             $scope.global.state.profile.selected = {id: 0};
 
             // Update profiles list.
-    		$scope.populateProfileList();
+    		$scope.fetchProfiles();
         }, true);
+
+        // Watches the selected profile.
+        $scope.$watch('global.state.profile.selected', function(newProfile, oldProfile) {
+
+            // Performance check.
+            if (newProfile === 0) {
+                $scope.global.store.profileId = 0;
+                return;
+            }
+
+            // Make sure we have an object.
+            if (typeof newProfile == 'number' || typeof newProfile == 'string') {
+                newProfile = {
+                    id: Number(newProfile)
+                };
+            }
+
+            Rover.debug('Selected profile: ' + newProfile.id);
+
+            // Performance check, in case only a property of the group was changed.
+            if (newProfile.id === oldProfile.id) {
+                return;
+            }
+
+            // Save selection.
+            $scope.global.store.profileId = newProfile.id;
+        });
     }
 ]);

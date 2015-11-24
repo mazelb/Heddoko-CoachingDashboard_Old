@@ -44,7 +44,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = (data.groups && data.groups.length) ? {params: {group: data.groups[0]}} : {};
 
-                return $http.put('/api/profile/' + id, data);
+                return $http.put('/api/profile/' + id, data, config);
     		},
 
             /**
@@ -88,16 +88,16 @@ angular.module('app.services')
                 profile.created_at_formatted = profile.created_at.length > 0 ?
                     $filter('date')(profile.created_at.substr(0, 10), 'MMM d, yyyy') : '';
 
-                // Calculate the amount of feet in the total height.
-                profile.feet = profile.height > 0 ?
-                    Math.floor(profile.height / 0.3048) : '';
-
-                // Calculate the amount of inches in the remaining height.
-                profile.inches = profile.height > 0 ?
-                    Math.round((profile.height / 0.3048 - profile.feet) * 12) : '';
-
-                // Calculate the weight in pounds.
-                profile.weight_lbs = profile.mass > 0 ? Math.round(profile.mass / 0.453592) : '';
+                // // Calculate the amount of feet in the total height.
+                // profile.feet = profile.height > 0 ?
+                //     Math.floor(profile.height / 0.3048) : '';
+                //
+                // // Calculate the amount of inches in the remaining height.
+                // profile.inches = profile.height > 0 ?
+                //     Math.round((profile.height / 0.3048 - profile.feet) * 12) : '';
+                //
+                // // Calculate the weight in pounds.
+                // profile.weight_lbs = profile.mass > 0 ? Math.round(profile.mass / 0.453592) : '';
 
                 return profile;
             },
@@ -128,11 +128,15 @@ angular.module('app.services')
                     meta: profile.meta || ''
                 };
 
-                // // Format height into meters.
-                // formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
-                //
-                // // Format mass in kg.
-                // formatted.mass = profile.weight_lbs * 0.453592;
+                // Format height into meters.
+                if (profile.feet > 0 && profile.inches) {
+                    formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
+                }
+
+                // Format mass in kg.
+                if (profile.weight_lbs > 0) {
+                    formatted.mass = profile.weight_lbs * 0.453592;
+                }
 
                 // Format groups into an array of IDs.
                 if (profile.groups && profile.groups.length > 0 && profile.groups[0].id)

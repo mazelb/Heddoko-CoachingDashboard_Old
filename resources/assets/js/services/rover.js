@@ -9,8 +9,8 @@
  */
 angular.module('app.rover', [])
 
-.service('Rover', ['$window', '$sessionStorage', '$route', '$location', '$log', '$timeout',
-    function($window, $sessionStorage, $route, $location, $log, $timeout) {
+.service('Rover', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout',
+    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout) {
 
         // Dev variables.
         this.timestamp = Date.now();
@@ -22,9 +22,10 @@ angular.module('app.rover', [])
         // User-specific hash. Used for user-specific data.
         this.userHash = $('meta[name="user-hash"]').attr('content');
 
-        // User-namespaced session storage object. This can be bound to the $scope variable
-        // through each controller.
+        // User-namespaced storage.
+        $localStorage[this.userHash] = $localStorage[this.userHash] || {};
         $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
+        this.store = $localStorage[this.userHash];
         this.state = $sessionStorage[this.userHash];
 
         // Configuration object.
@@ -105,7 +106,6 @@ angular.module('app.rover', [])
                 }
 
                 this.debug('Browsing to group #' + group.id);
-                // $location.path('/profile/list');
                 $location.path('/group/view');
 
             }.bind(this),
@@ -121,6 +121,17 @@ angular.module('app.rover', [])
                 // Or to a specified profile.
                 else {
                     this.state.profile.selected = profile;
+                }
+
+                // If the profile somehow belongs to a different group, reload the profile
+                // list and related data before browsing to the profile page.
+                if (profile.groups[0] && profile.groups[0].id != this.state.group.selected.id)
+                {
+                    // Select the group and reload the profile list.
+                    this.state.group.selected = profile.groups[0];
+
+                    // Save the profile we want to browser to later.
+                    this.store.profileId = profile.id;
                 }
 
                 this.debug('Browsing to profile #' + profile.id);
@@ -160,7 +171,7 @@ angular.module('app.rover', [])
 
             this.debug('Ending session...');
 
-            window.location.assign('/auth/logout');
+            $window.location.href = '/auth/logout';
 
         }.bind(this);
 
