@@ -81,8 +81,8 @@ angular.module('app.controllers')
         // Saves a profile through the uiEditableListContainer directive.
         $scope.saveGroupDetails = function() {
             return GroupService.update(
-                $scope.global.state.profile.selected.id,
-                $scope.global.state.profile.selected
+                $scope.global.state.group.selected.id,
+                $scope.global.state.group.selected
             );
         };
 

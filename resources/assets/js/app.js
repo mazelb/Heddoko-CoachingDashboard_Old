@@ -38,9 +38,12 @@ var appServices = angular.module('app.services', ['app.rover']);
 var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
-app.config(['$routeProvider', 'assetVersion',
-    function($routeProvider, assetVersion) {
-        console.log('a.c');
+app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
+    function($routeProvider, assetVersion, isLocalEnvironment) {
+
+        if (isLocalEnvironment) {
+            console.log('Configuring App.');
+        }
 
         // Landing page.
         return $routeProvider.when('/', {
