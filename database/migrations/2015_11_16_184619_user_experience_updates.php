@@ -92,6 +92,12 @@ class UserExperienceUpdates extends Migration
         {
             $table->text('medical_history')->nullable();
             $table->text('injuries')->nullable();
+            $table->integer('tag_id')->unsigned()->nullable();
+			$table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
 
         // Rename "name" column to "title" in "tags" table.
@@ -117,7 +123,8 @@ class UserExperienceUpdates extends Migration
         // Remove new fields in "profiles" table.
         Schema::table('profiles', function(Blueprint $table)
         {
-            $table->dropColumn('medical_history', 'injuries');
+            $table->dropForeign('profiles_tag_id_foreign');
+            $table->dropColumn('medical_history', 'injuries', 'tag_id');
         });
 
         // Reset length of dataURI field for images.

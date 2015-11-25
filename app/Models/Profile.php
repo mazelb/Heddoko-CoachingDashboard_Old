@@ -78,6 +78,20 @@ class Profile extends Model
     }
 
     /**
+     * Primary tag belonging to this profile.
+     */
+    public function tag() {
+        return $this->hasOne('App\Models\Tag');
+    }
+
+    /**
+     * Non-primary tags belonging to this profile.
+     */
+    public function tags() {
+        return $this->hasMany('App\Models\Tag');
+    }
+
+    /**
      * Accessor for $this->gender.
      *
      * @param int $gender

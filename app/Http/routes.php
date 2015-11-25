@@ -49,6 +49,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
+    // Tag endpoints.
+    Route::resource('tag', 'TagController', [
+        'only' => ['index']
+    ]);
+
     // Movement data endpoints.
     Route::resource('profile.movement', 'MovementDataController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
