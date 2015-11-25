@@ -3667,20 +3667,21 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "        data-disabled=\"true\">\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- Tags -->\n" +
+    "    <!-- Primary Tag -->\n" +
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
-    "        data-label=\"Main Sport\"\n" +
-    "        data-key=\"tags\"\n" +
+    "        data-label=\"Primary Sport\"\n" +
+    "        data-key=\"tag\"\n" +
     "        data-type=\"tag\">\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Secondary tags -->\n" +
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
-    "        data-label=\"Secondary Sport\"\n" +
+    "        data-label=\"Other Sports\"\n" +
     "        data-key=\"tags\"\n" +
-    "        data-type=\"tag\">\n" +
+    "        data-type=\"tag\"\n" +
+    "        data-max-tags=\"10\">\n" +
     "    </div>\n" +
     "\n" +
     "</div>\n" +

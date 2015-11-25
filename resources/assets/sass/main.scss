@@ -1,5 +1,14 @@
-
+/**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Styles for selectize inputs.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
 @import '0.variables.scss';
 @import 'master.scss';
+@import '99.selectize.scss';
 @import '_temp.scss';
 @import 'directives/ui-editable-list.scss';

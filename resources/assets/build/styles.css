@@ -1,3 +1,12 @@
+/**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Styles for selectize inputs.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
@@ -8469,6 +8478,38 @@ label {
   color: #e08833; }
 
 /**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Styles for selectize inputs.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
+.selectize-control::before {
+  content: ' ';
+  z-index: 2;
+  position: absolute;
+  display: block;
+  top: 10px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  background: url(../images/ui/spinner.gif);
+  background-size: 16px 16px;
+  opacity: 0; }
+
+.selectize-control.loading {
+  text-align: left; }
+
+.selectize-control.loading::before {
+  opacity: 0.4; }
+
+.selectize-dropdown-content .highlight {
+  background-color: #3bd6b2;
+  color: #333; }
+
+/**
  * Temporary styles
  */
 .temp-landing-badge {
@@ -8481,12 +8522,5 @@ label {
   .temp-landing-badge span {
     display: inline-block;
     margin: 50px auto 0; }
-
-.some-test-style {
-  color: #eec95a;
-  background-color: #eec95a; }
-
-.some-test-style {
-  border: none; }
 
 /*# sourceMappingURL=styles.css.map */

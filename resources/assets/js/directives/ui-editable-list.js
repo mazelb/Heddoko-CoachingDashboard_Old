@@ -118,6 +118,7 @@ angular.module('app.directives')
                 display: '@',
                 key: '@',
                 inputType: '@type',
+                maxTags: '@',
                 isRequired: '=required',
                 isDisabled: '=disabled'
             },
@@ -354,14 +355,18 @@ angular.module('app.directives')
                         scope.options = [];
                         scope.config = {
                             create: true,
-                            valueField: 'title',
+                            valueField: 'id',
                             labelField: 'title',
-                            searchField: 'title',
-                            render: {
-                                option: function(item, escape) {
-                                    return '<div>' + escape(item.title) +'</div>';
-                                }
-                            },
+                            searchField: ['title'],
+                            maxOptions: 15,
+                            maxItems: scope.maxTags || 1,
+
+                            /**
+                             * Called anytime the user types into the input box.
+                             *
+                             * @param string query
+                             * @param function callback
+                             */
                             load: function(query, callback) {
 
                                 // Performance check.
@@ -370,9 +375,11 @@ angular.module('app.directives')
                                     return callback();
                                 }
 
-                                $http.get('/api/tag/search', {
+                                // Queries the API for tags.
+                                $http.get('/api/tag', {
                                     params: {
-                                        query: query
+                                        query: query,
+                                        limit: 15
                                     }
                                 }).then(
                                     function(response) {
@@ -382,6 +389,18 @@ angular.module('app.directives')
                                         callback();
                                     }
                                 );
+                            },
+
+                            /**
+                             * Called anytime the user creates a new tag.
+                             *
+                             * @param string value
+                             * @param object data
+                             */
+                            onOptionAdd: function(value, data) {
+                                console.log('option add...');
+                                console.log(value);
+                                console.log(data);
                             }
                         };
                         break;
