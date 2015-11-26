@@ -5,21 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Heddoko</title>
         <meta name="description" content="">
-        <meta name="user-hash" content="{{ md5(Auth::id()) }}"/>
+        <meta name="user-hash" content="{{ md5(Auth::id()) }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     </head>
     <body id="app" data-ng-controller="MainController">
 
         <div>
             <div data-ng-cloak="" class="no-print">
-                <aside data-ng-include=" 'navigation.html' " id="nav-container">
-                </aside>
+                <aside data-ng-include="'partials/navigation.html'" id="nav-container"></aside>
             </div>
 
             <div class="view-container">
                 <div class="no-print">
                     <section
-                        data-ng-include=" 'header.html' "
+                        data-ng-include="'partials/header.html'"
                         id="header"
                         class="top-header">
                     </section>

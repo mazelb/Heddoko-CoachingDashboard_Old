@@ -5,10 +5,22 @@
  */
 angular.module('app.controllers')
 
-.controller('ImportController', ['$scope', '$routeParams', 'Rover',
-    function($scope, $routeParams, Rover) {
+.controller('ImportController', ['$scope', 'Rover',
+    function($scope, Rover) {
+        Rover.debug('ImportController');
 
-        $scope.params = $routeParams;
+        // Sample uploads.
+        $scope.uploadedMovements = [
+            {
+                scorable: false
+            },
+            {
+                scorable: false
+            },
+            {
+                scorable: false
+            },
+        ];
 
     }
 ]);

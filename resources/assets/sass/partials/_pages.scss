@@ -342,6 +342,9 @@
   margin-top: 0;
 }
 
+/*
+ * Signin page.
+ */
 .page-signin {
     position: fixed;
     width: 100%;
@@ -742,4 +745,11 @@
 }
 .auth-register #footer {
     background-color: rgba(0, 0, 0, .5);
+}
+
+/*
+ * Import pages.
+ */
+.import-page .row.movement-import {
+    margin: 20px auto;
 }

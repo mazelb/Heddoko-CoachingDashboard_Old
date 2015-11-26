@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-page-title.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-page-title.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -793,284 +793,6 @@ angular.module("fmstest.html", []).run(["$templateCache", function($templateCach
     "");
 }]);
 
-angular.module("header.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("header.html",
-    "<header class=\"clearfix\">\n" +
-    "	<div class=\"top-nav\">\n" +
-    "		<ul class=\"nav-left list-unstyled\">\n" +
-    "\n" +
-    "            <!-- Menu button (shows up in mobile views) -->\n" +
-    "			<li>\n" +
-    "				<div class=\"menu-button\" toggle-off-canvas>\n" +
-    "					<span class=\"icon-bar\"></span>\n" +
-    "					<span class=\"icon-bar\"></span>\n" +
-    "					<span class=\"icon-bar\"></span>\n" +
-    "				</div>\n" +
-    "			</li>\n" +
-    "\n" +
-    "            <!-- Menu button (shows up on desktop views) -->\n" +
-    "			<!-- <li>\n" +
-    "				<a href=\"#/\" data-toggle-min-nav class=\"toggle-min\">\n" +
-    "                    <i class=\"fa fa-bars\"></i>\n" +
-    "                </a>\n" +
-    "			</li> -->\n" +
-    "\n" +
-    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
-    "            <li style=\"display: block; width: 20px; height: 1px;\"></li>\n" +
-    "\n" +
-    "            <!-- Group dropdown -->\n" +
-    "            <!-- Generally, we want to keep the user from selecting another group while we're loading data -->\n" +
-    "			<li\n" +
-    "                class=\"onboarding-general\"\n" +
-    "                data-step=\"2\"\n" +
-    "                data-intro=\"Here is where you can find the groups you manage. The black arrow is a shortcut to view\n" +
-    "                            the <strong>{{ global.state.group.selected.name }}</strong>'s details.\">\n" +
-    "\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.data.isFetchingGroups\"\n" +
-    "                        ng-disabled=\"global.data.isFetchingProfiles\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        {{ global.state.group.selected.name || '(no team selected)' }}\n" +
-    "                        <span ng-hide=\"global.data.isFetchingProfiles\" class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul\n" +
-    "                        ng-hide=\"global.data.isFetchingGroups || global.data.isFetchingProfiles\"\n" +
-    "                        class=\"dropdown-menu\">\n" +
-    "\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.state.group.selected = {id: 0}\">\n" +
-    "                                (none)\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li ng-repeat=\"group in global.state.group.list\">\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.state.group.selected = group\">\n" +
-    "                                {{ group.name }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "\n" +
-    "                    <!-- Loading animation, indicating that groups are being fetched -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.data.isFetchingGroups ||\n" +
-    "                            (global.data.isFetchingProfiles && global.state.group.selected.id === 0)\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Link to group page -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.state.group.selected.id === 0 || global.data.isFetchingGroups\"\n" +
-    "                        ng-click=\"global.browseTo.group(global.state.group.selected)\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        title=\"Team page\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
-    "\n" +
-    "            <!-- Profile dropdown -->\n" +
-    "			<li\n" +
-    "                ng-show=\"global.state.group.selected.id > 0\"\n" +
-    "                class=\"onboarding-general\"\n" +
-    "                data-step=\"3\"\n" +
-    "                data-intro=\"Here is where you can find the profiles you manage. If a group is selected, the\n" +
-    "                            profiles listed will be restricted to that group. The black arrow is a\n" +
-    "                            shortcut to view <strong>{{ global.state.profile.selected.first_name }}\n" +
-    "                            </strong>'s details.\">\n" +
-    "\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        <span ng-show=\"global.state.profile.selected.id > 0\">\n" +
-    "                            {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}\n" +
-    "                        </span>\n" +
-    "                        <span ng-show=\"global.state.profile.selected.id === 0\">\n" +
-    "                            {{ '(no athlete selected)' }}\n" +
-    "                        </span>\n" +
-    "\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul ng-hide=\"global.state.profile.list.length === 0\" class=\"dropdown-menu\">\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.state.profile.selected = {id: 0}\">\n" +
-    "                                (none)\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li ng-repeat=\"profile in global.state.profile.list\">\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.state.profile.selected = profile\">\n" +
-    "                                {{ profile.first_name +' '+ profile.last_name }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "\n" +
-    "                    <!-- Loading animation, indicating that profiles are being fetched -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.data.isFetchingProfiles\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Link to profile page -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.state.profile.selected.id > 0 && !global.data.isFetchingProfiles\"\n" +
-    "                        ng-click=\"global.browseTo.profile(global.state.profile.selected)\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        title=\"Athlete page\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Create new profile button -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.state.profile.list.length === 0 && !global.data.isFetchingProfiles\"\n" +
-    "                        ng-click=\"global.browseTo.path('/profile/create')\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default\">\n" +
-    "\n" +
-    "                        Create profile\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "			</li>\n" +
-    "\n" +
-    "            <li ng-show=\"global.isLocal\">\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        Dev\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul class=\"dropdown-menu\">\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\">\n" +
-    "                                Total groups: {{ global.state.group.list.length }} /\n" +
-    "                                Selected: {{ global.state.group.selected.name || 'None' }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\">\n" +
-    "                                Total profiles: {{ global.state.profile.list.length }} /\n" +
-    "                                Selected: {{ global.state.profile.selected.first_name || 'None' }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
-    "		</ul>\n" +
-    "\n" +
-    "        <ul class=\"nav-right list-unstyled\">\n" +
-    "            <li ng-controller=\"SearchController\">\n" +
-    "\n" +
-    "                <!-- Search Filters -->\n" +
-    "                <div class=\"input-group\">\n" +
-    "                    <div class=\"input-group-btn\">\n" +
-    "                        <button\n" +
-    "                            type=\"button\"\n" +
-    "                            class=\"btn btn-default dropdown-toggle\"\n" +
-    "                            data-toggle=\"dropdown\"\n" +
-    "                            aria-haspopup=\"true\"\n" +
-    "                            aria-expanded=\"false\">\n" +
-    "\n" +
-    "                            <span ng-class=\"'fa fa-' + selectedFilter.icon\"></span>\n" +
-    "                            <span class=\"caret\"></span>\n" +
-    "                        </button>\n" +
-    "\n" +
-    "                        <ul class=\"dropdown-menu\">\n" +
-    "                            <li ng-repeat=\"filter in filters track by filter.name\">\n" +
-    "                                <a ng-click=\"filterBy(filter)\" href=\"javascript:;\">\n" +
-    "                                    <span ng-class=\"'fa fa-' + filter.icon\"></span> {{ filter.label }}\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
-    "                    <input type=\"text\" class=\"form-control\" placeholder=\"search...\">\n" +
-    "                </div>\n" +
-    "            </li>\n" +
-    "            <li>\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Settings -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.browseTo.config()\"\n" +
-    "                        class=\"btn btn-default onboarding-general\"\n" +
-    "                        data-step=\"4\"\n" +
-    "                        data-intro=\"Click this button to edit your settings\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-cog fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Onboarding -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.onboarding.general()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default onboarding-general\"\n" +
-    "                        data-step=\"6\"\n" +
-    "                        data-intro=\"Click here whenever you want to see this again\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-question fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Sign out -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.endSession()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-logout onboarding-general\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        data-step=\"5\"\n" +
-    "                        data-intro=\"Use this button when you're ready to log out\"\n" +
-    "                        title=\"Logout\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
-    "        </ul>\n" +
-    "\n" +
-    "	</div>\n" +
-    "</header>\n" +
-    "");
-}]);
-
 angular.module("movements.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movements.html",
     "<header class=\"page-main-header\">\n" +
@@ -1142,115 +864,6 @@ angular.module("movements.html", []).run(["$templateCache", function($templateCa
     "			</div>\n" +
     "		</div>\n" +
     "	</div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("navigation.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("navigation.html",
-    "<div class=\"logo\">\n" +
-    "    <div class=\"logo-container\">\n" +
-    "        <img src=\"../../images/logo/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
-    "        <img src=\"../../images/logo/heddoko_logo_2.svg\" alt=\"Heddoko\" class=\"logo2\">\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<div id=\"nav-wrapper\">\n" +
-    "    <ul id=\"nav\" data-slim-scroll data-collapse-nav data-highlight-active>\n" +
-    "\n" +
-    "        <!-- Landing page -->\n" +
-    "        <li\n" +
-    "            class=\"onboarding-general\"\n" +
-    "            data-step=\"1\"\n" +
-    "            data-intro=\"This is a shortcut to your dashboard.\"\n" +
-    "            data-position=\"right\">\n" +
-    "            <a href=\"#/dashboard\"><span>Dashboard</span></a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <!-- List of groups -->\n" +
-    "		<li>\n" +
-    "            <a href=\"#/group/list\"><span>Teams</span></a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <!-- List of movements -->\n" +
-    "		<li>\n" +
-    "            <a href=\"#/organize\"><span>Organize</span></a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <!-- Submit movement data form -->\n" +
-    "		<li>\n" +
-    "            <a href=\"#/submit-movement\"><span>Submit movement data</span></a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <!-- Submit FMS test form -->\n" +
-    "		<li>\n" +
-    "            <a href=\"#/fmstest\"><span>submit fms test results</span></a>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <!-- FMS results page -->\n" +
-    "		<li>\n" +
-    "            <a href=\"#/fmsresults\"><span>fms results</span></a>\n" +
-    "		</li>\n" +
-    "\n" +
-    "        <!-- Live FMS pages. -->\n" +
-    "        <li>\n" +
-    "            <!-- TODO: Call this Live FMS? -->\n" +
-    "            <a href=\"#/fms/live\">Movement Screen</a>\n" +
-    "\n" +
-    "            <!-- TODO: Use ng-repeat when ready -->\n" +
-    "            <ul style=\"display: block\">\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/ds\"><span>Deep Squat</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/hs\"><span>Hurdle Step</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/il\"><span>Inline Lunge</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/sm\"><span>Shoulder Mobility</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/sm\"><span>Impingement (C. Test)</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/demo/aslr\"><span>Active Straight-Leg Raise</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/tspu\"><span>Trunk Stability Push-Up</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/pu\"><span>Press-Up (C. Test)</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/rs\"><span>Rotary Stability</span></a>\n" +
-    "                </li>\n" +
-    "                <li>\n" +
-    "                    <a href=\"#/fms/live/ps\"><span>Posterior Rocking (C. Test)</span></a>\n" +
-    "                </li>\n" +
-    "            </ul>\n" +
-    "        </li>\n" +
-    "\n" +
-    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em;\">\n" +
-    "            {{ global.appVersion }}\n" +
-    "		</li>\n" +
-    "\n" +
-    "		<!-- <li ng-controller=\"MovementScreenController\" ng-show=\"Rover.isLocal == true\">\n" +
-    "            <a href=\"#/movements\"><span>movement screen</span></a>\n" +
-    "			<ul style=\"display: block;\">\n" +
-    "                <li ng-repeat=\"movement_page in data.movement_pages\">\n" +
-    "					<a\n" +
-    "                        href=\"#/movements\"\n" +
-    "                        ng-click=\"select_movement(movement_page)\">\n" +
-    "\n" +
-    "                        <i ng-if=\"movement_page.submitted\" class=\"fa fa-2x fa-check\" style=\"color:white;\"></i>\n" +
-    "                        <span>{{movement_page.name}}</span>\n" +
-    "                    </a>\n" +
-    "				</li>\n" +
-    "            </ul>\n" +
-    "        </li> -->\n" +
-    "    </ul>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3254,12 +2867,59 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
 
 angular.module("import/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("import/index.html",
-    "<div class=\"page\">\n" +
+    "<div class=\"page import-page\">\n" +
     "    <ui-page-title data-title=\"'Import'\" data-icon=\"'cloud-upload'\"></ui-page-title>\n" +
+    "    <div class=\"clearfix\"></div>\n" +
     "\n" +
-    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
-    "        In Development\n" +
-    "    </h2>\n" +
+    "    <div class=\"movement-import row\">\n" +
+    "        <div class=\"col-md-3 col-md-offset-3\">\n" +
+    "            + Capture New Movement\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- List of uploaded movements -->\n" +
+    "    <div ng-repeat=\"movement in uploadedMovements\" class=\"movement-import row\">\n" +
+    "        <div class=\"col-md-3\">\n" +
+    "\n" +
+    "            <!-- Movement title -->\n" +
+    "            <input type=\"text\" class=\"form-control\" placeholder=\"Title for movement\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-md-3\">\n" +
+    "            (Preview)\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Action links -->\n" +
+    "        <div class=\"col-md-6\">\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "                <!-- Thumbnail link -->\n" +
+    "                <div class=\"col-md-5 text-right\">\n" +
+    "                    <a href=\"javascript:;\">\n" +
+    "                        Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-md-1 text-center\">\n" +
+    "                    <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Video edit link -->\n" +
+    "                <div class=\"col-md-5 text-left\">\n" +
+    "                    <a href=\"javascript:;\">\n" +
+    "                        Edit Video <i class=\"fa fa-pencil\"></i>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Clear button -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 text-center\">\n" +
+    "            <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3310,6 +2970,393 @@ angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function(
     "        </a>\n" +
     "    </li>\n" +
     "</ol>\n" +
+    "");
+}]);
+
+angular.module("partials/header.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/header.html",
+    "<header class=\"clearfix\">\n" +
+    "	<div class=\"top-nav\">\n" +
+    "		<ul class=\"nav-left list-unstyled\">\n" +
+    "\n" +
+    "            <!-- Menu button (shows up in mobile views) -->\n" +
+    "			<li>\n" +
+    "				<div class=\"menu-button\" toggle-off-canvas>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "					<span class=\"icon-bar\"></span>\n" +
+    "				</div>\n" +
+    "			</li>\n" +
+    "\n" +
+    "            <!-- Menu button (shows up on desktop views) -->\n" +
+    "			<!-- <li>\n" +
+    "				<a href=\"#/\" data-toggle-min-nav class=\"toggle-min\">\n" +
+    "                    <i class=\"fa fa-bars\"></i>\n" +
+    "                </a>\n" +
+    "			</li> -->\n" +
+    "\n" +
+    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
+    "            <li style=\"display: block; width: 20px; height: 1px;\"></li>\n" +
+    "\n" +
+    "            <!-- Group dropdown -->\n" +
+    "            <!-- Generally, we want to keep the user from selecting another group while we're loading data -->\n" +
+    "			<li\n" +
+    "                class=\"onboarding-general\"\n" +
+    "                data-step=\"2\"\n" +
+    "                data-intro=\"Here is where you can find the groups you manage. The black arrow is a shortcut to view\n" +
+    "                            the <strong>{{ global.state.group.selected.name }}</strong>'s details.\">\n" +
+    "\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        ng-hide=\"global.data.isFetchingGroups\"\n" +
+    "                        ng-disabled=\"global.data.isFetchingProfiles\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        {{ global.state.group.selected.name || '(no team selected)' }}\n" +
+    "                        <span ng-hide=\"global.data.isFetchingProfiles\" class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul\n" +
+    "                        ng-hide=\"global.data.isFetchingGroups || global.data.isFetchingProfiles\"\n" +
+    "                        class=\"dropdown-menu\">\n" +
+    "\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.group.selected = {id: 0}\">\n" +
+    "                                (none)\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li ng-repeat=\"group in global.state.group.list\">\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.group.selected = group\">\n" +
+    "                                {{ group.name }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "\n" +
+    "                    <!-- Loading animation, indicating that groups are being fetched -->\n" +
+    "                    <button\n" +
+    "                        ng-show=\"global.data.isFetchingGroups ||\n" +
+    "                            (global.data.isFetchingProfiles && global.state.group.selected.id === 0)\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Link to group page -->\n" +
+    "                    <button\n" +
+    "                        ng-hide=\"global.state.group.selected.id === 0 || global.data.isFetchingGroups\"\n" +
+    "                        ng-click=\"global.browseTo.group(global.state.group.selected)\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        title=\"Team page\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <!-- Profile dropdown -->\n" +
+    "			<li\n" +
+    "                ng-show=\"global.state.group.selected.id > 0\"\n" +
+    "                class=\"onboarding-general\"\n" +
+    "                data-step=\"3\"\n" +
+    "                data-intro=\"Here is where you can find the profiles you manage. If a group is selected, the\n" +
+    "                            profiles listed will be restricted to that group. The black arrow is a\n" +
+    "                            shortcut to view <strong>{{ global.state.profile.selected.first_name }}\n" +
+    "                            </strong>'s details.\">\n" +
+    "\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        ng-hide=\"global.state.profile.list.length === 0\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        <span ng-show=\"global.state.profile.selected.id > 0\">\n" +
+    "                            {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}\n" +
+    "                        </span>\n" +
+    "                        <span ng-show=\"global.state.profile.selected.id === 0\">\n" +
+    "                            {{ '(no athlete selected)' }}\n" +
+    "                        </span>\n" +
+    "\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul ng-hide=\"global.state.profile.list.length === 0\" class=\"dropdown-menu\">\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.profile.selected = {id: 0}\">\n" +
+    "                                (none)\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li ng-repeat=\"profile in global.state.profile.list\">\n" +
+    "                            <a href=\"javascript:;\" ng-click=\"global.state.profile.selected = profile\">\n" +
+    "                                {{ profile.first_name +' '+ profile.last_name }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "\n" +
+    "                    <!-- Loading animation, indicating that profiles are being fetched -->\n" +
+    "                    <button\n" +
+    "                        ng-show=\"global.data.isFetchingProfiles\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Link to profile page -->\n" +
+    "                    <button\n" +
+    "                        ng-show=\"global.state.profile.selected.id > 0 && !global.data.isFetchingProfiles\"\n" +
+    "                        ng-click=\"global.browseTo.profile(global.state.profile.selected)\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-info\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        title=\"Athlete page\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Create new profile button -->\n" +
+    "                    <button\n" +
+    "                        ng-show=\"global.state.profile.list.length === 0 && !global.data.isFetchingProfiles\"\n" +
+    "                        ng-click=\"global.browseTo.path('/profile/create')\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default\">\n" +
+    "\n" +
+    "                        Create profile\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "			</li>\n" +
+    "\n" +
+    "            <li ng-show=\"global.isLocal\">\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Face of dropdown -->\n" +
+    "                    <button\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        Dev\n" +
+    "                        <span class=\"caret\"></span>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Contents of dropdown -->\n" +
+    "                    <ul class=\"dropdown-menu\">\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\">\n" +
+    "                                Total groups: {{ global.state.group.list.length }} /\n" +
+    "                                Selected: {{ global.state.group.selected.name || 'None' }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\">\n" +
+    "                                Total profiles: {{ global.state.profile.list.length }} /\n" +
+    "                                Selected: {{ global.state.profile.selected.first_name || 'None' }}\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "		</ul>\n" +
+    "\n" +
+    "        <ul class=\"nav-right list-unstyled\">\n" +
+    "            <li ng-controller=\"SearchController\">\n" +
+    "\n" +
+    "                <!-- Search Filters -->\n" +
+    "                <div class=\"input-group\">\n" +
+    "                    <div class=\"input-group-btn\">\n" +
+    "                        <button\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
+    "\n" +
+    "                            <span ng-class=\"'fa fa-' + selectedFilter.icon\"></span>\n" +
+    "                            <span class=\"caret\"></span>\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li ng-repeat=\"filter in filters track by filter.name\">\n" +
+    "                                <a ng-click=\"filterBy(filter)\" href=\"javascript:;\">\n" +
+    "                                    <span ng-class=\"'fa fa-' + filter.icon\"></span> {{ filter.label }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                    <input type=\"text\" class=\"form-control\" placeholder=\"search...\">\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Settings -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.browseTo.config()\"\n" +
+    "                        class=\"btn btn-default onboarding-general\"\n" +
+    "                        data-step=\"4\"\n" +
+    "                        data-intro=\"Click this button to edit your settings\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-cog fa-fw\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Onboarding -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.onboarding.general()\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default onboarding-general\"\n" +
+    "                        data-step=\"6\"\n" +
+    "                        data-intro=\"Click here whenever you want to see this again\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-question fa-fw\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Sign out -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.endSession()\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-logout onboarding-general\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        data-step=\"5\"\n" +
+    "                        data-intro=\"Use this button when you're ready to log out\"\n" +
+    "                        title=\"Logout\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "\n" +
+    "	</div>\n" +
+    "</header>\n" +
+    "");
+}]);
+
+angular.module("partials/navigation.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/navigation.html",
+    "<div class=\"logo\">\n" +
+    "    <div class=\"logo-container\">\n" +
+    "        <img src=\"../../images/logo/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
+    "        <img src=\"../../images/logo/heddoko_logo_2.svg\" alt=\"Heddoko\" class=\"logo2\">\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div id=\"nav-wrapper\">\n" +
+    "    <ul id=\"nav\" data-slim-scroll data-collapse-nav data-highlight-active>\n" +
+    "\n" +
+    "        <!-- Landing page -->\n" +
+    "        <li\n" +
+    "            class=\"onboarding-general\"\n" +
+    "            data-step=\"1\"\n" +
+    "            data-intro=\"This is a shortcut to your dashboard.\"\n" +
+    "            data-position=\"right\">\n" +
+    "            <a href=\"#/dashboard\"><span>Dashboard</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- List of groups -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/group/list\"><span>Teams</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- List of movements -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/movements\"><span>Movements</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- Submit movement data form -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/submit-movement\"><span>Submit movement data</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- Submit FMS test form -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/fmstest\"><span>submit fms test results</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- FMS results page -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/fmsresults\"><span>fms results</span></a>\n" +
+    "		</li>\n" +
+    "\n" +
+    "        <!-- Live FMS pages. -->\n" +
+    "        <li>\n" +
+    "            <!-- TODO: Call this Live FMS? -->\n" +
+    "            <a href=\"#/fms/live\">Movement Screen</a>\n" +
+    "\n" +
+    "            <!-- TODO: Use ng-repeat when ready -->\n" +
+    "            <ul style=\"display: block\">\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/ds\"><span>Deep Squat</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/hs\"><span>Hurdle Step</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/il\"><span>Inline Lunge</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/sm\"><span>Shoulder Mobility</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/sm\"><span>Impingement (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/demo/aslr\"><span>Active Straight-Leg Raise</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/tspu\"><span>Trunk Stability Push-Up</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/pu\"><span>Press-Up (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/rs\"><span>Rotary Stability</span></a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/fms/live/ps\"><span>Posterior Rocking (C. Test)</span></a>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em;\">\n" +
+    "            {{ global.appVersion }}\n" +
+    "		</li>\n" +
+    "\n" +
+    "		<!-- <li ng-controller=\"MovementScreenController\" ng-show=\"Rover.isLocal == true\">\n" +
+    "            <a href=\"#/movements\"><span>movement screen</span></a>\n" +
+    "			<ul style=\"display: block;\">\n" +
+    "                <li ng-repeat=\"movement_page in data.movement_pages\">\n" +
+    "					<a\n" +
+    "                        href=\"#/movements\"\n" +
+    "                        ng-click=\"select_movement(movement_page)\">\n" +
+    "\n" +
+    "                        <i ng-if=\"movement_page.submitted\" class=\"fa fa-2x fa-check\" style=\"color:white;\"></i>\n" +
+    "                        <span>{{movement_page.name}}</span>\n" +
+    "                    </a>\n" +
+    "				</li>\n" +
+    "            </ul>\n" +
+    "        </li> -->\n" +
+    "    </ul>\n" +
+    "</div>\n" +
     "");
 }]);
 

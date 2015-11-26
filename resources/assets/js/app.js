@@ -103,7 +103,7 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
 			templateUrl: 'import/index.html',
             controller: 'ImportController'
 		})
-        .when('/organize', {
+        .when('/movements', {
 			templateUrl: 'movements/index.html',
             controller: 'TestController'
 		})
@@ -192,8 +192,6 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
 			templateUrl: "fmsresults.html"
 		}).when("/movementscreen", {
 			templateUrl: "movementscreen.html"
-		}).when("/movements", {
-			templateUrl: "movements.html"
 		}).otherwise({
 			redirectTo: '/'
 		});

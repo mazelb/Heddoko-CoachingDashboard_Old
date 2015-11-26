@@ -1,8 +1,55 @@
 
-<div class="page">
+<div class="page import-page">
     <ui-page-title data-title="'Import'" data-icon="'cloud-upload'"></ui-page-title>
+    <div class="clearfix"></div>
 
-    <h2 style="text-align: center; color: #ccc;">
-        In Development
-    </h2>
+    <div class="movement-import row">
+        <div class="col-md-3 col-md-offset-3">
+            + Capture New Movement
+        </div>
+    </div>
+
+    <!-- List of uploaded movements -->
+    <div ng-repeat="movement in uploadedMovements" class="movement-import row">
+        <div class="col-md-3">
+
+            <!-- Movement title -->
+            <input type="text" class="form-control" placeholder="Title for movement">
+        </div>
+
+        <div class="col-md-3">
+            (Preview)
+        </div>
+
+        <!-- Action links -->
+        <div class="col-md-6">
+            <div class="row">
+
+                <!-- Thumbnail link -->
+                <div class="col-md-5 text-right">
+                    <a href="javascript:;">
+                        Choose Thumbnail <i class="fa fa-picture-o"></i>
+                    </a>
+                </div>
+
+                <div class="col-md-1 text-center">
+                    <i class="fa fa-angle-double-right"></i>
+                </div>
+
+                <!-- Video edit link -->
+                <div class="col-md-5 text-left">
+                    <a href="javascript:;">
+                        Edit Video <i class="fa fa-pencil"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear button -->
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary">Done</button>
+        </div>
+    </div>
 </div>
