@@ -9,8 +9,8 @@
  */
 angular.module('app.services')
 
-.factory('ProfileService', ['$http', '$filter',
-    function($http, $filter) {
+.factory('ProfileService', ['$http', '$filter', 'Utilities',
+    function($http, $filter, Utilities) {
 
         return {
 
@@ -116,6 +116,7 @@ angular.module('app.services')
                     id: profile.id,
                     first_name: profile.first_name || '',
                     last_name: profile.last_name || '',
+                    tag_id: Utilities.getId(profile.tag_id) || '',
                     height: profile.height || 0.0,
                     mass: profile.mass || 0.0,
                     dob: profile.dob || '',
@@ -139,12 +140,41 @@ angular.module('app.services')
                 }
 
                 // Format groups into an array of IDs.
-                if (profile.groups && profile.groups.length > 0 && profile.groups[0].id)
+                if (profile.groups && profile.groups.length > 0) {
+                    formatted.groups = profile.groups.map(Utilities.getId);
+                }
+
+                // Make sure primary tag is an ID. If we have a newly created tag without an ID,
+                // we'll let the API know we want to create a new tag in the process.
+                if (profile.primary_tag.length)
                 {
-                    formatted.groups = [];
-                    angular.forEach(profile.groups, function(group) {
-                        formatted.groups.push(group.id);
+                    if (Utilities.getId(profile.primary_tag) > 0) {
+                        formatted.tag_id = Utilities.getId(profile.primary_tag);
+                    }
+
+                    else {
+                        formatted.primary_tag_title = profile.primary_tag;
+                    }
+                }
+
+                // Format secondary tags into an array of IDs.
+                if (profile.secondary_tags && profile.secondary_tags.length > 0)
+                {
+                    formatted.secondary_tags = [];
+                    formatted.secondary_tag_titles = [];
+                    angular.forEach(profile.secondary_tags, function(tag) {
+
+                        // If tag exists, retrieve its ID.
+                        if (Utilities.getId(tag) > 0) {
+                            formatted.secondary_tags.push(Utilities.getId(tag));
+                        }
+
+                        // Else, let API know we want to create new tags.
+                        else {
+                            formatted.secondary_tag_titles.push(tag);
+                        }
                     });
+                    formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
                 }
 
                 return formatted;

@@ -9,8 +9,8 @@ namespace App\Http\Controllers;
 use Auth;
 use Image;
 
+use App\Models\Tag;
 use App\Models\Group;
-use App\Http\Requests;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,7 +44,9 @@ class ProfileController extends Controller
         }
 
         // Retrieve profiles.
-        $profiles = $builder->with('avatar')->get();
+        // TODO: only embed specified relations.
+        $embed = ['groups', 'primaryTag', 'secondaryTags', 'avatar'];
+        $profiles = $builder->with($embed)->get();
 
         // Resize avatars.
         if (count($profiles)) {
@@ -94,7 +96,6 @@ class ProfileController extends Controller
             $profile->groups()->sync((array) $this->request->input('groups'));
         }
 
-        // ...
         return [
             'list' => $this->index(),
             'profile' => $profile
@@ -110,7 +111,8 @@ class ProfileController extends Controller
     public function show($id)
     {
         // Make sure we have a valid profile.
-        if (!$profile = Profile::find($id)) {
+        $embed = ['groups', 'managers', 'screenings', 'primaryTag', 'secondaryTags'];
+        if (!$profile = Profile::with($embed)->find($id)) {
             return response('Profile Not Found.', 404);
         }
 
@@ -148,16 +150,55 @@ class ProfileController extends Controller
             'meta'
         ]));
 
+        // Update primary tag.
+        if ($this->request->has('tag_id'))
+        {
+            $tagId = (int) $this->request->input('tag_id');
+            $profile->tag_id = $tagId ?: null;
+        }
+
         // Save profile.
         $profile->save();
 
-        // Attach associated group.
+        // Create new tag for this profile.
+        if ($this->request->has('primary_tag_title'))
+        {
+            $tag = Tag::firstOrCreate(['title' => $this->request->input('primary_tag_title')]);
+            $profile->primaryTag()->associate($tag);
+        }
+
+        // Attach groups.
         if ($this->request->has('groups'))
         {
             $profile->groups()->sync((array) $this->request->input('groups'));
         }
 
-        // ...
+        // Attach managers.
+        if ($this->request->has('managers'))
+        {
+            $profile->managers()->sync((array) $this->request->input('managers'));
+        }
+
+        // Attach secondary tags.
+        if ($this->request->has('secondary_tags'))
+        {
+            $profile->secondaryTags()->sync((array) $this->request->input('secondary_tags'));
+        }
+
+        // Create new secondary tags.
+        if ($this->request->has('secondary_tag_titles'))
+        {
+            $secondaryTags = [];
+            $titles = (array) $this->request->input('secondary_tag_titles');
+            foreach ($titles as $title)
+            {
+                $tag = Tag::firstOrCreate(['title' => $title]);
+                $secondaryTags[] = $tag->id;
+            }
+
+            $profile->secondaryTags()->attach($secondaryTags);
+        }
+
         return [
             'list' => $this->index(),
             'profile' => $profile

@@ -16,7 +16,28 @@ class Tag extends Model
 	protected $fillable = ['title'];
 
     /**
+     * Attributes which should be hidden from the models' array form.
+     */
+    protected $hidden = ['pivot'];
+
+    /**
      * Indicates if the model should be timestamped.
      */
     public $timestamps = false;
+
+    /**
+     * Profiles which are assigned this tag.
+     */
+    public function profiles()
+    {
+        return $this->morphedByMany('App\Models\Profile', 'taggable');
+    }
+
+    /**
+     * Movements which are assigned this tag.
+     */
+    public function movements()
+    {
+        return $this->morphedByMany('App\Models\Movement', 'taggable');
+    }
 }

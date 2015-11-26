@@ -34,9 +34,9 @@ class Movement extends Model
     /**
      * Tags belonging to this movement.
      */
-	public function tags() {
-		return $this->hasMany('App\Models\Tag');
-	}
+    public function tags() {
+        return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
 
     /**
      * Profile or movement screening test this movement belongs to.

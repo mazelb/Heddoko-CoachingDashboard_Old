@@ -51,7 +51,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 
     // Tag endpoints.
     Route::resource('tag', 'TagController', [
-        'only' => ['index']
+        'only' => ['index', 'store']
     ]);
 
     // Movement data endpoints.

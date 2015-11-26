@@ -59,12 +59,25 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        return response('Not Implemented.', 501);
+        // Make sure we have a valid title.
+        $title = trim($this->request->input('title'));
+        if (strlen($title) < 1) {
+            return response('Tag Title Too Short.', 400);
+        }
+
+        // Make sure tag doesn't already exist.
+        if ($exists = Tag::where('title', '=', $title)->first()) {
+            return response('Tag Already Exists.', 204);
+        }
+
+        // Create new tag.
+        $tag = Tag::create(['title' => $title]);
+
+        return $tag;
     }
 
     /**

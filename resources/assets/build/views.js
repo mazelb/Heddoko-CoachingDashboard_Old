@@ -1727,12 +1727,12 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "        <!-- Tag -->\n" +
     "        <div ng-switch-when=\"tag\">\n" +
     "            <b ng-show=\"state != 'editing'\">\n" +
-    "                <span style=\"color: #ccc;\">(in development)</span>\n" +
+    "                {{ display }}\n" +
     "            </b>\n" +
     "\n" +
     "            <div ng-show=\"state == 'editing'\">\n" +
     "                <selectize\n" +
-    "                    ng-model=\"model[key]\"\n" +
+    "                    ng-model=\"data\"\n" +
     "                    class=\"form-control text-left\"\n" +
     "                    config=\"config\"\n" +
     "                    options=\"options\">\n" +
@@ -3671,7 +3671,7 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Primary Sport\"\n" +
-    "        data-key=\"tag\"\n" +
+    "        data-key=\"primary_tag\"\n" +
     "        data-type=\"tag\">\n" +
     "    </div>\n" +
     "\n" +
@@ -3679,11 +3679,10 @@ angular.module("profile/partials/details.html", []).run(["$templateCache", funct
     "    <div\n" +
     "        data-ui-editable-list-item\n" +
     "        data-label=\"Other Sports\"\n" +
-    "        data-key=\"tags\"\n" +
+    "        data-key=\"secondary_tags\"\n" +
     "        data-type=\"tag\"\n" +
     "        data-max-tags=\"10\">\n" +
     "    </div>\n" +
-    "\n" +
     "</div>\n" +
     "");
 }]);

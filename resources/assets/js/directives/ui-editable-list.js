@@ -139,6 +139,9 @@ angular.module('app.directives')
                     case 'date':
                     case 'datetime':
 
+                        // Default date value.
+                        scope.model[scope.key] = scope.model[scope.key] || '';
+
                         // Format display label.
                         var angularFormat = 'MMMM d, yyyy', momentFormat = 'MMMM D, YYYY';
                         if (attrs.type == 'datetime') {
@@ -147,15 +150,19 @@ angular.module('app.directives')
                         }
 
                         scope.format = angularFormat;
-                        if (scope.model[scope.key].length)
-                        {
-                            scope.timestamp = scope.model[scope.key].replace(' ', 'T') + '-05:00';
-                            scope.timestamp = $filter('date')(scope.timestamp, angularFormat);
-                        }
-                        else
-                        {
-                            scope.timestamp = '';
-                        }
+                        scope.updateTimestamp = function() {
+
+                            if (scope.model[scope.key].length)
+                            {
+                                scope.timestamp = scope.model[scope.key].replace(' ', 'T') + '-05:00';
+                                scope.timestamp = $filter('date')(scope.timestamp, angularFormat);
+                            }
+                            else
+                            {
+                                scope.timestamp = '';
+                            }
+                        };
+                        scope.updateTimestamp();
 
                         // Create a datetime picker.
                         if (!attrs.disabled) {
@@ -175,19 +182,37 @@ angular.module('app.directives')
                                 .data('DateTimePicker').date(scope.timestamp);
                             });
                         }
+
+                        // Updates the view whenever the model changes.
+                        scope.$watch('model', function(model) {
+                            scope.updateTimestamp();
+                        });
                         break;
 
                     // Gender.
                     case 'gender':
-                        if (scope.model[scope.key] && scope.model[scope.key].length > 0) {
-                            scope.display = scope.model[scope.key].charAt(0).toUpperCase() +
-                                scope.model[scope.key].slice(1);
-                        }
 
-                        else {
-                            scope.display = '';
-                        }
+                        scope.updateDisplay = function() {
 
+                            // Default gender value.
+                            scope.model[scope.key] = scope.model[scope.key] || '';
+
+                            if (scope.model[scope.key].length > 0) {
+                                scope.display = scope.model[scope.key].charAt(0).toUpperCase() +
+                                    scope.model[scope.key].slice(1);
+                            }
+
+                            else {
+                                scope.display = '';
+                            }
+                        };
+
+                        scope.updateDisplay();
+
+                        // Updates the view whenever the model changes.
+                        scope.$watch('model', function(model) {
+                            scope.updateDisplay();
+                        });
                         break;
 
                     // Height, Length
@@ -285,7 +310,11 @@ angular.module('app.directives')
                         // Default mass value.
                         scope.model[scope.key] = scope.model[scope.key] || 0.0;
 
-                        // Formats length according to selected unit.
+                        /**
+                         * Formats length according to selected unit.
+                         *
+                         * @param string unit
+                         */
                         scope.updateUnit = function(unit) {
                             switch (unit) {
                                 case 'g':
@@ -350,9 +379,67 @@ angular.module('app.directives')
 
                     case 'tag':
 
+                        scope.updateData = function() {
+
+                            // Array of tags.
+                            if (angular.isArray(scope.model[scope.key]))
+                            {
+                                Rover.debug('Looping through tags array...');
+
+                                // Setup data model, available options and displayed value.
+                                scope.data = [];
+                                scope.display = [];
+                                scope.options = [];
+                                angular.forEach(scope.model[scope.key], function(tag) {
+
+                                    // Push ID to data model.
+                                    scope.data.push(tag.id);
+
+                                    // Push title to displayed array.
+                                    scope.display.push(tag.title);
+
+                                    // Add tag to options list.
+                                    scope.options.push({
+                                        id: tag.id,
+                                        title: tag.title
+                                    });
+                                });
+
+                                // Generate display value.
+                                scope.display =
+                                    scope.model[scope.key].length ? scope.display.join(', ') :
+                                    '(none selected)';
+                            }
+
+                            // Single tag
+                            else if (angular.isObject(scope.model[scope.key]))
+                            {
+                                Rover.debug('Inspecting tag object...');
+                                Rover.debug(scope.model[scope.key]);
+
+                                if (scope.model[scope.key].id)
+                                {
+                                    scope.data = scope.model[scope.key].id;
+                                    scope.display = scope.model[scope.key].title;
+                                    scope.options = [{
+                                        id:scope.model[scope.key].id,
+                                        title: scope.model[scope.key].title
+                                    }];
+                                }
+                                else {
+                                    scope.display = '(none selected)';
+                                }
+                            }
+
+                            // Default value.
+                            else {
+                                scope.model[scope.key] = scope.maxTags > 1 ? [] : {};
+                                scope.display = '(none selected)';
+                            }
+                        };
+                        scope.updateData();
+
                         // Config object for Selectize.
-                        scope.model = '';
-                        scope.options = [];
                         scope.config = {
                             create: true,
                             valueField: 'id',
@@ -370,6 +457,7 @@ angular.module('app.directives')
                             load: function(query, callback) {
 
                                 // Performance check.
+                                Rover.debug('Fetching tags...');
                                 Rover.debug(query);
                                 if (!query || !query.length) {
                                     return callback();
@@ -398,16 +486,50 @@ angular.module('app.directives')
                              * @param object data
                              */
                             onOptionAdd: function(value, data) {
-                                console.log('option add...');
-                                console.log(value);
-                                console.log(data);
+
+                                // Performance check.
+                                if (value.trim().length < 1 || data.id) {
+                                    return;
+                                }
+
+                                // Create the new tag.
+                                Rover.debug('Creating tag: ' + value);
+                                $http.post('/api/tag', {
+                                    title: value.trim()
+                                });
+                            },
+
+                            /**
+                             * Called anytime the value of the input changes.
+                             *
+                             * @param array data
+                             */
+                            onChange: function(data) {
+                                Rover.debug('updating data');
+                                Rover.debug(data);
+                                // scope.model[scope.key] = scope.maxTags > 1 ? data : data[0];
+                                scope.model[scope.key] = data;
                             }
                         };
+
+                        // Updates the view whenever the model changes.
+                        scope.$watch('model', function(model) {
+                            scope.updateData();
+                        });
                         break;
 
                     default:
-                        // Default length value.
-                        scope.model[scope.key] = scope.model[scope.key] || '';
+
+                        scope.init = function() {
+                            // Default length value.
+                            scope.model[scope.key] = scope.model[scope.key] || '';
+                        };
+                        scope.init();
+
+                        // Updates the view whenever the model changes.
+                        scope.$watch('model', function(model) {
+                            scope.init();
+                        });
                 }
             },
             templateUrl: 'directive-partials/ui-editable-list-item.html'

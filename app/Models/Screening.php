@@ -1,6 +1,12 @@
 <?php
 /**
  *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Database model for Functional Movement Screenings.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Models;
 

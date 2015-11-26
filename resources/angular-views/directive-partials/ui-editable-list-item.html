@@ -165,12 +165,12 @@
         <!-- Tag -->
         <div ng-switch-when="tag">
             <b ng-show="state != 'editing'">
-                <span style="color: #ccc;">(in development)</span>
+                {{ display }}
             </b>
 
             <div ng-show="state == 'editing'">
                 <selectize
-                    ng-model="model[key]"
+                    ng-model="data"
                     class="form-control text-left"
                     config="config"
                     options="options">

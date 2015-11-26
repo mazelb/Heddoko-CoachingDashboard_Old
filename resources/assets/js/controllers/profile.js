@@ -11,7 +11,8 @@ angular.module('app.controllers')
 
 .controller('ProfileController',
     ['$scope', '$location', '$filter', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
-    function($scope, $location, $filter, Teams, Athletes, FMSForm, Rover, ProfileService, GroupService) {
+    'Utilities', '$http',
+    function($scope, $location, $filter, Teams, Athletes, FMSForm, Rover, ProfileService, GroupService, Utilities, $http) {
 
         Rover.debug('ProfileController');
 

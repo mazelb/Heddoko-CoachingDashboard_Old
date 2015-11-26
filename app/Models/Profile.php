@@ -1,5 +1,9 @@
 <?php
 /**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
  * @brief   Database model for profiles.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
@@ -27,6 +31,7 @@ class Profile extends Model
 	protected $fillable = [
         'first_name',
         'last_name',
+        'tag_id',
         'height',
         'mass',
         'dob',
@@ -67,7 +72,7 @@ class Profile extends Model
      * Functional Movement Screenings belonging to this profile.
      */
     public function screenings() {
-        return $this->hasMany('App\Models\FMS');
+        return $this->hasMany('App\Models\Screening');
     }
 
     /**
@@ -80,15 +85,15 @@ class Profile extends Model
     /**
      * Primary tag belonging to this profile.
      */
-    public function tag() {
-        return $this->hasOne('App\Models\Tag');
+    public function primaryTag() {
+        return $this->belongsTo('App\Models\Tag', 'tag_id');
     }
 
     /**
      * Non-primary tags belonging to this profile.
      */
-    public function tags() {
-        return $this->hasMany('App\Models\Tag');
+    public function secondaryTags() {
+        return $this->morphToMany('App\Models\Tag', 'taggable');
     }
 
     /**
@@ -142,18 +147,5 @@ class Profile extends Model
         }
 
         $this->attributes['gender'] = $gender;
-    }
-
-    /**
-     * Arrays this profile instance, while making sure the relation are arrayed as well.
-     *
-     * @return array
-     */
-    public function toArray()
-    {
-        $groups = $this->groups;
-        $managers = $this->managers;
-
-        return parent::toArray();
     }
 }

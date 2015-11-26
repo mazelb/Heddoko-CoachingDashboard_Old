@@ -26,6 +26,12 @@
 .selectize-control.loading::before {
     opacity: 0.4;
 }
+.selectize-control .selectize-input {
+    @include border-radius(0);
+}
+.selectize-control.single .selectize-input::after {
+    display: none;
+}
 
 .selectize-dropdown-content .highlight {
     background-color: $heddokogreen;

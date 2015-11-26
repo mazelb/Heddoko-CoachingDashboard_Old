@@ -125,7 +125,7 @@ angular.module('app.rover', [])
 
                 // If the profile somehow belongs to a different group, reload the profile
                 // list and related data before browsing to the profile page.
-                if (profile.groups[0] && profile.groups[0].id != this.state.group.selected.id)
+                if (profile.groups.length && profile.groups[0].id != this.state.group.selected.id)
                 {
                     // Select the group and reload the profile list.
                     this.state.group.selected = profile.groups[0];

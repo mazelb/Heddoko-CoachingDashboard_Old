@@ -105,6 +105,18 @@ class UserExperienceUpdates extends Migration
         {
             $table->renameColumn('name', 'title');
         });
+
+        // Drop "profile_tag" and "movement_tag" pivot tables.
+        Schema::drop('movement_tag');
+        Schema::drop('profile_tag');
+
+        // Create "taggables" table for polymorphic many-to-many relations.
+        Schema::create('taggables', function(Blueprint $table)
+		{
+			$table->integer('tag_id')->unsigned();
+			$table->integer('taggable_id')->unsigned();
+            $table->string('taggable_type');
+		});
     }
 
     /**
@@ -114,6 +126,43 @@ class UserExperienceUpdates extends Migration
      */
     public function down()
     {
+        // Drop "taggables" table.
+        Schema::drop('taggables');
+
+        // Re-create "profile_tag" and "movement_tag" pivot tables.
+        Schema::create('profile_tag', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('profile_id')->unsigned();
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+			$table->integer('tag_id')->unsigned();
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+		});
+        Schema::create('movement_tag', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->integer('movement_id')->unsigned();
+            $table->foreign('movement_id')
+                ->references('id')
+                ->on('movements')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+			$table->integer('tag_id')->unsigned();
+            $table->foreign('tag_id')
+                ->references('id')
+                ->on('tags')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+		});
+
         // Revert name change on "tags" table.
         Schema::table('tags', function(Blueprint $table)
         {
