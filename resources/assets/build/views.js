@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'import.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'header.html', 'movements.html', 'navigation.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-page-title.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -15,7 +15,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "<!-- Main tasks -->\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "        <a href=\"#/analyze\" class=\"temp-landing-badge\">\n" +
     "            <span>\n" +
     "                Analyze <br>\n" +
     "                a Movement\n" +
@@ -24,7 +24,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "        <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
     "            <span>\n" +
     "                Compare Two or<br>\n" +
     "                More Movements\n" +
@@ -33,7 +33,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "        <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
     "            <span>\n" +
     "                Compare FMS <br>\n" +
     "                Results\n" +
@@ -52,7 +52,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "        <a href=\"#/capture\" class=\"temp-landing-badge\">\n" +
     "            <span>\n" +
     "                Record a Live<br>\n" +
     "                Movement\n" +
@@ -61,9 +61,9 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    </div>\n" +
     "\n" +
     "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
-    "        <a ng-click=\"Rover.alert('In Development.')\" href=\"javascript:;\" class=\"temp-landing-badge\">\n" +
+    "        <a href=\"#/fms\" class=\"temp-landing-badge\">\n" +
     "            <span>\n" +
-    "                Start a FMS\n" +
+    "                An FMS Test\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
@@ -997,58 +997,77 @@ angular.module("header.html", []).run(["$templateCache", function($templateCache
     "            </li>\n" +
     "		</ul>\n" +
     "\n" +
-    "        <!-- Other shortcuts (pulled to right) -->\n" +
-    "		<ul class=\"nav-right-button list-unstyled pull-right\">\n" +
-    "            <div class=\"btn-group\">\n" +
+    "        <ul class=\"nav-right list-unstyled\">\n" +
+    "            <li ng-controller=\"SearchController\">\n" +
     "\n" +
-    "                <!-- Settings -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.config()\"\n" +
-    "                    class=\"btn btn-default onboarding-general\"\n" +
-    "                    data-step=\"4\"\n" +
-    "                    data-intro=\"Click this button to edit your settings\">\n" +
+    "                <!-- Search Filters -->\n" +
+    "                <div class=\"input-group\">\n" +
+    "                    <div class=\"input-group-btn\">\n" +
+    "                        <button\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
     "\n" +
-    "                    <i class=\"fa fa-cog fa-fw\"></i>\n" +
-    "                </button>\n" +
+    "                            <span ng-class=\"'fa fa-' + selectedFilter.icon\"></span>\n" +
+    "                            <span class=\"caret\"></span>\n" +
+    "                        </button>\n" +
     "\n" +
-    "                <!-- Onboarding -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.onboarding.general()\"\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"btn btn-default onboarding-general\"\n" +
-    "                    data-step=\"6\"\n" +
-    "                    data-intro=\"Click here whenever you want to see this again\">\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li ng-repeat=\"filter in filters track by filter.name\">\n" +
+    "                                <a ng-click=\"filterBy(filter)\" href=\"javascript:;\">\n" +
+    "                                    <span ng-class=\"'fa fa-' + filter.icon\"></span> {{ filter.label }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                    <input type=\"text\" class=\"form-control\" placeholder=\"search...\">\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "            <li>\n" +
+    "                <div class=\"btn-group\">\n" +
     "\n" +
-    "                    <i class=\"fa fa-question fa-fw\"></i>\n" +
-    "                </button>\n" +
+    "                    <!-- Settings -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.browseTo.config()\"\n" +
+    "                        class=\"btn btn-default onboarding-general\"\n" +
+    "                        data-step=\"4\"\n" +
+    "                        data-intro=\"Click this button to edit your settings\">\n" +
     "\n" +
-    "                <!-- Sign out -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.endSession()\"\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"btn btn-logout onboarding-general\"\n" +
-    "                    data-toggle=\"tooltip\"\n" +
-    "                    data-placement=\"bottom\"\n" +
-    "                    data-step=\"5\"\n" +
-    "                    data-intro=\"Use this button when you're ready to log out\"\n" +
-    "                    title=\"Logout\">\n" +
+    "                        <i class=\"fa fa-cog fa-fw\"></i>\n" +
+    "                    </button>\n" +
     "\n" +
-    "                    <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
-    "                </button>\n" +
-    "            </div>\n" +
-    "		</ul>\n" +
+    "                    <!-- Onboarding -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.onboarding.general()\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default onboarding-general\"\n" +
+    "                        data-step=\"6\"\n" +
+    "                        data-intro=\"Click here whenever you want to see this again\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-question fa-fw\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Sign out -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.endSession()\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-logout onboarding-general\"\n" +
+    "                        data-toggle=\"tooltip\"\n" +
+    "                        data-placement=\"bottom\"\n" +
+    "                        data-step=\"5\"\n" +
+    "                        data-intro=\"Use this button when you're ready to log out\"\n" +
+    "                        title=\"Logout\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "        </ul>\n" +
+    "\n" +
     "	</div>\n" +
     "</header>\n" +
-    "");
-}]);
-
-angular.module("import.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("import.html",
-    "<div class=\"page\">\n" +
-    "    <h1 style=\"text-align: center; color: #ccc;\">\n" +
-    "        In Development\n" +
-    "    </h1>\n" +
-    "</div>\n" +
     "");
 }]);
 
@@ -1145,17 +1164,22 @@ angular.module("navigation.html", []).run(["$templateCache", function($templateC
     "            data-step=\"1\"\n" +
     "            data-intro=\"This is a shortcut to your dashboard.\"\n" +
     "            data-position=\"right\">\n" +
-    "            <a href=\"#/dashboard\"><span>dashboard</span></a>\n" +
+    "            <a href=\"#/dashboard\"><span>Dashboard</span></a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- List of groups -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/group/list\"><span>teams</span></a>\n" +
+    "            <a href=\"#/group/list\"><span>Teams</span></a>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- List of movements -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/organize\"><span>Organize</span></a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- Submit movement data form -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/submit-movement\"><span>submit movement data</span></a>\n" +
+    "            <a href=\"#/submit-movement\"><span>Submit movement data</span></a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- Submit FMS test form -->\n" +
@@ -1434,6 +1458,42 @@ angular.module("submit-movement-demo.html", []).run(["$templateCache", function(
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("analysis/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("analysis/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Analyze'\" data-icon=\"'line-chart'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("capture/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("capture/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Capture'\" data-icon=\"'circle'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("comparison/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("comparison/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Compare'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1756,6 +1816,19 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-page-title.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-page-title.html",
+    "<!-- Title -->\n" +
+    "<span class=\"ui-page-title-background\">\n" +
+    "    <span class=\"ui-page-title-skew\">\n" +
+    "        <span class=\"ui-page-title\">\n" +
+    "            {{ title }} <i ng-show=\"icon\" ng-class=\"'fa fa-' + icon\"></i>\n" +
+    "        </span>\n" +
+    "    </span>\n" +
+    "</span>\n" +
     "");
 }]);
 
@@ -2345,6 +2418,18 @@ angular.module("fms/demo/test.html", []).run(["$templateCache", function($templa
     "        <!-- Trials -->\n" +
     "        <ng-include src=\"'fms/live/partials/test-trials.html'\"></ng-include>\n" +
     "	</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("fms/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("fms/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'FMS'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3163,6 +3248,30 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        You can also take this opportunity to\n" +
     "        <a ng-click=\"Rover.browseTo.path('group/create')\" href=\"javascript:;\">create one</a>.\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("import/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("import/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Import'\" data-icon=\"'cloud-upload'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("movements/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movements/index.html",
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Organize'\" data-icon=\"'th'\"></ui-page-title>\n" +
+    "\n" +
+    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "        In Development\n" +
+    "    </h2>\n" +
     "</div>\n" +
     "");
 }]);

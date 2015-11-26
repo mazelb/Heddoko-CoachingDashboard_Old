@@ -170,7 +170,8 @@ angular.module('app.directives')
 
                                 // Create date picker.
                                 $(element).find('input[type="datetime"]').datetimepicker({
-                                    format: momentFormat
+                                    format: momentFormat,
+                                    viewMode: 'months'
                                 })
 
                                 // Attach "onChange" event.

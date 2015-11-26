@@ -200,45 +200,74 @@
             </li>
 		</ul>
 
-        <!-- Other shortcuts (pulled to right) -->
-		<ul class="nav-right-button list-unstyled pull-right">
-            <div class="btn-group">
+        <ul class="nav-right list-unstyled">
+            <li ng-controller="SearchController">
 
-                <!-- Settings -->
-                <button
-                    ng-click="global.browseTo.config()"
-                    class="btn btn-default onboarding-general"
-                    data-step="4"
-                    data-intro="Click this button to edit your settings">
+                <!-- Search Filters -->
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button
+                            type="button"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
 
-                    <i class="fa fa-cog fa-fw"></i>
-                </button>
+                            <span ng-class="'fa fa-' + selectedFilter.icon"></span>
+                            <span class="caret"></span>
+                        </button>
 
-                <!-- Onboarding -->
-                <button
-                    ng-click="global.onboarding.general()"
-                    type="button"
-                    class="btn btn-default onboarding-general"
-                    data-step="6"
-                    data-intro="Click here whenever you want to see this again">
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="filter in filters track by filter.name">
+                                <a ng-click="filterBy(filter)" href="javascript:;">
+                                    <span ng-class="'fa fa-' + filter.icon"></span> {{ filter.label }}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" placeholder="search...">
+                </div>
+            </li>
+            <li>
+                <div class="btn-group">
 
-                    <i class="fa fa-question fa-fw"></i>
-                </button>
+                    <!-- Settings -->
+                    <button
+                        ng-click="global.browseTo.config()"
+                        class="btn btn-default onboarding-general"
+                        data-step="4"
+                        data-intro="Click this button to edit your settings">
 
-                <!-- Sign out -->
-                <button
-                    ng-click="global.endSession()"
-                    type="button"
-                    class="btn btn-logout onboarding-general"
-                    data-toggle="tooltip"
-                    data-placement="bottom"
-                    data-step="5"
-                    data-intro="Use this button when you're ready to log out"
-                    title="Logout">
+                        <i class="fa fa-cog fa-fw"></i>
+                    </button>
 
-                    <i class="fa fa-sign-out fa-fw"></i>
-                </button>
-            </div>
-		</ul>
+                    <!-- Onboarding -->
+                    <button
+                        ng-click="global.onboarding.general()"
+                        type="button"
+                        class="btn btn-default onboarding-general"
+                        data-step="6"
+                        data-intro="Click here whenever you want to see this again">
+
+                        <i class="fa fa-question fa-fw"></i>
+                    </button>
+
+                    <!-- Sign out -->
+                    <button
+                        ng-click="global.endSession()"
+                        type="button"
+                        class="btn btn-logout onboarding-general"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        data-step="5"
+                        data-intro="Use this button when you're ready to log out"
+                        title="Logout">
+
+                        <i class="fa fa-sign-out fa-fw"></i>
+                    </button>
+                </div>
+            </li>
+        </ul>
+
 	</div>
 </header>

@@ -29,7 +29,7 @@ angular.module('app.rover', [])
         this.state = $sessionStorage[this.userHash];
 
         // Configuration object.
-        this.state.config = this.state.config || {};
+        this.store.config = this.store.config || {};
 
         // Counts the # of requests being made, and displays the loading icon accordingly.
         // We start the counter at 1 and decrement it once the application is running.
@@ -204,16 +204,15 @@ angular.module('app.rover', [])
             $('.load_circle_wrapper').addClass('loaded');
         };
 
-        // TODO: create settings object in "this.state".
-        // TODO: if value doesn't exist, set it to defaultValue.
-        this.getConfig = function(key, defaultValue)
-        {
-            return defaultValue;
-        };
-        this.setConfig = function(key, value)
-        {
-            return value;
-        };
+        // Handles retrieving/storing configuration data.
+        this.getConfig = function(key, defaultValue) {
+            return this.config[key] ? this.config[key] : defaultValue;
+        }.bind(this);
+        this.setConfig = function(key, value) {
+            var oldValue = this.config[key];
+            this.config[key] = value;
+            return oldValue;
+        }.bind(this);
 
         // Retrieves the ID of an object.
         this.getId = function(obj) {

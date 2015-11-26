@@ -20,7 +20,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.5';
+var _appVersion = '0.3.7';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -45,18 +45,20 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
             console.log('Configuring App...');
         }
 
+        //
         // Landing page.
+        //
         return $routeProvider.when('/', {
 			redirectTo: '/dashboard'
 		})
-
-        // Main dashboard.
         .when('/dashboard', {
             templateUrl: 'dashboard.html',
             controller: 'DashboardController'
 		})
 
+        //
         // Group routes.
+        //
         .when('/group/list', {
             templateUrl: "group/list.html",
             controller: "GroupController"
@@ -74,7 +76,9 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
             controller: 'GroupController'
 		})
 
+        //
         // Profile routes.
+        //
         .when("/profile/list", {
             templateUrl: "profile/list.html",
             controller: "ProfileController"
@@ -92,19 +96,49 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
             controller: "ProfileController"
 		})
 
-        // Data import route.
+        //
+        // Data routes.
+        //
         .when('/import', {
-			templateUrl: 'import.html',
+			templateUrl: 'import/index.html',
             controller: 'ImportController'
 		})
-
-        // Movement data demo route.
-        .when('/submit-movement', {
-			templateUrl: "submit-movement-demo.html",
-            controller: 'SubmitMovementDemoController'
+        .when('/organize', {
+			templateUrl: 'movements/index.html',
+            controller: 'TestController'
 		})
 
-        // Demo FMS routes.
+        //
+        // Live capture routes.
+        //
+        .when('/capture', {
+			templateUrl: 'capture/index.html',
+            controller: 'TestController'
+		})
+
+        //
+        // Data analysis routes.
+        //
+        .when('/analyze', {
+			templateUrl: 'analysis/index.html',
+            controller: 'TestController'
+		})
+
+        //
+        // Data comparison routes.
+        //
+        .when('/compare', {
+			templateUrl: 'comparison/index.html',
+            controller: 'TestController'
+		})
+
+        //
+        // FMS routes.
+        //
+        .when('/fms', {
+			templateUrl: 'fms/index.html',
+            controller: 'TestController'
+		})
         .when('/fms/demo/:name?/:step?',
         {
             templateUrl: function(params)
@@ -120,8 +154,6 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
             },
             controller: 'FMSDemoController'
         })
-
-        // Live FMS routes.
         .when('/fms/live/:name?/:step?',
         {
             templateUrl: function(params)
@@ -138,11 +170,20 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
             controller: 'FMSController'
         })
 
+        //
         // Other routes.
+        //
         .when('/settings', {
 			templateUrl: 'settings.html'
 		})
 
+        //
+        // Demo routes.
+        //
+        .when('/submit-movement', {
+			templateUrl: "submit-movement-demo.html",
+            controller: 'SubmitMovementDemoController'
+		})
         .when("/fmstest", {
 			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {

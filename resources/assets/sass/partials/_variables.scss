@@ -1,43 +1,9 @@
-/*------------------------------------------------------------------
-[Master Stylesheet]
-
-Project:	Admin theme
-Version:	1.1
-Ownership:  Joao Garin
-
-Table of contents :
-
-To go directly to one of these categories simply search for the topic as it is
-displayed here
-
-1 - General CSS
-2 - Typography
-3 - Containers / Tables / Lists
-4 - Forms / Form Elements
-5 - Buttons and Links
-6 - Dropdowns / Toolbars / Navigation
-7 - Labels / Alerts / Progress Bars
-8 - Panels / Modals / Tooltips
-9 - Dividers / Spacings
-10 - Animations
-11 - Icons / Images
-12 - Mail
-13 - Profile
-14 - Pricing / Ribbons
-15 - Charts / Charting widgets
-16 - Messages
-17 - Custom Pages
-18 - Pie Charts
-
-Color paletter :
-
-Green - #383d43
-Orange - #db5031
-Light gray - #c1bfc0
-Yellow - #fef9d9
-Dark brown - #302624
-
--------------------------------------------------------------------*/
+/**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ */
 
 $green: #45825A;
 $blue:#383d43;
@@ -52,13 +18,15 @@ $info-alt:#8170ca;
 $heddokogreen:#3bd6b2;
 $silver:#cbd4e3;
 $orangeaccent:#ff8d46;
+$text-color: #767676;
+$background-color: #f3f3f3;
 
 @mixin transform($transform){
-  -webkit-transform: $transform;
-  -moz-transform: $transform;
-  -ms-transform: $transform;
-  -o-transform: $transform;
-  transform: $transform;
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
 }
 
 @mixin transition($transition){
