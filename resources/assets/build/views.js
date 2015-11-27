@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-page-title.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -1432,6 +1432,16 @@ angular.module("directive-partials/ui-editable-list-item.html", []).run(["$templ
     "");
 }]);
 
+angular.module("directive-partials/ui-movement-placeholder.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-movement-placeholder.html",
+    "<div class=\"ui-movement-container four-three-aspect-ratio\">\n" +
+    "    <div class=\"ui-movement-placeholder\">\n" +
+    "        Movement Placeholder\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("directive-partials/ui-page-title.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-page-title.html",
     "<!-- Title -->\n" +
@@ -1442,6 +1452,19 @@ angular.module("directive-partials/ui-page-title.html", []).run(["$templateCache
     "        </span>\n" +
     "    </span>\n" +
     "</span>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-taggable-input.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-taggable-input.html",
+    "<div class=\"ui-taggable-input\">\n" +
+    "    <selectize\n" +
+    "        ng-model=\"data\"\n" +
+    "        class=\"form-control text-left\"\n" +
+    "        config=\"config\"\n" +
+    "        options=\"options\">\n" +
+    "    </selectize>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -2878,15 +2901,22 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    </div>\n" +
     "\n" +
     "    <!-- List of uploaded movements -->\n" +
-    "    <div ng-repeat=\"movement in uploadedMovements\" class=\"movement-import row\">\n" +
+    "    <div ng-repeat=\"file in uploadedMovements\" class=\"movement-import row\">\n" +
     "        <div class=\"col-md-3\">\n" +
     "\n" +
     "            <!-- Movement title -->\n" +
-    "            <input type=\"text\" class=\"form-control\" placeholder=\"Title for movement\">\n" +
+    "            <input ng-model=\"file.title\" type=\"text\" class=\"form-control\" placeholder=\"Movement Title\">\n" +
+    "\n" +
+    "            <!-- Tags -->\n" +
+    "            <ui-taggable-input\n" +
+    "                data-model=\"file\"\n" +
+    "                data-key=\"tags\"\n" +
+    "                data-max-tags=\"20\">\n" +
+    "            </ui-taggable-input>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"col-md-3\">\n" +
-    "            (Preview)\n" +
+    "            <ui-movement-placeholder data-aspect-ratio=\"4:3\"></ui-movement-placeholder>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Action links -->\n" +
@@ -2915,7 +2945,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    </div>\n" +
     "\n" +
     "    <!-- Clear button -->\n" +
-    "    <div class=\"row\">\n" +
+    "    <div class=\"movement-import row\">\n" +
     "        <div class=\"col-sm-12 text-center\">\n" +
     "            <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
     "        </div>\n" +

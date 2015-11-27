@@ -10,15 +10,22 @@
     </div>
 
     <!-- List of uploaded movements -->
-    <div ng-repeat="movement in uploadedMovements" class="movement-import row">
+    <div ng-repeat="file in uploadedMovements" class="movement-import row">
         <div class="col-md-3">
 
             <!-- Movement title -->
-            <input type="text" class="form-control" placeholder="Title for movement">
+            <input ng-model="file.title" type="text" class="form-control" placeholder="Movement Title">
+
+            <!-- Tags -->
+            <ui-taggable-input
+                data-model="file"
+                data-key="tags"
+                data-max-tags="20">
+            </ui-taggable-input>
         </div>
 
         <div class="col-md-3">
-            (Preview)
+            <ui-movement-placeholder data-aspect-ratio="4:3"></ui-movement-placeholder>
         </div>
 
         <!-- Action links -->
@@ -47,7 +54,7 @@
     </div>
 
     <!-- Clear button -->
-    <div class="row">
+    <div class="movement-import row">
         <div class="col-sm-12 text-center">
             <button type="button" class="btn btn-primary">Done</button>
         </div>

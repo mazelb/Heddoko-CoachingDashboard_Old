@@ -12,13 +12,16 @@ angular.module('app.controllers')
         // Sample uploads.
         $scope.uploadedMovements = [
             {
-                scorable: false
+                title: 'Trial 001',
+                tags: []
             },
             {
-                scorable: false
+                title: 'File 0001134',
+                tags: []
             },
             {
-                scorable: false
+                title: 'Raw File 0001135',
+                tags: []
             },
         ];
 
