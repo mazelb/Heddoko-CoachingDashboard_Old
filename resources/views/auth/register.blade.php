@@ -188,8 +188,8 @@
 								<input type="text"
 											class="form-control"
 											placeholder="Mobile"
-											name="mobile"
-											value="{{ old('mobile') }}" >
+											name="phone"
+											value="{{ old('phone') }}" >
 							</div>
 						</div>
 

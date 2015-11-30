@@ -25,11 +25,11 @@ class AuthController extends Controller
     */
 
     use AuthenticatesAndRegistersUsers;
-	
+
 	protected $username = 'username';
 
 	protected $redirectPath = '/';
-		
+
     /**
      * Create a new authentication controller instance.
      *
@@ -55,10 +55,10 @@ class AuthController extends Controller
 			'email' => 'required|email|max:255',
 			'username' => 'required|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
-			'city' => 'required',
-			'dob' => 'required',
-			'sex' => 'required|in:unspecified,male,female',
-			'mobile' => 'numeric',
+			// 'city' => 'required',
+			// 'dob' => 'required',
+			// 'sex' => 'required|in:unspecified,male,female',
+			// 'mobile' => 'numeric',
 		]);
 
     }
@@ -71,59 +71,59 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-		
+
 		$new_user = User::create([
 
 			'email' => $data['email'],
 			'username' => $data['username'],
 			'password' => bcrypt($data['password']),
-			'city' => $data['city'],
-			'dob' => $data['dob'],
-			'sex' => $data['sex'],
-			'mobile' => $data['mobile'],
+			// 'city' => $data['city'],
+			// 'dob' => $data['dob'],
+			// 'sex' => $data['sex'],
+			'phone' => $data['phone'],
 		]);
-		
+
 		switch ($data['newAccountType'])
 		{
-			
+
 			case 'athlete':
-			
+
 				$new_user->attachRole(Role::where('name', 'athlete')->firstOrFail()->id);
-				
-				Athlete::create([
-								'first_name' => $data['first_name'],
-								'last_name' => $data['last_name'],
-								'user_id' => $new_user->id
-				]);
-				
+
+				// Athlete::create([
+				// 				'first_name' => $data['first_name'],
+				// 				'last_name' => $data['last_name'],
+				// 				'user_id' => $new_user->id
+				// ]);
+
 				break;
-				
+
 			case 'coach':
-			
+
 				$new_user->attachRole(Role::where('name', 'coach')->firstOrFail()->id);
-				
-				Coach::create([
-								'first_name' => $data['first_name'],
-								'last_name' => $data['last_name'],
-								'user_id' => $new_user->id
-				]);
-				
+
+				// Coach::create([
+				// 				'first_name' => $data['first_name'],
+				// 				'last_name' => $data['last_name'],
+				// 				'user_id' => $new_user->id
+				// ]);
+
 				break;
-				
+
 			case 'admin':
-			
+
 				$new_user->attachRole(Role::where('name', 'admin')->firstOrFail()->id);
-				
-				Admin::create([
-								'first_name' => $data['first_name'],
-								'last_name' => $data['last_name'],
-								'user_id' => $new_user->id
-				]);
-				
+
+				// Admin::create([
+				// 				'first_name' => $data['first_name'],
+				// 				'last_name' => $data['last_name'],
+				// 				'user_id' => $new_user->id
+				// ]);
+
 				break;
-			
+
 			default:
-			
+
 		}
 
 		return $new_user;

@@ -14,7 +14,7 @@
 Route::get('/', ['middleware' => 'auth', function()
 {
     // Coaches dashboard.
-	if (Entrust::hasRole('manager'))
+	if (Entrust::hasRole('manager') || Entrust::hasRole('coach'))
     {
 		return view('layouts.angular');
 	}
