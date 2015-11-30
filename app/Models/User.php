@@ -10,17 +10,18 @@
  */
 namespace App\Models;
 
+use App\Traits\HasAvatarTrait as HasAvatar;
+use App\Traits\ArrayableResourceTrait as ArrayableResource;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
-use App\Traits\HasAvatarTrait as HasAvatar;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, EntrustUserTrait, HasAvatar;
+    use Authenticatable, CanResetPassword, EntrustUserTrait, HasAvatar, ArrayableResource;
 
     /**
      * The attributes that are mass assignable.
