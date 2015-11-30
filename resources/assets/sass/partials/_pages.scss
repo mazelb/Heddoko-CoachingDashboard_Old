@@ -3,7 +3,7 @@
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- *    - Pages
+ *    Pages
  */
 
 /*
@@ -751,5 +751,11 @@
  * Import pages.
  */
 .import-page .row.movement-import {
-    margin: 30px auto;
+    margin: 40px auto;
+}
+.import-page .row .movement-title {
+    margin: 10px auto;
+    border: none;
+    border-bottom: 1px dotted #ccc;
+    background-color: transparent;
 }

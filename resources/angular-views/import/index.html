@@ -4,8 +4,10 @@
     <div class="clearfix"></div>
 
     <div class="movement-import row">
-        <div class="col-md-3 col-md-offset-3">
-            + Capture New Movement
+        <div class="col-md-3 col-md-offset-3 text-center">
+            <button class="btn btn-primary btn-circle btn-lg">
+                <i class="fa fa-plus"></i>
+            </button>
         </div>
     </div>
 
@@ -14,7 +16,11 @@
         <div class="col-md-3">
 
             <!-- Movement title -->
-            <input ng-model="file.title" type="text" class="form-control" placeholder="Movement Title">
+            <input
+                ng-model="file.title"
+                type="text"
+                class="form-control movement-title"
+                placeholder="Movement Title">
 
             <!-- Tags -->
             <ui-taggable-input

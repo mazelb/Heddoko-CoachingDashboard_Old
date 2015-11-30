@@ -15766,9 +15766,13 @@ angular.module("fms/demo/partials/test-sagittal.html", []).run(["$templateCache"
     "</div>\n" +
     "\n" +
     "<div class=\"panel-body\">\n" +
-    "    <video class=\"demo-test\" style=\"margin: 0 20%; width: 60%;\">\n" +
-    "        <source ng-src=\"{{'../../../../demo/aslr/left/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
-    "        <source src=\"{{'../../../../demo/aslr/left/sagittal.mp4'}}\" type=\"video/mp4\"/>\n" +
+    "    <video class=\"demo-test\" style=\"margin: 0 20%; width: 60%; transform:scale(1.5); position: relative; top: 40px\">\n" +
+    "        <!-- <source ng-src=\"{{ '../../../../demo/aslr/analysis/sagittal.webm?1' }}\" type=\"video/webm\"/> -->\n" +
+    "        <source src=\"{{ '../../../../demo/aslr/analysis/sagittal.mp4?1' }}\" type=\"video/mp4\"/>\n" +
+    "        <!-- <source ng-src=\"{{'../../../../demo/aslr/analysis/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/analysis/sagittal.mp4'}}\" type=\"video/mp4\"/> -->\n" +
+    "        <!-- <source ng-src=\"{{'../../../../demo/aslr/left/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/sagittal.mp4'}}\" type=\"video/mp4\"/> -->\n" +
     "        Sorry, your browser doesn't support HTML5 video.\n" +
     "    </video>\n" +
     "</div>\n" +
@@ -16682,8 +16686,10 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    <div class=\"clearfix\"></div>\n" +
     "\n" +
     "    <div class=\"movement-import row\">\n" +
-    "        <div class=\"col-md-3 col-md-offset-3\">\n" +
-    "            + Capture New Movement\n" +
+    "        <div class=\"col-md-3 col-md-offset-3 text-center\">\n" +
+    "            <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                <i class=\"fa fa-plus\"></i>\n" +
+    "            </button>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -16692,7 +16698,11 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        <div class=\"col-md-3\">\n" +
     "\n" +
     "            <!-- Movement title -->\n" +
-    "            <input ng-model=\"file.title\" type=\"text\" class=\"form-control\" placeholder=\"Movement Title\">\n" +
+    "            <input\n" +
+    "                ng-model=\"file.title\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control movement-title\"\n" +
+    "                placeholder=\"Movement Title\">\n" +
     "\n" +
     "            <!-- Tags -->\n" +
     "            <ui-taggable-input\n" +
