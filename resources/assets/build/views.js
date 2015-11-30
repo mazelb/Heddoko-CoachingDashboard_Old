@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -2980,11 +2980,18 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
+angular.module("movement-editor/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movement-editor/footer.html",
+    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
+    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Save changes</button>\n" +
+    "");
+}]);
+
 angular.module("movement-editor/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movement-editor/index.html",
-    "<h1 style=\"color: #ccc;\">\n" +
+    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
     "    In Development.\n" +
-    "</h1>\n" +
+    "</h3>\n" +
     "");
 }]);
 
@@ -3236,6 +3243,11 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                                Selected: {{ global.state.profile.selected.first_name || 'None' }}\n" +
     "                            </a>\n" +
     "                        </li>\n" +
+    "                        <li>\n" +
+    "                            <a href=\"javascript:;\"data-toggle=\"modal\" data-target=\"#overlay-screen\">\n" +
+    "                                Overlay Test\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
     "                    </ul>\n" +
     "                </div>\n" +
     "            </li>\n" +
@@ -3312,6 +3324,47 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "\n" +
     "	</div>\n" +
     "</header>\n" +
+    "");
+}]);
+
+angular.module("partials/modal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/modal.html",
+    "<div class=\"modal fade\" id=\"overlay-screen\" tabindex=\"-1\" data-ng-controller=\"ModalController\">\n" +
+    "    <div class=\"modal-dialog modal-lg\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <!-- Overlay title -->\n" +
+    "            <header class=\"modal-header\">\n" +
+    "                <button\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"close\"\n" +
+    "                    data-dismiss=\"modal\"\n" +
+    "                    aria-label=\"Close\">\n" +
+    "\n" +
+    "                    <span aria-hidden=\"true\">&times;</span>\n" +
+    "                </button>\n" +
+    "                <h2 class=\"modal-title text-center\" id=\"overlay-screen-title\">{{ title }}</h2>\n" +
+    "            </header>\n" +
+    "\n" +
+    "            <!-- Overlay content -->\n" +
+    "            <div\n" +
+    "                data-ng-show=\"bodyTemplate.length > 0\"\n" +
+    "                data-ng-include=\"bodyTemplate\"\n" +
+    "                class=\"modal-body\">\n" +
+    "            </div>\n" +
+    "            <div data-ng-show=\"bodyTemplate.length === 0\" class=\"modal-body\">\n" +
+    "                Nothing here...\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Overlay footer -->\n" +
+    "            <footer\n" +
+    "                data-ng-show=\"footerTemplate.length > 0\"\n" +
+    "                data-ng-include=\"footerTemplate\"\n" +
+    "                class=\"modal-footer\">\n" +
+    "            </footer>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -4154,10 +4207,17 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
+angular.module("thumbnail-selector/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("thumbnail-selector/footer.html",
+    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
+    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Use as thumbnail</button>\n" +
+    "");
+}]);
+
 angular.module("thumbnail-selector/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("thumbnail-selector/index.html",
-    "<h1 style=\"color: #ccc;\">\n" +
+    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
     "    In Development.\n" +
-    "</h1>\n" +
+    "</h3>\n" +
     "");
 }]);

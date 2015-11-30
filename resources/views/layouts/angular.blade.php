@@ -42,6 +42,9 @@
             </div>
         </div>
 
+        <!-- Overlayed screens (all overlayed screens are shown through this modal) -->
+        <div data-ng-include="'partials/modal.html'"></div>
+
         <!-- Fonts & stylesheets -->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">

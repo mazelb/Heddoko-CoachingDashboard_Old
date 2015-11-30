@@ -1,0 +1,37 @@
+
+<div class="modal fade" id="overlay-screen" tabindex="-1" data-ng-controller="ModalController">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Overlay title -->
+            <header class="modal-header">
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close">
+
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title text-center" id="overlay-screen-title">{{ title }}</h2>
+            </header>
+
+            <!-- Overlay content -->
+            <div
+                data-ng-show="bodyTemplate.length > 0"
+                data-ng-include="bodyTemplate"
+                class="modal-body">
+            </div>
+            <div data-ng-show="bodyTemplate.length === 0" class="modal-body">
+                Nothing here...
+            </div>
+
+            <!-- Overlay footer -->
+            <footer
+                data-ng-show="footerTemplate.length > 0"
+                data-ng-include="footerTemplate"
+                class="modal-footer">
+            </footer>
+        </div>
+    </div>
+</div>

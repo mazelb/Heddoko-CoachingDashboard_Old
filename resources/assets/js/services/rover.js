@@ -156,18 +156,50 @@ angular.module('app.rover', [])
         // Overlays.
         //
 
+        // Overlay data.
+        this.overlayData = {
+            title: '',
+            bodyTemplate: '',
+            footerTemplate: ''
+        };
+
         /**
          * Opens the movement thumbnail overlay.
          */
         this.openThumbnailSelector = function() {
-
+            this.openOverlay(
+                'Choose Thumbnail Cover',
+                'thumbnail-selector/index.html',
+                'thumbnail-selector/footer.html'
+            );
         };
 
         /**
          * Opens the movement editor overlay.
          */
         this.openMovementEditor = function() {
+            this.openOverlay(
+                'Movement Editor',
+                'movement-editor/index.html',
+                'movement-editor/footer.html'
+            );
+        };
 
+        /**
+         * Opens the overlay screen.
+         */
+        this.openOverlay = function(title, bodyTemplate, footerTemplate) {
+            this.debug('Opening overlay "' + title + '"');
+
+            // Update overlay data.
+            this.overlayData = {
+                title: title,
+                bodyTemplate: bodyTemplate,
+                footerTemplate: footerTemplate
+            };
+
+            // Open overlay.
+            $('#overlay-screen').modal();
         };
 
         //
