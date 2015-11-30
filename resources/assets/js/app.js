@@ -10,13 +10,19 @@
 
 // Initializes the AngularJS application.
 var app = angular.module('app', [
-    'ngStorage', 'ngRoute', 'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
+
+    // External dependencies.
+    'ngFileUpload', 'ngRoute', 'ngStorage', 'selectize',
+
+    // General dependencies.
+    'backendHeddoko',
+    'app.controllers', 'app.directives', 'app.rover', 'app.services', 'app.utilities', 'app.views', 
+
+    // TODO: review what these dependencies do and whether they can be removed or not.
+    'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
     "textAngular", "ui.tree", "ngMap", "ngTagsInput", "app.ui.ctrls", "app.ui.services",
-    'selectize',
-    'app.views', 'app.controllers', 'app.directives', "app.form.validation", "app.ui.form.ctrls",
-    "app.ui.form.directives", "app.tables", "app.map", "app.task", "app.chart.ctrls",
-    "app.chart.directives","countTo", "backendHeddoko", "angular-chartist", 'app.rover', 'app.services',
-    'ngFileUpload'
+    "app.form.validation", "app.ui.form.ctrls", "app.ui.form.directives", "app.tables", "app.map",
+    "app.task", "app.chart.ctrls", "app.chart.directives","countTo", "angular-chartist"
 ]);
 
 // Defines some constants.

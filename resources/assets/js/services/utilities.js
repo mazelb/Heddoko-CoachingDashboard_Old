@@ -3,11 +3,11 @@
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- * @brief   The Utilities service is used throughout the app and should be made available to other
- *          modules and controllers through dependency injection.
+ * @brief   The Utilities service contains general helper methods to be used throughout the app.
  * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
-angular.module('app.services')
+angular.module('app.utilities', [])
 
 .service('Utilities', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout',
     function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout) {
@@ -15,11 +15,16 @@ angular.module('app.services')
         // Dev variables.
         this.timestamp = Date.now();
         this.isLocal =
-            (window.location.hostname == 'localhost' ||
-                window.location.hostname.match(/.*\.local$/i) ||
-                window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
+            ($window.location.hostname == 'localhost' ||
+                $window.location.hostname.match(/.*\.local$/i) ||
+                $window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
-        // Retrieves the ID from an object.
+        /**
+         * Retrieves the ID from an object.
+         *
+         * @param mixed obj
+         * @return int
+         */
         this.getId = function(obj) {
 
             // Performance check.
@@ -39,6 +44,39 @@ angular.module('app.services')
 
             // In any other case, assume the arguments are invalid.
             return 0;
+        };
+
+        /**
+         * Logs a message to the console.
+         *
+         * @param string msg
+         */
+        this.debug = function(msg) {
+            if (this.isLocal) {
+                $log.debug(msg);
+            }
+        };
+        this.error = function(msg) {
+            $log.error(msg);
+        };
+        this.alert = function(msg) {
+            $window.alert(msg);
+        };
+
+        /**
+         * Displays the loading animation.
+         */
+        this.showLoading = function() {
+            $('.page-loading-overlay').removeClass('loaded');
+            $('.load_circle_wrapper').removeClass('loaded');
+        };
+
+        /**
+         * Hides the loading animation.
+         */
+        this.hideLoading = function() {
+            $('.page-loading-overlay').addClass('loaded');
+            $('.load_circle_wrapper').addClass('loaded');
         };
     }
 ]);

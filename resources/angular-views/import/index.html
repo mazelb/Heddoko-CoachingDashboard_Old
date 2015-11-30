@@ -31,16 +31,31 @@
         </div>
 
         <div class="col-md-3">
-            <ui-movement-placeholder data-aspect-ratio="4:3"></ui-movement-placeholder>
+
+            <!-- Movement preview -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <ui-movement-placeholder data-aspect-ratio="4:3"></ui-movement-placeholder>
+                </div>
+            </div>
+
+            <!-- Delete movement -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <a ng-click="deleteMovement(file.id)" href="javascript:;" class="pull-right">
+                        Delete Movement <i class="fa fa-trash-o"></i>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <!-- Action links -->
+        <!-- Edit movement -->
         <div class="col-md-6">
-            <div class="row">
+            <div class="movement-edit row">
 
                 <!-- Thumbnail link -->
                 <div class="col-md-5 text-right">
-                    <a href="javascript:;">
+                    <a ng-click="selectThumbnail()" href="javascript:;">
                         Choose Thumbnail <i class="fa fa-picture-o"></i>
                     </a>
                 </div>
@@ -51,7 +66,7 @@
 
                 <!-- Video edit link -->
                 <div class="col-md-5 text-left">
-                    <a href="javascript:;">
+                    <a ng-click="editMovement()" href="javascript:;">
                         Edit Video <i class="fa fa-pencil"></i>
                     </a>
                 </div>

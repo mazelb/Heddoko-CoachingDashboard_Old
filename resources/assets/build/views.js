@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/index.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -1462,7 +1462,8 @@ angular.module("directive-partials/ui-taggable-input.html", []).run(["$templateC
     "        ng-model=\"data\"\n" +
     "        class=\"form-control text-left\"\n" +
     "        config=\"config\"\n" +
-    "        options=\"options\">\n" +
+    "        options=\"options\"\n" +
+    "        placeholder=\"Start typing to add tags\">\n" +
     "    </selectize>\n" +
     "</div>\n" +
     "");
@@ -1979,13 +1980,13 @@ angular.module("fms/demo/partials/test-sagittal.html", []).run(["$templateCache"
     "</div>\n" +
     "\n" +
     "<div class=\"panel-body\">\n" +
-    "    <video class=\"demo-test\" style=\"margin: 0 20%; width: 60%; transform:scale(1.5); position: relative; top: 40px\">\n" +
-    "        <!-- <source ng-src=\"{{ '../../../../demo/aslr/analysis/sagittal.webm?1' }}\" type=\"video/webm\"/> -->\n" +
+    "    <video class=\"demo-test\" style=\"margin: 0 20%; width: 60%;\">\n" +
+    "        <!-- <source ng-src=\"{{ '../../../../demo/aslr/analysis/sagittal.webm?1' }}\" type=\"video/webm\"/>\n" +
     "        <source src=\"{{ '../../../../demo/aslr/analysis/sagittal.mp4?1' }}\" type=\"video/mp4\"/>\n" +
-    "        <!-- <source ng-src=\"{{'../../../../demo/aslr/analysis/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/analysis/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
     "        <source src=\"{{'../../../../demo/aslr/analysis/sagittal.mp4'}}\" type=\"video/mp4\"/> -->\n" +
-    "        <!-- <source ng-src=\"{{'../../../../demo/aslr/left/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
-    "        <source src=\"{{'../../../../demo/aslr/left/sagittal.mp4'}}\" type=\"video/mp4\"/> -->\n" +
+    "        <source ng-src=\"{{'../../../../demo/aslr/left/sagittal.webm'}}\" type=\"video/webm\"/>\n" +
+    "        <source src=\"{{'../../../../demo/aslr/left/sagittal.mp4'}}\" type=\"video/mp4\"/>\n" +
     "        Sorry, your browser doesn't support HTML5 video.\n" +
     "    </video>\n" +
     "</div>\n" +
@@ -2926,16 +2927,31 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "\n" +
     "        <div class=\"col-md-3\">\n" +
-    "            <ui-movement-placeholder data-aspect-ratio=\"4:3\"></ui-movement-placeholder>\n" +
+    "\n" +
+    "            <!-- Movement preview -->\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-xs-12\">\n" +
+    "                    <ui-movement-placeholder data-aspect-ratio=\"4:3\"></ui-movement-placeholder>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Delete movement -->\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-xs-12\">\n" +
+    "                    <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
+    "                        Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Action links -->\n" +
+    "        <!-- Edit movement -->\n" +
     "        <div class=\"col-md-6\">\n" +
-    "            <div class=\"row\">\n" +
+    "            <div class=\"movement-edit row\">\n" +
     "\n" +
     "                <!-- Thumbnail link -->\n" +
     "                <div class=\"col-md-5 text-right\">\n" +
-    "                    <a href=\"javascript:;\">\n" +
+    "                    <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
     "                        Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
     "                    </a>\n" +
     "                </div>\n" +
@@ -2946,7 +2962,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "\n" +
     "                <!-- Video edit link -->\n" +
     "                <div class=\"col-md-5 text-left\">\n" +
-    "                    <a href=\"javascript:;\">\n" +
+    "                    <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
     "                        Edit Video <i class=\"fa fa-pencil\"></i>\n" +
     "                    </a>\n" +
     "                </div>\n" +
@@ -2961,6 +2977,14 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("movement-editor/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movement-editor/index.html",
+    "<h1 style=\"color: #ccc;\">\n" +
+    "    In Development.\n" +
+    "</h1>\n" +
     "");
 }]);
 
@@ -4127,5 +4151,13 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        <a ng-click=\"Rover.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
     "    </div>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("thumbnail-selector/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("thumbnail-selector/index.html",
+    "<h1 style=\"color: #ccc;\">\n" +
+    "    In Development.\n" +
+    "</h1>\n" +
     "");
 }]);

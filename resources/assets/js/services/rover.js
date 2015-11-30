@@ -6,11 +6,12 @@
  * @brief   The rover service is used throughout the app and should be made available to other
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 angular.module('app.rover', [])
 
-.service('Rover', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout',
-    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout) {
+.service('Rover', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout', 'Utilities',
+    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout, Utilities) {
 
         // Dev variables.
         this.timestamp = Date.now();
@@ -20,9 +21,11 @@ angular.module('app.rover', [])
                 window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
         // User-specific hash. Used for user-specific data.
+        // @deprecated
         this.userHash = $('meta[name="user-hash"]').attr('content');
 
         // User-namespaced storage.
+        // @deprecated
         $localStorage[this.userHash] = $localStorage[this.userHash] || {};
         $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
         this.store = $localStorage[this.userHash];
@@ -38,11 +41,11 @@ angular.module('app.rover', [])
         this.addBackgroundProcess = function() {
 
             this.backgroundProcessCount++;
-            this.debug('Background processes: ' + this.backgroundProcessCount);
+            Utilities.debug('Background processes: ' + this.backgroundProcessCount);
 
             // Show loading animation.
             if (this.backgroundProcessCount === 1) {
-                this.showLoading();
+                Utilities.showLoading();
             }
         }.bind(this);
         this.doneBackgroundProcess = function() {
@@ -51,15 +54,15 @@ angular.module('app.rover', [])
                 this.backgroundProcessCount--;
             }
 
-            this.debug('Background processes: ' + this.backgroundProcessCount);
+            Utilities.debug('Background processes: ' + this.backgroundProcessCount);
 
             // Remove loading animation. We delay this by half a second to let the app's
             // bindings to update
             if (this.backgroundProcessCount < 1)
             {
                 $timeout(function() {
-                    this.hideLoading();
-                }.bind(this), 500);
+                    Utilities.hideLoading();
+                }, 500);
 
                 return;
             }
@@ -71,7 +74,7 @@ angular.module('app.rover', [])
             // Configuration page.
             config: function() {
 
-                this.debug('Browsing to configuration page.');
+                Utilities.debug('Browsing to configuration page.');
                 $location.path('/settings');
 
             }.bind(this),
@@ -79,7 +82,7 @@ angular.module('app.rover', [])
             // Dashboard index page.
             dashboard: function() {
 
-                this.debug('Browsing to dashboard index page.');
+                Utilities.debug('Browsing to dashboard index page.');
                 $location.path('/dashboard');
 
             }.bind(this),
@@ -87,7 +90,7 @@ angular.module('app.rover', [])
             // Group listing page.
             groups: function() {
 
-                this.debug('Browsing to group listings page.');
+                Utilities.debug('Browsing to group listings page.');
                 $location.path('/group/list');
 
             }.bind(this),
@@ -105,7 +108,7 @@ angular.module('app.rover', [])
                     this.state.group.selected = group;
                 }
 
-                this.debug('Browsing to group #' + group.id);
+                Utilities.debug('Browsing to group #' + group.id);
                 $location.path('/group/view');
 
             }.bind(this),
@@ -134,7 +137,7 @@ angular.module('app.rover', [])
                     this.store.profileId = profile.id;
                 }
 
-                this.debug('Browsing to profile #' + profile.id);
+                Utilities.debug('Browsing to profile #' + profile.id);
                 $location.path('/profile/view');
 
             }.bind(this),
@@ -142,12 +145,30 @@ angular.module('app.rover', [])
             // General page.
             path: function(path) {
 
-                this.debug('Browsing to path: ' + path);
+                Utilities.debug('Browsing to path: ' + path);
                 $location.path(path);
 
             }.bind(this)
         };
         this.browse = this.browseTo;
+
+        //
+        // Overlays.
+        //
+
+        /**
+         * Opens the movement thumbnail overlay.
+         */
+        this.openThumbnailSelector = function() {
+
+        };
+
+        /**
+         * Opens the movement editor overlay.
+         */
+        this.openMovementEditor = function() {
+
+        };
 
         //
         // Events.
@@ -169,7 +190,7 @@ angular.module('app.rover', [])
             // Clear the sessionStorage.
             $sessionStorage[this.userHash] = {};
 
-            this.debug('Ending session...');
+            Utilities.debug('Ending session...');
 
             $window.location.href = '/auth/logout';
 
@@ -180,28 +201,15 @@ angular.module('app.rover', [])
         //
 
         // Logs a message to the console.
+        // @deprecated
         this.debug = function(msg) {
-
-            // For now, we will always log debug messages.
-            if (this.isLocal || true) {
-                $log.debug(msg);
-            }
+            Utilities.debug(msg);
         };
         this.error = function(msg) {
-            $log.error(msg);
+            Utilities.error(msg);
         };
         this.alert = function(msg) {
-            $window.alert(msg);
-        };
-
-        // Displays or hides the loading animation.
-        this.showLoading = function() {
-            $('.page-loading-overlay').removeClass('loaded');
-            $('.load_circle_wrapper').removeClass('loaded');
-        };
-        this.hideLoading = function() {
-            $('.page-loading-overlay').addClass('loaded');
-            $('.load_circle_wrapper').addClass('loaded');
+            Utilities.alert(msg);
         };
 
         // Handles retrieving/storing configuration data.
@@ -215,8 +223,9 @@ angular.module('app.rover', [])
         }.bind(this);
 
         // Retrieves the ID of an object.
+        // @deprecated
         this.getId = function(obj) {
-            return ['string', 'numder'].indexOf(typeof obj) > 0 ? Number(obj) : Number(obj.id);
+            return Utilities.getId(obj);
         };
     }
 ]);
