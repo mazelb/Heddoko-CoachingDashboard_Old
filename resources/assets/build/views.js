@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'settings.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -876,14 +876,6 @@ angular.module("placeholder.html", []).run(["$templateCache", function($template
     "        In Development\n" +
     "    </h1>\n" +
     "</div>\n" +
-    "");
-}]);
-
-angular.module("settings.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("settings.html",
-    "<header class=\"page-main-header\">\n" +
-    "    <div ng-include=\" 'placeholder.html' \"></div>\n" +
-    "</header>\n" +
     "");
 }]);
 
@@ -3330,7 +3322,7 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
 angular.module("partials/modal.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/modal.html",
     "<div class=\"modal fade\" id=\"overlay-screen\" tabindex=\"-1\" data-ng-controller=\"ModalController\">\n" +
-    "    <div class=\"modal-dialog modal-lg\">\n" +
+    "    <div class=\"modal-dialog modal-responsive\">\n" +
     "        <div class=\"modal-content\">\n" +
     "\n" +
     "            <!-- Overlay title -->\n" +
@@ -4219,5 +4211,66 @@ angular.module("thumbnail-selector/index.html", []).run(["$templateCache", funct
     "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
     "    In Development.\n" +
     "</h3>\n" +
+    "");
+}]);
+
+angular.module("user/view.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("user/view.html",
+    "<!-- User details -->\n" +
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Settings'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
+    "\n" +
+    "    <div ng-hide=\"user.id === 0\" class=\"row\">\n" +
+    "        <div class=\"col-md-8\">\n" +
+    "\n" +
+    "            <!-- Preferences -->\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    Preferences\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <div style=\"color: #ccc; text-align: center\">\n" +
+    "                        In Development\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- User details -->\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    Your Details\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <div style=\"color: #ccc; text-align: center\">\n" +
+    "                        In Development\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Avatar -->\n" +
+    "        <div class=\"col-md-4\">\n" +
+    "            <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "                <ui-avatar\n" +
+    "                    data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
+    "                    data-success-callback=\"uploadAvatarCallback\"\n" +
+    "                    data-src=\"profile.avatar_src\">\n" +
+    "                </ui-avatar>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Retrieving user data -->\n" +
+    "    <div ng-show=\"user.id === 0\" class=\"text-center\">\n" +
+    "        <h3>Retrieving your details</h3>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);

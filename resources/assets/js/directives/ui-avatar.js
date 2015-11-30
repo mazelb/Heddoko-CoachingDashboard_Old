@@ -6,6 +6,12 @@
  * @brief   Angular directive for editable avatars.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
+ * @note    Used as:
+ *          <ui-avatar
+ *              data-upload-endpoint="uploadAvatarEndpoint"
+ *              data-success-callback="uploadAvatarCallback"
+ *              data-src="avatarSrc">
+ *          </ui-avatar>
  */
 angular.module('app.directives')
 

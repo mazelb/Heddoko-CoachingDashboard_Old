@@ -16,7 +16,7 @@ var app = angular.module('app', [
 
     // General dependencies.
     'backendHeddoko',
-    'app.controllers', 'app.directives', 'app.rover', 'app.services', 'app.utilities', 'app.views', 
+    'app.controllers', 'app.directives', 'app.rover', 'app.services', 'app.utilities', 'app.views',
 
     // TODO: review what these dependencies do and whether they can be removed or not.
     'ngAnimate', "ui.bootstrap", "easypiechart", "mgo-angular-wizard",
@@ -180,7 +180,8 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
         // Other routes.
         //
         .when('/settings', {
-			templateUrl: 'settings.html'
+			templateUrl: 'user/view.html',
+            controller: 'UserController'
 		})
 
         //

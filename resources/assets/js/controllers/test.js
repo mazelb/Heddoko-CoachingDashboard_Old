@@ -6,8 +6,8 @@
  */
 angular.module('app.controllers')
 
-.controller('TestController', ['$scope', 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, Rover, assetVersion, isLocalEnvironment) {
+.controller('TestController', ['$scope', 'Rover', 'isLocalEnvironment',
+    function($scope, Rover, isLocalEnvironment) {
 
         Rover.debug('TestController');
 

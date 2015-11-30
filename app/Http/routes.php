@@ -67,6 +67,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
+    // User endpoints.
+    Route::post('user/{id}/avatar', 'UserController@saveAvatar');
+    Route::delete('user/{id}/avatar', 'UserController@destroyAvatar');
+    Route::resource('user', 'UserController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
     //
     // Deprecated.
     //

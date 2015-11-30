@@ -1,6 +1,12 @@
 <?php
 /**
  *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Database model for profiles.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Models;
 
@@ -8,33 +14,44 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use App\Traits\HasAvatarTrait as HasAvatar;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, EntrustUserTrait;
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
+    use Authenticatable, CanResetPassword, EntrustUserTrait, HasAvatar;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'email', 'username', 'password'];
+    protected $fillable = [
+        'email',
+        'username',
+        'password',
+        'first_name',
+        'last_name',
+        'phone',
+        'config',
+    ];
+
+    /**
+     * Attributes which should be appended to the model's array form.
+     */
+    protected $appends = ['avatar_src'];
 
     /**
      * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token', 'pivot'];
+    protected $hidden = [
+        'password',
+        'remember_token',
+        'pivot'
+    ];
 
     /**
      * Profiles managed by this user.

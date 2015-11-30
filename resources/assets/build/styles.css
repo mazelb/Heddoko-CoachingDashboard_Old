@@ -5130,6 +5130,9 @@ button.toast-close-button {
 /*
  * Overlay screens
  */
+@media (min-width: 992px) {
+  .modal-responsive {
+    width: 90%; } }
 /**
  *
  * Copyright Heddoko(TM) 2015, all rights reserved.
@@ -8302,7 +8305,7 @@ svg {
  */
 .ui-page-title-background {
   display: inline-block;
-  margin: 5px 0 0 30px;
+  margin: 5px 0 30px 30px;
   position: relative;
   height: 50px;
   background-color: rgba(59, 214, 178, 0.4);

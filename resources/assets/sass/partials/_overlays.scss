@@ -55,3 +55,8 @@
 /*
  * Overlay screens
  */
+@media (min-width: 992px) {
+    .modal-responsive {
+        width: 90%;
+    }
+}
