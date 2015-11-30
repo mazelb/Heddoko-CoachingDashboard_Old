@@ -9,8 +9,8 @@
  */
 angular.module('app.services')
 
-.factory('ProfileService', ['$http', '$filter', 'Utilities',
-    function($http, $filter, Utilities) {
+.factory('ProfileService', ['$http', '$filter', 'Utilities', 'Rover',
+    function($http, $filter, Utilities, Rover) {
 
         return {
 
@@ -146,7 +146,7 @@ angular.module('app.services')
 
                 // Make sure primary tag is an ID. If we have a newly created tag without an ID,
                 // we'll let the API know we want to create a new tag in the process.
-                if (profile.primary_tag.length)
+                if (profile.primary_tag && profile.primary_tag.length)
                 {
                     if (Utilities.getId(profile.primary_tag) > 0) {
                         formatted.tag_id = Utilities.getId(profile.primary_tag);
@@ -176,6 +176,9 @@ angular.module('app.services')
                     });
                     formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
                 }
+
+                Rover.debug('Formatted profile details:');
+                Rover.debug(formatted);
 
                 return formatted;
             }

@@ -30,7 +30,9 @@ angular.module('app.controllers')
                 inches: 0,
                 weight_lbs: 0,
                 notes: '',
-                gender: ''
+                gender: '',
+                primary_tag: {},
+                secondary_tags: []
             };
         }
 

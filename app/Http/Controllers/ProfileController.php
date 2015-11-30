@@ -96,6 +96,9 @@ class ProfileController extends Controller
             $profile->groups()->sync((array) $this->request->input('groups'));
         }
 
+        // Embed extra data.
+        $groups = $profile->groups;
+
         return [
             'list' => $this->index(),
             'profile' => $profile
