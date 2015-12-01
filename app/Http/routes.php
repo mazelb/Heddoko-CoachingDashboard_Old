@@ -1,38 +1,17 @@
 <?php
+/**
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * Here is where all the application routes are registered. There are global patterns for some
+ * route parameters defined in App\Providers\RouteServiceProvider.
+ */
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
 
-Route::get('/', ['middleware' => 'auth', function()
-{
-    // Coaches dashboard.
-	if (Entrust::hasRole('manager') || Entrust::hasRole('coach'))
-    {
-		return view('layouts.angular');
-	}
-
-	else if (Entrust::hasRole('admin')){
-		return 'you\'re an admin!';
-	}
-
-	else if (Entrust::hasRole('athlete')){
-		return 'you\'re an athlete!';
-	}
-
-	else return 'fatal error';
-
-}]);
-
-//Entrust::routeNeedsRole('api*', 'owner', Redirect::to('/home'));
-
+/**
+ * API routes.
+ */
 Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 {
     // Profile endpoints.
@@ -59,11 +38,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
-    // FMS endpoints.
-    Route::resource('fms', 'FMSController', [
+    // Screening endpoints.
+    Route::resource('screening', 'ScreeningController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
-    Route::resource('fms.test', 'FMSTestController', [
+    Route::resource('screening.test', 'ScreeningTestController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
@@ -90,14 +69,40 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 
 	Route::resource('sports', 'SportsController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 	Route::resource('sports.sportmovements', 'SportSportMovementController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-
 });
 
-// Authentication routes.
+/**
+ * Authentication routes.
+ */
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
 ]);
+
+/**
+ * General Angular app routes.
+ */
+Route::get('/', ['middleware' => 'auth', function()
+{
+    // Coaches dashboard.
+	if (Entrust::hasRole('manager') || Entrust::hasRole('coach'))
+    {
+		return view('layouts.angular');
+	}
+
+	else if (Entrust::hasRole('admin')){
+		return 'you\'re an admin!';
+	}
+
+	else if (Entrust::hasRole('athlete')){
+		return 'you\'re an athlete!';
+	}
+
+	else return 'fatal error';
+
+}]);
+
+//Entrust::routeNeedsRole('api*', 'owner', Redirect::to('/home'));
 
 // Static pages.
 Route::get('privacy', function() {

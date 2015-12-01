@@ -1,16 +1,29 @@
 <?php
 /**
- * 
+ *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Handles http requests for movement data.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  */
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class MovementDataController extends Controller
 {
+    /**
+     * @param \Illuminate\Http\Request $request
+     */
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +41,20 @@ class MovementDataController extends Controller
      */
     public function store()
     {
-        abort(501);
+        // TODO: who can store movement data?
+
+        // Determine if the movement will belong to a profile or a screening test.
+
+
+
+        // Check incoming file.
+        if (!$original = $this->request->file('file')) {
+            return response('No File Received.', 400);
+        } elseif (!preg_match('#^text/(csv|plain)$#', $original->getMimeType())) {
+            return response('Invalid MIME Type ('. $original->getMimeType() .').', 400);
+        }
+
+        return response('Testing.', 204);
     }
 
     /**

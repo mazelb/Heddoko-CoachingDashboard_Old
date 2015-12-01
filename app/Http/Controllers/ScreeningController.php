@@ -1,17 +1,23 @@
 <?php
 /**
  *
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ *
+ * @brief   Handles screening-related http requests.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    December 2015
  */
 namespace App\Http\Controllers;
 
-use App\Models\FMS;
+use App\Models\Screening;
 use App\Http\Requests;
-use App\Models\FMSTest;
+use App\Models\ScreeningTest;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class FMSController extends Controller
+class ScreeningController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request

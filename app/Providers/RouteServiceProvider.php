@@ -24,7 +24,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        //
+        // Global constraints for route parameters.
+        $router->pattern('id', '[0-9]+');
 
         parent::boot($router);
     }

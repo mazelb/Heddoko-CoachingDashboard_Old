@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -2887,20 +2887,24 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
 
 angular.module("import/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("import/index.html",
-    "<div class=\"page import-page\">\n" +
+    "<!-- Import page -->\n" +
+    "<div ng-show=\"global.state.profile.selected.id > 0\" class=\"page import-page\">\n" +
     "    <ui-page-title data-title=\"'Import'\" data-icon=\"'cloud-upload'\"></ui-page-title>\n" +
     "    <div class=\"clearfix\"></div>\n" +
+    "\n" +
+    "    Import movement data for\n" +
+    "    <b>{{ global.state.profile.selected.first_name + ' ' + global.state.profile.selected.last_name }}</b>\n" +
     "\n" +
     "    <div class=\"movement-import row\">\n" +
     "\n" +
     "        <!-- Import new movement -->\n" +
     "        <div ng-show=\"isUploading === false\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
     "            <button\n" +
-    "                ngf-select=\"import($file)\"\n" +
-    "                ngf-drop=\"import($file)\"\n" +
-    "                accept=\"text/*\"\n" +
-    "                ngf-pattern=\"'text/*'\"\n" +
+    "                ngf-select=\"import($files)\"\n" +
+    "                ngf-drop=\"import($files)\"\n" +
+    "                accept=\"text/plain,text/csv\"\n" +
     "                ngf-max-size=\"2MB\"\n" +
+    "                multiple\n" +
     "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
@@ -2909,11 +2913,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "\n" +
     "        <!-- Uploading movement file -->\n" +
     "        <div ng-show=\"isUploading === true\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
-    "            <i class=\"fa fa-spinner fa-spin fa-3x text-primary\"></i>\n" +
-    "\n" +
-    "            <br>\n" +
-    "            <br>\n" +
-    "            <span style=\"color: #ccc\">(In Development)</span>\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x text-primary\"></i>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -2986,6 +2986,13 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<!-- No profile selected -->\n" +
+    "<div\n" +
+    "    ng-show=\"global.state.profile.selected.id === 0\"\n" +
+    "    ng-include=\"'partials/no-profile-selected-notice.html'\"\n" +
+    "    class=\"page\">\n" +
     "</div>\n" +
     "");
 }]);
@@ -3482,6 +3489,21 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            </ul>\n" +
     "        </li> -->\n" +
     "    </ul>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("partials/no-profile-selected-notice.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/no-profile-selected-notice.html",
+    "<h1 class=\"text-center\">No profile selected</h1>\n" +
+    "<br>\n" +
+    "\n" +
+    "<div class=\"text-center\">\n" +
+    "    Please select a profile to view its details.\n" +
+    "    <br>\n" +
+    "\n" +
+    "    You can also take this opportunity to\n" +
+    "    <a ng-click=\"Rover.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
     "</div>\n" +
     "");
 }]);
@@ -4201,18 +4223,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "</div>\n" +
     "\n" +
     "<!-- No profile selected -->\n" +
-    "<div ng-show=\"profile.id === 0\" class=\"page\">\n" +
-    "    <h1 class=\"text-center\">No profile selected</h1>\n" +
-    "    <br>\n" +
-    "\n" +
-    "    <div class=\"text-center\">\n" +
-    "        Please select a profile to view its details.\n" +
-    "        <br>\n" +
-    "\n" +
-    "        You can also take this opportunity to\n" +
-    "        <a ng-click=\"Rover.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
-    "    </div>\n" +
-    "</div>\n" +
+    "<div ng-show=\"profile.id === 0\" ng-include=\"'partials/no-profile-selected-notice.html'\" class=\"page\"></div>\n" +
     "");
 }]);
 
