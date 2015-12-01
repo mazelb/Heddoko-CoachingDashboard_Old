@@ -21,7 +21,7 @@ var app = angular.module('app', [
     // TODO: review what these dependencies do and whether they can be removed or not.
     "app.ui.services", "app.ui.form.ctrls", "app.ui.form.directives", "app.ui.ctrls",
     'ngAnimate',
-    // "ui.bootstrap",
+    "ui.bootstrap",
     // "easypiechart",
     // "mgo-angular-wizard",
     // "textAngular",
@@ -29,11 +29,16 @@ var app = angular.module('app', [
     // "app.form.validation", "app.tables",
     // "app.task",
     // "countTo",
-    // "angular-chartist", "app.map", "ui.tree", "ngMap", "app.chart.ctrls", "app.chart.directives"
+    "angular-chartist",
+    // "app.map",
+    // "ui.tree",
+    // "ngMap",
+    "app.chart.ctrls",
+    "app.chart.directives"
 ]);
 
 // Defines some constants.
-var _appVersion = '0.3.11';
+var _appVersion = '0.3.12';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||

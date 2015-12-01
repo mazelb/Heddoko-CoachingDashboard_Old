@@ -35,6 +35,20 @@ angular.module('app.controllers')
             Rover.debug('Uploading movement data...');
 
         };
+        $scope.upload = function(data) {
+
+            // Performance check.
+            Rover.debug(data);
+            Rover.debug($scope.movementData);
+            if (!data) {
+                return;
+            }
+
+            // Upload data file.
+            $scope.isUploading = true;
+            Rover.debug('Uploading movement data...');
+
+        };
 
         // Opens the thumbnail overlay.
         $scope.selectThumbnail = function() {

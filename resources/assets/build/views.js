@@ -2896,12 +2896,10 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        <!-- Import new movement -->\n" +
     "        <div ng-show=\"isUploading === false\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
     "            <button\n" +
-    "                ngf-select=\"import(movementData)\"\n" +
-    "                ngf-drop=\"import(movementData)\"\n" +
-    "                ngf-model=\"movementData\"\n" +
-    "                ngf-multiple=\"true\"\n" +
-    "                accept=\"text/plain,text/csv\"\n" +
-    "                ngf-pattern=\"'text/(plain|csv)'\"\n" +
+    "                ngf-select=\"import($file)\"\n" +
+    "                ngf-drop=\"import($file)\"\n" +
+    "                accept=\"text/*\"\n" +
+    "                ngf-pattern=\"'text/*'\"\n" +
     "                ngf-max-size=\"2MB\"\n" +
     "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "\n" +
@@ -2912,6 +2910,10 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        <!-- Uploading movement file -->\n" +
     "        <div ng-show=\"isUploading === true\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
     "            <i class=\"fa fa-spinner fa-spin fa-3x text-primary\"></i>\n" +
+    "\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "            <span style=\"color: #ccc\">(In Development)</span>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +

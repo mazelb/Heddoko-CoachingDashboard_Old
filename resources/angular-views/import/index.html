@@ -8,12 +8,10 @@
         <!-- Import new movement -->
         <div ng-show="isUploading === false" class="col-md-3 col-md-offset-3 text-center">
             <button
-                ngf-select="import(movementData)"
-                ngf-drop="import(movementData)"
-                ngf-model="movementData"
-                ngf-multiple="true"
-                accept="text/plain,text/csv"
-                ngf-pattern="'text/(plain|csv)'"
+                ngf-select="import($file)"
+                ngf-drop="import($file)"
+                accept="text/*"
+                ngf-pattern="'text/*'"
                 ngf-max-size="2MB"
                 class="btn btn-primary btn-circle btn-lg">
 
@@ -24,6 +22,10 @@
         <!-- Uploading movement file -->
         <div ng-show="isUploading === true" class="col-md-3 col-md-offset-3 text-center">
             <i class="fa fa-spinner fa-spin fa-3x text-primary"></i>
+
+            <br>
+            <br>
+            <span style="color: #ccc">(In Development)</span>
         </div>
     </div>
 
