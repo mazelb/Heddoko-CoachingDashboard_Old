@@ -4,11 +4,29 @@
     <div class="clearfix"></div>
 
     <div class="movement-import row">
-        <div class="col-md-3 col-md-offset-3 text-center">
-            <button class="btn btn-primary btn-circle btn-lg">
+
+        <!-- Import new movement -->
+        <div ng-show="isUploading === false" class="col-md-3 col-md-offset-3 text-center">
+            <button
+                ngf-select="import(movementData)"
+                ngf-drop="import(movementData)"
+                ngf-model="movementData"
+                ngf-multiple="true"
+                accept="text/plain,text/csv"
+                ngf-pattern="'text/(plain|csv)'"
+                ngf-max-size="2MB"
+                class="btn btn-primary btn-circle btn-lg">
+
                 <i class="fa fa-plus"></i>
             </button>
         </div>
+
+        <!-- Uploading movement file -->
+        <div ng-show="isUploading === true" class="col-md-3 col-md-offset-3 text-center">
+            <i class="fa fa-spinner fa-spin fa-3x text-primary"></i>
+        </div>
+
+        Data: {{ movementData }}
     </div>
 
     <!-- List of uploaded movements -->

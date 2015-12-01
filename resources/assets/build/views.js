@@ -2892,11 +2892,29 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    <div class=\"clearfix\"></div>\n" +
     "\n" +
     "    <div class=\"movement-import row\">\n" +
-    "        <div class=\"col-md-3 col-md-offset-3 text-center\">\n" +
-    "            <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "\n" +
+    "        <!-- Import new movement -->\n" +
+    "        <div ng-show=\"isUploading === false\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
+    "            <button\n" +
+    "                ngf-select=\"import(movementData)\"\n" +
+    "                ngf-drop=\"import(movementData)\"\n" +
+    "                ngf-model=\"movementData\"\n" +
+    "                ngf-multiple=\"true\"\n" +
+    "                accept=\"text/plain,text/csv\"\n" +
+    "                ngf-pattern=\"'text/(plain|csv)'\"\n" +
+    "                ngf-max-size=\"2MB\"\n" +
+    "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
     "            </button>\n" +
     "        </div>\n" +
+    "\n" +
+    "        <!-- Uploading movement file -->\n" +
+    "        <div ng-show=\"isUploading === true\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-3x text-primary\"></i>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        Data: {{ movementData }}\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- List of uploaded movements -->\n" +
