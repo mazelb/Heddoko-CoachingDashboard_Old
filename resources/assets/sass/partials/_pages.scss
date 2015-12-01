@@ -6,6 +6,30 @@
  *    Pages
  */
 
+
+/*
+ * Angular - Import pages.
+ */
+.import-page .row.movement-import {
+    margin: 40px auto;
+}
+.import-page .row .movement-title {
+    margin: 0 auto 20px;
+    border: none;
+    border-bottom: 1px dotted #ccc;
+    background-color: transparent;
+}
+.import-page .row .row.movement-edit {
+    margin: 60px auto 0;
+}
+
+/*
+ * Angular - Movement pages.
+ */
+.movements-page .active-element {
+    margin: 20px auto;
+}
+
 /*
  * Laravel pages.
  */
@@ -745,20 +769,4 @@
 }
 .auth-register #footer {
     background-color: rgba(0, 0, 0, .5);
-}
-
-/*
- * Import pages.
- */
-.import-page .row.movement-import {
-    margin: 40px auto;
-}
-.import-page .row .movement-title {
-    margin: 0 auto 20px;
-    border: none;
-    border-bottom: 1px dotted #ccc;
-    background-color: transparent;
-}
-.import-page .row .row.movement-edit {
-    margin: 60px auto 0;
 }

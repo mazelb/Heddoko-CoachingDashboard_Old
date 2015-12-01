@@ -3,7 +3,69 @@
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- *        3 - Containers / Tables / Lists
+ *        Containers / Tables / Lists / Aspect Ratios
+ */
+
+
+/*
+ * Aspect ratios
+ */
+.aspect-ratio {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+}
+.aspect-ratio.aspect-square {
+    padding-bottom: 100%;
+}
+.aspect-ratio.aspect-4-3 {
+    padding-bottom: 75%;
+}
+.aspect-ratio.aspect-3-2 {
+    padding-bottom: 66.66%;
+}
+.aspect-ratio.aspect-8-5 {
+    padding-bottom: 62.5%;
+}
+.aspect-ratio.aspect-16-9 {
+    padding-bottom: 56.25%;
+}
+.aspect-ratio > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/*
+ * Active elements
+ */
+.active-element {
+    position: relative;
+    background-color: #fff;
+    @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+.active-element .tools {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+.active-element .tools span {
+    display: inline-block;
+    padding: 4px 0 1px 10px;
+}
+.active-element .tools .hidden-tools {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+/*
+ * ...
  */
 
 .container:before, .container:after {
@@ -495,7 +557,6 @@ ul.team{
 	text-align: center;
 	text-decoration: none;
 }
-
 
 .breadcrumb-movement-sm>li:hover, .breadcrumb-movement-sm>li.active {
 	background-color: #f48b4a;

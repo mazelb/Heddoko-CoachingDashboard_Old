@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'movements.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/details.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -793,81 +793,6 @@ angular.module("fmstest.html", []).run(["$templateCache", function($templateCach
     "");
 }]);
 
-angular.module("movements.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("movements.html",
-    "<header class=\"page-main-header\">\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-6\">\n" +
-    "            <h4>Movement Screen</h4>\n" +
-    "            <p>Start your tests</p>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</header>\n" +
-    "\n" +
-    "<div class=\"page page-dashboard movement-pages\" ng-controller=\"MovementScreenController\">\n" +
-    "	<div>\n" +
-    "		<ol class=\"breadcrumb-movement\">\n" +
-    "\n" +
-    "            <!-- Movement title -->\n" +
-    "			<li>\n" +
-    "				<div style=\"text-align:center;\">\n" +
-    "					<a>{{ data.current_movement_page.name || \"Choose a movement\" }}</a>\n" +
-    "				</div>\n" +
-    "			</li>\n" +
-    "\n" +
-    "            <!-- Movement tabs -->\n" +
-    "			<li\n" +
-    "                ng-click=\"data.current_movement_page.latest_page = 0\"\n" +
-    "                ng-class=\"{'active':data.current_movement_page.latest_page == 0}\">\n" +
-    "\n" +
-    "                <a>TEST</a>\n" +
-    "            </li>\n" +
-    "			<li\n" +
-    "                ng-click=\"data.current_movement_page.latest_page = 1\"\n" +
-    "                ng-class=\"{'active':data.current_movement_page.latest_page == 1}\">\n" +
-    "                <a>ANALYSIS</a>\n" +
-    "            </li>\n" +
-    "			<!-- <li ng-click=\"data.current_movement_page.latest_page = 2\" ng-class=\"{'active':data.current_movement_page.latest_page == 2}\">\n" +
-    "                <a>DATA</a>\n" +
-    "            </li> -->\n" +
-    "			<li\n" +
-    "                ng-click=\"data.current_movement_page.latest_page = 3\"\n" +
-    "                ng-class=\"{'active':data.current_movement_page.latest_page == 3}\">\n" +
-    "\n" +
-    "                <a>SUMMARY</a>\n" +
-    "            </li>\n" +
-    "		</ol>\n" +
-    "\n" +
-    "        <!-- Selected side -->\n" +
-    "		<ol class=\"breadcrumb-movement-sm\" ng-show=\"true\"> <!-- ng-show=\"data.current_movement.left_and_right == true\" -->\n" +
-    "			<li\n" +
-    "                ng-repeat=\"side in data.current_movement_page.sides\"\n" +
-    "                ng-click=\"data.current_movement_page.active_side = side\"\n" +
-    "                ng-class=\"{'active': side == data.current_movement_page.active_side}\">\n" +
-    "\n" +
-    "                <a >{{side.name}}</a>\n" +
-    "            </li>\n" +
-    "		</ol>\n" +
-    "\n" +
-    "		<div ng-switch=\"data.current_movement_page.latest_page\">\n" +
-    "			<div ng-switch-when=\"0\">\n" +
-    "				<div ng-include=\"'movement-partials/0test.html?' + Date.now()\"></div>\n" +
-    "			</div>\n" +
-    "			<div ng-switch-when=\"1\">\n" +
-    "				<div ng-include=\"'movement-partials/1analysis.html?' + Date.now()\"></div>\n" +
-    "			</div>\n" +
-    "			<div ng-switch-when=\"2\">\n" +
-    "				<div ng-include=\"'movement-partials/2data.html?' + Date.now()\"></div>\n" +
-    "			</div>\n" +
-    "			<div ng-switch-when=\"3\">\n" +
-    "				<div ng-include=\"'movement-partials/3summary.html?' + Date.now()\"></div>\n" +
-    "			</div>\n" +
-    "		</div>\n" +
-    "	</div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("placeholder.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("placeholder.html",
     "<!-- Temporary page -->\n" +
@@ -1429,6 +1354,19 @@ angular.module("directive-partials/ui-movement-placeholder.html", []).run(["$tem
     "<div class=\"ui-movement-container four-three-aspect-ratio\">\n" +
     "    <div class=\"ui-movement-placeholder\">\n" +
     "        Movement Placeholder\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-movement-preview.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-movement-preview.html",
+    "<div class=\"ui-movement-container aspect-ratio aspect-4-3\">\n" +
+    "    <div class=\"ui-movement-placeholder\">\n" +
+    "        Movement Preview <br>\n" +
+    "        <span style=\"color: #ccc\">\n" +
+    "            In Development...\n" +
+    "        </span>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -3014,12 +2952,75 @@ angular.module("movement-editor/index.html", []).run(["$templateCache", function
 
 angular.module("movements/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movements/index.html",
-    "<div class=\"page\">\n" +
+    "<div class=\"page movements-page\">\n" +
     "    <ui-page-title data-title=\"'Organize'\" data-icon=\"'th'\"></ui-page-title>\n" +
+    "    <div class=\"clearfix\"></div>\n" +
     "\n" +
-    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
-    "        In Development\n" +
-    "    </h2>\n" +
+    "    Recent Movements\n" +
+    "\n" +
+    "    <div class=\"row grid\">\n" +
+    "        <div ng-repeat=\"temp in [1,2,3,4,5,6,7,8,9,10]\" class=\"col-sm-6 col-md-4 col-lg-3\">\n" +
+    "            <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
+    "                <div>\n" +
+    "\n" +
+    "                    <!-- Movement preview -->\n" +
+    "                    <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "\n" +
+    "                    <div class=\"tools text-left\">\n" +
+    "\n" +
+    "                        <!-- Movement date -->\n" +
+    "                        <span style=\"color: #aaa\">\n" +
+    "                            Nov 2, 1:30 pm\n" +
+    "                        </span>\n" +
+    "                        <br>\n" +
+    "\n" +
+    "                        <!-- Movement title -->\n" +
+    "                        <span>\n" +
+    "                            Movement # {{ temp }}\n" +
+    "                        </span>\n" +
+    "\n" +
+    "                        <!-- Movement actions -->\n" +
+    "                        <div class=\"pull-right\">\n" +
+    "                            <div class=\"btn-group hidden-tools\">\n" +
+    "                                <button\n" +
+    "                                    type=\"button\"\n" +
+    "                                    class=\"btn btn-default dropdown-toggle\"\n" +
+    "                                    data-toggle=\"dropdown\"\n" +
+    "                                    aria-haspopup=\"true\"\n" +
+    "                                    aria-expanded=\"false\">\n" +
+    "                                    <i class=\"caret\"></i>\n" +
+    "                                </button>\n" +
+    "\n" +
+    "                                <ul class=\"dropdown-menu\">\n" +
+    "                                    <li>\n" +
+    "                                        <a href=\"#/analyze\">Analyze</a>\n" +
+    "                                    </li>\n" +
+    "                                    <li>\n" +
+    "                                        <a href=\"#/compare\">Compare</a>\n" +
+    "                                    </li>\n" +
+    "                                    <li>\n" +
+    "                                        <a ng-click=\"shareMovement()\" href=\"javascript:;\">Share</a>\n" +
+    "                                    </li>\n" +
+    "                                    <li>\n" +
+    "                                        <a ng-click=\"editMovement()\" href=\"javascript:;\">Edit</a>\n" +
+    "                                    </li>\n" +
+    "                                    <li role=\"separator\" class=\"divider\"></li>\n" +
+    "                                    <li>\n" +
+    "                                        <a\n" +
+    "                                            ng-click=\"deleteMovement()\"\n" +
+    "                                            href=\"javascript:;\">\n" +
+    "\n" +
+    "                                            Delete\n" +
+    "                                        </a>\n" +
+    "                                    </li>\n" +
+    "                                </ul>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);

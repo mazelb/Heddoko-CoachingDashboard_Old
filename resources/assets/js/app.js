@@ -56,8 +56,8 @@ var appServices = angular.module('app.services', ['app.rover']);
 var appDirectives = angular.module('app.directives', ['app.rover']);
 
 // Configures the application.
-app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
-    function($routeProvider, assetVersion, isLocalEnvironment) {
+app.config(['$routeProvider', 'isLocalEnvironment',
+    function($routeProvider, isLocalEnvironment) {
 
         if (isLocalEnvironment) {
             console.log('Configuring App...');
@@ -66,9 +66,9 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
         //
         // Landing page.
         //
-        return $routeProvider.when('/', {
-			redirectTo: '/dashboard'
-		})
+        return $routeProvider.when('/',{
+            redirectTo: '/dashboard'
+        })
         .when('/dashboard', {
             templateUrl: 'dashboard.html',
             controller: 'DashboardController'
@@ -78,16 +78,16 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
         // Group routes.
         //
         .when('/group/list', {
-            templateUrl: "group/list.html",
-            controller: "GroupController"
+            templateUrl: 'group/list.html',
+            controller: 'GroupController'
 		})
         .when('/group/view', {
             templateUrl: 'group/view.html',
             controller: 'GroupController'
 		})
         .when('/group/create', {
-			templateUrl: "group/create.html",
-            controller: "GroupController"
+			templateUrl: 'group/create.html',
+            controller: 'GroupController'
 		})
         .when('/group/edit', {
 			templateUrl: 'group/edit.html',
@@ -97,21 +97,21 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
         //
         // Profile routes.
         //
-        .when("/profile/list", {
-            templateUrl: "profile/list.html",
-            controller: "ProfileController"
+        .when('/profile/list', {
+            templateUrl: 'profile/list.html',
+            controller: 'ProfileController'
 		})
         .when('/profile/view', {
-			templateUrl: "profile/view.html",
-            controller: "ProfileController"
+			templateUrl: 'profile/view.html',
+            controller: 'ProfileController'
 		})
         .when('/profile/create', {
-			templateUrl: "profile/create.html",
-            controller: "ProfileController"
+			templateUrl: 'profile/create.html',
+            controller: 'ProfileController'
 		})
         .when('/profile/edit', {
-			templateUrl: "profile/edit.html",
-            controller: "ProfileController"
+			templateUrl: 'profile/edit.html',
+            controller: 'ProfileController'
 		})
 
         //
@@ -123,7 +123,7 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
 		})
         .when('/movements', {
 			templateUrl: 'movements/index.html',
-            controller: 'TestController'
+            controller: 'MovementController'
 		})
 
         //
@@ -212,7 +212,7 @@ app.config(['$routeProvider', 'assetVersion', 'isLocalEnvironment',
 		}).when("/movementscreen", {
 			templateUrl: "movementscreen.html"
 		}).otherwise({
-			redirectTo: '/'
+			redirectTo: '/dashboard'
 		});
     }
 ])
