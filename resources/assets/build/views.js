@@ -2913,8 +2913,6 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        <div ng-show=\"isUploading === true\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
     "            <i class=\"fa fa-spinner fa-spin fa-3x text-primary\"></i>\n" +
     "        </div>\n" +
-    "\n" +
-    "        Data: {{ movementData }}\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- List of uploaded movements -->\n" +
