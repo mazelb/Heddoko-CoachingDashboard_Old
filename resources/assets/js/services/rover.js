@@ -224,12 +224,15 @@ angular.module('app.rover', [])
         // Logs a message to the console.
         // @deprecated
         this.debug = function(msg) {
+            Utilities.debug('Rover.debug is deprecated...');
             Utilities.debug(msg);
         };
         this.error = function(msg) {
+            Utilities.debug('Rover.error is deprecated...');
             Utilities.error(msg);
         };
         this.alert = function(msg) {
+            Utilities.debug('Rover.alert is deprecated...');
             Utilities.alert(msg);
         };
 

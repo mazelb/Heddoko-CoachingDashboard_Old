@@ -229,7 +229,12 @@
                             </li>
                         </ul>
                     </div>
-                    <input type="text" class="form-control" placeholder="{{ selectedFilter.placeholder }}">
+                    <selectize
+                        ng-model="model"
+                        class="form-control"
+                        config="config"
+                        options="options">
+                    </selectize>
                 </div>
             </li>
             <li>

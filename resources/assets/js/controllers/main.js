@@ -10,13 +10,11 @@
 angular.module('app.controllers')
 
 .controller('MainController',
-    ['$scope', '$sessionStorage', '$localStorage',
-    'ProfileService', 'GroupService', 'OnboardingService',
+    ['$scope', '$sessionStorage', '$localStorage', 'ProfileService', 'GroupService', 'OnboardingService',
     "Teams", "Athletes", "Sports", "loggit",
     'Rover', 'appVersion', 'isLocalEnvironment',
     function(
-        $scope, $sessionStorage, $localStorage,
-        ProfileService, GroupService, OnboardingService,
+        $scope, $sessionStorage, $localStorage, ProfileService, GroupService, OnboardingService,
         Teams, Athletes, Sports, loggit,
         Rover, appVersion, isLocalEnvironment) {
         Rover.debug('MainController');

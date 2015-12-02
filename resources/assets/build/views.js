@@ -3280,7 +3280,12 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </div>\n" +
-    "                    <input type=\"text\" class=\"form-control\" placeholder=\"{{ selectedFilter.placeholder }}\">\n" +
+    "                    <selectize\n" +
+    "                        ng-model=\"model\"\n" +
+    "                        class=\"form-control\"\n" +
+    "                        config=\"config\"\n" +
+    "                        options=\"options\">\n" +
+    "                    </selectize>\n" +
     "                </div>\n" +
     "            </li>\n" +
     "            <li>\n" +
