@@ -3272,9 +3272,10 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "		</ul>\n" +
     "\n" +
     "        <ul class=\"nav-right list-unstyled\">\n" +
-    "            <!-- <li ng-controller=\"SearchController\">\n" +
     "\n" +
-    "                <div class=\"input-group\">\n" +
+    "            <!-- Search input -->\n" +
+    "            <li ng-controller=\"SearchController\">\n" +
+    "                <div class=\"input-group search-input\">\n" +
     "                    <div class=\"input-group-btn\">\n" +
     "                        <button\n" +
     "                            type=\"button\"\n" +
@@ -3295,9 +3296,9 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                            </li>\n" +
     "                        </ul>\n" +
     "                    </div>\n" +
-    "                    <input type=\"text\" class=\"form-control\" placeholder=\"search...\">\n" +
+    "                    <input type=\"text\" class=\"form-control\" placeholder=\"{{ selectedFilter.placeholder }}\">\n" +
     "                </div>\n" +
-    "            </li> -->\n" +
+    "            </li>\n" +
     "            <li>\n" +
     "                <div class=\"btn-group\">\n" +
     "\n" +

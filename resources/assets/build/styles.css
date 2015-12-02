@@ -479,15 +479,20 @@ pre {
 
   .nav-min .top-header .top-nav {
     padding: 0 0 0 60px; } }
-/* Search input */
-.top-header .top-nav .input-group .fa {
-  margin-right: 4px; }
+/*
+ * Search input
+ */
+.top-header .search-input {
+  width: 250px; }
 
-.top-header .top-nav .input-group .caret {
+.top-header .search-input .fa {
+  margin-right: 3px; }
+
+.top-header .search-input .caret {
   color: #ccc; }
 
-.top-header .top-nav .input-group input[type="text"].form-control,
-.top-header .top-nav .input-group input[type="text"].form-control:focus {
+.top-header .search-input input[type="text"].form-control,
+.top-header .search-input input[type="text"].form-control:focus {
   border-color: #ddd;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -495,6 +500,9 @@ pre {
   -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
 
+@media (min-width: 768px) {
+  .top-header .search-input {
+    width: 400px; } }
 .top-header .top-nav .nav-left,
 .top-header .top-nav .nav-right {
   font-size: 18px;
@@ -4839,9 +4847,17 @@ button.toast-close-button {
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- *    - Dropdowns / Toolbars / Navigation
+ *    Dropdowns / Toolbars / Navigation
+ */
+/*
+ * Dropdown menus
  */
 .dropdown-menu {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -4850,27 +4866,22 @@ button.toast-close-button {
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;
-  color: #fff;
+  color: #333 !important;
   background-color: #db5031; }
 
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
-  color: #fff;
+  color: #767676;
   text-decoration: none;
   outline: 0;
   background-color: #db5031; }
 
-.dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
+.dropdown-menu > .disabled > a,
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
   color: #999; }
 
 .dropdown-header {
   color: #999; }
-
-.dropdown-menu {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -ms-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none; }
 
 .dropdown-menu.dropdown-dark {
   background-color: #272b2f; }
@@ -4953,6 +4964,9 @@ button.toast-close-button {
 .dropdown-menu.with-arrow.panel-danger:after {
   border-bottom: 7px solid #fff1ed; }
 
+/*
+ * ...
+ */
 .btn-toolbar:before, .btn-toolbar:after {
   content: " ";
   display: table; }
@@ -8403,7 +8417,7 @@ svg {
   transform: skewX(26deg); }
 
 .ui-page-title-background .ui-page-title-skew .ui-page-title .fa {
-  font-size: 0.8em;
+  font-size: 0.9em;
   margin: auto 10px; }
 
 /**

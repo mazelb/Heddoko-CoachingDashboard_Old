@@ -4,8 +4,8 @@
  *
  */
 
-.top-header .clearfix{
-  position: relative;
+.top-header .clearfix {
+    position: relative;
 }
 
 .top-header .menu-button {
@@ -77,18 +77,29 @@
     }
 }
 
-/* Search input */
-.top-header .top-nav .input-group .fa {
-    margin-right: 4px;
+/*
+ * Search input
+ */
+.top-header .search-input {
+    width: 250px;
 }
-.top-header .top-nav .input-group .caret {
+.top-header .search-input .fa {
+    margin-right: 3px;
+}
+.top-header .search-input .caret {
     color: #ccc;
 }
-.top-header .top-nav .input-group input[type="text"].form-control,
-.top-header .top-nav .input-group input[type="text"].form-control:focus {
+.top-header .search-input input[type="text"].form-control,
+.top-header .search-input input[type="text"].form-control:focus {
     border-color: #ddd;
     @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 }
+@media (min-width: 768px) {
+    .top-header .search-input {
+        width: 400px;
+    }
+}
+
 
 .top-header .top-nav .nav-left,
 .top-header .top-nav .nav-right {

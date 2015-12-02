@@ -206,9 +206,10 @@
 		</ul>
 
         <ul class="nav-right list-unstyled">
-            <!-- <li ng-controller="SearchController">
 
-                <div class="input-group">
+            <!-- Search input -->
+            <li ng-controller="SearchController">
+                <div class="input-group search-input">
                     <div class="input-group-btn">
                         <button
                             type="button"
@@ -229,9 +230,9 @@
                             </li>
                         </ul>
                     </div>
-                    <input type="text" class="form-control" placeholder="search...">
+                    <input type="text" class="form-control" placeholder="{{ selectedFilter.placeholder }}">
                 </div>
-            </li> -->
+            </li>
             <li>
                 <div class="btn-group">
 
