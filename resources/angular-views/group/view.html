@@ -30,7 +30,7 @@
                             <div class="modal-body">
                                 <p ng-show="global.state.profile.list.length > 0">
                                     Are you sure you want to delete <b>{{ group.name }}</b>
-                                    and the {{ global.state.profile.list.length }}
+                                    and the {{ global.state.profile.filtered.length }}
                                     associated athletes?
                                 </p>
                                 <p ng-show="global.state.profile.list.length === 0">
@@ -48,15 +48,6 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Edit group button -->
-                <button
-                    ng-show="group.id > 0"
-                    ng-click="Rover.browseTo.path('group/edit')"
-                    class="btn btn-default">
-
-                    Edit <b>{{ group.name }}</b>
-                </button>
 
                 <!-- Create profile button -->
                 <button
@@ -78,14 +69,36 @@
                     <ui-avatar
                         data-upload-endpoint="uploadAvatarEndpoint"
                         data-success-callback="uploadAvatarCallback"
-                        data-src="group.avatar_src">
+                        data-src="global.state.group.list[global.store.groupId].avatar_src">
                     </ui-avatar>
                 </div>
     		</div>
 
             <!-- Group details -->
             <div class="col-sm-12 col-md-6">
-                <div data-ng-include="'group/partials/details.html'"></div>
+                <div
+                    data-ui-editable-list-container
+                    data-model="global.state.group.list[global.store.groupId]"
+                    data-save="saveGroupDetails"
+                    data-save-callback="saveGroupDetailsCallback"
+                    data-heading="Details for {{ global.state.group.list[global.store.groupId].name }}">
+
+                    <!-- Group name -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Name"
+                        data-key="name"
+                        data-required="true">
+                    </div>
+
+                    <!-- Tags -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Sport"
+                        data-key="tags"
+                        data-type="tag">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -95,14 +108,14 @@
         <!-- Profile list -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                Athletes in {{ global.state.group.selected.name }}
+                Athletes in {{ group.name }}
             </div>
 
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div ng-show="global.state.profile.list.length === 0">
-                            The <b>{{ global.state.group.selected.name }}</b> do not have any
+                        <div ng-show="global.state.profile.filtered.length === 0">
+                            The <b>{{ group.name }}</b> do not have any
                             members yet. Add one above to get started!
                         </div>
                     </div>
@@ -113,7 +126,7 @@
                         <a
                             href="javascript:;"
                             class="btn btn-primary btn-metro"
-                            ng-repeat="profile in global.state.profile.list"
+                            ng-repeat="profile in global.state.profile.filtered"
                             ng-click="Rover.browseTo.profile(profile)"
                             style="background-image: url({{ profile.avatar_src || '' }});background-size: cover;">
 
@@ -135,7 +148,7 @@
 
                     <div class="panel-body">
                         Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>
-                        Global: {{ global.state.group.selected.name }} <br>
+                        Global: {{ group.name }} <br>
                     </div>
                 </div>
             </div>

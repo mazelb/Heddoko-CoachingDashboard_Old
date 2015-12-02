@@ -1,11 +1,11 @@
 
 <!-- Import page -->
-<div ng-show="global.state.profile.selected.id > 0" class="page import-page">
+<div ng-show="global.getSelectedProfile().id > 0" class="page import-page">
     <ui-page-title data-title="'Import'" data-icon="'cloud-upload'"></ui-page-title>
     <div class="clearfix"></div>
 
     Import movement data for
-    <b>{{ global.state.profile.selected.first_name + ' ' + global.state.profile.selected.last_name }}</b>
+    <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>
 
     <div class="movement-import row">
 
@@ -102,7 +102,7 @@
 
 <!-- No profile selected -->
 <div
-    ng-show="global.state.profile.selected.id === 0"
+    ng-show="global.getSelectedProfile().id === 0"
     ng-include="'partials/no-profile-selected-notice.html'"
     class="page">
 </div>

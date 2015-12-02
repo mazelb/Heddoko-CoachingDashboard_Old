@@ -1,6 +1,8 @@
 <?php
 /**
- * @brief   Handles profile actions.
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Handles profile-related http requests.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
  */
@@ -26,16 +28,13 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Displays a listing of the resource.
      *
      * @return Response
      */
     public function index()
     {
-        // TODO: filter profiles somehow.
-
-
-        // Retrieve query builder.
+        // Retrieve a query builder.
         $groupId = (int) $this->request->input('group');
         if ($groupId && $group = Group::find($groupId)) {
             $builder = $group->profiles();
@@ -43,9 +42,14 @@ class ProfileController extends Controller
             $builder = Profile::query();
         }
 
+        // Determine which relations to embed with the profile list.
+        if ($this->request->has('embed')) {
+            $embed = explode(',', $this->request->input('embed'));
+        } else {
+            $embed = ['groups', 'primaryTag', 'secondaryTags', 'avatar'];
+        }
+
         // Retrieve profiles.
-        // TODO: only embed specified relations.
-        $embed = ['groups', 'primaryTag', 'secondaryTags', 'avatar'];
         $profiles = $builder->with($embed)->get();
 
         // Resize avatars.
@@ -59,7 +63,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores a newly created resource in storage.
      *
      * @return Response
      */

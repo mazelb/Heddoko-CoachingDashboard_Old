@@ -12,7 +12,6 @@ angular.module('app.controllers')
 .controller('GroupController',
     ['$scope', '$location', 'GroupService', 'Teams', 'Upload', 'Rover', 'assetVersion', 'isLocalEnvironment',
     function($scope, $location, GroupService, Teams, Upload, Rover, assetVersion, isLocalEnvironment) {
-
         Rover.debug('GroupController');
 
         // Current URL path.
@@ -30,14 +29,11 @@ angular.module('app.controllers')
 
         // Shortcut for the currently selected group.
         else {
-            $scope.group = $scope.global.state.group.selected;
+            $scope.group = $scope.global.getSelectedGroup();
         }
 
         // Shortcut to the list of groups.
         $scope.groups = $scope.global.state.group.list;
-
-        // Shortcut to the list of sports.
-        // $scope.sports = $scope.global.state.sport.list;
 
         // Submits the "new group" form.
         $scope.submitGroupForm = function() {
@@ -81,8 +77,8 @@ angular.module('app.controllers')
         // Saves a profile through the uiEditableListContainer directive.
         $scope.saveGroupDetails = function() {
             return GroupService.update(
-                $scope.global.state.group.selected.id,
-                $scope.global.state.group.selected
+                $scope.global.getSelectedGroup().id,
+                $scope.global.getSelectedGroup()
             );
         };
 
@@ -144,8 +140,7 @@ angular.module('app.controllers')
             // Show loading animation.
             Rover.addBackgroundProcess();
 
-            // Teams.destroy($scope.global.state.group.selected.id).then(
-            GroupService.destroy($scope.global.state.group.selected.id).then(
+            GroupService.destroy($scope.global.getSelectedGroup().id).then(
 
                 // On success, update group list and browse to groups page.
                 function(response) {
@@ -156,7 +151,7 @@ angular.module('app.controllers')
 
                         // Update selected group.
                         if (response.data.length > 0) {
-                            $scope.global.state.group.selected = response.data[0];
+                            Rover.store.groupId = response.data[0].id;
                         }
                     }
 
@@ -185,15 +180,15 @@ angular.module('app.controllers')
             $scope.global.state.group.list = this.list;
         };
 
-        $scope.$watch('global.state.group.selected', function(newGrp, oldGrp)
+        $scope.$watch('global.store.groupId', function(newGrp, oldGrp)
         {
             // Performance check.
-            if (newGrp.id === oldGrp.id) {
+            if (newGrp === oldGrp) {
                 return;
             }
 
             // Shortcut for the currently selected group.
-            $scope.group = $scope.global.state.group.selected;
+            $scope.group = $scope.global.getSelectedGroup();
         });
     }
 ]);

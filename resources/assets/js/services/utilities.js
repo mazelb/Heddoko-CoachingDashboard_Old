@@ -20,6 +20,29 @@ angular.module('app.utilities', [])
                 $window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
         /**
+         * Calculates the length of an associative array.
+         *
+         * @param object obj
+         * @return int
+         */
+        this.getObjectLength = function(obj) {
+
+            // Performance check.
+            if (obj === null || obj === undefined || !obj.hasOwnProperty) {
+                return 0;
+            }
+
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key) && key != 'length' && key[0] != '_') {
+                    size++;
+                }
+            }
+
+            return size;
+        };
+
+        /**
          * Retrieves the ID from an object.
          *
          * @param mixed obj

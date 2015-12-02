@@ -98,17 +98,12 @@ angular.module('app.rover', [])
             // Group page.
             group: function(group) {
 
-                // Navigate to the selected group.
-                if (group === undefined) {
-                    group = this.state.group.selected;
+                // Update the selected group.
+                if (group !== undefined) {
+                    this.store.groupId = Utilities.getId(group);
                 }
 
-                // Or to a specified group.
-                else {
-                    this.state.group.selected = group;
-                }
-
-                Utilities.debug('Browsing to group #' + group.id);
+                Utilities.debug('Browsing to group #' + this.store.groupId);
                 $location.path('/group/view');
 
             }.bind(this),
@@ -116,28 +111,18 @@ angular.module('app.rover', [])
             // Profile page.
             profile: function(profile) {
 
-                // Navigate to the selected profile.
-                if (!profile) {
-                    profile = this.state.profile.selected;
-                }
-
-                // Or to a specified profile.
-                else {
-                    this.state.profile.selected = profile;
+                // Update the selected profile.
+                if (profile !== undefined) {
+                    this.store.profileId = Utilities.getId(profile);
                 }
 
                 // If the profile somehow belongs to a different group, reload the profile
                 // list and related data before browsing to the profile page.
-                if (profile.groups && profile.groups.length && profile.groups[0].id != this.state.group.selected.id)
-                {
-                    // Select the group and reload the profile list.
-                    this.state.group.selected = profile.groups[0];
-
-                    // Save the profile we want to browser to later.
-                    this.store.profileId = profile.id;
+                if (profile.groups && profile.groups.length && profile.groups[0].id != this.store.groupId) {
+                    this.store.groupId = profile.groups[0].id;
                 }
 
-                Utilities.debug('Browsing to profile #' + profile.id);
+                Utilities.debug('Browsing to profile #' + this.store.profileId);
                 $location.path('/profile/view');
 
             }.bind(this),

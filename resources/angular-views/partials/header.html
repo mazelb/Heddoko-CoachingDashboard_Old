@@ -26,8 +26,7 @@
 			<li
                 class="onboarding-general"
                 data-step="2"
-                data-intro="Here is where you can find the groups you manage. The black arrow is a shortcut to view
-                            the <strong>{{ global.state.group.selected.name }}</strong>'s details.">
+                data-intro="Here is where you can find the groups you manage.">
 
                 <div class="btn-group">
 
@@ -41,7 +40,7 @@
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        {{ global.state.group.selected.name || '(no team selected)' }}
+                        {{ global.getSelectedGroup().name || '(no team selected)' }}
                         <span ng-hide="global.data.isFetchingProfiles" class="caret"></span>
                     </button>
 
@@ -51,12 +50,12 @@
                         class="dropdown-menu">
 
                         <li>
-                            <a href="javascript:;" ng-click="global.state.group.selected = {id: 0}">
+                            <a href="javascript:;" ng-click="global.store.groupId = 0">
                                 (none)
                             </a>
                         </li>
-                        <li ng-repeat="group in global.state.group.list">
-                            <a href="javascript:;" ng-click="global.state.group.selected = group">
+                        <li ng-repeat="(id, group) in global.state.group.list">
+                            <a href="javascript:;" ng-click="global.store.groupId = group.id">
                                 {{ group.name }}
                             </a>
                         </li>
@@ -64,18 +63,18 @@
 
                     <!-- Loading animation, indicating that groups are being fetched -->
                     <button
-                        ng-show="global.data.isFetchingGroups ||
-                            (global.data.isFetchingProfiles && global.state.group.selected.id === 0)"
+                        ng-show="global.data.isFetchingGroups"
                         type="button"
-                        class="btn btn-info">
+                        class="btn btn-info"
+                        disabled>
 
                         <i class="fa fa-spinner fa-spin"></i>
                     </button>
 
                     <!-- Link to group page -->
                     <button
-                        ng-hide="global.state.group.selected.id === 0 || global.data.isFetchingGroups"
-                        ng-click="global.browseTo.group(global.state.group.selected)"
+                        ng-hide="global.store.groupId === 0 || global.data.isFetchingGroups"
+                        ng-click="global.browseTo.group()"
                         type="button"
                         class="btn btn-info"
                         data-toggle="tooltip"
@@ -89,29 +88,27 @@
 
             <!-- Profile dropdown -->
 			<li
-                ng-show="global.state.group.selected.id > 0"
                 class="onboarding-general"
                 data-step="3"
-                data-intro="Here is where you can find the profiles you manage. If a group is selected, the
-                            profiles listed will be restricted to that group. The black arrow is a
-                            shortcut to view <strong>{{ global.state.profile.selected.first_name }}
-                            </strong>'s details.">
+                data-intro="Here is where you can find the profiles you manage. If a team is
+                            selected, the profiles listed will be restricted to that team.">
 
                 <div class="btn-group">
 
                     <!-- Face of dropdown -->
                     <button
-                        ng-hide="global.state.profile.list.length === 0"
+                        ng-hide="global.state.profile.filtered.length === 0"
                         type="button"
                         class="btn btn-default dropdown-toggle"
                         data-toggle="dropdown"
                         aria-haspopup="true"
                         aria-expanded="false">
 
-                        <span ng-show="global.state.profile.selected.id > 0">
-                            {{ global.state.profile.selected.first_name +' '+ global.state.profile.selected.last_name }}
+                        <span ng-show="global.store.profileId > 0">
+                            {{ global.getSelectedProfile().first_name }}
+                            {{ global.getSelectedProfile().last_name }}
                         </span>
-                        <span ng-show="global.state.profile.selected.id === 0">
+                        <span ng-show="global.store.profileId === 0">
                             {{ '(no athlete selected)' }}
                         </span>
 
@@ -119,14 +116,14 @@
                     </button>
 
                     <!-- Contents of dropdown -->
-                    <ul ng-hide="global.state.profile.list.length === 0" class="dropdown-menu">
+                    <ul ng-hide="global.state.profile.filtered.length === 0" class="dropdown-menu">
                         <li>
-                            <a href="javascript:;" ng-click="global.state.profile.selected = {id: 0}">
+                            <a href="javascript:;" ng-click="global.store.profileId = 0">
                                 (none)
                             </a>
                         </li>
-                        <li ng-repeat="profile in global.state.profile.list">
-                            <a href="javascript:;" ng-click="global.state.profile.selected = profile">
+                        <li ng-repeat="profile in global.state.profile.filtered">
+                            <a href="javascript:;" ng-click="global.store.profileId = profile.id">
                                 {{ profile.first_name +' '+ profile.last_name }}
                             </a>
                         </li>
@@ -136,15 +133,16 @@
                     <button
                         ng-show="global.data.isFetchingProfiles"
                         type="button"
-                        class="btn btn-info">
+                        class="btn btn-info"
+                        disabled>
 
                         <i class="fa fa-spinner fa-spin"></i>
                     </button>
 
                     <!-- Link to profile page -->
                     <button
-                        ng-show="global.state.profile.selected.id > 0 && !global.data.isFetchingProfiles"
-                        ng-click="global.browseTo.profile(global.state.profile.selected)"
+                        ng-show="global.store.profileId > 0 && !global.data.isFetchingProfiles"
+                        ng-click="global.browseTo.profile()"
                         type="button"
                         class="btn btn-info"
                         data-toggle="tooltip"
@@ -156,7 +154,7 @@
 
                     <!-- Create new profile button -->
                     <button
-                        ng-show="global.state.profile.list.length === 0 && !global.data.isFetchingProfiles"
+                        ng-show="global.state.profile.filtered.length === 0 && !global.data.isFetchingProfiles"
                         ng-click="global.browseTo.path('/profile/create')"
                         type="button"
                         class="btn btn-default">
