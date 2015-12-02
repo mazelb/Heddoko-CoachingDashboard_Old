@@ -1,4 +1,4 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/details.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-field.html', 'directive-partials/ui-editable-list-container.html', 'directive-partials/ui-editable-list-item.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -3018,19 +3018,19 @@ angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function(
     "            Dashboard\n" +
     "        </a>\n" +
     "    </li>\n" +
-    "    <li ng-show=\"global.state.group.selected.id > 0\">\n" +
+    "    <li ng-show=\"global.store.groupId > 0\">\n" +
     "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.path('/group/list')\">\n" +
     "            Teams\n" +
     "        </a>\n" +
     "    </li>\n" +
-    "    <li ng-show=\"isProfilePage && global.state.group.selected.id > 0\">\n" +
+    "    <li ng-show=\"isProfilePage && global.store.groupId > 0\">\n" +
     "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.group()\">\n" +
-    "            {{ global.state.group.selected.name }}\n" +
+    "            {{ global.state.group.list[global.store.groupId].name }}\n" +
     "        </a>\n" +
     "    </li>\n" +
-    "    <li ng-show=\"currentPath == '/profile/view'\">\n" +
+    "    <li ng-show=\"currentPath == '/profile/view' && global.store.profileId > 0\">\n" +
     "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.profile()\">\n" +
-    "            {{ global.state.profile.selected.first_name }}\n" +
+    "            {{ global.state.profile.list[global.store.profileId].first_name }}\n" +
     "        </a>\n" +
     "    </li>\n" +
     "    <li ng-show=\"currentPath == '/group/create'\">\n" +
@@ -3235,13 +3235,14 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                        <li>\n" +
     "                            <a href=\"javascript:;\">\n" +
     "                                Total groups: {{ global.state.group.list.length }} /\n" +
-    "                                Selected: {{ global.state.group.selected.name || 'None' }}\n" +
+    "                                Selected: {{ global.getSelectedGroup().name || 'None' }}\n" +
     "                            </a>\n" +
     "                        </li>\n" +
     "                        <li>\n" +
     "                            <a href=\"javascript:;\">\n" +
     "                                Total profiles: {{ global.state.profile.list.length }} /\n" +
-    "                                Selected: {{ global.state.profile.selected.first_name || 'None' }}\n" +
+    "                                Selected (callback): {{ global.getSelectedProfile().first_name || 'None' }} /\n" +
+    "                                Selected (local): {{ global.store.profileId }}\n" +
     "                            </a>\n" +
     "                        </li>\n" +
     "                        <li>\n" +
@@ -3877,105 +3878,6 @@ angular.module("profile/partials/current-fms-plot.html", []).run(["$templateCach
     "");
 }]);
 
-angular.module("profile/partials/details.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("profile/partials/details.html",
-    "<div\n" +
-    "    data-ui-editable-list-container\n" +
-    "    data-model=\"global.state.profile.selected\"\n" +
-    "    data-save=\"saveProfileDetails\"\n" +
-    "    data-save-callback=\"saveProfileDetailsCallback\"\n" +
-    "    data-heading=\"{{ global.state.profile.selected.first_name }}'s details\">\n" +
-    "\n" +
-    "    <!-- First name -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"First Name\"\n" +
-    "        data-key=\"first_name\"\n" +
-    "        data-required=\"true\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Last name -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Last Name\"\n" +
-    "        data-key=\"last_name\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Height -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Height\"\n" +
-    "        data-key=\"height\"\n" +
-    "        data-type=\"length\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Weight -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Weight\"\n" +
-    "        data-key=\"mass\"\n" +
-    "        data-type=\"mass\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Date of Birth -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Date of Birth\"\n" +
-    "        data-key=\"dob\"\n" +
-    "        data-type=\"date\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Gender -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Gender\"\n" +
-    "        data-key=\"gender\"\n" +
-    "        data-type=\"gender\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Phone -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Phone #\"\n" +
-    "        data-key=\"phone\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Email -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Email\"\n" +
-    "        data-key=\"email\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Profile creation date -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Profile Created\"\n" +
-    "        data-key=\"created_at\"\n" +
-    "        data-type=\"datetime\"\n" +
-    "        data-disabled=\"true\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Primary Tag -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Primary Sport\"\n" +
-    "        data-key=\"primary_tag\"\n" +
-    "        data-type=\"tag\">\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Secondary tags -->\n" +
-    "    <div\n" +
-    "        data-ui-editable-list-item\n" +
-    "        data-label=\"Other Sports\"\n" +
-    "        data-key=\"secondary_tags\"\n" +
-    "        data-type=\"tag\"\n" +
-    "        data-max-tags=\"10\">\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("profile/partials/final-fms-plot.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/partials/final-fms-plot.html",
     "<div class=\"panel panel-default\">\n" +
@@ -4115,7 +4017,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <section>\n" +
+    "    <section ng-hide=\"profile.id === 0\">\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
@@ -4131,7 +4033,100 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "            <!-- Profile details -->\n" +
     "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div data-ng-include=\"'profile/partials/details.html'\"></div>\n" +
+    "                <div\n" +
+    "                    data-ui-editable-list-container\n" +
+    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
+    "                    data-save=\"saveProfileDetails\"\n" +
+    "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
+    "                    data-heading=\"{{ global.state.profile.list[global.store.profileId].first_name }}'s details\">\n" +
+    "\n" +
+    "                    <!-- First name -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"First Name\"\n" +
+    "                        data-key=\"first_name\"\n" +
+    "                        data-required=\"true\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Last name -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Last Name\"\n" +
+    "                        data-key=\"last_name\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Height -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Height\"\n" +
+    "                        data-key=\"height\"\n" +
+    "                        data-type=\"length\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Weight -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Weight\"\n" +
+    "                        data-key=\"mass\"\n" +
+    "                        data-type=\"mass\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Date of Birth -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Date of Birth\"\n" +
+    "                        data-key=\"dob\"\n" +
+    "                        data-type=\"date\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Gender -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Gender\"\n" +
+    "                        data-key=\"gender\"\n" +
+    "                        data-type=\"gender\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Phone -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Phone #\"\n" +
+    "                        data-key=\"phone\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Email -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Email\"\n" +
+    "                        data-key=\"email\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Profile creation date -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Profile Created\"\n" +
+    "                        data-key=\"created_at\"\n" +
+    "                        data-type=\"datetime\"\n" +
+    "                        data-disabled=\"true\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Primary Tag -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Primary Sport\"\n" +
+    "                        data-key=\"primary_tag\"\n" +
+    "                        data-type=\"tag\">\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Secondary tags -->\n" +
+    "                    <div\n" +
+    "                        data-ui-editable-list-item\n" +
+    "                        data-label=\"Other Sports\"\n" +
+    "                        data-key=\"secondary_tags\"\n" +
+    "                        data-type=\"tag\"\n" +
+    "                        data-max-tags=\"10\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
@@ -4140,7 +4135,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "    		<div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Medical Information\"\n" +
-    "                    data-model=\"global.state.profile.selected\"\n" +
+    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
     "                    data-key=\"medical_history\"\n" +
     "                    data-empty=\"No medical information provided.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4151,7 +4146,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            <div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Previous Injuries\"\n" +
-    "                    data-model=\"global.state.profile.selected\"\n" +
+    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
     "                    data-key=\"injuries\"\n" +
     "                    data-empty=\"No previous injuries.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4162,7 +4157,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            <div class=\"col-sm-12 col-md-4\">\n" +
     "                <ui-editable-field\n" +
     "                    data-heading=\"Other Notes\"\n" +
-    "                    data-model=\"global.state.profile.selected\"\n" +
+    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
     "                    data-key=\"notes\"\n" +
     "                    data-empty=\"No other notes.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4199,7 +4194,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"panel-body\">\n" +
     "                            FMS Forms: {{ fmsForms }} <br><br>\n" +
     "                            Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>\n" +
-    "                            Profile global: ({{ global.state.profile.selected.id }}) <br>\n" +
+    "                            Profile global: ({{ global.state.profile.list[global.store.profileId].id }}) <br>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +

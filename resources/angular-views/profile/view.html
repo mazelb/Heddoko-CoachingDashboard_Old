@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <section>
+    <section ng-hide="profile.id === 0">
     	<div class="row">
 
             <!-- Avatar -->
@@ -74,7 +74,100 @@
 
             <!-- Profile details -->
             <div class="col-sm-12 col-md-6">
-                <div data-ng-include="'profile/partials/details.html'"></div>
+                <div
+                    data-ui-editable-list-container
+                    data-model="global.state.profile.list[global.store.profileId]"
+                    data-save="saveProfileDetails"
+                    data-save-callback="saveProfileDetailsCallback"
+                    data-heading="{{ global.state.profile.list[global.store.profileId].first_name }}'s details">
+
+                    <!-- First name -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="First Name"
+                        data-key="first_name"
+                        data-required="true">
+                    </div>
+
+                    <!-- Last name -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Last Name"
+                        data-key="last_name">
+                    </div>
+
+                    <!-- Height -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Height"
+                        data-key="height"
+                        data-type="length">
+                    </div>
+
+                    <!-- Weight -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Weight"
+                        data-key="mass"
+                        data-type="mass">
+                    </div>
+
+                    <!-- Date of Birth -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Date of Birth"
+                        data-key="dob"
+                        data-type="date">
+                    </div>
+
+                    <!-- Gender -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Gender"
+                        data-key="gender"
+                        data-type="gender">
+                    </div>
+
+                    <!-- Phone -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Phone #"
+                        data-key="phone">
+                    </div>
+
+                    <!-- Email -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Email"
+                        data-key="email">
+                    </div>
+
+                    <!-- Profile creation date -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Profile Created"
+                        data-key="created_at"
+                        data-type="datetime"
+                        data-disabled="true">
+                    </div>
+
+                    <!-- Primary Tag -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Primary Sport"
+                        data-key="primary_tag"
+                        data-type="tag">
+                    </div>
+
+                    <!-- Secondary tags -->
+                    <div
+                        data-ui-editable-list-item
+                        data-label="Other Sports"
+                        data-key="secondary_tags"
+                        data-type="tag"
+                        data-max-tags="10">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -83,7 +176,7 @@
     		<div class="col-sm-12 col-md-4">
                 <ui-editable-field
                     data-heading="Medical Information"
-                    data-model="global.state.profile.selected"
+                    data-model="global.state.profile.list[global.store.profileId]"
                     data-key="medical_history"
                     data-empty="No medical information provided."
                     data-save="saveProfileDetails"
@@ -94,7 +187,7 @@
             <div class="col-sm-12 col-md-4">
                 <ui-editable-field
                     data-heading="Previous Injuries"
-                    data-model="global.state.profile.selected"
+                    data-model="global.state.profile.list[global.store.profileId]"
                     data-key="injuries"
                     data-empty="No previous injuries."
                     data-save="saveProfileDetails"
@@ -105,7 +198,7 @@
             <div class="col-sm-12 col-md-4">
                 <ui-editable-field
                     data-heading="Other Notes"
-                    data-model="global.state.profile.selected"
+                    data-model="global.state.profile.list[global.store.profileId]"
                     data-key="notes"
                     data-empty="No other notes."
                     data-save="saveProfileDetails"
@@ -142,7 +235,7 @@
                         <div class="panel-body">
                             FMS Forms: {{ fmsForms }} <br><br>
                             Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>
-                            Profile global: ({{ global.state.profile.selected.id }}) <br>
+                            Profile global: ({{ global.state.profile.list[global.store.profileId].id }}) <br>
                         </div>
                     </div>
                 </div>

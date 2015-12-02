@@ -114,11 +114,15 @@ angular.module('app.rover', [])
                 // Update the selected profile.
                 if (profile !== undefined) {
                     this.store.profileId = Utilities.getId(profile);
+                    profile = this.store.profileId > 0 ?
+                        this.state.profile.list[this.store.profileId] : null;
                 }
 
                 // If the profile somehow belongs to a different group, reload the profile
                 // list and related data before browsing to the profile page.
-                if (profile.groups && profile.groups.length && profile.groups[0].id != this.store.groupId) {
+                if (profile && profile.groups && profile.groups.length &&
+                    profile.groups[0].id != this.store.groupId) {
+
                     this.store.groupId = profile.groups[0].id;
                 }
 

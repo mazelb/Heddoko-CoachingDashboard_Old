@@ -184,13 +184,14 @@
                         <li>
                             <a href="javascript:;">
                                 Total groups: {{ global.state.group.list.length }} /
-                                Selected: {{ global.state.group.selected.name || 'None' }}
+                                Selected: {{ global.getSelectedGroup().name || 'None' }}
                             </a>
                         </li>
                         <li>
                             <a href="javascript:;">
                                 Total profiles: {{ global.state.profile.list.length }} /
-                                Selected: {{ global.state.profile.selected.first_name || 'None' }}
+                                Selected (callback): {{ global.getSelectedProfile().first_name || 'None' }} /
+                                Selected (local): {{ global.store.profileId }}
                             </a>
                         </li>
                         <li>

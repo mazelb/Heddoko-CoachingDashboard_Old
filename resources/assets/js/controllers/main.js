@@ -118,7 +118,7 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Reset profile list.
-                    $scope.global.state.profile.list = {lenth: 0};
+                    $scope.global.state.profile.list = {length: 0};
                     angular.forEach(response.data, function(profile) {
 
                         // Add profile to list.
@@ -170,6 +170,11 @@ angular.module('app.controllers')
             var isCurrentProfileIncluded = false;
             $scope.global.state.profile.filtered = [];
             angular.forEach($scope.global.state.profile.list, function(profile) {
+
+                // Make sure we have a profile object.
+                if (!profile || !profile.id) {
+                    return;
+                }
 
                 // If no group was selected, include all profiles.
                 if (newGroup < 1)
