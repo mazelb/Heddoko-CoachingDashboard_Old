@@ -141,7 +141,8 @@
 
                     <!-- Link to profile page -->
                     <button
-                        ng-show="global.store.profileId > 0 && !global.data.isFetchingProfiles"
+                        ng-show="global.state.profile.filtered.length > 0 &&
+                            global.store.profileId > 0 && !global.data.isFetchingProfiles"
                         ng-click="global.browseTo.profile()"
                         type="button"
                         class="btn btn-info"

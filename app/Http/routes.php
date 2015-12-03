@@ -1,8 +1,6 @@
 <?php
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * Here is where all the application routes are registered. There are global patterns for some
  * route parameters defined in App\Providers\RouteServiceProvider.

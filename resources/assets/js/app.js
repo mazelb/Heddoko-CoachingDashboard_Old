@@ -1,11 +1,8 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- * @file    angular-app.js
  * @brief   Main angular application.
- * @author  Maxwell (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 
 // Initializes the AngularJS application.
@@ -38,7 +35,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.4.0';
+var _appVersion = '0.4.1';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||

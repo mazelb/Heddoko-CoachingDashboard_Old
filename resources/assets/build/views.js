@@ -2864,7 +2864,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <!-- Movement preview -->\n" +
     "            <div class=\"row\">\n" +
     "                <div class=\"col-xs-12\">\n" +
-    "                    <ui-movement-placeholder data-aspect-ratio=\"4:3\"></ui-movement-placeholder>\n" +
+    "                    <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -3192,7 +3192,8 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "\n" +
     "                    <!-- Link to profile page -->\n" +
     "                    <button\n" +
-    "                        ng-show=\"global.store.profileId > 0 && !global.data.isFetchingProfiles\"\n" +
+    "                        ng-show=\"global.state.profile.filtered.length > 0 &&\n" +
+    "                            global.store.profileId > 0 && !global.data.isFetchingProfiles\"\n" +
     "                        ng-click=\"global.browseTo.profile()\"\n" +
     "                        type=\"button\"\n" +
     "                        class=\"btn btn-info\"\n" +
