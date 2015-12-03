@@ -64,8 +64,8 @@ angular.module('app.controllers')
 
                 // On success, update profile list and browse to newly created profile.
                 function(response) {
-                    $scope.global.state.profile.list[response.data.profile.id] = response.data.profile;
-                    Rover.browseTo.profile(response.data.profile);
+                    $scope.global.state.profile.list[response.data.id] = response.data;
+                    Rover.browseTo.profile(response.data);
                     Rover.doneBackgroundProcess();
                 },
 

@@ -17,32 +17,25 @@ class Profile extends Model
 {
     use HasAvatar;
 
-    //
-    // Constants representing gender options.
-    //
-
+    /**
+     * Gender not specified.
+     */
     CONST GENDER_NOT_SPECIFIED = 0;
+
+    /**
+     * Gender option: female.
+     */
     CONST GENDER_FEMALE = 1;
+
+    /**
+     * Gender option: male
+     */
     CONST GENDER_MALE = 2;
 
     /**
      * Attributes which are mass-assignable.
      */
-	protected $fillable = [
-        'first_name',
-        'last_name',
-        'tag_id',
-        'height',
-        'mass',
-        'dob',
-        'gender',
-        'phone',
-        'email',
-        'medical_history',
-        'injuries',
-        'notes',
-        'meta'
-    ];
+	protected $fillable = ['first_name', 'last_name', 'tag_id'];
 
     /**
      * Attributes which should be appended to the model's array form.
@@ -53,6 +46,21 @@ class Profile extends Model
      * Attributes which should be hidden from the models' array form.
      */
     protected $hidden = ['avatar'];
+
+    /**
+     * Validation rules.
+     */
+    public $validationRules  = [
+        'first_name' => 'required|min:1|max:200',
+        'last_name' => 'max:200'
+    ];
+
+    /**
+     * Profile's additional details.
+     */
+    public function meta() {
+        return $this->hasOne('App\Models\ProfileMeta');
+    }
 
     /**
      * Groups profile belongs to.
@@ -69,17 +77,17 @@ class Profile extends Model
     }
 
     /**
-     * Functional Movement Screenings belonging to this profile.
+     * Movement sets belonging to this profile.
      */
-    public function screenings() {
-        return $this->hasMany('App\Models\Screening');
+    public function movementSets() {
+        return $this->hasMany('App\Models\MovementSet');
     }
 
     /**
      * Movements belonging to this profile.
      */
     public function movements() {
-        return $this->morphMany('App\Models\Movement', 'belongs_to');
+        return $this->hasMany('App\Models\Movement');
     }
 
     /**
@@ -94,6 +102,15 @@ class Profile extends Model
      */
     public function secondaryTags() {
         return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
+
+    /**
+     * Adds meta data to model.
+     */
+    public function appendMeta() {
+        foreach ($this->meta as $attr => $val) {
+            $this->{$attr} = $val;
+        }
     }
 
     /**

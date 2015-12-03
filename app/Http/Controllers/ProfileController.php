@@ -14,6 +14,7 @@ use Image;
 use App\Models\Tag;
 use App\Models\Group;
 use App\Models\Profile;
+use App\Models\ProfileMeta;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,16 +47,23 @@ class ProfileController extends Controller
         if ($this->request->has('embed')) {
             $embed = explode(',', $this->request->input('embed'));
         } else {
-            $embed = ['groups', 'primaryTag', 'secondaryTags', 'avatar'];
+            $embed = ['profile_meta', 'groups', 'primaryTag', 'secondaryTags', 'avatar'];
         }
 
         // Retrieve profiles.
         $profiles = $builder->with($embed)->get();
 
-        // Resize avatars.
-        if (count($profiles)) {
-            foreach ($profiles as $profile) {
+        if (count($profiles))
+        {
+            foreach ($profiles as $profile)
+            {
+                // Resize avatar.
                 $profile->resizeAvatar(400);
+
+                // Append meta data.
+                if (in_array('profile_meta', $embed)) {
+                    $profile->appendMeta();
+                }
             }
         }
 
@@ -69,13 +77,21 @@ class ProfileController extends Controller
      */
     public function store()
     {
-        // TODO: who is authorized to create profiles?
+        // TODO: validate incoming data.
+        // ... Maybe do this in model, through 'create' and 'saving' events?
 
+        $data = $this->request->only(['first_name', 'last_name']);
 
-        // Retrieve profile data.
-        $data = $this->request->only([
-            'first_name',
-            'last_name',
+        // Create new profile.
+        try {
+            $profile = Profile::create($data);
+        }
+        catch (\Exception $error) {
+            return response($error->getMessage(), 500);
+        }
+
+        // Add meta data.
+        $profile->meta()->create($this->request->only([
             'height',
             'mass',
             'dob',
@@ -86,10 +102,7 @@ class ProfileController extends Controller
             'injuries',
             'notes',
             'meta'
-        ]);
-
-        // Create new profile.
-        $profile = Profile::create($data);
+        ]));
 
         // Assign current user as a manager.
         $profile->managers()->attach(Auth::id());
@@ -101,12 +114,10 @@ class ProfileController extends Controller
         }
 
         // Embed extra data.
+        $profile->appendMeta();
         $groups = $profile->groups;
 
-        return [
-            'list' => $this->index(),
-            'profile' => $profile
-        ];
+        return $profile;
     }
 
     /**
