@@ -1,8 +1,6 @@
 <?php
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   Handles http requests for movement data.
  * @author  Francis Amankrah (frank@heddoko.com)

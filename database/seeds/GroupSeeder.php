@@ -1,6 +1,10 @@
 <?php
 /**
- * Seeds the database with groups. This should be run after AccountSeeder.
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Seeds the database with groups. This should be run after AccountSeeder.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
  */
 use App\Models\User;
 use App\Models\Group;
@@ -15,6 +19,8 @@ class GroupSeeder extends Seeder
      */
     public function run()
     {
+        $this->command->info('Running GroupSeeder...');
+
         // Groups belonging to demo user.
         if ($demo = User::where('username', 'awesomecoach111')->first())
         {

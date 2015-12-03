@@ -10,131 +10,131 @@ angular.module('backendHeddoko', [])
 /**
  * Teams factory.
  */
-.factory('Teams', ['$http', function($http) {
-
-	return {
-
-		/**
-		* @brief Teams.get method used for fetching the active user's teams
-		* @param void
-		* @return list of user's teams
-		*/
-
-		get : function() {
-			return $http.get('/api/teams');
-		},
-
-		/**
-		* @brief Teams.create method used for creating a new team under the active user
-		* @param form data pertaining to a new team entry
-		* @return upon a successful addition of a new team, the back-end returns an updated teams list
-		*/
-
-		create : function(new_team_form_data) {
-			return $http({
-				method: 'POST',
-				url: '/api/teams',
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(new_team_form_data)
-			});
-		},
-
-		/**
-		* @brief This is the Teams.update method used for updating an existing team's details
-		* @param form data pertaining to updated team details
-		* @return upon a successful update of a team, the back-end returns a updated teams list
-		*/
-
-		update : function(team_id, updated_team_form_data) {
-			return $http({
-				method: 'PUT',
-				url: '/api/teams/' + team_id,
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(updated_team_form_data)
-			});
-		},
-
-		/**
-		* @brief This is the Teams.destroy method used for removing a team under the active user
-		* @param id of the team to be destroyed
-		* @return void
-		*/
-
-		destroy : function(team_id) {
-			return $http.delete('/api/teams/' + team_id);
-		},
-
-        /**
-         * Uploads an avatar.
-         *
-         * @param object group
-         * @param object fileData
-         * @return $http
-         */
-        avatar: function(groupId, fileData) {
-            return $http.post('/api/teams/'+ groupId +'/photo', {photo: fileData});
-        }
-	};
-}])
+// .factory('Teams', ['$http', function($http) {
+//
+// 	return {
+//
+// 		/**
+// 		* @brief Teams.get method used for fetching the active user's teams
+// 		* @param void
+// 		* @return list of user's teams
+// 		*/
+//
+// 		get : function() {
+// 			return $http.get('/api/teams');
+// 		},
+//
+// 		/**
+// 		* @brief Teams.create method used for creating a new team under the active user
+// 		* @param form data pertaining to a new team entry
+// 		* @return upon a successful addition of a new team, the back-end returns an updated teams list
+// 		*/
+//
+// 		create : function(new_team_form_data) {
+// 			return $http({
+// 				method: 'POST',
+// 				url: '/api/teams',
+// 				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+// 				data: $.param(new_team_form_data)
+// 			});
+// 		},
+//
+// 		/**
+// 		* @brief This is the Teams.update method used for updating an existing team's details
+// 		* @param form data pertaining to updated team details
+// 		* @return upon a successful update of a team, the back-end returns a updated teams list
+// 		*/
+//
+// 		update : function(team_id, updated_team_form_data) {
+// 			return $http({
+// 				method: 'PUT',
+// 				url: '/api/teams/' + team_id,
+// 				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+// 				data: $.param(updated_team_form_data)
+// 			});
+// 		},
+//
+// 		/**
+// 		* @brief This is the Teams.destroy method used for removing a team under the active user
+// 		* @param id of the team to be destroyed
+// 		* @return void
+// 		*/
+//
+// 		destroy : function(team_id) {
+// 			return $http.delete('/api/teams/' + team_id);
+// 		},
+//
+//         /**
+//          * Uploads an avatar.
+//          *
+//          * @param object group
+//          * @param object fileData
+//          * @return $http
+//          */
+//         avatar: function(groupId, fileData) {
+//             return $http.post('/api/teams/'+ groupId +'/photo', {photo: fileData});
+//         }
+// 	};
+// }])
 
 /**
  * Athletes factory.
  */
-.factory('Athletes', ['$http', function($http) {
-
-	return {
-
-		/**
-		* @brief Athletes.get method used for fetching the athletes belonging to a given team
-		* @param team id
-		* @return list of athletes belonging to supplied team
-		*/
-
-		get : function(team_id) {
-			return $http.get('/api/teams/' + team_id + '/athletes');
-		},
-
-		/**
-		* @brief Athletes.create method used for creating a new Athlete, belonging to an existing team
-		* @param the id of the team under which to add the new athlete, and the new athlete's details
-		* @return upon a successful addition of a new team, the back-end returns an updated athlete's list
-		*/
-
-		create : function(team_id, new_athlete_form_data) {
-		    console.log(new_athlete_form_data);
-			    return $http({
-				    method: 'POST',
-				    url: '/api/teams/' + team_id + '/athletes',
-				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				    data: $.param(new_athlete_form_data)
-			});
-		},
-
-		update : function(profile) {
-			return $http({
-				method: 'PUT',
-				url: '/api/teams/'+ profile.group_id +'/athletes/'+ profile.id,
-				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
-				data: $.param(profile)
-			});
-		},
-
-		destroy : function(team_id, id) {
-			return $http.delete('/api/teams/' + team_id + '/athletes/' + id);
-		},
-
-        /**
-         * Uploads an avatar.
-         *
-         * @param object group
-         * @param object fileData
-         * @return $http
-         */
-        avatar: function(groupId, profileId, fileData) {
-            return $http.post('/api/teams/'+ groupId +'/athletes/'+ profileId +'/photo', {photo: fileData});
-        }
-	};
-}])
+// .factory('Athletes', ['$http', function($http) {
+//
+// 	return {
+//
+// 		/**
+// 		* @brief Athletes.get method used for fetching the athletes belonging to a given team
+// 		* @param team id
+// 		* @return list of athletes belonging to supplied team
+// 		*/
+//
+// 		get : function(team_id) {
+// 			return $http.get('/api/teams/' + team_id + '/athletes');
+// 		},
+//
+// 		/**
+// 		* @brief Athletes.create method used for creating a new Athlete, belonging to an existing team
+// 		* @param the id of the team under which to add the new athlete, and the new athlete's details
+// 		* @return upon a successful addition of a new team, the back-end returns an updated athlete's list
+// 		*/
+//
+// 		create : function(team_id, new_athlete_form_data) {
+// 		    console.log(new_athlete_form_data);
+// 			    return $http({
+// 				    method: 'POST',
+// 				    url: '/api/teams/' + team_id + '/athletes',
+// 				    headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+// 				    data: $.param(new_athlete_form_data)
+// 			});
+// 		},
+//
+// 		update : function(profile) {
+// 			return $http({
+// 				method: 'PUT',
+// 				url: '/api/teams/'+ profile.group_id +'/athletes/'+ profile.id,
+// 				headers: { 'Content-Type' : 'application/x-www-form-urlencoded' },
+// 				data: $.param(profile)
+// 			});
+// 		},
+//
+// 		destroy : function(team_id, id) {
+// 			return $http.delete('/api/teams/' + team_id + '/athletes/' + id);
+// 		},
+//
+//         /**
+//          * Uploads an avatar.
+//          *
+//          * @param object group
+//          * @param object fileData
+//          * @return $http
+//          */
+//         avatar: function(groupId, profileId, fileData) {
+//             return $http.post('/api/teams/'+ groupId +'/athletes/'+ profileId +'/photo', {photo: fileData});
+//         }
+// 	};
+// }])
 
 .factory('FMSForm', ['$http', function($http) {
 
@@ -247,65 +247,67 @@ angular.module('backendHeddoko', [])
 
 }])
 
-.factory('Sports', ['$http', function($http) {
+// .factory('Sports', ['$http', function($http) {
+//
+// 	return {
+//
+// 		/**
+// 		* @brief SportCategories.get method used for fetching the sports categories
+// 		* @param void
+// 		* @return list of sports categories
+// 		*/
+//
+// 		get : function() {
+// 			return $http.get('/api/sports');
+// 		}
+// 	};
+//
+// }])
 
-	return {
+// .factory('SportMovements', ['$http', function($http) {
+//
+// 	return {
+//
+// 		/**
+// 		* @brief SportMovements.get method used for fetching the movements under a given sport category
+// 		* @param id of sport category
+// 		* @return list of sport movements belonging to supplied sport category
+// 		*/
+//
+// 		get : function(sport_id) {
+// 			return $http.get('/api/sports/' + sport_id + '/sportmovements');
+// 		}
+//
+// 	};
+// }])
 
-		/**
-		* @brief SportCategories.get method used for fetching the sports categories
-		* @param void
-		* @return list of sports categories
-		*/
+// .factory('Movements', ['$http', function($http) {
+//
+// 	return {
+//
+// 		/**
+// 		* @brief Movements.upload method used for uploading multiple movement files to the back-end
+// 		* @param id of athlete who conducted the movement(s), and the array of files to upload.
+// 		* @return null
+// 		*/
+//
+// 		upload : function(athlete_id, sport_id, form_data) {
+//
+// 			var fd = new FormData();
+//
+// 			fd.append('sportID', sport_id);
+// 			fd.append('comment', form_data.comment);
+//
+// 			for (i = 0; i < form_data.movement_files.length; i++) {
+// 				fd.append('movements[]', form_data.movement_files[i]);
+// 			}
+//
+// 			return $http.post('/api/athletes/' + athlete_id + '/movements', fd, {
+// 				transformRequest: angular.identity,
+// 				headers: {'Content-Type': undefined}
+// 			});
+// 		}
+// 	};
+// }])
 
-		get : function() {
-			return $http.get('/api/sports');
-		}
-	};
-
-}])
-
-.factory('SportMovements', ['$http', function($http) {
-
-	return {
-
-		/**
-		* @brief SportMovements.get method used for fetching the movements under a given sport category
-		* @param id of sport category
-		* @return list of sport movements belonging to supplied sport category
-		*/
-
-		get : function(sport_id) {
-			return $http.get('/api/sports/' + sport_id + '/sportmovements');
-		}
-
-	};
-}])
-
-.factory('Movements', ['$http', function($http) {
-
-	return {
-
-		/**
-		* @brief Movements.upload method used for uploading multiple movement files to the back-end
-		* @param id of athlete who conducted the movement(s), and the array of files to upload.
-		* @return null
-		*/
-
-		upload : function(athlete_id, sport_id, form_data) {
-
-			var fd = new FormData();
-
-			fd.append('sportID', sport_id);
-			fd.append('comment', form_data.comment);
-
-			for (i = 0; i < form_data.movement_files.length; i++) {
-				fd.append('movements[]', form_data.movement_files[i]);
-			}
-
-			return $http.post('/api/athletes/' + athlete_id + '/movements', fd, {
-				transformRequest: angular.identity,
-				headers: {'Content-Type': undefined}
-			});
-		}
-	};
-}]);
+;

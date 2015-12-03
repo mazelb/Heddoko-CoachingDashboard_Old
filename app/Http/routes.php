@@ -18,6 +18,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
     Route::resource('profile', 'ProfileController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
+    Route::resource('profile.movement', 'MovementDataController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
 
     // Group endpoints.
     Route::post('group/{id}/avatar', 'GroupController@saveAvatar');
@@ -29,11 +32,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
     // Tag endpoints.
     Route::resource('tag', 'TagController', [
         'only' => ['index', 'store']
-    ]);
-
-    // Movement data endpoints.
-    Route::resource('profile.movement', 'MovementDataController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // Screening endpoints.

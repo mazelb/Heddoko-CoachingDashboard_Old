@@ -1,14 +1,14 @@
 <?php
 /**
- * Seeds the database with sample tags.
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Seeds the database with sample tags.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
  */
-use App\Models\User;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
-/**
- *
- */
 class TagSeeder extends Seeder
 {
     /**
@@ -18,7 +18,7 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->command->info('Running TagSeeder...');
 
         $tags = [
 
@@ -82,7 +82,5 @@ class TagSeeder extends Seeder
         foreach ($filteredTags as $tag) {
             Tag::create(['title' => $tag]);
         }
-
-        $this->command->info('Done.');
     }
 }

@@ -1,6 +1,10 @@
 <?php
 /**
- * Seeds the database with user accounts. This should be run before GroupSeeder.
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Seeds the database with user accounts. This should be run before GroupSeeder.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
  */
 use App\Models\User;
 use App\Models\Role;

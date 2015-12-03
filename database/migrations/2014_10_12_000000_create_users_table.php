@@ -1,6 +1,11 @@
 <?php
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+
 class CreateUsersTable extends Migration
 {
     /**
@@ -10,15 +15,17 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('email');
             $table->string('username')->unique();
             $table->string('password', 60);
-            $table->string('city', 255);
-            $table->string('dob', 16);
-            $table->string('sex', 11); //'unspecified' is 11 characters long
-            $table->string('mobile', 20);
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('country', 2);
+            $table->text('config')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

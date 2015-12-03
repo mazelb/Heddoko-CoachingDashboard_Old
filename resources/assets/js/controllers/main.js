@@ -5,7 +5,7 @@
  *          eye on local scope variables keeps them in sync with the local storage. It also fetches
  *          the group list when the page is loaded, and loads a group's profiles when the selected
  *          group changes.
- * @author  Maxwell Mowbray (max@heddoko.com); Francis Amankrah (frank@heddoko.com)
+ * @author  Maxwell Mowbray (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 angular.module('app.controllers')
 
@@ -91,7 +91,9 @@ angular.module('app.controllers')
                     });
 
                     // Select a default group.
-                    if ($scope.global.store.groupId === 0 && response.data.length > 0) {
+                    if (!$scope.global.data.isFetchingProfiles &&
+                            $scope.global.store.groupId === 0 && response.data.length > 0) {
+
                         $scope.global.store.groupId = response.data[0].id;
                     }
 

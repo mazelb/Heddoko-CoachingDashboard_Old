@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   DB updates.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    October 2015
+ * @todo    Combine all migrations into a single file.
+ */
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
