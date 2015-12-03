@@ -14895,7 +14895,7 @@ angular.module("directive-partials/ui-editable-fields/field-value-generic.html",
   $templateCache.put("directive-partials/ui-editable-fields/field-value-generic.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter\">\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
     "    <div class=\"col-sm-1 text-center\">\n" +
@@ -14920,7 +14920,7 @@ angular.module("directive-partials/ui-editable-fields/field-value-timestamp.html
   $templateCache.put("directive-partials/ui-editable-fields/field-value-timestamp.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter\">\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
     "    <div class=\"col-sm-1 text-center\">\n" +
@@ -14945,7 +14945,7 @@ angular.module("directive-partials/ui-editable-fields/field-value-with-units.htm
   $templateCache.put("directive-partials/ui-editable-fields/field-value-with-units.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter\">\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Edit icons -->\n" +
     "    <div class=\"col-sm-1 text-center\">\n" +

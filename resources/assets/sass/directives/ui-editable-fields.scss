@@ -3,22 +3,22 @@
  *
  */
 
-.ui-editable-field .edit-icon {
+.ui-editable-field-value .edit-icon {
     color: #999;
     @include opacity(0);
 }
-.ui-editable-field:hover .edit-icon,
-.ui-editable-field:focus .edit-icon {
+.ui-editable-field-value:hover .edit-icon,
+.ui-editable-field-value:focus .edit-icon {
     color: $text-color;
     text-decoration: none;
     @include opacity(1);
 }
-.ui-editable-field .edit-text {
+.ui-editable-field-value .edit-text {
     color: $text-color;
     font-weight: bold;
 }
-.ui-editable-field .edit-text:hover,
-.ui-editable-field .edit-text:focus {
+.ui-editable-field-value .edit-text:hover,
+.ui-editable-field-value .edit-text:focus {
     text-decoration: none;
     background-color: #eee;
 }
