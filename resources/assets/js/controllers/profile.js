@@ -8,9 +8,9 @@
 angular.module('app.controllers')
 
 .controller('ProfileController',
-    ['$scope', '$location', '$filter', 'Teams', 'Athletes', 'FMSForm', 'Rover', 'ProfileService', 'GroupService',
+    ['$scope', '$location', '$filter', 'Rover', 'ProfileService', 'GroupService',
     'Utilities', '$http',
-    function($scope, $location, $filter, Teams, Athletes, FMSForm, Rover, ProfileService, GroupService, Utilities, $http) {
+    function($scope, $location, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
 
         Rover.debug('ProfileController');
 

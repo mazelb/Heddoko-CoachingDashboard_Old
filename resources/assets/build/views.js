@@ -856,7 +856,8 @@ angular.module("submit-movement-demo.html", []).run(["$templateCache", function(
     "    </div>\n" +
     "\n" +
     "    <!-- Select a movement -->\n" +
-    "    <div class=\"row\" ng-hide=\"sports.selected == sports.default\">\n" +
+    "    <!-- <div class=\"row\" ng-hide=\"sports.selected == sports.default\"> -->\n" +
+    "    <div class=\"row\">\n" +
     "        <div class=\"col-sm-12\">\n" +
     "            <div class=\"panel panel-default\">\n" +
     "                <div class=\"panel-heading\">\n" +
@@ -876,7 +877,8 @@ angular.module("submit-movement-demo.html", []).run(["$templateCache", function(
     "    </div>\n" +
     "\n" +
     "    <!-- Submit data -->\n" +
-    "    <div class=\"row\" ng-hide=\"movements.selected == movements.default\">\n" +
+    "    <!-- <div class=\"row\" ng-hide=\"movements.selected == movements.default\"> -->\n" +
+    "    <div class=\"row\">\n" +
     "        <div class=\"col-sm-12\">\n" +
     "            <div class=\"panel panel-default\">\n" +
     "                <div class=\"panel-heading\">\n" +
