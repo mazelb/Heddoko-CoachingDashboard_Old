@@ -76,29 +76,26 @@
 
             <!-- Group details -->
             <div class="col-sm-12 col-md-6">
-                <div
-                    data-ui-editable-list-container
+                <ui-editable-fields
                     data-model="global.state.group.list[global.store.groupId]"
                     data-save="saveGroupDetails"
                     data-save-callback="saveGroupDetailsCallback"
                     data-heading="Details for {{ global.state.group.list[global.store.groupId].name }}">
 
                     <!-- Group name -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Name"
                         data-key="name"
                         data-required="true">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Tags -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Sport"
                         data-key="tags"
                         data-type="tag">
-                    </div>
-                </div>
+                    </ui-editable-field>
+                </ui-editable-fields>
             </div>
         </div>
     </section>

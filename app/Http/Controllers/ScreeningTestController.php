@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Handles screening test-related http requests.
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
+ */
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -7,7 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class FMSTestController extends Controller
+class ScreeningTestController extends Controller
 {
     /**
      * Display a listing of the resource.

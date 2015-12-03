@@ -1,5 +1,7 @@
 <?php
 /**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
  * @brief   Handles user actions.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
@@ -71,16 +73,20 @@ class UserController extends Controller
             return response('User Not Found.', 404);
         }
 
-        // Update profile details.
-        $user->fill($this->request->only([
-            'username',
-            'password',
-            'first_name',
-            'last_name',
-            'phone',
-            'email',
-            'config'
-        ]));
+        // We update the user details one at a time, to allow updating single fields.
+        $attrs = ['username', 'firstName', 'lastName', 'phone', 'email'];
+        foreach ($attrs as $attr)
+        {
+            if ($this->request->has($attr)) {
+                $user->{snake_case($attr)} = $this->request->input($attr);
+            }
+        }
+
+        // Update user config.
+        // ...
+
+        // Update user password.
+        // ...
 
         // Save profile.
         $user->save();

@@ -3,15 +3,6 @@
 @section('content')
 
 <div class="page-forgot">
-
-    <div class="signin-header">
-        <div class="container text-center">
-            <section class="logo">
-				<i class="fa fa-2x fa-slack"></i></a>
-            </section>
-        </div>
-    </div>
-
     <div class="main-body">
         <div class="container">
 

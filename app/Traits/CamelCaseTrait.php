@@ -1,12 +1,14 @@
 <?php
 /**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
  * @brief   Trait for converting the snake_case keys of a model to camelCase.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
  */
 namespace App\Traits;
 
-trait ArrayableResourceTrait
+trait CamelCaseTrait
 {
     /**
      * Converts the model instance to an array, and changes the snake_case keys to camelCase.

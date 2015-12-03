@@ -1,0 +1,24 @@
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
+
+.ui-editable-field .edit-icon {
+    color: #999;
+    @include opacity(0);
+}
+.ui-editable-field:hover .edit-icon,
+.ui-editable-field:focus .edit-icon {
+    color: $text-color;
+    text-decoration: none;
+    @include opacity(1);
+}
+.ui-editable-field .edit-text {
+    color: $text-color;
+    font-weight: bold;
+}
+.ui-editable-field .edit-text:hover,
+.ui-editable-field .edit-text:focus {
+    text-decoration: none;
+    background-color: #eee;
+}

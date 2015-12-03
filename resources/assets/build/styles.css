@@ -8362,7 +8362,31 @@ svg {
 
 /* Directives */
 /**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ */
+.ui-editable-field .edit-icon {
+  color: #999;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+
+.ui-editable-field:hover .edit-icon,
+.ui-editable-field:focus .edit-icon {
+  color: #767676;
+  text-decoration: none;
+  opacity: 1;
+  filter: alpha(opacity=100); }
+
+.ui-editable-field .edit-text {
+  color: #767676;
+  font-weight: bold; }
+
+.ui-editable-field .edit-text:hover,
+.ui-editable-field .edit-text:focus {
+  text-decoration: none;
+  background-color: #eee; }
+
+/**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
@@ -8391,7 +8415,6 @@ svg {
   text-align: center; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
@@ -8431,7 +8454,6 @@ svg {
   margin: auto 10px; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */

@@ -1,5 +1,9 @@
 
-<div class="row ui-editable-list-item">
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="row ui-editable-field">
+
+    <!-- Field label -->
     <div class="col-sm-4 text-right">
         {{ label }} <span ng-show="isRequired && state == 'editing'">*</span>
     </div>
@@ -8,9 +12,7 @@
 
         <!-- Date -->
         <div ng-switch-when="date">
-            <b ng-show="state != 'editing'">
-                {{ timestamp | date:format }}
-            </b>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-timestamp.html'"></ng-include>
 
             <input
                 ng-show="state == 'editing'"
@@ -22,9 +24,7 @@
 
         <!-- Date & time -->
         <div ng-switch-when="datetime">
-            <b ng-show="state != 'editing'">
-                {{ timestamp | date:format }}
-            </b>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-timestamp.html'"></ng-include>
 
             <input
                 ng-show="state == 'editing'"
@@ -36,29 +36,7 @@
 
         <!-- Length -->
         <div ng-switch-when="length">
-
-            <!-- Display string & unit selector -->
-            <div ng-show="state != 'editing'" class="row no-gutter">
-                <div class="col-sm-1">
-                    <div class="dropdown text-center">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                            <i class="fa fa-cog" style="color: #ccc;"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="unit in units">
-                                <a ng-click="updateUnit(unit)" href="javascript:;">
-                                    {{ unit }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-11">
-                    <b>
-                        {{ data.lengthStr }}
-                    </b>
-                </div>
-            </div>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-with-units.html'"></ng-include>
 
             <!-- Feet & inches -->
             <div class="row" ng-show="state == 'editing' && config.unitForLength == 'ft/in'">
@@ -106,9 +84,7 @@
 
         <!-- Gender -->
         <div ng-switch-when="gender">
-            <b ng-show="state != 'editing'">
-                {{ display }}
-            </b>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <select
                 ng-show="state == 'editing'"
@@ -125,29 +101,7 @@
 
         <!-- Mass -->
         <div ng-switch-when="mass">
-
-            <!-- Display string & unit selector -->
-            <div ng-show="state != 'editing'" class="row no-gutter">
-                <div class="col-sm-1">
-                    <div class="dropdown text-center">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                            <i class="fa fa-cog" style="color: #ccc;"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li ng-repeat="unit in units">
-                                <a ng-click="updateUnit(unit)" href="javascript:;">
-                                    {{ unit }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-11">
-                    <b>
-                        {{ data.massStr }}
-                    </b>
-                </div>
-            </div>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-with-units.html'"></ng-include>
 
             <!-- Edit field -->
             <div class="input-group" ng-show="state == 'editing'">
@@ -164,9 +118,7 @@
 
         <!-- Tag -->
         <div ng-switch-when="tag">
-            <b ng-show="state != 'editing'">
-                {{ display }}
-            </b>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <div ng-show="state == 'editing'">
                 <selectize
@@ -180,9 +132,7 @@
 
         <!-- Default -->
         <div ng-switch-default>
-            <b ng-show="state != 'editing'">
-                {{ display || model[key] }}
-            </b>
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <input
                 ng-show="state == 'editing'"

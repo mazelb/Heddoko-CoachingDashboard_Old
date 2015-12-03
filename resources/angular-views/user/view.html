@@ -20,17 +20,46 @@
             </div>
 
             <!-- User details -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Your Details
-                </div>
+            <ui-editable-fields
+                data-model="user"
+                data-save="savePreferences"
+                data-save-callback="savePreferencesCallback"
+                data-heading="Your Details">
 
-                <div class="panel-body">
-                    <div style="color: #ccc; text-align: center">
-                        In Development
-                    </div>
-                </div>
-            </div>
+                <!-- Username -->
+                <ui-editable-field
+                    data-label="Username"
+                    data-key="username"
+                    data-disabled="true">
+                </ui-editable-field>
+
+                <!-- First name -->
+                <ui-editable-field
+                    data-label="First Name"
+                    data-key="firstName"
+                    data-required="true">
+                </ui-editable-field>
+
+                <!-- Last name -->
+                <ui-editable-field
+                    data-label="Last Name"
+                    data-key="lastName">
+                </ui-editable-field>
+
+                <!-- Phone -->
+                <ui-editable-field
+                    data-label="Phone #"
+                    data-key="phone">
+                </ui-editable-field>
+
+                <!-- Email -->
+                <ui-editable-field
+                    data-label="Email"
+                    data-key="email"
+                    data-required="true">
+                </ui-editable-field>
+
+            </ui-editable-fields>
         </div>
 
         <!-- Avatar -->
@@ -39,7 +68,7 @@
                 <ui-avatar
                     data-upload-endpoint="uploadAvatarEndpoint"
                     data-success-callback="uploadAvatarCallback"
-                    data-src="profile.avatar_src">
+                    data-src="user.avatarSrc">
                 </ui-avatar>
             </div>
         </div>
@@ -53,5 +82,13 @@
         <br>
         <br>
         <i class="fa fa-spinner fa-spin fa-3x"></i>
+    </div>
+
+    <!-- Debug -->
+    <div ng-show="global.isLocal" class="panel panel-default">
+        <div class="panel-heading">Debug</div>
+        <div class="panel-body">
+            Avatar: {{ user.avatarSrc ? 'Yes' : 'No' }} <br>
+        </div>
     </div>
 </div>

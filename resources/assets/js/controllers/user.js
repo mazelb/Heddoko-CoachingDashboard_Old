@@ -1,5 +1,6 @@
 /**
- * @file    user.js
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
  * @brief   Controller for user page.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
@@ -39,5 +40,23 @@ angular.module('app.controllers')
                 }
             );
         }
+
+        // Saves user preferences.
+        $scope.savePreferences = function() {
+            return UserService.update(Rover.userHash, $scope.user);
+        };
+
+        // Callback for uiEditableFields directive.
+        $scope.savePreferencesCallback = function(prefsSaved) {
+
+            if (prefsSaved) {
+                // ...
+            }
+
+            //
+            else {
+                Rover.alert('Could not save your preferences. Please try again later.');
+            }
+        };
     }
 ]);

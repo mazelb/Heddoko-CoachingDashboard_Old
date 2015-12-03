@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   Controller for profile views.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -107,8 +105,6 @@ angular.module('app.controllers')
             else {
                 Rover.alert('Could not save profile details. Please try again later.');
             }
-
-            Rover.doneBackgroundProcess();
         };
 
         // Deletes a profile

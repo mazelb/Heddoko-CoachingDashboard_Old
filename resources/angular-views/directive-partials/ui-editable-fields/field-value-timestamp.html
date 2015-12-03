@@ -1,0 +1,21 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div ng-show="state != 'editing'" class="row no-gutter">
+
+    <!-- Edit icon -->
+    <div class="col-sm-1 text-center">
+        <a ng-hide="isDisabled" href="javascript:;" class="edit-icon fa fa-pencil"></a>
+        <i ng-show="isDisabled" class="edit-icon fa fa-ban"></i>
+    </div>
+
+    <!-- Displayed value -->
+    <div class="col-sm-11">
+        <a ng-hide="isDisabled" href="javascript:;" class="edit-text">
+            {{ timestamp | date:format }}
+        </a>
+        <b ng-show="isDisabled">
+            {{ timestamp | date:format }}
+        </b>
+    </div>
+</div>

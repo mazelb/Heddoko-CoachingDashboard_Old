@@ -1,22 +1,21 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   Angular directive for editable list tables. Includes action buttons.
  * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    November 2015
  * @note    Use as:
- *              <div ui-editable-list-container data-heading="Some Heading">
+ *              <ui-editable-fields data-heading="Some Heading">
  *                  <div ui-editable-list-item label="Some Label" value="data.some.value">
  *                  </div>
- *              </div>
+ *              </ui-editable-fields>
  */
 angular.module('app.directives')
 
 /**
  * Directive for a list of model properties. Contains one or more uiEditableListItem.
  */
-.directive('uiEditableListContainer', function() {
+.directive('uiEditableFields', function() {
     return {
         restrict: 'AE',
         transclude: true,
@@ -101,17 +100,17 @@ angular.module('app.directives')
                 });
             });
         }],
-        templateUrl: 'directive-partials/ui-editable-list-container.html'
+        templateUrl: 'directive-partials/ui-editable-fields/fields.html'
     };
 })
 
 /**
  * Directive for properties of a model. Meant to be used inside uiEditableListContainer.
  */
-.directive('uiEditableListItem', ['$filter', '$timeout', '$http', 'Rover',
+.directive('uiEditableField', ['$filter', '$timeout', '$http', 'Rover',
     function($filter, $timeout, $http, Rover) {
         return {
-            require: '^uiEditableListContainer',
+            require: '^uiEditableFields',
             restrict: 'AE',
             scope: {
                 label: '@',
@@ -232,32 +231,32 @@ angular.module('app.directives')
                                 case 'mm':
                                     scope.config.unitForLength = unit;
                                     scope.data.lengthVal = scope.model[scope.key] * 1000;
-                                    scope.data.lengthStr = $filter('number')(scope.data.lengthVal) + ' mm';
+                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + ' mm';
                                     break;
 
                                 case 'cm':
                                     scope.config.unitForLength = unit;
                                     scope.data.lengthVal = scope.model[scope.key] * 100;
-                                    scope.data.lengthStr = $filter('number')(scope.data.lengthVal) + ' cm';
+                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + ' cm';
                                     break;
 
                                 case 'in':
                                     scope.config.unitForLength = unit;
                                     scope.data.lengthVal = scope.model[scope.key] * 39.3701;
-                                    scope.data.lengthStr = $filter('number')(scope.data.lengthVal) + '"';
+                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + '"';
                                     break;
 
                                 case 'ft/in':
                                     scope.config.unitForLength = unit;
                                     scope.data.lengthFeet = Math.floor(scope.model[scope.key] * 3.28084);
                                     scope.data.lengthInches = Math.floor(scope.model[scope.key] * 39.3701 - 12 * scope.data.lengthFeet);
-                                    scope.data.lengthStr = scope.data.lengthFeet + '\' '+ scope.data.lengthInches +'"';
+                                    scope.data.displayStr = scope.data.lengthFeet + '\' '+ scope.data.lengthInches +'"';
                                     break;
 
                                 default:
                                     scope.config.unitForLength = 'm';
                                     scope.data.lengthVal = scope.model[scope.key];
-                                    scope.data.lengthStr = $filter('number')(scope.data.lengthVal) + ' m';
+                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + ' m';
                                     break;
                             }
                         };
@@ -289,7 +288,7 @@ angular.module('app.directives')
                                     scope.model[scope.key] = scope.data.lengthVal;
                             }
 
-                            Rover.debug('From ' + scope.data.lengthStr + ' to ' + scope.model[scope.key] + ' m');
+                            Rover.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' m');
                         };
 
                         // Calculate length in desired units on first load.
@@ -321,25 +320,25 @@ angular.module('app.directives')
                                 case 'g':
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 1000;
-                                    scope.data.massStr = $filter('number')(scope.data.massVal) + ' g';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' g';
                                     break;
 
                                 case 'lbs':
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 2.20462;
-                                    scope.data.massStr = $filter('number')(scope.data.massVal) + ' lbs';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' lbs';
                                     break;
 
                                 case 'stone':
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 0.157473;
-                                    scope.data.massStr = $filter('number')(scope.data.massVal) + ' stone';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' stone';
                                     break;
 
                                 default:
                                     scope.config.unitForMass = 'kg';
                                     scope.data.massVal = scope.model[scope.key];
-                                    scope.data.massStr = $filter('number')(scope.data.massVal) + ' kg';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' kg';
                                     break;
                             }
                         };
@@ -366,7 +365,7 @@ angular.module('app.directives')
                                     scope.model[scope.key] = scope.data.massVal;
                             }
 
-                            Rover.debug('From ' + scope.data.massStr + ' to ' + scope.model[scope.key] + ' kg');
+                            Rover.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' kg');
                         };
 
                         // Calculate mass in desired units on first load.
@@ -533,15 +532,15 @@ angular.module('app.directives')
                         });
                 }
             },
-            templateUrl: 'directive-partials/ui-editable-list-item.html'
+            templateUrl: 'directive-partials/ui-editable-fields/field.html'
         };
     }
 ])
 
 /**
- * Directive for general fields that aren't part of a list.
+ * Editable panel.
  */
-.directive('uiEditableField', function() {
+.directive('uiEditableStandaloneField', function() {
     return {
         restrict: 'AE',
         scope: {
@@ -593,6 +592,6 @@ angular.module('app.directives')
                 $scope.state = 'idle';
             });
         }],
-        templateUrl: 'directive-partials/ui-editable-field.html'
+        templateUrl: 'directive-partials/ui-editable-fields/standalone-field.html'
     };
 });

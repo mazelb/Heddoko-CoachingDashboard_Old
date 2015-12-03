@@ -74,136 +74,124 @@
 
             <!-- Profile details -->
             <div class="col-sm-12 col-md-6">
-                <div
-                    data-ui-editable-list-container
+                <ui-editable-fields
                     data-model="global.state.profile.list[global.store.profileId]"
                     data-save="saveProfileDetails"
                     data-save-callback="saveProfileDetailsCallback"
                     data-heading="{{ global.state.profile.list[global.store.profileId].first_name }}'s details">
 
                     <!-- First name -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="First Name"
                         data-key="first_name"
                         data-required="true">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Last name -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Last Name"
                         data-key="last_name">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Height -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Height"
                         data-key="height"
                         data-type="length">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Weight -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Weight"
                         data-key="mass"
                         data-type="mass">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Date of Birth -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Date of Birth"
                         data-key="dob"
                         data-type="date">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Gender -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Gender"
                         data-key="gender"
                         data-type="gender">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Phone -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Phone #"
                         data-key="phone">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Email -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Email"
                         data-key="email">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Profile creation date -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Profile Created"
                         data-key="created_at"
                         data-type="datetime"
                         data-disabled="true">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Primary Tag -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Primary Sport"
                         data-key="primary_tag"
                         data-type="tag">
-                    </div>
+                    </ui-editable-field>
 
                     <!-- Secondary tags -->
-                    <div
-                        data-ui-editable-list-item
+                    <ui-editable-field
                         data-label="Other Sports"
                         data-key="secondary_tags"
                         data-type="tag"
                         data-max-tags="10">
-                    </div>
-                </div>
+                    </ui-editable-field>
+                </ui-editable-fields>
             </div>
         </div>
 
         <!-- General notes -->
         <div class="row">
     		<div class="col-sm-12 col-md-4">
-                <ui-editable-field
+                <ui-editable-standalone-field
                     data-heading="Medical Information"
                     data-model="global.state.profile.list[global.store.profileId]"
                     data-key="medical_history"
                     data-empty="No medical information provided."
                     data-save="saveProfileDetails"
                     data-save-callback="saveProfileDetailsCallback">
-                </ui-editable-field>
+                </ui-editable-standalone-field>
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <ui-editable-field
+                <ui-editable-standalone-field
                     data-heading="Previous Injuries"
                     data-model="global.state.profile.list[global.store.profileId]"
                     data-key="injuries"
                     data-empty="No previous injuries."
                     data-save="saveProfileDetails"
                     data-save-callback="saveProfileDetailsCallback">
-                </ui-editable-field>
+                </ui-editable-standalone-field>
             </div>
 
             <div class="col-sm-12 col-md-4">
-                <ui-editable-field
+                <ui-editable-standalone-field
                     data-heading="Other Notes"
                     data-model="global.state.profile.list[global.store.profileId]"
                     data-key="notes"
                     data-empty="No other notes."
                     data-save="saveProfileDetails"
                     data-save-callback="saveProfileDetailsCallback">
-                </ui-editable-field>
+                </ui-editable-standalone-field>
     		</div>
     	</div>
     </section>
