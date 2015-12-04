@@ -657,12 +657,20 @@ pre {
   left: 15px; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *    Pages
  */
+/*
+ * Laravel pages.
+ */
+.inspiring-quote {
+  position: fixed;
+  margin: 0 5%;
+  width: 90%;
+  top: 45%;
+  text-transform: uppercase;
+  font-weight: bold; }
+
 /*
  * Angular - Import pages.
  */
@@ -5601,17 +5609,9 @@ button.toast-close-button {
   font-size: 23px; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
  */
-.inspiring-quote {
-  position: fixed;
-  margin: 0 5%;
-  width: 90%;
-  top: 45%; }
-
 .breadcrumb a {
   color: #767676; }
 
