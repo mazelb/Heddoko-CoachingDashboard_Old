@@ -11,10 +11,10 @@ angular.module('app.controllers')
 
 .controller('MainController',
     ['$scope', '$sessionStorage', '$localStorage', 'ProfileService', 'GroupService', 'OnboardingService',
-    'Rover', 'appVersion', 'isLocalEnvironment',
+    'Rover', 'Utilities', 'appVersion', 'isLocalEnvironment',
     function(
         $scope, $sessionStorage, $localStorage, ProfileService, GroupService, OnboardingService,
-        Rover, appVersion, isLocalEnvironment) {
+        Rover, Utilities, appVersion, isLocalEnvironment) {
         Rover.debug('MainController');
 
         // This makes the rover accessible to some views.
@@ -88,12 +88,18 @@ angular.module('app.controllers')
                         $scope.global.state.group.list[group.id] = group;
                     });
 
-                    // Select a default group.
-                    if (!$scope.global.data.isFetchingProfiles &&
-                            $scope.global.store.groupId === 0 && response.data.length > 0) {
+                    if (!$scope.global.data.isFetchingProfiles && response.data.length > 0)
+                    {
+                        // Select a default group.
+                        if ($scope.global.store.groupId === 0) {
+                            $scope.global.store.groupId = response.data[0].id;
+                        }
 
-                        $scope.global.store.groupId = response.data[0].id;
+                        else {
+                            $scope.global.updateFilteredProfiles();
+                        }
                     }
+
 
                     $scope.global.data.isFetchingGroups = false;
         		},
@@ -148,35 +154,30 @@ angular.module('app.controllers')
     		$scope.fetchProfiles();
     	}
 
-        // Select a default profile.
-        // if ($scope.global.state.profile.selected.id === 0 &&
-        //     $scope.global.store.profileId > 0 &&
-        //     $scope.global.state.profile.list.length > 0) {
-        //
-        //     angular.forEach($scope.global.state.profile.list, function(profile) {
-        //         if (profile.id === $scope.global.store.profileId) {
-        //             $scope.global.state.profile.selected = profile;
-        //         }
-        //     });
-        // }
+        /**
+         * Updates the filtered profile list.
+         */
+        $scope.global.updateFilteredProfiles = function(newGroup, oldGroup) {
 
-        // Watches the selected group.
-        $scope.$watch('global.store.groupId', function(newGroup, oldGroup) {
-            Rover.debug('Selected group: ' + newGroup);
-
-            // Update the filtered profile list.
             var isCurrentProfileIncluded = false;
             $scope.global.state.profile.filtered = [];
+            Utilities.debug('Looping through ' + $scope.global.state.profile.list.length + ' profiles.');
+
             angular.forEach($scope.global.state.profile.list, function(profile) {
+
+                Utilities.debug('For each element:');
+                Utilities.debug(profile);
 
                 // Make sure we have a profile object.
                 if (!profile || !profile.id) {
+                    Utilities.debug('Skipping profile...');
                     return;
                 }
 
                 // If no group was selected, include all profiles.
-                if (newGroup < 1)
+                if (newGroup === 0)
                 {
+                    Utilities.debug('Adding profile #' + profile.id + ' to filtered list.');
                     $scope.global.state.profile.filtered.push(profile);
 
                     // Check if selected profile is part of newly filtered list.
@@ -188,10 +189,18 @@ angular.module('app.controllers')
                 // Loop through profile groups and check if any of them correspond to the selected group.
                 else
                 {
+                    newGroup = newGroup || $scope.global.store.groupId;
+
                     if (profile.groups && profile.groups.length)
                     {
+                        Utilities.debug('Checking profile groups.');
+                        Utilities.debug(profile.groups);
+
                         angular.forEach(profile.groups, function(group) {
+                            Utilities.debug('Comparing '+ group.name +' ('+ group.id +') to ' + newGroup);
+
                             if (group.id == newGroup) {
+                                Utilities.debug('Adding profile #' + profile.id + ' to filtered list.');
                                 $scope.global.state.profile.filtered.push(profile);
 
                                 // Check if selected profile is part of newly filtered list.
@@ -200,6 +209,11 @@ angular.module('app.controllers')
                                 }
                             }
                         });
+                    }
+
+                    else {
+                        Utilities.debug('Profile does not have any groups.');
+                        Utilities.debug(profile);
                     }
                 }
             });
@@ -210,45 +224,10 @@ angular.module('app.controllers')
                 $scope.global.store.profileId = $scope.global.state.profile.filtered.length ?
                     $scope.global.state.profile.filtered[0].id : 0;
             }
-        });
-        // $scope.$watch('global.state.group.selected', function(newGroup, oldGroup) {
-        //
-        //     // Performance check.
-        //     if (newGroup === 0) {
-        //         return;
-        //     }
-        //
-        //     // Make sure we have an object.
-        //     if (typeof newGroup == 'number' || typeof newGroup == 'string')
-        //     {
-        //         var id = Number(newGroup);
-        //         angular.forEach($scope.global.state.group.list, function(group) {
-        //             if (group.id == id) {
-        //                 newGroup = group;
-        //             }
-        //         });
-        //
-        //         $scope.global.state.group.selected = newGroup;
-        //         return;
-        //     }
-        //
-        //     Rover.debug('Selected group: ' + newGroup.id);
-        //
-        //     // Performance check, in case only a property of the group was changed.
-        //     if (newGroup.id === oldGroup.id) {
-        //         return;
-        //     }
-        //
-        //     // Save selection.
-        //     Rover.store.groupId = newGroup.id;
-        //
-        //     // Reset profile data.
-        //     $scope.global.state.profile.list = [];
-        //     $scope.global.state.profile.selected = {id: 0};
-        //
-        //     // Update profiles list.
-    	// 	$scope.fetchProfiles();
-        // }, true);
+        };
+
+        // Watches the selected group.
+        $scope.$watch('global.store.groupId', $scope.global.updateFilteredProfiles);
 
         // Watches the selected profile.
         $scope.$watch('global.store.profileId', function(id, oldId) {
@@ -267,30 +246,5 @@ angular.module('app.controllers')
                 $scope.global.store.groupId = profile.groups[0].id;
             }
         });
-        // $scope.$watch('global.state.profile.selected', function(newProfile, oldProfile) {
-        //
-        //     // Performance check.
-        //     if (newProfile === 0) {
-        //         $scope.global.store.profileId = 0;
-        //         return;
-        //     }
-        //
-        //     // Make sure we have an object.
-        //     if (typeof newProfile == 'number' || typeof newProfile == 'string') {
-        //         newProfile = {
-        //             id: Number(newProfile)
-        //         };
-        //     }
-        //
-        //     Rover.debug('Selected profile: ' + newProfile.id);
-        //
-        //     // Performance check, in case only a property of the group was changed.
-        //     if (newProfile.id === oldProfile.id) {
-        //         return;
-        //     }
-        //
-        //     // Save selection.
-        //     $scope.global.store.profileId = newProfile.id;
-        // });
     }
 ]);

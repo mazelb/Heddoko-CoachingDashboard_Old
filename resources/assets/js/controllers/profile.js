@@ -26,11 +26,11 @@ angular.module('app.controllers')
                 id: 0,
                 feet: 0,
                 inches: 0,
-                weight_lbs: 0,
+                weightInPounds: 0,
                 notes: '',
                 gender: '',
-                primary_tag: {},
-                secondary_tags: []
+                primaryTag: {},
+                secondaryTags: []
             };
         }
 
@@ -61,17 +61,17 @@ angular.module('app.controllers')
             profile.groups = [$scope.global.getSelectedGroup().id];
 
             ProfileService.create(profile, $scope.group.id).then(
-
-                // On success, update profile list and browse to newly created profile.
                 function(response) {
+                    Utilities.debug('Profile created.');
+                    Utilities.debug(response.data);
+
+                    // Update profile list and browse to newly created profile.
                     $scope.global.state.profile.list[response.data.id] = response.data;
                     Rover.browseTo.profile(response.data);
                     Rover.doneBackgroundProcess();
                 },
-
-                // On failure.
                 function(response) {
-                    Rover.debug('Could not create profile: ' + response.responseText);
+                    Rover.debug('Could not create profile: ' + response.statusText);
                     Rover.doneBackgroundProcess();
                 }
             );

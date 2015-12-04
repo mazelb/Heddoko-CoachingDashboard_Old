@@ -32,7 +32,7 @@
                                 <div class="form-group">
                                     <input
                                         type="text"
-                                        ng-model="profile.first_name"
+                                        ng-model="profile.firstName"
                                         placeholder="First Name"
                                         class="form-control"
                                         required>
@@ -42,7 +42,7 @@
                                 <div class="form-group">
                                     <input
                                         type="text"
-                                        ng-model="profile.last_name"
+                                        ng-model="profile.lastName"
                                         placeholder="Last Name"
                                         class="form-control"
                                         required>
@@ -82,7 +82,7 @@
                             <div class="col-sm-8 col-md-2">
                                 <input
                                     class="form-control"
-                                    ng-model="profile.weight_lbs"
+                                    ng-model="profile.weightInPounds"
                                     placeholder="Weight"
                                     type="number"
                                     min="1" max="1000" step="0.01"
@@ -153,7 +153,10 @@
                                 Medical History
                             </div>
                             <div class="col-sm-8 col-md-9">
-                                <textarea class="form-control" ng-model="profile.medical_history" placeholder="..."></textarea>
+                                <textarea
+                                    ng-model="profile.medicalHistory"
+                                    class="form-control"
+                                    placeholder="..."></textarea>
                             </div>
                         </div>
 
@@ -163,7 +166,10 @@
                                 Previous Injuries
                             </div>
                             <div class="col-sm-8 col-md-9">
-                                <textarea class="form-control" ng-model="profile.injuries" placeholder="..."></textarea>
+                                <textarea
+                                    ng-model="profile.injuries"
+                                    class="form-control"
+                                    placeholder="..."></textarea>
                             </div>
                         </div>
 
@@ -173,7 +179,10 @@
                                 Other Notes
                             </div>
                             <div class="col-sm-8 col-md-9">
-                                <textarea class="form-control" ng-model="profile.notes" placeholder="..."></textarea>
+                                <textarea
+                                    ng-model="profile.notes"
+                                    class="form-control"
+                                    placeholder="..."></textarea>
                             </div>
                         </div>
                     </div>
@@ -192,7 +201,8 @@
     <div ng-show="global.isLocal" class="panel panel-default">
         <div class="panel-heading">Debug</div>
         <div class="panel-body">
-            Selected group: {{ global.state.group.selected.name }}
+            Selected group: {{ global.state.group.list[global.store.groupId].name }} <br>
+            Profile: {{ profile }}
         </div>
     </div>
 </div>

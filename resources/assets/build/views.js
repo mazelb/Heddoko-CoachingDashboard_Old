@@ -3574,7 +3574,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
-    "                                        ng-model=\"profile.first_name\"\n" +
+    "                                        ng-model=\"profile.firstName\"\n" +
     "                                        placeholder=\"First Name\"\n" +
     "                                        class=\"form-control\"\n" +
     "                                        required>\n" +
@@ -3584,7 +3584,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
-    "                                        ng-model=\"profile.last_name\"\n" +
+    "                                        ng-model=\"profile.lastName\"\n" +
     "                                        placeholder=\"Last Name\"\n" +
     "                                        class=\"form-control\"\n" +
     "                                        required>\n" +
@@ -3624,7 +3624,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-8 col-md-2\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
-    "                                    ng-model=\"profile.weight_lbs\"\n" +
+    "                                    ng-model=\"profile.weightInPounds\"\n" +
     "                                    placeholder=\"Weight\"\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"1\" max=\"1000\" step=\"0.01\"\n" +
@@ -3695,7 +3695,10 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                Medical History\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
-    "                                <textarea class=\"form-control\" ng-model=\"profile.medical_history\" placeholder=\"...\"></textarea>\n" +
+    "                                <textarea\n" +
+    "                                    ng-model=\"profile.medicalHistory\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
@@ -3705,7 +3708,10 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                Previous Injuries\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
-    "                                <textarea class=\"form-control\" ng-model=\"profile.injuries\" placeholder=\"...\"></textarea>\n" +
+    "                                <textarea\n" +
+    "                                    ng-model=\"profile.injuries\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
@@ -3715,7 +3721,10 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                Other Notes\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
-    "                                <textarea class=\"form-control\" ng-model=\"profile.notes\" placeholder=\"...\"></textarea>\n" +
+    "                                <textarea\n" +
+    "                                    ng-model=\"profile.notes\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3734,7 +3743,8 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
     "        <div class=\"panel-heading\">Debug</div>\n" +
     "        <div class=\"panel-body\">\n" +
-    "            Selected group: {{ global.state.group.selected.name }}\n" +
+    "            Selected group: {{ global.state.group.list[global.store.groupId].name }} <br>\n" +
+    "            Profile: {{ profile }}\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -4023,10 +4033,10 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    data-toggle=\"modal\"\n" +
     "                    data-target=\"#deleteProfileConfirmation\"\n" +
     "                    data-toggle=\"tooltip\"\n" +
-    "                    title=\"Delete <b>{{ profile.first_name }}</b>'s profile\"\n" +
+    "                    title=\"Delete <b>{{ profile.firstName }}</b>'s profile\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
-    "                    Delete <b>{{ profile.first_name }}</b>'s profile\n" +
+    "                    Delete <b>{{ profile.firstName }}</b>'s profile\n" +
     "                </button>\n" +
     "\n" +
     "                <!-- Delete confirmation -->\n" +
@@ -4035,8 +4045,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"modal-content\">\n" +
     "                            <div class=\"modal-body\">\n" +
     "                                <p>\n" +
-    "                                    Are you sure you want to delete <b>{{ profile.first_name }}\n" +
-    "                                    {{ profile.last_name }}</b>'s profile?\n" +
+    "                                    Are you sure you want to delete <b>{{ profile.firstName }}\n" +
+    "                                    {{ profile.lastName }}</b>'s profile?\n" +
     "                                </p>\n" +
     "                            </div>\n" +
     "                            <div class=\"modal-footer text-center\">\n" +
@@ -4044,7 +4054,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                                    Cancel\n" +
     "                                </button>\n" +
     "                                <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                    Yes, delete {{ profile.first_name }}\n" +
+    "                                    Yes, delete {{ profile.firstName }}\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -4082,19 +4092,19 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
-    "                    data-heading=\"{{ global.state.profile.list[global.store.profileId].first_name }}'s details\">\n" +
+    "                    data-heading=\"{{ global.state.profile.list[global.store.profileId].firstName }}'s details\">\n" +
     "\n" +
     "                    <!-- First name -->\n" +
     "                    <ui-editable-field\n" +
     "                        data-label=\"First Name\"\n" +
-    "                        data-key=\"first_name\"\n" +
+    "                        data-key=\"firstName\"\n" +
     "                        data-required=\"true\">\n" +
     "                    </ui-editable-field>\n" +
     "\n" +
     "                    <!-- Last name -->\n" +
     "                    <ui-editable-field\n" +
     "                        data-label=\"Last Name\"\n" +
-    "                        data-key=\"last_name\">\n" +
+    "                        data-key=\"lastName\">\n" +
     "                    </ui-editable-field>\n" +
     "\n" +
     "                    <!-- Height -->\n" +
@@ -4226,7 +4236,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "                        <div class=\"panel-body\">\n" +
     "                            FMS Forms: {{ fmsForms }} <br><br>\n" +
-    "                            Profile alias: {{ profile.first_name }} ({{ profile.id }}) <br>\n" +
+    "                            Profile alias: {{ profile.firstName }} ({{ profile.id }}) <br>\n" +
     "                            Profile global: ({{ global.state.profile.list[global.store.profileId].id }}) <br>\n" +
     "                        </div>\n" +
     "                    </div>\n" +

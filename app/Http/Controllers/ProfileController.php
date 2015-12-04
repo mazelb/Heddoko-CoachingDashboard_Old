@@ -47,7 +47,7 @@ class ProfileController extends Controller
         if ($this->request->has('embed')) {
             $embed = explode(',', $this->request->input('embed'));
         } else {
-            $embed = ['profile_meta', 'groups', 'primaryTag', 'secondaryTags', 'avatar'];
+            $embed = ['meta', 'groups', 'primaryTag', 'secondaryTags', 'avatar'];
         }
 
         // Retrieve profiles.
@@ -61,7 +61,7 @@ class ProfileController extends Controller
                 $profile->resizeAvatar(400);
 
                 // Append meta data.
-                if (in_array('profile_meta', $embed)) {
+                if (in_array('meta', $embed)) {
                     $profile->appendMeta();
                 }
             }
@@ -77,10 +77,15 @@ class ProfileController extends Controller
      */
     public function store()
     {
-        // TODO: validate incoming data.
-        // ... Maybe do this in model, through 'create' and 'saving' events?
+        // TODO: validate incoming data (keep logic in model).
 
         $data = $this->request->only(['first_name', 'last_name']);
+
+        // Add primary tag.
+        if ($this->request->has('tag_id') && $primaryTag = Tag::find($this->request->input('tag_id')))
+        {
+            $data['tag_id'] = $primaryTag->id;
+        }
 
         // Create new profile.
         try {
@@ -101,7 +106,7 @@ class ProfileController extends Controller
             'medical_history',
             'injuries',
             'notes',
-            'meta'
+            'params'
         ]));
 
         // Assign current user as a manager.

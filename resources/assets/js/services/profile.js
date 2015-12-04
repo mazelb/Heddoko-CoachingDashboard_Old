@@ -114,19 +114,18 @@ angular.module('app.services')
                 var formatted =
                 {
                     id: profile.id,
-                    first_name: profile.first_name || '',
-                    last_name: profile.last_name || '',
-                    tag_id: Utilities.getId(profile.tag_id) || '',
+                    first_name: profile.firstName || '',
+                    last_name: profile.lastName || '',
                     height: profile.height || 0.0,
                     mass: profile.mass || 0.0,
                     dob: profile.dob || '',
                     gender: profile.gender || '',
                     phone: profile.phone || '',
                     email: profile.email || '',
-                    medical_history: profile.medical_history || '',
+                    medical_history: profile.medicalHistory || '',
                     injuries: profile.injuries || '',
                     notes: profile.notes || '',
-                    meta: profile.meta || ''
+                    params: profile.params || ''
                 };
 
                 // Format height into meters.
@@ -135,7 +134,7 @@ angular.module('app.services')
                 }
 
                 // Format mass in kg.
-                if (profile.weight_lbs > 0) {
+                if (profile.weightInPounds > 0) {
                     formatted.mass = profile.weight_lbs * 0.453592;
                 }
 
@@ -146,23 +145,23 @@ angular.module('app.services')
 
                 // Make sure primary tag is an ID. If we have a newly created tag without an ID,
                 // we'll let the API know we want to create a new tag in the process.
-                if (profile.primary_tag && profile.primary_tag.length)
+                if (profile.primaryTag && profile.primaryTag.length)
                 {
-                    if (Utilities.getId(profile.primary_tag) > 0) {
-                        formatted.tag_id = Utilities.getId(profile.primary_tag);
+                    if (Utilities.getId(profile.primaryTag) > 0) {
+                        formatted.tag_id = Utilities.getId(profile.primaryTag);
                     }
 
                     else {
-                        formatted.primary_tag_title = profile.primary_tag;
+                        formatted.primary_tag_title = profile.primaryTag;
                     }
                 }
 
                 // Format secondary tags into an array of IDs.
-                if (profile.secondary_tags && profile.secondary_tags.length > 0)
+                if (profile.secondaryTags && profile.secondaryTags.length > 0)
                 {
                     formatted.secondary_tags = [];
                     formatted.secondary_tag_titles = [];
-                    angular.forEach(profile.secondary_tags, function(tag) {
+                    angular.forEach(profile.secondaryTags, function(tag) {
 
                         // If tag exists, retrieve its ID.
                         if (Utilities.getId(tag) > 0) {
@@ -174,7 +173,7 @@ angular.module('app.services')
                             formatted.secondary_tag_titles.push(tag);
                         }
                     });
-                    formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
+                    // formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
                 }
 
                 Rover.debug('Formatted profile details:');

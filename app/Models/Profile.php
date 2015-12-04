@@ -45,7 +45,7 @@ class Profile extends Model
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['avatar'];
+    protected $hidden = ['tag_id', 'meta', 'avatar'];
 
     /**
      * Validation rules.
@@ -107,9 +107,14 @@ class Profile extends Model
     /**
      * Adds meta data to model.
      */
-    public function appendMeta() {
-        foreach ($this->meta as $attr => $val) {
-            $this->{$attr} = $val;
+    public function appendMeta()
+    {
+        if ($this->meta)
+        {
+            foreach ($this->meta->toArray() as $attr => $val)
+            {
+                $this->{$attr} = $val;
+            }
         }
     }
 

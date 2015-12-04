@@ -75,7 +75,7 @@ class UpdatesDec2015 extends Migration
             $table->text('medical_history')->nullable();
             $table->text('injuries')->nullable();
             $table->text('notes')->nullable();
-            $table->text('meta')->nullable();           // Other details in JSON format.
+            $table->text('params')->nullable();         // Other details in JSON format.
 		});
 
         // Create "movement_sets" table.

@@ -13,6 +13,21 @@ use Illuminate\Database\Eloquent\Model;
 class ProfileMeta extends Model
 {
     /**
+     * Name of associated database table.
+     */
+    protected $table = 'profile_meta';
+
+    /**
+     * Indicates if the model should be timestamped.
+     */
+    public $timestamps = false;
+
+    /**
+     * Attributes which should be hidden from the models' array form.
+     */
+    protected $hidden = ['id', 'profile_id'];
+
+    /**
      * Attributes which are mass-assignable.
      */
 	protected $fillable = [
