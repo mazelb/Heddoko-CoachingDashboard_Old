@@ -1,15 +1,12 @@
 @extends('layouts.web')
 
 @section('content')
-
 <div class="row">
     <div class="main-body col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 col-lg-4 col-lg-offset-4">
-        <div class="info text-center">
-            <p class="text-small">
-                Enter your email address that you used to register. We'll send you an email with
-                your username and a link to reset your password.
-            </p>
-        </div>
+        <p class="info text-center">
+            Enter your email address that you used to register. We'll send you an email with
+            your username and a link to reset your password.
+        </p>
 
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -22,7 +19,7 @@
             </div>
         @endif
 
-        <form class="form-horizontal" name="forgotPasswordForm" method="POST" action="{{ route('auth.reset.post') }}">
+        <form class="form-horizontal" name="forgotPasswordForm" method="POST" action="{{ route('auth.password.post') }}">
             {!! csrf_field() !!}
 
             {{-- Email --}}
@@ -46,5 +43,4 @@
         </form>
     </div>
 </div>
-
 @endsection
