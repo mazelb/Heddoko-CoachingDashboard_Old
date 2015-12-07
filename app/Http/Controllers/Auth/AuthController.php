@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Handles authentication-related http requests.
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
+ */
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
@@ -13,17 +18,6 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Registration & Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users, as well as the
-    | authentication of existing users. By default, this controller uses
-    | a simple trait to add these behaviors. Why don't you explore it?
-    |
-    */
-
     use AuthenticatesAndRegistersUsers;
 
 	protected $username = 'username';
@@ -31,7 +25,7 @@ class AuthController extends Controller
 	protected $redirectPath = '/';
 
     /**
-     * Create a new authentication controller instance.
+     * Creates a new authentication controller instance.
      *
      * @return void
      */
@@ -41,26 +35,20 @@ class AuthController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Gets a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
-
 		return Validator::make($data, [
 			'first_name' => 'required|max:100',
 			'last_name' => 'required|max:100',
 			'email' => 'required|email|max:255',
 			'username' => 'required|max:255|unique:users',
 			'password' => 'required|confirmed|min:6',
-			// 'city' => 'required',
-			// 'dob' => 'required',
-			// 'sex' => 'required|in:unspecified,male,female',
-			// 'mobile' => 'numeric',
 		]);
-
     }
 
     /**

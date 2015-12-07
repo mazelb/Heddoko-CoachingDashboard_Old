@@ -1,15 +1,16 @@
 @extends('layouts.web')
 
 @section('html-class', 'auth-login')
+@section('body-class', 'auth-login')
 
 @section('content')
 
-<!-- <h1 class="inspiring-quote">{{ Inspiring::quote() }}</h1> -->
+{{-- <h1 class="inspiring-quote">{{ Inspiring::quote() }}</h1> --}}
 <h1 class="inspiring-quote">
     More Than Just a Coach
 </h1>
 
-<div class="page-signin">
+<section>
     <div class="main-body">
         <div class="container" style="margin-bottom:50px;">
 
@@ -47,10 +48,9 @@
                             name="name"
                             value="Login">
 
-                        <a href="{{ url('/auth/register') }}" class="create-account">Create a new account</a>
+                        <a href="{{ url('/auth/register') }}" class="emphasize">Create a new account</a>
                     </div>
                 </div>
-
             </form>
 
             @if (count($errors) > 0)
@@ -63,45 +63,8 @@
                     </ul>
                 </div>
             @endif
-
-
-            <!-- <div class="form-container">
-
-                <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-
-
-					<div class="form-group">
-						<input
-                            type="text"
-                            class="form-control"
-                            placeholder="Username"
-                            name="username">
-					</div>
-					<div class="form-group">
-						<input type="password"
-									 class="form-control"
-									 placeholder="password"
-									 name="password">
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
-					</div>
-
-                </form>
-
-                <section>
-                    <p class="text-center">
-                        <a style="color:white" href="{{ url('/password/email') }}">Forgot your password?</a></p>
-                    <p class="text-center" style="color:white" text-muted text-small>
-                        Don't have an account yet? <a href="{{ url('/auth/register') }}">Sign up</a></p>
-                </section>
-
-            </div> -->
         </div>
     </div>
-
-</div>
+</section>
 
 @endsection

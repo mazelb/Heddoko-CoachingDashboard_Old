@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js @yield('html-class', '')">
+<html class="no-js web-layout @yield('html-class', '')">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
         <link rel="stylesheet" href="{{ url('css/app.css') . '?20151023' }}">
     </head>
-    <body>
+    <body class="@yield('body-class', '')">
 		<header>
 			<a class="nav-logo" href="/">
 				<img src="{{ asset('images/logo/heddoko_logo.svg') }}" alt="Heddoko">
