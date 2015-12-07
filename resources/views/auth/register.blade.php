@@ -90,7 +90,7 @@
 						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-envelope"></span>
+									@
 								</span>
 								<input
                                     type="text"
@@ -129,51 +129,53 @@
 							</div>
 						</div>
 
-                        {{-- City --}}
-						<!-- <div class="form-group">
+                        {{-- Country --}}
+						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-envelope"></span>
+									<span class="glyphicon glyphicon-globe"></span>
 								</span>
 								<input
+                                    name="country"
                                     type="text"
 									class="form-control"
-									placeholder="City"
-									name="city"
-									value="{{ old('city') }}">
+									placeholder="Country"
+									value="{{ old('country') }}"
+                                    disabled>
 							</div>
-						</div> -->
+						</div>
 
                         {{-- Date of birth --}}
-						<!-- <div class="form-group">
+						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-envelope"></span>
+									<span class="glyphicon glyphicon-calendar"></span>
 								</span>
 								<input
                                     type="text"
 									class="form-control"
 									placeholder="Date of Birth"
 									name="dob"
-									value="{{ old('dob') }}">
+									value="{{ old('dob') }}"
+                                    disabled>
 							</div>
-						</div> -->
+						</div>
 
                         {{-- Gender --}}
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label for="gender">Gender:</label>
                             <select class="form-control" id="gender" name="gender">
                                 <option value="" selected>Unspecified</option>
                                 <option value="femail">Female</option>
                                 <option value="male">Male</option>
                             </select>
-                        </div> -->
+                        </div>
 
                         {{-- Phone # --}}
-						<!-- <div class="form-group">
+						<div class="form-group">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">
-									<span class="glyphicon glyphicon-envelope"></span>
+									<span class="glyphicon glyphicon-phone-alt"></span>
 								</span>
 								<input
                                     type="text"
@@ -182,7 +184,7 @@
 									name="phone"
 									value="{{ old('phone') }}">
 							</div>
-						</div> -->
+						</div>
 
 						<div class="form-group">
 
