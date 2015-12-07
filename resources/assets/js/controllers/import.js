@@ -9,41 +9,13 @@ angular.module('app.controllers')
 
 .controller('ImportController', ['$scope', '$timeout', 'Upload', 'Rover', 'Utilities',
     function($scope, $timeout, Upload, Rover, Utilities) {
-        Rover.debug('ImportController');
+        Utilities.debug('ImportController');
 
         // Uploading movement flag.
         $scope.isUploading = false;
 
         // Uploaded movement data.
-        $scope.uploadedMovements = [
-            {
-                id: 1,
-                title: 'Trial 001',
-                tags: [
-                    {
-                        id: 2411,
-                        title: 'Inline Lunge'
-                    },
-                    {
-                        id: 2421,
-                        title: 'Left Side'
-                    }
-                ]
-            },
-            {
-                id: 2,
-                title: '',
-                tags: []
-            },
-            {
-                id: 3,
-                title: '',
-                tags: []
-            },
-        ];
-
-        // Movement upload endpoint.
-        $scope.uploadEndpoint = '/api/profile/' + $scope.global.getSelectedProfile().id +'/movement';
+        $scope.uploadedMovements = [];
 
         /**
          * Uploads movement data.
@@ -60,32 +32,30 @@ angular.module('app.controllers')
             // Turn on "uploading" flag.
             $scope.isUploading = true;
             $scope.pendingMovements = files;
-            Rover.debug('Uploading movement data...');
-            Rover.debug(files);
+            Utilities.debug('Uploading movement data...');
 
-            // Upload data files one by one.
+            // Upload data files one by one. This ensures compatibility with IE8/9
             angular.forEach(files, function(file) {
                 file.upload = Upload.upload({
-                    url: $scope.uploadEndpoint,
+                    url: '/api/profile/' + $scope.global.getSelectedProfile().id +'/movement',
                     data: {file: file}
-                }).then(function (response) {
-                    $timeout(function () {
-                        file.result = response.data;
-                    });
+                }).then(
+                    function (response) {
 
-                    $scope.isUploading = false;
-                },
-                function (response) {
-                    if (response.status > 0)
-                        $scope.errorMsg = response.status + ': ' + response.data;
-
-                    $scope.isUploading = false;
-                },
-                function (evt) {
-                    file.progress = Math.min(100, parseInt(100.0 *
-                                             evt.loaded / evt.total));
-                    Rover.debug(file.name +': ' + file.progress);
-                });
+                        // On success, add the new movement to the top of the list.
+                        $scope.uploadedMovements.unshift(response.data);
+                        $scope.isUploading = false;
+                    },
+                    function (response) {
+                        $scope.isUploading = false;
+                        Utilities.alert('Could not import movement data. Please try again later.');
+                        Utilities.debug(response.status + ': ' + response.data);
+                    },
+                    function (event) {
+                        file.progress = Math.min(100, parseInt(100.0 * event.loaded / event.total));
+                        Utilities.debug('Progress for "' + file.name +'": ' + file.progress + '%');
+                    }
+                );
             });
         };
 

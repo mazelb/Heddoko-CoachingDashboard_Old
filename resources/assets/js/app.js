@@ -9,7 +9,7 @@
 var app = angular.module('app', [
 
     // External dependencies.
-    'ngFileUpload', 'ngRoute', 'ngStorage', 'selectize',
+    'ngAnimate', 'ngFileUpload', 'ngRoute', 'ngStorage', 'selectize',
 
     // General dependencies.
     'backendHeddoko',
@@ -17,7 +17,6 @@ var app = angular.module('app', [
 
     // TODO: review what these dependencies do and whether they can be removed or not.
     "app.ui.services", "app.ui.form.ctrls", "app.ui.form.directives", "app.ui.ctrls",
-    'ngAnimate',
     "ui.bootstrap",
     // "easypiechart",
     // "mgo-angular-wizard",
@@ -35,7 +34,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.4.4';
+var _appVersion = '0.4.5';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||

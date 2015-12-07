@@ -8,7 +8,10 @@
  */
 namespace App\Http\Controllers;
 
+use Auth;
+
 use App\Http\Requests;
+use App\Models\Movement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -35,24 +38,41 @@ class MovementDataController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param int $profileId
      * @return Response
      */
-    public function store()
+    public function store($profileId)
     {
-        // TODO: who can store movement data?
+        // Retrieve profile this movement belongs to.
+        if (!$profile = Auth::user()->profiles()->find($profileId)) {
+            return response('Profile Not Found.', 400);
+        }
 
-        // Determine if the movement will belong to a profile or a screening test.
-
-
-
-        // Check incoming file.
+        // Make sure we have a file to work with.
         if (!$original = $this->request->file('file')) {
             return response('No File Received.', 400);
-        } elseif (!preg_match('#^text/(csv|plain)$#', $original->getMimeType())) {
+        }
+
+        // Quickly check the MIME type.
+        elseif (!preg_match('#^text/(csv|plain)$#', $original->getMimeType())) {
             return response('Invalid MIME Type ('. $original->getMimeType() .').', 400);
         }
 
-        return response('Testing.', 204);
+        // Extract raw data.
+        $title = $original->getClientOriginalName();
+        $data = file_get_contents($original->getRealPath());
+
+        // Create the database record.
+        $movement = $profile->movements()->create([
+            'submitted_by' => Auth::id(),
+            'title' => $title
+        ]);
+
+        // TODO: save raw data.
+
+        // TODO: save frame data.
+
+        return $movement;
     }
 
     /**

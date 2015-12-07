@@ -18,6 +18,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
     Route::resource('profile', 'ProfileController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
+
+    // Movements belonging to profiles.
     Route::resource('profile.movement', 'MovementDataController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);

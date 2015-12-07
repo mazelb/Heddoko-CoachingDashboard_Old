@@ -1,9 +1,6 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *    - Animations
  */
 
 @-webkit-keyframes fade-up-enter {
@@ -194,90 +191,179 @@
   @include animation(0.5s animate-flip-y-leave);
 }
 
+/*
+ * Slide in/out
+ */
 @-webkit-keyframes slideInDown {
-  0% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
-  100% {
-    @include transform(translateY(0));
-  }
+    0% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
+    100% {
+        @include transform(translateY(0));
+    }
 }
 
 @-moz-keyframes slideInDown {
-  0% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
-  100% {
-    @include transform(translateY(0));
-  }
+    0% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
+    100% {
+        @include transform(translateY(0));
+    }
 }
 
 @-o-keyframes slideInDown {
-  0% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
-  100% {
-    @include transform(translateY(0));
-  }
+    0% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
+    100% {
+        @include transform(translateY(0));
+    }
 }
 
 @keyframes slideInDown {
-  0% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
-  100% {
-    @include transform(translateY(0));
-  }
+    0% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
+    100% {
+        @include transform(translateY(0));
+    }
 }
 
 @-webkit-keyframes slideOutUp {
-  0% {
-    @include transform(translateY(0));
-  }
-  100% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
+    0% {
+        @include transform(translateY(0));
+    }
+    100% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
 }
 
 @-moz-keyframes slideOutUp {
-  0% {
-    @include transform(translateY(0));
-  }
-  100% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
+    0% {
+        @include transform(translateY(0));
+    }
+    100% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
 }
 
 @-o-keyframes slideOutUp {
-  0% {
-    @include transform(translateY(0));
-  }
-  100% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
+    0% {
+        @include transform(translateY(0));
+    }
+    100% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
 }
 
 @keyframes slideOutUp {
-  0% {
-    @include transform(translateY(0));
-  }
-  100% {
-    opacity: 0;
-    @include transform(translateY(-2000px));
-  }
+    0% {
+        @include transform(translateY(0));
+    }
+    100% {
+        opacity: 0;
+        @include transform(translateY(-2000px));
+    }
 }
 
 .animate-vertical-slide.ng-hide-add {
   @include animation(0.35s slideOutUp ease-in-out);
 }
-
 .animate-vertical-slide.ng-hide-remove {
   @include animation(0.35s 0.35s slideInDown ease-in-out);
+}
+
+/*
+ * Flashes the background of an element on/off
+ */
+@-webkit-keyframes greenBackgroundOnOff {
+    0% {
+        background-color: transparent;
+    }
+    10% {
+        background-color: $heddokogreen;
+    }
+    20% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: $heddokogreen;
+    }
+    80% {
+        background-color: $heddokogreen;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@-moz-keyframes greenBackgroundOnOff {
+    0% {
+        background-color: transparent;
+    }
+    10% {
+        background-color: $heddokogreen;
+    }
+    20% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: $heddokogreen;
+    }
+    80% {
+        background-color: $heddokogreen;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@-o-keyframes greenBackgroundOnOff {
+    0% {
+        background-color: transparent;
+    }
+    10% {
+        background-color: $heddokogreen;
+    }
+    20% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: $heddokogreen;
+    }
+    80% {
+        background-color: $heddokogreen;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+@keyframes greenBackgroundOnOff {
+    0% {
+        background-color: transparent;
+    }
+    10% {
+        background-color: $heddokogreen;
+    }
+    20% {
+        background-color: transparent;
+    }
+    30% {
+        background-color: $heddokogreen;
+    }
+    80% {
+        background-color: $heddokogreen;
+    }
+    100% {
+        background-color: transparent;
+    }
 }

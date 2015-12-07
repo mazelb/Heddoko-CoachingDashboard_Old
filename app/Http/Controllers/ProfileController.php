@@ -268,7 +268,8 @@ class ProfileController extends Controller
         // Check image.
         if (!$original = $this->request->file('image')) {
             return response('No File Received.', 400);
-        } elseif (!preg_match('#^(image/[a-z]+)$#', $original->getMimeType())) {
+        }
+        elseif (!preg_match('#^(image/[a-z]+)$#', $original->getMimeType())) {
             return response('Invalid MIME type.', 400);
         }
 

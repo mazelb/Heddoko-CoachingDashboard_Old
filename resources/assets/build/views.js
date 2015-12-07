@@ -2860,7 +2860,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    <div class=\"movement-import row\">\n" +
     "\n" +
     "        <!-- Import new movement -->\n" +
-    "        <div ng-show=\"isUploading === false\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
+    "        <div ng-show=\"isUploading === false\" class=\"col-xs-12 text-center\">\n" +
     "            <button\n" +
     "                ngf-select=\"import($files)\"\n" +
     "                ngf-drop=\"import($files)\"\n" +
@@ -2874,79 +2874,86 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "\n" +
     "        <!-- Uploading movement file -->\n" +
-    "        <div ng-show=\"isUploading === true\" class=\"col-md-3 col-md-offset-3 text-center\">\n" +
+    "        <div ng-show=\"isUploading === true\" class=\"col-xs-12 text-center\">\n" +
     "            <i class=\"fa fa-spinner fa-spin fa-2x text-primary\"></i>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- List of uploaded movements -->\n" +
-    "    <div ng-repeat=\"file in uploadedMovements\" class=\"movement-import row\">\n" +
-    "        <div class=\"col-md-3\">\n" +
+    "    <div ng-show=\"uploadedMovements.length > 0\">\n" +
+    "        <!-- List of uploaded movements -->\n" +
+    "        <div ng-repeat=\"file in uploadedMovements\" class=\"movement-import row\">\n" +
+    "            <div class=\"col-md-3 col-md-offset-1\">\n" +
     "\n" +
-    "            <!-- Movement title -->\n" +
-    "            <input\n" +
-    "                ng-model=\"file.title\"\n" +
-    "                type=\"text\"\n" +
-    "                class=\"form-control movement-title\"\n" +
-    "                placeholder=\"Movement Title\">\n" +
+    "                <!-- Movement title -->\n" +
+    "                <input\n" +
+    "                    ng-model=\"file.title\"\n" +
+    "                    type=\"text\"\n" +
+    "                    class=\"form-control movement-title\"\n" +
+    "                    placeholder=\"Movement Title\">\n" +
     "\n" +
-    "            <!-- Tags -->\n" +
-    "            <ui-taggable-input\n" +
-    "                data-model=\"file\"\n" +
-    "                data-key=\"tags\"\n" +
-    "                data-max-tags=\"20\">\n" +
-    "            </ui-taggable-input>\n" +
-    "        </div>\n" +
+    "                <!-- Tags -->\n" +
+    "                <ui-taggable-input\n" +
+    "                    data-model=\"file\"\n" +
+    "                    data-key=\"tags\"\n" +
+    "                    data-max-tags=\"20\">\n" +
+    "                </ui-taggable-input>\n" +
+    "            </div>\n" +
     "\n" +
-    "        <div class=\"col-md-3\">\n" +
+    "            <div class=\"col-md-3\">\n" +
     "\n" +
-    "            <!-- Movement preview -->\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-xs-12\">\n" +
-    "                    <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "                <!-- Movement preview -->\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-xs-12\">\n" +
+    "                        <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Delete movement -->\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-xs-12\">\n" +
+    "                        <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
+    "                            Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
-    "            <!-- Delete movement -->\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-xs-12\">\n" +
-    "                    <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
-    "                        Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
-    "                    </a>\n" +
+    "            <!-- Edit movement -->\n" +
+    "            <div class=\"col-md-4\">\n" +
+    "                <div class=\"movement-edit row\">\n" +
+    "\n" +
+    "                    <!-- Thumbnail link -->\n" +
+    "                    <div class=\"col-md-5 text-right\">\n" +
+    "                        <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
+    "                            Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"col-md-1 text-center\">\n" +
+    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Video edit link -->\n" +
+    "                    <div class=\"col-md-5 text-left\">\n" +
+    "                        <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
+    "                            Edit Video <i class=\"fa fa-pencil\"></i>\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Edit movement -->\n" +
-    "        <div class=\"col-md-6\">\n" +
-    "            <div class=\"movement-edit row\">\n" +
-    "\n" +
-    "                <!-- Thumbnail link -->\n" +
-    "                <div class=\"col-md-5 text-right\">\n" +
-    "                    <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
-    "                        Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
-    "                    </a>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"col-md-1 text-center\">\n" +
-    "                    <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- Video edit link -->\n" +
-    "                <div class=\"col-md-5 text-left\">\n" +
-    "                    <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
-    "                        Edit Video <i class=\"fa fa-pencil\"></i>\n" +
-    "                    </a>\n" +
-    "                </div>\n" +
+    "        <!-- Clear button -->\n" +
+    "        <div class=\"movement-import row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- Clear button -->\n" +
-    "    <div class=\"movement-import row\">\n" +
-    "        <div class=\"col-sm-12 text-center\">\n" +
-    "            <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
-    "        </div>\n" +
+    "    <!-- No recently uploaded movement -->\n" +
+    "    <div ng-show=\"uploadedMovements.length === 0 && isUploading === false\">\n" +
+    "        Upload a movement file using the button above.\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +

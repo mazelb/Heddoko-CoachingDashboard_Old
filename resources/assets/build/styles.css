@@ -664,7 +664,17 @@ pre {
  * Angular - Import pages.
  */
 .import-page .row.movement-import {
-  margin: 40px auto; }
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 20px;
+  -webkit-transition: background-color 0.7s;
+  -moz-transition: background-color 0.7s;
+  -ms-transition: background-color 0.7s;
+  -o-transition: background-color 0.7s;
+  transition: background-color 0.7s; }
+
+.import-page .row.movement-import.ng-enter-active {
+  background-color: rgba(59, 214, 178, 0.6); }
 
 .import-page .row .movement-title {
   margin: 0 auto 20px;
