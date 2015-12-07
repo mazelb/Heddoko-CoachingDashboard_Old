@@ -15,8 +15,8 @@
         <div class="container" style="margin-bottom:50px;">
 
             <!-- Login form -->
-            <form class="auth-form" role="form" method="POST" action="{{ url('/auth/login') }}">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <form class="auth-form" role="form" method="POST" action="{{ route('auth.login.post') }}">
+                {!! csrf_field() !!}
 
                 <div class="row">
 
@@ -37,7 +37,7 @@
                             placeholder="Password"
                             required>
 
-                        <a href="{{ url('/password/email') }}">Forgot password?</a>
+                        <a href="{{ route('auth.password') }}">Forgot password?</a>
                     </div>
 
                     <!-- Submit button -->
@@ -48,7 +48,7 @@
                             name="name"
                             value="Login">
 
-                        <a href="{{ url('/auth/register') }}" class="emphasize">Create a new account</a>
+                        <a href="{{ route('auth.register') }}" class="emphasize">Create a new account</a>
                     </div>
                 </div>
             </form>

@@ -20,6 +20,10 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
+        // Apply the "guest" middleware.
         $this->middleware('guest');
+
+        // Update the redirect paths.
+        $this->redirectTo = route('home');
     }
 }

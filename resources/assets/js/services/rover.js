@@ -213,7 +213,7 @@ angular.module('app.rover', [])
 
             Utilities.debug('Ending session...');
 
-            $window.location.href = '/auth/logout';
+            $window.location.href = '/logout';
 
         }.bind(this);
 

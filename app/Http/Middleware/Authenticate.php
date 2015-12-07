@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Handles authentication-related http requests.
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
+ */
 namespace App\Http\Middleware;
 
 use Closure;
@@ -38,7 +43,7 @@ class Authenticate
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
             } else {
-                return redirect()->guest('auth/login');
+                return redirect()->guest(route('auth.login'));
             }
         }
 

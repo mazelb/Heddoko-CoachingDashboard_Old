@@ -65,7 +65,8 @@
 
     // Content
     .main-body {
-        padding: 20px 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         color: #fff;
     }
 
@@ -82,7 +83,9 @@
 
     // Forms
     form {
-
+        .form-control, .input-group-addon:first {
+            @include border-radius(0px);
+        }
         input[type="text"], input[type="email"], input[type="password"], select {
             width: 100%;
             height: 55px;
@@ -132,8 +135,14 @@
     }
 
     // Register page.
-    .auth-register #footer {
-        background-color: rgba(0, 0, 0, .5);
+    .auth-register {
+        .main-body {
+            margin-bottom: 60px;
+        }
+
+        #footer {
+            background-color: rgba(0, 0, 0, .5);
+        }
     }
 }
 
@@ -147,12 +156,6 @@
 // }
 
 
-
-
-.static-page.signin .form-container, .page-signup .form-container, .page-forgot .form-container {
-  max-width: 420px;
-  margin: 10px auto;
-}
 
 .static-page.signin .line-thru, .page-signup .line-thru, .page-forgot .line-thru {
   margin: 1em 0;

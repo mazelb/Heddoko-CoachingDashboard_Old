@@ -67,39 +67,39 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
 });
 
 /**
- * Authentication routes.
+ * Authentication, registration and password recovery routes.
  */
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('login', 'Auth\AuthController@getLogin')->name('auth.login');
+Route::post('login', 'Auth\AuthController@postLogin')->name('auth.login.post');
+Route::get('logout', 'Auth\AuthController@getLogout')->name('auth.logout');
+
+Route::get('register', 'Auth\AuthController@getRegister')->name('auth.register');
+Route::post('register', 'Auth\AuthController@postRegister')->name('auth.register.post');
+
+Route::get('reset', 'Auth\PasswordController@getEmail')->name('auth.password');
+Route::post('reset/email', 'Auth\PasswordController@postEmail')->name('auth.password.post');
+Route::get('reset/{token}', 'Auth\PasswordController@getReset')->name('auth.reset');
+Route::post('reset', 'Auth\PasswordController@postReset')->name('auth.reset.post');
 
 /**
  * General Angular app routes.
  */
 Route::get('/', ['middleware' => 'auth', function()
 {
-    // Coaches dashboard.
-	if (Entrust::hasRole('manager') || Entrust::hasRole('coach'))
+    // Coaching dashboard.
+	if (Entrust::hasRole('manager') || Entrust::hasRole('admin'))
     {
 		return view('layouts.angular');
 	}
 
-	else if (Entrust::hasRole('admin')){
-		return 'you\'re an admin!';
-	}
+	// Unauthorized access.
+    return 'Unauthorized.';
 
-	else if (Entrust::hasRole('athlete')){
-		return 'you\'re an athlete!';
-	}
+}])->name('home');
 
-	else return 'fatal error';
-
-}]);
-
-//Entrust::routeNeedsRole('api*', 'owner', Redirect::to('/home'));
-
-// Static pages.
+/**
+ * Other static pages.
+ */
 Route::get('privacy', function() {
     return view('static.privacy');
 });
@@ -107,10 +107,23 @@ Route::get('terms', function() {
     return view('static.terms');
 });
 
-// Redirects.
+/**
+ * Redirects.
+ */
 Route::get('home', function() {
-    return redirect('/');
+    return redirect(route('home'));
 });
+Route::get('auth/login', function() {
+    return redirect(route('auth.login'));
+});
+Route::get('auth/logout', function() {
+    return redirect(route('auth.logout'));
+});
+Route::get('auth/register', function() {
+    return redirect(route('auth.register'));
+});
+
+
 
 //@todo: lock this file down env file), wrt filesystem/web server config/perms (.htaccess)
 //@todo: remove readme files (etc.). dont share more than you need to.
