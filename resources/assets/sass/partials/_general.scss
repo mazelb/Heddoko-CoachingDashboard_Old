@@ -1,9 +1,6 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *    - General CSS
  */
 
 [ng-click],
@@ -26,7 +23,8 @@ html.auth-register {
 
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
+    // font-size: 16px;
+    font-size: 18px;
     line-height: 1.42857;
     color: $text-color;
     background-color: $background-color;
@@ -58,13 +56,15 @@ span.block {
 }
 
 a {
-  color: #333;
-  text-decoration: none;
+    // color: #333;
+    color: #fff;
+    text-decoration: none;
 }
 
 a:hover, a:focus {
-  color: #0d0d0d;
-  text-decoration: underline;
+    // color: #0d0d0d;
+    color: $heddokogreen;
+    text-decoration: underline;
 }
 
 .img-responsive {

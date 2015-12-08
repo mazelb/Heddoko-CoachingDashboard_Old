@@ -1,93 +1,98 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/no-profile-selected-notice.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
+angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms/demo/analysis.html', 'fms/demo/index.html', 'fms/demo/partials/analysis-coronal.html', 'fms/demo/partials/analysis-layout-emphasized.html', 'fms/demo/partials/analysis-sagittal.html', 'fms/demo/partials/analysis-transverse.html', 'fms/demo/partials/summary-content.html', 'fms/demo/partials/summary-layout.html', 'fms/demo/partials/summary-menu.html', 'fms/demo/partials/summary-movement-overview.html', 'fms/demo/partials/summary-overall-scores.html', 'fms/demo/partials/test-coronal.html', 'fms/demo/partials/test-layout-emphasized.html', 'fms/demo/partials/test-sagittal.html', 'fms/demo/partials/test-transverse.html', 'fms/demo/summary.html', 'fms/demo/test.html', 'fms/index.html', 'fms/live/analysis.html', 'fms/live/index.html', 'fms/live/partials/analysis-menu.html', 'fms/live/partials/breadcrumbs.html', 'fms/live/partials/header.html', 'fms/live/partials/iterations.html', 'fms/live/partials/summary-legend.html', 'fms/live/partials/summary-menu.html', 'fms/live/partials/test-menu.html', 'fms/live/partials/test-trials.html', 'fms/live/summary.html', 'fms/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
-    "<!-- Title -->\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12\">\n" +
-    "        <h1 class=\"text-center\">\n" +
-    "            Welcome to your dashboard.\n" +
-    "        </h1>\n" +
+    "<div class=\"page\">\n" +
     "\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<!-- Main tasks -->\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
-    "        <a href=\"#/analyze\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                Analyze <br>\n" +
-    "                a Movement\n" +
-    "            </span>\n" +
-    "        </a>\n" +
+    "    <!-- Title -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <h1 ng-show=\"global.state.userData.id > 0\" class=\"text-center\">\n" +
+    "                {{ greeting }} {{ global.state.userData.firstName }}!\n" +
+    "            </h1>\n" +
+    "            <h1 ng-show=\"global.state.userData.id === 0\" class=\"text-center\">\n" +
+    "                {{ greeting }}!\n" +
+    "            </h1>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
-    "        <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                Compare Two or<br>\n" +
-    "                More Movements\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
-    "        <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                Compare FMS <br>\n" +
-    "                Results\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
-    "        <a href=\"#/import\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                Upload One or <br>\n" +
-    "                More Movements\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"col-sm-12 col-md-2 text-center\">\n" +
-    "        <a href=\"#/capture\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                Record a Live<br>\n" +
-    "                Movement\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div class=\"col-sm-12 col-md-2 text-right\">\n" +
-    "        <a href=\"#/fms\" class=\"temp-landing-badge\">\n" +
-    "            <span>\n" +
-    "                An FMS Test\n" +
-    "            </span>\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<!-- Quick actions -->\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 text-center\">\n" +
-    "        <div class=\"btn-group\">\n" +
-    "\n" +
-    "            <!-- Profile list -->\n" +
-    "            <a href=\"#/profile/list\" class=\"btn btn-default\">\n" +
-    "                See my athletes\n" +
+    "    <!-- Main tasks -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
+    "            <a href=\"#/analyze\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    Analyze <br>\n" +
+    "                    a Movement\n" +
+    "                </span>\n" +
     "            </a>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Group list -->\n" +
-    "            <a href=\"#/group/list\" class=\"btn btn-default\">\n" +
-    "                See my teams\n" +
+    "        <div class=\"col-sm-12 col-md-2 text-center\">\n" +
+    "            <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    Compare Two or<br>\n" +
+    "                    More Movements\n" +
+    "                </span>\n" +
     "            </a>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Onboarding link -->\n" +
-    "            <button ng-click=\"global.onboarding.general()\" class=\"btn btn-primary\">\n" +
-    "                Show me around\n" +
-    "            </button>\n" +
+    "        <div class=\"col-sm-12 col-md-2 text-right\">\n" +
+    "            <a href=\"#/compare\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    Compare FMS <br>\n" +
+    "                    Results\n" +
+    "                </span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 col-md-2 col-md-offset-3 text-left\">\n" +
+    "            <a href=\"#/import\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    Upload One or <br>\n" +
+    "                    More Movements\n" +
+    "                </span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-sm-12 col-md-2 text-center\">\n" +
+    "            <a href=\"#/capture\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    Record a Live<br>\n" +
+    "                    Movement\n" +
+    "                </span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-sm-12 col-md-2 text-right\">\n" +
+    "            <a href=\"#/fms\" class=\"temp-landing-badge\">\n" +
+    "                <span>\n" +
+    "                    An FMS Test\n" +
+    "                </span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Quick actions -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 text-center\">\n" +
+    "            <div class=\"btn-group\">\n" +
+    "\n" +
+    "                <!-- Profile list -->\n" +
+    "                <a href=\"#/profile/list\" class=\"btn btn-default\">\n" +
+    "                    See my athletes\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <!-- Group list -->\n" +
+    "                <a href=\"#/group/list\" class=\"btn btn-default\">\n" +
+    "                    See my teams\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <!-- Onboarding link -->\n" +
+    "                <button ng-click=\"global.onboarding.general()\" class=\"btn btn-primary\">\n" +
+    "                    Show me around\n" +
+    "                </button>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -1009,7 +1014,7 @@ angular.module("analysis/index.html", []).run(["$templateCache", function($templ
 angular.module("capture/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("capture/index.html",
     "<div class=\"page\">\n" +
-    "    <ui-page-title data-title=\"'Capture'\" data-icon=\"'circle'\"></ui-page-title>\n" +
+    "    <ui-page-title data-title=\"'Capture'\" data-icon=\"'camera'\"></ui-page-title>\n" +
     "\n" +
     "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
     "        In Development\n" +
@@ -2849,126 +2854,127 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
 
 angular.module("import/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("import/index.html",
-    "<!-- Import page -->\n" +
-    "<div ng-show=\"global.getSelectedProfile().id > 0\" class=\"page import-page\">\n" +
+    "<div class=\"page import-page\">\n" +
     "    <ui-page-title data-title=\"'Import'\" data-icon=\"'cloud-upload'\"></ui-page-title>\n" +
-    "    <div class=\"clearfix\"></div>\n" +
     "\n" +
-    "    Import movement data for\n" +
-    "    <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>\n" +
+    "    <!-- Import page -->\n" +
+    "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
+    "        Import movement data for\n" +
+    "        <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>\n" +
     "\n" +
-    "    <div class=\"movement-import row\">\n" +
-    "\n" +
-    "        <!-- Import new movement -->\n" +
-    "        <div ng-show=\"isUploading === false\" class=\"col-xs-12 text-center\">\n" +
-    "            <button\n" +
-    "                ngf-select=\"import($files)\"\n" +
-    "                ngf-drop=\"import($files)\"\n" +
-    "                accept=\"text/plain,text/csv\"\n" +
-    "                ngf-max-size=\"2MB\"\n" +
-    "                multiple\n" +
-    "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
-    "\n" +
-    "                <i class=\"fa fa-plus\"></i>\n" +
-    "            </button>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Uploading movement file -->\n" +
-    "        <div ng-show=\"isUploading === true\" class=\"col-xs-12 text-center\">\n" +
-    "            <i class=\"fa fa-spinner fa-spin fa-2x text-primary\"></i>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div ng-show=\"uploadedMovements.length > 0\">\n" +
-    "        <!-- List of uploaded movements -->\n" +
-    "        <div ng-repeat=\"file in uploadedMovements\" class=\"movement-import row\">\n" +
-    "            <div class=\"col-md-3 col-md-offset-1\">\n" +
-    "\n" +
-    "                <!-- Movement title -->\n" +
-    "                <input\n" +
-    "                    ng-model=\"file.title\"\n" +
-    "                    type=\"text\"\n" +
-    "                    class=\"form-control movement-title\"\n" +
-    "                    placeholder=\"Movement Title\">\n" +
-    "\n" +
-    "                <!-- Tags -->\n" +
-    "                <ui-taggable-input\n" +
-    "                    data-model=\"file\"\n" +
-    "                    data-key=\"tags\"\n" +
-    "                    data-max-tags=\"20\">\n" +
-    "                </ui-taggable-input>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <div class=\"col-md-3\">\n" +
-    "\n" +
-    "                <!-- Movement preview -->\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-xs-12\">\n" +
-    "                        <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- Delete movement -->\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-xs-12\">\n" +
-    "                        <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
-    "                            Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
-    "                        </a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Edit movement -->\n" +
-    "            <div class=\"col-md-4\">\n" +
-    "                <div class=\"movement-edit row\">\n" +
-    "\n" +
-    "                    <!-- Thumbnail link -->\n" +
-    "                    <div class=\"col-md-5 text-right\">\n" +
-    "                        <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
-    "                            Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
-    "                        </a>\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"col-md-1 text-center\">\n" +
-    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <!-- Video edit link -->\n" +
-    "                    <div class=\"col-md-5 text-left\">\n" +
-    "                        <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
-    "                            Edit Video <i class=\"fa fa-pencil\"></i>\n" +
-    "                        </a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Clear button -->\n" +
     "        <div class=\"movement-import row\">\n" +
-    "            <div class=\"col-sm-12 text-center\">\n" +
-    "                <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
+    "\n" +
+    "            <!-- Import new movement -->\n" +
+    "            <div ng-show=\"isUploading === false\" class=\"col-xs-12 text-center\">\n" +
+    "                <button\n" +
+    "                    ngf-select=\"import($files)\"\n" +
+    "                    ngf-drop=\"import($files)\"\n" +
+    "                    accept=\"text/plain,text/csv\"\n" +
+    "                    ngf-max-size=\"2MB\"\n" +
+    "                    multiple\n" +
+    "                    class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-plus\"></i>\n" +
+    "                </button>\n" +
     "            </div>\n" +
+    "\n" +
+    "            <!-- Uploading movement file -->\n" +
+    "            <div ng-show=\"isUploading === true\" class=\"col-xs-12 text-center\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-2x text-primary\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div ng-show=\"uploadedMovements.length > 0\">\n" +
+    "            <!-- List of uploaded movements -->\n" +
+    "            <div ng-repeat=\"file in uploadedMovements\" class=\"movement-import row\">\n" +
+    "                <div class=\"col-md-3 col-md-offset-1\">\n" +
+    "\n" +
+    "                    <!-- Movement title -->\n" +
+    "                    <input\n" +
+    "                        ng-model=\"file.title\"\n" +
+    "                        type=\"text\"\n" +
+    "                        class=\"form-control movement-title\"\n" +
+    "                        placeholder=\"Movement Title\">\n" +
+    "\n" +
+    "                    <!-- Tags -->\n" +
+    "                    <ui-taggable-input\n" +
+    "                        data-model=\"file\"\n" +
+    "                        data-key=\"tags\"\n" +
+    "                        data-max-tags=\"20\">\n" +
+    "                    </ui-taggable-input>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-md-3\">\n" +
+    "\n" +
+    "                    <!-- Movement preview -->\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-xs-12\">\n" +
+    "                            <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- Delete movement -->\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-xs-12\">\n" +
+    "                            <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
+    "                                Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Edit movement -->\n" +
+    "                <div class=\"col-md-4\">\n" +
+    "                    <div class=\"movement-edit row\">\n" +
+    "\n" +
+    "                        <!-- Thumbnail link -->\n" +
+    "                        <div class=\"col-md-5 text-right\">\n" +
+    "                            <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
+    "                                Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"col-md-1 text-center\">\n" +
+    "                            <i class=\"fa fa-angle-double-right\"></i>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Video edit link -->\n" +
+    "                        <div class=\"col-md-5 text-left\">\n" +
+    "                            <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
+    "                                Edit Video <i class=\"fa fa-pencil\"></i>\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Clear button -->\n" +
+    "            <div class=\"movement-import row\">\n" +
+    "                <div class=\"col-sm-12 text-center\">\n" +
+    "                    <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- No recently uploaded movement -->\n" +
+    "        <div\n" +
+    "            ng-show=\"uploadedMovements.length === 0 && isUploading === false\"\n" +
+    "            class=\"col-md-6 col-md-offset-3 text-center\">\n" +
+    "\n" +
+    "            <h3>There are no movements to display.</h3>\n" +
+    "            Once you upload or capture a new movement, it will show up here.\n" +
+    "            <br><br>\n" +
+    "\n" +
+    "            <b>Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button above to start.</b>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- No recently uploaded movement -->\n" +
+    "    <!-- No profile selected -->\n" +
     "    <div\n" +
-    "        ng-show=\"uploadedMovements.length === 0 && isUploading === false\"\n" +
-    "        class=\"col-md-6 col-md-offset-3 text-center\">\n" +
-    "\n" +
-    "        <h3>There are no movements to display.</h3>\n" +
-    "        Once you upload or capture a new movement, it will show up here.\n" +
-    "        <br><br>\n" +
-    "\n" +
-    "        <b>Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button above to start.</b>\n" +
+    "        ng-show=\"global.getSelectedProfile().id === 0\"\n" +
+    "        ng-include=\"'partials/select-profile.html'\"\n" +
+    "        class=\"page\">\n" +
     "    </div>\n" +
-    "</div>\n" +
-    "\n" +
-    "<!-- No profile selected -->\n" +
-    "<div\n" +
-    "    ng-show=\"global.getSelectedProfile().id === 0\"\n" +
-    "    ng-include=\"'partials/no-profile-selected-notice.html'\"\n" +
-    "    class=\"page\">\n" +
     "</div>\n" +
     "");
 }]);
@@ -3138,224 +3144,21 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "			</li>\n" +
     "\n" +
     "            <!-- Menu button (shows up on desktop views) -->\n" +
-    "			<!-- <li>\n" +
+    "			<li>\n" +
     "				<a href=\"#/\" data-toggle-min-nav class=\"toggle-min\">\n" +
     "                    <i class=\"fa fa-bars\"></i>\n" +
     "                </a>\n" +
-    "			</li> -->\n" +
-    "\n" +
-    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
-    "            <li style=\"display: block; width: 20px; height: 1px;\"></li>\n" +
-    "\n" +
-    "            <!-- Group dropdown -->\n" +
-    "            <!-- Generally, we want to keep the user from selecting another group while we're loading data -->\n" +
-    "			<li\n" +
-    "                class=\"onboarding-general\"\n" +
-    "                data-step=\"2\"\n" +
-    "                data-intro=\"Here is where you can find the groups you manage.\">\n" +
-    "\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.data.isFetchingGroups\"\n" +
-    "                        ng-disabled=\"global.data.isFetchingProfiles\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        {{ global.getSelectedGroup().name || '(no team selected)' }}\n" +
-    "                        <span ng-hide=\"global.data.isFetchingProfiles\" class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul\n" +
-    "                        ng-hide=\"global.data.isFetchingGroups || global.data.isFetchingProfiles\"\n" +
-    "                        class=\"dropdown-menu\">\n" +
-    "\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.store.groupId = 0\">\n" +
-    "                                (none)\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li ng-repeat=\"(id, group) in global.state.group.list\">\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.store.groupId = group.id\">\n" +
-    "                                {{ group.name }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "\n" +
-    "                    <!-- Loading animation, indicating that groups are being fetched -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.data.isFetchingGroups\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        disabled>\n" +
-    "\n" +
-    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Link to group page -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.store.groupId === 0 || global.data.isFetchingGroups\"\n" +
-    "                        ng-click=\"global.browseTo.group()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        title=\"Team page\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
-    "\n" +
-    "            <!-- Profile dropdown -->\n" +
-    "			<li\n" +
-    "                class=\"onboarding-general\"\n" +
-    "                data-step=\"3\"\n" +
-    "                data-intro=\"Here is where you can find the profiles you manage. If a team is\n" +
-    "                            selected, the profiles listed will be restricted to that team.\">\n" +
-    "\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        ng-hide=\"global.state.profile.filtered.length === 0\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        <span ng-show=\"global.store.profileId > 0\">\n" +
-    "                            {{ global.getSelectedProfile().first_name }}\n" +
-    "                            {{ global.getSelectedProfile().last_name }}\n" +
-    "                        </span>\n" +
-    "                        <span ng-show=\"global.store.profileId === 0\">\n" +
-    "                            {{ '(no athlete selected)' }}\n" +
-    "                        </span>\n" +
-    "\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul ng-hide=\"global.state.profile.filtered.length === 0\" class=\"dropdown-menu\">\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.store.profileId = 0\">\n" +
-    "                                (none)\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li ng-repeat=\"profile in global.state.profile.filtered\">\n" +
-    "                            <a href=\"javascript:;\" ng-click=\"global.store.profileId = profile.id\">\n" +
-    "                                {{ profile.first_name +' '+ profile.last_name }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "\n" +
-    "                    <!-- Loading animation, indicating that profiles are being fetched -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.data.isFetchingProfiles\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        disabled>\n" +
-    "\n" +
-    "                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Link to profile page -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.state.profile.filtered.length > 0 &&\n" +
-    "                            global.store.profileId > 0 && !global.data.isFetchingProfiles\"\n" +
-    "                        ng-click=\"global.browseTo.profile()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-info\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        title=\"Athlete page\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Create new profile button -->\n" +
-    "                    <button\n" +
-    "                        ng-show=\"global.state.profile.filtered.length === 0 && !global.data.isFetchingProfiles\"\n" +
-    "                        ng-click=\"global.browseTo.path('/profile/create')\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default\">\n" +
-    "\n" +
-    "                        Create profile\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
     "			</li>\n" +
     "\n" +
-    "            <li ng-show=\"global.isLocal\">\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Face of dropdown -->\n" +
-    "                    <button\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        Dev\n" +
-    "                        <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Contents of dropdown -->\n" +
-    "                    <ul class=\"dropdown-menu\">\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\">\n" +
-    "                                Total groups: {{ global.state.group.list.length }} /\n" +
-    "                                Selected: {{ global.getSelectedGroup().name || 'None' }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\">\n" +
-    "                                Total profiles: {{ global.state.profile.list.length }} /\n" +
-    "                                Selected (callback): {{ global.getSelectedProfile().first_name || 'None' }} /\n" +
-    "                                Selected (local): {{ global.store.profileId }}\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a href=\"javascript:;\"data-toggle=\"modal\" data-target=\"#overlay-screen\">\n" +
-    "                                Overlay Test\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </li>\n" +
+    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
+    "            <!-- <li style=\"display: block; width: 20px; height: 1px;\"></li> -->\n" +
     "		</ul>\n" +
     "\n" +
     "        <ul class=\"nav-right list-unstyled\">\n" +
     "\n" +
     "            <!-- Search input -->\n" +
-    "            <li ng-controller=\"SearchController\">\n" +
-    "                <div class=\"input-group search-input\">\n" +
-    "                    <div class=\"input-group-btn\">\n" +
-    "                        <button\n" +
-    "                            type=\"button\"\n" +
-    "                            class=\"btn btn-default dropdown-toggle\"\n" +
-    "                            data-toggle=\"dropdown\"\n" +
-    "                            aria-haspopup=\"true\"\n" +
-    "                            aria-expanded=\"false\">\n" +
-    "\n" +
-    "                            <span ng-class=\"'fa fa-' + selectedFilter.icon\"></span>\n" +
-    "                            <span class=\"caret\"></span>\n" +
-    "                        </button>\n" +
-    "\n" +
-    "                        <ul class=\"dropdown-menu\">\n" +
-    "                            <li ng-repeat=\"filter in filters track by filter.name\">\n" +
-    "                                <a ng-click=\"filterBy(filter)\" href=\"javascript:;\">\n" +
-    "                                    <span ng-class=\"'fa fa-' + filter.icon\"></span> {{ filter.label }}\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
+    "            <li>\n" +
+    "                <div ng-controller=\"SearchController\" class=\"search-input\">\n" +
     "                    <selectize\n" +
     "                        ng-model=\"model\"\n" +
     "                        class=\"form-control\"\n" +
@@ -3366,6 +3169,43 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "            </li>\n" +
     "            <li>\n" +
     "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Dev -->\n" +
+    "                    <div ng-show=\"global.isLocal\" class=\"btn-group\">\n" +
+    "\n" +
+    "                        <!-- Face of dropdown -->\n" +
+    "                        <button\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
+    "\n" +
+    "                            <i class=\"fa fa-code\"></i>\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <!-- Contents of dropdown -->\n" +
+    "                        <ul class=\"dropdown-menu\">\n" +
+    "                            <li>\n" +
+    "                                <a href=\"javascript:;\">\n" +
+    "                                    Total groups: {{ global.state.group.list.length }} /\n" +
+    "                                    Selected: {{ global.getSelectedGroup().name || 'None' }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a href=\"javascript:;\">\n" +
+    "                                    Total profiles: {{ global.state.profile.list.length }} /\n" +
+    "                                    Selected (callback): {{ global.getSelectedProfile().first_name || 'None' }} /\n" +
+    "                                    Selected (local): {{ global.store.profileId }}\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a href=\"javascript:;\"data-toggle=\"modal\" data-target=\"#overlay-screen\">\n" +
+    "                                    Overlay Test\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
     "\n" +
     "                    <!-- Settings -->\n" +
     "                    <button\n" +
@@ -3537,7 +3377,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            </ul>\n" +
     "        </li>\n" +
     "\n" +
-    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em;\">\n" +
+    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em; color: #aaa;\">\n" +
     "            {{ global.appVersion }}\n" +
     "		</li>\n" +
     "\n" +
@@ -3560,9 +3400,9 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "");
 }]);
 
-angular.module("partials/no-profile-selected-notice.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("partials/no-profile-selected-notice.html",
-    "<h1 class=\"text-center\">No profile selected</h1>\n" +
+angular.module("partials/select-profile.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/select-profile.html",
+    "<h3 class=\"text-center\">Select a profile to get started</h3>\n" +
     "<br>\n" +
     "\n" +
     "<div class=\"text-center\">\n" +
@@ -3570,7 +3410,7 @@ angular.module("partials/no-profile-selected-notice.html", []).run(["$templateCa
     "    <br>\n" +
     "\n" +
     "    You can also take this opportunity to\n" +
-    "    <a ng-click=\"Rover.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
+    "    <a ng-click=\"global.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
     "</div>\n" +
     "");
 }]);

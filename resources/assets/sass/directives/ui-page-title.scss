@@ -8,7 +8,8 @@
     margin: 5px 0 30px 30px;
     position: relative;
     height: 50px;
-    background-color: rgba(59, 214, 178, 0.4);
+    // background-color: rgba(59, 214, 178, 0.4);
+    background-color: $heddokogreen;
     @include transform(skewX(-26deg));
 }
 .ui-page-title-background .ui-page-title-skew {

@@ -10,14 +10,15 @@
 angular.module('app.controllers')
 
 .controller('MainController',
-    ['$scope', '$sessionStorage', '$localStorage', 'ProfileService', 'GroupService', 'OnboardingService',
+    ['$scope', 'ProfileService', 'GroupService', 'UserService', 'OnboardingService',
     'Rover', 'Utilities', 'appVersion', 'isLocalEnvironment',
     function(
-        $scope, $sessionStorage, $localStorage, ProfileService, GroupService, OnboardingService,
+        $scope, ProfileService, GroupService, UserService, OnboardingService,
         Rover, Utilities, appVersion, isLocalEnvironment) {
-        Rover.debug('MainController');
+        Utilities.debug('MainController');
 
         // This makes the rover accessible to some views.
+        // @deprecated
         $scope.Rover = Rover;
 
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
@@ -46,6 +47,9 @@ angular.module('app.controllers')
                 general: OnboardingService.general
             }
         };
+
+        // Setup user data
+        $scope.global.state.userData = $scope.global.state.userData || {id: 0};
 
         // Setup group data.
         Rover.debug('Setting up group data...');
@@ -143,6 +147,24 @@ angular.module('app.controllers')
                 }
             );
         };
+
+        // Fetch user details.
+        if ($scope.global.state.userData.id === 0)
+        {
+            Utilities.debug('Retrieving user details');
+
+            UserService.get(Rover.userHash).then(
+
+                // Update user data.
+                function(response) {
+                    Rover.state.userData = response.data;
+                },
+                function(response) {
+                    Utilities.alert('Could not retrieve user details. Please try again later.');
+                    Rover.state.userData = {id: 0};
+                }
+            );
+        }
 
         // Populate group list.
     	if ($scope.global.state.group.list.length === 0) {

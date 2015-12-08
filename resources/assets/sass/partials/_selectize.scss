@@ -1,9 +1,7 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *    - Selectize.js, https://brianreavis.github.io/selectize.js/
+ *    Styles for Selectize.js (https://brianreavis.github.io/selectize.js)
  */
 
 .selectize-control::before {
@@ -34,6 +32,11 @@
 
 .selectize-control.single .selectize-input::after {
     display: none;
+}
+
+.selectize-control.single .selectize-input.focus {
+    outline: none;
+    @include box-shadow(none);
 }
 
 .selectize-dropdown-content .highlight {

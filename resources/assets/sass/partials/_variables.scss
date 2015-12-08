@@ -18,8 +18,10 @@ $info-alt:#8170ca;
 $heddokogreen:#3bd6b2;
 $silver:#cbd4e3;
 $orangeaccent:#ff8d46;
-$text-color: #767676;
-$background-color: #f3f3f3;
+// $text-color: #767676;
+$text-color: #ddd;
+// $background-color: #f3f3f3;
+$background-color: $blue-dark;
 
 @mixin transform($transform){
     -webkit-transform: $transform;

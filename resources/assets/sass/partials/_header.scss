@@ -1,9 +1,11 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
 
+.top-header {
+    background-color: $blue-dark;
+}
 .top-header .clearfix {
     position: relative;
 }
@@ -81,19 +83,14 @@
  * Search input
  */
 .top-header .search-input {
+    margin: 8px 5px;
     width: 250px;
-}
-.top-header .search-input .fa {
-    margin-right: 3px;
-}
-.top-header .search-input .caret {
-    color: #ccc;
 }
 .top-header .search-input .selectize-control {
     display: block;
     height: 34px;
-    border-color: #ddd;
-    @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+    border: 1px solid #ddd;
+    // @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 }
 .top-header .search-input .selectize-input {
     display: block;
@@ -106,7 +103,7 @@
 }
 @media (min-width: 768px) {
     .top-header .search-input {
-        width: 400px;
+        width: 350px;
     }
 }
 

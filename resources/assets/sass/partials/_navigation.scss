@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  *    Dropdowns / Toolbars / Navigation
  */
@@ -483,16 +481,16 @@
 }
 
 #nav-container {
-  z-index: 11;
-  position: absolute;
-  top: 0px;
-  bottom: 0;
-  left: -270px;
-  width: 270px;
-  padding: 0;
-background-color:$blue;
-  -webkit-overflow-scrolling: touch;
-  -webkit-overflow-scrolling: -blackberry-touch;
+    z-index: 11;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    left: -270px;
+    width: 270px;
+    padding: 0;
+    background-color:$blue;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: -blackberry-touch;
 }
 
 @media (min-width: 768px) {
@@ -502,24 +500,24 @@ background-color:$blue;
 }
 
 #nav-container ul {
-  padding-left: 0;
-  list-style: none;
-  background-color: $blue;
+    padding-left: 0;
+    list-style: none;
+    background-color: $blue;
 }
 
 #nav-wrapper {
-  -webkit-overflow-scrolling: touch;
-  -webkit-overflow-scrolling: -blackberry-touch;
-  width: 100%;
-  height: 100%;
-  margin-top:80px;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: -blackberry-touch;
+    width: 100%;
+    height: 100%;
+    margin-top:80px;
 }
 
 #nav {
-  margin: 0;
-  padding: 0;
-  -webkit-overflow-scrolling: touch;
-  -webkit-overflow-scrolling: -blackberry-touch;
+    margin: 0;
+    padding: 0;
+    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: -blackberry-touch;
 }
 
 #nav>li>a>i, #nav>li>a>.nav-icon {
@@ -536,11 +534,12 @@ background-color:$blue;
 }
 
 #nav a {
-  font-size: 12px;
-  text-transform:uppercase;
-  font-weight:bold;
-  color: $silver;
-  @include transition(all 0.2s ease-in-out);
+    // font-size: 12px;
+    font-size: 16px;
+    text-transform:uppercase;
+    font-weight:bold;
+    color: $silver;
+    @include transition(all 0.2s ease-in-out);
 }
 
 #nav a:hover {
@@ -741,14 +740,15 @@ background-color:$blue;
 }
 
 .top-header {
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background-color: #ffffff;
-  @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    z-index: 10;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    // background-color: #fff;
+    background-color: $blue-dark;
+    // @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 @media (min-width: 768px) {
@@ -783,15 +783,16 @@ background-color:$blue;
 }
 
 #nav-container .logo {
-  position: absolute;
-  width: 100%;
-  height: 80px;
-  padding-left: 20px;
-  background-color: $heddokogreen;
-  color: #ffffff;
-  line-height: 80px;
-  text-align: left;
-  padding: 10px 26px 26px 26px;
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    padding-left: 20px;
+    // background-color: $heddokogreen;
+    background-color: $blue;
+    color: #fff;
+    line-height: 80px;
+    text-align: left;
+    padding: 10px 26px 26px 26px;
 }
 
 .logo-container {
@@ -799,17 +800,22 @@ background-color:$blue;
 }
 
 .logo1 {
-  width:50px;left:0;
+    // width:50px;
+    width: 40px;
+    left: 0;
 }
 
 .logo2 {
-  width:75%;right:0;
+    // width: 75%;
+    width: 63%;
+    // right: 0;
+    right: 14%;
 }
 
 .logo1, .logo2 {
-  height:auto;
-  position:absolute;
-  bottom:0;
+    height:auto;
+    position:absolute;
+    bottom:0;
 }
 
 @media (min-width: 768px) {
@@ -824,7 +830,8 @@ background-color:$blue;
   #nav-container .logo {
     display: inline-block;
     width: 270px;
-    background-color: $heddokogreen;
+    // background-color: $heddokogreen;
+    background-color: $blue;
     color: #ffffff;
     border-right: none;
   }

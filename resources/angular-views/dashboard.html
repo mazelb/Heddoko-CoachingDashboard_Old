@@ -1,90 +1,95 @@
 
-<!-- Title -->
-<div class="row">
-    <div class="col-sm-12">
-        <h1 class="text-center">
-            Welcome to your dashboard.
-        </h1>
+<div class="page">
 
-    </div>
-</div>
-
-<!-- Main tasks -->
-<div class="row">
-    <div class="col-sm-12 col-md-2 col-md-offset-3 text-left">
-        <a href="#/analyze" class="temp-landing-badge">
-            <span>
-                Analyze <br>
-                a Movement
-            </span>
-        </a>
+    <!-- Title -->
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 ng-show="global.state.userData.id > 0" class="text-center">
+                {{ greeting }} {{ global.state.userData.firstName }}!
+            </h1>
+            <h1 ng-show="global.state.userData.id === 0" class="text-center">
+                {{ greeting }}!
+            </h1>
+        </div>
     </div>
 
-    <div class="col-sm-12 col-md-2 text-center">
-        <a href="#/compare" class="temp-landing-badge">
-            <span>
-                Compare Two or<br>
-                More Movements
-            </span>
-        </a>
-    </div>
-
-    <div class="col-sm-12 col-md-2 text-right">
-        <a href="#/compare" class="temp-landing-badge">
-            <span>
-                Compare FMS <br>
-                Results
-            </span>
-        </a>
-    </div>
-</div>
-<div class="row">
-    <div class="col-sm-12 col-md-2 col-md-offset-3 text-left">
-        <a href="#/import" class="temp-landing-badge">
-            <span>
-                Upload One or <br>
-                More Movements
-            </span>
-        </a>
-    </div>
-
-    <div class="col-sm-12 col-md-2 text-center">
-        <a href="#/capture" class="temp-landing-badge">
-            <span>
-                Record a Live<br>
-                Movement
-            </span>
-        </a>
-    </div>
-
-    <div class="col-sm-12 col-md-2 text-right">
-        <a href="#/fms" class="temp-landing-badge">
-            <span>
-                An FMS Test
-            </span>
-        </a>
-    </div>
-</div>
-
-<!-- Quick actions -->
-<div class="row">
-    <div class="col-sm-12 text-center">
-        <div class="btn-group">
-
-            <!-- Profile list -->
-            <a href="#/profile/list" class="btn btn-default">
-                See my athletes
+    <!-- Main tasks -->
+    <div class="row">
+        <div class="col-sm-12 col-md-2 col-md-offset-3 text-left">
+            <a href="#/analyze" class="temp-landing-badge">
+                <span>
+                    Analyze <br>
+                    a Movement
+                </span>
             </a>
+        </div>
 
-            <!-- Group list -->
-            <a href="#/group/list" class="btn btn-default">
-                See my teams
+        <div class="col-sm-12 col-md-2 text-center">
+            <a href="#/compare" class="temp-landing-badge">
+                <span>
+                    Compare Two or<br>
+                    More Movements
+                </span>
             </a>
+        </div>
 
-            <!-- Onboarding link -->
-            <button ng-click="global.onboarding.general()" class="btn btn-primary">
-                Show me around
-            </button>
+        <div class="col-sm-12 col-md-2 text-right">
+            <a href="#/compare" class="temp-landing-badge">
+                <span>
+                    Compare FMS <br>
+                    Results
+                </span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-2 col-md-offset-3 text-left">
+            <a href="#/import" class="temp-landing-badge">
+                <span>
+                    Upload One or <br>
+                    More Movements
+                </span>
+            </a>
+        </div>
+
+        <div class="col-sm-12 col-md-2 text-center">
+            <a href="#/capture" class="temp-landing-badge">
+                <span>
+                    Record a Live<br>
+                    Movement
+                </span>
+            </a>
+        </div>
+
+        <div class="col-sm-12 col-md-2 text-right">
+            <a href="#/fms" class="temp-landing-badge">
+                <span>
+                    An FMS Test
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="btn-group">
+
+                <!-- Profile list -->
+                <a href="#/profile/list" class="btn btn-default">
+                    See my athletes
+                </a>
+
+                <!-- Group list -->
+                <a href="#/group/list" class="btn btn-default">
+                    See my teams
+                </a>
+
+                <!-- Onboarding link -->
+                <button ng-click="global.onboarding.general()" class="btn btn-primary">
+                    Show me around
+                </button>
+            </div>
         </div>
     </div>
 </div>

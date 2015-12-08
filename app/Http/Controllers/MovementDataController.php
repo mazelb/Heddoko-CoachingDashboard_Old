@@ -58,7 +58,7 @@ class MovementDataController extends Controller
                 ->where('manager_profile.manager_id', '=', Auth::id())
                 ->get();
             if (count($profiles) < 1) {
-                return [];
+                return ['total' => 0, 'results' => []];
             }
 
             $profileIDs = [];
@@ -69,10 +69,19 @@ class MovementDataController extends Controller
             $builder = Movement::whereIn('profile_id', $profileIDs);
         }
 
+        // ...
+
         $offset = 0;
         $limit = 32;
 
-        return $builder->skip($offset)->take($limit)->get();
+        $builder->skip($offset)->take($limit);
+
+        return [
+            'total' => $builder->count(),
+            'results' => $builder->get(),
+            'offset' => $offset,
+            'limit' => $limit
+        ];
     }
 
     /**

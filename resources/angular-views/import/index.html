@@ -1,122 +1,123 @@
 
-<!-- Import page -->
-<div ng-show="global.getSelectedProfile().id > 0" class="page import-page">
+<div class="page import-page">
     <ui-page-title data-title="'Import'" data-icon="'cloud-upload'"></ui-page-title>
-    <div class="clearfix"></div>
 
-    Import movement data for
-    <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>
+    <!-- Import page -->
+    <div ng-show="global.getSelectedProfile().id > 0">
+        Import movement data for
+        <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>
 
-    <div class="movement-import row">
-
-        <!-- Import new movement -->
-        <div ng-show="isUploading === false" class="col-xs-12 text-center">
-            <button
-                ngf-select="import($files)"
-                ngf-drop="import($files)"
-                accept="text/plain,text/csv"
-                ngf-max-size="2MB"
-                multiple
-                class="btn btn-primary btn-circle btn-lg">
-
-                <i class="fa fa-plus"></i>
-            </button>
-        </div>
-
-        <!-- Uploading movement file -->
-        <div ng-show="isUploading === true" class="col-xs-12 text-center">
-            <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
-        </div>
-    </div>
-
-    <div ng-show="uploadedMovements.length > 0">
-        <!-- List of uploaded movements -->
-        <div ng-repeat="file in uploadedMovements" class="movement-import row">
-            <div class="col-md-3 col-md-offset-1">
-
-                <!-- Movement title -->
-                <input
-                    ng-model="file.title"
-                    type="text"
-                    class="form-control movement-title"
-                    placeholder="Movement Title">
-
-                <!-- Tags -->
-                <ui-taggable-input
-                    data-model="file"
-                    data-key="tags"
-                    data-max-tags="20">
-                </ui-taggable-input>
-            </div>
-
-            <div class="col-md-3">
-
-                <!-- Movement preview -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <ui-movement-preview data-aspect-ratio="4:3"></ui-movement-preview>
-                    </div>
-                </div>
-
-                <!-- Delete movement -->
-                <div class="row">
-                    <div class="col-xs-12">
-                        <a ng-click="deleteMovement(file.id)" href="javascript:;" class="pull-right">
-                            Delete Movement <i class="fa fa-trash-o"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Edit movement -->
-            <div class="col-md-4">
-                <div class="movement-edit row">
-
-                    <!-- Thumbnail link -->
-                    <div class="col-md-5 text-right">
-                        <a ng-click="selectThumbnail()" href="javascript:;">
-                            Choose Thumbnail <i class="fa fa-picture-o"></i>
-                        </a>
-                    </div>
-
-                    <div class="col-md-1 text-center">
-                        <i class="fa fa-angle-double-right"></i>
-                    </div>
-
-                    <!-- Video edit link -->
-                    <div class="col-md-5 text-left">
-                        <a ng-click="editMovement()" href="javascript:;">
-                            Edit Video <i class="fa fa-pencil"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Clear button -->
         <div class="movement-import row">
-            <div class="col-sm-12 text-center">
-                <button type="button" class="btn btn-primary">Done</button>
+
+            <!-- Import new movement -->
+            <div ng-show="isUploading === false" class="col-xs-12 text-center">
+                <button
+                    ngf-select="import($files)"
+                    ngf-drop="import($files)"
+                    accept="text/plain,text/csv"
+                    ngf-max-size="2MB"
+                    multiple
+                    class="btn btn-primary btn-circle btn-lg">
+
+                    <i class="fa fa-plus"></i>
+                </button>
             </div>
+
+            <!-- Uploading movement file -->
+            <div ng-show="isUploading === true" class="col-xs-12 text-center">
+                <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+            </div>
+        </div>
+
+        <div ng-show="uploadedMovements.length > 0">
+            <!-- List of uploaded movements -->
+            <div ng-repeat="file in uploadedMovements" class="movement-import row">
+                <div class="col-md-3 col-md-offset-1">
+
+                    <!-- Movement title -->
+                    <input
+                        ng-model="file.title"
+                        type="text"
+                        class="form-control movement-title"
+                        placeholder="Movement Title">
+
+                    <!-- Tags -->
+                    <ui-taggable-input
+                        data-model="file"
+                        data-key="tags"
+                        data-max-tags="20">
+                    </ui-taggable-input>
+                </div>
+
+                <div class="col-md-3">
+
+                    <!-- Movement preview -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ui-movement-preview data-aspect-ratio="4:3"></ui-movement-preview>
+                        </div>
+                    </div>
+
+                    <!-- Delete movement -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <a ng-click="deleteMovement(file.id)" href="javascript:;" class="pull-right">
+                                Delete Movement <i class="fa fa-trash-o"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit movement -->
+                <div class="col-md-4">
+                    <div class="movement-edit row">
+
+                        <!-- Thumbnail link -->
+                        <div class="col-md-5 text-right">
+                            <a ng-click="selectThumbnail()" href="javascript:;">
+                                Choose Thumbnail <i class="fa fa-picture-o"></i>
+                            </a>
+                        </div>
+
+                        <div class="col-md-1 text-center">
+                            <i class="fa fa-angle-double-right"></i>
+                        </div>
+
+                        <!-- Video edit link -->
+                        <div class="col-md-5 text-left">
+                            <a ng-click="editMovement()" href="javascript:;">
+                                Edit Video <i class="fa fa-pencil"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clear button -->
+            <div class="movement-import row">
+                <div class="col-sm-12 text-center">
+                    <button type="button" class="btn btn-primary">Done</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- No recently uploaded movement -->
+        <div
+            ng-show="uploadedMovements.length === 0 && isUploading === false"
+            class="col-md-6 col-md-offset-3 text-center">
+
+            <h3>There are no movements to display.</h3>
+            Once you upload or capture a new movement, it will show up here.
+            <br><br>
+
+            <b>Go ahead and use the <i class="fa fa-plus fa-lg fa-fw"></i> button above to start.</b>
         </div>
     </div>
 
-    <!-- No recently uploaded movement -->
+    <!-- No profile selected -->
     <div
-        ng-show="uploadedMovements.length === 0 && isUploading === false"
-        class="col-md-6 col-md-offset-3 text-center">
-
-        <h3>There are no movements to display.</h3>
-        Once you upload or capture a new movement, it will show up here.
-        <br><br>
-
-        <b>Go ahead and use the <i class="fa fa-plus fa-lg fa-fw"></i> button above to start.</b>
+        ng-show="global.getSelectedProfile().id === 0"
+        ng-include="'partials/select-profile.html'"
+        class="page">
     </div>
-</div>
-
-<!-- No profile selected -->
-<div
-    ng-show="global.getSelectedProfile().id === 0"
-    ng-include="'partials/no-profile-selected-notice.html'"
-    class="page">
 </div>
