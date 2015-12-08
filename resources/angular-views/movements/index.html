@@ -1,12 +1,15 @@
 
 <div class="page movements-page">
     <ui-page-title data-title="'Organize'" data-icon="'th'"></ui-page-title>
-    <div class="clearfix"></div>
 
-    Recent Movements
+    <h4>Recent Movements</h4>
 
-    <div class="row grid">
-        <div ng-repeat="temp in [1,2,3,4,5,6,7,8,9,10]" class="col-sm-6 col-md-4 col-lg-3">
+    <!-- List of movements -->
+    <div
+        ng-show="!global.data.isFetchingMovements && global.data.movements.length > 0"
+        class="row grid">
+
+        <div ng-repeat="movement in movements" class="col-sm-6 col-md-4 col-lg-2">
             <div class="aspect-ratio aspect-4-3 active-element text-center">
                 <div>
 
@@ -23,7 +26,7 @@
 
                         <!-- Movement title -->
                         <span>
-                            Movement # {{ temp }}
+                            Movement # {{ $index }}
                         </span>
 
                         <!-- Movement actions -->
@@ -66,6 +69,25 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> <!-- Movement DIV -->
+    </div>
+
+    <!-- No movements to show -->
+    <div
+        ng-show="!global.data.isFetchingMovements && global.data.movements.length === 0"
+        class="col-md-6 col-md-offset-3 text-center">
+
+        <h3>There are no movements to display.</h3>
+        Once you upload or capture a new movement, it will show up here.
+        <br><br>
+
+        Start by
+        <b>
+            <a ng-click="global.browseTo.path('/import')" href="javascript:;">
+                importing
+            </a>
+        </b>
+        your own movements.
+
     </div>
 </div>

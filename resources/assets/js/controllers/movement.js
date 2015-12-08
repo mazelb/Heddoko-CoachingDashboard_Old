@@ -7,7 +7,20 @@ angular.module('app.controllers')
 
 .controller('MovementController', ['$scope', 'Rover', 'Utilities',
     function($scope, Rover, Utilities) {
-        Rover.debug('MovementController');
+        Utilities.debug('MovementController');
+
+        // List of movements.
+        $scope.global.data.movements = $scope.global.data.movements || [];
+
+        // Retrieves a list of movements.
+        $scope.fetchMovements = function(offset, limit, order) {
+            Utilities.debug('Fetching list of movements...');
+
+            // TODO
+        };
+        if ($scope.global.data.movements.length === 0) {
+            $scope.fetchMovements(0, 16);
+        }
 
         // Opens the movement editor overlay.
         $scope.editMovement = function() {
@@ -16,7 +29,7 @@ angular.module('app.controllers')
 
         // TODO: share movement.
         $scope.shareMovement = function(id) {
-            Rover.debug('Sharing movement #' + id);
+            Utilities.debug('Sharing movement #' + id);
 
             // TODO
 
@@ -25,7 +38,7 @@ angular.module('app.controllers')
 
         // Deletes a movement.
         $scope.deleteMovement = function(id) {
-            Rover.debug('Deleting movement #' + id);
+            Utilities.debug('Deleting movement #' + id);
 
             // TODO
 

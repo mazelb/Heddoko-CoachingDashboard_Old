@@ -2952,8 +2952,15 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    </div>\n" +
     "\n" +
     "    <!-- No recently uploaded movement -->\n" +
-    "    <div ng-show=\"uploadedMovements.length === 0 && isUploading === false\">\n" +
-    "        Upload a movement file using the button above.\n" +
+    "    <div\n" +
+    "        ng-show=\"uploadedMovements.length === 0 && isUploading === false\"\n" +
+    "        class=\"col-md-6 col-md-offset-3 text-center\">\n" +
+    "\n" +
+    "        <h3>There are no movements to display.</h3>\n" +
+    "        Once you upload or capture a new movement, it will show up here.\n" +
+    "        <br><br>\n" +
+    "\n" +
+    "        <b>Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button above to start.</b>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -2985,12 +2992,15 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
   $templateCache.put("movements/index.html",
     "<div class=\"page movements-page\">\n" +
     "    <ui-page-title data-title=\"'Organize'\" data-icon=\"'th'\"></ui-page-title>\n" +
-    "    <div class=\"clearfix\"></div>\n" +
     "\n" +
-    "    Recent Movements\n" +
+    "    <h4>Recent Movements</h4>\n" +
     "\n" +
-    "    <div class=\"row grid\">\n" +
-    "        <div ng-repeat=\"temp in [1,2,3,4,5,6,7,8,9,10]\" class=\"col-sm-6 col-md-4 col-lg-3\">\n" +
+    "    <!-- List of movements -->\n" +
+    "    <div\n" +
+    "        ng-show=\"!global.data.isFetchingMovements && global.data.movements.length > 0\"\n" +
+    "        class=\"row grid\">\n" +
+    "\n" +
+    "        <div ng-repeat=\"movement in movements\" class=\"col-sm-6 col-md-4 col-lg-2\">\n" +
     "            <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
     "                <div>\n" +
     "\n" +
@@ -3007,7 +3017,7 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "\n" +
     "                        <!-- Movement title -->\n" +
     "                        <span>\n" +
-    "                            Movement # {{ temp }}\n" +
+    "                            Movement # {{ $index }}\n" +
     "                        </span>\n" +
     "\n" +
     "                        <!-- Movement actions -->\n" +
@@ -3050,7 +3060,26 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </div>\n" +
+    "        </div> <!-- Movement DIV -->\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- No movements to show -->\n" +
+    "    <div\n" +
+    "        ng-show=\"!global.data.isFetchingMovements && global.data.movements.length === 0\"\n" +
+    "        class=\"col-md-6 col-md-offset-3 text-center\">\n" +
+    "\n" +
+    "        <h3>There are no movements to display.</h3>\n" +
+    "        Once you upload or capture a new movement, it will show up here.\n" +
+    "        <br><br>\n" +
+    "\n" +
+    "        Start by\n" +
+    "        <b>\n" +
+    "            <a ng-click=\"global.browseTo.path('/import')\" href=\"javascript:;\">\n" +
+    "                importing\n" +
+    "            </a>\n" +
+    "        </b>\n" +
+    "        your own movements.\n" +
+    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "");

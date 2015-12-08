@@ -19,8 +19,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
-    // Movements belonging to profiles.
-    Route::resource('profile.movement', 'MovementDataController', [
+    // Movement endpoints.
+    Route::resource('movement', 'MovementDataController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
@@ -29,11 +29,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
     Route::delete('group/{id}/avatar', 'GroupController@destroyAvatar');
     Route::resource('group', 'GroupController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
-
-    // Tag endpoints.
-    Route::resource('tag', 'TagController', [
-        'only' => ['index', 'store']
     ]);
 
     // Screening endpoints.
@@ -49,6 +44,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
     Route::delete('user/{id}/avatar', 'UserController@destroyAvatar');
     Route::resource('user', 'UserController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
+    // Tag endpoints.
+    Route::resource('tag', 'TagController', [
+        'only' => ['index', 'store']
     ]);
 
     //

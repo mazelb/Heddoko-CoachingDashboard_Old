@@ -102,8 +102,15 @@
     </div>
 
     <!-- No recently uploaded movement -->
-    <div ng-show="uploadedMovements.length === 0 && isUploading === false">
-        Upload a movement file using the button above.
+    <div
+        ng-show="uploadedMovements.length === 0 && isUploading === false"
+        class="col-md-6 col-md-offset-3 text-center">
+
+        <h3>There are no movements to display.</h3>
+        Once you upload or capture a new movement, it will show up here.
+        <br><br>
+
+        <b>Go ahead and use the <i class="fa fa-plus fa-lg fa-fw"></i> button above to start.</b>
     </div>
 </div>
 
