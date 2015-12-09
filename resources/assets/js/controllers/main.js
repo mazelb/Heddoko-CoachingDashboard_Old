@@ -49,7 +49,7 @@ angular.module('app.controllers')
         };
 
         // Setup user data
-        $scope.global.state.userData = $scope.global.state.userData || {id: 0};
+        $scope.global.state.user = $scope.global.state.user || {id: 0};
 
         // Setup group data.
         Rover.debug('Setting up group data...');
@@ -149,19 +149,22 @@ angular.module('app.controllers')
         };
 
         // Fetch user details.
-        if ($scope.global.state.userData.id === 0)
+        if ($scope.global.state.user.id === 0)
         {
             Utilities.debug('Retrieving user details');
+            $scope.global.data.isFetchingUser = true;
 
             UserService.get(Rover.userHash).then(
 
                 // Update user data.
                 function(response) {
-                    Rover.state.userData = response.data;
+                    Rover.state.user = response.data;
+                    $scope.global.data.isFetchingUser = false;
                 },
                 function(response) {
                     Utilities.alert('Could not retrieve user details. Please try again later.');
-                    Rover.state.userData = {id: 0};
+                    Rover.state.user = {id: 0};
+                    $scope.global.data.isFetchingUser = false;
                 }
             );
         }

@@ -21,22 +21,26 @@ angular.module('app.controllers')
         }
 
         // Bookmarks.
-        // TODO: dynamically load bookmarks.
+        // NOTE: these might be dynamically loaded in the furture
         $scope.bookmarks = [
             {
                 title: 'Upload a Movement',
+                uri: '#/import',
                 icon: 'cloud-upload'
             },
             {
                 title: 'Record a Movement',
-                icon: 'camera'
+                uri: '#/capture',
+                icon: 'video-camera'
             },
             {
-                title: 'Do a Movement Screening',
+                title: 'Movement Screenings',
+                uri: '#/screening',
                 icon: 'list-alt'
             },
             {
                 title: 'Analyze a Movement',
+                uri: '#/analyze',
                 icon: 'line-chart'
             }
         ];

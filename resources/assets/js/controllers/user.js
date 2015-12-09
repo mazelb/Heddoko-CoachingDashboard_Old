@@ -18,11 +18,11 @@ angular.module('app.controllers')
         $scope.uploadAvatarCallback = function(data) {
 
             // Update user data.
-            $scope.user = Rover.state.userData = data;
+            $scope.user = Rover.state.user = data;
         };
 
         // Retrieve user data.
-        $scope.user = Rover.state.userData || {id: 0};
+        $scope.user = Rover.state.user || {id: 0};
         if ($scope.user.id === 0)
         {
             Utilities.debug('Retrieving user details');
@@ -31,12 +31,12 @@ angular.module('app.controllers')
 
                 // Update user data.
                 function(response) {
-                    $scope.user = Rover.state.userData = response.data;
+                    $scope.user = Rover.state.user = response.data;
                 },
 
                 function(response) {
                     Utilities.alert('Could not retrieve user details. Please try again later.');
-                    $scope.user = Rover.state.userData = {id: 0};
+                    $scope.user = Rover.state.user = {id: 0};
                 }
             );
         }

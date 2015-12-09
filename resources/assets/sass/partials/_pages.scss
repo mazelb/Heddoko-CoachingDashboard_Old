@@ -5,6 +5,40 @@
 
 
 /*
+ * Angular - Dashbaord
+ */
+.dashboard-page .bookmark-wrapper {
+    margin: 0 5%;
+    border-bottom: 4px solid #ddd;
+    @include transition(border-bottom-color .2s);
+}
+.dashboard-page .bookmark-wrapper:hover {
+    border-bottom-color: $heddokogreen;
+}
+.dashboard-page .bookmark-wrapper a {
+    display: block;
+    color: #ddd;
+    @include transition(color .2s);
+}
+.dashboard-page .bookmark-wrapper:hover a,
+.dashboard-page .bookmark-wrapper:hover a:hover {
+    color: $heddokogreen;
+    text-decoration: none;
+}
+.dashboard-page .bookmarks .fa,
+.dashboard-page .bookmarks span {
+    display: block;
+    text-align: center;
+}
+.dashboard-page .bookmarks .fa {
+    padding: 30px 0 0;
+}
+.dashboard-page .bookmarks span {
+    padding: 20px 0 30px;
+    text-transform: uppercase;
+}
+
+/*
  * Angular - Import pages.
  */
 .import-page .row.movement-import {
@@ -89,8 +123,8 @@
 
     // Forms
     form {
-        .form-control, .input-group-addon:first {
-            @include border-radius(0px);
+        .form-control, .input-group-addon {
+            @include border-radius(0px !important);
         }
         input[type="text"], input[type="email"], input[type="password"], select {
             width: 100%;
@@ -102,6 +136,7 @@
             font-weight: bold;
             font-size: 1.1em;
             background-color: rgba(255, 255, 255, .7);
+            @include border-radius(0px);
         }
 
         input[type="submit"] {
@@ -111,6 +146,7 @@
             color: #fff;
             border: none;
             background-color: rgba(59, 214, 178, .7);
+            text-transform: uppercase;
             @include border-radius(0px);
         }
 
@@ -127,12 +163,12 @@
         }
     }
 
-    // Sign in page.
+    // Login.
     .auth-login {
         section {
             position: fixed;
             width: 100%;
-            bottom: 0%;
+            bottom: 0px;
         }
 
         form input {
@@ -148,6 +184,15 @@
 
         #footer {
             background-color: rgba(0, 0, 0, .5);
+        }
+    }
+
+    // Passowrd reset page.
+    .auth-reset-password {
+        section {
+            position: fixed;
+            width: 100%;
+            bottom: 15%;
         }
     }
 }

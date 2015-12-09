@@ -147,10 +147,10 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 		})
 
         //
-        // FMS routes.
+        // Screening routes.
         //
-        .when('/fms', {
-			templateUrl: 'fms/index.html',
+        .when('/screening', {
+			templateUrl: 'screening/index.html',
             controller: 'TestController'
 		})
         .when('/fms/demo/:name?/:step?',

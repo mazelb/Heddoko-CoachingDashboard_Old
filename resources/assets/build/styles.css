@@ -59,7 +59,12 @@ span.block {
 
 a {
   color: #fff;
-  text-decoration: none; }
+  text-decoration: none;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s; }
 
 a:hover, a:focus {
   color: #3bd6b2;
@@ -697,6 +702,47 @@ pre {
  *
  */
 /*
+ * Angular - Dashbaord
+ */
+.dashboard-page .bookmark-wrapper {
+  margin: 0 5%;
+  border-bottom: 4px solid #ddd;
+  -webkit-transition: border-bottom-color 0.2s;
+  -moz-transition: border-bottom-color 0.2s;
+  -ms-transition: border-bottom-color 0.2s;
+  -o-transition: border-bottom-color 0.2s;
+  transition: border-bottom-color 0.2s; }
+
+.dashboard-page .bookmark-wrapper:hover {
+  border-bottom-color: #3bd6b2; }
+
+.dashboard-page .bookmark-wrapper a {
+  display: block;
+  color: #ddd;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
+  transition: color 0.2s; }
+
+.dashboard-page .bookmark-wrapper:hover a,
+.dashboard-page .bookmark-wrapper:hover a:hover {
+  color: #3bd6b2;
+  text-decoration: none; }
+
+.dashboard-page .bookmarks .fa,
+.dashboard-page .bookmarks span {
+  display: block;
+  text-align: center; }
+
+.dashboard-page .bookmarks .fa {
+  padding: 30px 0 0; }
+
+.dashboard-page .bookmarks span {
+  padding: 20px 0 30px;
+  text-transform: uppercase; }
+
+/*
  * Angular - Import pages.
  */
 .import-page .row.movement-import {
@@ -762,12 +808,12 @@ pre {
   .web-layout .info h2 {
     font-size: 18px;
     color: #272b2f; }
-.web-layout form .form-control, .web-layout form .input-group-addon:first {
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px; }
+.web-layout form .form-control, .web-layout form .input-group-addon {
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  -ms-border-radius: 0px !important;
+  -o-border-radius: 0px !important;
+  border-radius: 0px !important; }
 .web-layout form input[type="text"], .web-layout form input[type="email"], .web-layout form input[type="password"], .web-layout form select {
   width: 100%;
   height: 55px;
@@ -777,7 +823,12 @@ pre {
   font-style: italic;
   font-weight: bold;
   font-size: 1.1em;
-  background-color: rgba(255, 255, 255, 0.7); }
+  background-color: rgba(255, 255, 255, 0.7);
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px; }
 .web-layout form input[type="submit"] {
   padding: 0 30px;
   width: 100%;
@@ -785,6 +836,7 @@ pre {
   color: #fff;
   border: none;
   background-color: rgba(59, 214, 178, 0.7);
+  text-transform: uppercase;
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   -ms-border-radius: 0px;
@@ -801,13 +853,17 @@ pre {
 .web-layout .auth-login section {
   position: fixed;
   width: 100%;
-  bottom: 0%; }
+  bottom: 0px; }
 .web-layout .auth-login form input {
   text-transform: uppercase; }
 .web-layout .auth-register .main-body {
   margin-bottom: 60px; }
 .web-layout .auth-register #footer {
   background-color: rgba(0, 0, 0, 0.5); }
+.web-layout .auth-reset-password section {
+  position: fixed;
+  width: 100%;
+  bottom: 15%; }
 
 .static-page.signin .line-thru, .page-signup .line-thru, .page-forgot .line-thru {
   margin: 1em 0;
