@@ -49,15 +49,6 @@ module.exports = function(grunt) {
                     //     dest: 'public'
                     // },
                     //
-                    // // Weather icons
-                    // {
-                    //     expand: true,
-                    //     dot: true,
-                    //     cwd: 'bower_components/weather-icons',
-                    //     src: ['font/*.*'],
-                    //     dest: 'public'
-                    // },
-                    //
                     // // Font-awesome
                     // {
                     //     expand: true,
@@ -211,7 +202,6 @@ module.exports = function(grunt) {
                 files: {
                     'public/css/main.css': [
                         'bower_components/fontawesome/css/font-awesome.min.css',
-                        'bower_components/weather-icons/css/weather-icons.min.css',
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
                         'bower_components/chartist/dist/chartist.min.css',

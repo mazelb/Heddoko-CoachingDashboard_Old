@@ -9,21 +9,9 @@
  */
 .dashboard-page .bookmark-wrapper {
     margin: 0 5%;
-    border-bottom: 4px solid #ddd;
-    @include transition(border-bottom-color .2s);
-}
-.dashboard-page .bookmark-wrapper:hover {
-    border-bottom-color: $heddokogreen;
 }
 .dashboard-page .bookmark-wrapper a {
     display: block;
-    color: #ddd;
-    @include transition(color .2s);
-}
-.dashboard-page .bookmark-wrapper:hover a,
-.dashboard-page .bookmark-wrapper:hover a:hover {
-    color: $heddokogreen;
-    text-decoration: none;
 }
 .dashboard-page .bookmarks .fa,
 .dashboard-page .bookmarks span {
@@ -33,9 +21,19 @@
 .dashboard-page .bookmarks .fa {
     padding: 30px 0 0;
 }
-.dashboard-page .bookmarks span {
+.dashboard-page .bookmarks span:first-child {
     padding: 20px 0 30px;
     text-transform: uppercase;
+}
+.dashboard-page .bookmarks .bookmark-bottom {
+    height: 5px;
+    width: 60%;
+    margin: 30px auto 0;
+    background-color: #fff;
+    @include transition(background-color .2s);
+}
+.dashboard-page .bookmarks a:hover .bookmark-bottom {
+    background-color: $heddokogreen;
 }
 
 /*

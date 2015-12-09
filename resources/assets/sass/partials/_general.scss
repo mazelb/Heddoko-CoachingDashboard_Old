@@ -22,8 +22,7 @@ html.auth-register {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    // font-size: 16px;
+    font-family: 'Proxima Nova', 'Open Sans', sans-serif;
     font-size: 18px;
     line-height: 1.42857;
     color: $text-color;
@@ -65,7 +64,7 @@ a {
 a:hover, a:focus {
     // color: #0d0d0d;
     color: $heddokogreen;
-    // text-decoration: underline;
+    text-decoration: none;
 }
 
 .img-responsive {

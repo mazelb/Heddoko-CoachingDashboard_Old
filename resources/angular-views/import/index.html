@@ -119,9 +119,7 @@
     </div>
 
     <!-- No profile selected -->
-    <div
-        ng-show="global.getSelectedProfile().id === 0"
-        ng-include="'partials/select-profile.html'"
-        class="page">
+    <div ng-show="global.getSelectedProfile().id === 0">
+        <div ng-include="'partials/select-profile.html'"></div>
     </div>
 </div>

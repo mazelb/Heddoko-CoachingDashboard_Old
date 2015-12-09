@@ -27,7 +27,12 @@
 }
 
 .selectize-control .selectize-input {
+    border: none;
+    background-color: $blue;
     @include border-radius(0);
+}
+.selectize-control .selectize-input input {
+    color: #fff;
 }
 
 .selectize-control.single .selectize-input::after {

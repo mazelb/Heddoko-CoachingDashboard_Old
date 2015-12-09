@@ -31,7 +31,7 @@ html.auth-register {
   overflow-y: scroll; }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Proxima Nova', 'Open Sans', sans-serif;
   font-size: 18px;
   line-height: 1.42857;
   color: #ddd;
@@ -67,7 +67,8 @@ a {
   transition: all 0.2s; }
 
 a:hover, a:focus {
-  color: #3bd6b2; }
+  color: #3bd6b2;
+  text-decoration: none; }
 
 .img-responsive {
   width: 100%  \9; }
@@ -436,11 +437,16 @@ pre {
   opacity: 0.4; }
 
 .selectize-control .selectize-input {
+  border: none;
+  background-color: #383d43;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
   -o-border-radius: 0;
   border-radius: 0; }
+
+.selectize-control .selectize-input input {
+  color: #fff; }
 
 .selectize-control.single .selectize-input::after {
   display: none; }
@@ -542,12 +548,7 @@ pre {
 
 .top-header .search-input .selectize-input {
   display: block;
-  height: 34px;
-  border: none;
-  background-color: #383d43; }
-
-.top-header .search-input .selectize-input input {
-  color: #fff; }
+  height: 34px; }
 
 .top-header .search-input .selectize-dropdown {
   position: absolute !important; }
@@ -706,30 +707,10 @@ pre {
  * Angular - Dashbaord
  */
 .dashboard-page .bookmark-wrapper {
-  margin: 0 5%;
-  border-bottom: 4px solid #ddd;
-  -webkit-transition: border-bottom-color 0.2s;
-  -moz-transition: border-bottom-color 0.2s;
-  -ms-transition: border-bottom-color 0.2s;
-  -o-transition: border-bottom-color 0.2s;
-  transition: border-bottom-color 0.2s; }
-
-.dashboard-page .bookmark-wrapper:hover {
-  border-bottom-color: #3bd6b2; }
+  margin: 0 5%; }
 
 .dashboard-page .bookmark-wrapper a {
-  display: block;
-  color: #ddd;
-  -webkit-transition: color 0.2s;
-  -moz-transition: color 0.2s;
-  -ms-transition: color 0.2s;
-  -o-transition: color 0.2s;
-  transition: color 0.2s; }
-
-.dashboard-page .bookmark-wrapper:hover a,
-.dashboard-page .bookmark-wrapper:hover a:hover {
-  color: #3bd6b2;
-  text-decoration: none; }
+  display: block; }
 
 .dashboard-page .bookmarks .fa,
 .dashboard-page .bookmarks span {
@@ -739,9 +720,23 @@ pre {
 .dashboard-page .bookmarks .fa {
   padding: 30px 0 0; }
 
-.dashboard-page .bookmarks span {
+.dashboard-page .bookmarks span:first-child {
   padding: 20px 0 30px;
   text-transform: uppercase; }
+
+.dashboard-page .bookmarks .bookmark-bottom {
+  height: 5px;
+  width: 60%;
+  margin: 30px auto 0;
+  background-color: #fff;
+  -webkit-transition: background-color 0.2s;
+  -moz-transition: background-color 0.2s;
+  -ms-transition: background-color 0.2s;
+  -o-transition: background-color 0.2s;
+  transition: background-color 0.2s; }
+
+.dashboard-page .bookmarks a:hover .bookmark-bottom {
+  background-color: #3bd6b2; }
 
 /*
  * Angular - Import pages.
@@ -1871,37 +1866,14 @@ ul.team {
   background-color: #f48b4a; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *        4 - Forms / Form Elements
  */
 label {
   max-width: 100%; }
 
 output {
   color: #767676; }
-
-.form-control {
-  color: #767676;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #cbd5dd;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  -o-border-radius: 0px;
-  border-radius: 0px; }
-
-.form-control:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -ms-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -o-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
 
 input[type="date"].input-sm,
 .form-horizontal .form-group-sm input[type="date"].form-control,
@@ -1957,7 +1929,11 @@ input[type="date"].input-lg, .form-horizontal .form-group-lg input[type="date"].
   -o-border-radius: 0px;
   border-radius: 0px; }
 
-select.input-sm, .form-horizontal .form-group-sm select.form-control, .input-group-sm > select.form-control, .input-group-sm > select.input-group-addon, .input-group-sm > .input-group-btn > select.btn {
+select.input-sm,
+.form-horizontal .form-group-sm select.form-control,
+.input-group-sm > select.form-control,
+.input-group-sm > select.input-group-addon,
+.input-group-sm > .input-group-btn > select.btn {
   height: 30px;
   line-height: 30px; }
 
@@ -2260,15 +2236,23 @@ textarea.input-lg, .form-horizontal .form-group-lg textarea.form-control, .input
   color: #C05F44; }
 
 .form-control {
-  border-width: 1px;
+  color: #fff;
+  background-color: #383d43;
+  border: 1px solid #cbd5dd;
+  border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-shadow: none;
   -o-box-shadow: none;
-  box-shadow: none; }
+  box-shadow: none;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
+  border-radius: 0px; }
 
 .form-control:focus {
-  border-color: #db5031;
+  outline: 0;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   -ms-box-shadow: none;
@@ -4958,6 +4942,15 @@ button.toast-close-button {
  *
  *    Dropdowns / Toolbars / Navigation
  */
+/*
+ * Dashboard menu
+ */
+.dashboard-menu .dashboard-title {
+  margin: 30px auto; }
+  .dashboard-menu .dashboard-title h1 {
+    font-weight: bold;
+    text-transform: uppercase; }
+
 /*
  * Dropdown menus
  */

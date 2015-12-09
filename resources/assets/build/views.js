@@ -12,8 +12,8 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
     "            <!-- User details -->\n" +
     "            <ui-editable-fields\n" +
     "                data-model=\"user\"\n" +
-    "                data-save=\"savePreferences\"\n" +
-    "                data-save-callback=\"savePreferencesCallback\"\n" +
+    "                data-save=\"saveUserDetails\"\n" +
+    "                data-save-callback=\"saveUserDetailsCallback\"\n" +
     "                data-heading=\"Your Details\">\n" +
     "\n" +
     "                <!-- Username -->\n" +
@@ -127,10 +127,10 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "    <div class=\"dashboard-menu\">\n" +
     "\n" +
     "        <!-- Title -->\n" +
-    "        <div class=\"row\">\n" +
+    "        <div class=\"row dashboard-title\">\n" +
     "            <div class=\"col-sm-12\">\n" +
     "                <h1 ng-show=\"global.state.user.id > 0\" class=\"text-center\">\n" +
-    "                    {{ greeting }} {{ global.state.user.firstName }}!\n" +
+    "                    {{ greeting }} {{ global.state.user.firstName }},\n" +
     "                </h1>\n" +
     "                <h1 ng-show=\"global.state.user.id === 0\" class=\"text-center\">\n" +
     "                    {{ greeting }}!\n" +
@@ -159,6 +159,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "                        <span>\n" +
     "                            {{ bookmark.title }}\n" +
     "                        </span>\n" +
+    "                        <span class=\"bookmark-bottom\"></span>\n" +
     "                    </a>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -2067,10 +2068,8 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    </div>\n" +
     "\n" +
     "    <!-- No profile selected -->\n" +
-    "    <div\n" +
-    "        ng-show=\"global.getSelectedProfile().id === 0\"\n" +
-    "        ng-include=\"'partials/select-profile.html'\"\n" +
-    "        class=\"page\">\n" +
+    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "        <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2512,12 +2511,19 @@ angular.module("partials/select-profile.html", []).run(["$templateCache", functi
     "<h3 class=\"text-center\">Select a profile to get started</h3>\n" +
     "<br>\n" +
     "\n" +
-    "<div class=\"text-center\">\n" +
-    "    Please select a profile to view its details.\n" +
+    "<div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "    <selectize\n" +
+    "        options=\"global.state.profile.list\"\n" +
+    "        class=\"form-control\">\n" +
+    "    </selectize>\n" +
     "    <br>\n" +
     "\n" +
     "    You can also take this opportunity to\n" +
-    "    <a ng-click=\"global.browseTo.path('profile/create')\" href=\"javascript:;\">create one</a>.\n" +
+    "    <a href=\"#profile/create\">create one</a>.\n" +
+    "\n" +
+    "    Profile: {{ $parent.global.getSelectedProfile() }}\n" +
+    "\n" +
+    "    Movements: {{ $parent.uploadedMovements }}\n" +
     "</div>\n" +
     "");
 }]);

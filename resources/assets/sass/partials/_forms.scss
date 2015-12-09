@@ -1,9 +1,6 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- *        4 - Forms / Form Elements
  */
 
 label {
@@ -14,19 +11,6 @@ output {
   color: #767676;
 }
 
-.form-control {
-    color: #767676;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #cbd5dd;
-    @include border-radius(0px);
-}
-
-.form-control:focus {
-    border-color: #66afe9;
-    outline: 0;
-    @include box-shadow( inset 0 1px 1px rgba(0, 0, 0, 0.075));
-}
 input[type="date"].input-sm,
 .form-horizontal .form-group-sm input[type="date"].form-control,
 .input-group-sm>input[type="date"].form-control,
@@ -85,7 +69,11 @@ input[type="date"].input-lg, .form-horizontal .form-group-lg input[type="date"].
   @include border-radius(0px);
 }
 
-select.input-sm, .form-horizontal .form-group-sm select.form-control, .input-group-sm>select.form-control, .input-group-sm>select.input-group-addon, .input-group-sm>.input-group-btn>select.btn {
+select.input-sm,
+.form-horizontal .form-group-sm select.form-control,
+.input-group-sm>select.form-control,
+.input-group-sm>select.input-group-addon,
+.input-group-sm>.input-group-btn>select.btn {
   height: 30px;
   line-height: 30px;
 }
@@ -409,13 +397,23 @@ textarea.input-lg, .form-horizontal .form-group-lg textarea.form-control, .input
 }
 
 .form-control {
-    border-width: 1px;
+//     color: #767676;
+    color: #fff;
+//     background-color: #fff;
+    background-color: $blue;
+
+    border: 1px solid #cbd5dd;
+    border: none;
     @include box-shadow(none);
+    @include border-radius(0px);
 }
 
 .form-control:focus {
-  border-color: $orange;
-  @include box-shadow(none);
+    outline: 0;
+    // border-color: $orange;
+    // border-color: #66afe9;
+    @include box-shadow(none);
+    // @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
 }
 
 .form-group .col-sm-10 {
