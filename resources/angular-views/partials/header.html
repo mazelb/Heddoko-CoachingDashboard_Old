@@ -17,9 +17,6 @@
                     <i class="fa fa-bars"></i>
                 </a>
 			</li>
-
-            <!-- Spacer, to account for space lost by removing menu button -->
-            <!-- <li style="display: block; width: 20px; height: 1px;"></li> -->
 		</ul>
 
         <ul class="nav-right list-unstyled">
@@ -77,12 +74,12 @@
 
                     <!-- Settings -->
                     <button
-                        ng-click="global.browseTo.config()"
+                        ng-click="global.browseTo.path('/config')"
                         class="btn btn-default onboarding-general"
                         data-step="4"
-                        data-intro="Click this button to edit your settings">
+                        data-intro="Click this button to modify your app settings">
 
-                        <i class="fa fa-cog fa-fw"></i>
+                        <i class="fa fa-cogs fa-fw"></i>
                     </button>
 
                     <!-- Onboarding -->

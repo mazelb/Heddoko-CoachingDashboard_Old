@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   The rover service is used throughout the app and should be made available to other
  *          modules and controllers through dependency injection.
@@ -70,14 +68,6 @@ angular.module('app.rover', [])
 
         // Shortcut to browse through app.
         this.browseTo = {
-
-            // Configuration page.
-            config: function() {
-
-                Utilities.debug('Browsing to configuration page.');
-                $location.path('/settings');
-
-            }.bind(this),
 
             // Dashboard index page.
             dashboard: function() {

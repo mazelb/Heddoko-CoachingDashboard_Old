@@ -1,4 +1,124 @@
-angular.module('app.views', ['dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html', 'user/view.html']);
+angular.module('app.views', ['account.html', 'config.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+
+angular.module("account.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("account.html",
+    "<!-- User details -->\n" +
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Account'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
+    "\n" +
+    "    <div ng-hide=\"user.id === 0\" class=\"row\">\n" +
+    "        <div class=\"col-md-8\">\n" +
+    "\n" +
+    "            <!-- User details -->\n" +
+    "            <ui-editable-fields\n" +
+    "                data-model=\"user\"\n" +
+    "                data-save=\"savePreferences\"\n" +
+    "                data-save-callback=\"savePreferencesCallback\"\n" +
+    "                data-heading=\"Your Details\">\n" +
+    "\n" +
+    "                <!-- Username -->\n" +
+    "                <ui-editable-field\n" +
+    "                    data-label=\"Username\"\n" +
+    "                    data-key=\"username\"\n" +
+    "                    data-disabled=\"true\">\n" +
+    "                </ui-editable-field>\n" +
+    "\n" +
+    "                <!-- First name -->\n" +
+    "                <ui-editable-field\n" +
+    "                    data-label=\"First Name\"\n" +
+    "                    data-key=\"firstName\"\n" +
+    "                    data-required=\"true\">\n" +
+    "                </ui-editable-field>\n" +
+    "\n" +
+    "                <!-- Last name -->\n" +
+    "                <ui-editable-field\n" +
+    "                    data-label=\"Last Name\"\n" +
+    "                    data-key=\"lastName\">\n" +
+    "                </ui-editable-field>\n" +
+    "\n" +
+    "                <!-- Phone -->\n" +
+    "                <ui-editable-field\n" +
+    "                    data-label=\"Phone #\"\n" +
+    "                    data-key=\"phone\">\n" +
+    "                </ui-editable-field>\n" +
+    "\n" +
+    "                <!-- Email -->\n" +
+    "                <ui-editable-field\n" +
+    "                    data-label=\"Email\"\n" +
+    "                    data-key=\"email\"\n" +
+    "                    data-required=\"true\">\n" +
+    "                </ui-editable-field>\n" +
+    "\n" +
+    "            </ui-editable-fields>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Avatar -->\n" +
+    "        <div class=\"col-md-4\">\n" +
+    "            <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "                <ui-avatar\n" +
+    "                    data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
+    "                    data-success-callback=\"uploadAvatarCallback\"\n" +
+    "                    data-src=\"user.avatarSrc\">\n" +
+    "                </ui-avatar>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Retrieving user data -->\n" +
+    "    <div ng-show=\"user.id === 0\" class=\"text-center\">\n" +
+    "        <h3>Retrieving your details</h3>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Debug -->\n" +
+    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">Debug</div>\n" +
+    "        <div class=\"panel-body\">\n" +
+    "            Avatar: {{ user.avatarSrc ? 'Yes' : 'No' }} <br>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("config.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("config.html",
+    "<!-- User details -->\n" +
+    "<div class=\"page\">\n" +
+    "    <ui-page-title data-title=\"'Settings'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-8\">\n" +
+    "\n" +
+    "            <!-- Preferences -->\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    App Settings\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <div style=\"color: #ccc; text-align: center\">\n" +
+    "                        In Development\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Debug -->\n" +
+    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
+    "        <div class=\"panel-heading\">Debug</div>\n" +
+    "        <div class=\"panel-body\">\n" +
+    "\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
@@ -10,7 +130,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "        <div class=\"row\">\n" +
     "            <div class=\"col-sm-12\">\n" +
     "                <h1 ng-show=\"global.state.user.id > 0\" class=\"text-center\">\n" +
-    "                    {{ greeting }} {{ global.state.userData.firstName }}!\n" +
+    "                    {{ greeting }} {{ global.state.user.firstName }}!\n" +
     "                </h1>\n" +
     "                <h1 ng-show=\"global.state.user.id === 0\" class=\"text-center\">\n" +
     "                    {{ greeting }}!\n" +
@@ -1833,7 +1953,11 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    <!-- Import page -->\n" +
     "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
     "        Import movement data for\n" +
-    "        <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>\n" +
+    "        <b>\n" +
+    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                {{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}\n" +
+    "            </a>\n" +
+    "        </b>\n" +
     "\n" +
     "        <div class=\"movement-import row\">\n" +
     "\n" +
@@ -2120,9 +2244,6 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                    <i class=\"fa fa-bars\"></i>\n" +
     "                </a>\n" +
     "			</li>\n" +
-    "\n" +
-    "            <!-- Spacer, to account for space lost by removing menu button -->\n" +
-    "            <!-- <li style=\"display: block; width: 20px; height: 1px;\"></li> -->\n" +
     "		</ul>\n" +
     "\n" +
     "        <ul class=\"nav-right list-unstyled\">\n" +
@@ -2180,12 +2301,12 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "\n" +
     "                    <!-- Settings -->\n" +
     "                    <button\n" +
-    "                        ng-click=\"global.browseTo.config()\"\n" +
+    "                        ng-click=\"global.browseTo.path('/config')\"\n" +
     "                        class=\"btn btn-default onboarding-general\"\n" +
     "                        data-step=\"4\"\n" +
-    "                        data-intro=\"Click this button to edit your settings\">\n" +
+    "                        data-intro=\"Click this button to modify your app settings\">\n" +
     "\n" +
-    "                        <i class=\"fa fa-cog fa-fw\"></i>\n" +
+    "                        <i class=\"fa fa-cogs fa-fw\"></i>\n" +
     "                    </button>\n" +
     "\n" +
     "                    <!-- Onboarding -->\n" +
@@ -2315,7 +2436,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "        <!-- Comparison -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/compare\"><span>fms results</span></a>\n" +
+    "            <a href=\"#/compare\"><span>Compare</span></a>\n" +
     "		</li>\n" +
     "\n" +
     "        <!-- Live FMS pages. -->\n" +
@@ -2356,6 +2477,11 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    <a href=\"#/fms/live/ps\"><span>Posterior Rocking (C. Test)</span></a>\n" +
     "                </li>\n" +
     "            </ul>\n" +
+    "        </li>\n" +
+    "\n" +
+    "        <!-- Account page -->\n" +
+    "		<li>\n" +
+    "            <a href=\"#/account\"><span>My Account</span></a>\n" +
     "        </li>\n" +
     "\n" +
     "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em; color: #aaa;\">\n" +
@@ -4097,103 +4223,5 @@ angular.module("thumbnail-selector/index.html", []).run(["$templateCache", funct
     "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
     "    In Development.\n" +
     "</h3>\n" +
-    "");
-}]);
-
-angular.module("user/view.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("user/view.html",
-    "<!-- User details -->\n" +
-    "<div class=\"page\">\n" +
-    "    <ui-page-title data-title=\"'Settings'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
-    "\n" +
-    "    <div ng-hide=\"user.id === 0\" class=\"row\">\n" +
-    "        <div class=\"col-md-8\">\n" +
-    "\n" +
-    "            <!-- Preferences -->\n" +
-    "            <div class=\"panel panel-default\">\n" +
-    "                <div class=\"panel-heading\">\n" +
-    "                    Preferences\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"panel-body\">\n" +
-    "                    <div style=\"color: #ccc; text-align: center\">\n" +
-    "                        In Development\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- User details -->\n" +
-    "            <ui-editable-fields\n" +
-    "                data-model=\"user\"\n" +
-    "                data-save=\"savePreferences\"\n" +
-    "                data-save-callback=\"savePreferencesCallback\"\n" +
-    "                data-heading=\"Your Details\">\n" +
-    "\n" +
-    "                <!-- Username -->\n" +
-    "                <ui-editable-field\n" +
-    "                    data-label=\"Username\"\n" +
-    "                    data-key=\"username\"\n" +
-    "                    data-disabled=\"true\">\n" +
-    "                </ui-editable-field>\n" +
-    "\n" +
-    "                <!-- First name -->\n" +
-    "                <ui-editable-field\n" +
-    "                    data-label=\"First Name\"\n" +
-    "                    data-key=\"firstName\"\n" +
-    "                    data-required=\"true\">\n" +
-    "                </ui-editable-field>\n" +
-    "\n" +
-    "                <!-- Last name -->\n" +
-    "                <ui-editable-field\n" +
-    "                    data-label=\"Last Name\"\n" +
-    "                    data-key=\"lastName\">\n" +
-    "                </ui-editable-field>\n" +
-    "\n" +
-    "                <!-- Phone -->\n" +
-    "                <ui-editable-field\n" +
-    "                    data-label=\"Phone #\"\n" +
-    "                    data-key=\"phone\">\n" +
-    "                </ui-editable-field>\n" +
-    "\n" +
-    "                <!-- Email -->\n" +
-    "                <ui-editable-field\n" +
-    "                    data-label=\"Email\"\n" +
-    "                    data-key=\"email\"\n" +
-    "                    data-required=\"true\">\n" +
-    "                </ui-editable-field>\n" +
-    "\n" +
-    "            </ui-editable-fields>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Avatar -->\n" +
-    "        <div class=\"col-md-4\">\n" +
-    "            <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
-    "                <ui-avatar\n" +
-    "                    data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
-    "                    data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                    data-src=\"user.avatarSrc\">\n" +
-    "                </ui-avatar>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Retrieving user data -->\n" +
-    "    <div ng-show=\"user.id === 0\" class=\"text-center\">\n" +
-    "        <h3>Retrieving your details</h3>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "        <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Debug -->\n" +
-    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
-    "        <div class=\"panel-heading\">Debug</div>\n" +
-    "        <div class=\"panel-body\">\n" +
-    "            Avatar: {{ user.avatarSrc ? 'Yes' : 'No' }} <br>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
     "");
 }]);

@@ -5,7 +5,11 @@
     <!-- Import page -->
     <div ng-show="global.getSelectedProfile().id > 0">
         Import movement data for
-        <b>{{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}</b>
+        <b>
+            <a ng-click="global.store.profileId = 0" href="javascript:;">
+                {{ global.getSelectedProfile().first_name + ' ' + global.getSelectedProfile().last_name }}
+            </a>
+        </b>
 
         <div class="movement-import row">
 

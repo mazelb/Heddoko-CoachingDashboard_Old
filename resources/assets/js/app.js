@@ -187,9 +187,13 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Other routes.
         //
-        .when('/settings', {
-			templateUrl: 'user/view.html',
+        .when('/account', {
+			templateUrl: 'account.html',
             controller: 'UserController'
+		})
+        .when('/config', {
+			templateUrl: 'configuration.html',
+            controller: 'TestController'
 		})
 
         //

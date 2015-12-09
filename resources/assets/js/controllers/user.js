@@ -41,21 +41,21 @@ angular.module('app.controllers')
             );
         }
 
-        // Saves user preferences.
-        $scope.savePreferences = function() {
+        // Saves user details.
+        $scope.saveUserDetails = function() {
             return UserService.update(Rover.userHash, $scope.user);
         };
 
         // Callback for uiEditableFields directive.
-        $scope.savePreferencesCallback = function(prefsSaved) {
+        $scope.saveUserDetailsCallback = function(detailsSaved) {
 
-            if (prefsSaved) {
+            if (detailsSaved) {
                 // ...
             }
 
             //
             else {
-                Rover.alert('Could not save your preferences. Please try again later.');
+                Utilities.alert('Could not save your details. Please try again later.');
             }
         };
     }

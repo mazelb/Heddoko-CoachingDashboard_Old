@@ -67,8 +67,7 @@ a {
   transition: all 0.2s; }
 
 a:hover, a:focus {
-  color: #3bd6b2;
-  text-decoration: underline; }
+  color: #3bd6b2; }
 
 .img-responsive {
   width: 100%  \9; }
@@ -539,14 +538,16 @@ pre {
 
 .top-header .search-input .selectize-control {
   display: block;
-  height: 34px;
-  border: 1px solid #ddd; }
+  height: 34px; }
 
 .top-header .search-input .selectize-input {
   display: block;
   height: 34px;
   border: none;
-  background-color: transparent; }
+  background-color: #383d43; }
+
+.top-header .search-input .selectize-input input {
+  color: #fff; }
 
 .top-header .search-input .selectize-dropdown {
   position: absolute !important; }
