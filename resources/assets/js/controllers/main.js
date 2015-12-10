@@ -10,10 +10,10 @@
 angular.module('app.controllers')
 
 .controller('MainController',
-    ['$scope', 'ProfileService', 'GroupService', 'UserService', 'OnboardingService',
+    ['$scope', '$timeout', 'ProfileService', 'GroupService', 'UserService', 'OnboardingService',
     'Rover', 'Utilities', 'appVersion', 'isLocalEnvironment',
     function(
-        $scope, ProfileService, GroupService, UserService, OnboardingService,
+        $scope, $timeout, ProfileService, GroupService, UserService, OnboardingService,
         Rover, Utilities, appVersion, isLocalEnvironment) {
         Utilities.debug('MainController');
 
@@ -67,12 +67,31 @@ angular.module('app.controllers')
         $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
         $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
         $scope.global.store.profileId = $scope.global.store.profileId || 0;
+
+        /**
+         * Retrieves selected profile.
+         *
+         * @return object
+         */
         $scope.global.getSelectedProfile = function() {
             return $scope.global.store.profileId > 0 ?
                 $scope.global.state.profile.list[$scope.global.store.profileId] : {id: 0};
         };
 
-        // Fetches all groups available to currently authenticated user.
+        /**
+         * Updates the selected profile.
+         *
+         * @param mixed
+         */
+        $scope.global.selectProfile = function(profile) {
+            $timeout(function() {
+                $scope.global.store.profileId = Utilities.getId(profile);
+            });
+        };
+
+        /**
+         * Fetches all groups available to currently authenticated user.
+         */
         $scope.fetchGroups = function() {
 
             // Show loading animation.
@@ -114,7 +133,9 @@ angular.module('app.controllers')
             );
         };
 
-        // Fetches profiles available to authenticated user.
+        /**
+         * Fetches profiles available to authenticated user.
+         */
         $scope.fetchProfiles = function() {
 
             // Show loading animation.
@@ -142,7 +163,7 @@ angular.module('app.controllers')
                     $scope.global.data.isFetchingProfiles = false;
     		    },
                 function(response) {
-                    Rover.debug('Could not retrieve profile list: ' + response.statusText);
+                    Utitlities.debug('Could not retrieve profile list: ' + response.statusText);
                     $scope.global.data.isFetchingProfiles = false;
                 }
             );
@@ -186,23 +207,17 @@ angular.module('app.controllers')
 
             var isCurrentProfileIncluded = false;
             $scope.global.state.profile.filtered = [];
-            Utilities.debug('Looping through ' + $scope.global.state.profile.list.length + ' profiles.');
 
             angular.forEach($scope.global.state.profile.list, function(profile) {
 
-                Utilities.debug('For each element:');
-                Utilities.debug(profile);
-
                 // Make sure we have a profile object.
                 if (!profile || !profile.id) {
-                    Utilities.debug('Skipping profile...');
                     return;
                 }
 
                 // If no group was selected, include all profiles.
                 if (newGroup === 0)
                 {
-                    Utilities.debug('Adding profile #' + profile.id + ' to filtered list.');
                     $scope.global.state.profile.filtered.push(profile);
 
                     // Check if selected profile is part of newly filtered list.
@@ -218,14 +233,10 @@ angular.module('app.controllers')
 
                     if (profile.groups && profile.groups.length)
                     {
-                        Utilities.debug('Checking profile groups.');
-                        Utilities.debug(profile.groups);
-
                         angular.forEach(profile.groups, function(group) {
                             Utilities.debug('Comparing '+ group.name +' ('+ group.id +') to ' + newGroup);
 
                             if (group.id == newGroup) {
-                                Utilities.debug('Adding profile #' + profile.id + ' to filtered list.');
                                 $scope.global.state.profile.filtered.push(profile);
 
                                 // Check if selected profile is part of newly filtered list.
@@ -234,11 +245,6 @@ angular.module('app.controllers')
                                 }
                             }
                         });
-                    }
-
-                    else {
-                        Utilities.debug('Profile does not have any groups.');
-                        Utilities.debug(profile);
                     }
                 }
             });

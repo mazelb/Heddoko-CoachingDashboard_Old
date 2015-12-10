@@ -8,7 +8,7 @@
 angular.module('app.directives')
 
 /**
- * General taggable inputs.
+ * Tag lookup input.
  */
 .directive('uiTaggableInput', function() {
     return {
@@ -20,8 +20,8 @@ angular.module('app.directives')
             key: '@',
             maxTags: '@'
         },
-        controller: ['$scope', '$http', 'Rover',
-            function($scope, $http, Rover) {
+        controller: ['$scope', '$http', 'Utilities',
+            function($scope, $http, Utilities) {
 
                 // Default scope variables.
                 $scope.data = [];
@@ -51,8 +51,6 @@ angular.module('app.directives')
                     // Single tag
                     else if (angular.isObject($scope.model[$scope.key]))
                     {
-                        Rover.debug('Inspecting tag object...');
-
                         if ($scope.model[$scope.key].id)
                         {
                             $scope.data = $scope.model[scope.key].id;
@@ -88,8 +86,8 @@ angular.module('app.directives')
                     load: function(query, callback) {
 
                         // Performance check.
-                        Rover.debug('Fetching tags...');
-                        Rover.debug(query);
+                        Utilities.debug('Fetching tags...');
+                        Utilities.debug(query);
                         if (!query || !query.length) {
                             return callback();
                         }
@@ -124,7 +122,7 @@ angular.module('app.directives')
                         }
 
                         // Create the new tag.
-                        Rover.debug('Creating tag: ' + value);
+                        Utilities.debug('Creating tag: ' + value);
                         $http.post('/api/tag', {
                             title: value.trim()
                         });
@@ -136,8 +134,6 @@ angular.module('app.directives')
                      * @param array data
                      */
                     onChange: function(data) {
-                        Rover.debug('updating data');
-                        Rover.debug(data);
                         $scope.model[$scope.key] = data;
                     }
                 };
@@ -152,77 +148,85 @@ angular.module('app.directives')
 })
 
 /**
- * Custom taggable inputs.
+ * Profile lookup input.
+ *
+ * Basic usage:
+ *  <ui-profile-lookup
+ *
+ *  </ui-profile-lookup>
  */
-.directive('uiAdvancedTaggableInput', function() {
+.directive('uiProfileLookup', function() {
     return {
         restrict: 'E',
         transclude: true,
         templateUrl: 'directive-partials/ui-taggable-input.html',
         scope: {
-            model: '=',
-            options: '=?',
-            key: '@',
-            maxTags: '@'
+            model: '=?',
+            profiles: '=?',
+            select: '&selectProfile'
         },
-        controller: ['$scope', '$http', 'Rover',
-            function($scope, $http, Rover) {
+        controller: ['$scope', '$http', 'Utilities',
+            function($scope, $http, Utilities) {
 
                 // Default scope variables.
-                $scope.data = [];
-                $scope.options = $scope.options || [];
-                $scope.maxTags = $scope.maxTags || 10;
+                $scope.model = $scope.model || {};
+                $scope.profiles = $scope.profiles || [];
+
+                // Generates the displayed label.
+                $scope.getLabel = function(profile) {
+
+                    var label = profile.first_name;
+
+                    if (profile.last_name && profile.last_name.length) {
+                        label += ' ' + profile.last_name;
+                    }
+
+                    // TODO: add main group.
+
+                    return label;
+                };
+
+                // Format option data for selectize input.
+                $scope.options = [];
+                if ($scope.profiles.length > 0)
+                {
+                    angular.forEach($scope.profiles, function(profile) {
+                        if (profile && profile.id) {
+                            $scope.options.push({
+                                id: profile.id,
+                                title: $scope.getLabel(profile)
+                            });
+                        }
+                    });
+                }
 
                 // Updates the model whenever necessary.
                 $scope.updateData = function() {
 
-                    // Array of tags.
-                    if (angular.isArray($scope.model[$scope.key]))
+                    if ($scope.model && $scope.model.id)
                     {
-                        // Setup data model, available options and displayed value.
-                        angular.forEach($scope.model[$scope.key], function(tag) {
-
-                            // Push ID to data model.
-                            $scope.data.push(tag.id);
-
-                            // Add tag to options list.
-                            $scope.options.push({
-                                id: tag.id,
-                                title: tag.title
-                            });
-                        });
-                    }
-
-                    // Single tag
-                    else if (angular.isObject($scope.model[$scope.key]))
-                    {
-                        Rover.debug('Inspecting tag object...');
-
-                        if ($scope.model[$scope.key].id)
-                        {
-                            $scope.data = $scope.model[scope.key].id;
-                            $scope.options = [{
-                                id: $scope.model[$scope.key].id,
-                                title: $scope.model[$scope.key].title
-                            }];
-                        }
+                        $scope.data = $scope.model.id;
+                        $scope.options = [{
+                            id: $scope.model.id,
+                            title: $scope.getLabel($scope.model)
+                        }];
                     }
 
                     // Default value.
                     else {
-                        $scope.model[$scope.key] = $scope.maxTags > 1 ? [] : {};
+                        $scope.model = {};
                     }
                 };
                 $scope.updateData();
 
                 // Selectize configuration.
                 $scope.config = {
-                    create: true,
+                    create: false,
                     valueField: 'id',
                     labelField: 'title',
                     searchField: ['title'],
                     maxOptions: 15,
-                    maxItems: $scope.maxTags || 1,
+                    maxItems: 1,
 
                     /**
                      * Called anytime the user types into the input box.
@@ -233,46 +237,12 @@ angular.module('app.directives')
                     load: function(query, callback) {
 
                         // Performance check.
-                        Rover.debug('Fetching tags...');
-                        Rover.debug(query);
                         if (!query || !query.length) {
                             return callback();
                         }
 
-                        // Queries the API for tags.
-                        $http.get('/api/tag', {
-                            params: {
-                                query: query,
-                                limit: 50
-                            }
-                        }).then(
-                            function(response) {
-                                callback(response.data);
-                            },
-                            function(response) {
-                                callback();
-                            }
-                        );
-                    },
-
-                    /**
-                     * Called anytime the user creates a new tag.
-                     *
-                     * @param string value
-                     * @param object data
-                     */
-                    onOptionAdd: function(value, data) {
-
-                        // Performance check.
-                        if (value.trim().length < 1 || data.id) {
-                            return;
-                        }
-
-                        // Create the new tag.
-                        Rover.debug('Creating tag: ' + value);
-                        $http.post('/api/tag', {
-                            title: value.trim()
-                        });
+                        // ...
+                        callback($scope.options);
                     },
 
                     /**
@@ -281,16 +251,14 @@ angular.module('app.directives')
                      * @param array data
                      */
                     onChange: function(data) {
-                        Rover.debug('updating data');
-                        Rover.debug(data);
-                        $scope.model[$scope.key] = data;
+                        $scope.select({profile: parseInt(data)});
                     }
                 };
 
                 // Updates the view whenever the model changes.
-                $scope.$watch('model', function(model) {
-                    $scope.updateData();
-                });
+                // $scope.$watch('model', function(model) {
+                //     $scope.updateData();
+                // });
             }
         ]
     };

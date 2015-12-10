@@ -119,7 +119,22 @@
     </div>
 
     <!-- No profile selected -->
-    <div ng-show="global.getSelectedProfile().id === 0">
+    <!-- <div ng-show="global.getSelectedProfile().id === 0">
         <div ng-include="'partials/select-profile.html'"></div>
+    </div> -->
+    <div ng-show="global.getSelectedProfile().id === 0">
+        <h3 class="text-center">Select a profile to get started</h3>
+        <br>
+
+        <div class="col-md-4 col-md-offset-4 text-center">
+            <ui-profile-lookup
+                profiles="global.state.profile.list"
+                select-profile="global.selectProfile(profile)">
+            </ui-profile-lookup>
+            <br>
+
+            You can also take this opportunity to
+            <a href="#profile/create">create one</a>.
+        </div>
     </div>
 </div>

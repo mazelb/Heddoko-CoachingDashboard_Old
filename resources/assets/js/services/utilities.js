@@ -61,7 +61,7 @@ angular.module('app.utilities', [])
             }
 
             // If we have a string or number, assume its an ID.
-            if (['string', 'numder'].indexOf(typeof obj) !== -1) {
+            if (['string', 'number'].indexOf(typeof obj) !== -1) {
                 return Number(obj);
             }
 

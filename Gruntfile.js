@@ -201,21 +201,27 @@ module.exports = function(grunt) {
             combine: {
                 files: {
                     'public/css/main.css': [
-                        'bower_components/fontawesome/css/font-awesome.min.css',
+
+                        // Bootstrap
                         'bower_components/bootstrap/dist/css/bootstrap.min.css',
                         'bower_components/bootstrap/dist/css/bootstrap-theme.min.css',
+
+                        // Font-Awesome icons
+                        'bower_components/fontawesome/css/font-awesome.min.css',
+
+                        // Charts
                         'bower_components/chartist/dist/chartist.min.css',
 
-                        // Intro.js: for onboarding.
+                        // Intro.js: for onboarding
                         'bower_components/intro.js/minified/introjs.min.css',
 
-                        // Bootstrap 3 Datepicker.
+                        // Bootstrap 3 Datepicker
                         'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
 
-                        // Selectize.
+                        // Selectize
                         'bower_components/selectize/dist/css/selectize.bootstrap3.css',
 
-                        // Application styles.
+                        // Application styles
                         'resources/assets/build/styles.css'
                     ]
                 }

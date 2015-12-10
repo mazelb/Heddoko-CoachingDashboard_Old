@@ -2068,8 +2068,23 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "    </div>\n" +
     "\n" +
     "    <!-- No profile selected -->\n" +
-    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "    <!-- <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
     "        <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
+    "    </div> -->\n" +
+    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "        <h3 class=\"text-center\">Select a profile to get started</h3>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "            <ui-profile-lookup\n" +
+    "                profiles=\"global.state.profile.list\"\n" +
+    "                select-profile=\"global.selectProfile(profile)\">\n" +
+    "            </ui-profile-lookup>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            You can also take this opportunity to\n" +
+    "            <a href=\"#profile/create\">create one</a>.\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
