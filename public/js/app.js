@@ -13957,7 +13957,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "                    {{ greeting }} {{ global.state.user.firstName }},\n" +
     "                </h1>\n" +
     "                <h1 ng-show=\"global.state.user.id === 0\" class=\"text-center\">\n" +
-    "                    {{ greeting }}!\n" +
+    "                    {{ greeting }}.\n" +
     "                </h1>\n" +
     "\n" +
     "                <h3 class=\"text-center\">\n" +

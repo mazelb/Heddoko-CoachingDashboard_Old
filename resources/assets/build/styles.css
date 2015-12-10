@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  */
 /* Base */
@@ -11,6 +9,27 @@
  *
  *
  */
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @author Francis Amankrah (frank@heddoko.com)
+ * @date   December 2015
+ */
+@font-face {
+  font-family: 'Proxima Nova';
+  font-style: normal;
+  font-weight: 400;
+  src: local("Proxima Nova Regular"), local("ProximaNova-Regular"), url(/public/fonts/proxima/ProximaNova-Regular.eot) format("embedded-opentype"), url(/public/fonts/proxima/ProximaNova-Regular.woff) format("woff"), url(/public/fonts/proxima/ProximaNova-Regular.ttf) format("truetype"), url(/public/fonts/proxima/ProximaNova-Regular.svg) format("svg"); }
+@font-face {
+  font-family: 'Proxima Nova Light';
+  font-style: normal;
+  font-weight: 300;
+  src: local("Proxima Nova Light"), local("ProximaNova-Light"), url(/public/fonts/proxima/ProximaNova-Light.eot) format("embedded-opentype"), url(/public/fonts/proxima/ProximaNova-Light.woff) format("woff"), url(/public/fonts/proxima/ProximaNova-Light.ttf) format("truetype"), url(/public/fonts/proxima/ProximaNova-Light.svg) format("svg"); }
+@font-face {
+  font-family: 'Proxima Nova Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: local("Proxima Nova Bold"), local("ProximaNova-Bold"), url(/public/fonts/proxima/ProximaNova-Bold.ttf) format("truetype"); }
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
