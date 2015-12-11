@@ -7,6 +7,9 @@
         <meta name="description" content="">
         <meta name="user-hash" content="{{ md5(Auth::id()) }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+        <!-- Fonts & stylesheets -->
+        <link rel="stylesheet" href="{{ url('css/styles.css?') . time() }}">
     </head>
     <body id="app" data-ng-controller="MainController">
 
@@ -45,13 +48,7 @@
         <!-- Overlayed screens (all overlayed screens are shown through this modal) -->
         <div data-ng-include="'partials/modal.html'"></div>
 
-        <!-- Fonts & stylesheets -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
-
         <!-- Scripts -->
-        <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/app.js?'. time()) }}"></script>
-        <!-- <script type="text/javascript" ng-src="js/app.js?@{{ global.assetVersion }}"></script> -->
+        <script type="text/javascript" src="{{ asset('js/scripts.js?'. time()) }}"></script>
     </body>
 </html>

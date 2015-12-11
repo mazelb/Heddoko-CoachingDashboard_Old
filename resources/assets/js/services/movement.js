@@ -30,12 +30,13 @@ angular.module('app.services')
             /**
              * Queries the API for the search term.
              *
-             * @param string query
              * @param object options
              * @return object $http
              */
-            search: function(query, options) {
-    			return $http.get(this.endpoint);
+            search: function(options) {
+    			return $http.get(this.endpoint, {
+                    params: {}
+                });
     		},
 
             /**

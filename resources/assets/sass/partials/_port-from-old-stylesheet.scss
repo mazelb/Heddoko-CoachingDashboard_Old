@@ -213,8 +213,7 @@
 	font-style: normal;
 }
 
-.movement-pages{
-	font-family:proxima_novaregular;
+.movement-pages {
 	font-weight:bold;
 }
 
@@ -351,7 +350,8 @@
 .movement-trial-list > div {
 
 	min-height: 50px;
-	background-color: #fff;
+	// background-color: #fff;
+	background-color: $blue;
 	line-height: 50px;
 	text-align: center;
 
@@ -368,7 +368,8 @@
 }
 
 .movement-trial-list > div.active {
-	background-color: #f5f6f8;
+	// background-color: #f5f6f8;
+	background-color: $heddokogreen;
 }
 
 .movement-trial-list > div.movement-submit-button {

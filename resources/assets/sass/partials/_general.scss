@@ -22,7 +22,7 @@ html.auth-register {
 }
 
 body {
-    font-family: 'Proxima Nova', 'Open Sans', sans-serif;
+    font-family: 'Proxima Nova', sans-serif;
     font-size: 18px;
     line-height: 1.42857;
     color: $text-color;
@@ -33,13 +33,12 @@ body {
 }
 
 ::selection {
-  background: $heddokogreen;
-  color: #fff;
+    background: $heddokogreen;
+    color: #fff;
 }
-
 ::-moz-selection {
-  background: $heddokogreen;
-  color: #fff;
+    background: $heddokogreen;
+    color: #fff;
 }
 
 span.block {

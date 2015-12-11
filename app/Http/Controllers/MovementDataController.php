@@ -72,15 +72,17 @@ class MovementDataController extends Controller
         // ...
 
         $offset = 0;
-        $limit = 32;
+        $limit = 16;
+        $orderBy = 'created_at';
+        $orderDir = 'desc';
 
-        $builder->skip($offset)->take($limit);
+        $builder->orderBy($orderBy, $orderDir)->skip($offset)->take($limit);
 
         return [
             'total' => $builder->count(),
-            'results' => $builder->get(),
             'offset' => $offset,
-            'limit' => $limit
+            'limit' => $limit,
+            'results' => $builder->get()
         ];
     }
 

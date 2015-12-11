@@ -19,7 +19,7 @@
     text-align: center;
 }
 .dashboard-page .bookmarks .fa {
-    padding: 30px 0 0;
+    padding: 30px 0 10px;
 }
 .dashboard-page .bookmarks span:first-child {
     padding: 20px 0 30px;
@@ -28,7 +28,7 @@
 .dashboard-page .bookmarks .bookmark-bottom {
     height: 5px;
     width: 60%;
-    margin: 30px auto 0;
+    margin: 20px auto 0;
     background-color: #fff;
     @include transition(background-color .2s);
 }

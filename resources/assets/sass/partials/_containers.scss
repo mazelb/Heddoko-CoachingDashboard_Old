@@ -97,7 +97,9 @@
 .page-main-header{
   padding: 20px;
   border-bottom: 1px solid #E5E5E5;
+  border-bottom-color: $blue;
   background: #f4f4f4;
+  background: $blue-dark;
 
   h4{
     margin-bottom:0;
@@ -494,13 +496,14 @@ ul.team{
 	display: inline-block;
 	background-color: #91decb;
 	border-right: none;
-	width: 220px;
+	width: 250px;
 	margin-left: 20px;
     text-transform: none;
 }
 
 .breadcrumb-movement>li:first-child>div {
 	background-color: #f4f4f4;
+	background-color: $blue-dark;
 	height: 35px;
 	top: 0;
 	left: -5px;
@@ -520,7 +523,7 @@ ul.team{
 	-ms-transform: skewX(26deg);
 	-webkit-transform: skewX(26deg);
 	transform: skewX(26deg);
-	color: black;
+	// color: black;
 	text-decoration: none;
 }
 

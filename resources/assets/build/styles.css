@@ -19,17 +19,20 @@
   font-family: 'Proxima Nova';
   font-style: normal;
   font-weight: 400;
-  src: local("Proxima Nova Regular"), local("ProximaNova-Regular"), url(/public/fonts/proxima/ProximaNova-Regular.eot) format("embedded-opentype"), url(/public/fonts/proxima/ProximaNova-Regular.woff) format("woff"), url(/public/fonts/proxima/ProximaNova-Regular.ttf) format("truetype"), url(/public/fonts/proxima/ProximaNova-Regular.svg) format("svg"); }
+  src: url(/fonts/ProximaNova-Regular.eot);
+  src: local("Proxima Nova Regular"), local("ProximaNova-Regular"), url(/fonts/ProximaNova-Regular.eot?#iefix) format("embedded-opentype"), url(/fonts/ProximaNova-Regular.woff) format("woff"), url(/fonts/ProximaNova-Regular.ttf) format("truetype"), url(/fonts/ProximaNova-Regular.svg) format("svg"); }
 @font-face {
   font-family: 'Proxima Nova Light';
   font-style: normal;
   font-weight: 300;
-  src: local("Proxima Nova Light"), local("ProximaNova-Light"), url(/public/fonts/proxima/ProximaNova-Light.eot) format("embedded-opentype"), url(/public/fonts/proxima/ProximaNova-Light.woff) format("woff"), url(/public/fonts/proxima/ProximaNova-Light.ttf) format("truetype"), url(/public/fonts/proxima/ProximaNova-Light.svg) format("svg"); }
+  src: url(/fonts/ProximaNova-Light.eot);
+  src: local("Proxima Nova Light"), local("ProximaNova-Light"), url(/fonts/ProximaNova-Light.eot?#iefix) format("embedded-opentype"), url(/fonts/ProximaNova-Light.woff) format("woff"), url(/fonts/ProximaNova-Light.ttf) format("truetype"), url(/fonts/ProximaNova-Light.svg) format("svg"); }
 @font-face {
   font-family: 'Proxima Nova Bold';
   font-style: normal;
   font-weight: 700;
-  src: local("Proxima Nova Bold"), local("ProximaNova-Bold"), url(/public/fonts/proxima/ProximaNova-Bold.ttf) format("truetype"); }
+  src: url(/fonts/ProximaNova-Bold.eot);
+  src: local("Proxima Nova Bold"), local("ProximaNova-Bold"), url(/fonts/ProximaNova-Bold.eot?#iefix) format("embedded-opentype"), url(/fonts/ProximaNova-Bold.woff2) format("woff2"), url(/fonts/ProximaNova-Bold.woff) format("woff"), url(/fonts/ProximaNova-Bold.ttf) format("truetype"), url(/fonts/ProximaNova-Bold.svg#proxima_novabold) format("svg"); }
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
@@ -50,7 +53,7 @@ html.auth-register {
   overflow-y: scroll; }
 
 body {
-  font-family: 'Proxima Nova', 'Open Sans', sans-serif;
+  font-family: 'Proxima Nova', sans-serif;
   font-size: 18px;
   line-height: 1.42857;
   color: #ddd;
@@ -747,7 +750,7 @@ pre {
   text-align: center; }
 
 .dashboard-page .bookmarks .fa {
-  padding: 30px 0 0; }
+  padding: 30px 0 10px; }
 
 .dashboard-page .bookmarks span:first-child {
   padding: 20px 0 30px;
@@ -756,7 +759,7 @@ pre {
 .dashboard-page .bookmarks .bookmark-bottom {
   height: 5px;
   width: 60%;
-  margin: 30px auto 0;
+  margin: 20px auto 0;
   background-color: #fff;
   -webkit-transition: background-color 0.2s;
   -moz-transition: background-color 0.2s;
@@ -1533,7 +1536,9 @@ label {
 .page-main-header {
   padding: 20px;
   border-bottom: 1px solid #E5E5E5;
-  background: #f4f4f4; }
+  border-bottom-color: #383d43;
+  background: #f4f4f4;
+  background: #272b2f; }
   .page-main-header h4 {
     margin-bottom: 0;
     border-bottom: none; }
@@ -1834,12 +1839,13 @@ ul.team {
   display: inline-block;
   background-color: #91decb;
   border-right: none;
-  width: 220px;
+  width: 250px;
   margin-left: 20px;
   text-transform: none; }
 
 .breadcrumb-movement > li:first-child > div {
   background-color: #f4f4f4;
+  background-color: #272b2f;
   height: 35px;
   top: 0;
   left: -5px;
@@ -1858,7 +1864,6 @@ ul.team {
   -ms-transform: skewX(26deg);
   -webkit-transform: skewX(26deg);
   transform: skewX(26deg);
-  color: black;
   text-decoration: none; }
 
 .breadcrumb-movement > li:hover, .breadcrumb-movement > li.active {
@@ -5866,7 +5871,6 @@ button.toast-close-button {
   font-weight: normal;
   font-style: normal; }
 .movement-pages {
-  font-family: proxima_novaregular;
   font-weight: bold; }
 
 .data_bottom_table {
@@ -5971,7 +5975,7 @@ button.toast-close-button {
 
 .movement-trial-list > div {
   min-height: 50px;
-  background-color: #fff;
+  background-color: #383d43;
   line-height: 50px;
   text-align: center; }
   .movement-trial-list > div > div.trial-label {
@@ -5983,7 +5987,7 @@ button.toast-close-button {
     height: 100%; }
 
 .movement-trial-list > div.active {
-  background-color: #f5f6f8; }
+  background-color: #3bd6b2; }
 
 .movement-trial-list > div.movement-submit-button {
   background-color: #f48b4a;

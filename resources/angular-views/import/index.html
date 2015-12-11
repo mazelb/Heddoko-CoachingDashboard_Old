@@ -14,7 +14,7 @@
         <div class="movement-import row">
 
             <!-- Import new movement -->
-            <div ng-show="isUploading === false" class="col-xs-12 text-center">
+            <div ng-show="isImporting === false" class="col-xs-12 text-center">
                 <button
                     ngf-select="import($files)"
                     ngf-drop="import($files)"
@@ -28,14 +28,14 @@
             </div>
 
             <!-- Uploading movement file -->
-            <div ng-show="isUploading === true" class="col-xs-12 text-center">
-                <i class="fa fa-spinner fa-spin fa-2x text-primary"></i>
+            <div ng-show="isImporting === true" class="col-xs-12 text-center">
+                <i class="fa fa-spinner fa-spin fa-3x"></i>
             </div>
         </div>
 
-        <div ng-show="uploadedMovements.length > 0">
+        <div ng-show="global.data.importedMovements.length > 0">
             <!-- List of uploaded movements -->
-            <div ng-repeat="file in uploadedMovements" class="movement-import row">
+            <div ng-repeat="file in global.data.importedMovements" class="movement-import row">
                 <div class="col-md-3 col-md-offset-1">
 
                     <!-- Movement title -->
@@ -107,7 +107,7 @@
 
         <!-- No recently uploaded movement -->
         <div
-            ng-show="uploadedMovements.length === 0 && isUploading === false"
+            ng-show="global.data.importedMovements.length === 0 && isImporting === false"
             class="col-md-6 col-md-offset-3 text-center">
 
             <h3>There are no movements to display.</h3>
