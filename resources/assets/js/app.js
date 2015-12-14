@@ -221,14 +221,14 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 ])
 
 // Runs the application.
-.run(['$rootScope', '$location', 'Rover', 'OnboardingService',
-    function ($rootScope, $location, Rover, OnboardingService) {
+.run(['$rootScope', '$location', 'Rover', 'Utilities',
+    function ($rootScope, $location, Rover, Utilities) {
 
-        Rover.debug('Running app...');
+        Utilities.debug('Running app...');
 
         $(document).ready(function() {
 
-            Rover.debug('DOM ready');
+            Utilities.debug('DOM ready');
 
             // Removes the loading animation.
             Rover.doneBackgroundProcess();

@@ -52,7 +52,6 @@ angular.module('app.controllers')
         $scope.global.state.user = $scope.global.state.user || {id: 0};
 
         // Setup group data.
-        Rover.debug('Setting up group data...');
         $scope.global.state.group = $scope.global.state.group || {};
         $scope.global.state.group.list = $scope.global.state.group.list || {length: 0};
         $scope.global.store.groupId = $scope.global.store.groupId || 0;
@@ -62,7 +61,6 @@ angular.module('app.controllers')
         };
 
         // Setup profile data.
-        Rover.debug('Setting up profile data...');
         $scope.global.state.profile = $scope.global.state.profile || {};
         $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
         $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
@@ -191,15 +189,15 @@ angular.module('app.controllers')
             );
         }
 
-        // // Populate group list.
-    	// if ($scope.global.state.group.list.length === 0) {
-    	// 	$timeout($scope.fetchGroups, 1000);
-    	// }
-        //
-        // // Populate profile list.
-    	// if ($scope.global.state.profile.list.length === 0) {
-    	// 	$timeout($scope.fetchProfiles, 2000);
-    	// }
+        // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
+        // exceed the maximum # simultaneous requests on the server.
+    	if ($scope.global.state.group.list.length === 0) {
+    		$timeout($scope.fetchGroups, 1000);
+    	}
+
+    	if ($scope.global.state.profile.list.length === 0) {
+    		$timeout($scope.fetchProfiles, 2000);
+    	}
 
         /**
          * Updates the filtered profile list.

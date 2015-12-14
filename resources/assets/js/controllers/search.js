@@ -9,7 +9,7 @@ angular.module('app.controllers')
 
 .controller('SearchController', ['$scope', '$timeout', 'Rover', 'Utilities',
     function($scope, $timeout, Rover, Utilities) {
-        Rover.debug('SearchController');
+        Utilities.debug('SearchController');
 
         // Available search filters.
         $scope.filters = [
