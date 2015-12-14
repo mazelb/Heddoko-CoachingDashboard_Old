@@ -12,7 +12,9 @@
                     {{ greeting }} {{ global.state.user.firstName }},
                 </h1>
                 <h1
-                    ng-show="global.state.user.id === 0 || global.state.user.firstName.length === 0"
+                    ng-show="global.state.user.id === 0
+                        || !global.state.user.firstName
+                        || global.state.user.firstName.length === 0"
                     class="text-center">
                     {{ greeting }}.
                 </h1>

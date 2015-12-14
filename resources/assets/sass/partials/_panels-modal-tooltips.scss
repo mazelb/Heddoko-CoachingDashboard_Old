@@ -11,6 +11,10 @@
   @include border-radius(0px);
 }
 
+.panel-body {
+    background-color: $blue-dark;
+}
+
 .panel-body:before, .panel-body:after {
   content: " ";
   display: table;
@@ -89,7 +93,7 @@
 }
 
 .panel-default {
-  border: none;
+  border: 1px solid #ececec;
   @include box-shadow(0 0 1px rgba(0,0,0,.1));
 }
 

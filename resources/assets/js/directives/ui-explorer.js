@@ -28,6 +28,9 @@ angular.module('app.directives')
                 $scope.layout = Rover.store.uiExplorerLayout;
                 $scope.folders = $scope.folders || [];
 
+                // Data loader.
+                $scope.isLoading = false;
+
                 $scope.$watch('layout', function(newLayout) {
                     Rover.store.uiExplorerLayout = newLayout;
                 });

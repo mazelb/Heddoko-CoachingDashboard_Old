@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-explorer/container.html', 'directive-partials/ui-explorer/folder.html', 'directive-partials/ui-explorer/layouts/large-tiles.html', 'directive-partials/ui-explorer/layouts/list.html', 'directive-partials/ui-explorer/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-explorer/container.html', 'directive-partials/ui-explorer/folder.html', 'directive-partials/ui-explorer/layouts/large-tiles.html', 'directive-partials/ui-explorer/layouts/list.html', 'directive-partials/ui-explorer/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'movements/partials/root-folder.html', 'movements/partials/sub-folder.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -135,7 +135,9 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "                    {{ greeting }} {{ global.state.user.firstName }},\n" +
     "                </h1>\n" +
     "                <h1\n" +
-    "                    ng-show=\"global.state.user.id === 0 || global.state.user.firstName.length === 0\"\n" +
+    "                    ng-show=\"global.state.user.id === 0\n" +
+    "                        || !global.state.user.firstName\n" +
+    "                        || global.state.user.firstName.length === 0\"\n" +
     "                    class=\"text-center\">\n" +
     "                    {{ greeting }}.\n" +
     "                </h1>\n" +
@@ -1528,7 +1530,20 @@ angular.module("directive-partials/ui-explorer/container.html", []).run(["$templ
     "    </header>\n" +
     "\n" +
     "    <!-- Explorer window -->\n" +
-    "    <div ng-include=\"'directive-partials/ui-explorer/layouts/' + layout + '.html'\"></div>\n" +
+    "    <div\n" +
+    "        ng-hide=\"isLoading === true\"\n" +
+    "        ng-include=\"'directive-partials/ui-explorer/layouts/' + layout + '.html'\">\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading movements -->\n" +
+    "    <div ng-show=\"isLoading === true\">\n" +
+    "        <h2 class=\"text-center\">Retrieving Data...</h2>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <div class=\"text-center\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Footer -->\n" +
     "    <footer>\n" +
@@ -2236,60 +2251,68 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "<div class=\"page movements-page\">\n" +
     "    <ui-page-title data-title=\"'Organize'\" data-icon=\"'th'\"></ui-page-title>\n" +
     "\n" +
-    "    <div ng-show=\"!rootProfile\">\n" +
+    "    <!-- If no root folder was selected, let the user select one -->\n" +
+    "    <div ng-show=\"!rootProfile\" ng-include=\"'movements/partials/root-folder.html'\"></div>\n" +
     "\n" +
-    "        <!-- List root folders -->\n" +
-    "        <ui-explorer\n" +
-    "            data-ng-hide=\"global.data.isFetchingProfiles === true\n" +
-    "                || global.state.profile.list.length === 0\"\n" +
-    "            data-folders=\"rootPaths\"\n" +
-    "            data-path=\"{{ path }}\">\n" +
-    "        </ui-explorer>\n" +
+    "    <!-- Else, let user browse sub folders -->\n" +
+    "    <div ng-show=\"rootProfile\" ng-include=\"'movements/partials/sub-folder.html'\"></div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("movements/partials/root-folder.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movements/partials/root-folder.html",
+    "<!-- List root folders -->\n" +
+    "<ui-explorer\n" +
+    "    data-ng-hide=\"global.data.isFetchingProfiles === true || global.state.profile.list.length === 0\"\n" +
+    "    data-folders=\"folders\"\n" +
+    "    data-path=\"{{ path }}\">\n" +
+    "</ui-explorer>\n" +
     "\n" +
-    "        <!-- Loading root folders -->\n" +
-    "        <div ng-show=\"global.data.isFetchingProfiles === true\">\n" +
-    "            <h2 class=\"text-center\">Retrieving Your Folders...</h2>\n" +
-    "            <br>\n" +
+    "<!-- Loading root folders -->\n" +
+    "<div ng-show=\"global.data.isFetchingProfiles === true\">\n" +
+    "    <h2 class=\"text-center\">Retrieving Your Folders...</h2>\n" +
+    "    <br>\n" +
     "\n" +
-    "            <div class=\"text-center\">\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- No profiles exist -->\n" +
-    "        <div\n" +
-    "            ng-show=\"global.data.isFetchingProfiles === false\n" +
-    "                && global.state.profile.list.length === 0\"\n" +
-    "            class=\"text-center\">\n" +
-    "\n" +
-    "            <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            Once you have profiles, you can start uploading and organizing your movements here.\n" +
-    "            <br>\n" +
-    "\n" +
-    "            Take this opportunity to <a href=\"#/profile/create\">create one</a>.\n" +
-    "        </div>\n" +
+    "    <div class=\"text-center\">\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +
+    "</div>\n" +
     "\n" +
-    "    <div ng-show=\"rootProfile\">\n" +
+    "<!-- No profiles exist -->\n" +
+    "<div\n" +
+    "    ng-show=\"global.data.isFetchingProfiles === false\n" +
+    "        && global.state.profile.list.length === 0\"\n" +
+    "    class=\"text-center\">\n" +
     "\n" +
-    "        <!-- List folder contents -->\n" +
-    "        <ui-explorer\n" +
-    "            ng-hide=\"global.data.isFetchingMovements === true\"\n" +
-    "            data-parent=\"parentPath\"\n" +
-    "            data-path=\"{{ path }}\">\n" +
-    "        </ui-explorer>\n" +
+    "    <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
+    "    <br>\n" +
     "\n" +
-    "        <!-- Loading movements -->\n" +
-    "        <div ng-show=\"global.data.isFetchingMovements === true\">\n" +
-    "            <h2 class=\"text-center\">Retrieving Data...</h2>\n" +
-    "            <br>\n" +
+    "    Once you have profiles, you can start uploading and organizing your movements here.\n" +
+    "    <br>\n" +
     "\n" +
-    "            <div class=\"text-center\">\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "    Take this opportunity to <a href=\"#/profile/create\">create one</a>.\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("movements/partials/sub-folder.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movements/partials/sub-folder.html",
+    "<!-- List folder contents -->\n" +
+    "<ui-explorer\n" +
+    "    ng-hide=\"global.data.isFetchingMovements === true\"\n" +
+    "    data-parent=\"parentFolder\"\n" +
+    "    data-folders=\"folders\"\n" +
+    "    data-path=\"{{ path }}\">\n" +
+    "</ui-explorer>\n" +
+    "\n" +
+    "<!-- Loading movements -->\n" +
+    "<div ng-show=\"global.data.isFetchingMovements === true\">\n" +
+    "    <h2 class=\"text-center\">Retrieving Data...</h2>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"text-center\">\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2315,7 +2338,7 @@ angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function(
     "    </li>\n" +
     "    <li ng-show=\"currentPath == '/profile/view' && global.store.profileId > 0\">\n" +
     "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.profile()\">\n" +
-    "            {{ global.state.profile.list[global.store.profileId].first_name }}\n" +
+    "            {{ global.state.profile.list[global.store.profileId].firstName }}\n" +
     "        </a>\n" +
     "    </li>\n" +
     "    <li ng-show=\"currentPath == '/group/create'\">\n" +

@@ -17,7 +17,7 @@
     </li>
     <li ng-show="currentPath == '/profile/view' && global.store.profileId > 0">
         <a class="active" href="javascript:;" ng-click="Rover.browseTo.profile()">
-            {{ global.state.profile.list[global.store.profileId].first_name }}
+            {{ global.state.profile.list[global.store.profileId].firstName }}
         </a>
     </li>
     <li ng-show="currentPath == '/group/create'">

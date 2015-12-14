@@ -11,8 +11,7 @@ angular.module('app.controllers')
     ['$scope', '$location', '$filter', 'Rover', 'ProfileService', 'GroupService',
     'Utilities', '$http',
     function($scope, $location, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
-
-        Rover.debug('ProfileController');
+        Utilities.debug('ProfileController');
 
         // Current URL path.
         $scope.currentPath = $location.path();
@@ -52,7 +51,7 @@ angular.module('app.controllers')
         $scope.createProfile = function() {
 
             Rover.addBackgroundProcess();
-            Rover.debug('Creating profile...');
+            Utilities.debug('Creating profile...');
 
             var profile = ProfileService.formatForStorage($scope.profile);
 
@@ -66,12 +65,12 @@ angular.module('app.controllers')
                     Utilities.debug(response.data);
 
                     // Update profile list and browse to newly created profile.
-                    $scope.global.state.profile.list[response.data.id] = response.data;
+                    Rover.state.profile.list[response.data.id] = response.data;
                     Rover.browseTo.profile(response.data);
                     Rover.doneBackgroundProcess();
                 },
                 function(response) {
-                    Rover.debug('Could not create profile: ' + response.statusText);
+                    Utilities.debug('Could not create profile: ' + response.statusText);
                     Rover.doneBackgroundProcess();
                 }
             );
@@ -103,7 +102,7 @@ angular.module('app.controllers')
 
             //
             else {
-                Rover.alert('Could not save profile details. Please try again later.');
+                Utilities.alert('Could not save profile details. Please try again later.');
             }
         };
 
@@ -111,7 +110,7 @@ angular.module('app.controllers')
         $scope.deleteProfile = function() {
 
             // Show loading animation.
-            Rover.debug('Deleting profile...');
+            Utilities.debug('Deleting profile...');
             Rover.addBackgroundProcess();
 
             ProfileService.destroy($scope.profile.id).then(
@@ -137,7 +136,7 @@ angular.module('app.controllers')
 
                 // On failure.
                 function(response) {
-                    Rover.debug('Could not delete profile: ' + response.responseText);
+                    Utilities.debug('Could not delete profile: ' + response.responseText);
                     Rover.doneBackgroundProcess();
                 }
             );

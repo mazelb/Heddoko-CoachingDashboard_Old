@@ -11,41 +11,71 @@ angular.module('app.controllers')
     function($scope, $routeParams, MovementService, Rover, Utilities) {
         Utilities.debug('MovementController');
 
-        // Path data.
+        // Setup path data.
         $scope.path = '/';
-        $scope.parentPath = false;
-        $scope.virtualPath = false;
+        $scope.folders = false;
+        $scope.parentFolder = false;
         $scope.rootProfile = false;
+
+        // If a folder was selected, try to display its contents.
         if ($routeParams.root && Rover.state.profile.list[$routeParams.root])
         {
             $scope.rootProfile = Rover.state.profile.list[$routeParams.root];
+
+            // Update path name.
             $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
-            $scope.parentPath = {
-                href: '#/movements'
-            };
 
             // Virtual path.
             if ($routeParams.path)
             {
-                $scope.virtualPath = $routeParams.path;
+                // Update path name.
                 $scope.path += ' / ' + $scope.virtualPath.replace(';', ' / ');
+
+                // Parent folder.
+                $scope.parentFolder = {href: '#/movements'};
+            }
+
+            // Root path.
+            else
+            {
+                // Parent folder.
+                $scope.parentFolder = {href: '#/movements'};
             }
         }
 
-        // Root folders.
-        $scope.rootPaths = [];
-        if (Rover.state.profile.list.length)
+        // If no folder was selected, display the root folders.
+        else if (!$routeParams.root)
         {
-            angular.forEach(Rover.state.profile.list, function(profile) {
-                if (profile.id && profile.id > 0)
-                {
-                    $scope.rootPaths.push({
-                        name: profile.firstName + ' ' + profile.lastName,
-                        href: '#/movements/' + profile.id
-                    });
-                }
-            });
+            // Root folders.
+            $scope.folders = [];
+            if (Rover.state.profile.list.length)
+            {
+                angular.forEach(Rover.state.profile.list, function(profile) {
+                    if (profile.id && profile.id > 0)
+                    {
+                        $scope.folders.push({
+                            name: profile.firstName + ' ' + profile.lastName,
+                            href: '#/movements/' + profile.id
+                        });
+                    }
+                });
+            }
         }
+
+        // If a folder was selected, but the profile doesn't exit, redirect the user to the root
+        // folders.
+        else
+        {
+            // If we're still loading profiles, keep waiting.
+            if (Rover.data.isFetchingProfiles === true) {
+                Utilities.debug('Still loading progiles...');
+            }
+
+            else {
+                Rover.browseTo.path('/movements');
+            }
+        }
+
 
 
 

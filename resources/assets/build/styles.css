@@ -4930,7 +4930,7 @@ button.toast-close-button {
   bottom: 0;
   right: 0;
   overflow: hidden;
-  background: #fff;
+  background: #ccc;
   z-index: 1000;
   -webkit-perspective: 10000;
   -moz-perspective: 10000;
@@ -6755,6 +6755,9 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   -o-border-radius: 0px;
   border-radius: 0px; }
 
+.panel-body {
+  background-color: #272b2f; }
+
 .panel-body:before, .panel-body:after {
   content: " ";
   display: table; }
@@ -6820,7 +6823,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   border-bottom: 1px solid #e9e9e9; }
 
 .panel-default {
-  border: none;
+  border: 1px solid #ececec;
   -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
   -ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
@@ -8462,7 +8465,7 @@ svg {
  *
  */
 .ui-explorer-container header {
-  margin: 15px auto 0; }
+  margin: 25px auto; }
 .ui-explorer-container .ui-explorer-item {
   display: block;
   margin: 25px auto;
