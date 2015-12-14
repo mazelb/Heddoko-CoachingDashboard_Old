@@ -7,8 +7,8 @@
  */
 angular.module('app.services')
 
-.factory('GroupService', ['$http',
-    function($http) {
+.factory('GroupService', ['$http', 'apiEndpoint',
+    function($http, apiEndpoint) {
 
         return {
 
@@ -16,28 +16,28 @@ angular.module('app.services')
              *
              */
             get: function() {
-    			return $http.get('/api/group');
+    			return $http.get(apiEndpoint + '/group');
     		},
 
             /**
              *
              */
             create: function(data) {
-                return $http.post('/api/group', data);
+                return $http.post(apiEndpoint + '/group', data);
     		},
 
             /**
              *
              */
             update: function(id, data) {
-                return $http.put('/api/group/' + id, data);
+                return $http.put(apiEndpoint + '/group/' + id, data);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete('/api/group/' + id);
+    			return $http.delete(apiEndpoint + '/group/' + id);
     		},
 
             /**
@@ -48,7 +48,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post('/api/group/'+ id +'/photo', {image: fileData});
+                return $http.post(apiEndpoint + '/group/'+ id +'/photo', {image: fileData});
             }
         };
     }

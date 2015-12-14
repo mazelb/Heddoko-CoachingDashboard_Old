@@ -1,13 +1,18 @@
 /**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
  * @brief   Controller for movement data.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    December 2015
  */
 angular.module('app.controllers')
 
-.controller('MovementController', ['$scope', 'MovementService', 'Rover', 'Utilities',
-    function($scope, MovementService, Rover, Utilities) {
+.controller('MovementController', ['$scope', '$routeParams', 'MovementService', 'Rover', 'Utilities',
+    function($scope, $routeParams, MovementService, Rover, Utilities) {
         Utilities.debug('MovementController');
+
+        Utilities.debug('Profile: ' + $routeParams.profile);
+        Utilities.debug('Directory: ' + $routeParams.path);
 
         // Setup movement data.
         $scope.global.data.movement = $scope.global.data.movement || {};

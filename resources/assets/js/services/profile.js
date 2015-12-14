@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   This service handles profile-related HTTP requests.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -9,8 +7,8 @@
  */
 angular.module('app.services')
 
-.factory('ProfileService', ['$http', '$filter', 'Utilities', 'Rover',
-    function($http, $filter, Utilities, Rover) {
+.factory('ProfileService', ['$http', '$filter', 'Utilities', 'Rover', 'apiEndpoint',
+    function($http, $filter, Utilities, Rover, apiEndpoint) {
 
         return {
 
@@ -22,7 +20,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = groupId ? {params: {group: groupId}} : {};
 
-    			return $http.get('/api/profile', config);
+    			return $http.get(apiEndpoint + '/profile', config);
     		},
 
             /**
@@ -33,7 +31,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = groupId ? {params: {group: groupId}} : {};
 
-                return $http.post('/api/profile', data, config);
+                return $http.post(apiEndpoint + '/profile', data, config);
     		},
 
             /**
@@ -44,14 +42,14 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = (data.groups && data.groups.length) ? {params: {group: data.groups[0]}} : {};
 
-                return $http.put('/api/profile/' + id, data, config);
+                return $http.put(apiEndpoint + '/profile/' + id, data, config);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete('/api/profile/' + id);
+    			return $http.delete(apiEndpoint + '/profile/' + id);
     		},
 
             /**
@@ -61,7 +59,7 @@ angular.module('app.services')
              * @return ...
              */
             destroyAvatar: function(id) {
-    			return $http.delete('/api/profile/' + id + '/avatar');
+    			return $http.delete(apiEndpoint + '/profile/' + id + '/avatar');
     		},
 
             /**
@@ -72,7 +70,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post('/api/profile/'+ id +'/photo', {image: fileData});
+                return $http.post(apiEndpoint + '/profile/'+ id +'/photo', {image: fileData});
             },
 
             /**

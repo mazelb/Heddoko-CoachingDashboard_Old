@@ -7,15 +7,15 @@
  */
 angular.module('app.services')
 
-.factory('MovementService', ['$http',
-    function($http) {
+.factory('MovementService', ['$http', 'apiEndpoint',
+    function($http, apiEndpoint) {
 
         return {
 
             /**
              * Base endpoint.
              */
-            endpoint: '/api/movement/',
+            endpoint: apiEndpoint + '/movement/',
 
             /**
              * Retrieves the specified resource from the API.

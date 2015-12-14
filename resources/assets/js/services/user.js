@@ -7,8 +7,8 @@
  */
 angular.module('app.services')
 
-.factory('UserService', ['$http',
-    function($http) {
+.factory('UserService', ['$http', 'apiEndpoint',
+    function($http, apiEndpoint) {
 
         return {
 
@@ -16,28 +16,28 @@ angular.module('app.services')
              *
              */
             get: function(id) {
-    			return $http.get('/api/user/' + id);
+    			return $http.get(apiEndpoint + '/user/' + id);
     		},
 
             /**
              *
              */
             create: function(data) {
-                return $http.post('/api/user', data);
+                return $http.post(apiEndpoint + '/user', data);
     		},
 
             /**
              *
              */
             update: function(id, data) {
-                return $http.put('/api/user/' + id, data);
+                return $http.put(apiEndpoint + '/user/' + id, data);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete('/api/user/' + id);
+    			return $http.delete(apiEndpoint + '/user/' + id);
     		},
 
             /**
@@ -48,7 +48,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post('/api/user/'+ id +'/photo', {image: fileData});
+                return $http.post(apiEndpoint + '/user/'+ id +'/photo', {image: fileData});
             }
         };
     }

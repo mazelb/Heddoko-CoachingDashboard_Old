@@ -158,11 +158,14 @@ class UpdatesDec2015 extends Migration
             $table->integer('end_keyframe')->unsigned()->nullable();
 			$table->foreign('end_keyframe')->references('id')->on('frames');
 
-            // Raw file name.
-            $table->string('filename')->nullable();
-
             // Other notes.
             $table->text('notes')->nullable();
+
+            // Virtual path
+            $table->string('virtual_path')->nullable();
+
+            // Raw file name.
+            $table->string('filename')->nullable();
         });
 
         // Create "movement_markers" table.

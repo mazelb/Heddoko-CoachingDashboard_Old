@@ -40,10 +40,12 @@ var _appIsLocal =
         window.location.hostname.match(/.*\.local$/i) ||
         window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
+var _apiEndpoint = '/api/v1';
 
 app.constant('appVersion', _appVersion)
     .constant('isLocalEnvironment', _appIsLocal)
-    .constant('assetVersion', _appAssetVersion);
+    .constant('assetVersion', _appAssetVersion)
+    .constant('apiEndpoint', _apiEndpoint);
 
 // Initializes the 'app.services' module so we can add factories from separate files.
 var appServices = angular.module('app.services', ['app.rover']);
@@ -120,7 +122,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'import/index.html',
             controller: 'ImportController'
 		})
-        .when('/movements', {
+        .when('/movements/:profile?/:path?', {
 			templateUrl: 'movements/index.html',
             controller: 'MovementController'
 		})

@@ -1,4 +1,4 @@
-q   <?php
+<?php
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
@@ -10,7 +10,7 @@ q   <?php
 /**
  * API routes.
  */
-Route::group(['middleware' => 'auth', 'prefix' => 'api'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
 {
     // Profile endpoints.
     Route::post('profile/{id}/avatar', 'ProfileController@saveAvatar');

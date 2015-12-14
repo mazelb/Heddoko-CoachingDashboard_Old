@@ -1,7 +1,5 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief       Controller for group pages.
  * @author      Francis Amankrah (frank@heddoko.com)
