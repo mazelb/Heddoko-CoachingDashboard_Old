@@ -1,4 +1,4 @@
-<?php
+q   <?php
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
