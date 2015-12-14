@@ -95,7 +95,7 @@ angular.module('app.controllers')
         $scope.fetchGroups = function() {
 
             // Show loading animation.
-            Rover.debug('Fetching groups...');
+            Utilities.debug('Fetching groups...');
             $scope.global.data.isFetchingGroups = true;
 
             // Retrieve available groups.
@@ -127,7 +127,7 @@ angular.module('app.controllers')
                     $scope.global.data.isFetchingGroups = false;
         		},
                 function(response) {
-                    Rover.debug('Could not retrieve group list: ' + response.statusText);
+                    Utilities.debug('Could not retrieve group list: ' + response.statusText);
                     $scope.global.data.isFetchingGroups = false;
                 }
             );
@@ -139,7 +139,7 @@ angular.module('app.controllers')
         $scope.fetchProfiles = function() {
 
             // Show loading animation.
-            Rover.debug('Fetching profiles...');
+            Utilities.debug('Fetching profiles...');
             $scope.global.data.isFetchingProfiles = true;
 
             // Retrieve profiles.
@@ -179,26 +179,27 @@ angular.module('app.controllers')
 
                 // Update user data.
                 function(response) {
-                    Rover.state.user = response.data;
+                    $scope.global.state.user = response.data;
                     $scope.global.data.isFetchingUser = false;
                 },
                 function(response) {
-                    Utilities.alert('Could not retrieve user details. Please try again later.');
+                    Utitlities.debug('Could not retrieve user details: ' + response.statusText);
+                    // Utilities.alert('Could not retrieve user details. Please try again later.');
                     Rover.state.user = {id: 0};
                     $scope.global.data.isFetchingUser = false;
                 }
             );
         }
 
-        // Populate group list.
-    	if ($scope.global.state.group.list.length === 0) {
-    		$scope.fetchGroups();
-    	}
-
-        // Populate profile list.
-    	if ($scope.global.state.profile.list.length === 0) {
-    		$scope.fetchProfiles();
-    	}
+        // // Populate group list.
+    	// if ($scope.global.state.group.list.length === 0) {
+    	// 	$timeout($scope.fetchGroups, 1000);
+    	// }
+        //
+        // // Populate profile list.
+    	// if ($scope.global.state.profile.list.length === 0) {
+    	// 	$timeout($scope.fetchProfiles, 2000);
+    	// }
 
         /**
          * Updates the filtered profile list.
@@ -262,7 +263,7 @@ angular.module('app.controllers')
 
         // Watches the selected profile.
         $scope.$watch('global.store.profileId', function(id, oldId) {
-            Rover.debug('Selected profile: ' + id);
+            Utilities.debug('Selected profile: ' + id);
 
             // Performance check.
             if (id === 0) {
