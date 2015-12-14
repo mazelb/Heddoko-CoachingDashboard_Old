@@ -1,0 +1,107 @@
+
+<div class="page movements-page">
+    <ui-page-title data-title="'Organize'" data-icon="'th'"></ui-page-title>
+
+    <!-- List of movements -->
+    <div ng-show="!global.data.isFetchingMovements && global.data.movement.list.length > 0" class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <div ng-repeat="movement in global.data.movement.list" class="col-sm-6 col-md-4 col-lg-3">
+                <div class="aspect-ratio aspect-4-3 active-element text-center">
+                    <div>
+
+                        <!-- Movement preview -->
+                        <ui-movement-preview data-aspect-ratio="4:3"></ui-movement-preview>
+
+                        <div class="tools text-left">
+
+                            <!-- Movement date -->
+                            <span style="color: #aaa">
+                                {{ movement.createdAt | mysqlDate : 'MMMM d, h:mma' }}
+                            </span>
+                            <br>
+
+                            <!-- Movement title -->
+                            <span style="color: #999">
+                                {{ movement.title }}
+                            </span>
+
+                            <!-- Movement actions -->
+                            <div class="pull-right">
+                                <div class="btn-group hidden-tools">
+                                    <button
+                                        type="button"
+                                        class="btn btn-default dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                        <i class="caret"></i>
+                                    </button>
+
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="#/analyze">Analyze</a>
+                                        </li>
+                                        <li>
+                                            <a href="#/compare">Compare</a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                ng-click="shareMovement(movement)"
+                                                href="javascript:;">
+                                                Share
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                ng-click="editMovement(movement)"
+                                                href="javascript:;">
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li role="separator" class="divider"></li>
+                                        <li>
+                                            <a
+                                                ng-click="deleteMovement(movement)"
+                                                href="javascript:;">
+                                                Delete
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Movement DIV -->
+        </div>
+    </div>
+
+    <!-- Fetching movements -->
+    <div ng-show="global.data.isFetchingMovements">
+        <h1 class="text-center">Retrieving Your Movements...</h1>
+        <br>
+
+        <div class="text-center">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </div>
+    </div>
+
+    <!-- No movements to show -->
+    <div
+        ng-show="!global.data.isFetchingMovements && global.data.movement.list.length === 0"
+        class="col-md-6 col-md-offset-3 text-center">
+
+        <h3>There are no movements to display.</h3>
+        Once you upload or capture a new movement, it will show up here.
+        <br><br>
+
+        Start by
+        <b>
+            <a ng-click="global.browseTo.path('/import')" href="javascript:;">
+                importing
+            </a>
+        </b>
+        your own movements.
+
+    </div>
+</div>

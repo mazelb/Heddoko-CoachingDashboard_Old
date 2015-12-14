@@ -78,8 +78,8 @@ class UpdatesDec2015 extends Migration
             $table->text('params')->nullable();         // Other details in JSON format.
 		});
 
-        // Create "movement_sets" table.
-		Schema::create('movement_sets', function(Blueprint $table)
+        // Create "screenings" table.
+		Schema::create('screenings', function(Blueprint $table)
 		{
 			$table->increments('id');
 
@@ -112,10 +112,10 @@ class UpdatesDec2015 extends Migration
                 ->references('id')
                 ->on('users');
 
-			$table->integer('movement_set_id')->unsigned()->nullable();
-			$table->foreign('movement_set_id')
+			$table->integer('screening_id')->unsigned()->nullable();
+			$table->foreign('screening_id')
                 ->references('id')
-                ->on('movement_sets');
+                ->on('screenings');
 
             $table->string('title')->nullable();
             $table->tinyInteger('score')->unsigned()->nullable();
@@ -123,6 +123,31 @@ class UpdatesDec2015 extends Migration
 
 			$table->timestamps();
 		});
+
+        // Create "folders" table.
+		Schema::create('folders', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+			$table->integer('profile_id')->unsigned();
+			$table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->string('name');
+            $table->string('path');
+		});
+        Schema::table('folders', function(Blueprint $table)
+        {
+            $table->integer('folder_id')->unsigned()->nullable();
+            $table->foreign('folder_id')
+                ->references('id')
+                ->on('folders')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
 
         // Create "frames" table.
 		Schema::create('frames', function(Blueprint $table)
@@ -307,8 +332,19 @@ class UpdatesDec2015 extends Migration
 		Schema::hasTable('movement_markers') ? Schema::drop('movement_markers') : null;
 		Schema::hasTable('movement_meta') ? Schema::drop('movement_meta') : null;
 		Schema::hasTable('frames') ? Schema::drop('frames') : null;
+
+        if (Schema::hasTable('folders'))
+        {
+            Schema::table('folders', function(Blueprint $table)
+            {
+                $table->dropForeign('folders_folder_id_foreign');
+            });
+
+            Schema::drop('folders');
+        }
+
 		Schema::hasTable('movements') ? Schema::drop('movements') : null;
-		Schema::hasTable('movement_sets') ? Schema::drop('movement_sets') : null;
+		Schema::hasTable('screenings') ? Schema::drop('screenings') : null;
 		Schema::hasTable('profile_meta') ? Schema::drop('profile_meta') : null;
 		Schema::hasTable('profiles') ? Schema::drop('profiles') : null;
 		Schema::hasTable('tags') ? Schema::drop('tags') : null;

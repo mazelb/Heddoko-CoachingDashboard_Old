@@ -10,10 +10,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasAvatarTrait as HasAvatar;
+use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class Profile extends Model
 {
-    use HasAvatar;
+    use HasAvatar, CamelCaseAttrs;
 
     /**
      * Gender not specified.

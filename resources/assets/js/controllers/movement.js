@@ -11,10 +11,28 @@ angular.module('app.controllers')
     function($scope, $routeParams, MovementService, Rover, Utilities) {
         Utilities.debug('MovementController');
 
-        Utilities.debug('Profile: ' + $routeParams.profile);
-        Utilities.debug('Directory: ' + $routeParams.path);
+        // Path data.
+        $scope.path = '/';
+        $scope.virtualPath = false;
+        $scope.rootProfile = false;
+        if ($routeParams.root && Rover.state.profile.list[$routeParams.root])
+        {
+            $scope.rootProfile = Rover.state.profile.list[$routeParams.root];
+            $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
 
-        // Setup movement data.
+            // Virtual path.
+            if ($routeParams.path)
+            {
+                $scope.virtualPath = $routeParams.path;
+                $scope.path += ' / ' + $scope.virtualPath.replace(';', ' / ');
+            }
+        }
+
+
+
+
+
+
         $scope.global.data.movement = $scope.global.data.movement || {};
         $scope.global.data.movement.loaded = $scope.global.data.movement.loaded || false;
         $scope.global.data.movement.list = $scope.global.data.movement.list || [];
@@ -99,9 +117,9 @@ angular.module('app.controllers')
             Utilities.alert('In Development.');
         };
 
-        // Fetch movement data.
-        if ($scope.global.data.movement.loaded === false) {
-            $scope.fetchMovements();
-        }
+        // // Fetch movement data.
+        // if ($scope.global.data.movement.loaded === false) {
+        //     $scope.fetchMovements();
+        // }
     }
 ]);

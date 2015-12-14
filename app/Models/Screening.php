@@ -2,7 +2,7 @@
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- * @brief   Database model for movement sets.
+ * @brief   Database model for screenings.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
  */
@@ -10,7 +10,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MovementSet extends Model
+class Screening extends Model
 {
     /**
      * Attributes which are mass-assignable.

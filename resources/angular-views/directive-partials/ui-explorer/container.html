@@ -1,0 +1,37 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="ui-explorer-container">
+
+    <header>
+        <div class="btn-toolbar" role="toolbar">
+
+            <!-- View selection -->
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-th"></i>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-list"></i>
+                </button>
+            </div>
+
+            <!-- Folder actions -->
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">
+                    New Folder
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Explorer window -->
+    <div ng-transclude class="col-sm-12"></div>
+
+    <!-- Footer -->
+    <footer>
+        <span>
+            {{ footer }}
+        </span>
+    </footer>
+</div>

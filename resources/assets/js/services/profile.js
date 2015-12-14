@@ -81,10 +81,10 @@ angular.module('app.services')
              */
             formatForDisplay: function(profile) {
 
-                // Format "created_at" date.
-                profile.created_at = profile.created_at || '';
-                profile.created_at_formatted = profile.created_at.length > 0 ?
-                    $filter('date')(profile.created_at.substr(0, 10), 'MMM d, yyyy') : '';
+                // Format "createdAt" date.
+                profile.createdAt = profile.createdAt || '';
+                profile.createdAt_formatted = profile.createdAt.length > 0 ?
+                    $filter('date')(profile.createdAt.substr(0, 10), 'MMM d, yyyy') : '';
 
                 // // Calculate the amount of feet in the total height.
                 // profile.feet = profile.height > 0 ?

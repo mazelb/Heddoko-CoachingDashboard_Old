@@ -438,11 +438,11 @@ $input-colors:(
 );
 
 @each $input-class,$input-color in $input-colors{
-  input.input-#{$input-class} {
+  input.input-#{"" + $input-class} {
     border-color: $input-color;
   }
 
-  input.input-#{$input-class}:focus {
+  input.input-#{"" + $input-class}:focus {
     border-color: $input-color;
   }
 }

@@ -8461,6 +8461,13 @@ svg {
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
+.ui-explorer-container footer {
+  color: #ccc; }
+
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
 .ui-movement-container {
   background-color: #fff;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);

@@ -6,7 +6,10 @@
         <!-- Title -->
         <div class="row dashboard-title">
             <div class="col-sm-12">
-                <h1 ng-show="global.state.user.id > 0" class="text-center">
+                <h1
+                    ng-show="global.state.user.id > 0 && global.state.user.firstName.length"
+                    class="text-center">
+                    
                     {{ greeting }} {{ global.state.user.firstName }},
                 </h1>
                 <h1 ng-show="global.state.user.id === 0" class="text-center">

@@ -112,25 +112,25 @@ $text-colors:(
     dark:$blue-dark
 );
 @each $text-class, $text-color in $text-colors {
-    .text-#{$text-class} {
+    .text-#{"" + $text-class} {
         color: $text-color;
     }
 
-    a.text-#{$text-class}:hover{
+    a.text-#{"" + $text-class}:hover{
         color: $text-color;
     }
 
-    a.bg-#{$text-class} {
+    a.bg-#{"" + $text-class} {
         background-color: $text-color;
         color: #fff;
     }
 
-    a.bg-#{$text-class}:hover {
+    a.bg-#{"" + $text-class}:hover {
         background-color: $text-color;
         color: #fff;
     }
 
-    .bg-#{$text-class} {
+    .bg-#{"" + $text-class} {
         background-color: $text-color;
         color: #fff;
     }
