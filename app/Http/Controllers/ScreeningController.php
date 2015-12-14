@@ -28,7 +28,7 @@ class ScreeningController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Displays a listing of the resource.
      *
      * @return Response
      */

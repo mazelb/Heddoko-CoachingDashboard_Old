@@ -19,8 +19,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
+    // Folder endpoints.
+    Route::resource('profile.folder', 'FolderController', [
+        'only' => ['index', 'store', 'show', 'update', 'destroy']
+    ]);
+
     // Movement endpoints.
-    Route::resource('movement', 'MovementDataController', [
+    Route::resource('movement', 'MovementController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 

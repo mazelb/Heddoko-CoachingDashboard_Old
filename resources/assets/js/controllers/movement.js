@@ -13,12 +13,16 @@ angular.module('app.controllers')
 
         // Path data.
         $scope.path = '/';
+        $scope.parentPath = false;
         $scope.virtualPath = false;
         $scope.rootProfile = false;
         if ($routeParams.root && Rover.state.profile.list[$routeParams.root])
         {
             $scope.rootProfile = Rover.state.profile.list[$routeParams.root];
             $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
+            $scope.parentPath = {
+                href: '#/movements'
+            };
 
             // Virtual path.
             if ($routeParams.path)
@@ -26,6 +30,21 @@ angular.module('app.controllers')
                 $scope.virtualPath = $routeParams.path;
                 $scope.path += ' / ' + $scope.virtualPath.replace(';', ' / ');
             }
+        }
+
+        // Root folders.
+        $scope.rootPaths = [];
+        if (Rover.state.profile.list.length)
+        {
+            angular.forEach(Rover.state.profile.list, function(profile) {
+                if (profile.id && profile.id > 0)
+                {
+                    $scope.rootPaths.push({
+                        name: profile.firstName + ' ' + profile.lastName,
+                        href: '#/movements/' + profile.id
+                    });
+                }
+            });
         }
 
 

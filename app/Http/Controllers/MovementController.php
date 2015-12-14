@@ -17,7 +17,7 @@ use App\Models\Movement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MovementDataController extends Controller
+class MovementController extends Controller
 {
     /**
      * @param \Illuminate\Http\Request $request
@@ -28,7 +28,7 @@ class MovementDataController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Displays a listing of the resource.
      *
      * @return Response
      */

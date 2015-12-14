@@ -8,30 +8,60 @@
 
             <!-- View selection -->
             <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default">
+                <button
+                    ng-class="{'btn-primary': layout == 'large-tiles', 'btn-default': layout != 'large-tiles'}"
+                    type="button"
+                    class="btn">
+                    <i class="fa fa-th-large"></i>
+                </button>
+                <button
+                    ng-class="{'btn-primary': layout == 'small-tiles', 'btn-default': layout != 'small-tiles'}"
+                    type="button"
+                    class="btn">
                     <i class="fa fa-th"></i>
                 </button>
-                <button type="button" class="btn btn-default">
+                <button
+                    ng-class="{'btn-primary': layout == 'list', 'btn-default': layout != 'list'}"
+                    type="button"
+                    class="btn">
                     <i class="fa fa-list"></i>
+                </button>
+            </div>
+
+            <!-- Sorting -->
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-sort-alpha-asc"></i>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-sort-alpha-desc"></i>
                 </button>
             </div>
 
             <!-- Folder actions -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-default">
-                    New Folder
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+
+            <!-- ... -->
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default">
+                    <i class="fa fa-refresh"></i>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Explorer window -->
-    <div ng-transclude class="col-sm-12"></div>
+    <div ng-include="'directive-partials/ui-explorer/layouts/' + layout + '.html'"></div>
 
     <!-- Footer -->
     <footer>
+        <i class="fa fa-compass fa-fw"></i>
         <span>
-            {{ footer }}
+            {{ path }}
         </span>
     </footer>
 </div>

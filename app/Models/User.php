@@ -1,10 +1,8 @@
 <?php
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- *
- * @brief   Database model for profiles.
+ * @brief   Database model for users.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
  */

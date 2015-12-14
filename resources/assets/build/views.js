@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-explorer/container.html', 'directive-partials/ui-explorer/folder.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'submit-movement-demo.html', 'analysis/index.html', 'capture/index.html', 'comparison/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-explorer/container.html', 'directive-partials/ui-explorer/folder.html', 'directive-partials/ui-explorer/layouts/large-tiles.html', 'directive-partials/ui-explorer/layouts/list.html', 'directive-partials/ui-explorer/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -132,10 +132,11 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "                <h1\n" +
     "                    ng-show=\"global.state.user.id > 0 && global.state.user.firstName.length\"\n" +
     "                    class=\"text-center\">\n" +
-    "                    \n" +
     "                    {{ greeting }} {{ global.state.user.firstName }},\n" +
     "                </h1>\n" +
-    "                <h1 ng-show=\"global.state.user.id === 0\" class=\"text-center\">\n" +
+    "                <h1\n" +
+    "                    ng-show=\"global.state.user.id === 0 || global.state.user.firstName.length === 0\"\n" +
+    "                    class=\"text-center\">\n" +
     "                    {{ greeting }}.\n" +
     "                </h1>\n" +
     "\n" +
@@ -1480,30 +1481,60 @@ angular.module("directive-partials/ui-explorer/container.html", []).run(["$templ
     "\n" +
     "            <!-- View selection -->\n" +
     "            <div class=\"btn-group\" role=\"group\">\n" +
-    "                <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                <button\n" +
+    "                    ng-class=\"{'btn-primary': layout == 'large-tiles', 'btn-default': layout != 'large-tiles'}\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn\">\n" +
+    "                    <i class=\"fa fa-th-large\"></i>\n" +
+    "                </button>\n" +
+    "                <button\n" +
+    "                    ng-class=\"{'btn-primary': layout == 'small-tiles', 'btn-default': layout != 'small-tiles'}\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn\">\n" +
     "                    <i class=\"fa fa-th\"></i>\n" +
     "                </button>\n" +
-    "                <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                <button\n" +
+    "                    ng-class=\"{'btn-primary': layout == 'list', 'btn-default': layout != 'list'}\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn\">\n" +
     "                    <i class=\"fa fa-list\"></i>\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Sorting -->\n" +
+    "            <div class=\"btn-group\" role=\"group\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                    <i class=\"fa fa-sort-alpha-asc\"></i>\n" +
+    "                </button>\n" +
+    "                <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                    <i class=\"fa fa-sort-alpha-desc\"></i>\n" +
     "                </button>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- Folder actions -->\n" +
     "            <div class=\"btn-group\" role=\"group\">\n" +
     "                <button type=\"button\" class=\"btn btn-default\">\n" +
-    "                    New Folder\n" +
+    "                    <i class=\"fa fa-plus\"></i>\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- ... -->\n" +
+    "            <div class=\"btn-group\" role=\"group\">\n" +
+    "                <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                    <i class=\"fa fa-refresh\"></i>\n" +
     "                </button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <!-- Explorer window -->\n" +
-    "    <div ng-transclude class=\"col-sm-12\"></div>\n" +
+    "    <div ng-include=\"'directive-partials/ui-explorer/layouts/' + layout + '.html'\"></div>\n" +
     "\n" +
     "    <!-- Footer -->\n" +
     "    <footer>\n" +
+    "        <i class=\"fa fa-compass fa-fw\"></i>\n" +
     "        <span>\n" +
-    "            {{ footer }}\n" +
+    "            {{ path }}\n" +
     "        </span>\n" +
     "    </footer>\n" +
     "</div>\n" +
@@ -1514,14 +1545,49 @@ angular.module("directive-partials/ui-explorer/folder.html", []).run(["$template
   $templateCache.put("directive-partials/ui-explorer/folder.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"col-xs-6 col-md-3 col-lg-2 text-center\">\n" +
-    "    <a href=\"{{ href }}\">\n" +
-    "        <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
+    "<a href=\"{{ href }}\" class=\"ui-explorer-item\">\n" +
+    "    <i class=\"fa fa-2x\" ng-class=\"'fa-' + icon\"></i>\n" +
+    "    <br>\n" +
+    "    <br>\n" +
     "\n" +
-    "        {{ title }}\n" +
-    "    </a>\n" +
+    "    {{ name }}\n" +
+    "</a>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-explorer/layouts/large-tiles.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-explorer/layouts/large-tiles.html",
+    "");
+}]);
+
+angular.module("directive-partials/ui-explorer/layouts/list.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-explorer/layouts/list.html",
+    "");
+}]);
+
+angular.module("directive-partials/ui-explorer/layouts/small-tiles.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-explorer/layouts/small-tiles.html",
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <!-- Parent folder -->\n" +
+    "    <ui-explorer-folder\n" +
+    "        ng-show=\"parent\"\n" +
+    "        data-href=\"{{ parent.href }}\"\n" +
+    "        data-name=\"Back\"\n" +
+    "        data-icon=\"hand-o-left\"\n" +
+    "        class=\"col-xs-6 col-md-3 col-lg-2\">\n" +
+    "    </ui-explorer-folder>\n" +
+    "\n" +
+    "    <!-- Folders -->\n" +
+    "    <ui-explorer-folder\n" +
+    "        ng-repeat=\"folder in folders\"\n" +
+    "        data-name=\"{{ folder.name }}\"\n" +
+    "        data-href=\"{{ folder.href }}\"\n" +
+    "        class=\"col-xs-6 col-md-3 col-lg-2\">\n" +
+    "    </ui-explorer-folder>\n" +
+    "\n" +
+    "    <!-- Other items -->\n" +
+    "\n" +
     "</div>\n" +
     "");
 }]);
@@ -2176,16 +2242,8 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "        <ui-explorer\n" +
     "            data-ng-hide=\"global.data.isFetchingProfiles === true\n" +
     "                || global.state.profile.list.length === 0\"\n" +
-    "            footer=\"{{ path }}\">\n" +
-    "\n" +
-    "            <div ng-repeat=\"(id, profile) in global.state.profile.list\">\n" +
-    "                <ui-explorer-folder\n" +
-    "                    ng-if=\"profile.id && profile.id > 0\"\n" +
-    "                    data-title=\"{{ profile.firstName }} {{ profile.lastName }}\"\n" +
-    "                    data-href=\"#/movements/{{ id }}\">\n" +
-    "\n" +
-    "                </ui-explorer-folder>\n" +
-    "            </div>\n" +
+    "            data-folders=\"rootPaths\"\n" +
+    "            data-path=\"{{ path }}\">\n" +
     "        </ui-explorer>\n" +
     "\n" +
     "        <!-- Loading root folders -->\n" +
@@ -2200,7 +2258,8 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "\n" +
     "        <!-- No profiles exist -->\n" +
     "        <div\n" +
-    "            ng-show=\"global.data.isFetchingProfiles === false && global.state.profile.list.length === 0\"\n" +
+    "            ng-show=\"global.data.isFetchingProfiles === false\n" +
+    "                && global.state.profile.list.length === 0\"\n" +
     "            class=\"text-center\">\n" +
     "\n" +
     "            <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
@@ -2213,13 +2272,25 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- List folder contents -->\n" +
-    "    <ui-explorer\n" +
-    "        ng-show=\"rootProfile\"\n" +
-    "        footer=\"{{ path }}\">\n" +
+    "    <div ng-show=\"rootProfile\">\n" +
     "\n" +
-    "        Folders, movements...\n" +
-    "    </ui-explorer>\n" +
+    "        <!-- List folder contents -->\n" +
+    "        <ui-explorer\n" +
+    "            ng-hide=\"global.data.isFetchingMovements === true\"\n" +
+    "            data-parent=\"parentPath\"\n" +
+    "            data-path=\"{{ path }}\">\n" +
+    "        </ui-explorer>\n" +
+    "\n" +
+    "        <!-- Loading movements -->\n" +
+    "        <div ng-show=\"global.data.isFetchingMovements === true\">\n" +
+    "            <h2 class=\"text-center\">Retrieving Data...</h2>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <div class=\"text-center\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);

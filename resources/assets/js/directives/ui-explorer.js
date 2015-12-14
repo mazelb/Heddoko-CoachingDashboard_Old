@@ -12,16 +12,25 @@ angular.module('app.directives')
  */
 .directive('uiExplorer', function() {
     return {
-        restrict: 'E',
+        restrict: 'AE',
         transclude: true,
         templateUrl: 'directive-partials/ui-explorer/container.html',
         scope: {
-            footer: '@'
+            folders: '=?',
+            parent: '=?',
+            path: '@'
         },
-        controller: ['$scope',
-            function($scope) {
+        controller: ['$scope', 'Rover',
+            function($scope, Rover) {
 
-                // ...
+                // Defaults.
+                Rover.store.uiExplorerLayout = Rover.store.uiExplorerLayout || 'small-tiles';
+                $scope.layout = Rover.store.uiExplorerLayout;
+                $scope.folders = $scope.folders || [];
+
+                $scope.$watch('layout', function(newLayout) {
+                    Rover.store.uiExplorerLayout = newLayout;
+                });
             }
         ]
     };
@@ -35,14 +44,17 @@ angular.module('app.directives')
     function($filter, $timeout, $http, Rover) {
         return {
             require: '^uiExplorer',
-            restrict: 'E',
+            restrict: 'AE',
             scope: {
-                title: '@',
-                href: '@'
+                href: '@',
+                name: '@?',
+                icon: '@?'
             },
             link: function(scope, element, attrs, controller) {
 
-                // ...
+                // Defaults.
+                scope.name = scope.name || '';
+                scope.icon = scope.icon || 'folder-open';
             },
             templateUrl: 'directive-partials/ui-explorer/folder.html'
         };
@@ -56,7 +68,7 @@ angular.module('app.directives')
     function($filter, $timeout, $http, Rover) {
         return {
             require: '^uiExplorer',
-            restrict: 'E',
+            restrict: 'AE',
             scope: {},
             link: function(scope, element, attrs, controller) {
 

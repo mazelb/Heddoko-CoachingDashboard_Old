@@ -8461,8 +8461,17 @@ svg {
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
+.ui-explorer-container header {
+  margin: 15px auto 0; }
+.ui-explorer-container .ui-explorer-item {
+  display: block;
+  margin: 25px auto;
+  text-align: center; }
 .ui-explorer-container footer {
-  color: #ccc; }
+  margin: 15px auto 0;
+  padding: 10px;
+  color: #999;
+  border-top: 1px solid #444; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

@@ -95,35 +95,6 @@ class UpdatesDec2015 extends Migration
             $table->text('notes')->nullable();
         });
 
-        // Create "movements" table.
-		Schema::create('movements', function(Blueprint $table)
-		{
-			$table->increments('id');
-
-			$table->integer('profile_id')->unsigned()->nullable();
-			$table->foreign('profile_id')
-                ->references('id')
-                ->on('profiles')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
-
-			$table->integer('submitted_by')->unsigned()->nullable();
-			$table->foreign('submitted_by')
-                ->references('id')
-                ->on('users');
-
-			$table->integer('screening_id')->unsigned()->nullable();
-			$table->foreign('screening_id')
-                ->references('id')
-                ->on('screenings');
-
-            $table->string('title')->nullable();
-            $table->tinyInteger('score')->unsigned()->nullable();
-            $table->tinyInteger('score_max')->unsigned()->nullable();
-
-			$table->timestamps();
-		});
-
         // Create "folders" table.
 		Schema::create('folders', function(Blueprint $table)
 		{
@@ -148,6 +119,44 @@ class UpdatesDec2015 extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
+
+        // Create "movements" table.
+		Schema::create('movements', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+			$table->integer('profile_id')->unsigned()->nullable();
+			$table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+			$table->integer('submitted_by')->unsigned()->nullable();
+			$table->foreign('submitted_by')
+                ->references('id')
+                ->on('users');
+
+			$table->integer('screening_id')->unsigned()->nullable();
+			$table->foreign('screening_id')
+                ->references('id')
+                ->on('screenings')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+			$table->integer('folder_id')->unsigned()->nullable();
+			$table->foreign('folder_id')
+                ->references('id')
+                ->on('folders')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->string('title')->nullable();
+            $table->tinyInteger('score')->unsigned()->nullable();
+            $table->tinyInteger('score_max')->unsigned()->nullable();
+
+			$table->timestamps();
+		});
 
         // Create "frames" table.
 		Schema::create('frames', function(Blueprint $table)
@@ -332,6 +341,7 @@ class UpdatesDec2015 extends Migration
 		Schema::hasTable('movement_markers') ? Schema::drop('movement_markers') : null;
 		Schema::hasTable('movement_meta') ? Schema::drop('movement_meta') : null;
 		Schema::hasTable('frames') ? Schema::drop('frames') : null;
+		Schema::hasTable('movements') ? Schema::drop('movements') : null;
 
         if (Schema::hasTable('folders'))
         {
@@ -343,7 +353,6 @@ class UpdatesDec2015 extends Migration
             Schema::drop('folders');
         }
 
-		Schema::hasTable('movements') ? Schema::drop('movements') : null;
 		Schema::hasTable('screenings') ? Schema::drop('screenings') : null;
 		Schema::hasTable('profile_meta') ? Schema::drop('profile_meta') : null;
 		Schema::hasTable('profiles') ? Schema::drop('profiles') : null;
