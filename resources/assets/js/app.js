@@ -118,12 +118,20 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Data routes.
         //
-        .when('/import', {
+        .when('/movements/analyze', {
+			templateUrl: 'movements/analysis/index.html',
+            controller: 'TestController'
+		})
+        .when('/movements/compare', {
+			templateUrl: 'movements/comparison/index.html',
+            controller: 'TestController'
+		})
+        .when('/movements/upload', {
 			templateUrl: 'import/index.html',
             controller: 'ImportController'
 		})
         .when('/movements/:rootId?/:folderId?/:path?', {
-			templateUrl: 'movements/index.html',
+			templateUrl: 'movements/explorer/index.html',
             controller: 'MovementController'
 		})
 
@@ -132,22 +140,6 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         .when('/capture', {
 			templateUrl: 'capture/index.html',
-            controller: 'TestController'
-		})
-
-        //
-        // Data analysis routes.
-        //
-        .when('/analyze', {
-			templateUrl: 'analysis/index.html',
-            controller: 'TestController'
-		})
-
-        //
-        // Data comparison routes.
-        //
-        .when('/compare', {
-			templateUrl: 'comparison/index.html',
             controller: 'TestController'
 		})
 
@@ -204,10 +196,6 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Demo routes.
         //
-        .when('/submit-movement', {
-			templateUrl: "submit-movement-demo.html",
-            controller: 'SubmitMovementDemoController'
-		})
         .when("/fmstest", {
 			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {

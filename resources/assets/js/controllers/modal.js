@@ -13,6 +13,12 @@ angular.module('app.controllers')
 
         // Retrieve template data from the rover.
         $scope.$watch('Rover.overlayData', function(data, oldData) {
+
+            // Performance check.
+            if (!data) {
+                return;
+            }
+            
             $scope.title = data.title;
             $scope.bodyTemplate = data.bodyTemplate;
             $scope.footerTemplate = data.footerTemplate;

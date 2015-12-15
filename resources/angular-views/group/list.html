@@ -1,5 +1,12 @@
 
 <div class="page page-dashboard">
+    <header>
+        <h1>
+            Teams
+            <i class="fa fa-users"></i>
+            <span></span>
+        </h1>
+    </header>
 
     <div class="row">
         <div class="col-sm-12">
@@ -19,39 +26,16 @@
             </div>
         </div>
     </div>
+    <br>
+    <br>
 
-    <!-- List of groups -->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Teams (total: {{ global.state.group.list.length }})
-        </div>
+    <a
+        ng-repeat="group in global.state.group.list"
+        ng-click="Rover.browseTo.group(group)"
+        href="javascript:;"
+        class="btn btn-primary btn-metro"
+        style="background-image: url({{ group.avatarSrc || '' }});background-size: cover;">
 
-        <div class="panel-body">
-            <div class="row">
-                <div ng-hide="global.state.group.list.length > 0" class="col-sm-12">
-                    You don't have any teams yet! Create one above to get started.
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <a
-                        ng-repeat="group in global.state.group.list"
-                        ng-click="Rover.browseTo.group(group)"
-                        href="javascript:;"
-                        class="btn btn-primary btn-metro"
-                        style="background-image: url({{ group.avatar_src || '' }});background-size: cover;">
-
-                        <!-- <object
-                            ng-hide="group.avatar_src"
-                            style="pointer-events:none;"
-                            type="image/svg+xml"
-                            data="/images/sports/{{group.sport_id}}.svg" /> -->
-
-                        <span>{{ group.name }}</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <span>{{ group.name | characters:15 }}</span>
+    </a>
 </div>

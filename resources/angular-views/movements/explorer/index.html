@@ -1,0 +1,112 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="page movements-page">
+    <header>
+        <h1>
+            Organize
+            <i class="fa fa-th"></i>
+            <span></span>
+        </h1>
+
+        <div class="btn-toolbar pull-right" role="toolbar">
+
+            <!-- Create new folder -->
+            <div class="btn-group">
+                <button ng-show="rootProfile" type="button" class="btn btn-default">
+                    <i class="fa fa-plus"></i> New Folder
+                </button>
+            </div>
+
+            <!-- Sorting -->
+            <div class="btn-group">
+                <div class="dropdown">
+                    <button
+                        class="btn btn-default dropdown-toggle"
+                        type="button"
+                        id="sortMenu"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+
+                        Sort <span class="caret"></span>
+                    </button>
+
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortMenu">
+                        <li>
+                            <a href="#">
+                                Alphabetically
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                By Date
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Layout selector -->
+            <div class="btn-group" role="group">
+                <button
+                    ng-repeat="btn in layout.list"
+                    ng-click="layout.name = btn.name"
+                    ng-class="{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}"
+                    type="button"
+                    class="btn">
+
+                    <i ng-class="'fa-' + btn.icon" class="fa"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main container -->
+    <div
+        ng-show="global.state.profile.list.length > 0 || global.data.isFetchingProfiles === true"
+        class="file-explorer-container">
+
+        <header>
+        </header>
+
+        <!-- Movements and folders -->
+        <section
+            ng-show="global.data.isFetchingMovementData === false"
+            ng-include="'movements/explorer/partials/' + layout.name + '-layout.html'"
+            ng-class="layout.name + '-layout'">
+        </section>
+
+        <!-- Loading notice -->
+        <section
+            ng-show="global.data.isFetchingMovementData === true
+                || global.data.isFetchingProfiles === true">
+            <div class="text-center" style="margin: 60px auto">
+                <i class="fa fa-spinner fa-spin fa-2x"></i>
+            </div>
+        </section>
+
+        <footer>
+            <i class="fa fa-compass fa-fw"></i>
+            <span>
+                {{ path }}
+            </span>
+        </footer>
+    </div>
+
+    <!-- No profile exists -->
+    <div
+        ng-show="global.data.isFetchingProfiles === false
+            && global.state.profile.list.length === 0"
+        class="text-center">
+
+        <h3 class="text-center">You do not have any profiles yet.</h3>
+        <br>
+
+        Once you create a profile, you can start uploading and organizing your movements here.
+        <br>
+        <br>
+
+        Take this opportunity to <a href="#/profile/create">create one</a>.
+    </div>
+</div>

@@ -14,7 +14,7 @@ angular.module('app.controllers')
         // Initial setup.
         $scope.global.data.isFetchingMovementData = true;
         $scope.layout = {
-            name: Rover.getConfig('movements.layout', 'small-tiles'),
+            name: Rover.getConfig('movements.layout', 'large-tiles'),
             list: [
                 {
                     name: 'large-tiles',

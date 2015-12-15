@@ -1,5 +1,5 @@
 
-<div class="page dashboard-page animate-fade-up">
+<div class="dashboard page animate-fade-up">
 
     <div class="dashboard-menu">
 
@@ -37,7 +37,7 @@
             <!-- Actual bookmarks -->
             <div ng-repeat="bookmark in bookmarks" class="col-md-2">
                 <div class="bookmark-wrapper">
-                    <a href="{{ bookmark.uri }}" class="bookmark">
+                    <a href="{{ bookmark.uri }}">
                         <i ng-class="'fa fa-2x fa-'+ bookmark.icon"></i>
                         <span>
                             {{ bookmark.title }}
