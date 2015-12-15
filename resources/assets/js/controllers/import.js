@@ -37,7 +37,7 @@ angular.module('app.controllers')
             // Upload data files one by one. This ensures compatibility with IE8/9
             angular.forEach(files, function(file) {
                 file.upload = Upload.upload({
-                    url: '/api/movement',
+                    url: '/api/v1/movement',
                     data: {
                         file: file,
                         profileId: $scope.global.getSelectedProfile().id

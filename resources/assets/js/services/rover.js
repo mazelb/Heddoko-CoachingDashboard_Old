@@ -226,19 +226,33 @@ angular.module('app.rover', [])
             Utilities.alert(msg);
         };
 
-        // Handles retrieving/storing configuration data.
+        /**
+         * Retrieves a configuration value.
+         *
+         * @param string key
+         * @param mixed defaultValue
+         * @return mixed
+         */
         this.getConfig = function(key, defaultValue) {
-            return this.config[key] ? this.config[key] : defaultValue;
+            return this.store.config[key] ? this.store.config[key] : defaultValue;
         }.bind(this);
+
+        /**
+         * Sets a configuration value.
+         *
+         * @param string key
+         * @param mixed value
+         * @return mixed
+         */
         this.setConfig = function(key, value) {
-            var oldValue = this.config[key];
-            this.config[key] = value;
-            return oldValue;
+            this.store.config[key] = value;
+            return value;
         }.bind(this);
 
         // Retrieves the ID of an object.
         // @deprecated
         this.getId = function(obj) {
+            Utilities.debug('Rover.getId is deprecated...');
             return Utilities.getId(obj);
         };
     }

@@ -13,18 +13,35 @@ angular.module('app.services')
         return {
 
             /**
+             * Gets a list of profiles.
              *
+             * @param int groupId
+             * @return object $http
              */
-            get: function(groupId) {
+            list: function(groupId) {
 
                 // Add group ID to request parameters.
                 var config = groupId ? {params: {group: groupId}} : {};
 
-    			return $http.get(apiEndpoint + '/profile', config);
+                return $http.get(apiEndpoint + '/profile', config);
+            },
+
+            /**
+             * Gets the details for a specific profile.
+             *
+             * @param int id
+             * @return object $http
+             */
+            get: function(id) {
+    			return $http.get(apiEndpoint + '/profile/' + id);
     		},
 
             /**
+             * Stores the details for a new profile.
              *
+             * @param object data
+             * @param int groupId
+             * @return object $http
              */
             create: function(data, groupId) {
 
@@ -35,7 +52,11 @@ angular.module('app.services')
     		},
 
             /**
+             * Updates the details for a given profile.
              *
+             * @param int id
+             * @param object data
+             * @return object $http
              */
             update: function(id, data) {
 
@@ -46,7 +67,10 @@ angular.module('app.services')
     		},
 
             /**
+             * Removes the profile details from the database.
              *
+             * @param int id
+             * @return object $http
              */
             destroy: function(id) {
     			return $http.delete(apiEndpoint + '/profile/' + id);

@@ -1512,6 +1512,26 @@ label {
   right: 0;
   margin: 10px; }
 
+/**
+ * File explorers
+ */
+.file-explorer-container header {
+  margin: 25px auto; }
+.file-explorer-container section .folder, .file-explorer-container section .file {
+  display: block;
+  margin: 25px auto;
+  text-align: center; }
+.file-explorer-container .small-tiles-layout .folder, .file-explorer-container .small-tiles-layout .file {
+  margin: 25px auto;
+  text-align: center; }
+  .file-explorer-container .small-tiles-layout .folder .name, .file-explorer-container .small-tiles-layout .file .name {
+    display: block; }
+.file-explorer-container footer {
+  margin: 15px auto 0;
+  padding: 10px;
+  color: #999;
+  border-top: 1px solid #444; }
+
 /*
  * ...
  */
@@ -4930,7 +4950,7 @@ button.toast-close-button {
   bottom: 0;
   right: 0;
   overflow: hidden;
-  background: #ccc;
+  background: #eee;
   z-index: 1000;
   -webkit-perspective: 10000;
   -moz-perspective: 10000;
@@ -8459,22 +8479,6 @@ svg {
 .ui-editable-field-value .edit-text:focus {
   text-decoration: none;
   background-color: #eee; }
-
-/**
- * Copyright Heddoko(TM) 2015, all rights reserved.
- *
- */
-.ui-explorer-container header {
-  margin: 25px auto; }
-.ui-explorer-container .ui-explorer-item {
-  display: block;
-  margin: 25px auto;
-  text-align: center; }
-.ui-explorer-container footer {
-  margin: 15px auto 0;
-  padding: 10px;
-  color: #999;
-  border-top: 1px solid #444; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

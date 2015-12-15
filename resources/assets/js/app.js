@@ -122,7 +122,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'import/index.html',
             controller: 'ImportController'
 		})
-        .when('/movements/:root?/:path?', {
+        .when('/movements/:rootId?/:folderId?/:path?', {
 			templateUrl: 'movements/index.html',
             controller: 'MovementController'
 		})

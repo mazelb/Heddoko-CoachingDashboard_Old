@@ -12,6 +12,7 @@ use DB;
 use Auth;
 
 use App\Http\Requests;
+use App\Models\Folder;
 use App\Models\Profile;
 use App\Models\Movement;
 use Illuminate\Http\Request;
@@ -28,23 +29,14 @@ class FolderController extends Controller
     }
 
     /**
-     * Displays a listing of the resource.
+     * Retrieves the root folders and movements for the profile.
      *
      * @param int $profildId
-     * @param int $folderId
      * @return Response
      */
-    public function index($profileId, $folderId = null)
+    public function index($profileId)
     {
-        // Performance check.
-        if (!$profile = Profile::find($profileId)) {
-            return response('Profile Not Found.', 400);
-        }
-
-        // Build search query.
-        $builder = $profile->folders();
-
-        abort(501);
+        return $this->show($profileId, 0);
     }
 
     /**
@@ -58,14 +50,40 @@ class FolderController extends Controller
     }
 
     /**
-     * Displays the specified resource.
+     * Retrieves the movements and sub-folders for a specified folder.
      *
-     * @param  int  $id
+     * @param int $profileId
+     * @param int $folderId
      * @return Response
      */
-    public function show($id)
+    public function show($profileId, $folderId = 0)
     {
-        abort(501);
+        // Performance check.
+        if (!$profile = Profile::find($profileId)) {
+            return response('Profile Not Found.', 400);
+        }
+
+        // Retrieve root folders and movements if not folder was specified.
+        if ($folderId < 1)
+        {
+            $parent = null;
+            $folders = $profile->folders()->where('folder_id', 0)->get();
+            $movements = $profile->movements()->where('folder_id', null)->get();
+        }
+
+        // Retrieve folders and movements within a given folder.
+        else
+        {
+            if (!$folder = Folder::find($folderId)) {
+                return response('Folder Not Found.', 400);
+            }
+
+            $parent = $folder->parent;
+            $folders = $folder->children;
+            $movements = [];
+        }
+
+        return compact('parent', 'folders', 'movements');
     }
 
     /**

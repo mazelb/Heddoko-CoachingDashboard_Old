@@ -175,10 +175,10 @@ angular.module('app.directives')
                 // Generates the displayed label.
                 $scope.getLabel = function(profile) {
 
-                    var label = profile.first_name;
+                    var label = profile.firstName;
 
-                    if (profile.last_name && profile.last_name.length) {
-                        label += ' ' + profile.last_name;
+                    if (profile.lastName && profile.lastName.length) {
+                        label += ' ' + profile.lastName;
                     }
 
                     // TODO: add main group.
