@@ -18,7 +18,7 @@
         <a href="{{ folder.href }}" class="folder">
             <i class="fa fa-folder-open fa-2x"></i>
             <span class="name">
-                {{ folder.name }}
+                {{ folder.name | characters:20 }}
             </span>
         </a>
     </div>
@@ -28,8 +28,20 @@
         <span class="file">
             <i class="fa fa-files-o fa-2x"></i>
             <span class="name">
-                {{ movement.title }}
+                {{ movement.title | characters:20 }}
             </span>
         </span>
+    </div>
+
+    <!-- No movements or folders to show -->
+    <div
+        ng-show="folders.length === 0 && movements.length === 0"
+        class="col-xs-8 col-md-9 col-lg-11 text-center">
+
+        <h3>There are no movements to display.</h3>
+        Once you upload or capture a new movement, it will show up here.
+        <br>
+
+        Start by <b><a href="#/import">importing</a></b> your own movements.
     </div>
 </div>

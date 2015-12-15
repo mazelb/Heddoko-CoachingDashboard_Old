@@ -2119,7 +2119,10 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "    <ui-page-title data-title=\"'Organize'\" data-icon=\"'th'\"></ui-page-title>\n" +
     "\n" +
     "    <!-- Main container -->\n" +
-    "    <div ng-show=\"true\" class=\"file-explorer-container\">\n" +
+    "    <div\n" +
+    "        ng-show=\"global.state.profile.list.length > 0 || global.data.isFetchingProfiles === true\"\n" +
+    "        class=\"file-explorer-container\">\n" +
+    "\n" +
     "        <header>\n" +
     "            <div class=\"btn-toolbar\" role=\"toolbar\">\n" +
     "\n" +
@@ -2146,18 +2149,22 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "                    </button>\n" +
     "                </div>\n" +
     "\n" +
-    "                <!-- Folder actions -->\n" +
+    "                <!-- Create new folder -->\n" +
     "                <div class=\"btn-group\" role=\"group\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-default\">\n" +
+    "                    <button\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
     "                        <i class=\"fa fa-plus\"></i>\n" +
     "                    </button>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- ... -->\n" +
-    "                <div class=\"btn-group\" role=\"group\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-default\">\n" +
-    "                        <i class=\"fa fa-refresh\"></i>\n" +
-    "                    </button>\n" +
+    "                    <ul class=\"dropdown-menu\">\n" +
+    "                        <li>\n" +
+    "                            <input type=\"text\" placeholder=\"Folder Name\">\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </header>\n" +
@@ -2170,7 +2177,9 @@ angular.module("movements/index.html", []).run(["$templateCache", function($temp
     "        </section>\n" +
     "\n" +
     "        <!-- Loading notice -->\n" +
-    "        <section ng-show=\"global.data.isFetchingMovementData === true\">\n" +
+    "        <section\n" +
+    "            ng-show=\"global.data.isFetchingMovementData === true\n" +
+    "                || global.data.isFetchingProfiles === true\">\n" +
     "            <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
     "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "            </div>\n" +
@@ -2217,7 +2226,7 @@ angular.module("movements/partials/large-tiles-layout.html", []).run(["$template
     "    <!-- Parent folder -->\n" +
     "    <div ng-show=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <a href=\"{{ parentFolder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-hand-o-left fa-2x\"></i>\n" +
+    "            <i class=\"fa fa-hand-o-left fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
     "                Back\n" +
     "            </span>\n" +
@@ -2227,7 +2236,7 @@ angular.module("movements/partials/large-tiles-layout.html", []).run(["$template
     "    <!-- Other folders -->\n" +
     "    <div ng-repeat=\"folder in folders\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-folder-open fa-2x\"></i>\n" +
+    "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
     "                {{ folder.name }}\n" +
     "            </span>\n" +
@@ -2302,8 +2311,21 @@ angular.module("movements/partials/large-tiles-layout.html", []).run(["$template
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </div> <!-- Movement DIV -->\n" +
+    "    </div>\n" +
     "\n" +
+    "    <!-- No movements or folders to show -->\n" +
+    "    <div\n" +
+    "        ng-show=\"folders.length === 0 && movements.length === 0\"\n" +
+    "        class=\"col-xs-6 col-md-8 col-lg-9\"\n" +
+    "        style=\"margin-top: 35px\">\n" +
+    "\n" +
+    "        <h3>There are no movements to display.</h3>\n" +
+    "        Once you upload or capture a new movement, it will show up here.\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        Start by <b><a href=\"#/import\">importing</a></b> your own movements.\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -2329,7 +2351,7 @@ angular.module("movements/partials/small-tiles-layout.html", []).run(["$template
     "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-folder-open fa-2x\"></i>\n" +
     "            <span class=\"name\">\n" +
-    "                {{ folder.name }}\n" +
+    "                {{ folder.name | characters:20 }}\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
@@ -2339,9 +2361,21 @@ angular.module("movements/partials/small-tiles-layout.html", []).run(["$template
     "        <span class=\"file\">\n" +
     "            <i class=\"fa fa-files-o fa-2x\"></i>\n" +
     "            <span class=\"name\">\n" +
-    "                {{ movement.title }}\n" +
+    "                {{ movement.title | characters:20 }}\n" +
     "            </span>\n" +
     "        </span>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- No movements or folders to show -->\n" +
+    "    <div\n" +
+    "        ng-show=\"folders.length === 0 && movements.length === 0\"\n" +
+    "        class=\"col-xs-8 col-md-9 col-lg-11 text-center\">\n" +
+    "\n" +
+    "        <h3>There are no movements to display.</h3>\n" +
+    "        Once you upload or capture a new movement, it will show up here.\n" +
+    "        <br>\n" +
+    "\n" +
+    "        Start by <b><a href=\"#/import\">importing</a></b> your own movements.\n" +
     "    </div>\n" +
     "</div>\n" +
     "");

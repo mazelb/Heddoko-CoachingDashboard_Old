@@ -76,8 +76,11 @@
     section {
         .folder, .file {
             display: block;
-            margin: 25px auto;
             text-align: center;
+
+            .name {
+                display: block;
+            }
         }
     }
 
@@ -85,10 +88,17 @@
         .folder, .file {
             margin: 25px auto;
             text-align: center;
+        }
+    }
 
-            .name {
-                display: block;
-            }
+    .large-tiles-layout {
+        .folder, .file {
+            margin: 25% auto;
+            text-align: center;
+        }
+
+        .name {
+            margin: 15px auto 0;
         }
     }
 

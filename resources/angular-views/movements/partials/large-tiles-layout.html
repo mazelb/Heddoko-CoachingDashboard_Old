@@ -6,7 +6,7 @@
     <!-- Parent folder -->
     <div ng-show="parentFolder" class="col-xs-6 col-md-4 col-lg-3">
         <a href="{{ parentFolder.href }}" class="folder">
-            <i class="fa fa-hand-o-left fa-2x"></i>
+            <i class="fa fa-hand-o-left fa-3x"></i>
             <span class="name">
                 Back
             </span>
@@ -16,7 +16,7 @@
     <!-- Other folders -->
     <div ng-repeat="folder in folders" class="col-xs-6 col-md-4 col-lg-3">
         <a href="{{ folder.href }}" class="folder">
-            <i class="fa fa-folder-open fa-2x"></i>
+            <i class="fa fa-folder-open fa-3x"></i>
             <span class="name">
                 {{ folder.name }}
             </span>
@@ -91,6 +91,19 @@
                 </div>
             </div>
         </div>
-    </div> <!-- Movement DIV -->
+    </div>
 
+    <!-- No movements or folders to show -->
+    <div
+        ng-show="folders.length === 0 && movements.length === 0"
+        class="col-xs-6 col-md-8 col-lg-9"
+        style="margin-top: 35px">
+
+        <h3>There are no movements to display.</h3>
+        Once you upload or capture a new movement, it will show up here.
+        <br>
+        <br>
+
+        Start by <b><a href="#/import">importing</a></b> your own movements.
+    </div>
 </div>

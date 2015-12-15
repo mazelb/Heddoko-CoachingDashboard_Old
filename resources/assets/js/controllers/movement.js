@@ -196,7 +196,7 @@ angular.module('app.controllers')
         else
         {
             // If we're still loading profiles, keep waiting.
-            if (Rover.data.isFetchingProfiles === true) {
+            if ($scope.global.data.isFetchingProfiles === true) {
                 Utilities.debug('Still loading progiles...');
             }
 
@@ -204,31 +204,6 @@ angular.module('app.controllers')
                 Rover.browseTo.path('/movements');
             }
         }
-
-
-
-
-
-
-
-        $scope.global.data.movement = $scope.global.data.movement || {};
-        $scope.global.data.movement.loaded = $scope.global.data.movement.loaded || false;
-        $scope.global.data.movement.list = $scope.global.data.movement.list || [];
-        $scope.global.data.movement.total = $scope.global.data.movement.total || 0;
-        $scope.global.data.movement.query = $scope.global.data.movement.query || '';
-        $scope.global.data.movement.offset = $scope.global.data.movement.offset || 0;
-        $scope.global.data.movement.limit = $scope.global.data.movement.limit || 16;
-
-        // List of movements.
-        $scope.global.data.movements = $scope.global.data.movements || [];
-
-        // Fetching movements flag.
-        $scope.global.data.isFetchingMovements = $scope.global.data.isFetchingMovements || false;
-
-        // // Fetch movement data.
-        // if ($scope.global.data.movement.loaded === false) {
-        //     $scope.fetchMovements();
-        // }
 
         // Watches the global profile list.
         $scope.$watch('global.profile.list', function(newList, oldList) {
@@ -243,5 +218,7 @@ angular.module('app.controllers')
         $scope.$watch('layout.name', function(name) {
             Rover.setConfig('movements.layout', name);
         });
+
+        Utilities.debug('test a');
     }
 ]);

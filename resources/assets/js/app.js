@@ -9,7 +9,7 @@
 var app = angular.module('app', [
 
     // External dependencies.
-    'ngAnimate', 'ngFileUpload', 'ngRoute', 'ngStorage', 'selectize',
+    'ngAnimate', 'ngFileUpload', 'ngRoute', 'ngStorage', 'selectize', 'truncate',
 
     // General dependencies.
     'backendHeddoko',
@@ -34,7 +34,7 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.4.9';
+var _appVersion = '0.4.10';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||

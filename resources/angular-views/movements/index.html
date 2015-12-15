@@ -5,7 +5,10 @@
     <ui-page-title data-title="'Organize'" data-icon="'th'"></ui-page-title>
 
     <!-- Main container -->
-    <div ng-show="true" class="file-explorer-container">
+    <div
+        ng-show="global.state.profile.list.length > 0 || global.data.isFetchingProfiles === true"
+        class="file-explorer-container">
+
         <header>
             <div class="btn-toolbar" role="toolbar">
 
@@ -32,17 +35,10 @@
                     </button>
                 </div>
 
-                <!-- Folder actions -->
+                <!-- Create new folder -->
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-default">
                         <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-
-                <!-- ... -->
-                <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default">
-                        <i class="fa fa-refresh"></i>
                     </button>
                 </div>
             </div>
@@ -56,7 +52,9 @@
         </section>
 
         <!-- Loading notice -->
-        <section ng-show="global.data.isFetchingMovementData === true">
+        <section
+            ng-show="global.data.isFetchingMovementData === true
+                || global.data.isFetchingProfiles === true">
             <div class="text-center" style="margin: 60px auto">
                 <i class="fa fa-spinner fa-spin fa-2x"></i>
             </div>

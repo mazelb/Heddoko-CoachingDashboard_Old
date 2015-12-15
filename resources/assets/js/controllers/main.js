@@ -17,10 +17,6 @@ angular.module('app.controllers')
         Rover, Utilities, appVersion, isLocalEnvironment) {
         Utilities.debug('MainController');
 
-        // This makes the rover accessible to some views.
-        // @deprecated
-        $scope.Rover = Rover;
-
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
         $scope.global =
         {
@@ -141,7 +137,7 @@ angular.module('app.controllers')
             $scope.global.data.isFetchingProfiles = true;
 
             // Retrieve profiles.
-    		ProfileService.get().then(
+    		ProfileService.list().then(
                 function(response) {
 
                     // Reset profile list.
@@ -161,7 +157,7 @@ angular.module('app.controllers')
                     $scope.global.data.isFetchingProfiles = false;
     		    },
                 function(response) {
-                    Utitlities.debug('Could not retrieve profile list: ' + response.statusText);
+                    Utilities.debug('Could not retrieve profile list: ' + response.statusText);
                     $scope.global.data.isFetchingProfiles = false;
                 }
             );
@@ -181,7 +177,7 @@ angular.module('app.controllers')
                     $scope.global.data.isFetchingUser = false;
                 },
                 function(response) {
-                    Utitlities.debug('Could not retrieve user details: ' + response.statusText);
+                    Utilities.debug('Could not retrieve user details: ' + response.statusText);
                     // Utilities.alert('Could not retrieve user details. Please try again later.');
                     Rover.state.user = {id: 0};
                     $scope.global.data.isFetchingUser = false;

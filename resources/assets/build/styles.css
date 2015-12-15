@@ -1519,13 +1519,17 @@ label {
   margin: 25px auto; }
 .file-explorer-container section .folder, .file-explorer-container section .file {
   display: block;
-  margin: 25px auto;
   text-align: center; }
+  .file-explorer-container section .folder .name, .file-explorer-container section .file .name {
+    display: block; }
 .file-explorer-container .small-tiles-layout .folder, .file-explorer-container .small-tiles-layout .file {
   margin: 25px auto;
   text-align: center; }
-  .file-explorer-container .small-tiles-layout .folder .name, .file-explorer-container .small-tiles-layout .file .name {
-    display: block; }
+.file-explorer-container .large-tiles-layout .folder, .file-explorer-container .large-tiles-layout .file {
+  margin: 25% auto;
+  text-align: center; }
+.file-explorer-container .large-tiles-layout .name {
+  margin: 15px auto 0; }
 .file-explorer-container footer {
   margin: 15px auto 0;
   padding: 10px;

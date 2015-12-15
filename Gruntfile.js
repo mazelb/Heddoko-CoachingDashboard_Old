@@ -133,6 +133,9 @@ module.exports = function(grunt) {
                     'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
                     'bower_components/ng-file-upload/ng-file-upload.min.js',
 
+                    // Truncate
+                    'bower_components/angular-truncate/src/truncate.js',
+
                     // Intro.js: for onboarding.
                     'bower_components/intro.js/minified/intro.min.js',
 
