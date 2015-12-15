@@ -1,6 +1,12 @@
 
 <!-- Group summary -->
 <div ng-show="group.id" class="page">
+    <header>
+        <h1>
+            {{ group.name }}
+            <span></span>
+        </h1>
+    </header>
 
     <div class="row">
 
@@ -51,7 +57,7 @@
 
                 <!-- Create profile button -->
                 <button
-                    ng-click="Rover.browseTo.path('profile/create')"
+                    ng-click="global.browseTo.path('profile/create')"
                     class="btn btn-default">
 
                     Add an athlete
@@ -124,10 +130,10 @@
                             href="javascript:;"
                             class="btn btn-primary btn-metro"
                             ng-repeat="profile in global.state.profile.filtered"
-                            ng-click="Rover.browseTo.profile(profile)"
-                            style="background-image: url({{ profile.avatar_src || '' }});background-size: cover;">
+                            ng-click="global.browseTo.profile(profile)"
+                            style="background-image: url({{ profile.avatarSrc || '' }});background-size: cover;">
 
-                            <div class="btn-title">{{ profile.first_name }}</div>
+                            <div class="btn-title">{{ profile.firstName }}</div>
                         </a>
                     </div>
                 </div>
@@ -163,6 +169,6 @@
         <br>
 
         You can also take this opportunity to
-        <a ng-click="Rover.browseTo.path('group/create')" href="javascript:;">create one</a>.
+        <a href="#/group/create">create one</a>.
     </div>
 </div>

@@ -1,22 +1,22 @@
 
 <ol class="breadcrumb-alt">
     <li>
-        <a class="active" href="javascript:;" ng-click="Rover.browseTo.path('/')">
+        <a class="active" href="#/dashboard">
             Dashboard
         </a>
     </li>
     <li ng-show="global.store.groupId > 0">
-        <a class="active" href="javascript:;" ng-click="Rover.browseTo.path('/group/list')">
+        <a class="active" href="#/group/list">
             Teams
         </a>
     </li>
     <li ng-show="isProfilePage && global.store.groupId > 0">
-        <a class="active" href="javascript:;" ng-click="Rover.browseTo.group()">
+        <a class="active" href="javascript:;" ng-click="global.browseTo.group()">
             {{ global.state.group.list[global.store.groupId].name }}
         </a>
     </li>
     <li ng-show="currentPath == '/profile/view' && global.store.profileId > 0">
-        <a class="active" href="javascript:;" ng-click="Rover.browseTo.profile()">
+        <a class="active" href="javascript:;" ng-click="global.browseTo.profile()">
             {{ global.state.profile.list[global.store.profileId].firstName }}
         </a>
     </li>

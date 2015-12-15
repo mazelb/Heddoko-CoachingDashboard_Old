@@ -4,7 +4,12 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
   $templateCache.put("account.html",
     "<!-- User details -->\n" +
     "<div class=\"page\">\n" +
-    "    <ui-page-title data-title=\"'Account'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Account <i class=\"fa fa-cogs\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
     "\n" +
     "    <div ng-hide=\"user.id === 0\" class=\"row\">\n" +
     "        <div class=\"col-md-8\">\n" +
@@ -89,7 +94,12 @@ angular.module("configuration.html", []).run(["$templateCache", function($templa
   $templateCache.put("configuration.html",
     "<!-- User details -->\n" +
     "<div class=\"page\">\n" +
-    "    <ui-page-title data-title=\"'Settings'\" data-icon=\"'cogs'\"></ui-page-title>\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Settings <i class=\"fa fa-cogs\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-md-8\">\n" +
@@ -1441,7 +1451,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "            <div class=\"col-sm-6\">\n" +
     "                <div class=\"btn-group pull-right\">\n" +
     "                    <button\n" +
-    "                        ng-click=\"Rover.browseTo.path('group/create')\"\n" +
+    "                        ng-click=\"global.browseTo.path('group/create')\"\n" +
     "                        class=\"btn btn-default\">Add a Team</button>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -1452,7 +1462,8 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "\n" +
     "    <a\n" +
     "        ng-repeat=\"group in global.state.group.list\"\n" +
-    "        ng-click=\"Rover.browseTo.group(group)\"\n" +
+    "        ng-show=\"group.id\"\n" +
+    "        ng-click=\"global.browseTo.group(group)\"\n" +
     "        href=\"javascript:;\"\n" +
     "        class=\"btn btn-primary btn-metro\"\n" +
     "        style=\"background-image: url({{ group.avatarSrc || '' }});background-size: cover;\">\n" +
@@ -1559,6 +1570,12 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
   $templateCache.put("group/view.html",
     "<!-- Group summary -->\n" +
     "<div ng-show=\"group.id\" class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            {{ group.name }}\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "\n" +
@@ -1609,7 +1626,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "\n" +
     "                <!-- Create profile button -->\n" +
     "                <button\n" +
-    "                    ng-click=\"Rover.browseTo.path('profile/create')\"\n" +
+    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
     "                    class=\"btn btn-default\">\n" +
     "\n" +
     "                    Add an athlete\n" +
@@ -1682,10 +1699,10 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                            href=\"javascript:;\"\n" +
     "                            class=\"btn btn-primary btn-metro\"\n" +
     "                            ng-repeat=\"profile in global.state.profile.filtered\"\n" +
-    "                            ng-click=\"Rover.browseTo.profile(profile)\"\n" +
-    "                            style=\"background-image: url({{ profile.avatar_src || '' }});background-size: cover;\">\n" +
+    "                            ng-click=\"global.browseTo.profile(profile)\"\n" +
+    "                            style=\"background-image: url({{ profile.avatarSrc || '' }});background-size: cover;\">\n" +
     "\n" +
-    "                            <div class=\"btn-title\">{{ profile.first_name }}</div>\n" +
+    "                            <div class=\"btn-title\">{{ profile.firstName }}</div>\n" +
     "                        </a>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -1721,7 +1738,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        <br>\n" +
     "\n" +
     "        You can also take this opportunity to\n" +
-    "        <a ng-click=\"Rover.browseTo.path('group/create')\" href=\"javascript:;\">create one</a>.\n" +
+    "        <a href=\"#/group/create\">create one</a>.\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2214,22 +2231,22 @@ angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function(
   $templateCache.put("partials/breadcrumbs.html",
     "<ol class=\"breadcrumb-alt\">\n" +
     "    <li>\n" +
-    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.path('/')\">\n" +
+    "        <a class=\"active\" href=\"#/dashboard\">\n" +
     "            Dashboard\n" +
     "        </a>\n" +
     "    </li>\n" +
     "    <li ng-show=\"global.store.groupId > 0\">\n" +
-    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.path('/group/list')\">\n" +
+    "        <a class=\"active\" href=\"#/group/list\">\n" +
     "            Teams\n" +
     "        </a>\n" +
     "    </li>\n" +
     "    <li ng-show=\"isProfilePage && global.store.groupId > 0\">\n" +
-    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.group()\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"global.browseTo.group()\">\n" +
     "            {{ global.state.group.list[global.store.groupId].name }}\n" +
     "        </a>\n" +
     "    </li>\n" +
     "    <li ng-show=\"currentPath == '/profile/view' && global.store.profileId > 0\">\n" +
-    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"Rover.browseTo.profile()\">\n" +
+    "        <a class=\"active\" href=\"javascript:;\" ng-click=\"global.browseTo.profile()\">\n" +
     "            {{ global.state.profile.list[global.store.profileId].firstName }}\n" +
     "        </a>\n" +
     "    </li>\n" +
@@ -2283,81 +2300,46 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                    </selectize>\n" +
     "                </div>\n" +
     "            </li>\n" +
+    "\n" +
+    "            <!-- App settings -->\n" +
     "            <li>\n" +
-    "                <div class=\"btn-group\">\n" +
+    "                <a\n" +
+    "                    href=\"#/config\"\n" +
+    "                    class=\"onboarding-general\"\n" +
+    "                    data-step=\"4\"\n" +
+    "                    data-intro=\"Click this button to modify your app settings\">\n" +
     "\n" +
-    "                    <!-- Dev -->\n" +
-    "                    <div ng-show=\"global.isLocal\" class=\"btn-group\">\n" +
+    "                    <i class=\"fa fa-cogs fa-fw\"></i>\n" +
+    "                    <span>Settings</span>\n" +
+    "                </a>\n" +
+    "            </li>\n" +
     "\n" +
-    "                        <!-- Face of dropdown -->\n" +
-    "                        <button\n" +
-    "                            type=\"button\"\n" +
-    "                            class=\"btn btn-default dropdown-toggle\"\n" +
-    "                            data-toggle=\"dropdown\"\n" +
-    "                            aria-haspopup=\"true\"\n" +
-    "                            aria-expanded=\"false\">\n" +
+    "            <!-- Onboarding -->\n" +
+    "            <li>\n" +
+    "                <a\n" +
+    "                    ng-click=\"global.onboarding.general()\"\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"onboarding-general\"\n" +
+    "                    data-step=\"6\"\n" +
+    "                    data-intro=\"Click here whenever you want to see this again\">\n" +
     "\n" +
-    "                            <i class=\"fa fa-code\"></i>\n" +
-    "                        </button>\n" +
+    "                    <i class=\"fa fa-question fa-fw\"></i>\n" +
+    "                    <span>Help</span>\n" +
+    "                </a>\n" +
+    "            </li>\n" +
     "\n" +
-    "                        <!-- Contents of dropdown -->\n" +
-    "                        <ul class=\"dropdown-menu\">\n" +
-    "                            <li>\n" +
-    "                                <a href=\"javascript:;\">\n" +
-    "                                    Total groups: {{ global.state.group.list.length }} /\n" +
-    "                                    Selected: {{ global.getSelectedGroup().name || 'None' }}\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a href=\"javascript:;\">\n" +
-    "                                    Total profiles: {{ global.state.profile.list.length }} /\n" +
-    "                                    Selected (callback): {{ global.getSelectedProfile().first_name || 'None' }} /\n" +
-    "                                    Selected (local): {{ global.store.profileId }}\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a href=\"javascript:;\"data-toggle=\"modal\" data-target=\"#overlay-screen\">\n" +
-    "                                    Overlay Test\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
+    "            <!-- Sign out -->\n" +
+    "            <li>\n" +
+    "                <a\n" +
+    "                    ng-click=\"global.endSession()\"\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"onboarding-general\"\n" +
+    "                    data-step=\"5\"\n" +
+    "                    data-intro=\"Use this button when you're ready to log out\">\n" +
     "\n" +
-    "                    <!-- Settings -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.browseTo.path('/config')\"\n" +
-    "                        class=\"btn btn-default onboarding-general\"\n" +
-    "                        data-step=\"4\"\n" +
-    "                        data-intro=\"Click this button to modify your app settings\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-cogs fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Onboarding -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.onboarding.general()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default onboarding-general\"\n" +
-    "                        data-step=\"6\"\n" +
-    "                        data-intro=\"Click here whenever you want to see this again\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-question fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Sign out -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.endSession()\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-logout onboarding-general\"\n" +
-    "                        data-toggle=\"tooltip\"\n" +
-    "                        data-placement=\"bottom\"\n" +
-    "                        data-step=\"5\"\n" +
-    "                        data-intro=\"Use this button when you're ready to log out\"\n" +
-    "                        title=\"Logout\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
+    "                    <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
+    "                    <span>Log out</span>\n" +
+    "                </a>\n" +
     "            </li>\n" +
     "        </ul>\n" +
     "\n" +
@@ -2478,12 +2460,12 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
     "                    <a href=\"#/screening\">\n" +
-    "                        <span>Results</span>\n" +
+    "                        <span>Record or Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/screening\">\n" +
-    "                        <span>Create new</span>\n" +
+    "                        <span>Results</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "            </ul>\n" +
@@ -2911,8 +2893,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "<div class=\"page page-dashboard\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Athletes\n" +
-    "            <i class=\"fa fa-users\"></i>\n" +
+    "            Athletes <i class=\"fa fa-users\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "    </header>\n" +
@@ -2924,7 +2905,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "                class=\"btn btn-primary btn-metro\"\n" +
     "                ng-repeat=\"profile in global.state.profile.list\"\n" +
     "                ng-show=\"profile.id\"\n" +
-    "                ng-click=\"Rover.browseTo.profile(profile)\"\n" +
+    "                ng-click=\"global.browseTo.profile(profile)\"\n" +
     "                style=\"background-image: url({{ profile.avatarSrc || '' }});background-size: cover;\">\n" +
     "\n" +
     "                <div class=\"btn-title\">{{ profile.firstName | characters:30 }}</div>\n" +
@@ -3040,6 +3021,12 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
   $templateCache.put("profile/view.html",
     "<!-- Profile summary -->\n" +
     "<div ng-hide=\"profile.id === 0\" class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            {{ profile.firstName }} {{ profile.lastName }}\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "\n" +
@@ -3088,7 +3075,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "                <!-- Create profile button -->\n" +
     "                <button\n" +
-    "                    ng-click=\"Rover.browseTo.path('profile/create')\"\n" +
+    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
     "                    class=\"btn btn-default\">\n" +
     "\n" +
     "                    Add another athlete\n" +

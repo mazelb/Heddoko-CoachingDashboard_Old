@@ -20,7 +20,7 @@
             <div class="col-sm-6">
                 <div class="btn-group pull-right">
                     <button
-                        ng-click="Rover.browseTo.path('group/create')"
+                        ng-click="global.browseTo.path('group/create')"
                         class="btn btn-default">Add a Team</button>
                 </div>
             </div>
@@ -31,7 +31,8 @@
 
     <a
         ng-repeat="group in global.state.group.list"
-        ng-click="Rover.browseTo.group(group)"
+        ng-show="group.id"
+        ng-click="global.browseTo.group(group)"
         href="javascript:;"
         class="btn btn-primary btn-metro"
         style="background-image: url({{ group.avatarSrc || '' }});background-size: cover;">

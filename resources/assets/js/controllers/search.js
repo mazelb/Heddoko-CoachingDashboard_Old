@@ -44,7 +44,7 @@ angular.module('app.controllers')
             create: false,
             valueField: 'id',
             maxItems: 1,
-            searchField: ['first_name', 'last_name', 'name', 'title'],
+            searchField: ['firstName', 'lastName', 'name', 'title'],
             render: {
                 /**
                  * Called anytime a search option is being rendered.
@@ -59,7 +59,7 @@ angular.module('app.controllers')
                     switch ($scope.selectedFilter.name)
                     {
                         case 'profile':
-                            data = escape(item.first_name) + ' ' + escape(item.last_name);
+                            data = escape(item.firstName) + ' ' + escape(item.lastName);
                             break;
 
                         case 'group':
@@ -91,7 +91,7 @@ angular.module('app.controllers')
                     switch ($scope.selectedFilter.name)
                     {
                         case 'profile':
-                            label = escape(item.first_name);
+                            label = escape(item.firstName);
                             break;
 
                         case 'group':
@@ -138,12 +138,12 @@ angular.module('app.controllers')
                 switch ($scope.selectedFilter.name)
                 {
                     case 'profile':
-                        Rover.debug('Looking up profiles...');
+                        Utilities.debug('Looking up profiles...');
                         callback($scope.options);
                         break;
 
                     case 'group':
-                        Rover.debug('Looking up groups...');
+                        Utilities.debug('Looking up groups...');
                         callback($scope.options);
                         break;
 
@@ -155,7 +155,7 @@ angular.module('app.controllers')
                         break;
 
                     case 'screening':
-                        Rover.debug('Looking up screenings...');
+                        Utilities.debug('Looking up screenings...');
 
                         Utilities.alert('In Development.');
                         callback();
