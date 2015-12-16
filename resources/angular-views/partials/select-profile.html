@@ -1,18 +1,16 @@
 
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
 <h3 class="text-center">Select a profile to get started</h3>
 <br>
 
 <div class="col-md-4 col-md-offset-4 text-center">
-    <selectize
-        options="global.state.profile.list"
-        class="form-control">
-    </selectize>
+    <ui-profile-lookup
+        profiles="global.state.profile.list"
+        select-profile="global.selectProfile(profile)">
+    </ui-profile-lookup>
     <br>
 
     You can also take this opportunity to
     <a href="#profile/create">create one</a>.
-
-    Profile: {{ $parent.global.getSelectedProfile() }}
-
-    Movements: {{ $parent.uploadedMovements }}
 </div>

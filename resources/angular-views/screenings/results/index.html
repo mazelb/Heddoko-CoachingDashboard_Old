@@ -1,0 +1,31 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="page">
+    <header>
+        <h1>
+            <abbr title="Functional Movement Test">FMT</abbr> Report
+            <span></span>
+        </h1>
+
+        <!-- Append profile name to page title -->
+        <div ng-show="global.getSelectedProfile().id > 0" class="h1-append">
+            for
+            <a ng-click="global.store.profileId = 0" href="javascript:;">
+                {{ global.getSelectedProfile().firstName }}
+                {{ global.getSelectedProfile().lastName }}
+                <i class="fa fa-refresh"></i>
+            </a>
+        </div>
+    </header>
+
+    <div ng-show="global.getSelectedProfile().id > 0">
+        <h2 style="text-align: center; color: #ccc;">
+            In Development
+        </h2>
+    </div>
+
+    <div ng-show="global.getSelectedProfile().id === 0">
+        <div ng-include="'partials/select-profile.html'"></div>
+    </div>
+</div>

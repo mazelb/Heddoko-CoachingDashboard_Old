@@ -7,7 +7,7 @@
  */
 angular.module('app.services')
 
-.factory('MovementService', ['$http', 'apiEndpoint',
+.factory('ScreeningService', ['$http', 'apiEndpoint',
     function($http, apiEndpoint) {
 
         return {
@@ -15,7 +15,7 @@ angular.module('app.services')
             /**
              * Base endpoint.
              */
-            endpoint: apiEndpoint + '/movements/',
+            endpoint: apiEndpoint + '/screenings/',
 
             /**
              * Retrieves the specified resource from the API.

@@ -13,6 +13,11 @@ angular.module('app.services')
         return {
 
             /**
+             * Base endpoint.
+             */
+            endpoint: apiEndpoint + '/profiles/',
+
+            /**
              * Gets a list of profiles.
              *
              * @param int groupId
@@ -23,7 +28,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = groupId ? {params: {group: groupId}} : {};
 
-                return $http.get(apiEndpoint + '/profile', config);
+                return $http.get(this.endpoint, config);
             },
 
             /**
@@ -33,7 +38,7 @@ angular.module('app.services')
              * @return object $http
              */
             get: function(id) {
-    			return $http.get(apiEndpoint + '/profile/' + id);
+    			return $http.get(this.endpoint + id);
     		},
 
             /**
@@ -48,7 +53,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = groupId ? {params: {group: groupId}} : {};
 
-                return $http.post(apiEndpoint + '/profile', data, config);
+                return $http.post(this.endpoint, data, config);
     		},
 
             /**
@@ -63,7 +68,7 @@ angular.module('app.services')
                 // Add group ID to request parameters.
                 var config = (data.groups && data.groups.length) ? {params: {group: data.groups[0]}} : {};
 
-                return $http.put(apiEndpoint + '/profile/' + id, data, config);
+                return $http.put(this.endpoint + id, data, config);
     		},
 
             /**
@@ -73,7 +78,7 @@ angular.module('app.services')
              * @return object $http
              */
             destroy: function(id) {
-    			return $http.delete(apiEndpoint + '/profile/' + id);
+    			return $http.delete(this.endpoint + id);
     		},
 
             /**
@@ -83,7 +88,7 @@ angular.module('app.services')
              * @return ...
              */
             destroyAvatar: function(id) {
-    			return $http.delete(apiEndpoint + '/profile/' + id + '/avatar');
+    			return $http.delete(this.endpoint + id + '/avatar');
     		},
 
             /**
@@ -94,7 +99,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post(apiEndpoint + '/profile/'+ id +'/photo', {image: fileData});
+                return $http.post(this.endpoint + id +'/avatar', {image: fileData});
             },
 
             /**

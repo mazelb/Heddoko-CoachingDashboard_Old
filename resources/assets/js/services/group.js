@@ -13,31 +13,36 @@ angular.module('app.services')
         return {
 
             /**
+             * Base endpoint.
+             */
+            endpoint: apiEndpoint + '/groups/',
+
+            /**
              *
              */
             get: function() {
-    			return $http.get(apiEndpoint + '/group');
+    			return $http.get(this.endpoint);
     		},
 
             /**
              *
              */
             create: function(data) {
-                return $http.post(apiEndpoint + '/group', data);
+                return $http.post(this.endpoint, data);
     		},
 
             /**
              *
              */
             update: function(id, data) {
-                return $http.put(apiEndpoint + '/group/' + id, data);
+                return $http.put(this.endpoint + id, data);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete(apiEndpoint + '/group/' + id);
+    			return $http.delete(this.endpoint + id);
     		},
 
             /**
@@ -48,7 +53,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post(apiEndpoint + '/group/'+ id +'/photo', {image: fileData});
+                return $http.post(this.endpoint + id + '/avatar', {image: fileData});
             }
         };
     }

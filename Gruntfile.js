@@ -362,4 +362,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['jshint', 'uglify', 'html2js', 'concat']);
+    grunt.registerTask('default', ['js', 'css']);
 };

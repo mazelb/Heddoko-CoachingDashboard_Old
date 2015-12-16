@@ -35,9 +35,9 @@ class MovementController extends Controller
     public function index()
     {
         // Profile-based query builder.
-        if ($this->request->has('profileId'))
+        if ($this->request->has('profile_id'))
         {
-            $profileId = (int) $this->request->input('profileId');
+            $profileId = (int) $this->request->input('profile_id');
             if (!$profile = Auth::user()->profiles()->find($profileId)) {
                 return response('Profile Not Found.', 400);
             }
@@ -49,30 +49,13 @@ class MovementController extends Controller
         // by the authenticated user.
         else
         {
-            // Retrieve accessible profile IDs. The alternative here would be to use
-            // `Auth::user()->profiles()->lists('profiles.id')`
-            // but the generated SQL has an ambiguous "id" field.
-            $profiles = DB::table('profiles')
-                ->select('profiles.id')
-                ->join('manager_profile', 'profiles.id', '=', 'manager_profile.profile_id')
-                ->where('manager_profile.manager_id', '=', Auth::id())
-                ->get();
-            if (count($profiles) < 1) {
-                return ['total' => 0, 'results' => []];
-            }
-
-            $profileIDs = [];
-            foreach ($profiles as $profile) {
-                $profileIDs[] = $profile->id;
-            }
-
-            $builder = Movement::whereIn('profile_id', $profileIDs);
+            $builder = Movement::whereIn('profile_id', Auth::user()->getProfileIDs());
         }
 
         // ...
 
         $offset = 0;
-        $limit = 16;
+        $limit = 20;
         $orderBy = 'created_at';
         $orderDir = 'desc';
 
@@ -94,7 +77,7 @@ class MovementController extends Controller
     public function store()
     {
         // Retrieve profile this movement belongs to.
-        if (!$profileId = (int) $this->request->input('profileId')) {
+        if (!$profileId = (int) $this->request->input('profile_id')) {
             return response('Invalid Profile ID.', 400);
         }
 

@@ -13,6 +13,13 @@ angular.module('app.services')
         return {
 
             /**
+             * Base endpoint.
+             */
+            endpoint: function(profileId) {
+                return apiEndpoint + '/profiles/' + profileId + '/folders/';
+            },
+
+            /**
              * Retrieves the folders and movements for a given folder.
              *
              * @param int profileId
@@ -20,7 +27,7 @@ angular.module('app.services')
              * @return object $http
              */
             get: function(profileId, folderId) {
-    			return $http.get(apiEndpoint + '/profile/' + profileId + '/folder/' + folderId);
+    			return $http.get(this.endpoint(profileId) + folderId);
     		},
 
             /**
@@ -31,7 +38,7 @@ angular.module('app.services')
              * @return object $http
              */
             create: function(profileId, data) {
-                return $http.post(apiEndpoint + '/profile/' + profileId + '/folder', data);
+                return $http.post(this.endpoint(profileId), data);
     		},
 
             /**
@@ -43,7 +50,7 @@ angular.module('app.services')
              * @return object $http
              */
             update: function(profileId, folderId, data) {
-                return $http.put(apiEndpoint + '/profile/' + profileId + '/folder/' + folderId, data);
+                return $http.put(this.endpoint(profileId) + folderId, data);
     		},
 
             /**
@@ -54,7 +61,7 @@ angular.module('app.services')
              * @return object $http
              */
             destroy: function(profileId, folderId) {
-    			return $http.delete(apiEndpoint + '/profile/' + profileId + '/folder/' + folderId);
+    			return $http.delete(this.endpoint(profileId) + folderId);
     		}
         };
     }

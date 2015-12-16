@@ -1,8 +1,6 @@
 <?php
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
- *
  *
  * @brief   Handles screening-related http requests.
  * @author  Francis Amankrah (frank@heddoko.com)
@@ -10,10 +8,12 @@
  */
 namespace App\Http\Controllers;
 
-use App\Models\Screening;
+use Auth;
+
 use App\Http\Requests;
-use App\Models\ScreeningTest;
 use App\Models\Profile;
+use App\Models\Movement;
+use App\Models\Screening;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -34,10 +34,39 @@ class ScreeningController extends Controller
      */
     public function index()
     {
-        // Find related profile.
-        $profile = Profile::find($this->request->input('profile_id'));
+        // Profile-based query builder.
+        if ($this->request->has('profile_id'))
+        {
+            $profileId = (int) $this->request->input('profile_id');
+            if (!$profile = Auth::user()->profiles()->find($profileId)) {
+                return response('Profile Not Found.', 400);
+            }
 
-        return $profile ? $profile->screenings : [];
+            $builder = $profile->screenings();
+        }
+
+        // General query builder. We will limit the accessible scope to the profiles managed
+        // by the authenticated user.
+        else
+        {
+            $builder = Screening::whereIn('profile_id', Auth::user()->getProfileIDs());
+        }
+
+        // ...
+
+        $offset = 0;
+        $limit = 20;
+        $orderBy = 'created_at';
+        $orderDir = 'desc';
+
+        $builder->orderBy($orderBy, $orderDir)->skip($offset)->take($limit);
+
+        return [
+            'total' => $builder->count(),
+            'offset' => $offset,
+            'limit' => $limit,
+            'results' => $builder->get()
+        ];
     }
 
     /**
@@ -47,32 +76,36 @@ class ScreeningController extends Controller
      */
     public function store()
     {
-        // Make sure we have an associated profile.
-        if (!$profile = Profile::find($this->request->input('profile_id'))) {
-            return $this->error(400, 'Invalid profile ID.');
+        // Retrieve profile this screening belongs to.
+        if (!$profileId = (int) $this->request->input('profile_id')) {
+            return response('Invalid Profile ID.', 400);
         }
 
-        // Create an FMS record.
-        $fms = $profile->screenings()->create($this->request->only(['score', 'notes']));
+        if (!$profile = Auth::user()->profiles()->find($profileId)) {
+            return response('Profile Not Found.', 400);
+        }
 
-        // Add FMS tests.
-        $rawTestEntries = $this->request->input('tests', null);
-        if (is_array($rawTestEntries) && count($rawTestEntries))
+        // Create a record for the screening.
+        $screening = $profile->screenings()->create($this->request->only([
+            'score',
+            'score_max',
+            'notes'
+        ]));
+
+        // Add movements to the screening.
+        if ($this->request->has('movements'))
         {
-            $fmsTestEntries = [];
+            $movements = [];
+            $movementData = (array) $this->request->input('movements');
 
-            foreach ($rawTestEntries as $test) {
-                $fmsTestEntries[] = new FMSTest($test);
+            foreach ($movementData as $data) {
+                $movements[] = new Movement($data);
             }
 
-            $fms->tests()->saveMany($fmsTestEntries);
+            $screening->movements()->saveMany($movements);
         }
 
-        // Return all FMS records related to this profile.
-        return [
-            'list' => $profile->screenings,
-            'fms' => $fms
-        ];
+        return $screening;
     }
 
     /**

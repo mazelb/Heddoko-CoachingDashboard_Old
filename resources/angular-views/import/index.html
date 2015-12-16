@@ -1,21 +1,26 @@
 
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
 <div class="page import-page">
     <header>
         <h1>
             Upload <i class="fa fa-cloud-upload"></i>
             <span></span>
         </h1>
+
+        <!-- Append profile name to page title -->
+        <div ng-show="global.getSelectedProfile().id > 0" class="h1-append">
+            for
+            <a ng-click="global.store.profileId = 0" href="javascript:;">
+                {{ global.getSelectedProfile().firstName }}
+                {{ global.getSelectedProfile().lastName }}
+                <i class="fa fa-refresh"></i>
+            </a>
+        </div>
     </header>
 
     <!-- Import page -->
     <div ng-show="global.getSelectedProfile().id > 0">
-        Import movement data for
-        <b>
-            <a ng-click="global.store.profileId = 0" href="javascript:;">
-                {{ global.getSelectedProfile().firstName + ' ' + global.getSelectedProfile().lastName }}
-            </a>
-        </b>
-
         <div class="movement-import row">
 
             <!-- Import new movement -->
@@ -23,7 +28,7 @@
                 <button
                     ngf-select="import($files)"
                     ngf-drop="import($files)"
-                    accept="text/plain,text/csv"
+                    accept=".csv,.txt"
                     ngf-max-size="2MB"
                     multiple
                     class="btn btn-primary btn-circle btn-lg">

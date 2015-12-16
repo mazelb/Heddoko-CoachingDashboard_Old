@@ -4,40 +4,6 @@
  */
 
 
-/*
- * Angular - Dashbaord
- */
-.dashboard.page {
-    .bookmark-wrapper {
-        margin: 0 5%;
-    }
-    .bookmark-wrapper a {
-        display: block;
-    }
-    .bookmarks .fa,
-    .bookmarks span {
-        display: block;
-        text-align: center;
-    }
-    .bookmarks .fa {
-        padding: 30px 0 10px;
-    }
-    .bookmarks span:first-child {
-        padding: 20px 0 30px;
-        text-transform: uppercase;
-    }
-    .bookmarks .bookmark-bottom {
-        height: 5px;
-        width: 60%;
-        margin: 20px auto 0;
-        background-color: #fff;
-        @include transition(background-color .2s);
-    }
-    .bookmarks a:hover .bookmark-bottom {
-        background-color: $heddokogreen;
-    }
-}
-
 /**
  * Angular - Page headers.
  */
@@ -61,6 +27,13 @@
             height: 4px;
             background-color: $text-color;
         }
+    }
+
+    .h1-append {
+        display: inline-block;
+        margin: 0 0 0 20px;
+        font-size: 1.2em;
+        letter-spacing: 1.2px;
     }
 
     .btn-toolbar.pull-right {

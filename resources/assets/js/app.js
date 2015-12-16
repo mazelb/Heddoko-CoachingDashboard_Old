@@ -34,7 +34,6 @@ var app = angular.module('app', [
 ]);
 
 // Defines some constants.
-var _appVersion = '0.4.11';
 var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
@@ -42,8 +41,7 @@ var _appIsLocal =
 var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
 var _apiEndpoint = '/api/v1';
 
-app.constant('appVersion', _appVersion)
-    .constant('isLocalEnvironment', _appIsLocal)
+app.constant('isLocalEnvironment', _appIsLocal)
     .constant('assetVersion', _appAssetVersion)
     .constant('apiEndpoint', _apiEndpoint);
 
@@ -146,11 +144,19 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Screening routes.
         //
-        .when('/screening', {
-			templateUrl: 'screening/index.html',
-            controller: 'TestController'
+        .when('/screenings', {
+			templateUrl: 'screenings/index.html',
+            controller: 'ScreeningController'
 		})
-        .when('/screening/demo/:name?/:step?',
+        .when('/screenings/create', {
+			templateUrl: 'screenings/create/index.html',
+            controller: 'ScreeningController'
+		})
+        .when('/screenings/results', {
+			templateUrl: 'screenings/results/index.html',
+            controller: 'ScreeningController'
+		})
+        .when('/screenings/demo/:name?/:step?',
         {
             templateUrl: function(params)
             {
@@ -161,11 +167,11 @@ app.config(['$routeProvider', 'isLocalEnvironment',
                     tmpl = 'test';
                 }
 
-                return 'screening/demo/'+ tmpl +'.html';
+                return 'screenings/demo/'+ tmpl +'.html';
             },
             controller: 'FMSDemoController'
         })
-        .when('/screening/live/:name?/:step?',
+        .when('/screenings/live/:name?/:step?',
         {
             templateUrl: function(params)
             {
@@ -176,7 +182,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
                     tmpl = 'test';
                 }
 
-                return 'screening/live/'+ tmpl +'.html';
+                return 'screenings/live/'+ tmpl +'.html';
             },
             controller: 'FMSController'
         })

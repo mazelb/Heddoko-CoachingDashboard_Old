@@ -1,3 +1,6 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
 <!doctype html>
 <html class="no-js" data-ng-app="app">
     <head>

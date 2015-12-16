@@ -12,7 +12,7 @@ angular.module('app.controllers')
         Utilities.debug('UserController');
 
         // POST endpoint for avatar uploads.
-        $scope.uploadAvatarEndpoint = '/api/user/'+ Rover.userHash +'/avatar';
+        $scope.uploadAvatarEndpoint = '/api/v1/users/'+ Rover.userHash +'/avatar';
 
         // Callback for avatar uploads.
         $scope.uploadAvatarCallback = function(data) {

@@ -1,7 +1,9 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screening/demo/analysis.html', 'screening/demo/index.html', 'screening/demo/partials/analysis-coronal.html', 'screening/demo/partials/analysis-layout-emphasized.html', 'screening/demo/partials/analysis-sagittal.html', 'screening/demo/partials/analysis-transverse.html', 'screening/demo/partials/summary-content.html', 'screening/demo/partials/summary-layout.html', 'screening/demo/partials/summary-menu.html', 'screening/demo/partials/summary-movement-overview.html', 'screening/demo/partials/summary-overall-scores.html', 'screening/demo/partials/test-coronal.html', 'screening/demo/partials/test-layout-emphasized.html', 'screening/demo/partials/test-sagittal.html', 'screening/demo/partials/test-transverse.html', 'screening/demo/summary.html', 'screening/demo/test.html', 'screening/index.html', 'screening/live/analysis.html', 'screening/live/index.html', 'screening/live/partials/analysis-menu.html', 'screening/live/partials/breadcrumbs.html', 'screening/live/partials/header.html', 'screening/live/partials/iterations.html', 'screening/live/partials/summary-legend.html', 'screening/live/partials/summary-menu.html', 'screening/live/partials/test-menu.html', 'screening/live/partials/test-trials.html', 'screening/live/summary.html', 'screening/live/test.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/create/index.html', 'screenings/demo/analysis.html', 'screenings/demo/index.html', 'screenings/demo/partials/analysis-coronal.html', 'screenings/demo/partials/analysis-layout-emphasized.html', 'screenings/demo/partials/analysis-sagittal.html', 'screenings/demo/partials/analysis-transverse.html', 'screenings/demo/partials/summary-content.html', 'screenings/demo/partials/summary-layout.html', 'screenings/demo/partials/summary-menu.html', 'screenings/demo/partials/summary-movement-overview.html', 'screenings/demo/partials/summary-overall-scores.html', 'screenings/demo/partials/test-coronal.html', 'screenings/demo/partials/test-layout-emphasized.html', 'screenings/demo/partials/test-sagittal.html', 'screenings/demo/partials/test-transverse.html', 'screenings/demo/summary.html', 'screenings/demo/test.html', 'screenings/index.html', 'screenings/live/analysis.html', 'screenings/live/index.html', 'screenings/live/partials/analysis-menu.html', 'screenings/live/partials/breadcrumbs.html', 'screenings/live/partials/header.html', 'screenings/live/partials/iterations.html', 'screenings/live/partials/summary-legend.html', 'screenings/live/partials/summary-menu.html', 'screenings/live/partials/test-menu.html', 'screenings/live/partials/test-trials.html', 'screenings/live/summary.html', 'screenings/live/test.html', 'screenings/results/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<!-- User details -->\n" +
     "<div class=\"page\">\n" +
     "    <header>\n" +
@@ -132,6 +134,8 @@ angular.module("configuration.html", []).run(["$templateCache", function($templa
 
 angular.module("dashboard.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("dashboard.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"dashboard page animate-fade-up\">\n" +
     "\n" +
     "    <div class=\"dashboard-menu\">\n" +
@@ -159,7 +163,7 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "        </div>\n" +
     "\n" +
     "        <!-- Bookmarks -->\n" +
-    "        <div class=\"row bookmarks\">\n" +
+    "        <div class=\"row\">\n" +
     "\n" +
     "            <!-- Padding for bookmarks -->\n" +
     "            <div ng-show=\"bookmarks.length === 4\" class=\"col-md-2\"></div>\n" +
@@ -169,15 +173,13 @@ angular.module("dashboard.html", []).run(["$templateCache", function($templateCa
     "\n" +
     "            <!-- Actual bookmarks -->\n" +
     "            <div ng-repeat=\"bookmark in bookmarks\" class=\"col-md-2\">\n" +
-    "                <div class=\"bookmark-wrapper\">\n" +
-    "                    <a href=\"{{ bookmark.uri }}\">\n" +
-    "                        <i ng-class=\"'fa fa-2x fa-'+ bookmark.icon\"></i>\n" +
-    "                        <span>\n" +
-    "                            {{ bookmark.title }}\n" +
-    "                        </span>\n" +
-    "                        <span class=\"bookmark-bottom\"></span>\n" +
-    "                    </a>\n" +
-    "                </div>\n" +
+    "                <a href=\"{{ bookmark.uri }}\" class=\"btn-dashboard\">\n" +
+    "                    <i ng-class=\"'fa fa-2x fa-'+ bookmark.icon\"></i>\n" +
+    "                    <span>\n" +
+    "                        {{ bookmark.title }}\n" +
+    "                    </span>\n" +
+    "                    <span></span>\n" +
+    "                </a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1746,23 +1748,28 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
 
 angular.module("import/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("import/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"page import-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            Upload <i class=\"fa fa-cloud-upload\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
+    "\n" +
+    "        <!-- Append profile name to page title -->\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
+    "            for\n" +
+    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                {{ global.getSelectedProfile().firstName }}\n" +
+    "                {{ global.getSelectedProfile().lastName }}\n" +
+    "                <i class=\"fa fa-refresh\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <!-- Import page -->\n" +
     "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
-    "        Import movement data for\n" +
-    "        <b>\n" +
-    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                {{ global.getSelectedProfile().firstName + ' ' + global.getSelectedProfile().lastName }}\n" +
-    "            </a>\n" +
-    "        </b>\n" +
-    "\n" +
     "        <div class=\"movement-import row\">\n" +
     "\n" +
     "            <!-- Import new movement -->\n" +
@@ -1770,7 +1777,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "                <button\n" +
     "                    ngf-select=\"import($files)\"\n" +
     "                    ngf-drop=\"import($files)\"\n" +
-    "                    accept=\"text/plain,text/csv\"\n" +
+    "                    accept=\".csv,.txt\"\n" +
     "                    ngf-max-size=\"2MB\"\n" +
     "                    multiple\n" +
     "                    class=\"btn btn-primary btn-circle btn-lg\">\n" +
@@ -2060,6 +2067,94 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
 
 angular.module("movements/explorer/partials/details-layout.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movements/explorer/partials/details-layout.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"\">\n" +
+    "\n" +
+    "    <!-- Header -->\n" +
+    "    <div class=\"row header\">\n" +
+    "\n" +
+    "        <!-- Checkbox -->\n" +
+    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
+    "            <i class=\"fa fa-square-o\"></i>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Title -->\n" +
+    "        <div class=\"col-xs-10 col-md-8\">\n" +
+    "            Title\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Created date -->\n" +
+    "        <div class=\"col-md-3 hidden-xs text-center\">\n" +
+    "            Date\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Parent folder -->\n" +
+    "    <div ng-show=\"parentFolder\" class=\"row\">\n" +
+    "\n" +
+    "        <!-- Title -->\n" +
+    "        <div class=\"col-xs-10 col-xs-offset-2 col-md-11 col-md-offset-1\">\n" +
+    "            <a href=\"{{ parentFolder.href }}\">\n" +
+    "                <i class=\"fa fa-hand-o-left fa-fw\"></i> Parent Folder\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Other folders -->\n" +
+    "    <div ng-repeat=\"folder in folders\" class=\"row\">\n" +
+    "\n" +
+    "        <!-- Checkbox -->\n" +
+    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Title -->\n" +
+    "        <div class=\"col-xs-10 col-md-11\">\n" +
+    "            <a href=\"{{ folder.href }}\">\n" +
+    "                <i class=\"fa fa-folder-open fa-fw\"></i> {{ folder.name | characters:40 }}\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Movements -->\n" +
+    "    <div ng-repeat=\"movement in movements\" class=\"row\">\n" +
+    "\n" +
+    "        <!-- Checkbox -->\n" +
+    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Title -->\n" +
+    "        <div class=\"col-xs-10 col-md-8\">\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                {{ movement.title | characters:40 }}\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Created date -->\n" +
+    "        <div class=\"col-md-3 hidden-xs text-center\">\n" +
+    "            {{ movement.createdAt | mysqlDate:'MMMM d, yyyy (h:mm a)' }}\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- No movements or folders to show -->\n" +
+    "    <div ng-show=\"folders.length === 0 && movements.length === 0\" class=\"row text-center\">\n" +
+    "\n" +
+    "        <div class=\"col-xs-12\" style=\"margin-top: 20px; margin-bottom: 20px;\">\n" +
+    "            <h3>There are no movements to display.</h3>\n" +
+    "            Once you upload or capture a new movement, it will show up here.\n" +
+    "            <br>\n" +
+    "\n" +
+    "            Start by <b><a href=\"#/movements/upload\">importing</a></b> your own movements.\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 
@@ -2170,7 +2265,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "        <br>\n" +
     "        <br>\n" +
     "\n" +
-    "        Start by <b><a href=\"#/import\">importing</a></b> your own movements.\n" +
+    "        Start by <b><a href=\"#/movements/upload\">importing</a></b> your own movements.\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2221,7 +2316,7 @@ angular.module("movements/explorer/partials/small-tiles-layout.html", []).run(["
     "        Once you upload or capture a new movement, it will show up here.\n" +
     "        <br>\n" +
     "\n" +
-    "        Start by <b><a href=\"#/import\">importing</a></b> your own movements.\n" +
+    "        Start by <b><a href=\"#/movements/upload\">importing</a></b> your own movements.\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2229,6 +2324,8 @@ angular.module("movements/explorer/partials/small-tiles-layout.html", []).run(["
 
 angular.module("partials/breadcrumbs.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/breadcrumbs.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<ol class=\"breadcrumb-alt\">\n" +
     "    <li>\n" +
     "        <a class=\"active\" href=\"#/dashboard\">\n" +
@@ -2391,6 +2488,8 @@ angular.module("partials/modal.html", []).run(["$templateCache", function($templ
 
 angular.module("partials/navigation.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/navigation.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"logo\">\n" +
     "    <div class=\"logo-container\">\n" +
     "        <img src=\"../../images/logo/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
@@ -2459,12 +2558,17 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
-    "                    <a href=\"#/screening\">\n" +
+    "                    <a href=\"#/screenings\">\n" +
+    "                        <span>View Tests</span>\n" +
+    "                    </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/screenings/create\">\n" +
     "                        <span>Record or Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
-    "                    <a href=\"#/screening\">\n" +
+    "                    <a href=\"#/screenings/results\">\n" +
     "                        <span>Results</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
@@ -2551,22 +2655,20 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
 
 angular.module("partials/select-profile.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/select-profile.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<h3 class=\"text-center\">Select a profile to get started</h3>\n" +
     "<br>\n" +
     "\n" +
     "<div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
-    "    <selectize\n" +
-    "        options=\"global.state.profile.list\"\n" +
-    "        class=\"form-control\">\n" +
-    "    </selectize>\n" +
+    "    <ui-profile-lookup\n" +
+    "        profiles=\"global.state.profile.list\"\n" +
+    "        select-profile=\"global.selectProfile(profile)\">\n" +
+    "    </ui-profile-lookup>\n" +
     "    <br>\n" +
     "\n" +
     "    You can also take this opportunity to\n" +
     "    <a href=\"#profile/create\">create one</a>.\n" +
-    "\n" +
-    "    Profile: {{ $parent.global.getSelectedProfile() }}\n" +
-    "\n" +
-    "    Movements: {{ $parent.uploadedMovements }}\n" +
     "</div>\n" +
     "");
 }]);
@@ -2890,6 +2992,8 @@ angular.module("profile/edit.html", []).run(["$templateCache", function($templat
 
 angular.module("profile/list.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/list.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"page page-dashboard\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
@@ -3019,6 +3123,8 @@ angular.module("profile/partials/upload-photo.html", []).run(["$templateCache", 
 
 angular.module("profile/view.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/view.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<!-- Profile summary -->\n" +
     "<div ng-hide=\"profile.id === 0\" class=\"page\">\n" +
     "    <header>\n" +
@@ -3262,8 +3368,43 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
-angular.module("screening/demo/analysis.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/analysis.html",
+angular.module("screenings/create/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/create/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Movement Tests <i class=\"fa fa-pencil-square-o\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <!-- Select a test template -->\n" +
+    "    <div ng-show=\"true\">\n" +
+    "\n" +
+    "        <!-- Temporary listing -->\n" +
+    "        <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "            Start by selecting a test template\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                Functional Movement Test\n" +
+    "            </a>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("screenings/demo/analysis.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/analysis.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3287,8 +3428,8 @@ angular.module("screening/demo/analysis.html", []).run(["$templateCache", functi
     "");
 }]);
 
-angular.module("screening/demo/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/index.html",
+angular.module("screenings/demo/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/index.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3300,8 +3441,8 @@ angular.module("screening/demo/index.html", []).run(["$templateCache", function(
     "");
 }]);
 
-angular.module("screening/demo/partials/analysis-coronal.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/analysis-coronal.html",
+angular.module("screenings/demo/partials/analysis-coronal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/analysis-coronal.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Front/Coronal\n" +
     "</div>\n" +
@@ -3316,8 +3457,8 @@ angular.module("screening/demo/partials/analysis-coronal.html", []).run(["$templ
     "");
 }]);
 
-angular.module("screening/demo/partials/analysis-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/analysis-layout-emphasized.html",
+angular.module("screenings/demo/partials/analysis-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/analysis-layout-emphasized.html",
     "<div class=\"col-sm-12 panel-group panel-layout-emphasized\">\n" +
     "\n" +
     "    <!-- Emphasized view -->\n" +
@@ -3344,8 +3485,8 @@ angular.module("screening/demo/partials/analysis-layout-emphasized.html", []).ru
     "");
 }]);
 
-angular.module("screening/demo/partials/analysis-sagittal.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/analysis-sagittal.html",
+angular.module("screenings/demo/partials/analysis-sagittal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/analysis-sagittal.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Side/Sagittal\n" +
     "</div>\n" +
@@ -3360,8 +3501,8 @@ angular.module("screening/demo/partials/analysis-sagittal.html", []).run(["$temp
     "");
 }]);
 
-angular.module("screening/demo/partials/analysis-transverse.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/analysis-transverse.html",
+angular.module("screenings/demo/partials/analysis-transverse.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/analysis-transverse.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Horizontal/Transverse\n" +
     "</div>\n" +
@@ -3376,8 +3517,8 @@ angular.module("screening/demo/partials/analysis-transverse.html", []).run(["$te
     "");
 }]);
 
-angular.module("screening/demo/partials/summary-content.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/summary-content.html",
+angular.module("screenings/demo/partials/summary-content.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/summary-content.html",
     "<div class=\"panel-body\">\n" +
     "\n" +
     "    <!-- Total score -->\n" +
@@ -3514,8 +3655,8 @@ angular.module("screening/demo/partials/summary-content.html", []).run(["$templa
     "");
 }]);
 
-angular.module("screening/demo/partials/summary-layout.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/summary-layout.html",
+angular.module("screenings/demo/partials/summary-layout.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/summary-layout.html",
     "<div class=\"col-sm-12 panel-group\">\n" +
     "\n" +
     "    <div class=\"col-sm-9 no-gutter panel panel-default\" style=\"padding-left: 0px; height: 700px;\">\n" +
@@ -3550,8 +3691,8 @@ angular.module("screening/demo/partials/summary-layout.html", []).run(["$templat
     "");
 }]);
 
-angular.module("screening/demo/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/summary-menu.html",
+angular.module("screenings/demo/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/summary-menu.html",
     "<div class=\"movement-left-column non-test-pages\" style=\"height: 100%\">\n" +
     "\n" +
     "    <!-- Select trial -->\n" +
@@ -3630,8 +3771,8 @@ angular.module("screening/demo/partials/summary-menu.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("screening/demo/partials/summary-movement-overview.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/summary-movement-overview.html",
+angular.module("screenings/demo/partials/summary-movement-overview.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/summary-movement-overview.html",
     "<div class=\"panel-heading text-center\">\n" +
     "    Movement Overview\n" +
     "</div>\n" +
@@ -3665,8 +3806,8 @@ angular.module("screening/demo/partials/summary-movement-overview.html", []).run
     "");
 }]);
 
-angular.module("screening/demo/partials/summary-overall-scores.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/summary-overall-scores.html",
+angular.module("screenings/demo/partials/summary-overall-scores.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/summary-overall-scores.html",
     "<div class=\"panel-heading text-center\">\n" +
     "    Overall Score\n" +
     "</div>\n" +
@@ -3722,8 +3863,8 @@ angular.module("screening/demo/partials/summary-overall-scores.html", []).run(["
     "");
 }]);
 
-angular.module("screening/demo/partials/test-coronal.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/test-coronal.html",
+angular.module("screenings/demo/partials/test-coronal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/test-coronal.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Front/Coronal\n" +
     "</div>\n" +
@@ -3738,8 +3879,8 @@ angular.module("screening/demo/partials/test-coronal.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("screening/demo/partials/test-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/test-layout-emphasized.html",
+angular.module("screenings/demo/partials/test-layout-emphasized.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/test-layout-emphasized.html",
     "<div class=\"col-sm-12 panel-group panel-layout-emphasized\">\n" +
     "\n" +
     "    <!-- Emphasized view -->\n" +
@@ -3766,8 +3907,8 @@ angular.module("screening/demo/partials/test-layout-emphasized.html", []).run(["
     "");
 }]);
 
-angular.module("screening/demo/partials/test-sagittal.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/test-sagittal.html",
+angular.module("screenings/demo/partials/test-sagittal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/test-sagittal.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Side/Sagittal\n" +
     "</div>\n" +
@@ -3786,8 +3927,8 @@ angular.module("screening/demo/partials/test-sagittal.html", []).run(["$template
     "");
 }]);
 
-angular.module("screening/demo/partials/test-transverse.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/partials/test-transverse.html",
+angular.module("screenings/demo/partials/test-transverse.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/partials/test-transverse.html",
     "<div class=\"panel-heading text-right\">\n" +
     "    Horizontal/Transverse\n" +
     "</div>\n" +
@@ -3802,8 +3943,8 @@ angular.module("screening/demo/partials/test-transverse.html", []).run(["$templa
     "");
 }]);
 
-angular.module("screening/demo/summary.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/summary.html",
+angular.module("screenings/demo/summary.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/summary.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3820,8 +3961,8 @@ angular.module("screening/demo/summary.html", []).run(["$templateCache", functio
     "");
 }]);
 
-angular.module("screening/demo/test.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/demo/test.html",
+angular.module("screenings/demo/test.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/demo/test.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3856,13 +3997,14 @@ angular.module("screening/demo/test.html", []).run(["$templateCache", function($
     "");
 }]);
 
-angular.module("screening/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/index.html",
+angular.module("screenings/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Movement Tests\n" +
-    "            <i class=\"fa fa-pencil-square-o\"></i>\n" +
+    "            Movement Tests <i class=\"fa fa-pencil-square-o\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "    </header>\n" +
@@ -3874,8 +4016,8 @@ angular.module("screening/index.html", []).run(["$templateCache", function($temp
     "");
 }]);
 
-angular.module("screening/live/analysis.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/analysis.html",
+angular.module("screenings/live/analysis.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/analysis.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3884,8 +4026,8 @@ angular.module("screening/live/analysis.html", []).run(["$templateCache", functi
     "");
 }]);
 
-angular.module("screening/live/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/index.html",
+angular.module("screenings/live/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/index.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -3894,8 +4036,8 @@ angular.module("screening/live/index.html", []).run(["$templateCache", function(
     "");
 }]);
 
-angular.module("screening/live/partials/analysis-menu.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/analysis-menu.html",
+angular.module("screenings/live/partials/analysis-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/analysis-menu.html",
     "<div class=\"movement-left-column non-test-pages\">\n" +
     "\n" +
     "    <!-- Select trial -->\n" +
@@ -3992,8 +4134,8 @@ angular.module("screening/live/partials/analysis-menu.html", []).run(["$template
     "");
 }]);
 
-angular.module("screening/live/partials/breadcrumbs.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/breadcrumbs.html",
+angular.module("screenings/live/partials/breadcrumbs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/breadcrumbs.html",
     "<ol class=\"breadcrumb-movement\">\n" +
     "\n" +
     "    <!-- Movement title -->\n" +
@@ -4028,8 +4170,8 @@ angular.module("screening/live/partials/breadcrumbs.html", []).run(["$templateCa
     "");
 }]);
 
-angular.module("screening/live/partials/header.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/header.html",
+angular.module("screenings/live/partials/header.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/header.html",
     "<header class=\"page-main-header\">\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-sm-6\">\n" +
@@ -4041,8 +4183,8 @@ angular.module("screening/live/partials/header.html", []).run(["$templateCache",
     "");
 }]);
 
-angular.module("screening/live/partials/iterations.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/iterations.html",
+angular.module("screenings/live/partials/iterations.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/iterations.html",
     "<ol class=\"breadcrumb-movement-sm\">\n" +
     "    <li\n" +
     "        ng-click=\"fms.current.iteration = iteration\"\n" +
@@ -4057,8 +4199,8 @@ angular.module("screening/live/partials/iterations.html", []).run(["$templateCac
     "");
 }]);
 
-angular.module("screening/live/partials/summary-legend.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/summary-legend.html",
+angular.module("screenings/live/partials/summary-legend.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/summary-legend.html",
     "<div class=\"panel-heading text-center\">\n" +
     "    Thresholds\n" +
     "    <br>\n" +
@@ -4097,8 +4239,8 @@ angular.module("screening/live/partials/summary-legend.html", []).run(["$templat
     "");
 }]);
 
-angular.module("screening/live/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/summary-menu.html",
+angular.module("screenings/live/partials/summary-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/summary-menu.html",
     "<div class=\"movement-left-column non-test-pages\" style=\"height: 100%\">\n" +
     "\n" +
     "    <!-- Select trial -->\n" +
@@ -4132,8 +4274,8 @@ angular.module("screening/live/partials/summary-menu.html", []).run(["$templateC
     "");
 }]);
 
-angular.module("screening/live/partials/test-menu.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/test-menu.html",
+angular.module("screenings/live/partials/test-menu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/test-menu.html",
     "<div class=\"movement-left-column test-page\">\n" +
     "    <div\n" +
     "        ng-click=\"run.start()\"\n" +
@@ -4169,8 +4311,8 @@ angular.module("screening/live/partials/test-menu.html", []).run(["$templateCach
     "");
 }]);
 
-angular.module("screening/live/partials/test-trials.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/partials/test-trials.html",
+angular.module("screenings/live/partials/test-trials.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/partials/test-trials.html",
     "<div class=\"row\">\n" +
     "	<div class=\"col-sm-4\">\n" +
     "		<div class=\"panel panel-default\">\n" +
@@ -4226,8 +4368,8 @@ angular.module("screening/live/partials/test-trials.html", []).run(["$templateCa
     "");
 }]);
 
-angular.module("screening/live/summary.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/summary.html",
+angular.module("screenings/live/summary.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/summary.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
@@ -4236,13 +4378,48 @@ angular.module("screening/live/summary.html", []).run(["$templateCache", functio
     "");
 }]);
 
-angular.module("screening/live/test.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screening/live/test.html",
+angular.module("screenings/live/test.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/live/test.html",
     "<!-- Header -->\n" +
     "<div ng-include src=\"'screening/live/partials/header.html'\"></div>\n" +
     "\n" +
     "<!-- Temporary placeholder -->\n" +
     "<ng-include src=\"'placeholder.html'\"></ng-include>\n" +
+    "");
+}]);
+
+angular.module("screenings/results/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/results/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            <abbr title=\"Functional Movement Test\">FMT</abbr> Report\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "\n" +
+    "        <!-- Append profile name to page title -->\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
+    "            for\n" +
+    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                {{ global.getSelectedProfile().firstName }}\n" +
+    "                {{ global.getSelectedProfile().lastName }}\n" +
+    "                <i class=\"fa fa-refresh\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
+    "        <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "            In Development\n" +
+    "        </h2>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "        <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
     "");
 }]);
 

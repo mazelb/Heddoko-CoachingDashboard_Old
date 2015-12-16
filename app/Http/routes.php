@@ -13,64 +13,45 @@
 Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
 {
     // Profile endpoints.
-    Route::post('profile/{id}/avatar', 'ProfileController@saveAvatar');
-    Route::delete('profile/{id}/avatar', 'ProfileController@destroyAvatar');
-    Route::resource('profile', 'ProfileController', [
+    Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');
+    Route::delete('profiles/{id}/avatar', 'ProfileController@destroyAvatar');
+    Route::resource('profiles', 'ProfileController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // Folder endpoints.
-    Route::resource('profile.folder', 'FolderController', [
+    Route::resource('profiles.folders', 'FolderController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // Movement endpoints.
-    Route::resource('movement', 'MovementController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
-
-    // Group endpoints.
-    Route::post('group/{id}/avatar', 'GroupController@saveAvatar');
-    Route::delete('group/{id}/avatar', 'GroupController@destroyAvatar');
-    Route::resource('group', 'GroupController', [
+    Route::resource('movements', 'MovementController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // Screening endpoints.
-    Route::resource('screening', 'ScreeningController', [
+    Route::resource('screenings', 'ScreeningController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
-    Route::resource('screening.test', 'ScreeningTestController', [
+
+    // Group endpoints.
+    Route::post('groups/{id}/avatar', 'GroupController@saveAvatar');
+    Route::delete('groups/{id}/avatar', 'GroupController@destroyAvatar');
+    Route::resource('groups', 'GroupController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // User endpoints.
-    Route::post('user/{id}/avatar', 'UserController@saveAvatar');
-    Route::delete('user/{id}/avatar', 'UserController@destroyAvatar');
-    Route::resource('user', 'UserController', [
+    Route::post('users/{id}/avatar', 'UserController@saveAvatar');
+    Route::delete('users/{id}/avatar', 'UserController@destroyAvatar');
+    Route::resource('users', 'UserController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);
 
     // Tag endpoints.
-    Route::resource('tag', 'TagController', [
+    Route::resource('tags', 'TagController', [
         'only' => ['index', 'store']
     ]);
-
-    //
-    // Deprecated.
-    //
-
-	// Route::resource('teams', 'TeamController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-    // Route::post('/teams/{id}/photo', 'TeamController@uploadPhoto');
-    //
-	// Route::resource('teams.athletes', 'TeamAthleteController', ['only' => ['index', 'show', 'store', 'update', 'destroy']]);
-    // Route::post('/teams/{groupId}/athletes/{profileId}/photo', 'TeamAthleteController@uploadPhoto');
-    //
-	// Route::resource('athletes.fmsforms', 'AthleteFMSFormController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-	// Route::resource('athletes.movements', 'AthleteMovementController', ['only' => ['index', 'show', 'store']]);
-    //
-	// Route::resource('sports', 'SportsController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-	// Route::resource('sports.sportmovements', 'SportSportMovementController', ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 });
 
 /**

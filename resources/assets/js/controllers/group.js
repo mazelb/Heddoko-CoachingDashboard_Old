@@ -166,7 +166,7 @@ angular.module('app.controllers')
         };
 
         // POST endpoint for avatar uploads.
-        $scope.uploadAvatarEndpoint = '/api/group/'+ $scope.group.id +'/avatar';
+        $scope.uploadAvatarEndpoint = '/api/v1/groups/'+ $scope.group.id +'/avatar';
 
         // Callback for avatar uploads.
         $scope.uploadAvatarCallback = function() {

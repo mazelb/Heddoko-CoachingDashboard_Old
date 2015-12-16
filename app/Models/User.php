@@ -8,6 +8,8 @@
  */
 namespace App\Models;
 
+use DB;
+
 use App\Traits\HasAvatarTrait as HasAvatar;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 use Illuminate\Auth\Authenticatable;
@@ -64,5 +66,28 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function groups() {
         return $this->belongsToMany('App\Models\Group', 'group_manager', 'manager_id', 'group_id');
+    }
+
+    /**
+     * Gets the IDs of profiles managed by this user. This is necessary for retrieving secondary
+     * relations as we cannot use Laravel's "Has-Many-Through" relation here.
+     *
+     * @return array
+     */
+    public function getProfileIDs()
+    {
+        // Profile IDs.
+        $profiles = DB::table('profiles')
+            ->select('profiles.id')
+            ->join('manager_profile', 'profiles.id', '=', 'manager_profile.profile_id')
+            ->where('manager_profile.manager_id', '=', $this->id)
+            ->get();
+
+        // Mapper to convert objects to IDs.
+        $mapper = function($profile) {
+            return $profile->id;
+        };
+
+        return array_map($mapper, $profiles);
     }
 }

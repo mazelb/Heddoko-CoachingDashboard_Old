@@ -13,31 +13,36 @@ angular.module('app.services')
         return {
 
             /**
+             * Base endpoint.
+             */
+            endpoint: apiEndpoint + '/users/',
+
+            /**
              *
              */
             get: function(id) {
-    			return $http.get(apiEndpoint + '/user/' + id);
+    			return $http.get(this.endpoint + id);
     		},
 
             /**
              *
              */
             create: function(data) {
-                return $http.post(apiEndpoint + '/user', data);
+                return $http.post(this.endpoint, data);
     		},
 
             /**
              *
              */
             update: function(id, data) {
-                return $http.put(apiEndpoint + '/user/' + id, data);
+                return $http.put(this.endpoint + id, data);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete(apiEndpoint + '/user/' + id);
+    			return $http.delete(this.endpoint + id);
     		},
 
             /**
@@ -48,7 +53,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post(apiEndpoint + '/user/'+ id +'/photo', {image: fileData});
+                return $http.post(this.endpoint + id +'/avatar', {image: fileData});
             }
         };
     }
