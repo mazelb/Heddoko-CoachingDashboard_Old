@@ -2076,7 +2076,9 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <i class=\"fa fa-square-o\"></i>\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            </a>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Title -->\n" +
@@ -2096,7 +2098,7 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "        <!-- Title -->\n" +
     "        <div class=\"col-xs-10 col-xs-offset-2 col-md-11 col-md-offset-1\">\n" +
     "            <a href=\"{{ parentFolder.href }}\">\n" +
-    "                <i class=\"fa fa-hand-o-left fa-fw\"></i> Parent Folder\n" +
+    "                <i class=\"fa fa-level-up\"></i> Parent Folder\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
