@@ -11,17 +11,17 @@ angular.module('app.controllers')
 
 .controller('MainController',
     ['$scope', '$timeout', 'ProfileService', 'GroupService', 'UserService', 'OnboardingService',
-    'Rover', 'Utilities', 'appVersion', 'isLocalEnvironment',
+    'Rover', 'Utilities', 'isLocalEnvironment',
     function(
         $scope, $timeout, ProfileService, GroupService, UserService, OnboardingService,
-        Rover, Utilities, appVersion, isLocalEnvironment) {
+        Rover, Utilities, isLocalEnvironment) {
         Utilities.debug('MainController');
 
         // Setup a "global" namespace to store variables that should be inherited in child scopes.
         $scope.global =
         {
             // Information about the application.
-            appVersion: appVersion,
+            appVersion: $('meta[name="version"]').attr('content'),
             isLocal: isLocalEnvironment,
 
             // The localStorage persists across user sessions.

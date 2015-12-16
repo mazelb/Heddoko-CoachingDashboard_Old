@@ -8,7 +8,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
         <script src="{{ url('js/jquery.min.js') }}"></script>
-        <link rel="stylesheet" href="{{ url('css/main.css?') . time() }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css?'. config('app.version')) }}">
+
+        {{-- TODO: migrate the necessary styles into styles.css --}}
         <link rel="stylesheet" href="{{ url('css/app.css') . '?20151023' }}">
     </head>
     <body class="@yield('body-class', '')">

@@ -6,10 +6,11 @@
         <title>Heddoko</title>
         <meta name="description" content="">
         <meta name="user-hash" content="{{ md5(Auth::id()) }}">
+        <meta name="version" content="{{ config('app.version') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Fonts & stylesheets -->
-        <link rel="stylesheet" href="{{ url('css/styles.css?') . time() }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css?'. config('app.version')) }}">
     </head>
     <body id="app" data-ng-controller="MainController">
 
@@ -49,6 +50,6 @@
         <div data-ng-include="'partials/modal.html'"></div>
 
         <!-- Scripts -->
-        <script type="text/javascript" src="{{ asset('js/scripts.js?'. time()) }}"></script>
+        <script type="text/javascript" src="{{ asset('js/scripts.js?'. config('app.version')) }}"></script>
     </body>
 </html>

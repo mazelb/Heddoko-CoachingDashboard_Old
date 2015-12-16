@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;

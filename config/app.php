@@ -1,6 +1,21 @@
 <?php
-
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | App version
+    |--------------------------------------------------------------------------
+    |
+    | We defined the app version here, to make it easily accessible throughout
+    | the application.
+    |
+    */
+
+    'version' => '0.5.0',
 
     /*
     |--------------------------------------------------------------------------
