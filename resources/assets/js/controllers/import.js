@@ -14,6 +14,9 @@ angular.module('app.controllers')
         // Uploading movement flag.
         $scope.isImporting = false;
 
+        // Uploaded data progress.
+        $scope.global.data.importProgress = 0.6;
+
         // Uploaded movement data.
         $scope.global.data.importedMovements = $scope.global.data.importedMovements || [];
 

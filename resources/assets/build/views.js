@@ -2750,8 +2750,24 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            </div>\n" +
     "\n" +
     "            <!-- Uploading movement file -->\n" +
-    "            <div ng-show=\"isImporting === true\" class=\"col-xs-12 text-center\">\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
+    "            <div\n" +
+    "                ng-show=\"isImporting === true\"\n" +
+    "                class=\"col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 text-center\">\n" +
+    "\n" +
+    "                <br>\n" +
+    "                <br>\n" +
+    "                <div class=\"progress\">\n" +
+    "                    <div\n" +
+    "                        class=\"progress-bar\"\n" +
+    "                        role=\"progressbar\"\n" +
+    "                        aria-valuenow=\"60\"\n" +
+    "                        aria-valuemin=\"0\"\n" +
+    "                        aria-valuemax=\"100\"\n" +
+    "                        style=\"min-width: 2em; width: 60%;\">\n" +
+    "\n" +
+    "                        60%\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
