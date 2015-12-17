@@ -2555,12 +2555,12 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "\n" +
     "                <!-- Delete group button -->\n" +
     "                <button\n" +
-    "                    ng-show=\"group.id > 0\"\n" +
+    "                    ng-show=\"global.getSelectedGroup().id > 0\"\n" +
     "                    data-toggle=\"modal\"\n" +
     "                    data-target=\"#deleteGroupConfirmation\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
-    "                    Delete <b>{{ group.name }}</b>\n" +
+    "                    Delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
     "                </button>\n" +
     "\n" +
     "                <!-- Delete confirmation -->\n" +
@@ -2569,12 +2569,12 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        <div class=\"modal-content\">\n" +
     "                            <div class=\"modal-body\">\n" +
     "                                <p ng-show=\"global.state.profile.list.length > 0\">\n" +
-    "                                    Are you sure you want to delete <b>{{ group.name }}</b>\n" +
+    "                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
     "                                    and the {{ global.state.profile.filtered.length }}\n" +
     "                                    associated athletes?\n" +
     "                                </p>\n" +
     "                                <p ng-show=\"global.state.profile.list.length === 0\">\n" +
-    "                                    Are you sure you want to delete <b>{{ group.name }}</b>?\n" +
+    "                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?\n" +
     "                                </p>\n" +
     "                            </div>\n" +
     "                            <div class=\"modal-footer text-center\">\n" +
@@ -2582,7 +2582,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                                    Cancel\n" +
     "                                </button>\n" +
     "                                <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                    Yes, delete {{ group.name }}\n" +
+    "                                    Yes, delete {{ global.getSelectedGroup().name }}\n" +
     "                                </button>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -2609,7 +2609,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"global.state.group.list[global.store.groupId].avatar_src\">\n" +
+    "                        data-src=\"global.state.group.list[global.store.groupId].avatarSrc\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
     "    		</div>\n" +
@@ -2645,14 +2645,14 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        <!-- Profile list -->\n" +
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\">\n" +
-    "                Athletes in {{ group.name }}\n" +
+    "                Athletes in {{ global.getSelectedGroup().name }}\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"panel-body\">\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col-sm-12\">\n" +
     "                        <div ng-show=\"global.state.profile.filtered.length === 0\">\n" +
-    "                            The <b>{{ group.name }}</b> do not have any\n" +
+    "                            The <b>{{ global.getSelectedGroup().name }}</b> do not have any\n" +
     "                            members yet. Add one above to get started!\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -2684,8 +2684,8 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"panel-body\">\n" +
-    "                        Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>\n" +
-    "                        Global: {{ group.name }} <br>\n" +
+    "                        Avatar: {{ global.getSelectedGroup().avatarSrc ? 'has avatar' : 'no avatar' }} <br>\n" +
+    "                        Global: {{ global.getSelectedGroup().name }} <br>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -2694,7 +2694,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "</div>\n" +
     "\n" +
     "<!-- No group selected -->\n" +
-    "<div ng-show=\"group.id === 0\" class=\"page\">\n" +
+    "<div ng-show=\"global.getSelectedGroup().id === 0\" class=\"page\">\n" +
     "    <h1 class=\"text-center\">No group selected</h1>\n" +
     "    <br>\n" +
     "\n" +
@@ -3523,7 +3523,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
-    "                    <a href=\"#/screenings/create\">\n" +
+    "                    <a href=\"#/screenings/live\">\n" +
     "                        <span>Record or Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
@@ -4354,16 +4354,38 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "<div class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Movement Tests <i class=\"fa fa-pencil-square-o\"></i>\n" +
+    "            Movement Test\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
+    "\n" +
+    "        <!-- Append profile name to page title -->\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
+    "            for\n" +
+    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                {{ global.getSelectedProfile().firstName }}\n" +
+    "                {{ global.getSelectedProfile().lastName }}\n" +
+    "                <i class=\"fa fa-refresh\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
     "    </header>\n" +
     "\n" +
+    "    <!-- Test progress -->\n" +
+    "    <div\n" +
+    "        ng-show=\"global.state.screening.live.id > 0\n" +
+    "            && global.data.isFetchingScreeningData === false\">\n" +
+    "\n" +
+    "        <h2 style=\"text-align: center; color: #ccc;\">\n" +
+    "            In Development\n" +
+    "        </h2>\n" +
+    "    </div>\n" +
+    "\n" +
     "    <!-- Select a test template -->\n" +
-    "    <div ng-show=\"true\">\n" +
+    "    <div\n" +
+    "        ng-show=\"global.state.screening.live.id === 0\n" +
+    "            && global.data.isFetchingScreeningData === false\">\n" +
     "\n" +
     "        <!-- Temporary listing -->\n" +
-    "        <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"col-md-4 col-md-offset-4 text-center\">\n" +
     "            Start by selecting a test template\n" +
     "            <br>\n" +
     "            <br>\n" +
@@ -4376,6 +4398,18 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "            <a href=\"javascript:;\">\n" +
     "                <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
     "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Select a profile -->\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "            <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading screening data -->\n" +
+    "    <div ng-show=\"global.data.isFetchingScreeningData === true\">\n" +
+    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +

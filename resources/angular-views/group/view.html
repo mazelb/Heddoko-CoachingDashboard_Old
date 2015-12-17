@@ -21,12 +21,12 @@
 
                 <!-- Delete group button -->
                 <button
-                    ng-show="group.id > 0"
+                    ng-show="global.getSelectedGroup().id > 0"
                     data-toggle="modal"
                     data-target="#deleteGroupConfirmation"
                     class="btn btn-danger">
 
-                    Delete <b>{{ group.name }}</b>
+                    Delete <b>{{ global.getSelectedGroup().name }}</b>
                 </button>
 
                 <!-- Delete confirmation -->
@@ -35,12 +35,12 @@
                         <div class="modal-content">
                             <div class="modal-body">
                                 <p ng-show="global.state.profile.list.length > 0">
-                                    Are you sure you want to delete <b>{{ group.name }}</b>
+                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>
                                     and the {{ global.state.profile.filtered.length }}
                                     associated athletes?
                                 </p>
                                 <p ng-show="global.state.profile.list.length === 0">
-                                    Are you sure you want to delete <b>{{ group.name }}</b>?
+                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?
                                 </p>
                             </div>
                             <div class="modal-footer text-center">
@@ -48,7 +48,7 @@
                                     Cancel
                                 </button>
                                 <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                    Yes, delete {{ group.name }}
+                                    Yes, delete {{ global.getSelectedGroup().name }}
                                 </button>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                     <ui-avatar
                         data-upload-endpoint="uploadAvatarEndpoint"
                         data-success-callback="uploadAvatarCallback"
-                        data-src="global.state.group.list[global.store.groupId].avatar_src">
+                        data-src="global.state.group.list[global.store.groupId].avatarSrc">
                     </ui-avatar>
                 </div>
     		</div>
@@ -111,14 +111,14 @@
         <!-- Profile list -->
         <div class="panel panel-default">
             <div class="panel-heading">
-                Athletes in {{ group.name }}
+                Athletes in {{ global.getSelectedGroup().name }}
             </div>
 
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <div ng-show="global.state.profile.filtered.length === 0">
-                            The <b>{{ group.name }}</b> do not have any
+                            The <b>{{ global.getSelectedGroup().name }}</b> do not have any
                             members yet. Add one above to get started!
                         </div>
                     </div>
@@ -150,8 +150,8 @@
                     </div>
 
                     <div class="panel-body">
-                        Avatar: {{ group.avatar_src ? 'has avatar' : 'no avatar' }} <br>
-                        Global: {{ group.name }} <br>
+                        Avatar: {{ global.getSelectedGroup().avatarSrc ? 'has avatar' : 'no avatar' }} <br>
+                        Global: {{ global.getSelectedGroup().name }} <br>
                     </div>
                 </div>
             </div>
@@ -160,7 +160,7 @@
 </div>
 
 <!-- No group selected -->
-<div ng-show="group.id === 0" class="page">
+<div ng-show="global.getSelectedGroup().id === 0" class="page">
     <h1 class="text-center">No group selected</h1>
     <br>
 

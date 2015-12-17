@@ -4,16 +4,38 @@
 <div class="page">
     <header>
         <h1>
-            Movement Tests <i class="fa fa-pencil-square-o"></i>
+            Movement Test
             <span></span>
         </h1>
+
+        <!-- Append profile name to page title -->
+        <div ng-show="global.getSelectedProfile().id > 0" class="h1-append">
+            for
+            <a ng-click="global.store.profileId = 0" href="javascript:;">
+                {{ global.getSelectedProfile().firstName }}
+                {{ global.getSelectedProfile().lastName }}
+                <i class="fa fa-refresh"></i>
+            </a>
+        </div>
     </header>
 
+    <!-- Test progress -->
+    <div
+        ng-show="global.state.screening.live.id > 0
+            && global.data.isFetchingScreeningData === false">
+
+        <h2 style="text-align: center; color: #ccc;">
+            In Development
+        </h2>
+    </div>
+
     <!-- Select a test template -->
-    <div ng-show="true">
+    <div
+        ng-show="global.state.screening.live.id === 0
+            && global.data.isFetchingScreeningData === false">
 
         <!-- Temporary listing -->
-        <div class="col-md-4 col-md-offset-4 text-center">
+        <div ng-show="global.getSelectedProfile().id > 0" class="col-md-4 col-md-offset-4 text-center">
             Start by selecting a test template
             <br>
             <br>
@@ -26,6 +48,18 @@
             <a href="javascript:;">
                 <i class="fa fa-plus fa-fw"></i> Create a Custom Movement Test
             </a>
+        </div>
+
+        <!-- Select a profile -->
+        <div ng-show="global.getSelectedProfile().id === 0">
+            <div ng-include="'partials/select-profile.html'"></div>
+        </div>
+    </div>
+
+    <!-- Loading screening data -->
+    <div ng-show="global.data.isFetchingScreeningData === true">
+        <div class="text-center" style="margin: 60px auto">
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
         </div>
     </div>
 </div>

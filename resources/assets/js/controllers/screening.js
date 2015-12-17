@@ -15,7 +15,7 @@ angular.module('app.controllers')
         $scope.global.data.isFetchingScreeningData = true;
         $scope.global.state.screening = $scope.global.state.screening || {};
         $scope.global.state.screening.list = $scope.global.state.screening.list || {length: 0};
-        $scope.global.state.screeningId = $scope.global.state.screeningId || 0;
+        $scope.global.state.screening.live = $scope.global.state.screening.live || {id: 0};
 
         /**
          * Retrieves screening data for the selected profile.
