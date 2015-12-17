@@ -18,11 +18,11 @@ class Movement extends Model
      * Attributes which are mass-assignable.
      */
 	protected $fillable = [
+        'profile_id',
         'submitted_by',
         'screening_id',
+        'folder_id',
         'title',
-        'score',
-        'score_max',
     ];
 
     /**

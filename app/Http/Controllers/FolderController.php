@@ -59,7 +59,7 @@ class FolderController extends Controller
     public function show($profileId, $folderId = 0)
     {
         // Performance check.
-        if (!$profile = Profile::find($profileId)) {
+        if (!$profile = Auth::user()->profiles()->find($profileId)) {
             return response('Profile Not Found.', 400);
         }
 
@@ -68,7 +68,10 @@ class FolderController extends Controller
         {
             $parent = null;
             $folders = $profile->folders()->where('folder_id', 0)->get();
-            $movements = $profile->movements()->where('folder_id', null)->get();
+            $movements = $profile->movements()
+                            ->whereNull('folder_id')
+                            ->whereNull('screening_id')
+                            ->get();
         }
 
         // Retrieve folders and movements within a given folder.
@@ -80,7 +83,7 @@ class FolderController extends Controller
 
             $parent = $folder->parent;
             $folders = $folder->children;
-            $movements = [];
+            $movements = $folder->movements;
         }
 
         return compact('parent', 'folders', 'movements');

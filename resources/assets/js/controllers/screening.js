@@ -12,10 +12,81 @@ angular.module('app.controllers')
         Utilities.debug('ScreeningController');
 
         // Initial setup.
-        $scope.global.data.isFetchingScreeningData = true;
         $scope.global.state.screening = $scope.global.state.screening || {};
         $scope.global.state.screening.list = $scope.global.state.screening.list || {length: 0};
-        $scope.global.state.screening.live = $scope.global.state.screening.live || {id: 0};
+        $scope.global.state.screening.current = $scope.global.state.screening.current || {id: 0};
+        $scope.global.data.isFetchingScreeningData = false;
+        $scope.global.data.isPreparingNewScreening = false;
+
+        // Shortcut to global objects.
+        $scope.screening = $scope.global.state.screening.current;
+        if ($scope.screening.id > 0 && $scope.screening.profileId) {
+            $scope.screeningProfile =
+                $scope.global.state.profile.list[$scope.screening.profileId] || {id: 0};
+        } else {
+            $scope.screeningProfile = {id: 0};
+        }
+
+        /**
+         * Shortcut to create a standard FMS.
+         */
+        $scope.createFunctionalMovementScreening = function() {
+            Utilities.debug('Creating standard FMS...');
+
+            $scope.global.data.isPreparingNewScreening = true;
+
+            ScreeningService.create($scope.global.getSelectedProfile().id,
+            {
+                title: 'Functional Movement Screening',
+                scoreMax: 3,
+                movements: [
+                    {title: 'Deep Squat'},
+                    {title: 'Hurdle Step - Left'},
+                    {title: 'Hurdle Step - Right'},
+                    {title: 'Inline Lunge - Left'},
+                    {title: 'Inline Lunge - Right'},
+                    {title: 'Shoulder Mobility - Left'},
+                    {title: 'Shoulder Mobility - Right'},
+                    {title: 'Impingment Test - Left', meta: {
+                        params: {
+                            isClearanceTest: true
+                        }
+                    }},
+                    {title: 'Impingment Test - Right', meta: {
+                        params: {
+                            isClearanceTest: true
+                        }
+                    }},
+                    {title: 'Active Straight-Leg Raise - Left'},
+                    {title: 'Active Straight-Leg Raise - Right'},
+                    {title: 'Trunk Stability Push-Up'},
+                    {title: 'Spinal Extension', meta: {
+                        params: {
+                            isClearanceTest: true
+                        }
+                    }},
+                    {title: 'Rotary Stability - Left'},
+                    {title: 'Rotary Stability - Right'},
+                    {title: 'Posterior Rocking', meta: {
+                        params: {
+                            isClearanceTest: true
+                        }
+                    }},
+                ]
+            }).then(
+                function(response) {
+                    Utilities.debug('Screening created.');
+
+                    // Save screening data.
+                    $scope.global.state.screening.current = $scope.screening = response.data;
+                    $scope.global.data.isPreparingNewScreening = false;
+                },
+                function(response) {
+                    $scope.global.data.isPreparingNewScreening = false;
+                    Utilities.alert('Could not create screening. Please try again later.');
+                }
+            );
+        };
 
         /**
          * Retrieves screening data for the selected profile.
@@ -30,7 +101,17 @@ angular.module('app.controllers')
 
         }
 
-        // Retrieve screenings.
+        // Watch current screening object.
+        $scope.$watch('global.state.screening.current', function(newScreening) {
 
+            // Update current screening.
+            $scope.screening = newScreening.id > 0 ? newScreening : {id: 0};
+
+            // Update screening profile.
+            if (newScreening.id > 0 && newScreening.profileId) {
+                $scope.screeningProfile =
+                    $scope.global.state.profile.list[newScreening.profileId] || {id: 0};
+            }
+        });
     }
 ]);

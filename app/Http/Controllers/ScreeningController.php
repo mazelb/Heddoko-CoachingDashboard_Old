@@ -11,8 +11,10 @@ namespace App\Http\Controllers;
 use Auth;
 
 use App\Http\Requests;
+use App\Models\Folder;
 use App\Models\Profile;
 use App\Models\Movement;
+use App\Models\MovementMeta;
 use App\Models\Screening;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,7 +72,7 @@ class ScreeningController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Creates a new screening.
      *
      * @return Response
      */
@@ -87,22 +89,54 @@ class ScreeningController extends Controller
 
         // Create a record for the screening.
         $screening = $profile->screenings()->create($this->request->only([
+            'title',
             'score',
-            'score_max',
+            'scoreMax',
             'notes'
         ]));
+
+        // We'll also create a folder to organize the screening movements.
+        $screeningsFolder = Folder::where('profile_id', $profileId)
+                                ->where('system_name', 'screenings')
+                                ->first();
+        if (!$screeningsFolder)
+        {
+            $screeningsFolder = $profile->folders()->create([
+                'name' => 'Movement Tests',
+                'system_name' => 'screenings',
+                'path' => '/'
+            ]);
+        }
+
+        $folder = $profile->folders()->create([
+            'folder_id' => $screeningsFolder->id,
+            'name' => $screening->title,
+            'system_name' => 'screenings.'. $screening->id,
+            'path' => '/'. $screeningsFolder->name
+        ]);
 
         // Add movements to the screening.
         if ($this->request->has('movements'))
         {
-            $movements = [];
-            $movementData = (array) $this->request->input('movements');
+            $movements = (array) $this->request->input('movements');
 
-            foreach ($movementData as $data) {
-                $movements[] = new Movement($data);
+            foreach ($movements as $data)
+            {
+                $movement = new Movement(array_only($data, ['title']));
+                $movement->profileId = $screening->profileId;
+                $movement->folderId = $folder->id;
+
+                // Update metadata.
+                $screening->movements()->save($movement);
+                $meta = isset($data['meta']) ? (array) $data['meta'] : [];
+                $meta['scoreMax'] = $screening->scoreMax;
+                $movement->meta()->create($meta);
             }
+        }
 
-            $screening->movements()->saveMany($movements);
+        // Return screening with movements.
+        foreach ($screening->movements as $movement) {
+            $movement->meta;
         }
 
         return $screening;

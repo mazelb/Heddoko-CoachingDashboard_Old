@@ -16,12 +16,18 @@ class Folder extends Model
     use CamelCaseAttrs;
 
     /**
+     * Indicates if the model should be timestamped.
+     */
+    public $timestamps = false;
+
+    /**
      * Attributes which are mass-assignable.
      */
 	protected $fillable = [
         'profile_id',
         'folder_id',
         'name',
+        'system_name',
         'path',
     ];
 

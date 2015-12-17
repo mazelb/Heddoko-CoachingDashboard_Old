@@ -35,7 +35,7 @@ angular.module('app.controllers')
             },
             {
                 title: 'Movement Tests',
-                uri: '#/screening',
+                uri: '#/screenings',
                 icon: 'pencil-square-o'
             },
             {

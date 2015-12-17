@@ -94,6 +94,8 @@ class UpdatesDec2015 extends Migration
             $table->tinyInteger('score')->unsigned()->nullable();
             $table->tinyInteger('score_max')->unsigned()->nullable();
             $table->text('notes')->nullable();
+
+			$table->timestamps();
         });
 
         // Create "folders" table.
@@ -109,6 +111,7 @@ class UpdatesDec2015 extends Migration
                 ->onDelete('cascade');
 
             $table->string('name');
+            $table->string('system_name');
             $table->string('path');
 		});
         Schema::table('folders', function(Blueprint $table)
@@ -153,8 +156,6 @@ class UpdatesDec2015 extends Migration
                 ->onDelete('cascade');
 
             $table->string('title')->nullable();
-            $table->tinyInteger('score')->unsigned()->nullable();
-            $table->tinyInteger('score_max')->unsigned()->nullable();
 
 			$table->timestamps();
 		});
@@ -193,14 +194,13 @@ class UpdatesDec2015 extends Migration
             $table->integer('end_keyframe')->unsigned()->nullable();
 			$table->foreign('end_keyframe')->references('id')->on('frames');
 
-            // Other notes.
+            // Other fields.
+            $table->tinyInteger('score')->unsigned()->nullable();
+            $table->tinyInteger('score_max')->unsigned()->nullable();
             $table->text('notes')->nullable();
-
-            // Virtual path
             $table->string('virtual_path')->nullable();
-
-            // Raw file name.
             $table->string('filename')->nullable();
+            $table->text('params')->nullable();
         });
 
         // Create "movement_markers" table.

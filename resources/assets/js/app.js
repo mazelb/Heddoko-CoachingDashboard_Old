@@ -148,8 +148,8 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'screenings/index.html',
             controller: 'ScreeningController'
 		})
-        .when('/screenings/live', {
-			templateUrl: 'screenings/live/index.html',
+        .when('/screenings/current', {
+			templateUrl: 'screenings/current/index.html',
             controller: 'ScreeningController'
 		})
         .when('/screenings/:screeningId', {

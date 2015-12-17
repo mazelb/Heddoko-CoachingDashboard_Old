@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -3523,7 +3523,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
-    "                    <a href=\"#/screenings/live\">\n" +
+    "                    <a href=\"#/screenings/current\">\n" +
     "                        <span>Record or Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
@@ -4328,6 +4328,108 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
+angular.module("screenings/current/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("screenings/current/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Movement Test\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "\n" +
+    "        <!-- Append profile name to page title -->\n" +
+    "        <div ng-show=\"screeningProfile.id === 0\" class=\"h1-append\">\n" +
+    "            for\n" +
+    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                {{ global.getSelectedProfile().firstName }}\n" +
+    "                {{ global.getSelectedProfile().lastName }}\n" +
+    "                <i class=\"fa fa-refresh\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "        <div ng-show=\"screeningProfile.id > 0\" class=\"h1-append\">\n" +
+    "            {{ screeningProfile.firstName + ' ' + screeningProfile.lastName }}\n" +
+    "        </div>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <!-- Test progress -->\n" +
+    "    <div ng-show=\"screening.id > 0 && global.data.isFetchingScreeningData === false\">\n" +
+    "\n" +
+    "        <h2 class=\"text-center\">\n" +
+    "            {{ screening.title }}\n" +
+    "\n" +
+    "            <br>\n" +
+    "            <small>\n" +
+    "                {{ screening.createdAt | mysqlDate:'d / M / yyyy' }}\n" +
+    "            </small>\n" +
+    "        </h2>\n" +
+    "\n" +
+    "\n" +
+    "        <div ng-repeat=\"movement in screening.movements\" class=\"row\">\n" +
+    "            <div class=\"col-md-4 col-md-offset-4\">\n" +
+    "                {{ $index + 1 }} {{ movement.title }} <i class=\"fa fa-plus\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Select a test template -->\n" +
+    "    <div ng-show=\"screening.id === 0 && global.data.isFetchingScreeningData === false\">\n" +
+    "\n" +
+    "        <!-- Temporary listing -->\n" +
+    "        <div\n" +
+    "            ng-show=\"global.getSelectedProfile().id > 0\n" +
+    "                && global.data.isPreparingNewScreening === false\"\n" +
+    "            class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "\n" +
+    "            Start by selecting a test template\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <a ng-click=\"createFunctionalMovementScreening()\" href=\"javascript:;\">\n" +
+    "                Functional Movement Test\n" +
+    "            </a>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Select a profile -->\n" +
+    "        <div\n" +
+    "            ng-show=\"global.getSelectedProfile().id === 0\n" +
+    "                && global.data.isPreparingNewScreening === false\">\n" +
+    "\n" +
+    "            <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Preparing screening records -->\n" +
+    "        <div ng-show=\"global.data.isPreparingNewScreening === true\">\n" +
+    "\n" +
+    "            <br>\n" +
+    "            <h2 class=\"text-center\">\n" +
+    "                Preparing Your Test\n" +
+    "            </h2>\n" +
+    "\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "            <div class=\"text-center\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading screening data -->\n" +
+    "    <div ng-show=\"global.data.isFetchingScreeningData === true\">\n" +
+    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("screenings/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("screenings/index.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
@@ -4347,75 +4449,6 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "");
 }]);
 
-angular.module("screenings/live/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("screenings/live/index.html",
-    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
-    "\n" +
-    "<div class=\"page\">\n" +
-    "    <header>\n" +
-    "        <h1>\n" +
-    "            Movement Test\n" +
-    "            <span></span>\n" +
-    "        </h1>\n" +
-    "\n" +
-    "        <!-- Append profile name to page title -->\n" +
-    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
-    "            for\n" +
-    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                {{ global.getSelectedProfile().firstName }}\n" +
-    "                {{ global.getSelectedProfile().lastName }}\n" +
-    "                <i class=\"fa fa-refresh\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "    </header>\n" +
-    "\n" +
-    "    <!-- Test progress -->\n" +
-    "    <div\n" +
-    "        ng-show=\"global.state.screening.live.id > 0\n" +
-    "            && global.data.isFetchingScreeningData === false\">\n" +
-    "\n" +
-    "        <h2 style=\"text-align: center; color: #ccc;\">\n" +
-    "            In Development\n" +
-    "        </h2>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Select a test template -->\n" +
-    "    <div\n" +
-    "        ng-show=\"global.state.screening.live.id === 0\n" +
-    "            && global.data.isFetchingScreeningData === false\">\n" +
-    "\n" +
-    "        <!-- Temporary listing -->\n" +
-    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"col-md-4 col-md-offset-4 text-center\">\n" +
-    "            Start by selecting a test template\n" +
-    "            <br>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                Functional Movement Test\n" +
-    "            </a>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Select a profile -->\n" +
-    "        <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
-    "            <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Loading screening data -->\n" +
-    "    <div ng-show=\"global.data.isFetchingScreeningData === true\">\n" +
-    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
-    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("screenings/view/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("screenings/view/index.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
@@ -4423,29 +4456,48 @@ angular.module("screenings/view/index.html", []).run(["$templateCache", function
     "<div class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            <abbr title=\"Functional Movement Test\">FMT</abbr> Report\n" +
+    "            <abbr title=\"Functional Movement Test\">FMT</abbr> Report <i class=\"fa fa-list-alt\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "\n" +
     "        <!-- Append profile name to page title -->\n" +
-    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
-    "            for\n" +
-    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                {{ global.getSelectedProfile().firstName }}\n" +
-    "                {{ global.getSelectedProfile().lastName }}\n" +
-    "                <i class=\"fa fa-refresh\"></i>\n" +
-    "            </a>\n" +
+    "        <div ng-show=\"screeningProfile.id > 0\" class=\"h1-append\">\n" +
+    "            {{ screeningProfile.firstName }}\n" +
+    "            {{ screeningProfile.lastName }}\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
+    "    <!-- Screening results -->\n" +
+    "    <div ng-show=\"screening.id > 0\" class=\"text-center\">\n" +
+    "\n" +
+    "        <button class=\"btn btn-default\">\n" +
+    "            Test Score Table\n" +
+    "        </button>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <button class=\"btn btn-default\">\n" +
+    "            Test Score Graph\n" +
+    "        </button>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <button class=\"btn btn-default\">\n" +
+    "            Mobility Summary\n" +
+    "        </button>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <a href=\"javascript:;\">\n" +
+    "            <i class=\"fa fa-angle-double-down fa-2x\"></i>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-show=\"screening.id === 0\">\n" +
     "        <h2 style=\"text-align: center; color: #ccc;\">\n" +
     "            In Development\n" +
     "        </h2>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
-    "        <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
