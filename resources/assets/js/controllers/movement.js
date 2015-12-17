@@ -73,15 +73,16 @@ angular.module('app.controllers')
         $scope.updateFolders = function(folders) {
 
             $scope.folders = [];
-            if (folders.length)
+            if (folders && folders.length)
             {
                 angular.forEach(folders, function(folder) {
                     $scope.folders.push({
                         name: folder.name,
                         href: '#/movements/' +
-                                $routeParams.rootId + '/' +
+                                folder.profileId + '/' +
                                 folder.id + '/' +
-                                folder.path.replace('/', ';')
+                                folder.path.replace('/', '_').replace(/\s+/g, '-') + '_' +
+                                folder.name.replace(/\s+/g, '-')
                     });
                 });
             }
@@ -99,11 +100,39 @@ angular.module('app.controllers')
 
             folderId = folderId || 0;
 
-            FolderService.get($routeParams.rootId, folderId).then(
+            FolderService.get($scope.rootProfile.id, folderId).then(
                 function(response) {
 
                     // Update folders.
-                    $scope.updateFolders(response.data.folders);
+                    $scope.updateFolders(response.data.children);
+
+                    // Set parent folder
+                    $scope.parentFolder = {
+                        href: '#/movements'
+                    };
+
+                    if (response.data.parent)
+                    {
+                        $scope.parentFolder.name = response.data.parent.name;
+                        $scope.parentFolder.href +=
+                            '/' + response.data.profileId +
+                            '/' + response.data.parent.id +
+                            '/' + response.data.path.replace('/', '_').replace(/\s+/g, '-');
+                    }
+
+                    // Update virtual path.
+                    if (response.data.path)
+                    {
+                        if (response.data.path.length > 1)
+                        {
+                            $scope.path += response.data.path.replace('/', ' / ') + ' / ' +
+                                            response.data.name;
+                        }
+                        else
+                        {
+                            $scope.path += ' / ' + response.data.name;
+                        }
+                    }
 
                     // Update movment data.
                     $scope.movements = response.data.movements;
@@ -112,7 +141,6 @@ angular.module('app.controllers')
                 },
                 function(response) {
                     Utilities.alert('Could not retrieve movement data. Please try again later.');
-                    Utilities.debug(response.responseText);
 
                     $scope.global.data.isFetchingMovementData = false;
                 }
@@ -160,25 +188,8 @@ angular.module('app.controllers')
             // Update path name.
             $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
 
-            // Virtual path.
-            if ($routeParams.path)
-            {
-                // Update path name.
-                $scope.path += ' / ' + $routeParams.path.replace(';', ' / ');
-
-                // Parent folder.
-                $scope.parentFolder = {href: '#/movements'};
-            }
-
-            // Root path.
-            else
-            {
-                // Parent folder.
-                $scope.parentFolder = {href: '#/movements'};
-
-                // Retrieve movement data.
-                $scope.fetchMovementData();
-            }
+            // Retrieve movement data.
+            $scope.fetchMovementData($routeParams.folderId);
         }
 
         // If no root folder was selected, display the root folders.
@@ -193,16 +204,8 @@ angular.module('app.controllers')
 
         // If a folder was selected, but the profile doesn't exit, redirect the user to the root
         // folders.
-        else
-        {
-            // If we're still loading profiles, keep waiting.
-            if ($scope.global.data.isFetchingProfiles === true) {
-                Utilities.debug('Still loading progiles...');
-            }
-
-            else {
-                Rover.browseTo.path('/movements');
-            }
+        else {
+            Rover.browseTo.path('/movements');
         }
 
         // Watches the global profile list.
@@ -218,7 +221,5 @@ angular.module('app.controllers')
         $scope.$watch('layout.name', function(name) {
             Rover.setConfig('movements.layout', name);
         });
-
-        Utilities.debug('test a');
     }
 ]);

@@ -66,27 +66,25 @@ class FolderController extends Controller
         // Retrieve root folders and movements if not folder was specified.
         if ($folderId < 1)
         {
-            $parent = null;
-            $folders = $profile->folders()->where('folder_id', 0)->get();
-            $movements = $profile->movements()
-                            ->whereNull('folder_id')
-                            ->whereNull('screening_id')
-                            ->get();
+            $folder = [
+                'parent' => null,
+                'children' => $profile->folders()->whereNull('folder_id')->get(),
+                'movements' => $profile->movements()
+                                ->whereNull('folder_id')
+                                ->whereNull('screening_id')
+                                ->get()
+            ];
         }
 
         // Retrieve folders and movements within a given folder.
         else
         {
-            if (!$folder = Folder::find($folderId)) {
+            if (!$folder = Folder::with('parent', 'children', 'movements')->find($folderId)) {
                 return response('Folder Not Found.', 400);
             }
-
-            $parent = $folder->parent;
-            $folders = $folder->children;
-            $movements = $folder->movements;
         }
 
-        return compact('parent', 'folders', 'movements');
+        return $folder;
     }
 
     /**

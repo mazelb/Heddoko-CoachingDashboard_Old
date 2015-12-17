@@ -36,7 +36,7 @@ class Folder extends Model
      */
 	public function parent()
     {
-		return $this->belongsTo('App\Models\Folder');
+		return $this->belongsTo('App\Models\Folder', 'folder_id');
 	}
 
     /**

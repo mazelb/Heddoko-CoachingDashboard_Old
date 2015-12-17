@@ -3144,7 +3144,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
-    "                {{ folder.name }}\n" +
+    "                {{ folder.name | characters:25 }}\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
@@ -3167,7 +3167,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "\n" +
     "                    <!-- Movement title -->\n" +
     "                    <span style=\"color: #999\">\n" +
-    "                        {{ movement.title }}\n" +
+    "                        {{ movement.title | characters:25 }}\n" +
     "                    </span>\n" +
     "\n" +
     "                    <!-- Movement actions -->\n" +
