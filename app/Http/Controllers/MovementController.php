@@ -37,7 +37,7 @@ class MovementController extends Controller
         // Profile-based query builder.
         if ($this->request->has('profile_id'))
         {
-            $profileId = (int) $this->request->input('profile_id');
+            $profileId = (int) $this->request->input('profileId');
             if (!$profile = Auth::user()->profiles()->find($profileId)) {
                 return response('Profile Not Found.', 400);
             }
@@ -77,12 +77,12 @@ class MovementController extends Controller
     public function store()
     {
         // Retrieve profile this movement belongs to.
-        if (!$profileId = (int) $this->request->input('profile_id')) {
+        if (!$profileId = (int) $this->request->input('profileId')) {
             return response('Invalid Profile ID.', 400);
         }
 
         if (!$profile = Auth::user()->profiles()->find($profileId)) {
-            return response('Profile Not Found.', 400);
+            return response('Profile Not Found ('. json_encode($profile) .').', 400);
         }
 
         // Make sure we have a file to work with.

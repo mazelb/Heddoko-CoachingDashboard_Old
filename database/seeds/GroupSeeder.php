@@ -21,6 +21,8 @@ class GroupSeeder extends Seeder
     {
         $this->command->info('Running GroupSeeder...');
 
+        DB::table('groups')->delete();
+
         // Groups belonging to demo user.
         if ($demo = User::where('username', 'awesomecoach111')->first())
         {

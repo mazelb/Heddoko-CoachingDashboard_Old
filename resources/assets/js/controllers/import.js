@@ -40,7 +40,7 @@ angular.module('app.controllers')
                     url: '/api/v1/movements',
                     data: {
                         file: file,
-                        profile_id: $scope.global.getSelectedProfile().id
+                        profileId: $scope.global.getSelectedProfile().id
                     }
                 }).then(
                     function (response) {

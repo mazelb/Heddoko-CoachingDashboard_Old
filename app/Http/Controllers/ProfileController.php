@@ -36,11 +36,11 @@ class ProfileController extends Controller
     public function index()
     {
         // Retrieve a query builder.
-        $groupId = (int) $this->request->input('group');
-        if ($groupId && $group = Group::find($groupId)) {
+        $groupId = (int) $this->request->input('group_id');
+        if ($groupId && $group = Auth::user()->groups()->find($groupId)) {
             $builder = $group->profiles();
         } else {
-            $builder = Profile::query();
+            $builder = Auth::user()->profiles();
         }
 
         // Determine which relations to embed with the profile list.

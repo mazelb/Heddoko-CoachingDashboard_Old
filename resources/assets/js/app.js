@@ -148,44 +148,14 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'screenings/index.html',
             controller: 'ScreeningController'
 		})
-        .when('/screenings/create', {
-			templateUrl: 'screenings/create/index.html',
+        .when('/screenings/live', {
+			templateUrl: 'screenings/live/index.html',
             controller: 'ScreeningController'
 		})
         .when('/screenings/:screeningId', {
 			templateUrl: 'screenings/view/index.html',
             controller: 'ScreeningController'
 		})
-        .when('/screenings/demo/:name?/:step?',
-        {
-            templateUrl: function(params)
-            {
-                var tmpl = 'index';
-                if (params.step) {
-                    tmpl = params.step;
-                } else if (params.name) {
-                    tmpl = 'test';
-                }
-
-                return 'screenings/demo/'+ tmpl +'.html';
-            },
-            controller: 'FMSDemoController'
-        })
-        .when('/screenings/live/:name?/:step?',
-        {
-            templateUrl: function(params)
-            {
-                var tmpl = 'index';
-                if (params.step) {
-                    tmpl = params.step;
-                } else if (params.name) {
-                    tmpl = 'test';
-                }
-
-                return 'screenings/live/'+ tmpl +'.html';
-            },
-            controller: 'FMSController'
-        })
 
         //
         // Other routes.
@@ -202,6 +172,36 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Demo routes.
         //
+        .when('/fms/demo/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return 'fms-bak/demo/'+ tmpl +'.html';
+            },
+            controller: 'FMSDemoController'
+        })
+        .when('/fms/live/:name?/:step?',
+        {
+            templateUrl: function(params)
+            {
+                var tmpl = 'index';
+                if (params.step) {
+                    tmpl = params.step;
+                } else if (params.name) {
+                    tmpl = 'test';
+                }
+
+                return 'fms-bak/live/'+ tmpl +'.html';
+            },
+            controller: 'FMSController'
+        })
         .when("/fmstest", {
 			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {
