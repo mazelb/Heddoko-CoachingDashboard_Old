@@ -30,6 +30,8 @@ class AccountSeeder extends Seeder
 			'email' => 'demo@example.com',
 			'username' => 'awesomecoach111',
 			'password' => bcrypt('password'),
+            'first_name' => 'Catherine',
+            'last_name' => 'Bellini',
             'created_at' => '2015-09-01 00:00:00'
 		]);
         $demoUser2 = User::create([

@@ -152,8 +152,8 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'screenings/create/index.html',
             controller: 'ScreeningController'
 		})
-        .when('/screenings/results', {
-			templateUrl: 'screenings/results/index.html',
+        .when('/screenings/:screeningId', {
+			templateUrl: 'screenings/view/index.html',
             controller: 'ScreeningController'
 		})
         .when('/screenings/demo/:name?/:step?',

@@ -90,6 +90,7 @@ class UpdatesDec2015 extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            $table->string('title')->nullable();
             $table->tinyInteger('score')->unsigned()->nullable();
             $table->tinyInteger('score_max')->unsigned()->nullable();
             $table->text('notes')->nullable();

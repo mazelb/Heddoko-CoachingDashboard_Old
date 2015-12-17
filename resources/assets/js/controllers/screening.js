@@ -7,12 +7,28 @@
  */
 angular.module('app.controllers')
 
-.controller('ScreeningController', ['$scope', 'ScreeningService', 'Rover', 'Utilities',
-    function($scope, ScreeningService, Rover, Utilities) {
+.controller('ScreeningController', ['$scope', '$routeParams', 'ScreeningService', 'Rover', 'Utilities',
+    function($scope, $routeParams, ScreeningService, Rover, Utilities) {
         Utilities.debug('ScreeningController');
 
-        // Setup screening data.
-        // Rover.data.
+        // Initial setup.
+        $scope.global.data.isFetchingScreeningData = true;
+
+        // Screening currently being viewed.
+        $scope.
+
+        /**
+         * Retrieves screening data for the selected profile.
+         */
+        $scope.fetchScreeningData = function() {
+
+        };
+
+        // If a screening ID was provided, try to fetch its contents.
+        if ($routeParams.screeningId)
+        {
+
+        }
 
         // Retrieve screenings.
 

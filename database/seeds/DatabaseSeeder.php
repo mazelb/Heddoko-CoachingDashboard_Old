@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
 	{
 		$this->call('AccountSeeder');
 		$this->call('GroupSeeder');
+		$this->call('ProfileSeeder');
 		$this->call('TagSeeder');
 	}
 
