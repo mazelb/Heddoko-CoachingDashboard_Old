@@ -37,9 +37,9 @@ class ScreeningController extends Controller
     public function index()
     {
         // Profile-based query builder.
-        if ($this->request->has('profile_id'))
+        if ($this->request->has('profileId'))
         {
-            $profileId = (int) $this->request->input('profile_id');
+            $profileId = (int) $this->request->input('profileId');
             if (!$profile = Auth::user()->profiles()->find($profileId)) {
                 return response('Profile Not Found.', 400);
             }
@@ -54,12 +54,15 @@ class ScreeningController extends Controller
             $builder = Screening::whereIn('profile_id', Auth::user()->getProfileIDs());
         }
 
-        // ...
+        // Retrieve other search parameters. We\ll also make sure we have positive values
+        // for "limit" and "offset".
+        $limit = max(0, min(50, $this->request->input('limit', 20)));
+        $offset = max(0, $this->request->input('offset', 0));
+        $orderBy = snake_case($this->request->input('orderBy', 'created_at'));
+        $orderDir = $this->request->input('orderDir', 'desc');
 
-        $offset = 0;
-        $limit = 20;
-        $orderBy = 'created_at';
-        $orderDir = 'desc';
+        // Add search query.
+        // TODO...
 
         $builder->orderBy($orderBy, $orderDir)->skip($offset)->take($limit);
 

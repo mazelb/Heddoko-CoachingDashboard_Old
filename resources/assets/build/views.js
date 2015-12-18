@@ -3409,6 +3409,41 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                    <i class=\"fa fa-bars\"></i>\n" +
     "                </a>\n" +
     "			</li>\n" +
+    "\n" +
+    "            <!-- Account -->\n" +
+    "            <li ng-show=\"global.isLocal\" class=\"dropdown text-normal nav-profile\">\n" +
+    "                <a\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"dropdown-toggle\"\n" +
+    "                    id=\"menuAccountDropdown\"\n" +
+    "                    data-toggle=\"dropdown\"\n" +
+    "                    aria-haspopup=\"true\"\n" +
+    "                    aria-expanded=\"true\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-user\"></i>\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <!-- Account links -->\n" +
+    "                <div\n" +
+    "                    class=\"dropdown-menu with-arrow pull-left panel panel-default\"\n" +
+    "                    aria-labelledby=\"menuAccountDropdown\">\n" +
+    "\n" +
+    "                    <ul class=\"list-group\">\n" +
+    "                        <li class=\"list-group-item\">\n" +
+    "                            <a href=\"#/account\">\n" +
+    "                                <i class=\"fa fa-user color-info\"></i>\n" +
+    "                                <span>My Account</span>\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li class=\"list-group-item\">\n" +
+    "                            <a ng-click=\"global.endSession()\" href=\"javascript:;\">\n" +
+    "                                <i class=\"fa fa-sign-out fa-fw\"></i>\n" +
+    "                                <span>Log out</span>\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
     "		</ul>\n" +
     "\n" +
     "        <ul class=\"nav-right list-unstyled\">\n" +
@@ -3422,6 +3457,85 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                        config=\"config\"\n" +
     "                        options=\"options\">\n" +
     "                    </selectize>\n" +
+    "                </div>\n" +
+    "            </li>\n" +
+    "\n" +
+    "            <!-- Notifications -->\n" +
+    "            <li ng-show=\"global.isLocal\" class=\"dropdown\">\n" +
+    "                <a\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"dropdown-toggle onboarding-general\"\n" +
+    "                    id=\"menuAccountDropdown\"\n" +
+    "                    data-toggle=\"dropdown\"\n" +
+    "                    aria-haspopup=\"true\"\n" +
+    "                    aria-expanded=\"true\"\n" +
+    "                    data-intro=\"Whenever you do something in the app, it will show up as a notification here\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-bell fa-fw\"></i>\n" +
+    "                    <span>Notifications</span>\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <div\n" +
+    "                    class=\"dropdown-menu with-arrow pull-right panel panel-default\"\n" +
+    "                    aria-labelledby=\"menuNotificationsDropdown\">\n" +
+    "\n" +
+    "                    <!-- Notifications header -->\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        You have 2 notifications.\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- List of notifications -->\n" +
+    "                    <ul class=\"list-group\">\n" +
+    "                        <li class=\"list-group-item\">\n" +
+    "                            <a href=\"javascript:;\" class=\"media\">\n" +
+    "                                <span class=\"pull-left media-icon\">\n" +
+    "                                    <span class=\"circle-icon sm bg-success\">\n" +
+    "                                        <i class=\"fa fa-bell-o\"></i>\n" +
+    "                                    </span>\n" +
+    "                                </span>\n" +
+    "\n" +
+    "                                <div class=\"media-body\">\n" +
+    "                                    <span class=\"block\">New tasks needs to be done</span>\n" +
+    "                                    <span class=\"text-muted block\">2min ago</span>\n" +
+    "                                </div>\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li class=\"list-group-item\">\n" +
+    "                            <a href=\"javascript:;\" class=\"media\">\n" +
+    "                                <span class=\"pull-left media-icon\">\n" +
+    "                                    <span class=\"circle-icon sm bg-info\">\n" +
+    "                                        <i class=\"fa fa-bell-o\"></i>\n" +
+    "                                    </span>\n" +
+    "                                </span>\n" +
+    "\n" +
+    "                                <div class=\"media-body\">\n" +
+    "                                    <span class=\"block\">Change your password</span>\n" +
+    "                                    <span class=\"text-muted\">3 hours ago</span>\n" +
+    "                                </div>\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li class=\"list-group-item\">\n" +
+    "                            <a href=\"javascript:;\" class=\"media\">\n" +
+    "                                <span class=\"pull-left media-icon\">\n" +
+    "                                    <span class=\"circle-icon sm bg-danger\">\n" +
+    "                                        <i class=\"fa fa-bell-o\"></i>\n" +
+    "                                    </span>\n" +
+    "                                </span>\n" +
+    "\n" +
+    "                                <div class=\"media-body\">\n" +
+    "                                    <span class=\"block\">New feature added</span>\n" +
+    "                                    <span class=\"text-muted\">9 hours ago</span>\n" +
+    "                                </div>\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "\n" +
+    "                    <!-- Notifications footer -->\n" +
+    "                    <div class=\"panel-footer\">\n" +
+    "                        <a href=\"javascript:;\">\n" +
+    "                            Show all notifications.\n" +
+    "                        </a>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </li>\n" +
     "\n" +
@@ -3533,46 +3647,76 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            data-step=\"1\"\n" +
     "            data-intro=\"This is a shortcut to your dashboard.\"\n" +
     "            data-position=\"right\">\n" +
-    "            <a href=\"#/dashboard\"><span>Dashboard</span></a>\n" +
+    "\n" +
+    "            <a href=\"#/dashboard\">\n" +
+    "                <i class=\"fa fa-dashboard\"></i>\n" +
+    "                <span>Dashboard</span>\n" +
+    "            </a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- List of groups -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/group/list\"><span>Teams</span></a>\n" +
+    "            <a href=\"#/group/list\">\n" +
+    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <span>Teams</span>\n" +
+    "                <span class=\"pull-right\">\n" +
+    "                    <i ng-show=\"global.data.isFetchingGroups === true\" class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                    <small ng-show=\"!global.data.isFetchingGroups\">\n" +
+    "                        ( {{ global.state.group.list.length }} )\n" +
+    "                    </small>\n" +
+    "                </span>\n" +
+    "            </a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- List of athletes -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/profile/list\"><span>Athletes</span></a>\n" +
+    "            <a href=\"#/profile/list\">\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <span>Athletes</span>\n" +
+    "                <span class=\"pull-right\">\n" +
+    "                    <i ng-show=\"global.data.isFetchingProfiles === true\" class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                    <small ng-show=\"!global.data.isFetchingProfiles\">\n" +
+    "                        ( {{ global.state.profile.list.length }} )\n" +
+    "                    </small>\n" +
+    "                </span>\n" +
+    "            </a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- List of movements -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/movements\"><span>Movements</span></a>\n" +
+    "            <a href=\"#/movements\">\n" +
+    "                <i class=\"fa fa-th\"></i>\n" +
+    "                <span>Movements</span>\n" +
+    "            </a>\n" +
     "\n" +
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
     "                    <a href=\"#/movements\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Organize</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/capture\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Record</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/movements/upload\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/movements/analyze\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Analyze</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/movements/compare\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Compare</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
@@ -3581,16 +3725,21 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "        <!-- Screenings -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/screening\"><span>Movement Tests</span></a>\n" +
+    "            <a href=\"#/screening\">\n" +
+    "                <i class=\"fa fa-pencil-square-o\"></i>\n" +
+    "                <span>Movement Tests</span>\n" +
+    "            </a>\n" +
     "\n" +
     "            <ul style=\"display: block\">\n" +
     "                <li>\n" +
     "                    <a href=\"#/screenings/current\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Record or Upload</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
     "                    <a href=\"#/screenings\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>View Results</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
@@ -3610,7 +3759,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <!-- Live FMS pages. -->\n" +
     "        <li>\n" +
     "            <!-- TODO: Call this Live FMS? -->\n" +
-    "            <a href=\"#/fms/live\">Movement Screen</a>\n" +
+    "            <a href=\"#/fms/live\"> <i class=\"fa fa-pencil-square-o\"></i> Movement Screen</a>\n" +
     "\n" +
     "            <!-- TODO: Use ng-repeat when ready -->\n" +
     "            <ul style=\"display: block\">\n" +
@@ -3652,7 +3801,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            <a href=\"#/account\"><span>My Account</span></a>\n" +
     "        </li>\n" +
     "\n" +
-    "        <li style=\"margin: 10px 0 0; text-align: center; font-size: 0.8em; color: #aaa;\">\n" +
+    "        <li class=\"app-version\">\n" +
     "            {{ global.appVersion }}\n" +
     "		</li>\n" +
     "\n" +
@@ -4397,7 +4546,7 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "<div class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Movement Test\n" +
+    "            Movement Test <i class=\"fa fa-pencil-square-o\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "\n" +
@@ -4504,9 +4653,72 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
-    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
-    "        In Development\n" +
-    "    </h2>\n" +
+    "    <!-- List of screenings -->\n" +
+    "    <div ng-show=\"global.data.isFetchingScreeningData === false\" class=\"row\">\n" +
+    "\n" +
+    "        <div\n" +
+    "            ng-show=\"global.state.screening.list.length > 0\"\n" +
+    "            class=\"col-xs-12 col-md-10 col-md-offset-1\">\n" +
+    "\n" +
+    "            <!-- Heading -->\n" +
+    "            <div class=\"row heading\">\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    Date\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    Title\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    Athlete\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    Score\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Screenings -->\n" +
+    "            <div ng-repeat=\"screening in global.state.screening.list\" class=\"row\">\n" +
+    "\n" +
+    "                <!-- Date -->\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    {{ screening.createdAt | mysqlDate }}\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    <a href=\"#/screenings/{{ screening.id }}\">\n" +
+    "                        {{ screening.title | characters:60 }}\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-3 text-center\">\n" +
+    "                    {{ screening.profileId }}\n" +
+    "                </div>\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    {{ screening.score | number:0 }}\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- No screenings to show -->\n" +
+    "        <div ng-show=\"global.state.screening.list.length === 0\">\n" +
+    "\n" +
+    "            <a href=\"#/screenings/current\" class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                <i class=\"fa fa-plus\"></i>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <h3>There are no tests to display.</h3>\n" +
+    "            Once you create a new test, it will show up here.\n" +
+    "            <br><br>\n" +
+    "\n" +
+    "            <b>Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button above to start.</b>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading data -->\n" +
+    "    <div ng-show=\"global.data.isFetchingScreeningData === true\">\n" +
+    "        <h3 class=\"text-center\">Retrieving Tests</h3>\n" +
+    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);

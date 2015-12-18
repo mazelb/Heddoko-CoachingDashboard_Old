@@ -19,6 +19,9 @@ angular.module('app.filters')
 
                 // Update input with timezone.
                 input = input.replace(' ', 'T') + 'Z';
+
+                // Default format.
+                format = format || 'MMMM d, yyyy (h:mm a)';
             }
 
             return $filter('date')(input, format, timezone);

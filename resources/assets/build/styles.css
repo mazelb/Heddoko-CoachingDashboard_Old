@@ -5677,16 +5677,10 @@ button.toast-close-button {
 @media (min-width: 480px) {
   .top-header .hidden-mobile {
     display: inline; } }
-.top-header .logo {
-  position: absolute;
+#nav-container .logo-container {
   width: 100%;
-  height: 80px;
-  padding-left: 25px;
-  background-color: #db5031;
-  color: #ffffff;
-  line-height: 80px;
-  text-align: left; }
-
+  height: 100%;
+  position: relative; }
 #nav-container .logo {
   position: absolute;
   width: 100%;
@@ -5696,25 +5690,26 @@ button.toast-close-button {
   color: #fff;
   line-height: 80px;
   text-align: left;
-  padding: 10px 26px 26px 26px; }
-
-.logo-container {
-  width: 100%;
-  height: 100%;
-  position: relative; }
-
-.logo1 {
-  width: 40px;
+  padding: 10px 15px 30px; }
+#nav-container .logo1 {
+  width: 30px;
   left: 0; }
-
-.logo2 {
-  width: 63%;
-  right: 14%; }
-
-.logo1, .logo2 {
+#nav-container .logo2 {
+  width: 55%;
+  right: 20%; }
+  .nav-min #nav-container .logo2 {
+    display: none; }
+#nav-container .logo1, #nav-container .logo2 {
   height: auto;
   position: absolute;
   bottom: 0; }
+#nav-container .app-version {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 0.8em;
+  color: #aaa; }
+  .nav-min #nav-container .app-version {
+    color: #888; }
 
 @media (min-width: 768px) {
   .top-header .logo {

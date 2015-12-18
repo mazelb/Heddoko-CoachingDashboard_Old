@@ -42,8 +42,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
     ]);
 
     // User endpoints.
-    Route::post('users/{id}/avatar', 'UserController@saveAvatar');
-    Route::delete('users/{id}/avatar', 'UserController@destroyAvatar');
+    Route::post('users/{idOrHash}/avatar', 'UserController@saveAvatar');
+    Route::delete('users/{idOrHash}/avatar', 'UserController@destroyAvatar');
     Route::resource('users', 'UserController', [
         'only' => ['index', 'store', 'show', 'update', 'destroy']
     ]);

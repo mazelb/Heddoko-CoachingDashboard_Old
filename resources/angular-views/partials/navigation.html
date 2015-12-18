@@ -17,46 +17,76 @@
             data-step="1"
             data-intro="This is a shortcut to your dashboard."
             data-position="right">
-            <a href="#/dashboard"><span>Dashboard</span></a>
+
+            <a href="#/dashboard">
+                <i class="fa fa-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
         </li>
 
         <!-- List of groups -->
 		<li>
-            <a href="#/group/list"><span>Teams</span></a>
+            <a href="#/group/list">
+                <i class="fa fa-cubes"></i>
+                <span>Teams</span>
+                <span class="pull-right">
+                    <i ng-show="global.data.isFetchingGroups === true" class="fa fa-spinner fa-spin"></i>
+                    <small ng-show="!global.data.isFetchingGroups">
+                        ( {{ global.state.group.list.length }} )
+                    </small>
+                </span>
+            </a>
         </li>
 
         <!-- List of athletes -->
 		<li>
-            <a href="#/profile/list"><span>Athletes</span></a>
+            <a href="#/profile/list">
+                <i class="fa fa-users"></i>
+                <span>Athletes</span>
+                <span class="pull-right">
+                    <i ng-show="global.data.isFetchingProfiles === true" class="fa fa-spinner fa-spin"></i>
+                    <small ng-show="!global.data.isFetchingProfiles">
+                        ( {{ global.state.profile.list.length }} )
+                    </small>
+                </span>
+            </a>
         </li>
 
         <!-- List of movements -->
 		<li>
-            <a href="#/movements"><span>Movements</span></a>
+            <a href="#/movements">
+                <i class="fa fa-th"></i>
+                <span>Movements</span>
+            </a>
 
             <ul style="display: block">
                 <li>
                     <a href="#/movements">
+                        <i class="fa fa-angle-right"></i>
                         <span>Organize</span>
                     </a>
                 </li>
                 <li>
                     <a href="#/capture">
+                        <i class="fa fa-angle-right"></i>
                         <span>Record</span>
                     </a>
                 </li>
                 <li>
                     <a href="#/movements/upload">
+                        <i class="fa fa-angle-right"></i>
                         <span>Upload</span>
                     </a>
                 </li>
                 <li>
                     <a href="#/movements/analyze">
+                        <i class="fa fa-angle-right"></i>
                         <span>Analyze</span>
                     </a>
                 </li>
                 <li>
                     <a href="#/movements/compare">
+                        <i class="fa fa-angle-right"></i>
                         <span>Compare</span>
                     </a>
                 </li>
@@ -65,16 +95,21 @@
 
         <!-- Screenings -->
 		<li>
-            <a href="#/screening"><span>Movement Tests</span></a>
+            <a href="#/screening">
+                <i class="fa fa-pencil-square-o"></i>
+                <span>Movement Tests</span>
+            </a>
 
             <ul style="display: block">
                 <li>
                     <a href="#/screenings/current">
+                        <i class="fa fa-angle-right"></i>
                         <span>Record or Upload</span>
                     </a>
                 </li>
                 <li>
                     <a href="#/screenings">
+                        <i class="fa fa-angle-right"></i>
                         <span>View Results</span>
                     </a>
                 </li>
@@ -94,7 +129,7 @@
         <!-- Live FMS pages. -->
         <li>
             <!-- TODO: Call this Live FMS? -->
-            <a href="#/fms/live">Movement Screen</a>
+            <a href="#/fms/live"> <i class="fa fa-pencil-square-o"></i> Movement Screen</a>
 
             <!-- TODO: Use ng-repeat when ready -->
             <ul style="display: block">
@@ -136,7 +171,7 @@
             <a href="#/account"><span>My Account</span></a>
         </li>
 
-        <li style="margin: 10px 0 0; text-align: center; font-size: 0.8em; color: #aaa;">
+        <li class="app-version">
             {{ global.appVersion }}
 		</li>
 

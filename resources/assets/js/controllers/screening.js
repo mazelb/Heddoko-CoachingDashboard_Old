@@ -78,7 +78,7 @@ angular.module('app.controllers')
                     Utilities.debug('Screening created.');
 
                     // Save screening data.
-                    $scope.global.state.screening.current = $scope.screening = response.data;
+                    $scope.global.state.screening.current = response.data;
                     $scope.global.data.isPreparingNewScreening = false;
                 },
                 function(response) {
@@ -92,13 +92,42 @@ angular.module('app.controllers')
          * Retrieves screening data for the selected profile.
          */
         $scope.fetchScreeningData = function() {
+            Utilities.debug('Retrieving screening data...');
 
+            $scope.global.data.isFetchingScreeningData = true;
+
+            ScreeningService.search({
+                query: '',
+                profileId: null,
+                offset: 0,
+                limit: 20,
+                orderBy: 'createdAt',
+                orderDir: 'desc'
+            }).then(
+                function(response) {
+                    Utilities.debug('Received ' + response.data.results.length + ' results.');
+
+                    // Save movement data.
+                    $scope.global.state.screening.list = response.data.results;
+
+                    $scope.global.data.isFetchingScreeningData = false;
+                },
+                function(response) {
+                    Utilities.debug('Could not retrieve screening data. Please try again later.');
+                    $scope.global.data.isFetchingScreeningData = false;
+                }
+            );
         };
 
         // If a screening ID was provided, try to fetch its contents.
         if ($routeParams.screeningId)
         {
 
+        }
+
+        // Retrieve recent screenings.
+        if ($scope.global.state.screening.list.length === 0) {
+            $scope.fetchScreeningData();
         }
 
         // Watch current screening object.

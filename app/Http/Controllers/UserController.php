@@ -121,7 +121,7 @@ class UserController extends Controller
     /**
      * Saves the avatar for a user.
      *
-     * @param int $id
+     * @param mixed $id
      */
     public function saveAvatar($id)
     {
