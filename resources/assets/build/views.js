@@ -2736,10 +2736,10 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        <div class=\"movement-import row\">\n" +
     "\n" +
     "            <!-- Import new movement -->\n" +
-    "            <div ng-show=\"isImporting === false\" class=\"col-xs-12 text-center\">\n" +
+    "            <div ng-show=\"global.data.isImporting === false\" class=\"col-xs-12 text-center\">\n" +
     "                <button\n" +
-    "                    ngf-select=\"import($files)\"\n" +
-    "                    ngf-drop=\"import($files)\"\n" +
+    "                    ngf-select=\"startImport($files)\"\n" +
+    "                    ngf-drop=\"startImport($files)\"\n" +
     "                    accept=\".csv,.txt\"\n" +
     "                    ngf-max-size=\"2MB\"\n" +
     "                    multiple\n" +
@@ -2750,30 +2750,70 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            </div>\n" +
     "\n" +
     "            <!-- Uploading movement file -->\n" +
-    "            <div\n" +
-    "                ng-show=\"isImporting === true\"\n" +
-    "                class=\"col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 text-center\">\n" +
+    "            <div ng-show=\"global.data.isImporting === true\">\n" +
     "\n" +
+    "                <!-- Import status -->\n" +
     "                <br>\n" +
     "                <br>\n" +
-    "                <div class=\"progress\">\n" +
-    "                    <div\n" +
-    "                        class=\"progress-bar\"\n" +
-    "                        role=\"progressbar\"\n" +
-    "                        aria-valuenow=\"60\"\n" +
-    "                        aria-valuemin=\"0\"\n" +
-    "                        aria-valuemax=\"100\"\n" +
-    "                        style=\"min-width: 2em; width: 60%;\">\n" +
+    "                <h3 class=\"text-center\">\n" +
+    "                    {{ global.data.import.status }}\n" +
     "\n" +
-    "                        60%\n" +
+    "                    <br>\n" +
+    "                    <small ng-show=\"global.data.import.queue.length > 1\">\n" +
+    "                        {{ global.data.import.queue.length }} movement files left.\n" +
+    "                    </small>\n" +
+    "                    <small ng-show=\"global.data.import.queue.length <= 1\">\n" +
+    "                        Almost done...\n" +
+    "                    </small>\n" +
+    "                </h3>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <!-- Import progress -->\n" +
+    "                <div class=\"col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4\">\n" +
+    "                    <div class=\"progress\">\n" +
+    "                        <div\n" +
+    "                            class=\"progress-bar progress-bar-info progress-bar-striped active\"\n" +
+    "                            role=\"progressbar\"\n" +
+    "                            aria-valuenow=\"{{ global.data.import.progress }}\"\n" +
+    "                            aria-valuemin=\"0\"\n" +
+    "                            aria-valuemax=\"100\"\n" +
+    "                            style=\"min-width: 2em;\"\n" +
+    "                            ng-style=\"{width: global.data.import.progress + '%'}\">\n" +
+    "\n" +
+    "                            {{ global.data.import.progress }}%\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Import actions -->\n" +
+    "                <br>\n" +
+    "                <div class=\"col-xs-12 text-center\">\n" +
+    "                    <div class=\"btn-group\">\n" +
+    "                        <button\n" +
+    "                            ng-disabled=\"global.data.import.imported.length === 0\"\n" +
+    "                            ng-click=\"global.data.import.imported = []\"\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-default\">\n" +
+    "\n" +
+    "                            Clear List\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <button\n" +
+    "                            ng-disabled=\"global.data.import.queue.length <= 1\"\n" +
+    "                            ng-click=\"global.data.import.queue = []\"\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-danger\">\n" +
+    "\n" +
+    "                            Stop Import\n" +
+    "                        </button>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div ng-show=\"global.data.importedMovements.length > 0\">\n" +
+    "        <div ng-show=\"global.data.import.imported.length > 0\">\n" +
     "            <!-- List of uploaded movements -->\n" +
-    "            <div ng-repeat=\"file in global.data.importedMovements\" class=\"movement-import row\">\n" +
+    "            <div ng-repeat=\"file in global.data.import.imported\" class=\"movement-import row\">\n" +
     "                <div class=\"col-md-3 col-md-offset-1\">\n" +
     "\n" +
     "                    <!-- Movement title -->\n" +
@@ -2838,14 +2878,20 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <!-- Clear button -->\n" +
     "            <div class=\"movement-import row\">\n" +
     "                <div class=\"col-sm-12 text-center\">\n" +
-    "                    <button type=\"button\" class=\"btn btn-primary\">Done</button>\n" +
+    "                    <button\n" +
+    "                        ng-click=\"global.data.import.imported = []\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default\">\n" +
+    "\n" +
+    "                        Clear List\n" +
+    "                    </button>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- No recently uploaded movement -->\n" +
     "        <div\n" +
-    "            ng-show=\"global.data.importedMovements.length === 0 && isImporting === false\"\n" +
+    "            ng-show=\"global.data.import.imported.length === 0 && global.data.isImporting === false\"\n" +
     "            class=\"col-md-6 col-md-offset-3 text-center\">\n" +
     "\n" +
     "            <h3>There are no movements to display.</h3>\n" +
@@ -2872,7 +2918,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <br>\n" +
     "\n" +
     "            You can also take this opportunity to\n" +
-    "            <a href=\"#profile/create\">create one</a>.\n" +
+    "            <a href=\"#/profile/create\">create one</a>.\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +

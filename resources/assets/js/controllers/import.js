@@ -11,21 +11,22 @@ angular.module('app.controllers')
     function($scope, $timeout, Upload, Rover, Utilities) {
         Utilities.debug('ImportController');
 
-        // Uploading movement flag.
-        $scope.isImporting = false;
-
-        // Uploaded data progress.
-        $scope.global.data.importProgress = 0.6;
-
-        // Uploaded movement data.
-        $scope.global.data.importedMovements = $scope.global.data.importedMovements || [];
+        // Setup import data.
+        $scope.global.data.isImporting = $scope.global.data.isImporting || false;
+        $scope.global.data.import = $scope.global.data.import || {};
+        $scope.global.data.import.progress = $scope.global.data.import.progress || 0;
+        $scope.global.data.import.imported = $scope.global.data.import.imported || [];
+        $scope.global.data.import.queue = $scope.global.data.import.queue || [];
+        $scope.global.data.import.queueTotal = $scope.global.data.import.queueTotal || 0;
+        $scope.global.data.import.status = $scope.global.data.import.status || '';
 
         /**
-         * Imports movement data.
+         * Launches the "import chain" to import several movement files. We avoid using
+         * HTML5-specific methods for backwards compatibility (e.g. IE8, IE9).
          *
          * @param array files
          */
-        $scope.import = function(files) {
+        $scope.startImport = function(files) {
 
             // Performance check.
             if (!files) {
@@ -33,36 +34,79 @@ angular.module('app.controllers')
             }
 
             // Turn on "uploading" flag.
-            $scope.isImporting = true;
-            $scope.pendingMovements = files;
-            Utilities.debug('Uploading movement data...');
+            $scope.global.data.isImporting = true;
+            $scope.global.data.import.queue = files;
+            Utilities.debug('Uploading ' + files.length + ' movement files...');
 
-            // Upload data files one by one. This ensures compatibility with IE8/9
-            angular.forEach(files, function(file) {
-                file.upload = Upload.upload({
-                    url: '/api/v1/movements',
-                    data: {
-                        file: file,
-                        profileId: $scope.global.getSelectedProfile().id
-                    }
-                }).then(
-                    function (response) {
+            // Start uploading files.
+            $scope.global.data.import.queueTotal = files.length;
+            $scope.global.data.import.progress = 0;
+            $scope.chainImport();
+        };
 
-                        // On success, add the new movement to the top of the list.
-                        $scope.global.data.importedMovements.unshift(response.data);
-                        $scope.isImporting = false;
-                    },
-                    function (response) {
-                        $scope.isImporting = false;
-                        Utilities.alert('Could not import movement data. Please try again later.');
-                        Utilities.debug(response.status + ': ' + response.data);
-                    },
-                    function (event) {
-                        file.progress = Math.min(100, parseInt(100.0 * event.loaded / event.total));
-                        Utilities.debug('Progress for "' + file.name +'": ' + file.progress + '%');
-                    }
-                );
-            });
+        /**
+         * Uploads data files to the server.
+         */
+        $scope.chainImport = function() {
+
+            // Performance check.
+            if ($scope.global.data.import.queue.length < 1) {
+                $scope.global.data.isImporting = false;
+                return Utilities.debug('Uploading done.');
+            }
+
+            // Retrieve file to be uploaded.
+            var file = $scope.global.data.import.queue[0];
+            Utilities.debug('Uploading "' + file.name + '"...');
+            $scope.global.data.import.status = 'Importing "' + file.name + '"...';
+
+            Upload.upload({
+                url: '/api/v1/movements',
+                data: {
+                    file: file,
+                    profileId: $scope.global.getSelectedProfile().id
+                }
+            }).then(
+                function (response) {
+
+                    // Add the new movement to the top of the list.
+                    $scope.global.data.import.imported.unshift(response.data);
+
+                    // Update the import progress and continue uploading.
+                    $scope.global.data.import.queue.splice(0, 1);
+                    $scope.global.data.import.progress =
+                        Math.round(
+                            ($scope.global.data.import.queueTotal -
+                                $scope.global.data.import.queue.length) * 100 /
+                                $scope.global.data.import.queueTotal);
+                    $scope.chainImport();
+                },
+                function (response) {
+                    Utilities.debug(response.status + ': ' + response.data);
+                    Utilities.alert('Could not import "' + file.name + '". Please try again later.');
+
+                    // Update import progress.
+                    $scope.global.data.import.queue.splice(0, 1);
+                    $scope.global.data.import.progress =
+                        Math.round(
+                            ($scope.global.data.import.queueTotal -
+                                $scope.global.data.import.queue.length) * 100 /
+                                $scope.global.data.import.queueTotal);
+
+                    // Continue with the import process.
+                    $scope.chainImport();
+                },
+                function (event) {
+
+                    // We use "event" to try and make the import progress more accurate.
+                    $scope.global.data.import.progress =
+                        Math.round(
+                            ($scope.global.data.import.queueTotal -
+                                $scope.global.data.import.queue.length +
+                                Math.min(1, event.loaded / event.total)) * 100 /
+                                $scope.global.data.import.queueTotal);
+                }
+            );
         };
 
         // Opens the thumbnail overlay.
