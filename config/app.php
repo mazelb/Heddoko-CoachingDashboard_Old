@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'version' => '0.5.7',
+    'version' => '0.5.8',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ return [
 
     'providers' => [
 
-        /*
+        /**
          * Laravel Framework Service Providers.
          */
         Illuminate\Foundation\Providers\ArtisanServiceProvider::class,
@@ -152,27 +152,33 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
-        /*
+        /**
          * Application Service Providers.
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-		/*
+		/**
          * Google App Engine Support Service Provider.
          */
 		Shpasser\GaeSupportL5\GaeSupportServiceProvider::class,
 
-		/*
+		/**
 		 * Entrust Roles/Permissions Service Provider.
 		 */
 		Zizaco\Entrust\EntrustServiceProvider::class,
 
-        /*
+        /**
          * Intervention Image Service Provider.
          */
         Intervention\Image\ImageServiceProvider::class,
+
+        /**
+         * OAuth2 Server Service Provider.
+         */
+        LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
     ],
 
     /*
@@ -222,6 +228,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 		'Entrust' 	=> Zizaco\Entrust\EntrustFacade::class,
         'Image'     => Intervention\Image\Facades\Image::class,
+        'Authorizer' => LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
 
     ],
 
