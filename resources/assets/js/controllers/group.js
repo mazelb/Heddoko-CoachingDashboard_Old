@@ -8,8 +8,8 @@
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$location', 'GroupService', 'Upload', 'Utilities', 'Rover', 'assetVersion', 'isLocalEnvironment',
-    function($scope, $location, GroupService, Upload, Utilities, Rover, assetVersion, isLocalEnvironment) {
+    ['$scope', '$location', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment',
+    function($scope, $location, GroupService, Upload, Utilities, Rover, isLocalEnvironment) {
         Utilities.debug('GroupController');
 
         // Current URL path.

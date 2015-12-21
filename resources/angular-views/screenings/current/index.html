@@ -9,16 +9,14 @@
         </h1>
 
         <!-- Append profile name to page title -->
-        <div ng-show="screeningProfile.id === 0" class="h1-append">
-            for
-            <a ng-click="global.store.profileId = 0" href="javascript:;">
-                {{ global.getSelectedProfile().firstName }}
-                {{ global.getSelectedProfile().lastName }}
-                <i class="fa fa-refresh"></i>
-            </a>
-        </div>
-        <div ng-show="screeningProfile.id > 0" class="h1-append">
-            {{ screeningProfile.firstName + ' ' + screeningProfile.lastName }}
+        <div ng-show="screening.id > 0 && global.data.isFetchingScreeningData === false" class="h1-append">
+            for {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}
+
+            <div class="h1-append-sub">
+                <a ng-click="global.store.profileId = 0" href="javascript:;">
+                    (change)
+                </a>
+            </div>
         </div>
     </header>
 
@@ -42,27 +40,30 @@
         </div>
     </div>
 
-    <!-- Select a test template -->
+    <!-- Select a screening template -->
     <div ng-show="screening.id === 0 && global.data.isFetchingScreeningData === false">
 
         <!-- Temporary listing -->
         <div
             ng-show="global.getSelectedProfile().id > 0
-                && global.data.isPreparingNewScreening === false"
-            class="col-md-4 col-md-offset-4 text-center">
+                && global.data.isPreparingNewScreening === false">
 
-            Start by selecting a test template
-            <br>
-            <br>
+            <div class="callout-elem callout-elem-info">
+                <p>
+                    Start by selecting a test template:
+                </p>
+            </div>
 
-            <a ng-click="createFunctionalMovementScreening()" href="javascript:;">
-                Functional Movement Test
-            </a>
-            <br>
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <a ng-click="createFunctionalMovementScreening()" href="javascript:;">
+                    Functional Movement Test
+                </a>
+                <br>
 
-            <a href="javascript:;">
-                <i class="fa fa-plus fa-fw"></i> Create a Custom Movement Test
-            </a>
+                <a href="javascript:;">
+                    <i class="fa fa-plus fa-fw"></i> Create a Custom Movement Test
+                </a>
+            </div>
         </div>
 
         <!-- Select a profile -->

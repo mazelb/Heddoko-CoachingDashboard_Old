@@ -1,9 +1,7 @@
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- *    - Messages
  */
 
 .toast-title {
@@ -197,4 +195,51 @@ button.toast-close-button {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
+}
+
+/*
+ * Callouts
+ */
+.callout-elem {
+    margin: 20px 0;
+    padding: 20px;
+    border-left: 3px solid #eee;
+
+    h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}
+.callout-elem-success {
+    background-color: #f3faf3;
+    border-color: #419641;
+
+    h4 {
+        color: #419641;
+    }
+}
+.callout-elem-info {
+    // background-color: #f4f8fa;
+    background-color: $blue;
+    border-color: $text-color;
+}
+.callout-elem-warning {
+    background-color: #fcf8f2;
+    border-color: $warning;
+
+    h4 {
+        color: $warning;
+    }
+}
+.callout-elem-danger {
+    background-color: #fdf7f7;
+    border-color: $danger;
+
+    h4 {
+        color: $danger;
+    }
 }

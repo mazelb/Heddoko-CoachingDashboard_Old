@@ -9,8 +9,8 @@
 angular.module('app.controllers')
 
 // FMSFormController
-.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', 'FMSService', "loggit", 'Rover', 'assetVersion',
-    function($scope, $sessionStorage, FMSForm, FMSService, loggit, Rover, assetVersion) {
+.controller("FMSFormController", ["$scope", '$sessionStorage', 'FMSForm', 'FMSService', "loggit", 'Rover',
+    function($scope, $sessionStorage, FMSForm, FMSService, loggit, Rover) {
 
     	$scope.data.show_fms_edit = false;
     	$scope.waiting_server_response = false;

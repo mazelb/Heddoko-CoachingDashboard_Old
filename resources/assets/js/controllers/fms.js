@@ -6,13 +6,13 @@
  */
 angular.module('app.controllers')
 
-.controller('FMSController', ['$scope', '$routeParams', 'Rover', 'assetVersion',
-    function($scope, $routeParams, Rover, assetVersion) {
+.controller('FMSController', ['$scope', '$routeParams', 'Rover',
+    function($scope, $routeParams, Rover) {
 
         Rover.debug('FMSController');
 
         $scope.params = $routeParams;
 
-        $scope.assetVersion = assetVersion;
+        $scope.assetVersion = '0.5.6';
     }
 ]);

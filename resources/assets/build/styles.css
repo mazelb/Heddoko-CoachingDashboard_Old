@@ -870,14 +870,17 @@ pre {
 .row:after {
   clear: both; }
 
+/*
+ * Tables
+ */
 .table {
   max-width: 100%; }
-
-.table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
-  padding: 10px; }
-
-.table .table {
-  background-color: #f3f3f3; }
+  .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
+    padding: 10px; }
+  .table .table {
+    background-color: #f3f3f3; }
+  .table.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #383d43; }
 
 .table > thead > tr > td.success, .table > thead > tr > th.success, .table > thead > tr.success > td, .table > thead > tr.success > th, .table > tbody > tr > td.success, .table > tbody > tr > th.success, .table > tbody > tr.success > td, .table > tbody > tr.success > th, .table > tfoot > tr > td.success, .table > tfoot > tr > th.success, .table > tfoot > tr.success > td, .table > tfoot > tr.success > th {
   background-color: #eefff6; }
@@ -3982,6 +3985,11 @@ fieldset[disabled] .btn-danger.active {
     margin: 0 0 0 20px;
     font-size: 1.2em;
     letter-spacing: 1.2px; }
+    .page > header .h1-append .h1-append-sub {
+      position: absolute;
+      font-size: .7em; }
+      .page > header .h1-append .h1-append-sub a {
+        font-weight: normal; }
   .page > header .btn-toolbar.pull-right {
     margin: 20px auto; }
 
@@ -4780,11 +4788,9 @@ label {
   margin-bottom: 10px; }
 
 /**
- *
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  *
- *    - Messages
  */
 .toast-title {
   font-weight: bold; }
@@ -4951,6 +4957,41 @@ button.toast-close-button {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box; }
+
+/*
+ * Callouts
+ */
+.callout-elem {
+  margin: 20px 0;
+  padding: 20px;
+  border-left: 3px solid #eee; }
+  .callout-elem h4 {
+    margin-top: 0;
+    margin-bottom: 5px; }
+  .callout-elem p:last-child {
+    margin-bottom: 0; }
+
+.callout-elem-success {
+  background-color: #f3faf3;
+  border-color: #419641; }
+  .callout-elem-success h4 {
+    color: #419641; }
+
+.callout-elem-info {
+  background-color: #383d43;
+  border-color: #ddd; }
+
+.callout-elem-warning {
+  background-color: #fcf8f2;
+  border-color: #eec95a; }
+  .callout-elem-warning h4 {
+    color: #eec95a; }
+
+.callout-elem-danger {
+  background-color: #fdf7f7;
+  border-color: #C05F44; }
+  .callout-elem-danger h4 {
+    color: #C05F44; }
 
 /* Specific */
 /**
@@ -6029,46 +6070,6 @@ button.toast-close-button {
   color: white;
   font-size: 130%;
   text-align: center; }
-
-.callout-elem {
-  margin: 20px 0;
-  padding: 20px;
-  border-left: 3px solid #eee; }
-
-.callout-elem h4 {
-  margin-top: 0;
-  margin-bottom: 5px; }
-
-.callout-elem p:last-child {
-  margin-bottom: 0; }
-
-.callout-elem-success {
-  background-color: #f3faf3;
-  border-color: #419641; }
-
-.callout-elem-success h4 {
-  color: #419641; }
-
-.callout-elem-info {
-  background-color: #f4f8fa;
-  border-color: #383d43; }
-
-.callout-elem-info h4 {
-  color: #383d43; }
-
-.callout-elem-warning {
-  background-color: #fcf8f2;
-  border-color: #eec95a; }
-
-.callout-elem-warning h4 {
-  color: #eec95a; }
-
-.callout-elem-danger {
-  background-color: #fdf7f7;
-  border-color: #C05F44; }
-
-.callout-elem-danger h4 {
-  color: #C05F44; }
 
 /************************************
 9 - Dividers / Spacings

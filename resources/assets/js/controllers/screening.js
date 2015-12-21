@@ -78,7 +78,8 @@ angular.module('app.controllers')
                     Utilities.debug('Screening created.');
 
                     // Save screening data.
-                    $scope.global.state.screening.current = response.data;
+                    $scope.global.state.screening.current = $scope.formatScreening(response.data);
+                    $scope.global.state.screening.list.push($scope.global.state.screening.current);
                     $scope.global.data.isPreparingNewScreening = false;
                 },
                 function(response) {
@@ -108,8 +109,8 @@ angular.module('app.controllers')
                     Utilities.debug('Received ' + response.data.results.length + ' results.');
 
                     // Save movement data.
-                    $scope.global.state.screening.list = response.data.results;
-
+                    $scope.global.state.screening.list =
+                        response.data.results.map($scope.formatScreening);
                     $scope.global.data.isFetchingScreeningData = false;
                 },
                 function(response) {
@@ -117,6 +118,32 @@ angular.module('app.controllers')
                     $scope.global.data.isFetchingScreeningData = false;
                 }
             );
+        };
+
+        /**
+         * Adds profile data to a screening.
+         *
+         * @param object screening
+         */
+        $scope.formatScreening = function(screening) {
+
+            // Defaults.
+            screening.profile = {
+                firstName: '',
+                lastName: ''
+            };
+
+            // Performance check.
+            if (!screening || !Rover.state.profile.list[screening.profileId]) {
+                return screening;
+            }
+
+            screening.profile.firstName =
+                $scope.global.state.profile.list[screening.profileId].firstName;
+            screening.profile.lastName =
+                $scope.global.state.profile.list[screening.profileId].lastName;
+
+            return screening;
         };
 
         // If a screening ID was provided, try to fetch its contents.

@@ -4551,16 +4551,15 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "        </h1>\n" +
     "\n" +
     "        <!-- Append profile name to page title -->\n" +
-    "        <div ng-show=\"screeningProfile.id === 0\" class=\"h1-append\">\n" +
-    "            for\n" +
-    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                {{ global.getSelectedProfile().firstName }}\n" +
-    "                {{ global.getSelectedProfile().lastName }}\n" +
-    "                <i class=\"fa fa-refresh\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "        <div ng-show=\"screeningProfile.id > 0\" class=\"h1-append\">\n" +
-    "            {{ screeningProfile.firstName + ' ' + screeningProfile.lastName }}\n" +
+    "        <div ng-show=\"screening.id > 0 && global.data.isFetchingScreeningData === false\" class=\"h1-append\">\n" +
+    "            for {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <div class=\"h1-append-sub\">\n" +
+    "                <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                    (change athlete)\n" +
+    "                </a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
@@ -4584,27 +4583,30 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- Select a test template -->\n" +
+    "    <!-- Select a screening template -->\n" +
     "    <div ng-show=\"screening.id === 0 && global.data.isFetchingScreeningData === false\">\n" +
     "\n" +
     "        <!-- Temporary listing -->\n" +
     "        <div\n" +
     "            ng-show=\"global.getSelectedProfile().id > 0\n" +
-    "                && global.data.isPreparingNewScreening === false\"\n" +
-    "            class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "                && global.data.isPreparingNewScreening === false\">\n" +
     "\n" +
-    "            Start by selecting a test template\n" +
-    "            <br>\n" +
-    "            <br>\n" +
+    "            <div class=\"callout-elem callout-elem-info\">\n" +
+    "                <p>\n" +
+    "                    Start by selecting a test template:\n" +
+    "                </p>\n" +
+    "            </div>\n" +
     "\n" +
-    "            <a ng-click=\"createFunctionalMovementScreening()\" href=\"javascript:;\">\n" +
-    "                Functional Movement Test\n" +
-    "            </a>\n" +
-    "            <br>\n" +
+    "            <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "                <a ng-click=\"createFunctionalMovementScreening()\" href=\"javascript:;\">\n" +
+    "                    Functional Movement Test\n" +
+    "                </a>\n" +
+    "                <br>\n" +
     "\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
-    "            </a>\n" +
+    "                <a href=\"javascript:;\">\n" +
+    "                    <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
+    "                </a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Select a profile -->\n" +
@@ -4654,48 +4656,41 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "    </header>\n" +
     "\n" +
     "    <!-- List of screenings -->\n" +
-    "    <div ng-show=\"global.data.isFetchingScreeningData === false\" class=\"row\">\n" +
-    "\n" +
-    "        <div\n" +
+    "    <div ng-show=\"global.data.isFetchingScreeningData === false\" class=\"table-responsive\">\n" +
+    "        <table\n" +
     "            ng-show=\"global.state.screening.list.length > 0\"\n" +
-    "            class=\"col-xs-12 col-md-10 col-md-offset-1\">\n" +
+    "            class=\"table table-striped\">\n" +
     "\n" +
     "            <!-- Heading -->\n" +
-    "            <div class=\"row heading\">\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    Date\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    Title\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    Athlete\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2 text-center\">\n" +
-    "                    Score\n" +
-    "                </div>\n" +
-    "            </div>\n" +
+    "            <thead>\n" +
+    "                <tr>\n" +
+    "                    <td class=\"text-center\">Title</td>\n" +
+    "                    <td class=\"text-center\">Date</td>\n" +
+    "                    <td class=\"text-center\">Athlete</td>\n" +
+    "                    <td class=\"text-center\">Score</td>\n" +
+    "                </tr>\n" +
+    "            </thead>\n" +
     "\n" +
     "            <!-- Screenings -->\n" +
-    "            <div ng-repeat=\"screening in global.state.screening.list\" class=\"row\">\n" +
-    "\n" +
-    "                <!-- Date -->\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    {{ screening.createdAt | mysqlDate }}\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    <a href=\"#/screenings/{{ screening.id }}\">\n" +
-    "                        {{ screening.title | characters:60 }}\n" +
-    "                    </a>\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-3 text-center\">\n" +
-    "                    {{ screening.profileId }}\n" +
-    "                </div>\n" +
-    "                <div class=\"col-md-2 text-center\">\n" +
-    "                    {{ screening.score | number:0 }}\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "            <tbody>\n" +
+    "                <tr ng-repeat=\"screening in global.state.screening.list\">\n" +
+    "                    <td class=\"text-center\">\n" +
+    "                        <a href=\"#/screenings/{{ screening.id }}\">\n" +
+    "                            {{ screening.title | characters:60 }}\n" +
+    "                        </a>\n" +
+    "                    </td>\n" +
+    "                    <td class=\"text-center\">\n" +
+    "                        {{ screening.createdAt | mysqlDate }}\n" +
+    "                    </td>\n" +
+    "                    <td class=\"text-center\">\n" +
+    "                        {{ screening.profileId }}\n" +
+    "                    </td>\n" +
+    "                    <td class=\"text-center\">\n" +
+    "                        {{ screening.score | number:0 }}\n" +
+    "                    </td>\n" +
+    "                </tr>\n" +
+    "            </tbody>\n" +
+    "        </table>\n" +
     "\n" +
     "        <!-- No screenings to show -->\n" +
     "        <div ng-show=\"global.state.screening.list.length === 0\">\n" +
