@@ -29,6 +29,26 @@ return [
 
     'grant_types' => [
 
+        // Authorization code grant: for web apps.
+        'authorization_code' => [
+            'class' => '\League\OAuth2\Server\Grant\AuthCodeGrant',
+            'access_token_ttl' => 3600,
+            'auth_token_ttl' => 60
+        ],
+
+        // Resource owner credentials grant: for Android & iOS apps.
+        'password' => [
+            'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
+            'callback' => '\App\PasswordVerifier@verify',
+            'access_token_ttl' => 3600
+        ],
+
+        // Refresh token grant: for refreshing tokens.
+        'refresh_token' => [
+            'class' => '\League\OAuth2\Server\Grant\RefreshTokenGrant',
+            'access_token_ttl' => 3600,
+            'refresh_token_ttl' => 36000
+        ],
     ],
 
     /*

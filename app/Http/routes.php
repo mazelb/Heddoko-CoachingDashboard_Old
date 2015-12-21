@@ -10,7 +10,7 @@
 /**
  * API routes.
  */
-Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function()
 {
     // Profile endpoints.
     Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');
@@ -52,6 +52,9 @@ Route::group(['middleware' => 'auth', 'prefix' => 'api/v1'], function()
     Route::resource('tags', 'TagController', [
         'only' => ['index', 'store']
     ]);
+
+    // OAuth2 endpoints.
+    Route::post('oauth/token', 'OAuthController@accessToken');
 });
 
 /**
