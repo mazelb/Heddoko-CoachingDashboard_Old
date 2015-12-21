@@ -120,21 +120,17 @@ module.exports = function(grunt) {
                     // Main dependencides.
                     'bower_components/jquery/dist/jquery.min.js',
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
-                    'angular-app/scripts/gmap.js',
-                    'bower_components/slimScroll/jquery.slimscroll.min.js',
                     'bower_components/angular/angular.min.js',
-                    'bower_components/angular-animate/angular-animate.min.js',
-                    'bower_components/angular-route/angular-route.min.js',
-                    'bower_components/angular-sanitize/angular-sanitize.min.js',
                     'bower_components/underscore/underscore-min.js',
 
-                    // ngFileUpload: Angular directive to upload files.
-                    // https://github.com/danialfarid/ng-file-upload
+                    // AngularJS
+                    'bower_components/ngstorage/ngStorage.min.js',
+                    'bower_components/angular-truncate/src/truncate.js',
+                    'bower_components/angular-route/angular-route.min.js',
+                    'bower_components/angular-animate/angular-animate.min.js',
+                    'bower_components/angular-sanitize/angular-sanitize.min.js',
                     'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
                     'bower_components/ng-file-upload/ng-file-upload.min.js',
-
-                    // Truncate
-                    'bower_components/angular-truncate/src/truncate.js',
 
                     // Intro.js: for onboarding.
                     'bower_components/intro.js/minified/intro.min.js',
@@ -170,6 +166,8 @@ module.exports = function(grunt) {
                     // http://www.chartjs.org/
                     'bower_components/chartjs/Chart.min.js',
 
+                    'bower_components/slimScroll/jquery.slimscroll.min.js',
+                    'angular-app/scripts/gmap.js',
                     'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
                     'bower_components/easypie/dist/angular.easypiechart.min.js',
                     'bower_components/angular-wizard/dist/angular-wizard.js',

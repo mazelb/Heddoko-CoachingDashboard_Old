@@ -38,11 +38,9 @@ var _appIsLocal =
     (window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
         window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
-var _appAssetVersion = _appIsLocal ? Date.now() : _appVersion;
 var _apiEndpoint = '/api/v1';
 
 app.constant('isLocalEnvironment', _appIsLocal)
-    .constant('assetVersion', _appAssetVersion)
     .constant('apiEndpoint', _apiEndpoint);
 
 // Initializes the 'app.services' module so we can add factories from separate files.
