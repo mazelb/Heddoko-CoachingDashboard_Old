@@ -52,9 +52,6 @@ Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function()
     Route::resource('tags', 'TagController', [
         'only' => ['index', 'store']
     ]);
-
-    // OAuth2 endpoints.
-    Route::post('oauth/token', 'OAuthController@accessToken');
 });
 
 /**
@@ -71,6 +68,18 @@ Route::get('reset', 'Auth\PasswordController@getEmail')->name('auth.password');
 Route::post('reset/email', 'Auth\PasswordController@postEmail')->name('auth.password.post');
 Route::get('reset/{token}', 'Auth\PasswordController@getReset')->name('auth.reset');
 Route::post('reset', 'Auth\PasswordController@postReset')->name('auth.reset.post');
+
+Route::post('oauth/token', 'Auth\OAuthController@accessToken');
+Route::get('oauth/authorize', [
+    'as' => 'oauth.authorize.get',
+    'use' => 'Auth\OAuthController@showAuthorizationForm',
+    'middleware' => ['oauth.authorization', 'auth']
+]);
+Route::post('oauth/authorize', [
+    'as' => 'oauth.authorize.post',
+    'use' => 'Auth\OAuthController@authorize',
+    'middleware' => ['csrf', 'check-authorization-params', 'auth']
+]);
 
 /**
  * General Angular app routes.

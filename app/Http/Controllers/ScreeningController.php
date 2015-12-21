@@ -24,6 +24,8 @@ class ScreeningController extends Controller
     CONST SEARCH_LIMIT = 20;
 
     /**
+     *
+     *
      * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
