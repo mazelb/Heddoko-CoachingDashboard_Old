@@ -4553,13 +4553,12 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "        <!-- Append profile name to page title -->\n" +
     "        <div ng-show=\"screening.id > 0 && global.data.isFetchingScreeningData === false\" class=\"h1-append\">\n" +
     "            for {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
-    "            <br>\n" +
     "\n" +
-    "            <div class=\"h1-append-sub\">\n" +
+    "            <small>\n" +
     "                <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                    (change athlete)\n" +
+    "                    (change)\n" +
     "                </a>\n" +
-    "            </div>\n" +
+    "            </small>\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
@@ -4576,9 +4575,29 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "        </h2>\n" +
     "\n" +
     "\n" +
-    "        <div ng-repeat=\"movement in screening.movements\" class=\"row\">\n" +
-    "            <div class=\"col-md-4 col-md-offset-4\">\n" +
-    "                {{ $index + 1 }} {{ movement.title }} <i class=\"fa fa-plus\"></i>\n" +
+    "        <div ng-repeat=\"movement in screening.movements\" class=\"row\" style=\"margin-bottom: 15px;\">\n" +
+    "\n" +
+    "            <div class=\"col-md-3 col-md-offset-4\" style=\"line-height: 30px\">\n" +
+    "                <span class=\"text-muted\">{{ $index + 1 }}</span>\n" +
+    "                {{ movement.title }}\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-2\">\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.alert('In Development')\"\n" +
+    "                    class=\"btn btn-primary btn-circle\">\n" +
+    "                    <i class=\"fa fa-plus\"></i>\n" +
+    "                </button>\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.alert('In Development')\"\n" +
+    "                    class=\"btn btn-primary btn-circle\">\n" +
+    "                    <i class=\"fa fa-cloud-upload\"></i>\n" +
+    "                </button>\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.alert('In Development')\"\n" +
+    "                    class=\"btn btn-primary btn-circle\">\n" +
+    "                    <i class=\"fa fa-th\"></i>\n" +
+    "                </button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -4664,6 +4683,7 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "            <!-- Heading -->\n" +
     "            <thead>\n" +
     "                <tr>\n" +
+    "                    <td class=\"text-center\"></td>\n" +
     "                    <td class=\"text-center\">Title</td>\n" +
     "                    <td class=\"text-center\">Date</td>\n" +
     "                    <td class=\"text-center\">Athlete</td>\n" +
@@ -4674,16 +4694,22 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "            <!-- Screenings -->\n" +
     "            <tbody>\n" +
     "                <tr ng-repeat=\"screening in global.state.screening.list\">\n" +
-    "                    <td class=\"text-center\">\n" +
-    "                        <a href=\"#/screenings/{{ screening.id }}\">\n" +
-    "                            {{ screening.title | characters:60 }}\n" +
+    "                    <td class=\"text-right\">\n" +
+    "                        <a ng-click=\"selectScreening(screening)\" href=\"javascript:;\" title=\"Edit\">\n" +
+    "                            <i class=\"fa fa-pencil-square-o\"></i>\n" +
     "                        </a>\n" +
+    "                        <a href=\"#/screenings/{{ screening.id }}\" title=\"\">\n" +
+    "                            <i class=\"fa fa-list-alt\"></i>\n" +
+    "                        </a>\n" +
+    "                    </td>\n" +
+    "                    <td class=\"text-center\">\n" +
+    "                        {{ screening.title | characters:60 }}\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
     "                        {{ screening.createdAt | mysqlDate }}\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
-    "                        {{ screening.profileId }}\n" +
+    "                        {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
     "                        {{ screening.score | number:0 }}\n" +

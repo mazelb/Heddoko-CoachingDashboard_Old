@@ -36,6 +36,7 @@ angular.module('app.controllers')
             // Helper methods.
             endSession: Rover.endSession,
             browseTo: Rover.browseTo,
+            alert: Utilities.alert,
 
             // Onboarding messages.
             onboarding:
@@ -51,6 +52,12 @@ angular.module('app.controllers')
         $scope.global.state.group = $scope.global.state.group || {};
         $scope.global.state.group.list = $scope.global.state.group.list || {length: 0};
         $scope.global.store.groupId = $scope.global.store.groupId || 0;
+
+        /**
+         * Retrieves the currently selected group.
+         *
+         * @return object
+         */
         $scope.global.getSelectedGroup = function() {
             return $scope.global.store.groupId > 0 ?
                 $scope.global.state.group.list[$scope.global.store.groupId] : {id: 0};

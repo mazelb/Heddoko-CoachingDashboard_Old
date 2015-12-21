@@ -28,6 +28,39 @@ angular.module('app.controllers')
         }
 
         /**
+         * Updates the selected screening.
+         *
+         * @param int|object screening
+         */
+        $scope.selectScreening = function(screening) {
+
+            // Performance check.
+            if ($scope.global.state.screening.list.length < 1) {
+                return;
+            }
+
+            // Update selected screening.
+            if (typeof screening == 'object') {
+                $scope.global.state.screening.current = screening;
+                Rover.browseTo.path('/screenings/current');
+            }
+
+            // Find the screening by ID.
+            else
+            {
+                var test;
+                for (test in $scope.global.state.screening.list)
+                {
+                    if (test.id == screening) {
+                        $scope.global.state.screening.current = test;
+                        Rover.browseTo.path('/screenings/current');
+                        break;
+                    }
+                }
+            }
+        };
+
+        /**
          * Shortcut to create a standard FMS.
          */
         $scope.createFunctionalMovementScreening = function() {
@@ -79,7 +112,7 @@ angular.module('app.controllers')
 
                     // Save screening data.
                     $scope.global.state.screening.current = $scope.formatScreening(response.data);
-                    $scope.global.state.screening.list.push($scope.global.state.screening.current);
+                    $scope.global.state.screening.list.unshift($scope.global.state.screening.current);
                     $scope.global.data.isPreparingNewScreening = false;
                 },
                 function(response) {

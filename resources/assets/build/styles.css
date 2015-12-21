@@ -875,8 +875,12 @@ pre {
  */
 .table {
   max-width: 100%; }
+  .table thead {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #444; }
   .table > thead > tr > th, .table > thead > tr > td, .table > tbody > tr > th, .table > tbody > tr > td, .table > tfoot > tr > th, .table > tfoot > tr > td {
-    padding: 10px; }
+    padding: 10px;
+    border-top: none; }
   .table .table {
     background-color: #f3f3f3; }
   .table.table-striped > tbody > tr:nth-of-type(odd) {
@@ -3985,11 +3989,8 @@ fieldset[disabled] .btn-danger.active {
     margin: 0 0 0 20px;
     font-size: 1.2em;
     letter-spacing: 1.2px; }
-    .page > header .h1-append .h1-append-sub {
-      position: absolute;
+    .page > header .h1-append small {
       font-size: .7em; }
-      .page > header .h1-append .h1-append-sub a {
-        font-weight: normal; }
   .page > header .btn-toolbar.pull-right {
     margin: 20px auto; }
 
