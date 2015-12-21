@@ -7,16 +7,15 @@
  */
 angular.module('app.controllers')
 
-.controller('ScreeningController', ['$scope', '$routeParams', 'ScreeningService', 'Rover', 'Utilities',
+.controller('ScreeningResultsController', ['$scope', '$routeParams', 'ScreeningService', 'Rover', 'Utilities',
     function($scope, $routeParams, ScreeningService, Rover, Utilities) {
-        Utilities.debug('ScreeningController');
+        Utilities.debug('ScreeningResultsController');
 
         // Initial setup.
         $scope.global.state.screening = $scope.global.state.screening || {};
         $scope.global.state.screening.list = $scope.global.state.screening.list || {length: 0};
         $scope.global.state.screening.current = $scope.global.state.screening.current || {id: 0};
         $scope.global.data.isFetchingScreeningData = false;
-        $scope.global.data.isFetchingScreeningList = false;
         $scope.global.data.isPreparingNewScreening = false;
 
         // Shortcut to global objects.
@@ -149,8 +148,8 @@ angular.module('app.controllers')
         /**
          * Retrieves screenings based on search parameters
          */
-        $scope.fetchScreeningList = function() {
-            Utilities.debug('Retrieving list of screenings...');
+        $scope.fetchScreenings = function() {
+            Utilities.debug('Retrieving screenings...');
 
             $scope.global.data.isFetchingScreeningData = true;
 
@@ -209,7 +208,7 @@ angular.module('app.controllers')
 
         // Retrieve recent screenings.
         if ($scope.global.state.screening.list.length === 0) {
-            $scope.fetchScreeningList();
+            $scope.fetchScreenings();
         }
 
         // Watch selected screening.

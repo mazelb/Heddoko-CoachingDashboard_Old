@@ -21,6 +21,8 @@ use App\Http\Controllers\Controller;
 
 class ScreeningController extends Controller
 {
+    CONST SEARCH_LIMIT = 20;
+
     /**
      * @param \Illuminate\Http\Request $request
      */
@@ -56,9 +58,9 @@ class ScreeningController extends Controller
 
         // Retrieve other search parameters. We\ll also make sure we have positive values
         // for "limit" and "offset".
-        $limit = max(0, min(50, $this->request->input('limit', 20)));
+        $limit = max(0, min(50, $this->request->input('limit', static::SEARCH_LIMIT)));
         $offset = max(0, $this->request->input('offset', 0));
-        $orderBy = snake_case($this->request->input('orderBy', 'created_at'));
+        $orderBy = snake_case($this->request->input('orderBy', 'createdAt'));
         $orderDir = $this->request->input('orderDir', 'desc');
 
         // Add search query.
@@ -153,9 +155,24 @@ class ScreeningController extends Controller
      */
     public function show($id)
     {
-        //
+        // Performance check.
+        $id = (int) $id;
+        if ($id < 1) {
+            return response('Invalid Screening ID.', 400);
+        }
 
-        return $this->send(501, 'Not Implemented');
+        // Retrieve screening.
+        $builder = Screening::whereIn('profile_id', Auth::user()->getProfileIDs());
+
+        if ($embed = $this->request->input('embed')) {
+            $builder->with($embed);
+        }
+
+        if (!$screening = $builder->find($id)) {
+            return response('Screening Not Found.', 404);
+        }
+
+        return $screening;
     }
 
     /**
