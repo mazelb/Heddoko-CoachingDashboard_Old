@@ -8,60 +8,52 @@
             {{ profile.firstName }} {{ profile.lastName }}
             <span></span>
         </h1>
-    </header>
 
-    <div class="row">
+        <div class="sub-header">
 
-        <!-- Actions -->
-        <div class="col-sm-12">
-            <div class="pull-right">
-
-                <!-- Create profile button -->
-                <button
-                    ng-click="global.browseTo.path('profile/create')"
-                    class="btn btn-default">
-
+            <!-- Create profile button -->
+            <a href="#/profile/create" class="sub-header-btn">
+                <button class="btn btn-default btn-circle btn-lg">
                     <i class="fa fa-user-plus"></i>
                 </button>
+            </a>
 
-                <!-- Delete profile button -->
-                <button
-                    ng-show="profile.id > 0"
-                    data-toggle="modal"
-                    data-target="#deleteProfileConfirmation"
-                    data-toggle="tooltip"
-                    title="Delete <b>{{ profile.firstName }}</b>'s profile"
-                    class="btn btn-danger">
+            <!-- Delete group button -->
+            <a
+                ng-show="profile.id > 0"
+                data-toggle="modal"
+                data-target="#deleteProfileConfirmation"
+                href="javascript:;"
+                class="sub-header-btn">
 
+                <button class="btn btn-primary btn-circle btn-lg">
                     <i class="fa fa-trash"></i>
                 </button>
+            </a>
 
-                <!-- Delete confirmation -->
-                <div class="modal fade" id="deleteProfileConfirmation">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <p>
-                                    Are you sure you want to delete <b>{{ profile.firstName }}
-                                    {{ profile.lastName }}</b>'s profile?
-                                </p>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                    Yes, delete {{ profile.firstName }}
-                                </button>
-                            </div>
+            <!-- Delete confirmation -->
+            <div class="modal fade" id="deleteProfileConfirmation">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p>
+                                Are you sure you want to delete <b>{{ profile.firstName }}
+                                {{ profile.lastName }}</b>'s profile?
+                            </p>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                Yes, delete {{ profile.firstName }}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
         </div>
-    </div>
+    </header>
 
     <section ng-hide="profile.id === 0">
     	<div class="row">

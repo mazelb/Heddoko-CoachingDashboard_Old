@@ -4000,6 +4000,10 @@ fieldset[disabled] .btn-danger.active {
       font-size: .7em; }
   .page > header .btn-toolbar.pull-right {
     margin: 20px auto; }
+  .page > header .sub-header {
+    margin: 10px 0; }
+    .page > header .sub-header .sub-header-btn {
+      margin: 0 10px 0 0; }
 
 /*
  * Angular - Import pages.

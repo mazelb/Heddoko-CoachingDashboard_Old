@@ -6,62 +6,56 @@
             {{ group.name }}
             <span></span>
         </h1>
-    </header>
 
-    <div class="row">
+        <div class="sub-header">
 
-        <!-- Actions -->
-        <div class="col-sm-12">
-            <div class="pull-right">
-
-                <!-- Create profile button -->
-                <button
-                    ng-click="global.browseTo.path('profile/create')"
-                    class="btn btn-default">
-
+            <!-- Create profile button -->
+            <a href="#/profile/create" class="sub-header-btn">
+                <button class="btn btn-default btn-circle btn-lg">
                     <i class="fa fa-user-plus"></i>
                 </button>
+            </a>
 
-                <!-- Delete group button -->
-                <button
-                    ng-show="global.getSelectedGroup().id > 0"
-                    data-toggle="modal"
-                    data-target="#deleteGroupConfirmation"
-                    class="btn btn-danger">
+            <!-- Delete group button -->
+            <a
+                ng-show="global.getSelectedGroup().id > 0"
+                data-toggle="modal"
+                data-target="#deleteGroupConfirmation"
+                href="javascript:;"
+                class="sub-header-btn">
 
+                <button class="btn btn-primary btn-circle btn-lg">
                     <i class="fa fa-trash"></i>
                 </button>
+            </a>
 
-                <!-- Delete confirmation -->
-                <div class="modal fade" id="deleteGroupConfirmation">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <p ng-show="global.state.profile.list.length > 0">
-                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>
-                                    and the {{ global.state.profile.filtered.length }}
-                                    associated athletes?
-                                </p>
-                                <p ng-show="global.state.profile.list.length === 0">
-                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?
-                                </p>
-                            </div>
-                            <div class="modal-footer text-center">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                    Yes, delete {{ global.getSelectedGroup().name }}
-                                </button>
-                            </div>
+            <!-- Delete confirmation -->
+            <div class="modal fade" id="deleteGroupConfirmation">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p ng-show="global.state.profile.list.length > 0">
+                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>
+                                and the {{ global.state.profile.filtered.length }}
+                                associated athletes?
+                            </p>
+                            <p ng-show="global.state.profile.list.length === 0">
+                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?
+                            </p>
+                        </div>
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                Yes, delete {{ global.getSelectedGroup().name }}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-        <br>
-    </div>
+    </header>
 
     <section>
     	<div class="row">

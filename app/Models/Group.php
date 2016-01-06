@@ -8,10 +8,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\HasAvatarTrait as HasAvatar;
+use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class Group extends Model
 {
-    use HasAvatar;
+    use HasAvatar, CamelCaseAttrs;
 
     /**
      * Attributes which are mass-assignable.

@@ -14,10 +14,21 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
     "    </header>\n" +
     "\n" +
     "    <div ng-hide=\"user.id === 0\" class=\"row\">\n" +
-    "        <div class=\"col-md-8\">\n" +
     "\n" +
-    "            <!-- User details -->\n" +
+    "        <!-- Avatar -->\n" +
+    "        <div class=\"col-md-5 text-center\">\n" +
+    "            <ui-avatar\n" +
+    "                data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
+    "                data-success-callback=\"uploadAvatarCallback\"\n" +
+    "                data-src=\"user.avatarSrc\"\n" +
+    "                data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
+    "            </ui-avatar>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- User details -->\n" +
+    "        <div class=\"col-md-7\">\n" +
     "            <ui-editable-fields\n" +
+    "                data-id=\"userDetails\"\n" +
     "                data-model=\"user\"\n" +
     "                data-save=\"saveUserDetails\"\n" +
     "                data-save-callback=\"saveUserDetailsCallback\"\n" +
@@ -58,17 +69,6 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
     "\n" +
     "            </ui-editable-fields>\n" +
     "        </div>\n" +
-    "\n" +
-    "        <!-- Avatar -->\n" +
-    "        <div class=\"col-md-4\">\n" +
-    "            <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
-    "                <ui-avatar\n" +
-    "                    data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
-    "                    data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                    data-src=\"user.avatarSrc\">\n" +
-    "                </ui-avatar>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Retrieving user data -->\n" +
@@ -79,14 +79,6 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
     "        <br>\n" +
     "        <br>\n" +
     "        <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Debug -->\n" +
-    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
-    "        <div class=\"panel-heading\">Debug</div>\n" +
-    "        <div class=\"panel-body\">\n" +
-    "            Avatar: {{ user.avatarSrc ? 'Yes' : 'No' }} <br>\n" +
-    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2419,21 +2411,16 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
+    "    <!-- Actions -->\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
+    "        <div class=\"col-sm-12 text-center\">\n" +
+    "            <div class=\"pull-right\">\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.browseTo.path('group/create')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
     "\n" +
-    "            <!-- Breadcrumbs -->\n" +
-    "            <div class=\"col-sm-6\">\n" +
-    "                <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Actions -->\n" +
-    "            <div class=\"col-sm-6\">\n" +
-    "                <div class=\"btn-group pull-right\">\n" +
-    "                    <button\n" +
-    "                        ng-click=\"global.browseTo.path('group/create')\"\n" +
-    "                        class=\"btn btn-default\">Add a Team</button>\n" +
-    "                </div>\n" +
+    "                    <i class=\"fa fa-plus\"></i>\n" +
+    "                </button>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -2555,62 +2542,56 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            {{ group.name }}\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "    </header>\n" +
     "\n" +
-    "    <div class=\"row\">\n" +
+    "        <div class=\"sub-header\">\n" +
     "\n" +
-    "        <!-- Actions -->\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div class=\"pull-right\">\n" +
-    "\n" +
-    "                <!-- Create profile button -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
-    "\n" +
+    "            <!-- Create profile button -->\n" +
+    "            <a href=\"#/profile/create\" class=\"sub-header-btn\">\n" +
+    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-user-plus\"></i>\n" +
     "                </button>\n" +
+    "            </a>\n" +
     "\n" +
-    "                <!-- Delete group button -->\n" +
-    "                <button\n" +
-    "                    ng-show=\"global.getSelectedGroup().id > 0\"\n" +
-    "                    data-toggle=\"modal\"\n" +
-    "                    data-target=\"#deleteGroupConfirmation\"\n" +
-    "                    class=\"btn btn-danger\">\n" +
+    "            <!-- Delete group button -->\n" +
+    "            <a\n" +
+    "                ng-show=\"global.getSelectedGroup().id > 0\"\n" +
+    "                data-toggle=\"modal\"\n" +
+    "                data-target=\"#deleteGroupConfirmation\"\n" +
+    "                href=\"javascript:;\"\n" +
+    "                class=\"sub-header-btn\">\n" +
     "\n" +
+    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
+    "            </a>\n" +
     "\n" +
-    "                <!-- Delete confirmation -->\n" +
-    "                <div class=\"modal fade\" id=\"deleteGroupConfirmation\">\n" +
-    "                    <div class=\"modal-dialog\">\n" +
-    "                        <div class=\"modal-content\">\n" +
-    "                            <div class=\"modal-body\">\n" +
-    "                                <p ng-show=\"global.state.profile.list.length > 0\">\n" +
-    "                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
-    "                                    and the {{ global.state.profile.filtered.length }}\n" +
-    "                                    associated athletes?\n" +
-    "                                </p>\n" +
-    "                                <p ng-show=\"global.state.profile.list.length === 0\">\n" +
-    "                                    Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?\n" +
-    "                                </p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"modal-footer text-center\">\n" +
-    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                    Cancel\n" +
-    "                                </button>\n" +
-    "                                <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                    Yes, delete {{ global.getSelectedGroup().name }}\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
+    "            <!-- Delete confirmation -->\n" +
+    "            <div class=\"modal fade\" id=\"deleteGroupConfirmation\">\n" +
+    "                <div class=\"modal-dialog\">\n" +
+    "                    <div class=\"modal-content\">\n" +
+    "                        <div class=\"modal-body\">\n" +
+    "                            <p ng-show=\"global.state.profile.list.length > 0\">\n" +
+    "                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
+    "                                and the {{ global.state.profile.filtered.length }}\n" +
+    "                                associated athletes?\n" +
+    "                            </p>\n" +
+    "                            <p ng-show=\"global.state.profile.list.length === 0\">\n" +
+    "                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"modal-footer text-center\">\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                Cancel\n" +
+    "                            </button>\n" +
+    "                            <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                Yes, delete {{ global.getSelectedGroup().name }}\n" +
+    "                            </button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "    </div>\n" +
+    "    </header>\n" +
     "\n" +
     "    <section>\n" +
     "    	<div class=\"row\">\n" +
@@ -3697,31 +3678,67 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            </a>\n" +
     "        </li>\n" +
     "\n" +
-    "        <!-- List of groups -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/group/list\">\n" +
+    "            <!-- List of groups -->\n" +
+    "            <a ng-show=\"global.state.group.list.length > 1\" href=\"#/group/list\">\n" +
     "                <i class=\"fa fa-cubes\"></i>\n" +
     "                <span>Teams</span>\n" +
     "                <span class=\"pull-right\">\n" +
-    "                    <i ng-show=\"global.data.isFetchingGroups === true\" class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    <small ng-show=\"!global.data.isFetchingGroups\">\n" +
+    "                    <small>\n" +
     "                        ( {{ global.state.group.list.length }} )\n" +
     "                    </small>\n" +
     "                </span>\n" +
     "            </a>\n" +
+    "\n" +
+    "            <!-- Single group available -->\n" +
+    "            <a ng-show=\"global.state.group.list.length === 1\" href=\"#/group/view\">\n" +
+    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <span>{{ global.getSelectedGroup().name }}</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- Fetching groups -->\n" +
+    "            <a ng-show=\"global.data.isFetchingGroups === true\" href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                <span>Teams</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- No groups available -->\n" +
+    "            <a\n" +
+    "                ng-show=\"global.data.isFetchingGroups === false &&\n" +
+    "                    global.state.group.list.length === 0\"\n" +
+    "                href=\"#/group/create\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <span>Create a Team</span>\n" +
+    "            </a>\n" +
     "        </li>\n" +
     "\n" +
-    "        <!-- List of athletes -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/profile/list\">\n" +
+    "            <!-- List of athletes -->\n" +
+    "            <a ng-show=\"global.state.profile.list.length > 0\" href=\"#/profile/list\">\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
-    "                    <i ng-show=\"global.data.isFetchingProfiles === true\" class=\"fa fa-spinner fa-spin\"></i>\n" +
-    "                    <small ng-show=\"!global.data.isFetchingProfiles\">\n" +
+    "                    <small>\n" +
     "                        ( {{ global.state.profile.list.length }} )\n" +
     "                    </small>\n" +
     "                </span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- Fetching profiles -->\n" +
+    "            <a ng-show=\"global.data.isFetchingProfiles === true\" href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                <span>Athletes</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- No profiles available -->\n" +
+    "            <a\n" +
+    "                ng-show=\"global.data.isFetchingProfiles === false &&\n" +
+    "                    global.state.profile.list.length === 0\"\n" +
+    "                href=\"#/profile/create\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <span>Create a Profile</span>\n" +
     "            </a>\n" +
     "        </li>\n" +
     "\n" +
@@ -3841,7 +3858,10 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "        <!-- Account page -->\n" +
     "		<li>\n" +
-    "            <a href=\"#/account\"><span>My Account</span></a>\n" +
+    "            <a href=\"#/account\">\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <span>My Account</span>\n" +
+    "            </a>\n" +
     "        </li>\n" +
     "\n" +
     "        <li class=\"app-version\">\n" +
@@ -4346,60 +4366,52 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            {{ profile.firstName }} {{ profile.lastName }}\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "    </header>\n" +
     "\n" +
-    "    <div class=\"row\">\n" +
+    "        <div class=\"sub-header\">\n" +
     "\n" +
-    "        <!-- Actions -->\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div class=\"pull-right\">\n" +
-    "\n" +
-    "                <!-- Create profile button -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
-    "\n" +
+    "            <!-- Create profile button -->\n" +
+    "            <a href=\"#/profile/create\" class=\"sub-header-btn\">\n" +
+    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-user-plus\"></i>\n" +
     "                </button>\n" +
+    "            </a>\n" +
     "\n" +
-    "                <!-- Delete profile button -->\n" +
-    "                <button\n" +
-    "                    ng-show=\"profile.id > 0\"\n" +
-    "                    data-toggle=\"modal\"\n" +
-    "                    data-target=\"#deleteProfileConfirmation\"\n" +
-    "                    data-toggle=\"tooltip\"\n" +
-    "                    title=\"Delete <b>{{ profile.firstName }}</b>'s profile\"\n" +
-    "                    class=\"btn btn-danger\">\n" +
+    "            <!-- Delete group button -->\n" +
+    "            <a\n" +
+    "                ng-show=\"profile.id > 0\"\n" +
+    "                data-toggle=\"modal\"\n" +
+    "                data-target=\"#deleteProfileConfirmation\"\n" +
+    "                href=\"javascript:;\"\n" +
+    "                class=\"sub-header-btn\">\n" +
     "\n" +
+    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
+    "            </a>\n" +
     "\n" +
-    "                <!-- Delete confirmation -->\n" +
-    "                <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
-    "                    <div class=\"modal-dialog\">\n" +
-    "                        <div class=\"modal-content\">\n" +
-    "                            <div class=\"modal-body\">\n" +
-    "                                <p>\n" +
-    "                                    Are you sure you want to delete <b>{{ profile.firstName }}\n" +
-    "                                    {{ profile.lastName }}</b>'s profile?\n" +
-    "                                </p>\n" +
-    "                            </div>\n" +
-    "                            <div class=\"modal-footer text-center\">\n" +
-    "                                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                    Cancel\n" +
-    "                                </button>\n" +
-    "                                <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                    Yes, delete {{ profile.firstName }}\n" +
-    "                                </button>\n" +
-    "                            </div>\n" +
+    "            <!-- Delete confirmation -->\n" +
+    "            <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
+    "                <div class=\"modal-dialog\">\n" +
+    "                    <div class=\"modal-content\">\n" +
+    "                        <div class=\"modal-body\">\n" +
+    "                            <p>\n" +
+    "                                Are you sure you want to delete <b>{{ profile.firstName }}\n" +
+    "                                {{ profile.lastName }}</b>'s profile?\n" +
+    "                            </p>\n" +
+    "                        </div>\n" +
+    "                        <div class=\"modal-footer text-center\">\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                Cancel\n" +
+    "                            </button>\n" +
+    "                            <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                Yes, delete {{ profile.firstName }}\n" +
+    "                            </button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "            <br>\n" +
-    "            <br>\n" +
     "        </div>\n" +
-    "    </div>\n" +
+    "    </header>\n" +
     "\n" +
     "    <section ng-hide=\"profile.id === 0\">\n" +
     "    	<div class=\"row\">\n" +

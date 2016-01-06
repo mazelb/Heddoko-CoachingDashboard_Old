@@ -14,11 +14,16 @@ angular.module('app.controllers')
         // POST endpoint for avatar uploads.
         $scope.uploadAvatarEndpoint = '/api/v1/users/'+ Rover.userHash +'/avatar';
 
+        // Computes the width of the avatar depending on the height of the details panel.
+        $scope.calculateAvatarHeight = function() {
+            return $('#userDetails') ? $('#userDetails').css('height') : 0;
+        };
+
         // Callback for avatar uploads.
-        $scope.uploadAvatarCallback = function(data) {
+        $scope.uploadAvatarCallback = function() {
 
             // Update user data.
-            $scope.user = Rover.state.user = data;
+            $scope.user = Rover.state.user = this;
         };
 
         // Retrieve user data.

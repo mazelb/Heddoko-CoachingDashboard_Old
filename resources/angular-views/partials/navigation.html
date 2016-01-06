@@ -24,31 +24,67 @@
             </a>
         </li>
 
-        <!-- List of groups -->
 		<li>
-            <a href="#/group/list">
+            <!-- List of groups -->
+            <a ng-show="global.state.group.list.length > 1" href="#/group/list">
                 <i class="fa fa-cubes"></i>
                 <span>Teams</span>
                 <span class="pull-right">
-                    <i ng-show="global.data.isFetchingGroups === true" class="fa fa-spinner fa-spin"></i>
-                    <small ng-show="!global.data.isFetchingGroups">
+                    <small>
                         ( {{ global.state.group.list.length }} )
                     </small>
                 </span>
             </a>
+
+            <!-- Single group available -->
+            <a ng-show="global.state.group.list.length === 1" href="#/group/view">
+                <i class="fa fa-cubes"></i>
+                <span>{{ global.getSelectedGroup().name }}</span>
+            </a>
+
+            <!-- Fetching groups -->
+            <a ng-show="global.data.isFetchingGroups === true" href="javascript:;">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span>Teams</span>
+            </a>
+
+            <!-- No groups available -->
+            <a
+                ng-show="global.data.isFetchingGroups === false &&
+                    global.state.group.list.length === 0"
+                href="#/group/create">
+
+                <i class="fa fa-cubes"></i>
+                <span>Create a Team</span>
+            </a>
         </li>
 
-        <!-- List of athletes -->
 		<li>
-            <a href="#/profile/list">
+            <!-- List of athletes -->
+            <a ng-show="global.state.profile.list.length > 0" href="#/profile/list">
                 <i class="fa fa-users"></i>
                 <span>Athletes</span>
                 <span class="pull-right">
-                    <i ng-show="global.data.isFetchingProfiles === true" class="fa fa-spinner fa-spin"></i>
-                    <small ng-show="!global.data.isFetchingProfiles">
+                    <small>
                         ( {{ global.state.profile.list.length }} )
                     </small>
                 </span>
+            </a>
+
+            <!-- Fetching profiles -->
+            <a ng-show="global.data.isFetchingProfiles === true" href="javascript:;">
+                <i class="fa fa-spinner fa-spin"></i>
+                <span>Athletes</span>
+            </a>
+
+            <!-- No profiles available -->
+            <a
+                ng-show="global.data.isFetchingProfiles === false &&
+                    global.state.profile.list.length === 0"
+                href="#/profile/create">
+
+                <i class="fa fa-users"></i>
+                <span>Create a Profile</span>
             </a>
         </li>
 
@@ -168,7 +204,10 @@
 
         <!-- Account page -->
 		<li>
-            <a href="#/account"><span>My Account</span></a>
+            <a href="#/account">
+                <i class="fa fa-users"></i>
+                <span>My Account</span>
+            </a>
         </li>
 
         <li class="app-version">

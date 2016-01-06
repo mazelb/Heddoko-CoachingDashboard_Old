@@ -8,21 +8,16 @@
         </h1>
     </header>
 
+    <!-- Actions -->
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 text-center">
+            <div class="pull-right">
+                <button
+                    ng-click="global.browseTo.path('group/create')"
+                    class="btn btn-default">
 
-            <!-- Breadcrumbs -->
-            <div class="col-sm-6">
-                <div data-ng-include="'partials/breadcrumbs.html'"></div>
-            </div>
-
-            <!-- Actions -->
-            <div class="col-sm-6">
-                <div class="btn-group pull-right">
-                    <button
-                        ng-click="global.browseTo.path('group/create')"
-                        class="btn btn-default">Add a Team</button>
-                </div>
+                    <i class="fa fa-plus"></i>
+                </button>
             </div>
         </div>
     </div>
