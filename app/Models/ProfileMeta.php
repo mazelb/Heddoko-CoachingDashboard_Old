@@ -9,9 +9,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class ProfileMeta extends Model
 {
+    use CamelCaseAttrs;
+
     /**
      * Name of associated database table.
      */
@@ -25,7 +28,7 @@ class ProfileMeta extends Model
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['id', 'profile_id'];
+    protected $hidden = ['id', 'profileId'];
 
     /**
      * Attributes which are mass-assignable.
@@ -37,7 +40,7 @@ class ProfileMeta extends Model
         'gender',
         'phone',
         'email',
-        'medical_history',
+        'medicalHistory',
         'injuries',
         'notes',
         'meta'

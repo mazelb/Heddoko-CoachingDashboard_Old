@@ -126,6 +126,11 @@ angular.module('app.services')
                 // // Calculate the weight in pounds.
                 // profile.weight_lbs = profile.mass > 0 ? Math.round(profile.mass / 0.453592) : '';
 
+                // Append meta data to profile object.
+                angular.forEach(profile.meta, function(data, key) {
+                    profile[key] = data;
+                });
+
                 return profile;
             },
 
@@ -141,28 +146,30 @@ angular.module('app.services')
                 var formatted =
                 {
                     id: profile.id,
-                    first_name: profile.firstName || '',
-                    last_name: profile.lastName || '',
-                    height: profile.height || 0.0,
-                    mass: profile.mass || 0.0,
-                    dob: profile.dob || '',
-                    gender: profile.gender || '',
-                    phone: profile.phone || '',
-                    email: profile.email || '',
-                    medical_history: profile.medicalHistory || '',
-                    injuries: profile.injuries || '',
-                    notes: profile.notes || '',
-                    params: profile.params || ''
+                    firstName: profile.firstName || '',
+                    lastName: profile.lastName || '',
+                    meta: {
+                        height: profile.height || 0.0,
+                        mass: profile.mass || 0.0,
+                        dob: profile.dob || '',
+                        gender: profile.gender || '',
+                        phone: profile.phone || '',
+                        email: profile.email || '',
+                        medicalHistory: profile.medicalHistory || '',
+                        injuries: profile.injuries || '',
+                        notes: profile.notes || '',
+                        params: profile.params || ''
+                    }
                 };
 
                 // Format height into meters.
                 if (profile.feet > 0 && profile.inches) {
-                    formatted.height = (profile.feet + profile.inches / 12) * 0.3048;
+                    formatted.meta.height = (profile.feet + profile.inches / 12) * 0.3048;
                 }
 
                 // Format mass in kg.
                 if (profile.weightInPounds > 0) {
-                    formatted.mass = profile.weight_lbs * 0.453592;
+                    formatted.meta.mass = profile.weightInPounds * 0.453592;
                 }
 
                 // Format groups into an array of IDs.
@@ -175,36 +182,36 @@ angular.module('app.services')
                 if (profile.primaryTag && profile.primaryTag.length)
                 {
                     if (Utilities.getId(profile.primaryTag) > 0) {
-                        formatted.tag_id = Utilities.getId(profile.primaryTag);
+                        formatted.tagId = Utilities.getId(profile.primaryTag);
                     }
 
                     else {
-                        formatted.primary_tag_title = profile.primaryTag;
+                        formatted.primaryTagTitle = profile.primaryTag;
                     }
                 }
 
                 // Format secondary tags into an array of IDs.
                 if (profile.secondaryTags && profile.secondaryTags.length > 0)
                 {
-                    formatted.secondary_tags = [];
-                    formatted.secondary_tag_titles = [];
+                    formatted.secondaryTags = [];
+                    formatted.secondaryTagTitles = [];
                     angular.forEach(profile.secondaryTags, function(tag) {
 
                         // If tag exists, retrieve its ID.
                         if (Utilities.getId(tag) > 0) {
-                            formatted.secondary_tags.push(Utilities.getId(tag));
+                            formatted.secondaryTags.push(Utilities.getId(tag));
                         }
 
                         // Else, let API know we want to create new tags.
                         else {
-                            formatted.secondary_tag_titles.push(tag);
+                            formatted.secondaryTagTitles.push(tag);
                         }
                     });
                     // formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
                 }
 
-                Rover.debug('Formatted profile details:');
-                Rover.debug(formatted);
+                Utilities.debug('Formatted profile details:');
+                Utilities.debug(formatted);
 
                 return formatted;
             }

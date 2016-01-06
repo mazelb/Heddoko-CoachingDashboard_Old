@@ -34,24 +34,25 @@ class Profile extends Model
     /**
      * Attributes which are mass-assignable.
      */
-	protected $fillable = ['first_name', 'last_name', 'tag_id'];
+	protected $fillable = ['firstName', 'lastName', 'tagId'];
 
     /**
      * Attributes which should be appended to the model's array form.
      */
-    protected $appends = ['avatar_src'];
+    protected $appends = ['avatarSrc'];
 
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['tag_id', 'meta', 'avatar'];
+    protected $hidden = ['tagId', 'avatar'];
 
     /**
      * Validation rules.
      */
     public $validationRules  = [
-        'first_name' => 'required|min:1|max:200',
-        'last_name' => 'max:200'
+        'firstName' => 'required|min:1|max:200',
+        'lastName' => 'max:200',
+        'tagId' => 'int'
     ];
 
     /**

@@ -4481,7 +4481,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    <!-- Profile creation date -->\n" +
     "                    <ui-editable-field\n" +
     "                        data-label=\"Profile Created\"\n" +
-    "                        data-key=\"created_at\"\n" +
+    "                        data-key=\"createdAt\"\n" +
     "                        data-type=\"datetime\"\n" +
     "                        data-disabled=\"true\">\n" +
     "                    </ui-editable-field>\n" +
@@ -4489,14 +4489,14 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    <!-- Primary Tag -->\n" +
     "                    <ui-editable-field\n" +
     "                        data-label=\"Primary Sport\"\n" +
-    "                        data-key=\"primary_tag\"\n" +
+    "                        data-key=\"primaryTag\"\n" +
     "                        data-type=\"tag\">\n" +
     "                    </ui-editable-field>\n" +
     "\n" +
     "                    <!-- Secondary tags -->\n" +
     "                    <ui-editable-field\n" +
     "                        data-label=\"Other Sports\"\n" +
-    "                        data-key=\"secondary_tags\"\n" +
+    "                        data-key=\"secondaryTags\"\n" +
     "                        data-type=\"tag\"\n" +
     "                        data-max-tags=\"10\">\n" +
     "                    </ui-editable-field>\n" +
@@ -4510,7 +4510,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Medical Information\"\n" +
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
-    "                    data-key=\"medical_history\"\n" +
+    "                    data-key=\"medicalHistory\"\n" +
     "                    data-empty=\"No medical information provided.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +

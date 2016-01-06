@@ -159,34 +159,50 @@ class ProfileController extends Controller
 
         // Update profile details.
         $profile->fill($this->request->only([
-            'first_name',
-            'last_name',
-            'height',
-            'mass',
-            'dob',
-            'gender',
-            'phone',
-            'email',
-            'medical_history',
-            'injuries',
-            'notes',
-            'meta'
+            'firstName',
+            'lastName',
         ]));
 
         // Update primary tag.
-        if ($this->request->has('tag_id'))
+        if ($this->request->has('tagId'))
         {
-            $tagId = (int) $this->request->input('tag_id');
-            $profile->tag_id = $tagId ?: null;
+            $tagId = (int) $this->request->input('tagId');
+            $profile->tagId = $tagId ?: null;
         }
 
         // Save profile.
         $profile->save();
 
-        // Create new tag for this profile.
-        if ($this->request->has('primary_tag_title'))
+        // Save meta data.
+        if ($this->request->has('meta'))
         {
-            $tag = Tag::firstOrCreate(['title' => $this->request->input('primary_tag_title')]);
+            // Retrieve valid meta attributes.
+            $metaData = ProfileMeta::find($profile->meta->id);
+            $newMetaData = array_only($this->request->get('meta'), [
+                'height',
+                'mass',
+                'dob',
+                'gender',
+                'phone',
+                'email',
+                'medicalHistory',
+                'injuries',
+                'notes',
+                'meta'
+            ]);
+
+            // Update meta data.
+            foreach ($newMetaData as $key => $value) {
+                $metaData->$key = $value;
+            }
+
+            $metaData->save();
+        }
+
+        // Create new tag for this profile.
+        if ($this->request->has('primaryTagTitle'))
+        {
+            $tag = Tag::firstOrCreate(['title' => $this->request->input('primaryTagTitle')]);
             $profile->primaryTag()->associate($tag);
         }
 
@@ -203,16 +219,16 @@ class ProfileController extends Controller
         }
 
         // Attach secondary tags.
-        if ($this->request->has('secondary_tags'))
+        if ($this->request->has('secondaryTags'))
         {
-            $profile->secondaryTags()->sync((array) $this->request->input('secondary_tags'));
+            $profile->secondaryTags()->sync((array) $this->request->input('secondaryTags'));
         }
 
         // Create new secondary tags.
-        if ($this->request->has('secondary_tag_titles'))
+        if ($this->request->has('secondaryTagTitles'))
         {
             $secondaryTags = [];
-            $titles = (array) $this->request->input('secondary_tag_titles');
+            $titles = (array) $this->request->input('secondaryTagTitles');
             foreach ($titles as $title)
             {
                 $tag = Tag::firstOrCreate(['title' => $title]);
