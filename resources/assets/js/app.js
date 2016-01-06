@@ -78,7 +78,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
             templateUrl: 'group/list.html',
             controller: 'GroupController'
 		})
-        .when('/group/view', {
+        .when('/group/view/:groupId?', {
             templateUrl: 'group/view.html',
             controller: 'GroupController'
 		})

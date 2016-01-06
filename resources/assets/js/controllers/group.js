@@ -33,6 +33,11 @@ angular.module('app.controllers')
         // Shortcut to the list of groups.
         $scope.groups = $scope.global.state.group.list;
 
+        // Computes the width of the avatar depending on the height of the details panel.
+        $scope.calculateAvatarHeight = function() {
+            return $('#groupDetails') ? $('#groupDetails').css('height') : 0;
+        };
+
         // Submits the "new group" form.
         $scope.submitGroupForm = function() {
             return $scope.group.id > 0 ? $scope.updateGroup() : $scope.createGroup();

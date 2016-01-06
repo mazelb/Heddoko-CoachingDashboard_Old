@@ -916,10 +916,12 @@ angular.module("capture/index.html", []).run(["$templateCache", function($templa
 
 angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-avatar.html",
-    "<div style=\"position: relative;\">\n" +
+    "<!-- Main wrapper -->\n" +
+    "<div class=\"ui-avatar-container\" ng-style=\"{width: containerWidth}\">\n" +
     "\n" +
-    "    <!-- Upload button -->\n" +
-    "    <button\n" +
+    "    <!-- Avatar container -->\n" +
+    "    <a\n" +
+    "        href=\"javascript:;\"\n" +
     "        ngf-select=\"upload($file)\"\n" +
     "        ngf-drop\n" +
     "        accept=\"image/*\"\n" +
@@ -927,28 +929,28 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
     "        ngf-capture=\"'camera'\"\n" +
     "        ngf-min-height=\"100\"\n" +
     "        ngf-max-size=\"2MB\"\n" +
-    "        class=\"btn btn-default\"\n" +
-    "        style=\"padding: 0;\">\n" +
+    "        class=\"aspect-ratio aspect-square ui-avatar-button\"\n" +
+    "        ng-style=\"{'background-image': 'url(' + avatarSrc + ')'}\">\n" +
+    "        <div>\n" +
     "\n" +
-    "        <span ng-switch=\"status\">\n" +
-    "\n" +
-    "            <!-- Avatar -->\n" +
-    "            <img ng-switch-when=\"uploaded\" src=\"{{ avatarSrc }}\" style=\"width: 100%\">\n" +
+    "            <!-- Loading animation -->\n" +
+    "            <div ng-show=\"status == 'uploading'\" class=\"ui-avatar-placeholder uploading\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "            </div>\n" +
     "\n" +
     "            <!-- Avatar placeholder -->\n" +
-    "            <i\n" +
-    "                ng-switch-when=\"none\"\n" +
-    "                class=\"fa fa-user\"\n" +
-    "                style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "            <div ng-show=\"status == 'none'\" class=\"ui-avatar-placeholder\">\n" +
+    "                <i class=\"fa fa-user fa-2x\"></i>\n" +
+    "            </div>\n" +
     "\n" +
-    "            <!-- Uploading notifier -->\n" +
-    "            <i\n" +
-    "                ng-switch-when=\"uploading\"\n" +
-    "                class=\"fa fa-spin fa-spinner\"\n" +
-    "                style=\"padding: 30px 40px; font-size: 5em;\"></i>\n" +
+    "            <!-- Avatar actions -->\n" +
+    "            <div class=\"ui-avatar-actions\">\n" +
+    "                <i class=\"fa fa-camera fa-fw ui-avatar-icon\"></i>\n" +
+    "                <span class=\"ui-avatar-text\">Update Avatar</span>\n" +
+    "            </div>\n" +
     "\n" +
-    "        </span>\n" +
-    "    </button>\n" +
+    "        </div>\n" +
+    "    </a>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1048,11 +1050,11 @@ angular.module("directive-partials/ui-editable-fields/field.html", []).run(["$te
     "<div class=\"row ui-editable-field\">\n" +
     "\n" +
     "    <!-- Field label -->\n" +
-    "    <div class=\"col-sm-4 text-right\">\n" +
+    "    <div class=\"col-sm-4 col-lg-3 text-right\">\n" +
     "        {{ label }} <span ng-show=\"isRequired && state == 'editing'\">*</span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"col-sm-8\" ng-switch=\"inputType\">\n" +
+    "    <div class=\"col-sm-8 col-lg-9\" ng-switch=\"inputType\">\n" +
     "\n" +
     "        <!-- Date -->\n" +
     "        <div ng-switch-when=\"date\">\n" +
@@ -1174,6 +1176,19 @@ angular.module("directive-partials/ui-editable-fields/field.html", []).run(["$te
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
+    "        <!-- Placeholder -->\n" +
+    "        <div ng-switch-when=\"placeholder\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"display\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
     "        <!-- Default -->\n" +
     "        <div ng-switch-default>\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
@@ -1195,7 +1210,7 @@ angular.module("directive-partials/ui-editable-fields/fields.html", []).run(["$t
   $templateCache.put("directive-partials/ui-editable-fields/fields.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"panel panel-default ui-editable-fields\">\n" +
+    "<div class=\"panel panel-default ui-editable-fields\" ng-attr-id=\"{{ id }}\">\n" +
     "    <div class=\"panel-heading\">\n" +
     "        {{ heading }}\n" +
     "\n" +
@@ -2544,14 +2559,17 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "\n" +
     "    <div class=\"row\">\n" +
     "\n" +
-    "        <!-- Breadcrumbs -->\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
-    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "        </div>\n" +
-    "\n" +
     "        <!-- Actions -->\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
-    "            <div class=\"btn-group pull-right\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"pull-right\">\n" +
+    "\n" +
+    "                <!-- Create profile button -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-user-plus\"></i>\n" +
+    "                </button>\n" +
     "\n" +
     "                <!-- Delete group button -->\n" +
     "                <button\n" +
@@ -2560,7 +2578,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    data-target=\"#deleteGroupConfirmation\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
-    "                    Delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
+    "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
     "\n" +
     "                <!-- Delete confirmation -->\n" +
@@ -2588,35 +2606,31 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "\n" +
-    "                <!-- Create profile button -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
-    "\n" +
-    "                    Add an athlete\n" +
-    "                </button>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
     "    </div>\n" +
     "\n" +
     "    <section>\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
-    "    		<div class=\"col-md-6 col-sm-12\">\n" +
-    "                <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "    		<div class=\"col-sm-12 col-md-5\">\n" +
+    "                <div class=\"text-center\">\n" +
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"global.state.group.list[global.store.groupId].avatarSrc\">\n" +
+    "                        data-src=\"global.state.group.list[global.store.groupId].avatarSrc\"\n" +
+    "                        data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
     "    		</div>\n" +
     "\n" +
     "            <!-- Group details -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div class=\"col-sm-12 col-md-7\">\n" +
     "                <ui-editable-fields\n" +
+    "                    data-id=\"groupDetails\"\n" +
     "                    data-model=\"global.state.group.list[global.store.groupId]\"\n" +
     "                    data-save=\"saveGroupDetails\"\n" +
     "                    data-save-callback=\"saveGroupDetailsCallback\"\n" +
@@ -2635,14 +2649,60 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        data-key=\"tags\"\n" +
     "                        data-type=\"tag\">\n" +
     "                    </ui-editable-field>\n" +
+    "\n" +
+    "                    <!-- Managers -->\n" +
+    "                    <ui-editable-field\n" +
+    "                        data-label=\"Coach\"\n" +
+    "                        data-type=\"placeholder\"\n" +
+    "                        data-display=\"Rick Springfield\">\n" +
+    "                    </ui-editable-field>\n" +
+    "\n" +
+    "                    <!-- Profiles count -->\n" +
+    "                    <ui-editable-field\n" +
+    "                        data-label=\"Number of athletes\"\n" +
+    "                        data-type=\"placeholder\"\n" +
+    "                        data-display=\"10\">\n" +
+    "                    </ui-editable-field>\n" +
+    "\n" +
+    "                    <!-- Date created -->\n" +
+    "                    <ui-editable-field\n" +
+    "                        data-label=\"Date created\"\n" +
+    "                        data-key=\"createdAt\"\n" +
+    "                        data-type=\"date\"\n" +
+    "                        data-required=\"true\">\n" +
+    "                    </ui-editable-field>\n" +
+    "\n" +
+    "                    <!-- Date modified -->\n" +
+    "                    <ui-editable-field\n" +
+    "                        data-label=\"Date created\"\n" +
+    "                        data-key=\"updatedAt\"\n" +
+    "                        data-type=\"date\"\n" +
+    "                        data-required=\"true\">\n" +
+    "                    </ui-editable-field>\n" +
     "                </ui-editable-fields>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "\n" +
+    "    <!-- Notes -->\n" +
     "    <section>\n" +
+    "        <div class=\"panel panel-default\">\n" +
+    "            <div class=\"panel-heading\">\n" +
+    "                Notes\n" +
+    "            </div>\n" +
     "\n" +
-    "        <!-- Profile list -->\n" +
+    "            <div class=\"panel-body\">\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-sm-12\">\n" +
+    "                        ...\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </section>\n" +
+    "\n" +
+    "    <!-- Profile list -->\n" +
+    "    <section ng-show=\"false\">\n" +
     "        <div class=\"panel panel-default\">\n" +
     "            <div class=\"panel-heading\">\n" +
     "                Athletes in {{ global.getSelectedGroup().name }}\n" +
@@ -2669,23 +2729,6 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "\n" +
     "                            <div class=\"btn-title\">{{ profile.firstName }}</div>\n" +
     "                        </a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </section>\n" +
-    "\n" +
-    "    <section ng-show=\"global.isLocal\">\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-sm-12\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        Debug\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        Avatar: {{ global.getSelectedGroup().avatarSrc ? 'has avatar' : 'no avatar' }} <br>\n" +
-    "                        Global: {{ global.getSelectedGroup().name }} <br>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -3747,17 +3790,17 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        </li>\n" +
     "\n" +
     "        <!-- Submit FMS test form -->\n" +
-    "		<li>\n" +
+    "		<li ng-show=\"false\">\n" +
     "            <a href=\"#/fmstest\"><span>submit fms test results</span></a>\n" +
     "        </li>\n" +
     "\n" +
     "        <!-- FMS results page -->\n" +
-    "		<li>\n" +
+    "		<li ng-show=\"false\">\n" +
     "            <a href=\"#/fmsresults\"><span>fms results</span></a>\n" +
     "		</li>\n" +
     "\n" +
     "        <!-- Live FMS pages. -->\n" +
-    "        <li>\n" +
+    "        <li ng-show=\"false\">\n" +
     "            <!-- TODO: Call this Live FMS? -->\n" +
     "            <a href=\"#/fms/live\"> <i class=\"fa fa-pencil-square-o\"></i> Movement Screen</a>\n" +
     "\n" +
@@ -4307,14 +4350,17 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "    <div class=\"row\">\n" +
     "\n" +
-    "        <!-- Breadcrumbs -->\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
-    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "        </div>\n" +
-    "\n" +
     "        <!-- Actions -->\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
-    "            <div class=\"btn-group pull-right\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"pull-right\">\n" +
+    "\n" +
+    "                <!-- Create profile button -->\n" +
+    "                <button\n" +
+    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
+    "                    class=\"btn btn-default\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-user-plus\"></i>\n" +
+    "                </button>\n" +
     "\n" +
     "                <!-- Delete profile button -->\n" +
     "                <button\n" +
@@ -4325,7 +4371,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    title=\"Delete <b>{{ profile.firstName }}</b>'s profile\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
-    "                    Delete <b>{{ profile.firstName }}</b>'s profile\n" +
+    "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
     "\n" +
     "                <!-- Delete confirmation -->\n" +
@@ -4349,15 +4395,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "\n" +
-    "                <!-- Create profile button -->\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.path('profile/create')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
-    "\n" +
-    "                    Add another athlete\n" +
-    "                </button>\n" +
     "            </div>\n" +
+    "            <br>\n" +
+    "            <br>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -4365,19 +4405,21 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
-    "    		<div class=\"col-md-6 col-sm-12\">\n" +
-    "                <div class=\"text-center\" style=\"margin: 5% 20%; width: 60%;\">\n" +
+    "    		<div class=\"col-sm-12 col-md-5\">\n" +
+    "                <div class=\"text-center\">\n" +
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"profile.avatar_src\">\n" +
+    "                        data-src=\"profile.avatarSrc\"\n" +
+    "                        data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
     "    		</div>\n" +
     "\n" +
     "            <!-- Profile details -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <div class=\"col-sm-12 col-md-7\">\n" +
     "                <ui-editable-fields\n" +
+    "                    data-id=\"profileDetails\"\n" +
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
@@ -4464,7 +4506,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "        <!-- General notes -->\n" +
     "        <div class=\"row\">\n" +
-    "    		<div class=\"col-sm-12 col-md-4\">\n" +
+    "    		<div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Medical Information\"\n" +
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
@@ -4475,7 +4517,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                </ui-editable-standalone-field>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-12 col-md-4\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Previous Injuries\"\n" +
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
@@ -4486,7 +4528,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                </ui-editable-standalone-field>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-sm-12 col-md-4\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Other Notes\"\n" +
     "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
@@ -4513,24 +4555,6 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <div data-ng-include=\"'profile/partials/final-fms-plot.html'\"></div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </section>\n" +
-    "\n" +
-    "    <section data-ng-show=\"global.isLocal\">\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-sm-12\">\n" +
-    "                    <div class=\"panel panel-default\">\n" +
-    "                        <div class=\"panel-heading\">\n" +
-    "                            Debug\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"panel-body\">\n" +
-    "                            FMS Forms: {{ fmsForms }} <br><br>\n" +
-    "                            Profile alias: {{ profile.firstName }} ({{ profile.id }}) <br>\n" +
-    "                            Profile global: ({{ global.state.profile.list[global.store.profileId].id }}) <br>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
     "    </section>\n" +
     "</div>\n" +
     "\n" +

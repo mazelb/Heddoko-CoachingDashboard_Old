@@ -47,6 +47,11 @@ angular.module('app.controllers')
         // Alias for the list of profiles.
         $scope.profiles = $scope.global.state.profile.list;
 
+        // Computes the width of the avatar depending on the height of the details panel.
+        $scope.calculateAvatarHeight = function() {
+            return $('#profileDetails') ? $('#profileDetails').css('height') : 0;
+        };
+
         // Creates a new profile in the database.
         $scope.createProfile = function() {
 
@@ -149,10 +154,17 @@ angular.module('app.controllers')
         $scope.uploadAvatarCallback = function() {
 
             // Update the avatar on the currently selected profile.
-            $scope.global.state.profile.selected.avatar_src = $scope.profile.avatar_src = this.avatar_src;
+            $scope.global.getSelectedProfile().avatarSrc = this.avatarSrc;
 
             // Update the list of profiles.
-            $scope.global.state.profile.list = this.list;
+            $scope.global.state.profile.list[$scope.profile.id].avatarSrc = this.avatarSrc;
+
+            // Update the filtered list.
+            angular.forEach($scope.global.state.profile.filtered, function(profile) {
+                if (profile.id === $scope.profile.id) {
+                    profile.avatarSrc = this.avatarSrc;
+                }
+            }.bind(this));
         };
 
         // FMS tests...

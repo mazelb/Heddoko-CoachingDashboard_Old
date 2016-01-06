@@ -285,9 +285,7 @@ class ProfileController extends Controller
         ]);
 
         return [
-            'list' => $this->index(),
-            'avatar' => $avatar,
-            'avatar_src' => $avatar->src
+            'avatarSrc' => $avatar->src
         ];
     }
 

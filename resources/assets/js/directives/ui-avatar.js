@@ -23,13 +23,17 @@ angular.module('app.directives')
         scope: {
             avatarSrc: '=src',
             uploadEndpoint: '=',
-            successCallback: '='
+            successCallback: '=',
+            containerWidth: '@matchWidth'
         },
-        controller: ['$scope', '$timeout', 'Upload', 'Rover',
-            function($scope, $timeout, Upload, Rover) {
+        controller: ['$scope', '$timeout', 'Upload', 'Rover', 'Utilities',
+            function($scope, $timeout, Upload, Rover, Utilities) {
 
                 // Represents current state of directive.
                 $scope.status = $scope.avatarSrc ? 'uploaded' : 'none';
+
+                // Resizes the avatar container.
+                $scope.containerWidth = $scope.containerWidth || 'auto';
 
                 // Uploads a photo.
                 $scope.upload = function(image) {
@@ -41,7 +45,7 @@ angular.module('app.directives')
 
                     // Upload image.
                     $scope.status = 'uploading';
-                    Rover.debug('Uploading avatar...');
+                    Utilities.debug('Uploading avatar...');
                     Upload.upload({
                         url: $scope.uploadEndpoint,
                         data: {'image': image}
@@ -50,9 +54,7 @@ angular.module('app.directives')
                         // Update image on success.
                         function(response) {
 
-                            $scope.avatarSrc =
-                                'data:' + response.data.avatar.mime_type +
-                                ';base64,' + response.data.avatar.data_uri;
+                            $scope.avatarSrc = response.data.avatarSrc;
                             $scope.status = 'uploaded';
 
                             // Call successCallback if one was provided.
@@ -66,7 +68,7 @@ angular.module('app.directives')
                         // Notify user on failure.
                         function(response) {
 
-                            Rover.alert('Could not upload avatar. Please try again later.');
+                            Utilities.alert('Could not upload avatar. Please try again later.');
                             $scope.status = $scope.avatarSrc ? 'uploaded' : 'none';
                         }
                     );

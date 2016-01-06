@@ -4,11 +4,11 @@
 <div class="row ui-editable-field">
 
     <!-- Field label -->
-    <div class="col-sm-4 text-right">
+    <div class="col-sm-4 col-lg-3 text-right">
         {{ label }} <span ng-show="isRequired && state == 'editing'">*</span>
     </div>
 
-    <div class="col-sm-8" ng-switch="inputType">
+    <div class="col-sm-8 col-lg-9" ng-switch="inputType">
 
         <!-- Date -->
         <div ng-switch-when="date">
@@ -128,6 +128,19 @@
                     options="options">
                 </selectize>
             </div>
+        </div>
+
+        <!-- Placeholder -->
+        <div ng-switch-when="placeholder">
+            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
+
+            <input
+                ng-show="state == 'editing'"
+                ng-model="display"
+                ng-disabled="isDisabled"
+                ng-required="isRequired"
+                type="text"
+                class="form-control">
         </div>
 
         <!-- Default -->

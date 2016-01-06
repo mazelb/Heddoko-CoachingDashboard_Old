@@ -737,6 +737,12 @@ pre {
  */
 /*
  * Aspect ratios
+ *
+ *    <div class="aspect-ratio">
+ *        <div>
+ *            Your content here...
+ *        </div>
+ *    </div>
  */
 .aspect-ratio {
   position: relative;
@@ -770,6 +776,7 @@ pre {
  */
 .active-element {
   position: relative;
+  display: inline-block;
   background-color: #fff;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
@@ -8461,6 +8468,52 @@ svg {
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ * @brief       Styles for uiAvatar
+ * @author      Francis Amankrah (frank@heddoko.com)
+ */
+.ui-avatar-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%; }
+  .ui-avatar-container .ui-avatar-button {
+    display: inline-block;
+    color: #c1bfc0;
+    background: #383d43 center center no-repeat;
+    background-size: cover; }
+  .ui-avatar-container .ui-avatar-actions {
+    position: absolute;
+    padding: 8px 0;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #272b2f;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    -webkit-transition: opacity 0.3s;
+    -moz-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+    -o-transition: opacity 0.3s;
+    transition: opacity 0.3s; }
+  .ui-avatar-container .ui-avatar-placeholder {
+    height: 100%; }
+    .ui-avatar-container .ui-avatar-placeholder.uploading {
+      background-color: #blue-dark;
+      opacity: 0.7;
+      filter: alpha(opacity=70); }
+    .ui-avatar-container .ui-avatar-placeholder .fa {
+      position: relative;
+      top: 25%;
+      padding: 0 40px !important;
+      font-size: 3em !important; }
+  .ui-avatar-container:hover .ui-avatar-actions {
+    opacity: 0.8;
+    filter: alpha(opacity=80); }
+
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief       Styles for uiEditableFields
+ * @author      Francis Amankrah (frank@heddoko.com)
  */
 .ui-editable-field-value .edit-icon {
   color: #999;
@@ -8486,6 +8539,8 @@ svg {
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ * @brief       Styles for uiMovement
+ * @author      Francis Amankrah (frank@heddoko.com)
  */
 .ui-movement-container {
   background-color: #fff;
@@ -8514,6 +8569,8 @@ svg {
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ * @brief       Styles for uiPageTitle
+ * @author      Francis Amankrah (frank@heddoko.com)
  */
 .ui-page-title-background {
   display: inline-block;
@@ -8553,6 +8610,8 @@ svg {
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ * @brief       Styles for uiTaggable
+ * @author      Francis Amankrah (frank@heddoko.com)
  */
 /**
  * Backed up notes from previous stylesheet.

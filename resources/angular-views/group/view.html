@@ -10,14 +10,17 @@
 
     <div class="row">
 
-        <!-- Breadcrumbs -->
-        <div class="col-sm-12 col-md-6">
-            <div data-ng-include="'partials/breadcrumbs.html'"></div>
-        </div>
-
         <!-- Actions -->
-        <div class="col-sm-12 col-md-6">
-            <div class="btn-group pull-right">
+        <div class="col-sm-12">
+            <div class="pull-right">
+
+                <!-- Create profile button -->
+                <button
+                    ng-click="global.browseTo.path('profile/create')"
+                    class="btn btn-default">
+
+                    <i class="fa fa-user-plus"></i>
+                </button>
 
                 <!-- Delete group button -->
                 <button
@@ -26,7 +29,7 @@
                     data-target="#deleteGroupConfirmation"
                     class="btn btn-danger">
 
-                    Delete <b>{{ global.getSelectedGroup().name }}</b>
+                    <i class="fa fa-trash"></i>
                 </button>
 
                 <!-- Delete confirmation -->
@@ -54,35 +57,31 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Create profile button -->
-                <button
-                    ng-click="global.browseTo.path('profile/create')"
-                    class="btn btn-default">
-
-                    Add an athlete
-                </button>
             </div>
         </div>
+        <br>
+        <br>
     </div>
 
     <section>
     	<div class="row">
 
             <!-- Avatar -->
-    		<div class="col-md-6 col-sm-12">
-                <div class="text-center" style="margin: 5% 20%; width: 60%;">
+    		<div class="col-sm-12 col-md-5">
+                <div class="text-center">
                     <ui-avatar
                         data-upload-endpoint="uploadAvatarEndpoint"
                         data-success-callback="uploadAvatarCallback"
-                        data-src="global.state.group.list[global.store.groupId].avatarSrc">
+                        data-src="global.state.group.list[global.store.groupId].avatarSrc"
+                        data-match-width="{{ calculateAvatarHeight() }}">
                     </ui-avatar>
                 </div>
     		</div>
 
             <!-- Group details -->
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-7">
                 <ui-editable-fields
+                    data-id="groupDetails"
                     data-model="global.state.group.list[global.store.groupId]"
                     data-save="saveGroupDetails"
                     data-save-callback="saveGroupDetailsCallback"
@@ -101,14 +100,60 @@
                         data-key="tags"
                         data-type="tag">
                     </ui-editable-field>
+
+                    <!-- Managers -->
+                    <ui-editable-field
+                        data-label="Coach"
+                        data-type="placeholder"
+                        data-display="Rick Springfield">
+                    </ui-editable-field>
+
+                    <!-- Profiles count -->
+                    <ui-editable-field
+                        data-label="Number of athletes"
+                        data-type="placeholder"
+                        data-display="10">
+                    </ui-editable-field>
+
+                    <!-- Date created -->
+                    <ui-editable-field
+                        data-label="Date created"
+                        data-key="createdAt"
+                        data-type="date"
+                        data-required="true">
+                    </ui-editable-field>
+
+                    <!-- Date modified -->
+                    <ui-editable-field
+                        data-label="Date created"
+                        data-key="updatedAt"
+                        data-type="date"
+                        data-required="true">
+                    </ui-editable-field>
                 </ui-editable-fields>
             </div>
         </div>
     </section>
 
+    <!-- Notes -->
     <section>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Notes
+            </div>
 
-        <!-- Profile list -->
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        ...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile list -->
+    <section ng-show="false">
         <div class="panel panel-default">
             <div class="panel-heading">
                 Athletes in {{ global.getSelectedGroup().name }}
@@ -135,23 +180,6 @@
 
                             <div class="btn-title">{{ profile.firstName }}</div>
                         </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section ng-show="global.isLocal">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Debug
-                    </div>
-
-                    <div class="panel-body">
-                        Avatar: {{ global.getSelectedGroup().avatarSrc ? 'has avatar' : 'no avatar' }} <br>
-                        Global: {{ global.getSelectedGroup().name }} <br>
                     </div>
                 </div>
             </div>

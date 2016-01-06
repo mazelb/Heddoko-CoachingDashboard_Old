@@ -20,6 +20,7 @@ angular.module('app.directives')
         restrict: 'AE',
         transclude: true,
         scope: {
+            id: '@',
             heading: '@',
             resource: '=model',
             saveResource: '=save',
@@ -518,10 +519,13 @@ angular.module('app.directives')
                         });
                         break;
 
+                    // Temporary value.
+                    case 'placeholder':
+                        break;
+
                     default:
 
                         scope.init = function() {
-                            // Default length value.
                             scope.model[scope.key] = scope.model[scope.key] || '';
                         };
                         scope.init();

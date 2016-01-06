@@ -165,10 +165,7 @@ class GroupController extends Controller
         ]);
 
         return [
-            'list' => $this->index(),
-            'group' => $group,
-            'avatar' => $avatar,
-            'avatar_src' => $avatar->src
+            'avatarSrc' => $avatar->src
         ];
     }
 
