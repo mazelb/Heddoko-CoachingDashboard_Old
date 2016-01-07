@@ -61,14 +61,9 @@ angular.module('app.services')
              * Stores the details for a new profile.
              *
              * @param object data
-             * @param int groupId
              * @return object $http
              */
-            create: function(data, groupId) {
-
-                // Add group ID to request parameters.
-                var config = groupId ? {params: {group: groupId}} : {};
-
+            create: function(data) {
                 return $http.post(this.endpoint, data, config);
     		},
 

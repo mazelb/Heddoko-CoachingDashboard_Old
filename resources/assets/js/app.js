@@ -98,7 +98,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
             templateUrl: 'profile/list.html',
             controller: 'ProfileController'
 		})
-        .when('/profile/view', {
+        .when('/profile/view/:id?', {
 			templateUrl: 'profile/view.html',
             controller: 'ProfileController'
 		})

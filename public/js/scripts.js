@@ -13420,7 +13420,7 @@ angular.module("account.html", []).run(["$templateCache", function($templateCach
     "<div class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Account <i class=\"fa fa-cogs\"></i>\n" +
+    "            Account <i class=\"fa fa-user\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "    </header>\n" +
@@ -17271,7 +17271,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <!-- Account page -->\n" +
     "		<li>\n" +
     "            <a href=\"#/account\">\n" +
-    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>My Account</span>\n" +
     "            </a>\n" +
     "        </li>\n" +

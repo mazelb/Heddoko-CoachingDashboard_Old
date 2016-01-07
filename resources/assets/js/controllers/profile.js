@@ -64,12 +64,11 @@ angular.module('app.controllers')
             // TODO: allow multiple groups.
             profile.groups = [$scope.global.getSelectedGroup().id];
 
-            ProfileService.create(profile, $scope.group.id).then(
+            ProfileService.create(profile).then(
                 function(response) {
-                    Utilities.debug('Profile created.');
-                    Utilities.debug(response.data);
 
                     // Update profile list and browse to newly created profile.
+                    // Rover.browseTo.path('/profile/view/' + response.data.id);
                     Rover.state.profile.list[response.data.id] = response.data;
                     Rover.browseTo.profile(response.data);
                     Rover.doneBackgroundProcess();
@@ -166,32 +165,6 @@ angular.module('app.controllers')
                 }
             }.bind(this));
         };
-
-        // FMS tests...
-        // $scope.updateFMSForms = function() {
-        //
-        //     Rover.debug('Retrieving FMS forms...');
-        //
-        //     FMSForm.get($scope.profile.id).then(
-        //
-        //         function(response) {
-        //             if (response.status === 200) {
-        //                 Rover.debug('Received FMS forms.');
-        //                 Rover.debug(response.data);
-        //                 $scope.global.state.profile.selected.fms_forms = $scope.fmsForms = response.data;
-        //             }
-        //         },
-        //
-        //         function(response) {
-        //             Rover.debug('Error retrieving FMS forms.');
-        //             Rover.debug(response);
-        //         }
-        //     );
-        // };
-        // $scope.fmsForms = $scope.global.state.profile.selected.fms_forms;
-        // if (!$scope.fmsForms && $scope.profile.id > 0) {
-        //     $scope.updateFMSForms();
-        // }
 
         $scope.$watch('global.store.profileId', function(id, oldId)
         {
