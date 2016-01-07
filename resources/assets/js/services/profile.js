@@ -21,12 +21,22 @@ angular.module('app.services')
              * Gets a list of profiles.
              *
              * @param int groupId
+             * @param array|string embed
              * @return object $http
              */
-            list: function(groupId) {
+            list: function(groupId, embed) {
+
+                // Build request parameters.
+                var config = {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                };
 
                 // Add group ID to request parameters.
-                var config = groupId ? {params: {group: groupId}} : {};
+                if (groupId) {
+                    config.params.groupId = groupId;
+                }
 
                 return $http.get(this.endpoint, config);
             },
@@ -35,10 +45,16 @@ angular.module('app.services')
              * Gets the details for a specific profile.
              *
              * @param int id
+             * @param array|string embed
              * @return object $http
              */
-            get: function(id) {
-    			return $http.get(this.endpoint + id);
+            get: function(id, embed)
+            {
+    			return $http.get(this.endpoint + id, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**

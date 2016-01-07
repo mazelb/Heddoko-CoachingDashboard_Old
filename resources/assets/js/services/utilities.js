@@ -20,6 +20,27 @@ angular.module('app.utilities', [])
                 $window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
         /**
+         * Formats an embed parameter for an API query.
+         *
+         * @param array|string embed
+         * @return string
+         */
+        this.getEmbedParameter = function(embed) {
+
+            // Concatenate arrays into a string.
+            if (angular.isArray(embed)) {
+                return embed.join(',');
+            }
+
+            // If embed is a string, assume it's already properly formatted.
+            if (angular.isString(embed)) {
+                return embed;
+            }
+
+            return '';
+        };
+
+        /**
          * Calculates the length of an associative array.
          *
          * @param object obj
