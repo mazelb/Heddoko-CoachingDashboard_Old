@@ -2409,31 +2409,25 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "            <i class=\"fa fa-users\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "    </header>\n" +
     "\n" +
-    "    <!-- Actions -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12 text-center\">\n" +
-    "            <div class=\"pull-right\">\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.browseTo.path('group/create')\"\n" +
-    "                    class=\"btn btn-default\">\n" +
+    "        <div class=\"sub-header\">\n" +
     "\n" +
+    "            <!-- Create group button -->\n" +
+    "            <a href=\"#/group/create\" class=\"sub-header-btn\">\n" +
+    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-plus\"></i>\n" +
     "                </button>\n" +
-    "            </div>\n" +
+    "            </a>\n" +
     "        </div>\n" +
-    "    </div>\n" +
-    "    <br>\n" +
-    "    <br>\n" +
+    "    </header>\n" +
     "\n" +
     "    <a\n" +
-    "        ng-repeat=\"group in global.state.group.list\"\n" +
+    "        ng-repeat=\"group in global.state.group.list track by $index\"\n" +
     "        ng-show=\"group.id\"\n" +
     "        ng-click=\"global.browseTo.group(group)\"\n" +
     "        href=\"javascript:;\"\n" +
     "        class=\"btn btn-primary btn-metro\"\n" +
-    "        style=\"background-image: url({{ group.avatarSrc || '' }});background-size: cover;\">\n" +
+    "        style=\"background-image: url({{ group.avatarSrc || '' }}); background-size: cover;\">\n" +
     "\n" +
     "        <span>{{ group.name | characters:15 }}</span>\n" +
     "    </a>\n" +

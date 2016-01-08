@@ -93,12 +93,13 @@ angular.module('app.controllers')
 
             // Update profile list.
             if (profileSaved) {
-                $scope.global.state.profile.list[this.profile.id] =
-                    $scope.profiles[this.profile.id] =
-                    this.profile;
+                Utilities.debug('callback function:');
+                Utilities.debug(this);
+                Rover.state.profile.list[this.id] = $scope.profiles[this.id] =
+                    ProfileService.format(this);
 
                 // Update the selected profile.
-                $scope.global.store.profileId = this.profile.id;
+                $scope.global.store.profileId = this.id;
 
                 // Navigate to profile page.
                 Rover.browseTo.profile();
@@ -123,12 +124,12 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Reset profile list.
-                    $scope.global.state.profile.list = {length: 0};
+                    Rover.state.profile.list = {length: 0};
                     angular.forEach(response.data, function(profile) {
 
                         // Add profile to list.
-                        $scope.global.state.profile.list.length++;
-                        $scope.global.state.profile.list[profile.id] = profile;
+                        Rover.state.profile.list.length++;
+                        Rover.state.profile.list[profile.id] = ProfileService.format(profile);
                     });
 
                     // Unselect profile by default.
@@ -177,11 +178,11 @@ angular.module('app.controllers')
             $scope.profile = $scope.global.getSelectedProfile();
 
             // Format profile fields.
-            $scope.profile = ProfileService.formatForDisplay($scope.profile);
+            $scope.profile = ProfileService.format($scope.profile);
         });
 
         if ($scope.profile.id > 0) {
-            $scope.profile = ProfileService.formatForDisplay($scope.profile);
+            $scope.profile = ProfileService.format($scope.profile);
         }
     }
 ]);

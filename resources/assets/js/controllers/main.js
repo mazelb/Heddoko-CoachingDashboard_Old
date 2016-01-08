@@ -144,9 +144,7 @@ angular.module('app.controllers')
             $scope.global.data.isFetchingProfiles = true;
 
             // Retrieve profiles.
-            var embed = ['avatarSrc', 'groups', 'meta'];
-            Utilities.debug(embed);
-    		ProfileService.list(null, embed).then(
+    		ProfileService.list(null, ['avatarSrc', 'groups', 'meta']).then(
                 function(response) {
 
                     // Reset profile list.

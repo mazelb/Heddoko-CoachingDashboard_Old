@@ -75,11 +75,7 @@ angular.module('app.services')
              * @return object $http
              */
             update: function(id, data) {
-
-                // Add group ID to request parameters.
-                var config = (data.groups && data.groups.length) ? {params: {group: data.groups[0]}} : {};
-
-                return $http.put(this.endpoint + id, data, config);
+                return $http.put(this.endpoint + id, data);
     		},
 
             /**
@@ -119,7 +115,7 @@ angular.module('app.services')
              * @param object profile
              * @return object
              */
-            formatForDisplay: function(profile) {
+            format: function(profile) {
 
                 // Format "createdAt" date.
                 profile.createdAt = profile.createdAt || '';

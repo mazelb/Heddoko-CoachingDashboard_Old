@@ -46,6 +46,13 @@ class ProfileMeta extends Model
     protected $hidden = ['id', 'profile_id'];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['dob'];
+
+    /**
      * Attributes which are mass-assignable.
      */
 	protected $fillable = [

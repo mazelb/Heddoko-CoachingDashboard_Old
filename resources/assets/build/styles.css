@@ -8478,7 +8478,12 @@ svg {
 .ui-avatar-container {
   position: relative;
   margin: 0 auto;
-  width: 100%; }
+  width: 1px;
+  -webkit-transition: width 0.8s;
+  -moz-transition: width 0.8s;
+  -ms-transition: width 0.8s;
+  -o-transition: width 0.8s;
+  transition: width 0.8s; }
   .ui-avatar-container .ui-avatar-button {
     display: inline-block;
     color: #c1bfc0;

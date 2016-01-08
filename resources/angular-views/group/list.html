@@ -6,31 +6,25 @@
             <i class="fa fa-users"></i>
             <span></span>
         </h1>
-    </header>
 
-    <!-- Actions -->
-    <div class="row">
-        <div class="col-sm-12 text-center">
-            <div class="pull-right">
-                <button
-                    ng-click="global.browseTo.path('group/create')"
-                    class="btn btn-default">
+        <div class="sub-header">
 
+            <!-- Create group button -->
+            <a href="#/group/create" class="sub-header-btn">
+                <button class="btn btn-default btn-circle btn-lg">
                     <i class="fa fa-plus"></i>
                 </button>
-            </div>
+            </a>
         </div>
-    </div>
-    <br>
-    <br>
+    </header>
 
     <a
-        ng-repeat="group in global.state.group.list"
+        ng-repeat="group in global.state.group.list track by $index"
         ng-show="group.id"
         ng-click="global.browseTo.group(group)"
         href="javascript:;"
         class="btn btn-primary btn-metro"
-        style="background-image: url({{ group.avatarSrc || '' }});background-size: cover;">
+        style="background-image: url({{ group.avatarSrc || '' }}); background-size: cover;">
 
         <span>{{ group.name | characters:15 }}</span>
     </a>

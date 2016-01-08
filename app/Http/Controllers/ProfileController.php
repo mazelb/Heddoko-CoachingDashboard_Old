@@ -66,10 +66,14 @@ class ProfileController extends Controller
 
         if (count($profiles))
         {
+            $resizeAvatar = (bool) array_search('avatarSrc', $embed['attributes']);
+
             foreach ($profiles as $profile)
             {
                 // Resize avatar.
-                $profile->resizeAvatar(400);
+                if ($resizeAvatar) {
+                    $profile->resizeAvatar(400);
+                }
 
                 // Append extra attributes.
                 if (count($embed['attributes']))
@@ -202,7 +206,7 @@ class ProfileController extends Controller
         if ($this->request->has('meta'))
         {
             // Retrieve meta object.
-            $newMetaData = $this->request->input('meta');
+            $newMetaData = (array) $this->request->input('meta');
             $metaAttributes = [
                 'height',
                 'mass',
@@ -250,7 +254,7 @@ class ProfileController extends Controller
         }
 
         // Assign current user as a manager.
-        elseif (empty($profile->managers))
+        elseif (!$profile->id)
         {
             $profile->managers()->attach(Auth::id());
         }
@@ -275,8 +279,8 @@ class ProfileController extends Controller
             $profile->secondaryTags()->attach($secondaryTags);
         }
 
-        $meta = $profile->meta;
-        return $profile;
+        // Return updated model.
+        return Profile::with('meta')->find($profile->id);
     }
 
     /**

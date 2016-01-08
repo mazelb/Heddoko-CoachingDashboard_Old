@@ -27,7 +27,7 @@ angular.module('app.directives')
             saveResourceCallback: '=saveCallback',
             deleteResource: '=delete'
         },
-        controller: ['$scope', 'Rover', function($scope, Rover) {
+        controller: ['$scope', function($scope) {
 
             // Represents current state of directive.
             $scope.state = 'idle';
@@ -58,7 +58,6 @@ angular.module('app.directives')
 
             // Saves changes.
             $scope.save = function() {
-                Rover.debug('Saving model...');
 
                 // Switch state to "saving".
                 $scope.state = 'saving';
@@ -108,8 +107,8 @@ angular.module('app.directives')
 /**
  * Directive for properties of a model. Meant to be used inside uiEditableListContainer.
  */
-.directive('uiEditableField', ['$filter', '$timeout', '$http', 'Rover',
-    function($filter, $timeout, $http, Rover) {
+.directive('uiEditableField', ['$filter', '$timeout', '$http', 'Utilities',
+    function($filter, $timeout, $http, Utilities) {
         return {
             require: '^uiEditableFields',
             restrict: 'AE',
@@ -264,7 +263,7 @@ angular.module('app.directives')
 
                         // Updates length value on model.
                         scope.updateModel = function() {
-                            Rover.debug('Updating length value for "' + scope.key + '" ...');
+                            Utilities.debug('Updating length value for "' + scope.key + '" ...');
 
                             switch (scope.config.unitForLength)
                             {
@@ -289,7 +288,7 @@ angular.module('app.directives')
                                     scope.model[scope.key] = scope.data.lengthVal;
                             }
 
-                            Rover.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' m');
+                            Utilities.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' m');
                         };
 
                         // Calculate length in desired units on first load.
@@ -346,7 +345,7 @@ angular.module('app.directives')
 
                         // Updates mass value on model.
                         scope.updateModel = function() {
-                            Rover.debug('Updating mass value for "' + scope.key + '" ...');
+                            Utilities.debug('Updating mass value for "' + scope.key + '" ...');
 
                             switch (scope.config.unitForMass)
                             {
@@ -366,7 +365,7 @@ angular.module('app.directives')
                                     scope.model[scope.key] = scope.data.massVal;
                             }
 
-                            Rover.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' kg');
+                            Utilities.debug('From ' + scope.data.displayStr + ' to ' + scope.model[scope.key] + ' kg');
                         };
 
                         // Calculate mass in desired units on first load.
@@ -385,7 +384,7 @@ angular.module('app.directives')
                             // Array of tags.
                             if (angular.isArray(scope.model[scope.key]))
                             {
-                                Rover.debug('Looping through tags array...');
+                                Utilities.debug('Looping through tags array...');
 
                                 // Setup data model, available options and displayed value.
                                 scope.data = [];
@@ -415,9 +414,6 @@ angular.module('app.directives')
                             // Single tag
                             else if (angular.isObject(scope.model[scope.key]))
                             {
-                                Rover.debug('Inspecting tag object...');
-                                Rover.debug(scope.model[scope.key]);
-
                                 if (scope.model[scope.key].id)
                                 {
                                     scope.data = scope.model[scope.key].id;
@@ -458,8 +454,8 @@ angular.module('app.directives')
                             load: function(query, callback) {
 
                                 // Performance check.
-                                Rover.debug('Fetching tags...');
-                                Rover.debug(query);
+                                Utilities.debug('Fetching tags...');
+                                Utilities.debug(query);
                                 if (!query || !query.length) {
                                     return callback();
                                 }
@@ -494,7 +490,7 @@ angular.module('app.directives')
                                 }
 
                                 // Create the new tag.
-                                Rover.debug('Creating tag: ' + value);
+                                Utilities.debug('Creating tag: ' + value);
                                 $http.post('/api/tag', {
                                     title: value.trim()
                                 });
@@ -506,8 +502,8 @@ angular.module('app.directives')
                              * @param array data
                              */
                             onChange: function(data) {
-                                Rover.debug('updating data');
-                                Rover.debug(data);
+                                Utilities.debug('updating data');
+                                Utilities.debug(data);
                                 // scope.model[scope.key] = scope.maxTags > 1 ? data : data[0];
                                 scope.model[scope.key] = data;
                             }
@@ -556,7 +552,7 @@ angular.module('app.directives')
             saveResourceCallback: '=saveCallback',
             deleteResource: '=delete'
         },
-        controller: ['$scope', 'Rover', function($scope, Rover) {
+        controller: ['$scope', 'Utilities', function($scope, Utilities) {
 
             // Represents current state of directive.
             $scope.state = 'idle';
@@ -568,7 +564,7 @@ angular.module('app.directives')
 
             // Saves changes.
             $scope.save = function() {
-                Rover.debug('Saving model...');
+                Utilities.debug('Saving model...');
 
                 // Switch state to "saving".
                 $scope.state = 'saving';
