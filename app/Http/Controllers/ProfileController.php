@@ -132,12 +132,11 @@ class ProfileController extends Controller
         );
 
         // Make sure we have a valid profile.
-        $embed = ['groups', 'managers', 'screenings', 'primaryTag', 'secondaryTags'];
-        if (!$profile = Profile::with($embed)->find($id)) {
+        if (!$profile = Auth::user()->profiles()->with($embed['relations'])->find($id)) {
             return response('Profile Not Found.', 404);
         }
 
-        // TODO: who is authorized to access profiles?
+        // TODO: attach attributes...
 
         return $profile;
     }

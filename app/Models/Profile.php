@@ -39,15 +39,6 @@ class Profile extends Model
     protected $hidden = ['tag_id', 'avatar', 'pivot'];
 
     /**
-     * Validation rules.
-     */
-    public $validationRules  = [
-        'firstName' => 'required|min:1|max:200',
-        'lastName' => 'max:200',
-        'tagId' => 'int'
-    ];
-
-    /**
      * Profile's additional details.
      */
     public function meta() {
@@ -101,16 +92,5 @@ class Profile extends Model
      */
     public function secondaryTags() {
         return $this->morphToMany('App\Models\Tag', 'taggable');
-    }
-
-    /**
-     * Accessor for $this->avatarSrc.
-     *
-     * @param string $src
-     * @return string
-     */
-    public function getAvatarSrcAttribute($src)
-    {
-        return $this->avatar ? $this->avatar->src : null;
     }
 }

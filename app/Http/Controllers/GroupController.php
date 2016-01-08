@@ -25,10 +25,38 @@ class GroupController extends Controller
      */
     public function index()
     {
-        // TODO
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Group::$appendable
+        );
 
+        // Retrieve groups.
+        $groups = Auth::user()->groups()->with($embed['relations'])->get();
 
-        return Auth::user()->groups;
+        if (count($groups))
+        {
+            $resizeAvatar = (bool) array_search('avatarSrc', $embed['attributes']);
+
+            foreach ($groups as $group)
+            {
+                // Resize avatar.
+                if ($resizeAvatar) {
+                    $group->resizeAvatar(400);
+                }
+
+                // Append extra attributes.
+                if (count($embed['attributes']))
+                {
+                    foreach ($embed['attributes'] as $accessor)
+                    {
+                        $group->setAttribute($accessor, $group->$accessor);
+                    }
+                }
+            }
+        }
+
+        return $groups;
     }
 
     /**
@@ -38,28 +66,13 @@ class GroupController extends Controller
      */
     public function store()
     {
-        // Retrieve group data.
-        $data = $this->request->only([
-            'name'
+        // Validate incoming data.
+        $this->validate($this->request, [
+            'name' => 'required|string|min:1|max:255',
         ]);
 
         // Create new group.
-        $group = Group::create($data);
-
-        // Assign current user as a manager.
-        $group->managers()->attach(Auth::id());
-
-        // Attach associated profiles.
-        if ($this->request->has('profiles'))
-        {
-            $profile->profiles()->sync((array) $this->request->input('profiles'));
-        }
-
-        // ...
-        return [
-            'list' => $this->index(),
-            'group' => $group
-        ];
+        return $this->saveGroupData(new Group);
     }
 
     /**
@@ -70,10 +83,18 @@ class GroupController extends Controller
      */
     public function show($id)
     {
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Profile::$appendable
+        );
+
         // Make sure we have a valid group.
-        if (!$group = Auth::user()->groups()->find($id)) {
+        if (!$group = Auth::user()->groups()->with($embed['relations'])->find($id)) {
             return response('Group Not Found.', 404);
         }
+
+        // TODO: attach attributes...
 
         return $group;
     }
@@ -86,27 +107,59 @@ class GroupController extends Controller
      */
     public function update($id)
     {
-        $group = $this->getGroup($id);
+        // Performance check.
+        if (!$group = Auth::user()->groups()->find($id)) {
+            return response('Group Not Found.', 400);
+        }
 
-        // Update group details.
-        $group->fill($this->request->only([
-            'name'
-        ]));
+        // Validate incoming data.
+        $this->validate($this->request, [
+            'name' => 'string|min:1|max:255',  // Not required when updating.
+        ]);
 
-        // Save group details.
-        $group->save();
+        // Save group.
+        return $this->saveGroupData($group);
+    }
 
-        // Attach associated profiles.
+    /**
+     * Saves group relations.
+     *
+     * @param \App\Models\Group $group
+     */
+    private function saveGroupData(Group $group)
+    {
+        // Update primary profile details.
+        if ($this->request->has('name')) {
+            $group->name = $this->request->input('name');
+        }
+
+        // TODO: save meta data...
+
+        // Save group.
+        if (!$group->save()) {
+            return response('Could not save group data.', 500);
+        }
+
+        // Attach profiles.
         if ($this->request->has('profiles'))
         {
             $group->profiles()->sync((array) $this->request->input('profiles'));
         }
 
-        // ...
-        return [
-            'list' => $this->index(),
-            'group' => $group
-        ];
+        // Attach managers.
+        if ($this->request->has('managers'))
+        {
+            $group->managers()->sync((array) $this->request->input('managers'));
+        }
+
+        // Assign current user as a manager.
+        elseif (count($group->managers) === 0)
+        {
+            $group->managers()->attach(Auth::id());
+        }
+
+        // Return updated model.
+        return Group::find($group->id);
     }
 
     /**
