@@ -254,7 +254,7 @@ class ProfileController extends Controller
         }
 
         // Assign current user as a manager.
-        elseif (!$profile->id)
+        elseif (count($profile->managers) === 0)
         {
             $profile->managers()->attach(Auth::id());
         }
@@ -316,7 +316,7 @@ class ProfileController extends Controller
     public function saveAvatar($id)
     {
         // Make sure we have a valid profile.
-        if (!$profile = Profile::find($id)) {
+        if (!$profile = Auth::user()->profiles()->find($id)) {
             return response('Profile Not Found.', 404);
         }
 

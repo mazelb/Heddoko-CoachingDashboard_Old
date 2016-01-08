@@ -64,7 +64,7 @@ angular.module('app.services')
              * @return object $http
              */
             create: function(data) {
-                return $http.post(this.endpoint, data, config);
+                return $http.post(this.endpoint, data);
     		},
 
             /**
@@ -216,9 +216,6 @@ angular.module('app.services')
                     });
                     // formatted.secondary_tags = profile.secondary_tags.map(Utilities.getId);
                 }
-
-                Utilities.debug('Formatted profile details:');
-                Utilities.debug(formatted);
 
                 return formatted;
             }

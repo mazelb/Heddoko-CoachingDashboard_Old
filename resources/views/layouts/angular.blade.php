@@ -37,6 +37,9 @@
 
         <!-- Loading overlay -->
         <div class="page-loading-overlay">
+            <a href="/logout" title="Exit application" class="page-loading-escape">
+                <i class="fa fa-exclamation-triangle"></i>
+            </a>
             <div class="loader-2"></div>
         </div>
         <div class="load_circle_wrapper">

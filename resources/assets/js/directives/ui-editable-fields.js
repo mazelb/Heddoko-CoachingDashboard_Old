@@ -461,7 +461,7 @@ angular.module('app.directives')
                                 }
 
                                 // Queries the API for tags.
-                                $http.get('/api/tag', {
+                                $http.get('/api/v1/tags', {
                                     params: {
                                         query: query,
                                         limit: 15
@@ -491,7 +491,7 @@ angular.module('app.directives')
 
                                 // Create the new tag.
                                 Utilities.debug('Creating tag: ' + value);
-                                $http.post('/api/tag', {
+                                $http.post('/api/v1/tags', {
                                     title: value.trim()
                                 });
                             },

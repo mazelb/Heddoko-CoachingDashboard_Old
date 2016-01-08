@@ -5040,6 +5040,12 @@ button.toast-close-button {
   -moz-transition: all .3s ease-in-out;
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out; }
+  .page-loading-overlay .page-loading-escape {
+    color: #bbb;
+    margin: 30px 0 0 30px;
+    display: inline-block; }
+    .page-loading-overlay .page-loading-escape:active {
+      color: #3bd6b2; }
 
 .page-loading-overlay.loaded,
 .loader.loaded,

@@ -4101,14 +4101,6 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "            </div>\n" +
     "        </div>\n" +
     "    </form>\n" +
-    "\n" +
-    "    <div ng-show=\"global.isLocal\" class=\"panel panel-default\">\n" +
-    "        <div class=\"panel-heading\">Debug</div>\n" +
-    "        <div class=\"panel-body\">\n" +
-    "            Selected group: {{ global.state.group.list[global.store.groupId].name }} <br>\n" +
-    "            Profile: {{ profile }}\n" +
-    "        </div>\n" +
-    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
