@@ -116,7 +116,11 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         .when('/movements/analyze', {
 			templateUrl: 'movements/analysis/index.html',
-            controller: 'TestController'
+            controller: 'AnalysisController'
+		})
+        .when('/movements/analyze/demo', {
+			templateUrl: 'movements/analysis-demo/index.html',
+            controller: 'DemoAnalysisController'
 		})
         .when('/movements/compare', {
 			templateUrl: 'movements/comparison/index.html',

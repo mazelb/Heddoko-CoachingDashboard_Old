@@ -8474,6 +8474,31 @@ svg {
 .c100.orange.dark:hover > span {
   color: #e08833; }
 
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
+.demo-analysis-page #emphasizedViewContainer {
+  @transition (height .5s); }
+  .demo-analysis-page #emphasizedViewContainer video {
+    margin: 0 auto;
+    display: block;
+    @transition (height .5s); }
+.demo-analysis-page #secondaryViewsContainer video {
+  width: 100%; }
+.demo-analysis-page .panel-body {
+  background-color: #fff;
+  @box-shadow (1px 1px #aaa); }
+.demo-analysis-page .demo-controls {
+  position: absolute;
+  bottom: 20px; }
+  .demo-analysis-page .demo-controls a {
+    color: #272b2f;
+    margin: 0 10px;
+    display: inline-block; }
+    .demo-analysis-page .demo-controls a:hover {
+      color: #3bd6b2; }
+
 /* Directives */
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

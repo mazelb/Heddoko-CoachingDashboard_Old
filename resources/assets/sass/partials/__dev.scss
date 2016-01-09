@@ -1,0 +1,41 @@
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
+
+.demo-analysis-page {
+
+    #emphasizedViewContainer {
+        @transition(height .5s);
+
+        video {
+            margin: 0 auto;
+            display: block;
+            @transition(height .5s);
+        }
+    }
+
+    #secondaryViewsContainer video {
+        width: 100%;
+    }
+
+    .panel-body {
+        background-color: #fff;
+        @box-shadow(1px 1px #aaa);
+    }
+
+    .demo-controls {
+        position: absolute;
+        bottom: 20px;
+
+        a {
+            color: $blue-dark;
+            margin: 0 10px;
+            display: inline-block;
+
+            &:hover {
+                color: $heddokogreen;
+            }
+        }
+    }
+}

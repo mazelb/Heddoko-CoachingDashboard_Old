@@ -58,11 +58,10 @@ angular.module('app.controllers')
                     if (response.status === 200)
                     {
                         // Update the group list
-                        // $scope.global.state.group.list = response.data.list;
-                        $scope.global.state.group.list[response.data.group.id] = response.data.group;
+                        Rover.state.group.list[response.data.id] = response.data;
 
                         // Navigate to newly created group.
-                        Rover.browseTo.group(response.data.group);
+                        Rover.browseTo.group(response.data);
                     }
                 },
 
@@ -86,7 +85,7 @@ angular.module('app.controllers')
 
             // Update group list.
             if (saved) {
-                $scope.global.state.group.list[this.group.id] = this.group;
+                $scope.global.state.group.list[this.id] = this;
 
                 // Navigate to group page.
                 Rover.browseTo.group();
