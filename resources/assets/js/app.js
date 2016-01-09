@@ -142,6 +142,10 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'capture/index.html',
             controller: 'TestController'
 		})
+        .when('/capture/demo', {
+			templateUrl: 'capture-demo/index.html',
+            controller: 'DemoCaptureController'
+		})
 
         //
         // Screening routes.

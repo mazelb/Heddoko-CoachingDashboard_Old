@@ -24,6 +24,19 @@
         @box-shadow(1px 1px #aaa);
     }
 
+    .demo-movement-li {
+        color: $blue-dark;
+
+        &.live {
+            background-color: $heddokogreen;
+        }
+
+        &.done {
+            color: #aaa;
+            text-decoration: line-through;
+        }
+    }
+
     .demo-controls {
         position: absolute;
         bottom: 20px;

@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -885,6 +885,124 @@ angular.module("placeholder.html", []).run(["$templateCache", function($template
     "    <h1 style=\"text-align: center; color: #ccc;\">\n" +
     "        In Development\n" +
     "    </h1>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("capture-demo/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("capture-demo/index.html",
+    "<div class=\"page demo-analysis-page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Capture <i class=\"fa fa-video-camera\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-9 col-sm-offset-3\">\n" +
+    "            <h3 class=\"text-center\">\n" +
+    "                <small>Current Movement:</small> {{ movements[currentMovementIndex].name }}\n" +
+    "            </h3>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "            <!-- FMS List -->\n" +
+    "            <div class=\"col-sm-3\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Movements To Test\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div\n" +
+    "                            ng-repeat=\"movement in movements\"\n" +
+    "                            class=\"demo-movement-li\"\n" +
+    "                            ng-class=\"{live: movement.current, done: movement.done}\">\n" +
+    "\n" +
+    "                            {{ $index }}. {{ movement.name }}\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Emphasized view -->\n" +
+    "            <div class=\"col-sm-6\" id=\"emphasizedViewContainer\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading text-right\">\n" +
+    "                        Side/Sagittal\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <video id=\"sagittalVideoCapture\" class=\"demo-analysis\">\n" +
+    "                            <source ng-src=\"../../../../demo/aslr/left/sagittal.webm\" type=\"video/webm\" />\n" +
+    "                            <source src=\"../../../../demo/aslr/left/sagittal.mp4\" type=\"video/mp4\" />\n" +
+    "                            Sorry, your browser doesn't support HTML5 video.\n" +
+    "                        </video>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Secondary views -->\n" +
+    "            <div class=\"col-sm-3\" id=\"secondaryViewsContainer\">\n" +
+    "\n" +
+    "                <!-- Coronal view -->\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading text-right\">\n" +
+    "                        Front/Coronal\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <video id=\"coronalVideoCapture\" class=\"demo-analysis\">\n" +
+    "                            <source ng-src=\"{{'../../../../demo/aslr/left/coronal.webm'}}\" type=\"video/webm\" />\n" +
+    "                            <source src=\"{{'../../../../demo/aslr/left/coronal.mp4'}}\" type=\"video/mp4\" />\n" +
+    "                            Sorry, your browser doesn't support HTML5 video.\n" +
+    "                        </video>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Transverse view -->\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading text-right\">\n" +
+    "                        Horizontal/Transverse\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <video id=\"transverseVideoCapture\" class=\"demo-analysis\">\n" +
+    "                            <source ng-src=\"{{'../../../../demo/aslr/left/transverse.webm'}}\" type=\"video/webm\" />\n" +
+    "                            <source src=\"{{'../../../../demo/aslr/left/transverse.mp4'}}\" type=\"video/mp4\" />\n" +
+    "                            Sorry, your browser doesn't support HTML5 video.\n" +
+    "                        </video>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Record controls -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 text-center\">\n" +
+    "            <button\n" +
+    "                ng-hide=\"isPlaying\"\n" +
+    "                ng-click=\"start()\"\n" +
+    "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-circle\"></i>\n" +
+    "            </button>\n" +
+    "            <button\n" +
+    "                ng-show=\"isPlaying\"\n" +
+    "                ng-click=\"done()\"\n" +
+    "                class=\"btn btn-default btn-circle btn-lg\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-stop\"></i>\n" +
+    "            </button>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3837,11 +3955,17 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
-    "                    <a href=\"#/capture\">\n" +
+    "                    <a href=\"#/capture/demo\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Record</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
+    "                <!-- <li>\n" +
+    "                    <a href=\"#/capture\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
+    "                        <span>Record</span>\n" +
+    "                    </a>\n" +
+    "                </li> -->\n" +
     "                <li>\n" +
     "                    <a href=\"#/movements/upload\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +

@@ -8489,6 +8489,13 @@ svg {
 .demo-analysis-page .panel-body {
   background-color: #fff;
   @box-shadow (1px 1px #aaa); }
+.demo-analysis-page .demo-movement-li {
+  color: #272b2f; }
+  .demo-analysis-page .demo-movement-li.live {
+    background-color: #3bd6b2; }
+  .demo-analysis-page .demo-movement-li.done {
+    color: #aaa;
+    text-decoration: line-through; }
 .demo-analysis-page .demo-controls {
   position: absolute;
   bottom: 20px; }
