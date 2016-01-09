@@ -901,7 +901,7 @@ angular.module("capture-demo/index.html", []).run(["$templateCache", function($t
     "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-sm-9 col-sm-offset-3\">\n" +
-    "            <h3 class=\"text-center\">\n" +
+    "            <h3>\n" +
     "                <small>Current Movement:</small> {{ movements[currentMovementIndex].name }}\n" +
     "            </h3>\n" +
     "        </div>\n" +
