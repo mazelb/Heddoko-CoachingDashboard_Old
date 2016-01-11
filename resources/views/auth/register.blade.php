@@ -152,7 +152,7 @@
                     <input
                         type="text"
                         class="form-control"
-                        placeholder="Date of Birth"
+                        placeholder="Date of Birth e.g. {{ date('Y-m-d 17:00:00') }}"
                         name="dob"
                         value="{{ old('dob') }}"
                         disabled>
