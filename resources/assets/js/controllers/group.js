@@ -8,45 +8,36 @@
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$location', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment',
-    function($scope, $location, GroupService, Upload, Utilities, Rover, isLocalEnvironment) {
+    ['$scope', '$routeParams', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
+    function($scope, $routeParams, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
         Utilities.debug('GroupController');
 
-        // Current URL path.
-        $scope.currentPath = $location.path();
-
-        // Empty group object for "new group" form.
-        if ($scope.currentPath == '/group/create')
+        // Currently displayed group.
+        $scope.group = {id: 0};
+        if ($routeParams.groupId > 0 && Rover.hasState('group', $routeParams.groupId))
         {
-            $scope.group =
-            {
-                id: 0,
-                name: ''
-            };
+            Rover.store.groupId = $routeParams.groupId;
+            $scope.group = Rover.getState('group', $routeParams.groupId);
         }
 
-        // Shortcut for the currently selected group.
-        else {
-            $scope.group = $scope.global.getSelectedGroup();
-        }
+        // Model for new group details.
+        $scope.newGroup = {
+            id: 0,
+            name: ''
+        };
 
         // Computes the width of the avatar depending on the height of the details panel.
         $scope.calculateAvatarHeight = function() {
             return $('#groupDetails') ? $('#groupDetails').css('height') : 0;
         };
 
-        // Submits the "new group" form.
-        $scope.submitGroupForm = function() {
-            return $scope.group.id > 0 ? $scope.updateGroup() : $scope.createGroup();
-        };
-
         // Creates a new group in the database.
         $scope.createGroup = function() {
-
             Utilities.debug("Creating group...");
             Rover.addBackgroundProcess();
 
-            var form = $scope.group;
+            // var form = $scope.group;
+            var form = $scope.newGroup;
 
             // Teams.create(form).then(
             GroupService.create(form).then(
@@ -55,10 +46,11 @@ angular.module('app.controllers')
                 function(response) {
                     Rover.doneBackgroundProcess();
 
-                    if (response.status === 200)
-                    {
+                    if (response.status === 200) {
+
                         // Update the group list
-                        Rover.state.group.list[response.data.id] = response.data;
+                        // Rover.state.group.list[response.data.id] = response.data;
+                        Rover.setState('group', response.data.id, response.data);
 
                         // Navigate to newly created group.
                         Rover.browseTo.group(response.data);
@@ -85,7 +77,8 @@ angular.module('app.controllers')
 
             // Update group list.
             if (saved) {
-                $scope.global.state.group.list[this.id] = this;
+                // $scope.global.state.group.list[this.id] = this;
+                Rover.setState('group', this.id, this);
 
                 // Navigate to group page.
                 Rover.browseTo.group();
@@ -133,38 +126,44 @@ angular.module('app.controllers')
         $scope.deleteGroup = function() {
             Utilities.debug('Deleting group...');
 
-            // Show loading animation.
-            Rover.addBackgroundProcess();
+            Utilities.debug('TODO: update group list update on success...');
 
-            GroupService.destroy($scope.global.getSelectedGroup().id).then(
+            Utilities.alert('In Development.');
 
-                // On success, update group list and browse to groups page.
-                function(response) {
+            return false;
 
-                    if (response.status === 200)
-                    {
-                        Rover.state.group.list = {length: 0};
-                        angular.forEach(response.data, function(group) {
-                            Rover.state.group.list.length++;
-                            Rover.state.group.list[group.id] = group;
-                        });
-
-                        // Update selected group.
-                        if (response.data.length > 0) {
-                            Rover.store.groupId = response.data[0].id;
-                        }
-                    }
-
-                    Rover.doneBackgroundProcess();
-                    Rover.browseTo.path('/group/list');
-                },
-
-                // On failure.
-                function(response) {
-                    Utilities.debug('Could not delete group: ' + response.responseText);
-                    Rover.doneBackgroundProcess();
-                }
-            );
+            // // Show loading animation.
+            // Rover.addBackgroundProcess();
+            //
+            // GroupService.destroy($scope.global.getSelectedGroup().id).then(
+            //
+            //     // On success, update group list and browse to groups page.
+            //     function(response) {
+            //
+            //         if (response.status === 200)
+            //         {
+            //             Rover.state.group.list = {length: 0};
+            //             angular.forEach(response.data, function(group) {
+            //                 Rover.state.group.list.length++;
+            //                 Rover.state.group.list[group.id] = group;
+            //             });
+            //
+            //             // Update selected group.
+            //             if (response.data.length > 0) {
+            //                 Rover.store.groupId = response.data[0].id;
+            //             }
+            //         }
+            //
+            //         Rover.doneBackgroundProcess();
+            //         Rover.browseTo.path('/group/list');
+            //     },
+            //
+            //     // On failure.
+            //     function(response) {
+            //         Utilities.debug('Could not delete group: ' + response.responseText);
+            //         Rover.doneBackgroundProcess();
+            //     }
+            // );
         };
 
         // POST endpoint for avatar uploads.

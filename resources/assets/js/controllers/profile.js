@@ -8,35 +8,34 @@
 angular.module('app.controllers')
 
 .controller('ProfileController',
-    ['$scope', '$location', '$filter', 'Rover', 'ProfileService', 'GroupService',
+    ['$scope', '$routeParams', '$filter', 'Rover', 'ProfileService', 'GroupService',
     'Utilities', '$http',
-    function($scope, $location, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
+    function($scope, $routeParams, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
         Utilities.debug('ProfileController');
 
+        // Currently displayed group.
+        $scope.profile = {id: 0};
+        if ($routeParams.profileId > 0 && Rover.hasState('profile', $routeParams.profileId))
+        {
+            Rover.store.profileId = $routeParams.profileId;
+            $scope.profile = Rover.getState('profile', $routeParams.profileId);
+        }
+
         // Current URL path.
-        $scope.currentPath = $location.path();
         $scope.isProfilePage = true;
 
-        // Empty profile object for "new profile" form.
-        if ($scope.currentPath == '/profile/create')
+        // Model for new profile details.
+        $scope.newProfile =
         {
-            $scope.profile =
-            {
-                id: 0,
-                feet: 0,
-                inches: 0,
-                weightInPounds: 0,
-                notes: '',
-                gender: '',
-                primaryTag: {},
-                secondaryTags: []
-            };
-        }
-
-        // Shortcut for the currently selected profile.
-        else {
-            $scope.profile = $scope.global.getSelectedProfile();
-        }
+            id: 0,
+            feet: 0,
+            inches: 0,
+            weightInPounds: 0,
+            notes: '',
+            gender: '',
+            primaryTag: {},
+            secondaryTags: []
+        };
 
         // Alias for the list of groups.
         $scope.groups = $scope.global.state.group.list;
@@ -58,7 +57,7 @@ angular.module('app.controllers')
             Rover.addBackgroundProcess();
             Utilities.debug('Creating profile...');
 
-            var profile = ProfileService.formatForStorage($scope.profile);
+            var profile = ProfileService.formatForStorage($scope.newProfile);
 
             // Add group info.
             // TODO: allow multiple groups.
@@ -68,9 +67,10 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Update profile list and browse to newly created profile.
-                    // Rover.browseTo.path('/profile/view/' + response.data.id);
-                    Rover.state.profile.list[response.data.id] = response.data;
-                    Rover.browseTo.profile(response.data);
+                    // Rover.state.profile.list[response.data.id] = response.data;
+                    Rover.setState('profile', response.data.id, response.data);
+                    // Rover.browseTo.profile(response.data);
+                    Rover.browseTo.path('/profile/' + response.data.id);
                     Rover.doneBackgroundProcess();
                 },
                 function(response) {
@@ -93,13 +93,12 @@ angular.module('app.controllers')
 
             // Update profile list.
             if (profileSaved) {
-                Utilities.debug('callback function:');
-                Utilities.debug(this);
-                Rover.state.profile.list[this.id] = $scope.profiles[this.id] =
-                    ProfileService.format(this);
+                Rover.setState('profile', this.id, ProfileService.format(this));
+                // Rover.state.profile.list[this.id] = $scope.profiles[this.id] =
+                //     ProfileService.format(this);
 
                 // Update the selected profile.
-                $scope.global.store.profileId = this.id;
+                Rover.store.profileId = this.id;
 
                 // Navigate to profile page.
                 Rover.browseTo.profile();
@@ -113,38 +112,44 @@ angular.module('app.controllers')
 
         // Deletes a profile
         $scope.deleteProfile = function() {
-
-            // Show loading animation.
             Utilities.debug('Deleting profile...');
-            Rover.addBackgroundProcess();
 
-            ProfileService.destroy($scope.profile.id).then(
+            Utilities.debug('TODO: update profile list update on success...');
 
-                // On success, update profile list and browse to selected group.
-                function(response) {
+            Utilities.alert('In Development.');
 
-                    // Reset profile list.
-                    Rover.state.profile.list = {length: 0};
-                    angular.forEach(response.data, function(profile) {
+            return false;
 
-                        // Add profile to list.
-                        Rover.state.profile.list.length++;
-                        Rover.state.profile.list[profile.id] = ProfileService.format(profile);
-                    });
-
-                    // Unselect profile by default.
-                    $scope.global.store.profileId = 0;
-
-                    Rover.browseTo.group();
-                    Rover.doneBackgroundProcess();
-                },
-
-                // On failure.
-                function(response) {
-                    Utilities.debug('Could not delete profile: ' + response.responseText);
-                    Rover.doneBackgroundProcess();
-                }
-            );
+            // // Show loading animation.
+            // Rover.addBackgroundProcess();
+            //
+            // ProfileService.destroy($scope.profile.id).then(
+            //
+            //     // On success, update profile list and browse to selected group.
+            //     function(response) {
+            //
+            //         // Reset profile list.
+            //         Rover.state.profile.list = {length: 0};
+            //         angular.forEach(response.data, function(profile) {
+            //
+            //             // Add profile to list.
+            //             Rover.state.profile.list.length++;
+            //             Rover.state.profile.list[profile.id] = ProfileService.format(profile);
+            //         });
+            //
+            //         // Unselect profile by default.
+            //         $scope.global.store.profileId = 0;
+            //
+            //         Rover.browseTo.group();
+            //         Rover.doneBackgroundProcess();
+            //     },
+            //
+            //     // On failure.
+            //     function(response) {
+            //         Utilities.debug('Could not delete profile: ' + response.responseText);
+            //         Rover.doneBackgroundProcess();
+            //     }
+            // );
         };
 
         // POST endpoint for avatar uploads.

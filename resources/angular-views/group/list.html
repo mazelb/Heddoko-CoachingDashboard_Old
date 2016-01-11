@@ -1,31 +1,79 @@
 
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
 <div class="page page-dashboard">
     <header>
         <h1>
-            Teams
-            <i class="fa fa-users"></i>
+            Teams <i class="fa fa-users"></i>
             <span></span>
         </h1>
-
-        <div class="sub-header">
-
-            <!-- Create group button -->
-            <a href="#/group/create" class="sub-header-btn">
-                <button class="btn btn-default btn-circle btn-lg">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </a>
-        </div>
     </header>
 
-    <a
-        ng-repeat="group in global.state.group.list track by $index"
-        ng-show="group.id"
-        ng-click="global.browseTo.group(group)"
-        href="javascript:;"
-        class="btn btn-primary btn-metro"
-        style="background-image: url({{ group.avatarSrc || '' }}); background-size: cover;">
+    <div class="row">
+        <div class="col-xs-12">
 
-        <span>{{ group.name | characters:15 }}</span>
-    </a>
+            <!-- New group button -->
+            <a
+                data-toggle="modal"
+                data-target="#newGroupForm"
+                href="javascript:;"
+                class="btn btn-primary btn-metro">
+
+                <i class="fa fa-plus"></i>
+            </a>
+
+            <!-- New group form -->
+            <div class="modal fade" id="newGroupForm">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            Team Details
+                        </div>
+
+                        <div class="modal-body">
+
+                            <!-- Name -->
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    ng-model="newGroup.name"
+                                    placeholder="Name"
+                                    class="form-control"
+                                    required>
+                            </div>
+
+                            <!-- Sport -->
+                            <div class="form-group">
+                                <input
+                                    type="text"
+                                    placeholder="Sport"
+                                    class="form-control"
+                                    disabled>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Cancel
+                            </button>
+                            <button ng-click="createGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                Create
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- List of groups -->
+            <a
+                ng-repeat="group in global.state.group.list"
+                ng-show="group.id"
+                href="#/group/{{ group.id }}"
+                class="btn btn-default btn-metro"
+                style="background-image: url({{ group.avatarSrc || '' }});">
+
+                <span>{{ group.name | characters:15 }}</span>
+            </a>
+        </div>
+    </div>
 </div>

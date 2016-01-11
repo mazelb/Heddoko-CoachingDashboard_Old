@@ -5,7 +5,7 @@
 <div ng-hide="profile.id === 0" class="page">
     <header>
         <h1>
-            {{ profile.firstName }} {{ profile.lastName }}
+            {{ profile.firstName }} {{ profile.lastName }}  <i class="fa fa-user"></i>
             <span></span>
         </h1>
 
@@ -74,10 +74,10 @@
             <div class="col-sm-12 col-md-7">
                 <ui-editable-fields
                     data-id="profileDetails"
-                    data-model="global.state.profile.list[global.store.profileId]"
+                    data-model="profile"
                     data-save="saveProfileDetails"
                     data-save-callback="saveProfileDetailsCallback"
-                    data-heading="{{ global.state.profile.list[global.store.profileId].firstName }}'s details">
+                    data-heading="{{ profile.firstName }}'s details">
 
                     <!-- First name -->
                     <ui-editable-field
@@ -163,7 +163,7 @@
     		<div class="col-sm-12">
                 <ui-editable-standalone-field
                     data-heading="Medical Information"
-                    data-model="global.state.profile.list[global.store.profileId]"
+                    data-model="profile"
                     data-key="medicalHistory"
                     data-empty="No medical information provided."
                     data-save="saveProfileDetails"
@@ -174,7 +174,7 @@
             <div class="col-sm-12">
                 <ui-editable-standalone-field
                     data-heading="Previous Injuries"
-                    data-model="global.state.profile.list[global.store.profileId]"
+                    data-model="profile"
                     data-key="injuries"
                     data-empty="No previous injuries."
                     data-save="saveProfileDetails"
@@ -185,7 +185,7 @@
             <div class="col-sm-12">
                 <ui-editable-standalone-field
                     data-heading="Other Notes"
-                    data-model="global.state.profile.list[global.store.profileId]"
+                    data-model="profile"
                     data-key="notes"
                     data-empty="No other notes."
                     data-save="saveProfileDetails"
@@ -194,23 +194,7 @@
     		</div>
     	</div>
     </section>
-
-    <!-- FMS graphs... To be reviewed -->
-    <section ng-show="fmsForms.length > 0">
-        <div class="row">
-
-            <!-- Current test -->
-            <div class="col-sm-12 col-md-6">
-                <div data-ng-include="'profile/partials/current-fms-plot.html'"></div>
-            </div>
-
-            <!-- Final results -->
-            <div class="col-sm-12 col-md-6">
-                <div data-ng-include="'profile/partials/final-fms-plot.html'"></div>
-            </div>
-        </div>
-    </section>
 </div>
 
 <!-- No profile selected -->
-<div ng-show="profile.id === 0" ng-include="'partials/no-profile-selected-notice.html'" class="page"></div>
+<div ng-show="profile.id === 0" ng-include="'partials/select-profile.html'" class="page"></div>

@@ -3,7 +3,7 @@
 <div ng-show="group.id" class="page">
     <header>
         <h1>
-            {{ group.name }}
+            {{ group.name }} <i class="fa fa-users"></i>
             <span></span>
         </h1>
 
@@ -11,20 +11,20 @@
 
             <!-- Create profile button -->
             <a href="#/profile/create" class="sub-header-btn">
-                <button class="btn btn-default btn-circle btn-lg">
+                <button class="btn btn-primary btn-circle btn-lg">
                     <i class="fa fa-user-plus"></i>
                 </button>
             </a>
 
             <!-- Delete group button -->
             <a
-                ng-show="global.getSelectedGroup().id > 0"
+                ng-show="group.id > 0"
                 data-toggle="modal"
                 data-target="#deleteGroupConfirmation"
                 href="javascript:;"
                 class="sub-header-btn">
 
-                <button class="btn btn-primary btn-circle btn-lg">
+                <button class="btn btn-danger btn-circle btn-lg">
                     <i class="fa fa-trash"></i>
                 </button>
             </a>
@@ -34,13 +34,13 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <p ng-show="global.state.profile.list.length > 0">
-                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>
+                            <p ng-show="global.state.profile.filtered.length > 0">
+                                Are you sure you want to delete <b>{{ group.name }}</b>
                                 and the {{ global.state.profile.filtered.length }}
                                 associated athletes?
                             </p>
-                            <p ng-show="global.state.profile.list.length === 0">
-                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?
+                            <p ng-show="global.state.profile.filtered.length === 0">
+                                Are you sure you want to delete <b>{{ group.name }}</b>?
                             </p>
                         </div>
                         <div class="modal-footer text-center">
@@ -48,7 +48,7 @@
                                 Cancel
                             </button>
                             <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                Yes, delete {{ global.getSelectedGroup().name }}
+                                Yes, delete {{ group.name }}
                             </button>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                     <ui-avatar
                         data-upload-endpoint="uploadAvatarEndpoint"
                         data-success-callback="uploadAvatarCallback"
-                        data-src="global.state.group.list[global.store.groupId].avatarSrc"
+                        data-src="group.avatarSrc"
                         data-match-width="{{ calculateAvatarHeight() }}">
                     </ui-avatar>
                 </div>
@@ -76,10 +76,10 @@
             <div class="col-sm-12 col-md-7">
                 <ui-editable-fields
                     data-id="groupDetails"
-                    data-model="global.state.group.list[global.store.groupId]"
+                    data-model="group"
                     data-save="saveGroupDetails"
                     data-save-callback="saveGroupDetailsCallback"
-                    data-heading="Details for {{ global.state.group.list[global.store.groupId].name }}">
+                    data-heading="Details for {{ group.name }}">
 
                     <!-- Group name -->
                     <ui-editable-field
@@ -129,6 +129,28 @@
         </div>
     </section>
 
+    <!-- Profile list -->
+    <div class="row">
+        <br>
+
+        <div ng-show="global.state.profile.filtered.length === 0" class="col-sm-12">
+            The <b>{{ group.name }}</b> do not have any members yet. Add one to get started!
+        </div>
+
+        <div ng-show="global.state.profile.filtered.length > 0" class="col-sm-12">
+            <a
+                ng-repeat="profile in global.state.profile.filtered"
+                href="#/profile/{{ profile.id }}"
+                class="btn btn-primary btn-metro"
+                style="background-image: url({{ profile.avatarSrc || '' }});">
+
+                <div class="btn-title">{{ profile.firstName }}</div>
+            </a>
+        </div>
+
+        <br>
+    </div>
+
     <!-- Notes -->
     <section>
         <div class="panel panel-default">
@@ -145,44 +167,10 @@
             </div>
         </div>
     </section>
-
-    <!-- Profile list -->
-    <section ng-show="false">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Athletes in {{ global.getSelectedGroup().name }}
-            </div>
-
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div ng-show="global.state.profile.filtered.length === 0">
-                            The <b>{{ global.getSelectedGroup().name }}</b> do not have any
-                            members yet. Add one above to get started!
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <a
-                            href="javascript:;"
-                            class="btn btn-primary btn-metro"
-                            ng-repeat="profile in global.state.profile.filtered"
-                            ng-click="global.browseTo.profile(profile)"
-                            style="background-image: url({{ profile.avatarSrc || '' }});background-size: cover;">
-
-                            <div class="btn-title">{{ profile.firstName }}</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 </div>
 
 <!-- No group selected -->
-<div ng-show="global.getSelectedGroup().id === 0" class="page">
+<div ng-show="group.id === 0" class="page">
     <h1 class="text-center">No group selected</h1>
     <br>
 

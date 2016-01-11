@@ -4,20 +4,28 @@
 <div class="page page-dashboard">
     <header>
         <h1>
-            Athletes <i class="fa fa-users"></i>
+            Athletes <i class="fa fa-user"></i>
             <span></span>
         </h1>
     </header>
 
     <div class="row">
         <div class="col-sm-12">
+
+            <!-- New profile button -->
             <a
-                href="javascript:;"
-                class="btn btn-primary btn-metro"
+                href="#/profile/create"
+                class="btn btn-primary btn-metro">
+
+                <i class="fa fa-plus"></i>
+            </a>
+
+            <a
                 ng-repeat="profile in global.state.profile.list"
                 ng-show="profile.id"
-                ng-click="global.browseTo.profile(profile)"
-                style="background-image: url({{ profile.avatarSrc || '' }});background-size: cover;">
+                href="#/profile/{{ profile.id }}"
+                class="btn btn-primary btn-metro"
+                style="background-image: url({{ profile.avatarSrc || '' }});">
 
                 <div class="btn-title">{{ profile.firstName | characters:30 }}</div>
             </a>

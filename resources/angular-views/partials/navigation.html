@@ -27,7 +27,7 @@
 		<li>
             <!-- List of groups -->
             <a ng-show="global.state.group.list.length > 1" href="#/group/list">
-                <i class="fa fa-cubes"></i>
+                <i class="fa fa-users"></i>
                 <span>Teams</span>
                 <span class="pull-right">
                     <small>
@@ -38,7 +38,7 @@
 
             <!-- Single group available -->
             <a ng-show="global.state.group.list.length === 1" href="#/group/view">
-                <i class="fa fa-cubes"></i>
+                <i class="fa fa-users"></i>
                 <span>{{ global.getSelectedGroup().name }}</span>
             </a>
 
@@ -62,7 +62,7 @@
 		<li>
             <!-- List of athletes -->
             <a ng-show="global.state.profile.list.length > 0" href="#/profile/list">
-                <i class="fa fa-users"></i>
+                <i class="fa fa-user"></i>
                 <span>Athletes</span>
                 <span class="pull-right">
                     <small>
@@ -83,7 +83,7 @@
                     global.state.profile.list.length === 0"
                 href="#/profile/create">
 
-                <i class="fa fa-users"></i>
+                <i class="fa fa-user"></i>
                 <span>Create a Profile</span>
             </a>
         </li>

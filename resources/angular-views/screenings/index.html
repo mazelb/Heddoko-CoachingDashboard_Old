@@ -38,13 +38,17 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        {{ screening.title | characters:60 }}
+                        <a href="#/screenings/{{ screening.id }}">
+                            {{ screening.title | characters:60 }}
+                        </a>
                     </td>
                     <td class="text-center">
                         {{ screening.createdAt | mysqlDate }}
                     </td>
                     <td class="text-center">
-                        {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}
+                        <a href="#/profile/{{ screening.profile.id }}">
+                            {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}
+                        </a>
                     </td>
                     <td class="text-center">
                         {{ screening.score | number:0 }}

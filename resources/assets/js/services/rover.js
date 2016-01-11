@@ -211,6 +211,57 @@ angular.module('app.rover', [])
         // General helper methods.
         //
 
+        /**
+         * Checks whether a state variable is defined.
+         *
+         * @param string namespace
+         * @param string id
+         * @return bool
+         */
+        this.hasState = function(namespace, id) {
+            return (this.state[namespace] && this.state[namespace].list['_' + id]) ? true : false;
+        };
+
+        /**
+         * Retrieves a state variable.
+         *
+         * @param string namespace
+         * @param string id
+         * @param mixed def
+         * @return bool
+         */
+        this.getState = function(namespace, id, def) {
+            return this.hasState(namespace, id) ? this.state[namespace].list['_' + id] : def;
+        };
+
+        /**
+         * Sets a state variable.
+         *
+         * @param string namespace
+         * @param string id
+         * @param mixed value
+         */
+        this.setState = function(namespace, id, value) {
+
+            // Setup namespace.
+            if (!this.state[namespace]) {
+                this.state[namespace] = {
+                    list: {
+                        length: 0
+                    }
+                };
+            }
+
+            // Update namespace counter.
+            if (!this.hasState(namespace, id)) {
+                this.state[namespace].list.length++;
+            }
+
+            // Add an underscore to the state key, so that we may store objects by ID
+            // without any problems.
+            this.state[namespace].list['_' + id] = value;
+        };
+
         // Logs a message to the console.
         // @deprecated
         this.debug = function(msg) {

@@ -3,39 +3,6 @@
  *
  */
 
-/*
- * Dashboard-style buttons
- */
-.btn-dashboard {
-    display: block;
-
-    .fa, span {
-        display: block;
-        text-align: center;
-    }
-    
-    .fa {
-        padding: 30px 0 10px;
-    }
-
-    span:first-child {
-        padding: 20px 0 30px;
-        text-transform: uppercase;
-    }
-
-    span:last-child {
-        height: 5px;
-        width: 60%;
-        margin: 20px auto 0;
-        background-color: #fff;
-        @include transition(background-color .2s);
-    }
-
-    &:hover span:last-child {
-        background-color: $heddokogreen;
-    }
-}
-
 
 .btn {
     display: inline-block;
@@ -85,6 +52,43 @@
   @include box-shadow(none);
 }
 
+/*
+* Dashboard-style buttons
+*/
+.btn-dashboard {
+   display: block;
+
+   .fa, span {
+       display: block;
+       text-align: center;
+   }
+
+   .fa {
+       padding: 30px 0 10px;
+   }
+
+   span:first-child {
+       padding: 20px 0 30px;
+       text-transform: uppercase;
+   }
+
+   span:last-child {
+       height: 5px;
+       width: 60%;
+       margin: 20px auto 0;
+       background-color: #fff;
+       @include transition(background-color .2s);
+   }
+
+   &:hover span:last-child {
+       background-color: $heddokogreen;
+   }
+}
+
+/*
+ * Bootstrap buttons
+ */
+
 .btn-default {
   color: #767676;
   background-color: #fafafa;
@@ -98,7 +102,7 @@
 }
 
 .btn-primary:hover, .btn-primary:focus {
-  background-image: none;
+    background-image: none;
 }
 
 .btn-default.disabled, .btn-default.disabled:hover, .btn-default.disabled:focus, .btn-default.disabled:active, .btn-default.disabled.active, .btn-default[disabled], .btn-default[disabled]:hover, .btn-default[disabled]:focus, .btn-default[disabled]:active, .btn-default[disabled].active, fieldset[disabled] .btn-default, fieldset[disabled] .btn-default:hover, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:active, fieldset[disabled] .btn-default.active {
@@ -112,12 +116,14 @@
 }
 
 $button-styles:(
-    primary:$orange,
-    success:$green,
-    info:$blue,
-    warning:$warning,
-    danger:$danger
+    // primary: $orange,
+    primary: $heddokogreen,
+    success: $green,
+    info: $blue,
+    warning: $warning,
+    danger: $danger
 );
+
 @each $button, $btn-color in $button-styles {
 
   .btn-#{$button} {
@@ -703,34 +709,36 @@ $social-profiles: (
 }
 
 /*
- *
+ * Metro buttons.
  */
 .btn-metro {
     position: relative;
+    margin: 5px;
     padding: 0;
     border: 0;
     width: 170px;
     height: 170px;
     font-size: 21px;
     text-align: center;
-}
+    background-size: cover;
 
-.btn-metro i {
-  font-size: 48px;
-  line-height: 180px;
-}
+    i {
+      font-size: 48px;
+      line-height: 180px;
+    }
 
-.btn-metro span {
-    position: absolute;
-    left: 15px;
-    bottom: 15px;
-}
+    span {
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+    }
 
-.btn-metro .btn-title {
-    position: absolute;
-    left: 15px;
-    bottom: 15px;
-    width: 140px;
+    .btn-title {
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        width: 140px;
+    }
 }
 
 .btn-metro-sm {

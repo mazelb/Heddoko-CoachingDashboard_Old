@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/create.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -990,7 +990,7 @@ angular.module("capture-demo/index.html", []).run(["$templateCache", function($t
     "            <button\n" +
     "                ng-hide=\"isPlaying\"\n" +
     "                ng-click=\"start()\"\n" +
-    "                class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                class=\"btn btn-danger btn-circle btn-lg\">\n" +
     "\n" +
     "                <i class=\"fa fa-circle\"></i>\n" +
     "            </button>\n" +
@@ -2415,58 +2415,6 @@ angular.module("fms-bak/live/test.html", []).run(["$templateCache", function($te
     "");
 }]);
 
-angular.module("group/create.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("group/create.html",
-    "<div class=\"page page-dashboard\">\n" +
-    "\n" +
-    "    <!-- Breadcrumbs -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <h1>Add a Team</h1>\n" +
-    "    <br>\n" +
-    "\n" +
-    "    <form ng-submit=\"submitGroupForm()\">\n" +
-    "        <div class=\"row\">\n" +
-    "\n" +
-    "            <!-- New team form -->\n" +
-    "            <div class=\"col-sm-12 col-md-8\">\n" +
-    "                <div data-ng-include=\"'group/partials/form.html'\"></div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Team picture -->\n" +
-    "        	<div class=\"col-sm-12 col-md-4\">\n" +
-    "                <div data-ng-include src=\"'group/partials/upload-photo.html'\"></div>\n" +
-    "        	</div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Action buttons -->\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-sm-12 text-center\">\n" +
-    "                <button type=\"submit\" class=\"btn btn-default\">Submit</button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </form>\n" +
-    "\n" +
-    "    <!-- Debug -->\n" +
-    "    <div ng-show=\"global.isLocal\">\n" +
-    "        <br><br>\n" +
-    "        <div class=\"panel panel-default\">\n" +
-    "            <div class=\"panel-heading\">Debug</div>\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                Group data: {{ group }} <br><br>\n" +
-    "                Sports: {{ sports }} <br><br>\n" +
-    "                File data: {{ avatar }}\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("group/edit.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("group/edit.html",
     "<div class=\"page page-dashboard\">\n" +
@@ -2520,35 +2468,83 @@ angular.module("group/edit.html", []).run(["$templateCache", function($templateC
 
 angular.module("group/list.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("group/list.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"page page-dashboard\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Teams\n" +
-    "            <i class=\"fa fa-users\"></i>\n" +
+    "            Teams <i class=\"fa fa-users\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "\n" +
-    "        <div class=\"sub-header\">\n" +
-    "\n" +
-    "            <!-- Create group button -->\n" +
-    "            <a href=\"#/group/create\" class=\"sub-header-btn\">\n" +
-    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-plus\"></i>\n" +
-    "                </button>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <a\n" +
-    "        ng-repeat=\"group in global.state.group.list track by $index\"\n" +
-    "        ng-show=\"group.id\"\n" +
-    "        ng-click=\"global.browseTo.group(group)\"\n" +
-    "        href=\"javascript:;\"\n" +
-    "        class=\"btn btn-primary btn-metro\"\n" +
-    "        style=\"background-image: url({{ group.avatarSrc || '' }}); background-size: cover;\">\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
     "\n" +
-    "        <span>{{ group.name | characters:15 }}</span>\n" +
-    "    </a>\n" +
+    "            <!-- New group button -->\n" +
+    "            <a\n" +
+    "                data-toggle=\"modal\"\n" +
+    "                data-target=\"#newGroupForm\"\n" +
+    "                href=\"javascript:;\"\n" +
+    "                class=\"btn btn-primary btn-metro\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-plus\"></i>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <!-- New group form -->\n" +
+    "            <div class=\"modal fade\" id=\"newGroupForm\">\n" +
+    "                <div class=\"modal-dialog\">\n" +
+    "                    <div class=\"modal-content\">\n" +
+    "                        <div class=\"modal-header\">\n" +
+    "                            Team Details\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"modal-body\">\n" +
+    "\n" +
+    "                            <!-- Name -->\n" +
+    "                            <div class=\"form-group\">\n" +
+    "                                <input\n" +
+    "                                    type=\"text\"\n" +
+    "                                    ng-model=\"newGroup.name\"\n" +
+    "                                    placeholder=\"Name\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    required>\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <!-- Sport -->\n" +
+    "                            <div class=\"form-group\">\n" +
+    "                                <input\n" +
+    "                                    type=\"text\"\n" +
+    "                                    placeholder=\"Sport\"\n" +
+    "                                    class=\"form-control\"\n" +
+    "                                    disabled>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"modal-footer text-center\">\n" +
+    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                Cancel\n" +
+    "                            </button>\n" +
+    "                            <button ng-click=\"createGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                Create\n" +
+    "                            </button>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- List of groups -->\n" +
+    "            <a\n" +
+    "                ng-repeat=\"group in global.state.group.list\"\n" +
+    "                ng-show=\"group.id\"\n" +
+    "                href=\"#/group/{{ group.id }}\"\n" +
+    "                class=\"btn btn-default btn-metro\"\n" +
+    "                style=\"background-image: url({{ group.avatarSrc || '' }});\">\n" +
+    "\n" +
+    "                <span>{{ group.name | characters:15 }}</span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -2651,7 +2647,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "<div ng-show=\"group.id\" class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            {{ group.name }}\n" +
+    "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "\n" +
@@ -2659,20 +2655,20 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "\n" +
     "            <!-- Create profile button -->\n" +
     "            <a href=\"#/profile/create\" class=\"sub-header-btn\">\n" +
-    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
+    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-user-plus\"></i>\n" +
     "                </button>\n" +
     "            </a>\n" +
     "\n" +
     "            <!-- Delete group button -->\n" +
     "            <a\n" +
-    "                ng-show=\"global.getSelectedGroup().id > 0\"\n" +
+    "                ng-show=\"group.id > 0\"\n" +
     "                data-toggle=\"modal\"\n" +
     "                data-target=\"#deleteGroupConfirmation\"\n" +
     "                href=\"javascript:;\"\n" +
     "                class=\"sub-header-btn\">\n" +
     "\n" +
-    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
     "            </a>\n" +
@@ -2682,13 +2678,13 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                <div class=\"modal-dialog\">\n" +
     "                    <div class=\"modal-content\">\n" +
     "                        <div class=\"modal-body\">\n" +
-    "                            <p ng-show=\"global.state.profile.list.length > 0\">\n" +
-    "                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>\n" +
+    "                            <p ng-show=\"global.state.profile.filtered.length > 0\">\n" +
+    "                                Are you sure you want to delete <b>{{ group.name }}</b>\n" +
     "                                and the {{ global.state.profile.filtered.length }}\n" +
     "                                associated athletes?\n" +
     "                            </p>\n" +
-    "                            <p ng-show=\"global.state.profile.list.length === 0\">\n" +
-    "                                Are you sure you want to delete <b>{{ global.getSelectedGroup().name }}</b>?\n" +
+    "                            <p ng-show=\"global.state.profile.filtered.length === 0\">\n" +
+    "                                Are you sure you want to delete <b>{{ group.name }}</b>?\n" +
     "                            </p>\n" +
     "                        </div>\n" +
     "                        <div class=\"modal-footer text-center\">\n" +
@@ -2696,7 +2692,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                                Cancel\n" +
     "                            </button>\n" +
     "                            <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                Yes, delete {{ global.getSelectedGroup().name }}\n" +
+    "                                Yes, delete {{ group.name }}\n" +
     "                            </button>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -2714,7 +2710,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"global.state.group.list[global.store.groupId].avatarSrc\"\n" +
+    "                        data-src=\"group.avatarSrc\"\n" +
     "                        data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
@@ -2724,10 +2720,10 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            <div class=\"col-sm-12 col-md-7\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"groupDetails\"\n" +
-    "                    data-model=\"global.state.group.list[global.store.groupId]\"\n" +
+    "                    data-model=\"group\"\n" +
     "                    data-save=\"saveGroupDetails\"\n" +
     "                    data-save-callback=\"saveGroupDetailsCallback\"\n" +
-    "                    data-heading=\"Details for {{ global.state.group.list[global.store.groupId].name }}\">\n" +
+    "                    data-heading=\"Details for {{ group.name }}\">\n" +
     "\n" +
     "                    <!-- Group name -->\n" +
     "                    <ui-editable-field\n" +
@@ -2777,6 +2773,28 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        </div>\n" +
     "    </section>\n" +
     "\n" +
+    "    <!-- Profile list -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <div ng-show=\"global.state.profile.filtered.length === 0\" class=\"col-sm-12\">\n" +
+    "            The <b>{{ group.name }}</b> do not have any members yet. Add one to get started!\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div ng-show=\"global.state.profile.filtered.length > 0\" class=\"col-sm-12\">\n" +
+    "            <a\n" +
+    "                ng-repeat=\"profile in global.state.profile.filtered\"\n" +
+    "                href=\"#/profile/{{ profile.id }}\"\n" +
+    "                class=\"btn btn-primary btn-metro\"\n" +
+    "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
+    "\n" +
+    "                <div class=\"btn-title\">{{ profile.firstName }}</div>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <br>\n" +
+    "    </div>\n" +
+    "\n" +
     "    <!-- Notes -->\n" +
     "    <section>\n" +
     "        <div class=\"panel panel-default\">\n" +
@@ -2793,44 +2811,10 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            </div>\n" +
     "        </div>\n" +
     "    </section>\n" +
-    "\n" +
-    "    <!-- Profile list -->\n" +
-    "    <section ng-show=\"false\">\n" +
-    "        <div class=\"panel panel-default\">\n" +
-    "            <div class=\"panel-heading\">\n" +
-    "                Athletes in {{ global.getSelectedGroup().name }}\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <div ng-show=\"global.state.profile.filtered.length === 0\">\n" +
-    "                            The <b>{{ global.getSelectedGroup().name }}</b> do not have any\n" +
-    "                            members yet. Add one above to get started!\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <a\n" +
-    "                            href=\"javascript:;\"\n" +
-    "                            class=\"btn btn-primary btn-metro\"\n" +
-    "                            ng-repeat=\"profile in global.state.profile.filtered\"\n" +
-    "                            ng-click=\"global.browseTo.profile(profile)\"\n" +
-    "                            style=\"background-image: url({{ profile.avatarSrc || '' }});background-size: cover;\">\n" +
-    "\n" +
-    "                            <div class=\"btn-title\">{{ profile.firstName }}</div>\n" +
-    "                        </a>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </section>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No group selected -->\n" +
-    "<div ng-show=\"global.getSelectedGroup().id === 0\" class=\"page\">\n" +
+    "<div ng-show=\"group.id === 0\" class=\"page\">\n" +
     "    <h1 class=\"text-center\">No group selected</h1>\n" +
     "    <br>\n" +
     "\n" +
@@ -3879,7 +3863,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "		<li>\n" +
     "            <!-- List of groups -->\n" +
     "            <a ng-show=\"global.state.group.list.length > 1\" href=\"#/group/list\">\n" +
-    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Teams</span>\n" +
     "                <span class=\"pull-right\">\n" +
     "                    <small>\n" +
@@ -3890,7 +3874,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "            <!-- Single group available -->\n" +
     "            <a ng-show=\"global.state.group.list.length === 1\" href=\"#/group/view\">\n" +
-    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>{{ global.getSelectedGroup().name }}</span>\n" +
     "            </a>\n" +
     "\n" +
@@ -3914,7 +3898,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "		<li>\n" +
     "            <!-- List of athletes -->\n" +
     "            <a ng-show=\"global.state.profile.list.length > 0\" href=\"#/profile/list\">\n" +
-    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
     "                    <small>\n" +
@@ -3935,7 +3919,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    global.state.profile.list.length === 0\"\n" +
     "                href=\"#/profile/create\">\n" +
     "\n" +
-    "                <i class=\"fa fa-users\"></i>\n" +
+    "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Create a Profile</span>\n" +
     "            </a>\n" +
     "        </li>\n" +
@@ -4427,20 +4411,28 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "<div class=\"page page-dashboard\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            Athletes <i class=\"fa fa-users\"></i>\n" +
+    "            Athletes <i class=\"fa fa-user\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
     "    <div class=\"row\">\n" +
     "        <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "            <!-- New profile button -->\n" +
     "            <a\n" +
-    "                href=\"javascript:;\"\n" +
-    "                class=\"btn btn-primary btn-metro\"\n" +
+    "                href=\"#/profile/create\"\n" +
+    "                class=\"btn btn-primary btn-metro\">\n" +
+    "\n" +
+    "                <i class=\"fa fa-plus\"></i>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a\n" +
     "                ng-repeat=\"profile in global.state.profile.list\"\n" +
     "                ng-show=\"profile.id\"\n" +
-    "                ng-click=\"global.browseTo.profile(profile)\"\n" +
-    "                style=\"background-image: url({{ profile.avatarSrc || '' }});background-size: cover;\">\n" +
+    "                href=\"#/profile/{{ profile.id }}\"\n" +
+    "                class=\"btn btn-primary btn-metro\"\n" +
+    "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
     "\n" +
     "                <div class=\"btn-title\">{{ profile.firstName | characters:30 }}</div>\n" +
     "            </a>\n" +
@@ -4559,7 +4551,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "<div ng-hide=\"profile.id === 0\" class=\"page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            {{ profile.firstName }} {{ profile.lastName }}\n" +
+    "            {{ profile.firstName }} {{ profile.lastName }}  <i class=\"fa fa-user\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
     "\n" +
@@ -4628,10 +4620,10 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            <div class=\"col-sm-12 col-md-7\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"profileDetails\"\n" +
-    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
+    "                    data-model=\"profile\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
-    "                    data-heading=\"{{ global.state.profile.list[global.store.profileId].firstName }}'s details\">\n" +
+    "                    data-heading=\"{{ profile.firstName }}'s details\">\n" +
     "\n" +
     "                    <!-- First name -->\n" +
     "                    <ui-editable-field\n" +
@@ -4717,7 +4709,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "    		<div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Medical Information\"\n" +
-    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
+    "                    data-model=\"profile\"\n" +
     "                    data-key=\"medicalHistory\"\n" +
     "                    data-empty=\"No medical information provided.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4728,7 +4720,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            <div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Previous Injuries\"\n" +
-    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
+    "                    data-model=\"profile\"\n" +
     "                    data-key=\"injuries\"\n" +
     "                    data-empty=\"No previous injuries.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4739,7 +4731,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            <div class=\"col-sm-12\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Other Notes\"\n" +
-    "                    data-model=\"global.state.profile.list[global.store.profileId]\"\n" +
+    "                    data-model=\"profile\"\n" +
     "                    data-key=\"notes\"\n" +
     "                    data-empty=\"No other notes.\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
@@ -4748,26 +4740,10 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "    		</div>\n" +
     "    	</div>\n" +
     "    </section>\n" +
-    "\n" +
-    "    <!-- FMS graphs... To be reviewed -->\n" +
-    "    <section ng-show=\"fmsForms.length > 0\">\n" +
-    "        <div class=\"row\">\n" +
-    "\n" +
-    "            <!-- Current test -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div data-ng-include=\"'profile/partials/current-fms-plot.html'\"></div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Final results -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div data-ng-include=\"'profile/partials/final-fms-plot.html'\"></div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </section>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No profile selected -->\n" +
-    "<div ng-show=\"profile.id === 0\" ng-include=\"'partials/no-profile-selected-notice.html'\" class=\"page\"></div>\n" +
+    "<div ng-show=\"profile.id === 0\" ng-include=\"'partials/select-profile.html'\" class=\"page\"></div>\n" +
     "");
 }]);
 
@@ -4783,7 +4759,7 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "        </h1>\n" +
     "\n" +
     "        <!-- Append profile name to page title -->\n" +
-    "        <div ng-show=\"screening.id > 0 && global.data.isFetchingScreeningData === false\" class=\"h1-append\">\n" +
+    "        <div ng-show=\"global.getSelectedProfile().id > 0 && global.data.isFetchingScreeningData === false\" class=\"h1-append\">\n" +
     "            for {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
     "\n" +
     "            <small>\n" +
@@ -4806,30 +4782,62 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "            </small>\n" +
     "        </h2>\n" +
     "\n" +
+    "        <!-- Headings -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-1 col-md-offset-7\">\n" +
+    "                <span class=\"text-muted\">\n" +
+    "                    Score\n" +
+    "                </span>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "\n" +
     "        <div ng-repeat=\"movement in screening.movements\" class=\"row\" style=\"margin-bottom: 15px;\">\n" +
     "\n" +
-    "            <div class=\"col-md-3 col-md-offset-4\" style=\"line-height: 30px\">\n" +
+    "            <div class=\"col-md-4 col-md-offset-3\" style=\"line-height: 30px\">\n" +
     "                <span class=\"text-muted\">{{ $index + 1 }}</span>\n" +
     "                {{ movement.title }}\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-md-2\">\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.alert('In Development')\"\n" +
-    "                    class=\"btn btn-primary btn-circle\">\n" +
-    "                    <i class=\"fa fa-plus\"></i>\n" +
-    "                </button>\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.alert('In Development')\"\n" +
-    "                    class=\"btn btn-primary btn-circle\">\n" +
-    "                    <i class=\"fa fa-cloud-upload\"></i>\n" +
-    "                </button>\n" +
-    "                <button\n" +
-    "                    ng-click=\"global.alert('In Development')\"\n" +
-    "                    class=\"btn btn-primary btn-circle\">\n" +
-    "                    <i class=\"fa fa-th\"></i>\n" +
-    "                </button>\n" +
+    "            <div class=\"col-md-1\">\n" +
+    "                {{ movement.score | number:0 }} / {{ movement.scoreMax }}\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Movement actions -->\n" +
+    "            <div class=\"col-md-1\">\n" +
+    "                <div class=\"btn-group\">\n" +
+    "                    <button\n" +
+    "                        class=\"btn btn-primary btn-circle dropdown-toggle\"\n" +
+    "                        data-toggle=\"dropdown\"\n" +
+    "                        aria-haspopup=\"true\"\n" +
+    "                        aria-expanded=\"false\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-plus\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <ul class=\"dropdown-menu\">\n" +
+    "                        <li>\n" +
+    "                            <a ng-click=\"global.alert('In Development')\" href=\"javascript:;\">\n" +
+    "                                <i class=\"fa fa-fw fa-circle\"></i> Capture movement live\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li>\n" +
+    "                            <a ng-click=\"global.alert('In Development')\" href=\"javascript:;\">\n" +
+    "                                <i class=\"fa fa-fw fa-cloud-upload\"></i> Upload movement file\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li>\n" +
+    "                            <a ng-click=\"global.alert('In Development')\" href=\"javascript:;\">\n" +
+    "                                <i class=\"fa fa-fw fa-th\"></i> Select existing movement\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                        <li role=\"separator\" class=\"divider\"></li>\n" +
+    "                        <li>\n" +
+    "                            <a ng-click=\"global.alert('In Development')\" href=\"javascript:;\">\n" +
+    "                                <i class=\"fa fa-fw fa-trash\"></i> Remove\n" +
+    "                            </a>\n" +
+    "                        </li>\n" +
+    "                    </ul>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -4848,13 +4856,13 @@ angular.module("screenings/current/index.html", []).run(["$templateCache", funct
     "                </p>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
+    "            <div class=\"col-md-4 col-md-offset-4\">\n" +
     "                <a ng-click=\"createFunctionalMovementScreening()\" href=\"javascript:;\">\n" +
-    "                    Functional Movement Test\n" +
+    "                    <i class=\"fa fa-plus fa-fw\"></i> Functional Movement Test\n" +
     "                </a>\n" +
     "                <br>\n" +
     "\n" +
-    "                <a href=\"javascript:;\">\n" +
+    "                <a ng-click=\"global.alert('In Development.')\" href=\"javascript:;\">\n" +
     "                    <i class=\"fa fa-plus fa-fw\"></i> Create a Custom Movement Test\n" +
     "                </a>\n" +
     "            </div>\n" +
@@ -4935,13 +4943,17 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "                        </a>\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
-    "                        {{ screening.title | characters:60 }}\n" +
+    "                        <a href=\"#/screenings/{{ screening.id }}\">\n" +
+    "                            {{ screening.title | characters:60 }}\n" +
+    "                        </a>\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
     "                        {{ screening.createdAt | mysqlDate }}\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
-    "                        {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}\n" +
+    "                        <a href=\"#/profile/{{ screening.profile.id }}\">\n" +
+    "                            {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}\n" +
+    "                        </a>\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
     "                        {{ screening.score | number:0 }}\n" +

@@ -74,33 +74,35 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Group routes.
         //
-        .when('/group/list', {
+        .when('/group', {
             templateUrl: 'group/list.html',
             controller: 'GroupController'
 		})
-        .when('/group/view/:groupId?', {
-            templateUrl: 'group/view.html',
-            controller: 'GroupController'
+        .when('/group/list', {
+            redirectTo: '/group'
 		})
-        .when('/group/create', {
-			templateUrl: 'group/create.html',
-            controller: 'GroupController'
-		})
+        // .when('/group/create', {
+		// 	templateUrl: 'group/create.html',
+        //     controller: 'GroupController'
+		// })
         .when('/group/edit', {
 			templateUrl: 'group/edit.html',
+            controller: 'GroupController'
+		})
+        .when('/group/:groupId', {
+            templateUrl: 'group/view.html',
             controller: 'GroupController'
 		})
 
         //
         // Profile routes.
         //
-        .when('/profile/list', {
+        .when('/profile', {
             templateUrl: 'profile/list.html',
             controller: 'ProfileController'
 		})
-        .when('/profile/view/:id?', {
-			templateUrl: 'profile/view.html',
-            controller: 'ProfileController'
+        .when('/profile/list', {
+            redirectTo: '/profile'
 		})
         .when('/profile/create', {
 			templateUrl: 'profile/create.html',
@@ -108,6 +110,10 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 		})
         .when('/profile/edit', {
 			templateUrl: 'profile/edit.html',
+            controller: 'ProfileController'
+		})
+        .when('/profile/:profileId', {
+			templateUrl: 'profile/view.html',
             controller: 'ProfileController'
 		})
 

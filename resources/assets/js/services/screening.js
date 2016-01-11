@@ -15,7 +15,7 @@ angular.module('app.services')
             /**
              * Base endpoint.
              */
-            endpoint: apiEndpoint + '/screenings/',
+            endpoint: apiEndpoint + '/screenings',
 
             /**
              * Retrieves the specified resource from the API.
@@ -24,7 +24,7 @@ angular.module('app.services')
              * @return object $http
              */
             get: function(id) {
-    			return $http.get(this.endpoint + id);
+    			return $http.get(this.endpoint + '/' + id);
     		},
 
             /**
@@ -47,7 +47,11 @@ angular.module('app.services')
              * @return object $http
              */
             create: function(profileId, data) {
-                return $http.post(this.endpoint, data, {params: {profile_id: profileId}});
+                return $http.post(this.endpoint, data, {
+                    params: {
+                        profileId: profileId
+                    }
+                });
     		},
 
             /**
@@ -58,7 +62,7 @@ angular.module('app.services')
              * @return object $http
              */
             update: function(id, data) {
-                return $http.put(this.endpoint + id, data);
+                return $http.put(this.endpoint + '/' + id, data);
     		},
 
             /**
@@ -68,7 +72,7 @@ angular.module('app.services')
              * @return object $http
              */
             destroy: function(id) {
-    			return $http.delete(this.endpoint + id);
+    			return $http.delete(this.endpoint + '/' + id);
     		}
         };
     }

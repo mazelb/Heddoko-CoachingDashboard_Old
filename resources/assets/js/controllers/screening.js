@@ -11,14 +11,6 @@ angular.module('app.controllers')
     function($scope, $routeParams, ScreeningService, Rover, Utilities) {
         Utilities.debug('ScreeningController');
 
-        // Initial setup.
-        $scope.global.state.screening = $scope.global.state.screening || {};
-        $scope.global.state.screening.list = $scope.global.state.screening.list || {length: 0};
-        $scope.global.state.screening.current = $scope.global.state.screening.current || {id: 0};
-        $scope.global.data.isFetchingScreeningData = false;
-        $scope.global.data.isFetchingScreeningList = false;
-        $scope.global.data.isPreparingNewScreening = false;
-
         // Shortcut to global objects.
         $scope.screening = $scope.global.state.screening.current;
         if ($scope.screening.id > 0 && $scope.screening.profileId) {

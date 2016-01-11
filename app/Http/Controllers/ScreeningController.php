@@ -86,7 +86,7 @@ class ScreeningController extends Controller
     public function store()
     {
         // Retrieve profile this screening belongs to.
-        if (!$profileId = (int) $this->request->input('profile_id')) {
+        if (!$profileId = (int) $this->request->input('profileId')) {
             return response('Invalid Profile ID.', 400);
         }
 

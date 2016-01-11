@@ -24,10 +24,10 @@ angular.module('app.controllers')
             appVersion: $('meta[name="version"]').attr('content'),
             isLocal: isLocalEnvironment,
 
-            // The localStorage persists across user sessions.
+            // The localStorage persists across browser sessions.
             store: Rover.store,
 
-            // The sessionStorage persists throughout a single user session.
+            // The sessionStorage persists throughout a single browser session.
             state: Rover.state,
 
             // The data object is ephemeral, and will reset at the end of the user session.
@@ -53,21 +53,38 @@ angular.module('app.controllers')
         $scope.global.state.group.list = $scope.global.state.group.list || {length: 0};
         $scope.global.store.groupId = $scope.global.store.groupId || 0;
 
+        // Setup profile data.
+        $scope.global.state.profile = $scope.global.state.profile || {};
+        $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
+        $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
+        $scope.global.store.profileId = $scope.global.store.profileId || 0;
+
+        // Setup screening data.
+        $scope.global.state.screening = $scope.global.state.screening || {};
+        $scope.global.state.screening.list = $scope.global.state.screening.list || {length: 0};
+        $scope.global.state.screening.current = $scope.global.state.screening.current || {id: 0};
+        $scope.global.data.isFetchingScreeningData = false;
+        $scope.global.data.isFetchingScreeningList = false;
+        $scope.global.data.isPreparingNewScreening = false;
+
+        /**
+         * Retrieves a group by ID.
+         *
+         * @param int
+         * @return object|null
+         */
+        $scope.global.getGroup = function(id) {
+            return Rover.getState('group', id, null);
+        };
+
         /**
          * Retrieves the currently selected group.
          *
          * @return object
          */
         $scope.global.getSelectedGroup = function() {
-            return $scope.global.store.groupId > 0 ?
-                $scope.global.state.group.list[$scope.global.store.groupId] : {id: 0};
+            return Rover.getState('group', Rover.store.groupId, {id: 0});
         };
-
-        // Setup profile data.
-        $scope.global.state.profile = $scope.global.state.profile || {};
-        $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
-        $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
-        $scope.global.store.profileId = $scope.global.store.profileId || 0;
 
         /**
          * Retrieves selected profile.
@@ -94,22 +111,23 @@ angular.module('app.controllers')
          * Fetches all groups available to currently authenticated user.
          */
         $scope.fetchGroups = function() {
+            Utilities.debug('Fetching groups...');
 
             // Show loading animation.
-            Utilities.debug('Fetching groups...');
             $scope.global.data.isFetchingGroups = true;
 
             // Retrieve available groups.
-    		GroupService.get().then(
+    		GroupService.list(['avatarSrc']).then(
                 function(response) {
 
                     // Reset group list.
-                    $scope.global.state.group.list = {length: 0};
+                    Rover.state.group.list = {length: 0};
                     angular.forEach(response.data, function(group) {
 
                         // Add group to list.
-                        $scope.global.state.group.list.length++;
-                        $scope.global.state.group.list[group.id] = group;
+                        Rover.setState('group', group.id, group);
+                        // $scope.global.state.group.list.length++;
+                        // $scope.global.state.group.list["_" + group.id] = group;
                     });
 
                     if (!$scope.global.data.isFetchingProfiles && response.data.length > 0)
@@ -152,8 +170,9 @@ angular.module('app.controllers')
                     angular.forEach(response.data, function(profile) {
 
                         // Add profile to list.
-                        $scope.global.state.profile.list.length++;
-                        $scope.global.state.profile.list[profile.id] = profile;
+                        Rover.setState('profile', profile.id, profile);
+                        // $scope.global.state.profile.list.length++;
+                        // $scope.global.state.profile.list[profile.id] = profile;
                     });
 
                     // Select a default profile.
@@ -236,8 +255,8 @@ angular.module('app.controllers')
                     if (profile.groups && profile.groups.length)
                     {
                         angular.forEach(profile.groups, function(group) {
-                            Utilities.debug('Comparing '+ group.name +' ('+ group.id +') to ' + newGroup);
 
+                            // ...
                             if (group.id == newGroup) {
                                 $scope.global.state.profile.filtered.push(profile);
 
@@ -272,7 +291,8 @@ angular.module('app.controllers')
             }
 
             // Update the selected group.
-            var profile = $scope.global.state.profile.list[id];
+            // var profile = $scope.global.state.profile.list[id];
+            var profile = Rover.getState('profile', id);
             if (profile && profile.groups && profile.groups.length &&
                 profile.groups[0].id != $scope.global.store.groupId) {
 

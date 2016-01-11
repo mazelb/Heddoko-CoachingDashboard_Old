@@ -7,21 +7,48 @@
  */
 angular.module('app.services')
 
-.factory('GroupService', ['$http', 'apiEndpoint',
-    function($http, apiEndpoint) {
+.factory('GroupService', ['$http', 'apiEndpoint', 'Utilities',
+    function($http, apiEndpoint, Utilities) {
 
         return {
 
             /**
              * Base endpoint.
              */
-            endpoint: apiEndpoint + '/groups/',
+            endpoint: apiEndpoint + '/groups',
 
             /**
+             * Gets a list of groups.
              *
+             * @param array|string embed
+             * @return object $http
              */
-            get: function() {
-    			return $http.get(this.endpoint);
+            list: function(embed) {
+
+                // Build request parameters.
+                var config = {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                };
+
+                return $http.get(this.endpoint, config);
+            },
+
+            /**
+             * Gets the details for a specific group.
+             *
+             * @param int id
+             * @param array|string embed
+             * @return object $http
+             */
+            get: function(id, embed)
+            {
+    			return $http.get(this.endpoint + '/' + id, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
@@ -35,14 +62,14 @@ angular.module('app.services')
              *
              */
             update: function(id, data) {
-                return $http.put(this.endpoint + id, data);
+                return $http.put(this.endpoint + '/' + id, data);
     		},
 
             /**
              *
              */
             destroy: function(id) {
-    			return $http.delete(this.endpoint + id);
+    			return $http.delete(this.endpoint + '/' + id);
     		},
 
             /**
@@ -53,7 +80,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post(this.endpoint + id + '/avatar', {image: fileData});
+                return $http.post(this.endpoint + '/' + id + '/avatar', {image: fileData});
             }
         };
     }
