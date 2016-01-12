@@ -11,10 +11,10 @@
 
         <div class="sub-header">
 
-            <!-- Create profile button -->
-            <a href="#/profile/create" class="sub-header-btn">
-                <button class="btn btn-default btn-circle btn-lg">
-                    <i class="fa fa-user-plus"></i>
+            <!-- View trends -->
+            <a href="#/demo/trends" class="sub-header-btn">
+                <button class="btn btn-primary btn-circle btn-lg">
+                    <i class="fa fa-line-chart"></i>
                 </button>
             </a>
 
@@ -26,7 +26,7 @@
                 href="javascript:;"
                 class="sub-header-btn">
 
-                <button class="btn btn-primary btn-circle btn-lg">
+                <button class="btn btn-danger btn-circle btn-lg">
                     <i class="fa fa-trash"></i>
                 </button>
             </a>
@@ -55,7 +55,7 @@
         </div>
     </header>
 
-    <section ng-hide="profile.id === 0">
+    <section ng-show="profile.id > 0">
     	<div class="row">
 
             <!-- Avatar -->

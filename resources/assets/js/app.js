@@ -214,6 +214,10 @@ app.config(['$routeProvider', 'isLocalEnvironment',
             },
             controller: 'FMSController'
         })
+        .when('/demo/trends', {
+			templateUrl: 'demo/trends/index.html',
+            controller: 'DemoTrendsController'
+        })
         .when("/fmstest", {
 			templateUrl: "fmstest.html"
 		}).when("/fmsdata", {

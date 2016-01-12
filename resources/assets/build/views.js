@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -1020,6 +1020,32 @@ angular.module("capture/index.html", []).run(["$templateCache", function($templa
     "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
     "        In Development\n" +
     "    </h2>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("demo/trends/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("demo/trends/index.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"page\">\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Trends <i class=\"fa fa-line-chart\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div\n" +
+    "                data-flot-chart\n" +
+    "                data-data=\"testLine1.data\"\n" +
+    "                data-options=\"testLine1.options\"\n" +
+    "                style=\"width: 100%; height: 300px;\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -3617,7 +3643,7 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "			</li>\n" +
     "\n" +
     "            <!-- Account -->\n" +
-    "            <li ng-show=\"global.isLocal\" class=\"dropdown text-normal nav-profile\">\n" +
+    "            <!-- <li ng-show=\"global.isLocal\" class=\"dropdown text-normal nav-profile\">\n" +
     "                <a\n" +
     "                    href=\"javascript:;\"\n" +
     "                    class=\"dropdown-toggle\"\n" +
@@ -3629,7 +3655,6 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                    <i class=\"fa fa-user\"></i>\n" +
     "                </a>\n" +
     "\n" +
-    "                <!-- Account links -->\n" +
     "                <div\n" +
     "                    class=\"dropdown-menu with-arrow pull-left panel panel-default\"\n" +
     "                    aria-labelledby=\"menuAccountDropdown\">\n" +
@@ -3649,7 +3674,7 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                        </li>\n" +
     "                    </ul>\n" +
     "                </div>\n" +
-    "            </li>\n" +
+    "            </li> -->\n" +
     "		</ul>\n" +
     "\n" +
     "        <ul class=\"nav-right list-unstyled\">\n" +
@@ -4557,10 +4582,10 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "        <div class=\"sub-header\">\n" +
     "\n" +
-    "            <!-- Create profile button -->\n" +
-    "            <a href=\"#/profile/create\" class=\"sub-header-btn\">\n" +
-    "                <button class=\"btn btn-default btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-user-plus\"></i>\n" +
+    "            <!-- View trends -->\n" +
+    "            <a href=\"#/demo/trends\" class=\"sub-header-btn\">\n" +
+    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                    <i class=\"fa fa-line-chart\"></i>\n" +
     "                </button>\n" +
     "            </a>\n" +
     "\n" +
@@ -4572,7 +4597,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                href=\"javascript:;\"\n" +
     "                class=\"sub-header-btn\">\n" +
     "\n" +
-    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
     "                    <i class=\"fa fa-trash\"></i>\n" +
     "                </button>\n" +
     "            </a>\n" +
@@ -4601,7 +4626,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <section ng-hide=\"profile.id === 0\">\n" +
+    "    <section ng-show=\"profile.id > 0\">\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
