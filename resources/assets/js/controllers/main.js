@@ -153,74 +153,10 @@ angular.module('app.controllers')
         };
 
         /**
-         * Fetches profiles available to authenticated user.
-         */
-        $scope.fetchProfiles = function() {
-
-            // Show loading animation.
-            Utilities.debug('Fetching profiles...');
-            $scope.global.data.isFetchingProfiles = true;
-
-            // Retrieve profiles.
-    		ProfileService.list(null, ['avatarSrc', 'groups', 'meta']).then(
-                function(response) {
-
-                    // Reset profile list.
-                    $scope.global.state.profile.list = {length: 0};
-                    angular.forEach(response.data, function(profile) {
-
-                        // Add profile to list.
-                        Rover.setState('profile', profile.id, profile);
-                    });
-
-                    // Select a default profile.
-                    if ($scope.global.store.profileId === 0 && response.data.length > 0) {
-                        $scope.global.store.profileId = response.data[0].id;
-                    }
-
-                    $scope.global.data.isFetchingProfiles = false;
-    		    },
-                function(response) {
-                    Utilities.debug('Could not retrieve profile list: ' + response.statusText);
-                    $scope.global.data.isFetchingProfiles = false;
-                }
-            );
-        };
-
-        // Fetch user details.
-        if ($scope.global.state.user.id === 0)
-        {
-            Utilities.debug('Retrieving user details');
-            $scope.global.data.isFetchingUser = true;
-
-            UserService.get(Rover.userHash).then(
-
-                // Update user data.
-                function(response) {
-                    $scope.global.state.user = response.data;
-                    $scope.global.data.isFetchingUser = false;
-                },
-                function(response) {
-                    Utilities.debug('Could not retrieve user details: ' + response.statusText);
-                    // Utilities.alert('Could not retrieve user details. Please try again later.');
-                    Rover.state.user = {id: 0};
-                    $scope.global.data.isFetchingUser = false;
-                }
-            );
-        }
-
-        // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
-        // exceed the maximum # simultaneous requests on the server.
-    	if ($scope.global.state.profile.list.length === 0) {
-    		$timeout($scope.fetchProfiles, 1000);
-    	}
-
-    	if ($scope.global.state.group.list.length === 0) {
-    		$timeout($scope.fetchGroups, 2000);
-    	}
-
-        /**
          * Updates the filtered profile list.
+         *
+         * @param int newGroup
+         * @param int oldGroup
          */
         $scope.global.updateFilteredProfiles = function(newGroup, oldGroup) {
 
@@ -275,6 +211,76 @@ angular.module('app.controllers')
                     $scope.global.state.profile.filtered[0].id : 0;
             }
         };
+
+        /**
+         * Fetches profiles available to authenticated user.
+         */
+        $scope.fetchProfiles = function() {
+
+            // Show loading animation.
+            Utilities.debug('Fetching profiles...');
+            $scope.global.data.isFetchingProfiles = true;
+
+            // Retrieve profiles.
+    		ProfileService.list(null, ['avatarSrc', 'groups', 'meta']).then(
+                function(response) {
+
+                    // Reset profile list.
+                    $scope.global.state.profile.list = {length: 0};
+                    angular.forEach(response.data, function(profile) {
+
+                        // Add profile to list.
+                        Rover.setState('profile', profile.id, profile);
+                    });
+
+                    // Select a default profile.
+                    if ($scope.global.store.profileId === 0 && response.data.length > 0) {
+                        $scope.global.store.profileId = response.data[0].id;
+                    }
+
+                    // Update filtered profiles list.
+                    $scope.global.updateFilteredProfiles();
+
+                    $scope.global.data.isFetchingProfiles = false;
+    		    },
+                function(response) {
+                    Utilities.debug('Could not retrieve profile list: ' + response.statusText);
+                    $scope.global.data.isFetchingProfiles = false;
+                }
+            );
+        };
+
+        // Fetch user details.
+        if ($scope.global.state.user.id === 0)
+        {
+            Utilities.debug('Retrieving user details');
+            $scope.global.data.isFetchingUser = true;
+
+            UserService.get(Rover.userHash).then(
+
+                // Update user data.
+                function(response) {
+                    $scope.global.state.user = response.data;
+                    $scope.global.data.isFetchingUser = false;
+                },
+                function(response) {
+                    Utilities.debug('Could not retrieve user details: ' + response.statusText);
+                    // Utilities.alert('Could not retrieve user details. Please try again later.');
+                    Rover.state.user = {id: 0};
+                    $scope.global.data.isFetchingUser = false;
+                }
+            );
+        }
+
+        // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
+        // exceed the maximum # simultaneous requests on the server.
+    	if ($scope.global.state.profile.list.length === 0) {
+    		$timeout($scope.fetchProfiles, 1000);
+    	}
+
+    	if ($scope.global.state.group.list.length === 0) {
+    		$timeout($scope.fetchGroups, 2000);
+    	}
 
         // Watches the selected group.
         $scope.$watch('global.store.groupId', $scope.global.updateFilteredProfiles);
