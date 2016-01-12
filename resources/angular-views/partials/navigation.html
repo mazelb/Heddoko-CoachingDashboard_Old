@@ -26,21 +26,30 @@
 
 		<li>
             <!-- List of groups -->
-            <a ng-show="global.state.group.list.length > 1" href="#/group/list">
+            <a ng-show="global.state.group.list.length > 0" href="#/group/list">
                 <i class="fa fa-users"></i>
                 <span>Teams</span>
-                <span class="pull-right">
+                <!-- <span class="pull-right">
                     <small>
                         ( {{ global.state.group.list.length }} )
                     </small>
-                </span>
+                </span> -->
             </a>
 
-            <!-- Single group available -->
-            <a ng-show="global.state.group.list.length === 1" href="#/group/view">
-                <i class="fa fa-users"></i>
-                <span>{{ global.getSelectedGroup().name }}</span>
-            </a>
+            <ul ng-show="global.state.group.list.length > 0" style="display: block">
+                <li>
+                    <a href="#/group/{{ global.getSelectedGroup().id }}">
+                        <i class="fa fa-angle-right"></i>
+                        <span>{{ global.getSelectedGroup().name }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#/group/create">
+                        <i class="fa fa-angle-right"></i>
+                        <span>Create a Team</span>
+                    </a>
+                </li>
+            </ul>
 
             <!-- Fetching groups -->
             <a ng-show="global.data.isFetchingGroups === true" href="javascript:;">
@@ -54,7 +63,7 @@
                     global.state.group.list.length === 0"
                 href="#/group/create">
 
-                <i class="fa fa-cubes"></i>
+                <i class="fa fa-users"></i>
                 <span>Create a Team</span>
             </a>
         </li>

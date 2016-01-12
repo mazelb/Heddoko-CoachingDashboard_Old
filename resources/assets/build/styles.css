@@ -4039,6 +4039,14 @@ fieldset[disabled] .btn-danger.active {
   margin: 20px auto; }
 
 /*
+ * Angular - Profile pages.
+ */
+.profile-page .profile-avatar {
+  display: inline-block;
+  height: 345px;
+  width: 345px; }
+
+/*
  * Laravel - General styles.
  */
 .inspiring-quote {

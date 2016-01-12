@@ -1,6 +1,6 @@
 
 <!-- Group summary -->
-<div ng-show="group.id" class="page">
+<div ng-show="group.id" class="page profile-page">
     <header>
         <h1>
             {{ group.name }} <i class="fa fa-users"></i>
@@ -61,19 +61,18 @@
     	<div class="row">
 
             <!-- Avatar -->
-    		<div class="col-sm-12 col-md-5">
-                <div class="text-center">
+    		<div class="col-xs-12 col-md-6 col-lg-4">
+                <div class="text-center profile-avatar">
                     <ui-avatar
                         data-upload-endpoint="uploadAvatarEndpoint"
                         data-success-callback="uploadAvatarCallback"
-                        data-src="group.avatarSrc"
-                        data-match-width="{{ calculateAvatarHeight() }}">
+                        data-src="group.avatarSrc">
                     </ui-avatar>
                 </div>
     		</div>
 
             <!-- Group details -->
-            <div class="col-sm-12 col-md-7">
+            <div class="col-xs-12 col-md-6 col-lg-8">
                 <ui-editable-fields
                     data-id="groupDetails"
                     data-model="group"
@@ -152,21 +151,23 @@
     </div>
 
     <!-- Notes -->
-    <section>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Notes
-            </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Notes
+                </div>
 
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        ...
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            ...
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 </div>
 
 <!-- No group selected -->

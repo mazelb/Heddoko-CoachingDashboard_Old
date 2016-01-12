@@ -1040,10 +1040,35 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "        <div class=\"col-sm-12\">\n" +
     "            <div\n" +
     "                data-flot-chart\n" +
-    "                data-data=\"testLine1.data\"\n" +
-    "                data-options=\"testLine1.options\"\n" +
+    "                data-data=\"trend.data\"\n" +
+    "                data-options=\"trend.options\"\n" +
     "                style=\"width: 100%; height: 300px;\">\n" +
     "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div\n" +
+    "                data-flot-chart-realtime\n" +
+    "                data-type=\"realtime\"\n" +
+    "                style=\"width: 100%; height: 300px;\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <canvas\n" +
+    "                data-gauge-chart\n" +
+    "                data-gauge-data=\"gauge.data\"\n" +
+    "                data-gauge-options=\"gauge.options\"\n" +
+    "                style=\"width: 340px; height: 170px;\">\n" +
+    "            </canvas>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -2670,7 +2695,7 @@ angular.module("group/partials/upload-photo.html", []).run(["$templateCache", fu
 angular.module("group/view.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("group/view.html",
     "<!-- Group summary -->\n" +
-    "<div ng-show=\"group.id\" class=\"page\">\n" +
+    "<div ng-show=\"group.id\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
@@ -2731,19 +2756,18 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
-    "    		<div class=\"col-sm-12 col-md-5\">\n" +
-    "                <div class=\"text-center\">\n" +
+    "    		<div class=\"col-xs-12 col-md-6 col-lg-4\">\n" +
+    "                <div class=\"text-center profile-avatar\">\n" +
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"group.avatarSrc\"\n" +
-    "                        data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
+    "                        data-src=\"group.avatarSrc\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
     "    		</div>\n" +
     "\n" +
     "            <!-- Group details -->\n" +
-    "            <div class=\"col-sm-12 col-md-7\">\n" +
+    "            <div class=\"col-xs-12 col-md-6 col-lg-8\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"groupDetails\"\n" +
     "                    data-model=\"group\"\n" +
@@ -2822,21 +2846,23 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "    </div>\n" +
     "\n" +
     "    <!-- Notes -->\n" +
-    "    <section>\n" +
-    "        <div class=\"panel panel-default\">\n" +
-    "            <div class=\"panel-heading\">\n" +
-    "                Notes\n" +
-    "            </div>\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <div class=\"panel panel-default\">\n" +
+    "                <div class=\"panel-heading\">\n" +
+    "                    Notes\n" +
+    "                </div>\n" +
     "\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        ...\n" +
+    "                <div class=\"panel-body\">\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-sm-12\">\n" +
+    "                            ...\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "    </section>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No group selected -->\n" +
@@ -3887,21 +3913,30 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "		<li>\n" +
     "            <!-- List of groups -->\n" +
-    "            <a ng-show=\"global.state.group.list.length > 1\" href=\"#/group/list\">\n" +
+    "            <a ng-show=\"global.state.group.list.length > 0\" href=\"#/group/list\">\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Teams</span>\n" +
-    "                <span class=\"pull-right\">\n" +
+    "                <!-- <span class=\"pull-right\">\n" +
     "                    <small>\n" +
     "                        ( {{ global.state.group.list.length }} )\n" +
     "                    </small>\n" +
-    "                </span>\n" +
+    "                </span> -->\n" +
     "            </a>\n" +
     "\n" +
-    "            <!-- Single group available -->\n" +
-    "            <a ng-show=\"global.state.group.list.length === 1\" href=\"#/group/view\">\n" +
-    "                <i class=\"fa fa-users\"></i>\n" +
-    "                <span>{{ global.getSelectedGroup().name }}</span>\n" +
-    "            </a>\n" +
+    "            <ul ng-show=\"global.state.group.list.length > 0\" style=\"display: block\">\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/group/{{ global.getSelectedGroup().id }}\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
+    "                        <span>{{ global.getSelectedGroup().name }}</span>\n" +
+    "                    </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/group/create\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
+    "                        <span>Create a Team</span>\n" +
+    "                    </a>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
     "\n" +
     "            <!-- Fetching groups -->\n" +
     "            <a ng-show=\"global.data.isFetchingGroups === true\" href=\"javascript:;\">\n" +
@@ -3915,7 +3950,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    global.state.group.list.length === 0\"\n" +
     "                href=\"#/group/create\">\n" +
     "\n" +
-    "                <i class=\"fa fa-cubes\"></i>\n" +
+    "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Create a Team</span>\n" +
     "            </a>\n" +
     "        </li>\n" +
@@ -4573,7 +4608,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
     "<!-- Profile summary -->\n" +
-    "<div ng-hide=\"profile.id === 0\" class=\"page\">\n" +
+    "<div ng-hide=\"profile.id === 0\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ profile.firstName }} {{ profile.lastName }}  <i class=\"fa fa-user\"></i>\n" +

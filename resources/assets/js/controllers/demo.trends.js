@@ -7,109 +7,96 @@
  */
 angular.module('app.controllers')
 
-.controller('DemoTrendsController', ['$scope', 'Rover', 'Utilities',
-    function($scope, Rover, Utilities) {
+.controller('DemoTrendsController', ['$scope', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrendsController');
 
-        // Demo data.
-        // ...
+        $scope.data = {
+            gauge: []
+        };
 
-        // Test data.
-        $scope.testLine1 =
+        /**
+         *
+         */
+        $scope.step = function() {
+
+        };
+
+        //
+        // Trendline.
+        //
+        $scope.trend =
         {
-            data: [
-                {
-                    data: [
-                        [1, 15],
-                        [2, 20],
-                        [3, 14],
-                        [4, 10],
-                        [5, 10],
-                        [6, 20],
-                        [7, 28],
-                        [8, 26],
-                        [9, 22],
-                        [10, 23],
-                        [11, 24]
-                    ],
-                    label: 'New visitors',
-                    lines: {
-                        fill: !0
-                    }
-                },
-                {
-                    data: [
-                        [1, 9],
-                        [2, 15],
-                        [3, 17],
-                        [4, 21],
-                        [5, 16],
-                        [6, 15],
-                        [7, 13],
-                        [8, 15],
-                        [9, 29],
-                        [10, 21],
-                        [11, 29]
-                    ],
-                    label: 'Returning visitors',
-                    lines: {
-                        fill: !1
-                    }
-                }
-            ],
+            data: DemoTrendsService.trend.dummyData,
             options: {
                 series: {
                     lines: {
-                        show: !0,
-                        fill: !1,
-                        lineWidth: 3,
+                        show: true,
+                        fill: false,
+                        lineWidth: 2,
                         fillColor: {
-                            colors: [{
-                                opacity: 0.3
-                            }, {
-                                opacity: 0.3
-                            }]
+                            colors: [
+                                {opacity: 0.1},
+                                {opacity: 0}
+                            ]
                         }
                     },
                     points: {
-                        show: !0,
-                        lineWidth: 3,
-                        fill: !0,
-                        fillColor: "#ffffff",
-                        symbol: "circle",
-                        radius: 5
+                        show: false
                     },
-                    shadowSize: 0
-
+                    shadowSize: 5
                 },
-                colors: ["#c1bfc0", "#db5031"],
+                colors: ["#3bd6b2", "#db5031"],
                 tooltip: !0,
                 tooltipOpts: {
                     defaultTheme: !1
                 },
                 grid: {
-                    hoverable: !0,
-                    clickable: !0,
-                    tickColor: "#f9f9f9",
+                    hoverable: true,
+                    clickable: false,
+                    margin: 5,
+                    tickColor: "#383d43",
                     borderWidth: 1,
-                    borderColor: "#eeeeee"
+                    borderColor: "#383d43"
                 },
-                xaxis: {
-                    ticks: [
-                        [1, "Jan."],
-                        [2, "Feb."],
-                        [3, "Mar."],
-                        [4, "Apr."],
-                        [5, "May"],
-                        [6, "June"],
-                        [7, "July"],
-                        [8, "Aug."],
-                        [9, "Sept."],
-                        [10, "Oct."],
-                        [11, "Nov."],
-                        [12, "Dec."]
-                    ]
+                legend: {
+                    show: true,
+                    backgroundColor: '#ddd',
+                    backgroundOpacity: 0.3,
+                    labelBoxBorderColor: 'transparent'
                 }
+            }
+        };
+
+        //
+        // Gauge.
+        //
+        $scope.gauge =
+        {
+            // data: DemoTrendsService.gauge.dummyData,
+            data: {
+                maxValue: 1000,
+                animationSpeed: 20,
+                val: 400
+            },
+            options: {
+                lines: 12,
+                angle: 0,
+                lineWidth: 0.3,
+                pointer: {
+                    length: 0.6,
+                    strokeWidth: 0.03,
+                    color: "#555555"
+                },
+                limitMax: "false",
+                colorStart: "#3bd6b2",
+                colorStop: "#3bd6b2",
+                strokeColor: "#383d43",
+                generateGradient: true,
+                percentColors: [
+                    [0, "#3bd6b2"],
+                    [1, "#383d43"]
+                ]
             }
         };
     }
