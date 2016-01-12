@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -1116,96 +1116,8 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
     "");
 }]);
 
-angular.module("directive-partials/ui-editable-fields/field-value-generic.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("directive-partials/ui-editable-fields/field-value-generic.html",
-    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
-    "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
-    "\n" +
-    "    <!-- Edit icon -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Displayed value -->\n" +
-    "    <div class=\"col-sm-11\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
-    "            {{ display || model[key] }}\n" +
-    "        </a>\n" +
-    "        <b ng-show=\"isDisabled\">\n" +
-    "            {{ display || model[key] }}\n" +
-    "        </b>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("directive-partials/ui-editable-fields/field-value-timestamp.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("directive-partials/ui-editable-fields/field-value-timestamp.html",
-    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
-    "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
-    "\n" +
-    "    <!-- Edit icon -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Displayed value -->\n" +
-    "    <div class=\"col-sm-11\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
-    "            {{ timestamp | date:format }}\n" +
-    "        </a>\n" +
-    "        <b ng-show=\"isDisabled\">\n" +
-    "            {{ timestamp | date:format }}\n" +
-    "        </b>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("directive-partials/ui-editable-fields/field-value-with-units.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("directive-partials/ui-editable-fields/field-value-with-units.html",
-    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
-    "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
-    "\n" +
-    "    <!-- Edit icons -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Unit selector -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
-    "        <div class=\"dropdown\">\n" +
-    "            <a href=\"javascript:;\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\">\n" +
-    "                <i class=\"fa fa-cog\" style=\"color: #ccc;\"></i>\n" +
-    "            </a>\n" +
-    "            <ul class=\"dropdown-menu\">\n" +
-    "                <li ng-repeat=\"unit in units\">\n" +
-    "                    <a ng-click=\"updateUnit(unit)\" href=\"javascript:;\">\n" +
-    "                        {{ unit }}\n" +
-    "                    </a>\n" +
-    "                </li>\n" +
-    "            </ul>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Displayed data -->\n" +
-    "    <div class=\"col-sm-10\">\n" +
-    "        <a href=\"javascript:;\" class=\"edit-text\">\n" +
-    "            {{ data.displayStr }}\n" +
-    "        </a>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("directive-partials/ui-editable-fields/field.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("directive-partials/ui-editable-fields/field.html",
+angular.module("directive-partials/ui-editable-fields/field-horizontal.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/field-horizontal.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
     "<div class=\"row ui-editable-field\">\n" +
@@ -1367,40 +1279,284 @@ angular.module("directive-partials/ui-editable-fields/field.html", []).run(["$te
     "");
 }]);
 
+angular.module("directive-partials/ui-editable-fields/field-value-generic.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/field-value-generic.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"ui-editable-field-value\">\n" +
+    "\n" +
+    "    <!-- Displayed value -->\n" +
+    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
+    "        {{ display || model[key] }}\n" +
+    "    </a>\n" +
+    "    <b ng-show=\"isDisabled\">\n" +
+    "        {{ display || model[key] }}\n" +
+    "    </b>\n" +
+    "\n" +
+    "    <!-- Edit icon -->\n" +
+    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "    \n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-editable-fields/field-value-timestamp.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/field-value-timestamp.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"ui-editable-field-value\">\n" +
+    "\n" +
+    "    <!-- Displayed value -->\n" +
+    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
+    "        {{ timestamp | date:format }}\n" +
+    "    </a>\n" +
+    "    <b ng-show=\"isDisabled\">\n" +
+    "        {{ timestamp | date:format }}\n" +
+    "    </b>\n" +
+    "\n" +
+    "    <!-- Edit icon -->\n" +
+    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "    \n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-editable-fields/field-value-with-units.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/field-value-with-units.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
+    "\n" +
+    "    <!-- Edit icons -->\n" +
+    "    <div class=\"col-sm-1 text-center\">\n" +
+    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Unit selector -->\n" +
+    "    <div class=\"col-sm-1 text-center\">\n" +
+    "        <div class=\"dropdown\">\n" +
+    "            <a href=\"javascript:;\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\">\n" +
+    "                <i class=\"fa fa-cog\" style=\"color: #ccc;\"></i>\n" +
+    "            </a>\n" +
+    "            <ul class=\"dropdown-menu\">\n" +
+    "                <li ng-repeat=\"unit in units\">\n" +
+    "                    <a ng-click=\"updateUnit(unit)\" href=\"javascript:;\">\n" +
+    "                        {{ unit }}\n" +
+    "                    </a>\n" +
+    "                </li>\n" +
+    "            </ul>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Displayed data -->\n" +
+    "    <div class=\"col-sm-10\">\n" +
+    "        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "            {{ data.displayStr }}\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/field-vertical.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"row ui-editable-field ui-editable-field-vertical\">\n" +
+    "\n" +
+    "    <div ng-switch=\"inputType\" class=\"col-xs-12\">\n" +
+    "\n" +
+    "        <!-- Date -->\n" +
+    "        <div ng-switch-when=\"date\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-timestamp.html'\"></ng-include>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"datetime\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Date & time -->\n" +
+    "        <div ng-switch-when=\"datetime\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-timestamp.html'\"></ng-include>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"datetime\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Length -->\n" +
+    "        <div ng-switch-when=\"length\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-with-units.html'\"></ng-include>\n" +
+    "\n" +
+    "            <!-- Feet & inches -->\n" +
+    "            <div class=\"row\" ng-show=\"state == 'editing' && config.unitForLength == 'ft/in'\">\n" +
+    "                <div class=\"col-sm-6\">\n" +
+    "                    <div class=\"input-group\">\n" +
+    "                        <input\n" +
+    "                            ng-model=\"data.lengthFeet\"\n" +
+    "                            ng-disabled=\"isDisabled\"\n" +
+    "                            ng-required=\"isRequired\"\n" +
+    "                            ng-blur=\"updateModel()\"\n" +
+    "                            ng-change=\"updateModel()\"\n" +
+    "                            type=\"number\" min=\"1\" max=\"10\"\n" +
+    "                            class=\"form-control\">\n" +
+    "                        <span class=\"input-group-addon\">&apos;</span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-sm-6\">\n" +
+    "                    <div class=\"input-group\">\n" +
+    "                        <input\n" +
+    "                            ng-model=\"data.lengthInches\"\n" +
+    "                            ng-disabled=\"isDisabled\"\n" +
+    "                            ng-required=\"isRequired\"\n" +
+    "                            ng-blur=\"updateModel()\"\n" +
+    "                            ng-change=\"updateModel()\"\n" +
+    "                            type=\"number\" min=\"0\" max=\"11\"\n" +
+    "                            class=\"form-control\">\n" +
+    "                        <span class=\"input-group-addon\">&quot;</span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- All other supported units -->\n" +
+    "            <div class=\"input-group\" ng-show=\"state == 'editing' && config.unitForLength != 'ft/in'\">\n" +
+    "                <span class=\"input-group-addon\">{{ config.unitForLength }}</span>\n" +
+    "                <input\n" +
+    "                    ng-model=\"data.lengthVal\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    ng-blur=\"updateModel()\"\n" +
+    "                    type=\"number\" step=\"0.01\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Gender -->\n" +
+    "        <div ng-switch-when=\"gender\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
+    "\n" +
+    "            <select\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                ng-selected=\"model[key]\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                class=\"form-control\">\n" +
+    "\n" +
+    "                <option value=\"female\">Female</option>\n" +
+    "                <option value=\"male\">Male</option>\n" +
+    "            </select>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Mass -->\n" +
+    "        <div ng-switch-when=\"mass\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-with-units.html'\"></ng-include>\n" +
+    "\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div class=\"input-group\" ng-show=\"state == 'editing'\">\n" +
+    "                <span class=\"input-group-addon\">{{ config.unitForMass }}</span>\n" +
+    "                <input\n" +
+    "                    ng-model=\"data.massVal\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    ng-blur=\"updateModel()\"\n" +
+    "                    type=\"number\" step=\"0.01\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Tag -->\n" +
+    "        <div ng-switch-when=\"tag\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
+    "\n" +
+    "            <div ng-show=\"state == 'editing'\">\n" +
+    "                <selectize\n" +
+    "                    ng-model=\"data\"\n" +
+    "                    class=\"form-control text-left\"\n" +
+    "                    config=\"config\"\n" +
+    "                    options=\"options\">\n" +
+    "                </selectize>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Placeholder -->\n" +
+    "        <div ng-switch-when=\"placeholder\">\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"display\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Default -->\n" +
+    "        <div ng-switch-default>\n" +
+    "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
+    "\n" +
+    "            <input\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                ng-disabled=\"isDisabled\"\n" +
+    "                ng-required=\"isRequired\"\n" +
+    "                type=\"text\"\n" +
+    "                class=\"form-control\">\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Field label -->\n" +
+    "    <div class=\"col-xs-12 ui-editable-field-label\">\n" +
+    "        {{ label }} <span ng-show=\"isRequired && state == 'editing'\">*</span>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("directive-partials/ui-editable-fields/fields.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-fields/fields.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"panel panel-default ui-editable-fields\" ng-attr-id=\"{{ id }}\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        {{ heading }}\n" +
+    "<div class=\"ui-editable-fields\" ng-attr-id=\"{{ id }}\">\n" +
     "\n" +
-    "        <!-- Action buttons -->\n" +
-    "        <div class=\"pull-right\">\n" +
-    "            <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
-    "                Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
-    "            </span>\n" +
-    "            <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
-    "                Edit All Fields &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
-    "            </span>\n" +
-    "            <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
-    "                <i class=\"fa fa-toggle-off\"></i>\n" +
-    "            </span>\n" +
-    "        </div>\n" +
+    "    <h3 class=\"title\">\n" +
+    "        {{ heading }}\n" +
+    "        <span></span>\n" +
+    "    </h3>\n" +
+    "\n" +
+    "    <!-- Action buttons -->\n" +
+    "    <div class=\"ui-editable-fields-actions\">\n" +
+    "        <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
+    "            Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
+    "        </span>\n" +
+    "        <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
+    "            Edit All Fields &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
+    "        </span>\n" +
+    "        <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
+    "            <i class=\"fa fa-toggle-off\"></i>\n" +
+    "        </span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"panel-body\">\n" +
+    "    <div ng-switch=\"state\">\n" +
     "\n" +
-    "        <div class=\"row\" ng-switch=\"state\">\n" +
+    "        <!-- Working animation -->\n" +
+    "        <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
+    "            <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Working animation -->\n" +
-    "            <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
-    "                <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Model fields -->\n" +
-    "            <div ng-switch-default ng-transclude class=\"col-sm-12\">\n" +
-    "            </div>\n" +
+    "        <!-- Model fields -->\n" +
+    "        <div ng-switch-default ng-transclude>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -2701,79 +2857,78 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "\n" +
-    "        <div class=\"sub-header\">\n" +
-    "\n" +
-    "            <!-- Create profile button -->\n" +
-    "            <a href=\"#/profile/create\" class=\"sub-header-btn\">\n" +
-    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-user-plus\"></i>\n" +
-    "                </button>\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <!-- Delete group button -->\n" +
-    "            <a\n" +
-    "                ng-show=\"group.id > 0\"\n" +
-    "                data-toggle=\"modal\"\n" +
-    "                data-target=\"#deleteGroupConfirmation\"\n" +
-    "                href=\"javascript:;\"\n" +
-    "                class=\"sub-header-btn\">\n" +
-    "\n" +
-    "                <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-trash\"></i>\n" +
-    "                </button>\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <!-- Delete confirmation -->\n" +
-    "            <div class=\"modal fade\" id=\"deleteGroupConfirmation\">\n" +
-    "                <div class=\"modal-dialog\">\n" +
-    "                    <div class=\"modal-content\">\n" +
-    "                        <div class=\"modal-body\">\n" +
-    "                            <p ng-show=\"global.state.profile.filtered.length > 0\">\n" +
-    "                                Are you sure you want to delete <b>{{ group.name }}</b>\n" +
-    "                                and the {{ global.state.profile.filtered.length }}\n" +
-    "                                associated athletes?\n" +
-    "                            </p>\n" +
-    "                            <p ng-show=\"global.state.profile.filtered.length === 0\">\n" +
-    "                                Are you sure you want to delete <b>{{ group.name }}</b>?\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"modal-footer text-center\">\n" +
-    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                Cancel\n" +
-    "                            </button>\n" +
-    "                            <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                Yes, delete {{ group.name }}\n" +
-    "                            </button>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <section>\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
     "            <!-- Avatar -->\n" +
-    "    		<div class=\"col-xs-12 col-md-6 col-lg-4\">\n" +
-    "                <div class=\"text-center profile-avatar\">\n" +
+    "    		<div class=\"col-xs-12 col-md-5 col-lg-3\">\n" +
+    "                <div class=\"text-center\">\n" +
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
     "                        data-src=\"group.avatarSrc\">\n" +
     "                    </ui-avatar>\n" +
     "                </div>\n" +
+    "\n" +
+    "                <div class=\"text-center profile-shortcuts\">\n" +
+    "\n" +
+    "                    <!-- Create profile button -->\n" +
+    "                    <a href=\"#/profile/create\">\n" +
+    "                        <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                            <i class=\"fa fa-user-plus\"></i>\n" +
+    "                        </button>\n" +
+    "                    </a>\n" +
+    "\n" +
+    "                    <!-- Delete group button -->\n" +
+    "                    <a\n" +
+    "                        ng-show=\"group.id > 0\"\n" +
+    "                        data-toggle=\"modal\"\n" +
+    "                        data-target=\"#deleteGroupConfirmation\"\n" +
+    "                        href=\"javascript:;\">\n" +
+    "\n" +
+    "                        <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
+    "                            <i class=\"fa fa-trash\"></i>\n" +
+    "                        </button>\n" +
+    "                    </a>\n" +
+    "\n" +
+    "                    <!-- Delete confirmation -->\n" +
+    "                    <div class=\"modal fade\" id=\"deleteGroupConfirmation\">\n" +
+    "                        <div class=\"modal-dialog\">\n" +
+    "                            <div class=\"modal-content\">\n" +
+    "                                <div class=\"modal-body\">\n" +
+    "                                    <p ng-show=\"global.state.profile.filtered.length > 0\">\n" +
+    "                                        Are you sure you want to delete <b>{{ group.name }}</b>\n" +
+    "                                        and the {{ global.state.profile.filtered.length }}\n" +
+    "                                        associated athletes?\n" +
+    "                                    </p>\n" +
+    "                                    <p ng-show=\"global.state.profile.filtered.length === 0\">\n" +
+    "                                        Are you sure you want to delete <b>{{ group.name }}</b>?\n" +
+    "                                    </p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"modal-footer text-center\">\n" +
+    "                                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                        Cancel\n" +
+    "                                    </button>\n" +
+    "                                    <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                        Yes, delete {{ group.name }}\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "    		</div>\n" +
     "\n" +
     "            <!-- Group details -->\n" +
-    "            <div class=\"col-xs-12 col-md-6 col-lg-8\">\n" +
+    "            <div class=\"col-xs-12 col-md-7 col-lg-4\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"groupDetails\"\n" +
     "                    data-model=\"group\"\n" +
     "                    data-save=\"saveGroupDetails\"\n" +
     "                    data-save-callback=\"saveGroupDetailsCallback\"\n" +
-    "                    data-heading=\"Details for {{ group.name }}\">\n" +
+    "                    data-heading=\"Team Details\">\n" +
     "\n" +
     "                    <!-- Group name -->\n" +
     "                    <ui-editable-field\n" +
@@ -2820,6 +2975,23 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    </ui-editable-field>\n" +
     "                </ui-editable-fields>\n" +
     "            </div>\n" +
+    "\n" +
+    "            <!-- Notes -->\n" +
+    "            <div class=\"col-xs-12 col-lg-5\">\n" +
+    "                <div class=\"panel panel-default\">\n" +
+    "                    <div class=\"panel-heading\">\n" +
+    "                        Notes\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"panel-body\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                ...\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "\n" +
@@ -2843,25 +3015,6 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "        </div>\n" +
     "\n" +
     "        <br>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Notes -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div class=\"panel panel-default\">\n" +
-    "                <div class=\"panel-heading\">\n" +
-    "                    Notes\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"panel-body\">\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-sm-12\">\n" +
-    "                            ...\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -4614,76 +4767,77 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            {{ profile.firstName }} {{ profile.lastName }}  <i class=\"fa fa-user\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "\n" +
-    "        <div class=\"sub-header\">\n" +
-    "\n" +
-    "            <!-- View trends -->\n" +
-    "            <a href=\"#/demo/trends\" class=\"sub-header-btn\">\n" +
-    "                <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-line-chart\"></i>\n" +
-    "                </button>\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <!-- Delete group button -->\n" +
-    "            <a\n" +
-    "                ng-show=\"profile.id > 0\"\n" +
-    "                data-toggle=\"modal\"\n" +
-    "                data-target=\"#deleteProfileConfirmation\"\n" +
-    "                href=\"javascript:;\"\n" +
-    "                class=\"sub-header-btn\">\n" +
-    "\n" +
-    "                <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
-    "                    <i class=\"fa fa-trash\"></i>\n" +
-    "                </button>\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <!-- Delete confirmation -->\n" +
-    "            <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
-    "                <div class=\"modal-dialog\">\n" +
-    "                    <div class=\"modal-content\">\n" +
-    "                        <div class=\"modal-body\">\n" +
-    "                            <p>\n" +
-    "                                Are you sure you want to delete <b>{{ profile.firstName }}\n" +
-    "                                {{ profile.lastName }}</b>'s profile?\n" +
-    "                            </p>\n" +
-    "                        </div>\n" +
-    "                        <div class=\"modal-footer text-center\">\n" +
-    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                Cancel\n" +
-    "                            </button>\n" +
-    "                            <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                Yes, delete {{ profile.firstName }}\n" +
-    "                            </button>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <section ng-show=\"profile.id > 0\">\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
-    "            <!-- Avatar -->\n" +
-    "    		<div class=\"col-sm-12 col-md-5\">\n" +
+    "    		<div class=\"col-xs-12 col-md-5 col-lg-3\">\n" +
+    "\n" +
+    "                <!-- Avatar -->\n" +
     "                <div class=\"text-center\">\n" +
     "                    <ui-avatar\n" +
     "                        data-upload-endpoint=\"uploadAvatarEndpoint\"\n" +
     "                        data-success-callback=\"uploadAvatarCallback\"\n" +
-    "                        data-src=\"profile.avatarSrc\"\n" +
-    "                        data-match-width=\"{{ calculateAvatarHeight() }}\">\n" +
+    "                        data-src=\"profile.avatarSrc\">\n" +
     "                    </ui-avatar>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Profile shortcuts -->\n" +
+    "                <div class=\"text-center profile-shortcuts\">\n" +
+    "\n" +
+    "                    <!-- View trends -->\n" +
+    "                    <a href=\"#/demo/trends\" class=\"sub-header-btn\">\n" +
+    "                        <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                            <i class=\"fa fa-line-chart\"></i>\n" +
+    "                        </button>\n" +
+    "                    </a>\n" +
+    "\n" +
+    "                    <!-- Delete group button -->\n" +
+    "                    <a\n" +
+    "                        ng-show=\"profile.id > 0\"\n" +
+    "                        data-toggle=\"modal\"\n" +
+    "                        data-target=\"#deleteProfileConfirmation\"\n" +
+    "                        href=\"javascript:;\"\n" +
+    "                        class=\"sub-header-btn\">\n" +
+    "\n" +
+    "                        <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
+    "                            <i class=\"fa fa-trash\"></i>\n" +
+    "                        </button>\n" +
+    "                    </a>\n" +
+    "\n" +
+    "                    <!-- Delete confirmation -->\n" +
+    "                    <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
+    "                        <div class=\"modal-dialog\">\n" +
+    "                            <div class=\"modal-content\">\n" +
+    "                                <div class=\"modal-body\">\n" +
+    "                                    <p>\n" +
+    "                                        Are you sure you want to delete <b>{{ profile.firstName }}\n" +
+    "                                        {{ profile.lastName }}</b>'s profile?\n" +
+    "                                    </p>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"modal-footer text-center\">\n" +
+    "                                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                        Cancel\n" +
+    "                                    </button>\n" +
+    "                                    <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                        Yes, delete {{ profile.firstName }}\n" +
+    "                                    </button>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "    		</div>\n" +
     "\n" +
     "            <!-- Profile details -->\n" +
-    "            <div class=\"col-sm-12 col-md-7\">\n" +
+    "            <div class=\"col-xs-12 col-md-7 col-lg-4\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"profileDetails\"\n" +
     "                    data-model=\"profile\"\n" +
     "                    data-save=\"saveProfileDetails\"\n" +
     "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
-    "                    data-heading=\"{{ profile.firstName }}'s details\">\n" +
+    "                    data-heading=\"Details\">\n" +
     "\n" +
     "                    <!-- First name -->\n" +
     "                    <ui-editable-field\n" +
@@ -4762,43 +4916,43 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    </ui-editable-field>\n" +
     "                </ui-editable-fields>\n" +
     "            </div>\n" +
+    "\n" +
+    "            <!-- General notes -->\n" +
+    "            <div class=\"col-xs-12 col-lg-5\">\n" +
+    "        		<div class=\"col-xs-12\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-heading=\"Medical Information\"\n" +
+    "                        data-model=\"profile\"\n" +
+    "                        data-key=\"medicalHistory\"\n" +
+    "                        data-empty=\"No medical information provided.\"\n" +
+    "                        data-save=\"saveProfileDetails\"\n" +
+    "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-xs-12\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-heading=\"Previous Injuries\"\n" +
+    "                        data-model=\"profile\"\n" +
+    "                        data-key=\"injuries\"\n" +
+    "                        data-empty=\"No previous injuries.\"\n" +
+    "                        data-save=\"saveProfileDetails\"\n" +
+    "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-xs-12\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-heading=\"Other Notes\"\n" +
+    "                        data-model=\"profile\"\n" +
+    "                        data-key=\"notes\"\n" +
+    "                        data-empty=\"No other notes.\"\n" +
+    "                        data-save=\"saveProfileDetails\"\n" +
+    "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "        		</div>\n" +
+    "        	</div>\n" +
     "        </div>\n" +
-    "\n" +
-    "        <!-- General notes -->\n" +
-    "        <div class=\"row\">\n" +
-    "    		<div class=\"col-sm-12\">\n" +
-    "                <ui-editable-standalone-field\n" +
-    "                    data-heading=\"Medical Information\"\n" +
-    "                    data-model=\"profile\"\n" +
-    "                    data-key=\"medicalHistory\"\n" +
-    "                    data-empty=\"No medical information provided.\"\n" +
-    "                    data-save=\"saveProfileDetails\"\n" +
-    "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +
-    "                </ui-editable-standalone-field>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <div class=\"col-sm-12\">\n" +
-    "                <ui-editable-standalone-field\n" +
-    "                    data-heading=\"Previous Injuries\"\n" +
-    "                    data-model=\"profile\"\n" +
-    "                    data-key=\"injuries\"\n" +
-    "                    data-empty=\"No previous injuries.\"\n" +
-    "                    data-save=\"saveProfileDetails\"\n" +
-    "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +
-    "                </ui-editable-standalone-field>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <div class=\"col-sm-12\">\n" +
-    "                <ui-editable-standalone-field\n" +
-    "                    data-heading=\"Other Notes\"\n" +
-    "                    data-model=\"profile\"\n" +
-    "                    data-key=\"notes\"\n" +
-    "                    data-empty=\"No other notes.\"\n" +
-    "                    data-save=\"saveProfileDetails\"\n" +
-    "                    data-save-callback=\"saveProfileDetailsCallback\">\n" +
-    "                </ui-editable-standalone-field>\n" +
-    "    		</div>\n" +
-    "    	</div>\n" +
     "    </section>\n" +
     "</div>\n" +
     "\n" +

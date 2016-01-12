@@ -532,7 +532,7 @@ angular.module('app.directives')
                         });
                 }
             },
-            templateUrl: 'directive-partials/ui-editable-fields/field.html'
+            templateUrl: 'directive-partials/ui-editable-fields/field-vertical.html'
         };
     }
 ])
