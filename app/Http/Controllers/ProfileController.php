@@ -64,7 +64,7 @@ class ProfileController extends Controller
         // Retrieve profiles.
         $profiles = $builder->with($embed['relations'])->get();
 
-        if (count($profiles))
+        if (count($profiles) && count($embed['attributes']))
         {
             $resizeAvatar = (bool) array_search('avatarSrc', $embed['attributes']);
 
@@ -76,12 +76,9 @@ class ProfileController extends Controller
                 }
 
                 // Append extra attributes.
-                if (count($embed['attributes']))
+                foreach ($embed['attributes'] as $accessor)
                 {
-                    foreach ($embed['attributes'] as $accessor)
-                    {
-                        $profile->setAttribute($accessor, $profile->$accessor);
-                    }
+                    $profile->setAttribute($accessor, $profile->$accessor);
                 }
             }
         }
@@ -278,8 +275,30 @@ class ProfileController extends Controller
             $profile->secondaryTags()->attach($secondaryTags);
         }
 
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Profile::$appendable
+        );
+
         // Return updated model.
-        return Profile::with('meta')->find($profile->id);
+        $updated = Profile::with($embed['relations'])->find($profile->id);
+
+        if (count($embed['attributes']))
+        {
+            // Resize avatar.
+            if (array_search('avatarSrc', $embed['attributes']) !== false) {
+                $updated->resizeAvatar(400);
+            }
+
+            // Append extra attributes.
+            foreach ($embed['attributes'] as $accessor)
+            {
+                $updated->setAttribute($accessor, $updated->$accessor);
+            }
+        }
+
+        return $updated;
     }
 
     /**
@@ -301,10 +320,7 @@ class ProfileController extends Controller
         }
 
         // Delete profile and associated groups/movements/screenings/tags.
-        $profile->delete();
-
-        // Return remaining groups.
-        return $this->index();
+        return $profile->delete() ? response('', 200) : response('', 500);
     }
 
     /**

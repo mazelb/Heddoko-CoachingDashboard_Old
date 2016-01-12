@@ -27,7 +27,7 @@
     }
 }
 .page > header {
-    margin: 0 20px 20px;
+    margin: 0 20px 20px 0;
 
     h1 {
         @include section-title();
@@ -100,9 +100,13 @@ h1.title, h2.title, h3.title {
         width: 345px;
     }
 
-    .profile-shortcuts a {
+    .profile-shortcuts {
         margin: 10px;
-        display: inline-block;
+
+        a {
+            display: inline-block;
+            margin: 5px;
+        }
     }
 }
 
@@ -297,7 +301,7 @@ h1.title, h2.title, h3.title {
  * Angular pages.
  */
 .page {
-    padding: 15px;
+    padding: 25px;
 }
 
 .page-form-ele h3 {

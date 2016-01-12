@@ -37,6 +37,7 @@ angular.module('app.controllers')
                         fillColor: {
                             colors: [
                                 {opacity: 0.1},
+                                {opacity: 0},
                                 {opacity: 0}
                             ]
                         }
@@ -61,6 +62,7 @@ angular.module('app.controllers')
                 },
                 legend: {
                     show: true,
+                    color: '#fff',
                     backgroundColor: '#ddd',
                     backgroundOpacity: 0.3,
                     labelBoxBorderColor: 'transparent'

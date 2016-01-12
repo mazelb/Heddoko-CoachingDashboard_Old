@@ -3979,7 +3979,7 @@ fieldset[disabled] .btn-danger.active {
  * Angular - Page headers.
  */
 .page > header {
-  margin: 0 20px 20px; }
+  margin: 0 20px 20px 0; }
   .page > header h1 {
     margin: none;
     display: inline-block;
@@ -4061,9 +4061,11 @@ h1.title, h2.title, h3.title {
   display: inline-block;
   height: 345px;
   width: 345px; }
-.profile-page .profile-shortcuts a {
-  margin: 10px;
-  display: inline-block; }
+.profile-page .profile-shortcuts {
+  margin: 10px; }
+  .profile-page .profile-shortcuts a {
+    display: inline-block;
+    margin: 5px; }
 
 /*
  * Laravel - General styles.
@@ -4202,7 +4204,7 @@ h1.title, h2.title, h3.title {
  * Angular pages.
  */
 .page {
-  padding: 15px; }
+  padding: 25px; }
 
 .page-form-ele h3 {
   margin: 0; }
@@ -5070,8 +5072,10 @@ button.toast-close-button {
   -o-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out; }
   .page-loading-overlay .page-loading-escape {
+    position: absolute;
+    top: 30px;
+    right: 30px;
     color: #3bd6b2;
-    margin: 30px 0 0 30px;
     display: inline-block;
     font-size: 32px; }
 
@@ -8590,33 +8594,39 @@ svg {
  * @brief       Styles for uiEditableFields
  * @author      Francis Amankrah (frank@heddoko.com)
  */
-.ui-editable-fields .ui-editable-fields-actions {
-  color: #777;
-  font-size: 0.7em; }
 .ui-editable-fields .ui-editable-field-vertical {
   margin: 15px auto; }
   .ui-editable-fields .ui-editable-field-vertical .title .pull-right {
     font-size: 0.5em; }
-.ui-editable-fields .ui-editable-field-value .edit-icon {
-  margin: 0 10px;
-  color: #777;
-  opacity: 0;
-  filter: alpha(opacity=0); }
-.ui-editable-fields .ui-editable-field-value .edit-text {
+.ui-editable-fields .ui-editable-field-value {
   color: #ddd;
   font-size: 1.2em;
   letter-spacing: 1.1px; }
-  .ui-editable-fields .ui-editable-field-value .edit-text:hover, .ui-editable-fields .ui-editable-field-value .edit-text:focus {
+  .ui-editable-fields .ui-editable-field-value .edit-icon {
+    margin: 0 10px;
+    color: #777;
+    opacity: 0;
+    filter: alpha(opacity=0); }
+  .ui-editable-fields .ui-editable-field-value .edit-text {
+    color: #ddd; }
+    .ui-editable-fields .ui-editable-field-value .edit-text:hover, .ui-editable-fields .ui-editable-field-value .edit-text:focus {
+      text-decoration: none;
+      background-color: #777; }
+  .ui-editable-fields .ui-editable-field-value:hover .edit-icon, .ui-editable-fields .ui-editable-field-value:focus .edit-icon {
+    color: #777;
     text-decoration: none;
-    background-color: #777; }
-.ui-editable-fields .ui-editable-field-value:hover .edit-icon, .ui-editable-fields .ui-editable-field-value:focus .edit-icon {
-  color: #777;
-  text-decoration: none;
-  opacity: 1;
-  filter: alpha(opacity=100); }
+    opacity: 1;
+    filter: alpha(opacity=100); }
 .ui-editable-fields .ui-editable-field-label {
   font-size: 0.7em;
   text-transform: uppercase;
+  color: #777; }
+
+.ui-editable-fields-actions {
+  color: #777;
+  font-size: 0.7em; }
+
+.ui-editable-fields-muted {
   color: #777; }
 
 /**

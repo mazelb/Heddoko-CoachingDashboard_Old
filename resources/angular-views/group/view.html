@@ -1,5 +1,6 @@
 
-<!-- Group summary -->
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
 <div ng-show="group.id" class="page profile-page">
     <header>
         <h1>
@@ -22,13 +23,6 @@
                 </div>
 
                 <div class="text-center profile-shortcuts">
-
-                    <!-- Create profile button -->
-                    <a href="#/profile/create">
-                        <button class="btn btn-primary btn-circle btn-lg">
-                            <i class="fa fa-user-plus"></i>
-                        </button>
-                    </a>
 
                     <!-- Delete group button -->
                     <a
@@ -71,7 +65,7 @@
     		</div>
 
             <!-- Group details -->
-            <div class="col-xs-12 col-md-7 col-lg-4">
+            <div class="col-xs-12 col-md-7 col-lg-5">
                 <ui-editable-fields
                     data-id="groupDetails"
                     data-model="group"
@@ -79,91 +73,114 @@
                     data-save-callback="saveGroupDetailsCallback"
                     data-heading="Team Details">
 
-                    <!-- Group name -->
-                    <ui-editable-field
-                        data-label="Name"
-                        data-key="name"
-                        data-required="true">
-                    </ui-editable-field>
+                    <div class="row">
 
-                    <!-- Tags -->
-                    <ui-editable-field
-                        data-label="Sport"
-                        data-key="tags"
-                        data-type="tag">
-                    </ui-editable-field>
+                        <!-- Group name -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Name"
+                                data-key="name"
+                                data-required="true">
+                            </ui-editable-field>
+                        </div>
 
-                    <!-- Managers -->
-                    <ui-editable-field
-                        data-label="Coach"
-                        data-type="placeholder"
-                        data-display="Rick Springfield">
-                    </ui-editable-field>
+                        <!-- Tags -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Sport"
+                                data-key="tags"
+                                data-type="tag">
+                            </ui-editable-field>
+                        </div>
+                    </div>
 
-                    <!-- Profiles count -->
-                    <ui-editable-field
-                        data-label="Number of athletes"
-                        data-type="placeholder"
-                        data-display="10">
-                    </ui-editable-field>
+                    <div class="row">
 
-                    <!-- Date created -->
-                    <ui-editable-field
-                        data-label="Date created"
-                        data-key="createdAt"
-                        data-type="date"
-                        data-required="true">
-                    </ui-editable-field>
+                        <!-- Managers -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Coach"
+                                data-type="placeholder"
+                                data-display="Rick Springfield">
+                            </ui-editable-field>
+                        </div>
 
-                    <!-- Date modified -->
-                    <ui-editable-field
-                        data-label="Date created"
-                        data-key="updatedAt"
-                        data-type="date"
-                        data-required="true">
-                    </ui-editable-field>
+                        <!-- Profiles count -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Number of athletes"
+                                data-type="placeholder"
+                                data-display="10">
+                            </ui-editable-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Date created -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Date created"
+                                data-key="createdAt"
+                                data-type="date"
+                                data-required="true">
+                            </ui-editable-field>
+                        </div>
+
+                        <!-- Date modified -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Date created"
+                                data-key="updatedAt"
+                                data-type="date"
+                                data-required="true">
+                            </ui-editable-field>
+                        </div>
+                    </div>
                 </ui-editable-fields>
             </div>
 
             <!-- Notes -->
-            <div class="col-xs-12 col-lg-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Notes
-                    </div>
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                ...
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-xs-12 col-lg-4">
+                <ui-editable-standalone-field
+                    data-heading="Notes"
+                    data-model="group"
+                    data-key="notes"
+                    data-empty="..."
+                    data-disabled="true"
+                    data-save="saveGroupDetails"
+                    data-save-callback="saveGroupDetailsCallback">
+                </ui-editable-standalone-field>
             </div>
         </div>
     </section>
 
     <!-- Profile list -->
     <div class="row">
-        <br>
+        <div class="col-sm-12">
+            <h3 class="title">
+                Team Members
+                <span></span>
+            </h3>
+            <br>
 
-        <div ng-show="global.state.profile.filtered.length === 0" class="col-sm-12">
-            The <b>{{ group.name }}</b> do not have any members yet. Add one to get started!
-        </div>
+            <!-- New profile button -->
+            <a
+                href="#/profile/create"
+                class="btn btn-primary btn-metro">
 
-        <div ng-show="global.state.profile.filtered.length > 0" class="col-sm-12">
+                <i class="fa fa-plus"></i>
+            </a>
+
             <a
                 ng-repeat="profile in global.state.profile.filtered"
                 href="#/profile/{{ profile.id }}"
-                class="btn btn-primary btn-metro"
+                class="btn btn-default btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
-                <div class="btn-title">{{ profile.firstName }}</div>
+                <span>{{ profile.firstName }}</span>
             </a>
         </div>
-
-        <br>
     </div>
 </div>
 

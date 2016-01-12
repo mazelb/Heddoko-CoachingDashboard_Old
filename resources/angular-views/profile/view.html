@@ -1,7 +1,6 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<!-- Profile summary -->
 <div ng-hide="profile.id === 0" class="page profile-page">
     <header>
         <h1>
@@ -72,7 +71,7 @@
     		</div>
 
             <!-- Profile details -->
-            <div class="col-xs-12 col-md-7 col-lg-4">
+            <div class="col-xs-12 col-md-7 col-lg-5">
                 <ui-editable-fields
                     data-id="profileDetails"
                     data-model="profile"
@@ -80,86 +79,125 @@
                     data-save-callback="saveProfileDetailsCallback"
                     data-heading="Details">
 
-                    <!-- First name -->
-                    <ui-editable-field
-                        data-label="First Name"
-                        data-key="firstName"
-                        data-required="true">
-                    </ui-editable-field>
+                    <div class="row">
 
-                    <!-- Last name -->
-                    <ui-editable-field
-                        data-label="Last Name"
-                        data-key="lastName">
-                    </ui-editable-field>
+                        <!-- First name -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="First Name"
+                                data-key="firstName"
+                                data-required="true">
+                            </ui-editable-field>
+                        </div>
 
-                    <!-- Height -->
-                    <ui-editable-field
-                        data-label="Height"
-                        data-key="height"
-                        data-type="length">
-                    </ui-editable-field>
+                        <!-- Last name -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Last Name"
+                                data-key="lastName">
+                            </ui-editable-field>
+                        </div>
+                    </div>
 
-                    <!-- Weight -->
-                    <ui-editable-field
-                        data-label="Weight"
-                        data-key="mass"
-                        data-type="mass">
-                    </ui-editable-field>
+                    <div class="row">
 
-                    <!-- Date of Birth -->
-                    <ui-editable-field
-                        data-label="Date of Birth"
-                        data-key="dob"
-                        data-type="date">
-                    </ui-editable-field>
+                        <!-- Height -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Height"
+                                data-key="height"
+                                data-type="length">
+                            </ui-editable-field>
+                        </div>
 
-                    <!-- Gender -->
-                    <ui-editable-field
-                        data-label="Gender"
-                        data-key="gender"
-                        data-type="gender">
-                    </ui-editable-field>
+                        <!-- Weight -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Weight"
+                                data-key="mass"
+                                data-type="mass">
+                            </ui-editable-field>
+                        </div>
+                    </div>
 
-                    <!-- Phone -->
-                    <ui-editable-field
-                        data-label="Phone #"
-                        data-key="phone">
-                    </ui-editable-field>
+                    <div class="row">
 
-                    <!-- Email -->
-                    <ui-editable-field
-                        data-label="Email"
-                        data-key="email">
-                    </ui-editable-field>
+                        <!-- Date of Birth -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Date of Birth"
+                                data-key="dob"
+                                data-type="date">
+                            </ui-editable-field>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Gender"
+                                data-key="gender"
+                                data-type="gender">
+                            </ui-editable-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Phone -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Phone #"
+                                data-key="phone">
+                            </ui-editable-field>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Email"
+                                data-key="email">
+                            </ui-editable-field>
+                        </div>
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Primary Tag -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Primary Sport"
+                                data-key="primaryTag"
+                                data-type="tag">
+                            </ui-editable-field>
+                        </div>
+
+                        <!-- Secondary tags -->
+                        <div class="col-xs-12 col-sm-6">
+                            <ui-editable-field
+                                data-label="Other Sports"
+                                data-key="secondaryTags"
+                                data-type="tag"
+                                data-max-tags="10">
+                            </ui-editable-field>
+                        </div>
+                    </div>
 
                     <!-- Profile creation date -->
-                    <ui-editable-field
-                        data-label="Profile Created"
-                        data-key="createdAt"
-                        data-type="datetime"
-                        data-disabled="true">
-                    </ui-editable-field>
-
-                    <!-- Primary Tag -->
-                    <ui-editable-field
-                        data-label="Primary Sport"
-                        data-key="primaryTag"
-                        data-type="tag">
-                    </ui-editable-field>
-
-                    <!-- Secondary tags -->
-                    <ui-editable-field
-                        data-label="Other Sports"
-                        data-key="secondaryTags"
-                        data-type="tag"
-                        data-max-tags="10">
-                    </ui-editable-field>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ui-editable-field
+                                data-label="Profile Created"
+                                data-key="createdAt"
+                                data-type="datetime"
+                                data-disabled="true">
+                            </ui-editable-field>
+                        </div>
+                    </div>
                 </ui-editable-fields>
             </div>
 
             <!-- General notes -->
-            <div class="col-xs-12 col-lg-5">
+            <div class="col-xs-12 col-lg-4">
         		<div class="col-xs-12">
                     <ui-editable-standalone-field
                         data-heading="Medical Information"

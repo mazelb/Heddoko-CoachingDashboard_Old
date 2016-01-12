@@ -71,17 +71,13 @@ angular.module('app.rover', [])
 
             // Dashboard index page.
             dashboard: function() {
-
-                Utilities.debug('Browsing to dashboard index page.');
                 $location.path('/dashboard');
 
             }.bind(this),
 
             // Group listing page.
             groups: function() {
-
-                Utilities.debug('Browsing to group listings page.');
-                $location.path('/group/list');
+                $location.path('/group');
 
             }.bind(this),
 
@@ -94,7 +90,7 @@ angular.module('app.rover', [])
                 }
 
                 Utilities.debug('Browsing to group #' + this.store.groupId);
-                $location.path('/group/view');
+                $location.path('/group/' + this.store.groupId);
 
             }.bind(this),
 

@@ -10,11 +10,6 @@ $font-size-smaller: 0.7em;
 
 .ui-editable-fields {
 
-    .ui-editable-fields-actions {
-        color: $muted-color;
-        font-size: $font-size-smaller;
-    }
-
     .ui-editable-field-vertical {
         margin: 15px auto;
 
@@ -24,6 +19,10 @@ $font-size-smaller: 0.7em;
     }
 
     .ui-editable-field-value {
+        color: $text-color;
+        font-size: 1.2em;
+        letter-spacing: 1.1px;
+
         .edit-icon {
             margin: 0 10px;
             color: $muted-color;
@@ -32,8 +31,6 @@ $font-size-smaller: 0.7em;
 
         .edit-text {
             color: $text-color;
-            font-size: 1.2em;
-            letter-spacing: 1.1px;
 
             &:hover, &:focus {
                 text-decoration: none;
@@ -54,4 +51,13 @@ $font-size-smaller: 0.7em;
         text-transform: uppercase;
         color: $muted-color;
     }
+}
+
+.ui-editable-fields-actions {
+    color: $muted-color;
+    font-size: $font-size-smaller;
+}
+
+.ui-editable-fields-muted {
+    color: $muted-color;
 }

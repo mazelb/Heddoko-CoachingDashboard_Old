@@ -63,18 +63,17 @@ angular.module('app.controllers')
             // TODO: allow multiple groups.
             profile.groups = [$scope.global.getSelectedGroup().id];
 
-            ProfileService.create(profile).then(
+            ProfileService.create(profile, ['avatarSrc', 'groups', 'meta']).then(
                 function(response) {
 
                     // Update profile list and browse to newly created profile.
-                    // Rover.state.profile.list[response.data.id] = response.data;
                     Rover.setState('profile', response.data.id, response.data);
-                    // Rover.browseTo.profile(response.data);
                     Rover.browseTo.path('/profile/' + response.data.id);
                     Rover.doneBackgroundProcess();
                 },
                 function(response) {
                     Utilities.debug('Could not create profile: ' + response.statusText);
+                    Utilities.alert('Could not create profile. Please try again later.');
                     Rover.doneBackgroundProcess();
                 }
             );
@@ -83,9 +82,9 @@ angular.module('app.controllers')
         // Saves a profile through the uiEditableListContainer directive.
         $scope.saveProfileDetails = function() {
 
-            profile = ProfileService.formatForStorage($scope.global.getSelectedProfile());
+            var profile = ProfileService.formatForStorage($scope.profile);
 
-            return ProfileService.update(profile.id, profile);
+            return ProfileService.update(profile.id, profile, ['avatarSrc', 'groups', 'meta']);
         };
 
         // Callback for uiEditableListContainer directive.
@@ -93,15 +92,16 @@ angular.module('app.controllers')
 
             // Update profile list.
             if (profileSaved) {
+
+                // Update profile data.
                 Rover.setState('profile', this.id, ProfileService.format(this));
-                // Rover.state.profile.list[this.id] = $scope.profiles[this.id] =
-                //     ProfileService.format(this);
+                $scope.global.updateFilteredProfiles();
 
                 // Update the selected profile.
-                Rover.store.profileId = this.id;
+                // Rover.store.profileId = this.id;
 
                 // Navigate to profile page.
-                Rover.browseTo.profile();
+                // Rover.browseTo.path('/profile/' + this.id);
             }
 
             //
@@ -114,42 +114,33 @@ angular.module('app.controllers')
         $scope.deleteProfile = function() {
             Utilities.debug('Deleting profile...');
 
-            Utilities.debug('TODO: update profile list update on success...');
+            // Show loading animation.
+            Rover.addBackgroundProcess();
 
-            Utilities.alert('In Development.');
+            ProfileService.destroy($scope.profile.id).then(
 
-            return false;
+                // On success, update profile list and browse to selected group.
+                function(response) {
 
-            // // Show loading animation.
-            // Rover.addBackgroundProcess();
-            //
-            // ProfileService.destroy($scope.profile.id).then(
-            //
-            //     // On success, update profile list and browse to selected group.
-            //     function(response) {
-            //
-            //         // Reset profile list.
-            //         Rover.state.profile.list = {length: 0};
-            //         angular.forEach(response.data, function(profile) {
-            //
-            //             // Add profile to list.
-            //             Rover.state.profile.list.length++;
-            //             Rover.state.profile.list[profile.id] = ProfileService.format(profile);
-            //         });
-            //
-            //         // Unselect profile by default.
-            //         $scope.global.store.profileId = 0;
-            //
-            //         Rover.browseTo.group();
-            //         Rover.doneBackgroundProcess();
-            //     },
-            //
-            //     // On failure.
-            //     function(response) {
-            //         Utilities.debug('Could not delete profile: ' + response.responseText);
-            //         Rover.doneBackgroundProcess();
-            //     }
-            // );
+                    // Update profile list.
+                    Rover.setState('profile', $scope.profile.id, null);
+                    $scope.global.state.profile.list.length--;
+                    $scope.global.updateFilteredProfiles();
+
+                    // Unselect profile by default.
+                    $scope.global.store.profileId = 0;
+
+                    Rover.browseTo.group();
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On failure.
+                function(response) {
+                    Utilities.debug('Could not delete profile: ' + response.responseText);
+                    Utilities.alert('Could not delete profile. Please try again later.');
+                    Rover.doneBackgroundProcess();
+                }
+            );
         };
 
         // POST endpoint for avatar uploads.
@@ -160,9 +151,6 @@ angular.module('app.controllers')
 
             // Update the avatar on the currently selected profile.
             $scope.global.getSelectedProfile().avatarSrc = this.avatarSrc;
-
-            // Update the list of profiles.
-            $scope.global.state.profile.list[$scope.profile.id].avatarSrc = this.avatarSrc;
 
             // Update the filtered list.
             angular.forEach($scope.global.state.profile.filtered, function(profile) {

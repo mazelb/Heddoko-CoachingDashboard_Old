@@ -15,7 +15,7 @@ angular.module('app.services')
             /**
              * Base endpoint.
              */
-            endpoint: apiEndpoint + '/profiles/',
+            endpoint: apiEndpoint + '/profiles',
 
             /**
              * Gets a list of profiles.
@@ -50,7 +50,7 @@ angular.module('app.services')
              */
             get: function(id, embed)
             {
-    			return $http.get(this.endpoint + id, {
+    			return $http.get(this.endpoint + '/' + id, {
                     params: {
                         embed: Utilities.getEmbedParameter(embed)
                     }
@@ -61,10 +61,16 @@ angular.module('app.services')
              * Stores the details for a new profile.
              *
              * @param object data
+             * @param array|string embed
              * @return object $http
              */
-            create: function(data) {
-                return $http.post(this.endpoint, data);
+            create: function(data, embed)
+            {
+                return $http.post(this.endpoint, data, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
@@ -72,10 +78,16 @@ angular.module('app.services')
              *
              * @param int id
              * @param object data
+             * @param array|string embed
              * @return object $http
              */
-            update: function(id, data) {
-                return $http.put(this.endpoint + id, data);
+            update: function(id, data, embed)
+            {
+                return $http.put(this.endpoint + '/' + id, data, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
@@ -85,7 +97,7 @@ angular.module('app.services')
              * @return object $http
              */
             destroy: function(id) {
-    			return $http.delete(this.endpoint + id);
+    			return $http.delete(this.endpoint + '/' + id);
     		},
 
             /**
@@ -95,7 +107,7 @@ angular.module('app.services')
              * @return ...
              */
             destroyAvatar: function(id) {
-    			return $http.delete(this.endpoint + id + '/avatar');
+    			return $http.delete(this.endpoint + '/' + id + '/avatar');
     		},
 
             /**
@@ -106,7 +118,7 @@ angular.module('app.services')
              * @return $http
              */
             setAvatar: function(id, fileData) {
-                return $http.post(this.endpoint + id +'/avatar', {image: fileData});
+                return $http.post(this.endpoint + '/' + id +'/avatar', {image: fileData});
             },
 
             /**

@@ -35,8 +35,10 @@
     transition: all .3s ease-in-out;
 
     .page-loading-escape {
+        position: absolute;
+        top: 30px;
+        right: 30px;
         color: $heddokogreen;
-        margin: 30px 0 0 30px;
         display: inline-block;
         font-size: 32px;
     }

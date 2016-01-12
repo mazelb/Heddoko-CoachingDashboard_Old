@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/edit.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -1289,14 +1289,14 @@ angular.module("directive-partials/ui-editable-fields/field-value-generic.html",
     "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
     "        {{ display || model[key] }}\n" +
     "    </a>\n" +
-    "    <b ng-show=\"isDisabled\">\n" +
+    "    <span ng-show=\"isDisabled\">\n" +
     "        {{ display || model[key] }}\n" +
-    "    </b>\n" +
+    "    </span>\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
     "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
     "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    \n" +
+    "\n" +
     "</div>\n" +
     "");
 }]);
@@ -1311,14 +1311,14 @@ angular.module("directive-partials/ui-editable-fields/field-value-timestamp.html
     "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
     "        {{ timestamp | date:format }}\n" +
     "    </a>\n" +
-    "    <b ng-show=\"isDisabled\">\n" +
+    "    <span ng-show=\"isDisabled\">\n" +
     "        {{ timestamp | date:format }}\n" +
-    "    </b>\n" +
+    "    </span>\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
     "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
     "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    \n" +
+    "\n" +
     "</div>\n" +
     "");
 }]);
@@ -1329,14 +1329,8 @@ angular.module("directive-partials/ui-editable-fields/field-value-with-units.htm
     "\n" +
     "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
     "\n" +
-    "    <!-- Edit icons -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
-    "    </div>\n" +
-    "\n" +
     "    <!-- Unit selector -->\n" +
-    "    <div class=\"col-sm-1 text-center\">\n" +
+    "    <div class=\"col-xs-2 text-center\">\n" +
     "        <div class=\"dropdown\">\n" +
     "            <a href=\"javascript:;\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\">\n" +
     "                <i class=\"fa fa-cog\" style=\"color: #ccc;\"></i>\n" +
@@ -1351,11 +1345,16 @@ angular.module("directive-partials/ui-editable-fields/field-value-with-units.htm
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- Displayed data -->\n" +
-    "    <div class=\"col-sm-10\">\n" +
+    "    <div class=\"col-xs-10\">\n" +
+    "\n" +
+    "        <!-- Displayed data -->\n" +
     "        <a href=\"javascript:;\" class=\"edit-text\">\n" +
     "            {{ data.displayStr }}\n" +
     "        </a>\n" +
+    "\n" +
+    "        <!-- Edit icons -->\n" +
+    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -1565,42 +1564,43 @@ angular.module("directive-partials/ui-editable-fields/fields.html", []).run(["$t
 
 angular.module("directive-partials/ui-editable-fields/standalone-field.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-fields/standalone-field.html",
-    "<div class=\"panel panel-default ui-editable-list-container\">\n" +
-    "    <div class=\"panel-heading\">\n" +
-    "        {{ heading }}\n" +
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "        <!-- Action buttons -->\n" +
-    "        <div class=\"pull-right\">\n" +
-    "            <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
-    "                Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
-    "            </span>\n" +
-    "            <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
-    "                Edit &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
-    "            </span>\n" +
-    "            <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
-    "                <i class=\"fa fa-toggle-off\"></i>\n" +
-    "            </span>\n" +
-    "        </div>\n" +
+    "<div class=\"ui-editable-list-container\">\n" +
+    "\n" +
+    "    <h3 class=\"title\">\n" +
+    "        {{ heading }}\n" +
+    "        <span></span>\n" +
+    "    </h3>\n" +
+    "\n" +
+    "    <!-- Action buttons -->\n" +
+    "    <div class=\"ui-editable-fields-actions\">\n" +
+    "        <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
+    "            Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
+    "        </span>\n" +
+    "        <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
+    "            Edit &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
+    "        </span>\n" +
+    "        <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
+    "            <i class=\"fa fa-toggle-off\"></i>\n" +
+    "        </span>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div class=\"panel-body\">\n" +
+    "    <div class=\"row\" ng-switch=\"state\">\n" +
     "\n" +
-    "        <div class=\"row\" ng-switch=\"state\">\n" +
+    "        <!-- Editable field -->\n" +
+    "        <div ng-switch-when=\"editing\" class=\"col-sm-12\">\n" +
+    "            <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Editable field -->\n" +
-    "            <div ng-switch-when=\"editing\" class=\"col-sm-12\">\n" +
-    "                <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
-    "            </div>\n" +
+    "        <!-- Working animation -->\n" +
+    "        <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
+    "            <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <!-- Working animation -->\n" +
-    "            <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
-    "                <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Displayed field -->\n" +
-    "            <div ng-switch-default class=\"col-sm-12\">\n" +
-    "                {{ model[key] || empty }}\n" +
-    "            </div>\n" +
+    "        <!-- Displayed field -->\n" +
+    "        <div ng-switch-default class=\"col-sm-12 ui-editable-fields-muted\">\n" +
+    "            {{ model[key] || empty }}\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -2850,7 +2850,8 @@ angular.module("group/partials/upload-photo.html", []).run(["$templateCache", fu
 
 angular.module("group/view.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("group/view.html",
-    "<!-- Group summary -->\n" +
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div ng-show=\"group.id\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
@@ -2873,13 +2874,6 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                </div>\n" +
     "\n" +
     "                <div class=\"text-center profile-shortcuts\">\n" +
-    "\n" +
-    "                    <!-- Create profile button -->\n" +
-    "                    <a href=\"#/profile/create\">\n" +
-    "                        <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
-    "                            <i class=\"fa fa-user-plus\"></i>\n" +
-    "                        </button>\n" +
-    "                    </a>\n" +
     "\n" +
     "                    <!-- Delete group button -->\n" +
     "                    <a\n" +
@@ -2922,7 +2916,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "    		</div>\n" +
     "\n" +
     "            <!-- Group details -->\n" +
-    "            <div class=\"col-xs-12 col-md-7 col-lg-4\">\n" +
+    "            <div class=\"col-xs-12 col-md-7 col-lg-5\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"groupDetails\"\n" +
     "                    data-model=\"group\"\n" +
@@ -2930,91 +2924,114 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    data-save-callback=\"saveGroupDetailsCallback\"\n" +
     "                    data-heading=\"Team Details\">\n" +
     "\n" +
-    "                    <!-- Group name -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Name\"\n" +
-    "                        data-key=\"name\"\n" +
-    "                        data-required=\"true\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
-    "                    <!-- Tags -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Sport\"\n" +
-    "                        data-key=\"tags\"\n" +
-    "                        data-type=\"tag\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Group name -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Name\"\n" +
+    "                                data-key=\"name\"\n" +
+    "                                data-required=\"true\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
     "\n" +
-    "                    <!-- Managers -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Coach\"\n" +
-    "                        data-type=\"placeholder\"\n" +
-    "                        data-display=\"Rick Springfield\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Tags -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Sport\"\n" +
+    "                                data-key=\"tags\"\n" +
+    "                                data-type=\"tag\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                    <!-- Profiles count -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Number of athletes\"\n" +
-    "                        data-type=\"placeholder\"\n" +
-    "                        data-display=\"10\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
-    "                    <!-- Date created -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Date created\"\n" +
-    "                        data-key=\"createdAt\"\n" +
-    "                        data-type=\"date\"\n" +
-    "                        data-required=\"true\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Managers -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Coach\"\n" +
+    "                                data-type=\"placeholder\"\n" +
+    "                                data-display=\"Rick Springfield\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
     "\n" +
-    "                    <!-- Date modified -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Date created\"\n" +
-    "                        data-key=\"updatedAt\"\n" +
-    "                        data-type=\"date\"\n" +
-    "                        data-required=\"true\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Profiles count -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Number of athletes\"\n" +
+    "                                data-type=\"placeholder\"\n" +
+    "                                data-display=\"10\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                        <!-- Date created -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Date created\"\n" +
+    "                                data-key=\"createdAt\"\n" +
+    "                                data-type=\"date\"\n" +
+    "                                data-required=\"true\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Date modified -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Date created\"\n" +
+    "                                data-key=\"updatedAt\"\n" +
+    "                                data-type=\"date\"\n" +
+    "                                data-required=\"true\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </ui-editable-fields>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- Notes -->\n" +
-    "            <div class=\"col-xs-12 col-lg-5\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        Notes\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                ...\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "            <div class=\"col-xs-12 col-lg-4\">\n" +
+    "                <ui-editable-standalone-field\n" +
+    "                    data-heading=\"Notes\"\n" +
+    "                    data-model=\"group\"\n" +
+    "                    data-key=\"notes\"\n" +
+    "                    data-empty=\"...\"\n" +
+    "                    data-disabled=\"true\"\n" +
+    "                    data-save=\"saveGroupDetails\"\n" +
+    "                    data-save-callback=\"saveGroupDetailsCallback\">\n" +
+    "                </ui-editable-standalone-field>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "\n" +
     "    <!-- Profile list -->\n" +
     "    <div class=\"row\">\n" +
-    "        <br>\n" +
+    "        <div class=\"col-sm-12\">\n" +
+    "            <h3 class=\"title\">\n" +
+    "                Team Members\n" +
+    "                <span></span>\n" +
+    "            </h3>\n" +
+    "            <br>\n" +
     "\n" +
-    "        <div ng-show=\"global.state.profile.filtered.length === 0\" class=\"col-sm-12\">\n" +
-    "            The <b>{{ group.name }}</b> do not have any members yet. Add one to get started!\n" +
-    "        </div>\n" +
+    "            <!-- New profile button -->\n" +
+    "            <a\n" +
+    "                href=\"#/profile/create\"\n" +
+    "                class=\"btn btn-primary btn-metro\">\n" +
     "\n" +
-    "        <div ng-show=\"global.state.profile.filtered.length > 0\" class=\"col-sm-12\">\n" +
+    "                <i class=\"fa fa-plus\"></i>\n" +
+    "            </a>\n" +
+    "\n" +
     "            <a\n" +
     "                ng-repeat=\"profile in global.state.profile.filtered\"\n" +
     "                href=\"#/profile/{{ profile.id }}\"\n" +
-    "                class=\"btn btn-primary btn-metro\"\n" +
+    "                class=\"btn btn-default btn-metro\"\n" +
     "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
     "\n" +
-    "                <div class=\"btn-title\">{{ profile.firstName }}</div>\n" +
+    "                <span>{{ profile.firstName }}</span>\n" +
     "            </a>\n" +
     "        </div>\n" +
-    "\n" +
-    "        <br>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -3871,7 +3888,7 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "            </li>\n" +
     "\n" +
     "            <!-- Notifications -->\n" +
-    "            <li ng-show=\"global.isLocal\" class=\"dropdown\">\n" +
+    "            <!-- <li ng-show=\"global.isLocal\" class=\"dropdown\">\n" +
     "                <a\n" +
     "                    href=\"javascript:;\"\n" +
     "                    class=\"dropdown-toggle onboarding-general\"\n" +
@@ -3889,12 +3906,10 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                    class=\"dropdown-menu with-arrow pull-right panel panel-default\"\n" +
     "                    aria-labelledby=\"menuNotificationsDropdown\">\n" +
     "\n" +
-    "                    <!-- Notifications header -->\n" +
     "                    <div class=\"panel-heading\">\n" +
     "                        You have 2 notifications.\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- List of notifications -->\n" +
     "                    <ul class=\"list-group\">\n" +
     "                        <li class=\"list-group-item\">\n" +
     "                            <a href=\"javascript:;\" class=\"media\">\n" +
@@ -3940,14 +3955,13 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "                        </li>\n" +
     "                    </ul>\n" +
     "\n" +
-    "                    <!-- Notifications footer -->\n" +
     "                    <div class=\"panel-footer\">\n" +
     "                        <a href=\"javascript:;\">\n" +
     "                            Show all notifications.\n" +
     "                        </a>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "            </li>\n" +
+    "            </li> -->\n" +
     "\n" +
     "            <!-- App settings -->\n" +
     "            <li>\n" +
@@ -4081,6 +4095,12 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    <a href=\"#/group/{{ global.getSelectedGroup().id }}\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>{{ global.getSelectedGroup().name }}</span>\n" +
+    "                    </a>\n" +
+    "                </li>\n" +
+    "                <li>\n" +
+    "                    <a href=\"#/group\">\n" +
+    "                        <i class=\"fa fa-angle-right\"></i>\n" +
+    "                        <span>View All Teams</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
@@ -4311,16 +4331,12 @@ angular.module("partials/select-profile.html", []).run(["$templateCache", functi
 angular.module("profile/create.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/create.html",
     "<div class=\"page page-dashboard\">\n" +
-    "\n" +
-    "    <!-- Breadcrumbs -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <h1>Add an Athlete</h1>\n" +
-    "    <br>\n" +
+    "    <header>\n" +
+    "        <h1>\n" +
+    "            Add an Athlete <i class=\"fa fa-users\"></i>\n" +
+    "            <span></span>\n" +
+    "        </h1>\n" +
+    "    </header>\n" +
     "\n" +
     "    <form ng-submit=\"createProfile()\">\n" +
     "        <div class=\"row\">\n" +
@@ -4343,7 +4359,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
-    "                                        ng-model=\"profile.firstName\"\n" +
+    "                                        ng-model=\"newProfile.firstName\"\n" +
     "                                        placeholder=\"First Name\"\n" +
     "                                        class=\"form-control\"\n" +
     "                                        required>\n" +
@@ -4353,7 +4369,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <div class=\"form-group\">\n" +
     "                                    <input\n" +
     "                                        type=\"text\"\n" +
-    "                                        ng-model=\"profile.lastName\"\n" +
+    "                                        ng-model=\"newProfile.lastName\"\n" +
     "                                        placeholder=\"Last Name\"\n" +
     "                                        class=\"form-control\"\n" +
     "                                        required>\n" +
@@ -4370,7 +4386,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <input\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"1\" max=\"10\"\n" +
-    "                                    ng-model=\"profile.feet\"\n" +
+    "                                    ng-model=\"newProfile.feet\"\n" +
     "                                    placeholder=\"Feet\"\n" +
     "                                    class=\"form-control\"\n" +
     "                                    required>\n" +
@@ -4379,7 +4395,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                <input\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"0\" max=\"11\"\n" +
-    "                                    ng-model=\"profile.inches\"\n" +
+    "                                    ng-model=\"newProfile.inches\"\n" +
     "                                    placeholder=\"Inches\"\n" +
     "                                    class=\"form-control\">\n" +
     "                            </div>\n" +
@@ -4393,7 +4409,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-8 col-md-2\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
-    "                                    ng-model=\"profile.weightInPounds\"\n" +
+    "                                    ng-model=\"newProfile.weightInPounds\"\n" +
     "                                    placeholder=\"Weight\"\n" +
     "                                    type=\"number\"\n" +
     "                                    min=\"1\" max=\"1000\" step=\"0.01\"\n" +
@@ -4409,7 +4425,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-8 col-md-4\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
-    "                                    ng-model=\"profile.dob\"\n" +
+    "                                    ng-model=\"newProfile.dob\"\n" +
     "                                    placeholder=\"DOB\"\n" +
     "                                    type=\"text\"\n" +
     "                                    disabled>\n" +
@@ -4422,10 +4438,10 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                                Gender\n" +
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-4\">\n" +
-    "                                <select ng-model=\"profile.gender\" class=\"form-control\">\n" +
-    "                                    <option value=\"\" ng-selected=\"profile.gender == ''\">(not specified)</option>\n" +
-    "                                    <option value=\"female\" ng-selected=\"profile.gender == 'female'\">Female</option>\n" +
-    "                                    <option value=\"male\" ng-selected=\"profile.gender == 'male'\">Male</option>\n" +
+    "                                <select ng-model=\"newProfile.gender\" class=\"form-control\">\n" +
+    "                                    <option value=\"\" ng-selected=\"newProfile.gender == ''\">(not specified)</option>\n" +
+    "                                    <option value=\"female\" ng-selected=\"newProfile.gender == 'female'\">Female</option>\n" +
+    "                                    <option value=\"male\" ng-selected=\"newProfile.gender == 'male'\">Male</option>\n" +
     "                                </select>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -4438,7 +4454,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-8 col-md-6\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
-    "                                    ng-model=\"profile.email\"\n" +
+    "                                    ng-model=\"newProfile.email\"\n" +
     "                                    placeholder=\"email@example.com\"\n" +
     "                                    type=\"email\">\n" +
     "                            </div>\n" +
@@ -4452,7 +4468,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            <div class=\"col-sm-8 col-md-4\">\n" +
     "                                <input\n" +
     "                                    class=\"form-control\"\n" +
-    "                                    ng-model=\"profile.phone\"\n" +
+    "                                    ng-model=\"newProfile.phone\"\n" +
     "                                    placeholder=\"555-555-5555\"\n" +
     "                                    type=\"tel\">\n" +
     "                            </div>\n" +
@@ -4465,7 +4481,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
     "                                <textarea\n" +
-    "                                    ng-model=\"profile.medicalHistory\"\n" +
+    "                                    ng-model=\"newProfile.medicalHistory\"\n" +
     "                                    class=\"form-control\"\n" +
     "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
@@ -4478,7 +4494,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
     "                                <textarea\n" +
-    "                                    ng-model=\"profile.injuries\"\n" +
+    "                                    ng-model=\"newProfile.injuries\"\n" +
     "                                    class=\"form-control\"\n" +
     "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
@@ -4491,7 +4507,7 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "                            </div>\n" +
     "                            <div class=\"col-sm-8 col-md-9\">\n" +
     "                                <textarea\n" +
-    "                                    ng-model=\"profile.notes\"\n" +
+    "                                    ng-model=\"newProfile.notes\"\n" +
     "                                    class=\"form-control\"\n" +
     "                                    placeholder=\"...\"></textarea>\n" +
     "                            </div>\n" +
@@ -4508,111 +4524,6 @@ angular.module("profile/create.html", []).run(["$templateCache", function($templ
     "            </div>\n" +
     "        </div>\n" +
     "    </form>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("profile/edit.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("profile/edit.html",
-    "<div class=\"page page-dashboard\">\n" +
-    "\n" +
-    "    <!-- Breadcrumbs -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
-    "            <div data-ng-include=\"'partials/breadcrumbs.html'\"></div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <h1>Edit {{ profile.first_name }}'s details</h1>\n" +
-    "    <br>\n" +
-    "\n" +
-    "    <form ng-submit=\"submitProfileForm()\">\n" +
-    "        <div class=\"row\">\n" +
-    "\n" +
-    "            <!-- Edit form -->\n" +
-    "            <div class=\"col-sm-12 col-md-8\">\n" +
-    "                <div data-ng-include=\"'profile/partials/form.html'\"></div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Profile picture -->\n" +
-    "        	<div class=\"col-sm-12 col-md-4\">\n" +
-    "                <div data-ng-include=\"'profile/partials/upload-photo.html'\"></div>\n" +
-    "        	</div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <div class=\"row\">\n" +
-    "\n" +
-    "            <!-- Medical information -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        Medical Information\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                <textarea ng-model=\"profile.underlying_medical\" class=\"form-control\"></textarea>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Previous injuries -->\n" +
-    "            <div class=\"col-sm-12 col-md-6\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        Previous Injuries\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                <textarea ng-model=\"profile.previous_injuries\" class=\"form-control\"></textarea>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Other notes -->\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-sm-12 col-md-6 col-md-offset-3\">\n" +
-    "                <div class=\"panel panel-default\">\n" +
-    "                    <div class=\"panel-heading\">\n" +
-    "                        Other Notes\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"panel-body\">\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                <textarea ng-model=\"profile.notes\" class=\"form-control\"></textarea>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Action buttons -->\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-sm-12 text-center\">\n" +
-    "                <button type=\"submit\" class=\"btn btn-default\">Save changes</button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </form>\n" +
-    "\n" +
-    "    <div ng-show=\"global.isLocal\">\n" +
-    "        <br><br>\n" +
-    "        <div class=\"panel panel-default\">\n" +
-    "            <div class=\"panel-heading\">Debug</div>\n" +
-    "            <div class=\"panel-body\">\n" +
-    "                Selected group: {{ global.state.group.selected.name }}\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -4760,7 +4671,6 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
   $templateCache.put("profile/view.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<!-- Profile summary -->\n" +
     "<div ng-hide=\"profile.id === 0\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
@@ -4831,7 +4741,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "    		</div>\n" +
     "\n" +
     "            <!-- Profile details -->\n" +
-    "            <div class=\"col-xs-12 col-md-7 col-lg-4\">\n" +
+    "            <div class=\"col-xs-12 col-md-7 col-lg-5\">\n" +
     "                <ui-editable-fields\n" +
     "                    data-id=\"profileDetails\"\n" +
     "                    data-model=\"profile\"\n" +
@@ -4839,86 +4749,125 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    data-save-callback=\"saveProfileDetailsCallback\"\n" +
     "                    data-heading=\"Details\">\n" +
     "\n" +
-    "                    <!-- First name -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"First Name\"\n" +
-    "                        data-key=\"firstName\"\n" +
-    "                        data-required=\"true\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
-    "                    <!-- Last name -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Last Name\"\n" +
-    "                        data-key=\"lastName\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- First name -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"First Name\"\n" +
+    "                                data-key=\"firstName\"\n" +
+    "                                data-required=\"true\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
     "\n" +
-    "                    <!-- Height -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Height\"\n" +
-    "                        data-key=\"height\"\n" +
-    "                        data-type=\"length\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Last name -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Last Name\"\n" +
+    "                                data-key=\"lastName\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                    <!-- Weight -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Weight\"\n" +
-    "                        data-key=\"mass\"\n" +
-    "                        data-type=\"mass\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
-    "                    <!-- Date of Birth -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Date of Birth\"\n" +
-    "                        data-key=\"dob\"\n" +
-    "                        data-type=\"date\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Height -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Height\"\n" +
+    "                                data-key=\"height\"\n" +
+    "                                data-type=\"length\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
     "\n" +
-    "                    <!-- Gender -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Gender\"\n" +
-    "                        data-key=\"gender\"\n" +
-    "                        data-type=\"gender\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Weight -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Weight\"\n" +
+    "                                data-key=\"mass\"\n" +
+    "                                data-type=\"mass\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                    <!-- Phone -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Phone #\"\n" +
-    "                        data-key=\"phone\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
-    "                    <!-- Email -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Email\"\n" +
-    "                        data-key=\"email\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                        <!-- Date of Birth -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Date of Birth\"\n" +
+    "                                data-key=\"dob\"\n" +
+    "                                data-type=\"date\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Gender -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Gender\"\n" +
+    "                                data-key=\"gender\"\n" +
+    "                                data-type=\"gender\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                        <!-- Phone -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Phone #\"\n" +
+    "                                data-key=\"phone\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Email -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Email\"\n" +
+    "                                data-key=\"email\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                        <!-- Primary Tag -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Primary Sport\"\n" +
+    "                                data-key=\"primaryTag\"\n" +
+    "                                data-type=\"tag\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Secondary tags -->\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Other Sports\"\n" +
+    "                                data-key=\"secondaryTags\"\n" +
+    "                                data-type=\"tag\"\n" +
+    "                                data-max-tags=\"10\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
     "                    <!-- Profile creation date -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Profile Created\"\n" +
-    "                        data-key=\"createdAt\"\n" +
-    "                        data-type=\"datetime\"\n" +
-    "                        data-disabled=\"true\">\n" +
-    "                    </ui-editable-field>\n" +
-    "\n" +
-    "                    <!-- Primary Tag -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Primary Sport\"\n" +
-    "                        data-key=\"primaryTag\"\n" +
-    "                        data-type=\"tag\">\n" +
-    "                    </ui-editable-field>\n" +
-    "\n" +
-    "                    <!-- Secondary tags -->\n" +
-    "                    <ui-editable-field\n" +
-    "                        data-label=\"Other Sports\"\n" +
-    "                        data-key=\"secondaryTags\"\n" +
-    "                        data-type=\"tag\"\n" +
-    "                        data-max-tags=\"10\">\n" +
-    "                    </ui-editable-field>\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-xs-12\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Profile Created\"\n" +
+    "                                data-key=\"createdAt\"\n" +
+    "                                data-type=\"datetime\"\n" +
+    "                                data-disabled=\"true\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </ui-editable-fields>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- General notes -->\n" +
-    "            <div class=\"col-xs-12 col-lg-5\">\n" +
+    "            <div class=\"col-xs-12 col-lg-4\">\n" +
     "        		<div class=\"col-xs-12\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Medical Information\"\n" +

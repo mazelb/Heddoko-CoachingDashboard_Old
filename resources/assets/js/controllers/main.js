@@ -171,8 +171,6 @@ angular.module('app.controllers')
 
                         // Add profile to list.
                         Rover.setState('profile', profile.id, profile);
-                        // $scope.global.state.profile.list.length++;
-                        // $scope.global.state.profile.list[profile.id] = profile;
                     });
 
                     // Select a default profile.
@@ -213,12 +211,12 @@ angular.module('app.controllers')
 
         // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
         // exceed the maximum # simultaneous requests on the server.
-    	if ($scope.global.state.group.list.length === 0) {
-    		$timeout($scope.fetchGroups, 1000);
+    	if ($scope.global.state.profile.list.length === 0) {
+    		$timeout($scope.fetchProfiles, 1000);
     	}
 
-    	if ($scope.global.state.profile.list.length === 0) {
-    		$timeout($scope.fetchProfiles, 2000);
+    	if ($scope.global.state.group.list.length === 0) {
+    		$timeout($scope.fetchGroups, 2000);
     	}
 
         /**
