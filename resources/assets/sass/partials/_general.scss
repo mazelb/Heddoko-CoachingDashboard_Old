@@ -26,7 +26,11 @@ body {
     font-size: 18px;
     line-height: 1.42857;
     color: $text-color;
-    background-color: $background-color;
+    background: $background-color; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, $blue 0%, $background-color 40%);
+    background: -webkit-linear-gradient(-45deg, $blue 0%, $background-color 40%);
+    background: linear-gradient(135deg, $blue 0%, $background-color 40%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue', endColorstr='$background-color', GradientType=1);
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;

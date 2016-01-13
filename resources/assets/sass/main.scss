@@ -17,15 +17,15 @@
 @import 'partials/_messages.scss';
 
 /* Specific */
+@import 'partials/_demo.scss';
 @import 'partials/_overlays.scss';
 @import 'partials/_navigation.scss';
 @import 'partials/_port-from-old-stylesheet.scss';
 @import 'partials/_labels-alerts-progress.scss';
 @import 'partials/_panels-modal-tooltips.scss';
 @import 'partials/_ribbons.scss';
-@import 'partials/_charts.bak.scss';
+@import 'partials/_charts.scss';
 @import 'partials/_pie-charts.scss';
-@import 'partials/__dev.scss';
 
 /* Directives */
 @import 'directives/ui-avatar.scss';

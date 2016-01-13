@@ -8,8 +8,8 @@
  */
 angular.module('app.rover', [])
 
-.service('Rover', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout', 'Utilities',
-    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout, Utilities) {
+.service('Rover', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$anchorScroll', '$log', '$timeout', 'Utilities',
+    function($window, $localStorage, $sessionStorage, $route, $location, $anchorScroll, $log, $timeout, Utilities) {
 
         // Dev variables.
         this.timestamp = Date.now();
@@ -123,7 +123,20 @@ angular.module('app.rover', [])
                 Utilities.debug('Browsing to path: ' + path);
                 $location.path(path);
 
-            }.bind(this)
+            }.bind(this),
+
+            hash: function(hash) {
+
+                // Update location hash.
+                if ($location.hash() !== hash) {
+                    $location.hash(hash);
+                }
+
+                // Or scroll to current hash.
+                else {
+                    $anchorScroll();
+                }
+            }
         };
         this.browse = this.browseTo;
 

@@ -1,0 +1,70 @@
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ */
+
+.demo-trends-page {
+    .demo-trendline {
+        .legend {
+            .legendLabel {
+                color: #fff;
+            }
+        }
+    }
+
+    .demo-chartjs {
+        canvas {
+            margin: 0 auto;
+        }
+    }
+}
+
+.demo-analysis-page {
+
+    #emphasizedViewContainer {
+        @transition(height .5s);
+
+        video {
+            margin: 0 auto;
+            display: block;
+            @transition(height .5s);
+        }
+    }
+
+    #secondaryViewsContainer video {
+        width: 100%;
+    }
+
+    .panel-body {
+        background-color: #fff;
+        @box-shadow(1px 1px #aaa);
+    }
+
+    .demo-movement-li {
+        color: $blue-dark;
+
+        &.live {
+            background-color: $heddokogreen;
+        }
+
+        &.done {
+            color: #aaa;
+            text-decoration: line-through;
+        }
+    }
+
+    .demo-controls {
+        position: absolute;
+        bottom: 20px;
+
+        a {
+            color: $blue-dark;
+            margin: 0 10px;
+            display: inline-block;
+
+            &:hover {
+                color: $heddokogreen;
+            }
+        }
+    }
+}

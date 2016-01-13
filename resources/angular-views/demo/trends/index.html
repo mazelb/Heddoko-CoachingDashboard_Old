@@ -10,21 +10,18 @@
     </header>
 
     <div class="row">
-        <div class="col-sm-12">
-            <div
-                data-flot-chart
-                data-data="trend.data"
-                data-options="trend.options"
-                style="width: 100%; height: 300px;">
-            </div>
+        <div class="col-xs-12">
+            <chart class="chartjs" data-data="chartjsLine" data-type="Line" value="myChart"></chart>
         </div>
     </div>
 
     <div class="row">
         <div class="col-sm-12">
             <div
-                data-flot-chart-realtime
-                data-type="realtime"
+                data-flot-chart
+                data-data="trend.data"
+                data-options="trend.options"
+                class="demo-trendline"
                 style="width: 100%; height: 300px;">
             </div>
         </div>
