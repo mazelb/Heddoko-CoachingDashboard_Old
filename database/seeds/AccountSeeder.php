@@ -24,21 +24,29 @@ class AccountSeeder extends Seeder
 
         DB::table('users')->delete();
 
-        $this->command->info('Creating users which existed in October 2015');
+        $this->command->info('Creating demo accounts...');
 
         $demoUser = User::create([
-			'email' => 'demo@example.com',
+			'email' => 'awesomecoach111@example.com',
 			'username' => 'awesomecoach111',
 			'password' => bcrypt('password'),
-            'first_name' => 'Molly',
-            'last_name' => 'Bellini',
+            'first_name' => 'Awesome',
+            'last_name' => 'Demo',
             'created_at' => '2015-09-01 00:00:00'
 		]);
         $demoUser2 = User::create([
-			'email' => 'demo@example.com',
+			'email' => 'awesomeathlete111@example.com',
 			'username' => 'awesomeathlete111',
 			'password' => bcrypt('password'),
             'created_at' => '2015-09-01 00:00:00'
+		]);
+        $demoUser3 = User::create([
+			'email' => 'footballdemo@example.com',
+			'username' => 'footballdemo',
+			'password' => bcrypt('hedd oko'),
+            'first_name' => 'Brian',
+            'last_name' => 'Demo',
+            'created_at' => '2016-01-01 00:00:00'
 		]);
         $sglivingstonUser = User::create([
 			'email' => 'sglivingston1@gmail.com',
@@ -99,6 +107,7 @@ class AccountSeeder extends Seeder
         $manager->users()->attach([
             $demoUser->id,
             $demoUser2->id,
+            $demoUser3->id,
             $sglivingstonUser->id,
             $concordiaUser->id,
             $charlotteUser->id,
