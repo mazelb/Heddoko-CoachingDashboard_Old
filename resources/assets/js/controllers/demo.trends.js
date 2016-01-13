@@ -7,12 +7,22 @@
  */
 angular.module('app.controllers')
 
-.controller('DemoTrendsController', ['$scope', 'DemoTrendsService', 'Rover', 'Utilities',
-    function($scope, DemoTrendsService, Rover, Utilities) {
+.controller('DemoTrendsController', ['$scope', '$timeout', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrendsController');
 
+        // Data points.
         $scope.data = {
-            gauge: []
+            gauge: [],
+            chart: [
+                ['January',     0,  5,      2],
+                ['February',    0,  7,      -0.5],
+                ['March',       0,  -12,    -14],
+                ['April',       0,  -34,    -29],
+                ['May',         0,  -3,     -9],
+                ['June',        0,  2,      0],
+                ['July',        0,  4,      -2],
+            ]
         };
 
         // Chart options.
@@ -21,7 +31,7 @@ angular.module('app.controllers')
             datasetFill: false,
             pointDot: false,
             scaleBeginAtZero: false,
-            scaleFontColor: '#383d43',
+            scaleFontColor: '#888',
             scaleFontFamily: '"Proxima Nova", sans-serif',
             scaleGridLineColor: '#383d43',
             scaleLineColor: '#383d43',
@@ -59,7 +69,7 @@ angular.module('app.controllers')
                     label: 'Horizontal Abduction',
                     strokeColor: '#fabd39',
                     strokeFillColor: '#fabd39',
-                    data: [2, -0.5, 14, 29, 9, 0, 2]
+                    data: [2, -0.5, -14, -29, -9, 0, -2]
                 }
             ]
         };
@@ -75,8 +85,18 @@ angular.module('app.controllers')
          *
          */
         $scope.step = function() {
+            Utilities.debug('Stepping...');
+            Utilities.debug($scope.chartjsObject);
 
+            // Add a step.
+            $scope.chartjsData.datasets[0].data.push(0);
+            $scope.chartjsData.datasets[1].data.push(5);
+            $scope.chartjsData.datasets[2].data.push(-5);
+
+            $timeout($scope.step, 1000);
         };
+
+        // $scope.step();
 
         //
         // Gauge.

@@ -4600,13 +4600,14 @@ angular.module("profile/partials/demo.trends.html", []).run(["$templateCache", f
     "    <!-- Trendline -->\n" +
     "    <div id=\"chartRow\" class=\"row\">\n" +
     "        <div class=\"col-xs-12\">\n" +
-    "            <theme-chart\n" +
+    "            <theme-chart-timeout\n" +
     "                data-type=\"Line\"\n" +
     "                data-data=\"chartjsData\"\n" +
     "                data-options=\"chartjsOptions\"\n" +
     "                data-width=\"{{ chartjsWidth() }}\"\n" +
+    "                data-value=\"chartjsObject\"\n" +
     "                class=\"demo-chartjs\">\n" +
-    "            </theme-chart>\n" +
+    "            </theme-chart-timeout>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +

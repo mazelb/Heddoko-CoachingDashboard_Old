@@ -11,13 +11,14 @@
     <!-- Trendline -->
     <div id="chartRow" class="row">
         <div class="col-xs-12">
-            <theme-chart
+            <theme-chart-timeout
                 data-type="Line"
                 data-data="chartjsData"
                 data-options="chartjsOptions"
                 data-width="{{ chartjsWidth() }}"
+                data-value="chartjsObject"
                 class="demo-chartjs">
-            </theme-chart>
+            </theme-chart-timeout>
         </div>
     </div>
 
