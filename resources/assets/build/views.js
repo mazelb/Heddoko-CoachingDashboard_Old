@@ -4054,8 +4054,8 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "<div class=\"logo\">\n" +
     "    <div class=\"logo-container\">\n" +
-    "        <img src=\"../../images/logo/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
-    "        <img src=\"../../images/logo/heddoko_logo_2.svg\" alt=\"Heddoko\" class=\"logo2\">\n" +
+    "        <img src=\"../../images/logos/heddoko_logo_1.svg\" alt=\"Heddoko\" class=\"logo1\">\n" +
+    "        <img src=\"../../images/logos/heddoko_logo_2.svg\" alt=\"Heddoko\" class=\"logo2\">\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
@@ -4590,68 +4590,61 @@ angular.module("profile/partials/demo.trends.html", []).run(["$templateCache", f
   $templateCache.put("profile/partials/demo.trends.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <h2 class=\"title\">\n" +
-    "            Historical Data\n" +
-    "            <span></span>\n" +
-    "        </h2>\n" +
-    "    </div>\n" +
-    "</div>\n" +
+    "<section>\n" +
+    "    <h2 class=\"title\">\n" +
+    "        Historical Data\n" +
+    "        <span></span>\n" +
+    "    </h2>\n" +
+    "    <br>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <div\n" +
-    "            theme-morris-chart\n" +
-    "            data-data=\"comboData\"\n" +
-    "            data-type=\"line\"\n" +
-    "            data-xkey=\"year\"\n" +
-    "            data-ykeys='[\"a\", \"b\", \"c\"]'\n" +
-    "            data-labels='[\"Value A\", \"Value B\", \"Value C\"]'\n" +
-    "            data-line-colors='[\"#ddd\", \"#3bd6b2\", \"#fabd39\"]'\n" +
-    "            data-line-width=\"3\">\n" +
+    "    <!-- Trendline -->\n" +
+    "    <div id=\"chartRow\" class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "            <theme-chart\n" +
+    "                data-type=\"Line\"\n" +
+    "                data-data=\"chartjsData\"\n" +
+    "                data-options=\"chartjsOptions\"\n" +
+    "                data-width=\"{{ chartjsWidth() }}\"\n" +
+    "                class=\"demo-chartjs\">\n" +
+    "            </theme-chart>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "        <theme-chart\n" +
-    "            data-type=\"Line\"\n" +
-    "            data-data=\"chartjsLine\"\n" +
-    "            data-options=\"chartjsOptions\"\n" +
-    "            class=\"demo-chartjs\"\n" +
-    "            value=\"myChart\">\n" +
-    "        </theme-chart>\n" +
-    "    </div>\n" +
-    "</div>\n" +
+    "    <h2 class=\"title\">\n" +
+    "        Historical Data\n" +
+    "        <span></span>\n" +
+    "    </h2>\n" +
+    "    <br>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12\">\n" +
-    "        <div\n" +
-    "            data-flot-chart\n" +
-    "            data-data=\"trend.data\"\n" +
-    "            data-options=\"trend.options\"\n" +
-    "            class=\"demo-trendline\"\n" +
-    "            style=\"width: 100%; height: 300px;\">\n" +
+    "    <!-- Bar chart -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "            <theme-chart\n" +
+    "                data-type=\"Bar\"\n" +
+    "                data-data=\"chartjsData\"\n" +
+    "                data-options=\"chartjsOptions\"\n" +
+    "                data-width=\"{{ chartjsWidth() }}\"\n" +
+    "                class=\"demo-chartjs\">\n" +
+    "            </theme-chart>\n" +
     "        </div>\n" +
     "    </div>\n" +
-    "</div>\n" +
     "\n" +
-    "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 col-md-6\">\n" +
-    "        <canvas\n" +
-    "            data-gauge-chart\n" +
-    "            data-gauge-data=\"gauge.data\"\n" +
-    "            data-gauge-options=\"gauge.options\"\n" +
-    "            style=\"width: 340px; height: 170px;\">\n" +
-    "        </canvas>\n" +
+    "    <!-- TBD -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "            <canvas\n" +
+    "                data-gauge-chart\n" +
+    "                data-gauge-data=\"gauge.data\"\n" +
+    "                data-gauge-options=\"gauge.options\"\n" +
+    "                style=\"width: 340px; height: 170px;\">\n" +
+    "            </canvas>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "\n" +
+    "        </div>\n" +
     "    </div>\n" +
-    "\n" +
-    "    <div class=\"col-sm-12 col-md-6\">\n" +
-    "\n" +
-    "    </div>\n" +
-    "</div>\n" +
+    "</section>\n" +
     "");
 }]);
 
@@ -4761,13 +4754,6 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "                <!-- Profile shortcuts -->\n" +
     "                <div class=\"text-center profile-shortcuts\">\n" +
-    "\n" +
-    "                    <!-- View trends -->\n" +
-    "                    <a href=\"#/demo/trends\" class=\"sub-header-btn\">\n" +
-    "                        <button class=\"btn btn-primary btn-circle btn-lg\">\n" +
-    "                            <i class=\"fa fa-line-chart\"></i>\n" +
-    "                        </button>\n" +
-    "                    </a>\n" +
     "\n" +
     "                    <!-- Delete group button -->\n" +
     "                    <a\n" +
@@ -4970,7 +4956,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "\n" +
     "        <div class=\"row text-center\">\n" +
-    "            <a ng-click=\"global.browseTo.hash('trendsDemo')\" href=\"javascript:;\">\n" +
+    "            <a href=\"javascript:;\">\n" +
     "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +

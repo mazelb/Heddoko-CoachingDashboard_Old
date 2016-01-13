@@ -150,7 +150,7 @@ angular.module('app.controllers')
         $scope.uploadAvatarCallback = function() {
 
             // Update the avatar on the currently selected profile.
-            $scope.global.getSelectedProfile().avatarSrc = this.avatarSrc;
+            Rover.getState('profile', $scope.profile.id).avatarSrc = this.avatarSrc;
 
             // Update the filtered list.
             angular.forEach($scope.global.state.profile.filtered, function(profile) {

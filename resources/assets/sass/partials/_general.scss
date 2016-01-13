@@ -22,18 +22,34 @@ html.auth-register {
 }
 
 body {
+    height: 1000px; /* Fix for gradient background */
     font-family: 'Proxima Nova', sans-serif;
     font-size: 18px;
     line-height: 1.42857;
     color: $text-color;
-    background: $background-color; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, $blue 0%, $background-color 40%);
-    background: -webkit-linear-gradient(-45deg, $blue 0%, $background-color 40%);
-    background: linear-gradient(135deg, $blue 0%, $background-color 40%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$blue', endColorstr='$background-color', GradientType=1);
+    background: $background-color url(../../images/backgrounds/gradient800.png) top left no-repeat;
+    background-size: cover;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale !important;
+}
+
+@media (min-width: 768px) {
+    body {
+        background-image: url(../../images/backgrounds/gradient1000.png);
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        background-image: url(../../images/backgrounds/gradient1600.png);
+    }
+}
+
+@media (min-width: 1440px) {
+    body {
+        background-image: url(../../images/backgrounds/gradient2900.png);
+    }
 }
 
 ::selection {

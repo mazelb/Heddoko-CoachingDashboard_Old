@@ -38,18 +38,19 @@
         <!-- Loading overlay -->
         <div class="page-loading-overlay">
             <a href="/logout" title="Exit application" class="page-loading-escape">
-                <i class="fa fa-exclamation-triangle"></i>
+                <i class="fa fa-times-circle fa-2x"></i>
             </a>
-            
+
             <div class="loader-2"></div>
         </div>
         <div class="load_circle_wrapper">
             <div class="loading_spinner">
-                <div id="wrap_spinner">
+                <!-- <div id="wrap_spinner">
                     <div class="loading outer">
                         <div class="loading inner"></div>
                     </div>
-                </div>
+                </div> -->
+                <i class="fa fa-spinner fa-spin fa-4x"></i>
             </div>
         </div>
 

@@ -21,14 +21,17 @@ module.exports = function(grunt) {
         //     }
         // },
 
-        // clean: {
-        //     temp: {
-        //         src: [ 'tmp' ]
-        //     }
-        // },
+        clean: {
+            temp: {
+                src: [ 'tmp' ]
+            },
+            dist: {
+                src: ['public/images']
+            }
+        },
 
         copy: {
-            main: {
+            dist: {
                 files: [
                     //
                     // // jQuery
@@ -57,15 +60,15 @@ module.exports = function(grunt) {
                     //     src: ['fonts/*.*'],
                     //     dest: 'public'
                     // },
-                    //
-                    // // Other images
-                    // {
-                    //     expand: true,
-                    //     dot: true,
-                    //     cwd: 'angular-app/images',
-                    //     src: ['*.*','background/*','logo/*'],
-                    //     dest: 'public/images'
-                    // }
+
+                    // Other images
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: 'resources/assets/images',
+                        src: ['*.*','**/*.*'],
+                        dest: 'public/images'
+                    }
                 ]
             }
         },
@@ -262,6 +265,8 @@ module.exports = function(grunt) {
                     'Gruntfile.js',
                     'resources/angular-views/*.html',
                     'resources/angular-views/**/*.html',
+                    'resources/assets/images/*.*',
+                    'resources/assets/images/**/*.*',
                     'resources/assets/js/*.js',
                     'resources/assets/js/**/*.js',
                     'resources/assets/sass/*.scss',
@@ -274,7 +279,9 @@ module.exports = function(grunt) {
                     'html2js:dist',
                     'concat:dist',
                     'sass',
-                    'cssmin'
+                    'cssmin',
+                    'clean:dist',
+                    'copy:dist'
                 ],
                 options: {
                     atBegin: true
@@ -360,5 +367,5 @@ module.exports = function(grunt) {
 
     grunt.registerTask('css', ['sass', 'cssmin']);
     grunt.registerTask('js', ['jshint', 'uglify', 'html2js', 'concat']);
-    grunt.registerTask('default', ['js', 'css']);
+    grunt.registerTask('default', ['js', 'css', 'clean:dist', 'copy:dist']);
 };
