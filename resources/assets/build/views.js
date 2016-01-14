@@ -3015,7 +3015,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            <!-- New profile button -->\n" +
     "            <a\n" +
     "                href=\"#/profile/create\"\n" +
-    "                class=\"btn btn-primary btn-metro\">\n" +
+    "                class=\"btn btn-default btn-metro\">\n" +
     "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
     "            </a>\n" +
@@ -3026,7 +3026,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                class=\"btn btn-default btn-metro\"\n" +
     "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
     "\n" +
-    "                <span>{{ profile.firstName }}</span>\n" +
+    "                <span>{{ profile.lastName.toUpperCase() }}</span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -4606,7 +4606,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "        </div>\n" +
     "\n" +
     "        <div class=\"col-md-2\">\n" +
-    "            <span>122</span>\n" +
+    "            <span>157</span>\n" +
     "            <label># of Throws</label>\n" +
     "        </div>\n" +
     "\n" +
@@ -4615,26 +4615,53 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "            <label>Conditions</label>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "    <br>\n" +
     "\n" +
     "    <!-- Plot -->\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-3 qb-icon\"></div>\n" +
     "\n" +
-    "        <div id=\"chartRow\" class=\"col-md-9\">\n" +
+    "        <div class=\"col-md-9 col-md-offset-3\">\n" +
+    "            <h3 class=\"text-center\">\n" +
+    "                Peak Elbow Angular Velocity\n" +
+    "            </h3>\n" +
+    "        </div>\n" +
     "\n" +
-    "            <h3 class=\"text-center\">Peak Angular Velocity of Elbow</h3>\n" +
+    "        <div class=\"col-md-3 demo-trends-info-2\">\n" +
+    "            <b>Conditions: Sunny, Light Drizzle</b>\n" +
+    "            <br>\n" +
+    "            \n" +
+    "            <b>Wind: 8 km/h</b>\n" +
+    "            <br>\n" +
+    "            <br>\n" +
     "\n" +
-    "            <theme-chart-timeout\n" +
-    "                data-type=\"Line\"\n" +
-    "                data-data=\"chartjsData\"\n" +
-    "                data-options=\"chartjsOptions\"\n" +
-    "                data-height=\"300\"\n" +
-    "                data-width=\"{{ chartjsWidth() }}\"\n" +
-    "                data-value=\"chartjsObject\"\n" +
-    "                class=\"demo-chartjs\">\n" +
-    "            </theme-chart-timeout>\n" +
+    "            Training Session <i class=\"fa fa-caret-down\"></i>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            January 26, 2016 <i class=\"fa fa-caret-down\"></i>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <div class=\"demo-trends-session-legend\"></div>\n" +
+    "\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-xs-4 demo-warning\" style=\"height: 70px\">\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-xs-8\">\n" +
+    "                    Throw Count: 157\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    Recommendation:\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <b style=\"color: #3bd6b2\">Stop Athlete's Training</b>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div id=\"chartRow\" class=\"col-md-9 demo-trends-session-plot\">\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "\n" +
     "</section>\n" +
     "");
 }]);
@@ -4784,38 +4811,44 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                </div>\n" +
     "\n" +
     "                <!-- Profile shortcuts -->\n" +
-    "                <div class=\"text-center profile-shortcuts\">\n" +
+    "                <div class=\"profile-shortcuts\">\n" +
     "\n" +
-    "                    <!-- Delete group button -->\n" +
-    "                    <a\n" +
-    "                        ng-show=\"profile.id > 0\"\n" +
-    "                        data-toggle=\"modal\"\n" +
-    "                        data-target=\"#deleteProfileConfirmation\"\n" +
-    "                        href=\"javascript:;\"\n" +
-    "                        class=\"sub-header-btn\">\n" +
+    "                    <span style=\"line-height: 60px; font-size: 1.2em;\">\n" +
+    "                        Position: Quarterback\n" +
+    "                    </span>\n" +
     "\n" +
-    "                        <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
-    "                            <i class=\"fa fa-trash\"></i>\n" +
-    "                        </button>\n" +
-    "                    </a>\n" +
+    "                    <div class=\"pull-right\">\n" +
+    "                        <!-- Delete group button -->\n" +
+    "                        <a\n" +
+    "                            ng-show=\"profile.id > 0\"\n" +
+    "                            data-toggle=\"modal\"\n" +
+    "                            data-target=\"#deleteProfileConfirmation\"\n" +
+    "                            href=\"javascript:;\"\n" +
+    "                            class=\"sub-header-btn\">\n" +
     "\n" +
-    "                    <!-- Delete confirmation -->\n" +
-    "                    <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
-    "                        <div class=\"modal-dialog\">\n" +
-    "                            <div class=\"modal-content\">\n" +
-    "                                <div class=\"modal-body\">\n" +
-    "                                    <p>\n" +
-    "                                        Are you sure you want to delete <b>{{ profile.firstName }}\n" +
-    "                                        {{ profile.lastName }}</b>'s profile?\n" +
-    "                                    </p>\n" +
-    "                                </div>\n" +
-    "                                <div class=\"modal-footer text-center\">\n" +
-    "                                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                        Cancel\n" +
-    "                                    </button>\n" +
-    "                                    <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                        Yes, delete {{ profile.firstName }}\n" +
-    "                                    </button>\n" +
+    "                            <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
+    "                                <i class=\"fa fa-trash\"></i>\n" +
+    "                            </button>\n" +
+    "                        </a>\n" +
+    "\n" +
+    "                        <!-- Delete confirmation -->\n" +
+    "                        <div class=\"modal fade\" id=\"deleteProfileConfirmation\">\n" +
+    "                            <div class=\"modal-dialog\">\n" +
+    "                                <div class=\"modal-content\">\n" +
+    "                                    <div class=\"modal-body\">\n" +
+    "                                        <p>\n" +
+    "                                            Are you sure you want to delete <b>{{ profile.firstName }}\n" +
+    "                                            {{ profile.lastName }}</b>'s profile?\n" +
+    "                                        </p>\n" +
+    "                                    </div>\n" +
+    "                                    <div class=\"modal-footer text-center\">\n" +
+    "                                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                                            Cancel\n" +
+    "                                        </button>\n" +
+    "                                        <button ng-click=\"deleteProfile()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                            Yes, delete {{ profile.firstName }}\n" +
+    "                                        </button>\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -4913,7 +4946,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div class=\"row\">\n" +
+    "                    <div class=\"row\" style=\"display: none;\">\n" +
     "\n" +
     "                        <!-- Primary Tag -->\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
@@ -4987,7 +5020,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "\n" +
     "        <div class=\"row text-center\">\n" +
-    "            <a href=\"javascript:;\">\n" +
+    "            <a href=\"javascript:;\" style=\"padding: 20px 0; margin: 160px 0 40px; display: block;\">\n" +
     "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +
@@ -4998,7 +5031,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "\n" +
     "        <div class=\"row text-center\">\n" +
-    "            <a href=\"javascript:;\">\n" +
+    "            <a href=\"javascript:;\" style=\"padding: 20px 0; margin: 140px 0 20px; display: block;\">\n" +
     "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +

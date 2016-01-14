@@ -1,0 +1,143 @@
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Controller for trends demo
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    January 2016
+ */
+angular.module('app.controllers')
+
+.controller('DemoTrainingSessionController', ['$scope', '$timeout', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
+        Utilities.debug('DemoTrainingSessionController');
+
+        $scope.flotOptions = {
+            grid: {
+                hoverable: true,
+                borderWidth: 1,
+                borderColor: Utilities.colour.blue
+            },
+            legend: {
+                show: false
+            },
+            ticks: [
+                [20, '20 Throws'],
+                [40, '40 Throws'],
+                [60, '60 Throws'],
+                [80, '80 Throws'],
+                [100, '100 Throws'],
+                [120, '120 Throws']
+            ],
+            xaxis: {
+                
+            },
+            yaxes: [
+                {
+
+                }, {
+                    position: 'right',
+                    min: 20
+                }
+            ],
+            tooltip: !0,
+            tooltipOpts: {
+                defaultTheme: !1
+            },
+            colors: [Utilities.colour.silver, [Utilities.colour.heddokoGreen, Utilities.colour.silver]]
+        };
+
+        // Setup chart data.
+        $scope.dataPointsTotal = 122;
+        $scope.dataPointsThreshold = 2100;
+        $scope.flotData = [
+            {
+                data: [],
+                color: 'rgba(255, 255, 255, 0.1)',
+                lines: {
+                    fill: true,
+                    fillColor: { colors: [ { opacity: 0 }, { opacity: 0.5 } ] },
+                    show: true
+                }
+            }, {
+                data: [],
+                points: {
+                    fill: true,
+                    fillColor: Utilities.colour.heddokoGreen,
+                    lineWidth: 2,
+                    radius: 2,
+                    show: true
+                }
+            }
+        ];
+
+        // Threshold data points.
+        // $scope.flotData[0].data.push([0, $scope.dataPointsThreshold]);
+        for (var x = 0; x < $scope.dataPointsTotal; x++) {
+            $scope.flotData[0].data.push([x, $scope.dataPointsThreshold]);
+        }
+
+        // Angular velocity data points.
+        $scope.flotData[1].data.push([0, 2400]);
+        $scope.flotData[1].data.push([2, 2400]);
+        $scope.flotData[1].data.push([4, 2400]);
+        $scope.flotData[1].data.push([6, 2400]);
+        $scope.flotData[1].data.push([8, 2400]);
+        $scope.flotData[1].data.push([10, 2400]);
+        $scope.flotData[1].data.push([12, 2400]);
+        $scope.flotData[1].data.push([14, 2400]);
+        $scope.flotData[1].data.push([16, 2400]);
+        $scope.flotData[1].data.push([18, 2400]);
+        $scope.flotData[1].data.push([20, 2400]);
+        $scope.flotData[1].data.push([22, 2400]);
+        $scope.flotData[1].data.push([24, 2400]);
+        $scope.flotData[1].data.push([26, 2400]);
+        $scope.flotData[1].data.push([28, 2400]);
+        $scope.flotData[1].data.push([30, 2400]);
+        $scope.flotData[1].data.push([32, 2400]);
+        $scope.flotData[1].data.push([34, 2400]);
+        $scope.flotData[1].data.push([36, 2400]);
+        $scope.flotData[1].data.push([38, 2400]);
+        $scope.flotData[1].data.push([40, 2700]);
+        $scope.flotData[1].data.push([42, 2670]);
+        $scope.flotData[1].data.push([44, 2647]);
+        $scope.flotData[1].data.push([46, 2619]);
+        $scope.flotData[1].data.push([48, 2620]);
+        $scope.flotData[1].data.push([50, 2599]);
+        $scope.flotData[1].data.push([52, 2574]);
+        $scope.flotData[1].data.push([54, 2540]);
+        $scope.flotData[1].data.push([56, 2502]);
+        $scope.flotData[1].data.push([58, 2470]);
+        $scope.flotData[1].data.push([60, 2444]);
+        $scope.flotData[1].data.push([62, 2420]);
+        $scope.flotData[1].data.push([64, 2400]);
+        $scope.flotData[1].data.push([66, 2393]);
+        $scope.flotData[1].data.push([68, 2381]);
+        $scope.flotData[1].data.push([70, 2359]);
+        $scope.flotData[1].data.push([72, 2328]);
+        $scope.flotData[1].data.push([74, 2304]);
+        $scope.flotData[1].data.push([76, 2289]);
+        $scope.flotData[1].data.push([78, 2257]);
+        $scope.flotData[1].data.push([80, 2230]);
+        $scope.flotData[1].data.push([82, 2205]);
+        $scope.flotData[1].data.push([84, 2191]);
+        $scope.flotData[1].data.push([86, 2167]);
+        $scope.flotData[1].data.push([88, 2140]);
+        $scope.flotData[1].data.push([90, 2137]);
+        $scope.flotData[1].data.push([92, 2112]);
+        $scope.flotData[1].data.push([94, 2106]);
+        $scope.flotData[1].data.push([96, 2100]);
+        $scope.flotData[1].data.push([98, 2084]);
+        $scope.flotData[1].data.push([100, 2061]);
+        $scope.flotData[1].data.push([102, 2000]);
+        $scope.flotData[1].data.push([104, 1975]);
+        $scope.flotData[1].data.push([106, 1978]);
+        $scope.flotData[1].data.push([108, 1945]);
+        $scope.flotData[1].data.push([110, 1903]);
+        $scope.flotData[1].data.push([112, 1913]);
+        $scope.flotData[1].data.push([114, 1925]);
+        $scope.flotData[1].data.push([116, 1899]);
+        $scope.flotData[1].data.push([118, 1901]);
+        $scope.flotData[1].data.push([120, 1879]);
+
+    }
+]);

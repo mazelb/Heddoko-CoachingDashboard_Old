@@ -4,7 +4,10 @@
  */
 
 .demo-trends-section {
+
     .demo-trends-info {
+        display: none;
+
         span, label {
             display: block;
             text-align: center;
@@ -21,10 +24,35 @@
         }
     }
 
+    .demo-trends-info-2 {
+        color: $text-color-blue;
+        text-transform: uppercase;
+    }
+
+    .demo-trends-session-plot {
+        display: block;
+        height: 400px;
+        background: transparent url("../../images/demo/trends-session.png") center center no-repeat;
+        background-size: contain;
+    }
+
+    .demo-trends-session-legend {
+        display: block;
+        margin: 25px 0;
+        height: 125px;
+        background: transparent url("../../images/demo/trends-session-legend.png") center center no-repeat;
+        background-size: contain;
+    }
+
     .qb-icon {
         height: 400px;
         background: transparent url("../../images/demo/qb throw.png") center center no-repeat;
         background-size: 60%;
+    }
+
+    .demo-warning {
+        background: transparent url("../../images/demo/warning.png") center center no-repeat;
+        background-size: contain;
     }
 
     .demo-trendline {

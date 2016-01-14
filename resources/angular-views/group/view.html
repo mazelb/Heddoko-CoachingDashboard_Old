@@ -167,7 +167,7 @@
             <!-- New profile button -->
             <a
                 href="#/profile/create"
-                class="btn btn-primary btn-metro">
+                class="btn btn-info btn-metro">
 
                 <i class="fa fa-plus"></i>
             </a>
@@ -178,7 +178,7 @@
                 class="btn btn-default btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
-                <span>{{ profile.firstName }}</span>
+                <span>{{ profile.lastName.toUpperCase() }}</span>
             </a>
         </div>
     </div>

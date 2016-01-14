@@ -6,26 +6,21 @@
  */
 
 $green: #45825A;
-// $blue: #383d43;
-$blue: #2c3a4b;
-// $blue: #2c3a46;    /* Latest blue test */
-// $blue-dark: #272b2f;
-$blue-dark: #1c222c;
+$blue: #2c3a46;
+$blue-dark: #1c242c;
 //$orange: #db5031;
 $orange: #fabd39;
 $light-gray: #c1bfc0;
 $yellow: #fef9d9;
 $dark-brown: #503f3c;
 $warning:#eec95a;
-// $danger: #C05F44;
 $danger: #db5031;
 $info-alt: #8170ca;
 $heddokogreen: #3bd6b2;
 $silver: #cbd4e3;
 $orangeaccent: #ff8d46;
-// $text-color: #767676;
 $text-color: #ddd;
-// $background-color: #f3f3f3;
+$text-color-blue: #5b707d;
 $background-color: $blue-dark;
 
 @mixin transform($transform){

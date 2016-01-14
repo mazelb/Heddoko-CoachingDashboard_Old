@@ -24,38 +24,44 @@
                 </div>
 
                 <!-- Profile shortcuts -->
-                <div class="text-center profile-shortcuts">
+                <div class="profile-shortcuts">
 
-                    <!-- Delete group button -->
-                    <a
-                        ng-show="profile.id > 0"
-                        data-toggle="modal"
-                        data-target="#deleteProfileConfirmation"
-                        href="javascript:;"
-                        class="sub-header-btn">
+                    <span style="line-height: 60px; font-size: 1.2em;">
+                        Position: Quarterback
+                    </span>
 
-                        <button class="btn btn-danger btn-circle btn-lg">
-                            <i class="fa fa-trash"></i>
-                        </button>
-                    </a>
+                    <div class="pull-right">
+                        <!-- Delete group button -->
+                        <a
+                            ng-show="profile.id > 0"
+                            data-toggle="modal"
+                            data-target="#deleteProfileConfirmation"
+                            href="javascript:;"
+                            class="sub-header-btn">
 
-                    <!-- Delete confirmation -->
-                    <div class="modal fade" id="deleteProfileConfirmation">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <p>
-                                        Are you sure you want to delete <b>{{ profile.firstName }}
-                                        {{ profile.lastName }}</b>'s profile?
-                                    </p>
-                                </div>
-                                <div class="modal-footer text-center">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                                        Cancel
-                                    </button>
-                                    <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                        Yes, delete {{ profile.firstName }}
-                                    </button>
+                            <button class="btn btn-danger btn-circle btn-lg">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </a>
+
+                        <!-- Delete confirmation -->
+                        <div class="modal fade" id="deleteProfileConfirmation">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <p>
+                                            Are you sure you want to delete <b>{{ profile.firstName }}
+                                            {{ profile.lastName }}</b>'s profile?
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer text-center">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <button ng-click="deleteProfile()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                            Yes, delete {{ profile.firstName }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +159,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row" style="display: none;">
 
                         <!-- Primary Tag -->
                         <div class="col-xs-12 col-sm-6">
@@ -227,7 +233,7 @@
         </div>
 
         <div class="row text-center">
-            <a href="javascript:;">
+            <a href="javascript:;" style="padding: 20px 0; margin: 160px 0 40px; display: block;">
                 <i class="fa fa-angle-double-down fa-5x"></i>
             </a>
         </div>
@@ -238,7 +244,7 @@
         </div>
 
         <div class="row text-center">
-            <a href="javascript:;">
+            <a href="javascript:;" style="padding: 20px 0; margin: 140px 0 20px; display: block;">
                 <i class="fa fa-angle-double-down fa-5x"></i>
             </a>
         </div>

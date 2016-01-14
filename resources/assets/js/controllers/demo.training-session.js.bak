@@ -1,0 +1,101 @@
+/**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
+ *
+ * @brief   Controller for trends demo
+ * @author  Francis Amankrah (frank@heddoko.com)
+ * @date    January 2016
+ */
+angular.module('app.controllers')
+
+.controller('DemoTrainingSessionController', ['$scope', '$timeout', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
+        Utilities.debug('DemoTrainingSessionController');
+
+        // Chart options.
+        $scope.chartjsOptions = {
+            animation: false,
+            datasetFill: false,
+            pointDot: false,
+            scaleBeginAtZero: false,
+            scaleFontColor: '#888',
+            scaleFontFamily: '"Proxima Nova", sans-serif',
+            scaleGridLineColor: '#383d43',
+            scaleLineColor: '#383d43',
+            showTooltips: false
+        };
+
+        // Chart data.
+        $scope.chartjsData = {
+            labels: ['20 Throws', '40 Throws', '60 Throws', '80 Throws', '100 Throws', '120 Throws'],
+            datasets: [
+                {
+                    label: 'Threshold',
+                    strokeColor: '#bbb',
+                    data: [2100, 2100, 2100, 2100, 2100, 2100]
+                },
+                {
+                    label: 'Angular Velocity',
+                    strokeColor: '#3bd6b2',
+                    strokeFillColor: '#3bd6b2',
+                    data: [2400, 2670, 2800, , 2550, 2200, 1750]
+                }
+            ]
+        };
+
+        /**
+         *
+         */
+        $scope.chartjsWidth = function() {
+            return $('#chartRow').width() - 30;
+        };
+
+        /**
+         *
+         */
+        $scope.step = function() {
+            Utilities.debug('Stepping...');
+            Utilities.debug($scope.chartjsObject);
+
+            // Add a step.
+            $scope.chartjsData.datasets[0].data.push(0);
+            $scope.chartjsData.datasets[1].data.push(5);
+            $scope.chartjsData.datasets[2].data.push(-5);
+
+            $timeout($scope.step, 1000);
+        };
+
+        // $scope.step();
+
+        //
+        // Gauge.
+        //
+        $scope.gauge =
+        {
+            // data: DemoTrendsService.gauge.dummyData,
+            data: {
+                maxValue: 1000,
+                animationSpeed: 20,
+                val: 400
+            },
+            options: {
+                lines: 12,
+                angle: 0,
+                lineWidth: 0.3,
+                pointer: {
+                    length: 0.6,
+                    strokeWidth: 0.03,
+                    color: "#555555"
+                },
+                limitMax: "false",
+                colorStart: "#3bd6b2",
+                colorStop: "#3bd6b2",
+                strokeColor: "#383d43",
+                generateGradient: true,
+                percentColors: [
+                    [0, "#3bd6b2"],
+                    [1, "#383d43"]
+                ]
+            }
+        };
+    }
+]);
