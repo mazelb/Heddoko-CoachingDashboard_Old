@@ -3015,7 +3015,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            <!-- New profile button -->\n" +
     "            <a\n" +
     "                href=\"#/profile/create\"\n" +
-    "                class=\"btn btn-default btn-metro\">\n" +
+    "                class=\"btn btn-info btn-metro\">\n" +
     "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
     "            </a>\n" +
@@ -4590,75 +4590,125 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
   $templateCache.put("profile/partials/demo-session.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
+    "<br>\n" +
     "<section class=\"demo-trends-section\">\n" +
     "    <h2 class=\"title\">\n" +
-    "        QB Training Session\n" +
+    "        Training Session Review\n" +
     "        <span></span>\n" +
     "    </h2>\n" +
     "    <br>\n" +
-    "    <br>\n" +
     "\n" +
-    "    <!-- Information -->\n" +
-    "    <div class=\"row demo-trends-info\">\n" +
-    "        <div class=\"col-md-2\">\n" +
-    "            <span>Jan 26, 2016</span>\n" +
-    "            <label>Date</label>\n" +
-    "        </div>\n" +
+    "    <span ng-hide=\"currentSessionTitle == ''\">\n" +
+    "        <small class=\"text-muted\">Current Session:</small> {{ currentSessionTitle }}\n" +
+    "    </span>\n" +
     "\n" +
-    "        <div class=\"col-md-2\">\n" +
-    "            <span>157</span>\n" +
-    "            <label># of Throws</label>\n" +
-    "        </div>\n" +
+    "    <!-- Plots -->\n" +
+    "    <div ng-show=\"currentSession > 0 && isFetchingSessionData === false\">\n" +
     "\n" +
-    "        <div class=\"col-md-2\">\n" +
-    "            <span>Sunny, Light Drizzle</span>\n" +
-    "            <label>Conditions</label>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "    <br>\n" +
+    "        <!-- Demo plots -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-9 col-md-offset-3\">\n" +
+    "                <h3 class=\"text-center\">\n" +
+    "                    Peak Elbow Angular Velocity\n" +
+    "                </h3>\n" +
+    "            </div>\n" +
     "\n" +
-    "    <!-- Plot -->\n" +
-    "    <div class=\"row\">\n" +
+    "            <div class=\"col-md-3 demo-trends-info-2\">\n" +
+    "                <b>Conditions: Sunny, Light Drizzle</b>\n" +
+    "                <br>\n" +
     "\n" +
-    "        <div class=\"col-md-9 col-md-offset-3\">\n" +
-    "            <h3 class=\"text-center\">\n" +
-    "                Peak Elbow Angular Velocity\n" +
-    "            </h3>\n" +
-    "        </div>\n" +
+    "                <b>Wind: 8 km/h</b>\n" +
+    "                <br>\n" +
+    "                <br>\n" +
     "\n" +
-    "        <div class=\"col-md-3 demo-trends-info-2\">\n" +
-    "            <b>Conditions: Sunny, Light Drizzle</b>\n" +
-    "            <br>\n" +
-    "            \n" +
-    "            <b>Wind: 8 km/h</b>\n" +
-    "            <br>\n" +
-    "            <br>\n" +
+    "                <selectize\n" +
+    "                    ng-model=\"currentSession\"\n" +
+    "                    class=\"form-control text-center\"\n" +
+    "                    config=\"selectizeConfig\"\n" +
+    "                    options=\"selectizeOptions\"\n" +
+    "                    placeholder=\"Select a session to get started.\">\n" +
+    "                </selectize>\n" +
+    "                <br>\n" +
     "\n" +
-    "            Training Session <i class=\"fa fa-caret-down\"></i>\n" +
-    "            <br>\n" +
+    "                <div class=\"demo-trends-session-legend\" style=\"height: 100px\"></div>\n" +
     "\n" +
-    "            January 26, 2016 <i class=\"fa fa-caret-down\"></i>\n" +
-    "            <br>\n" +
+    "                <div class=\"row\">\n" +
+    "                    <div class=\"col-xs-4 demo-warning\" style=\"height: 70px\">\n" +
+    "                    </div>\n" +
     "\n" +
-    "            <div class=\"demo-trends-session-legend\"></div>\n" +
+    "                    <div class=\"col-xs-8\">\n" +
+    "                        Throw Count: 157\n" +
+    "                        <br>\n" +
     "\n" +
-    "            <div class=\"row\">\n" +
-    "                <div class=\"col-xs-4 demo-warning\" style=\"height: 70px\">\n" +
-    "                </div>\n" +
+    "                        Recommendation:\n" +
+    "                        <br>\n" +
     "\n" +
-    "                <div class=\"col-xs-8\">\n" +
-    "                    Throw Count: 157\n" +
-    "                    <br>\n" +
-    "\n" +
-    "                    Recommendation:\n" +
-    "                    <br>\n" +
-    "\n" +
-    "                    <b style=\"color: #3bd6b2\">Stop Athlete's Training</b>\n" +
+    "                        <b style=\"color: #3bd6b2\">Stop Athlete's Training</b>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </div>\n" +
     "\n" +
-    "        <div id=\"chartRow\" class=\"col-md-9 demo-trends-session-plot\">\n" +
+    "            <div id=\"chartRow\" class=\"col-md-9 demo-trends-session-plot\">\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <!-- Fake plots -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-md-9\">\n" +
+    "                <h3 class=\"text-center\">\n" +
+    "                    Energy Expended\n" +
+    "                </h3>\n" +
+    "\n" +
+    "                <div morris-chart\n" +
+    "                             data-data=\"fakeData.morris\"\n" +
+    "                             data-type=\"area\"\n" +
+    "                             data-xkey=\"year\"\n" +
+    "                             data-ykeys='[\"a\", \"b\", \"c\"]'\n" +
+    "                             data-labels='[\"Value A\", \"Value B\", \"Value C\"]'\n" +
+    "                             data-line-colors='{{ fakeData.morrisColours }}'\n" +
+    "                             data-line-width=\"2\"\n" +
+    "                             ></div>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-md-3\">\n" +
+    "                <h3 class=\"text-center\">\n" +
+    "                    Energy Expended\n" +
+    "                </h3>\n" +
+    "\n" +
+    "                <canvas\n" +
+    "                    data-gauge-chart\n" +
+    "                    data-gauge-data=\"fakeData.gauge.data\"\n" +
+    "                    data-gauge-options=\"fakeData.gauge.options\"\n" +
+    "                    style=\"width: 340px; height: 170px;\">\n" +
+    "                </canvas>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading data -->\n" +
+    "    <div ng-show=\"isFetchingSessionData === true\" class=\"row text-center\">\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-3x\" style=\"display: block; margin: 40px 0\"></i>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- No data selected -->\n" +
+    "    <div ng-show=\"currentSession === 0 && isFetchingSessionData === false\" class=\"row\">\n" +
+    "        <div class=\"col-md-4 col-md-offset-4\" style=\"margin-bottom: 300px\">\n" +
+    "            <selectize\n" +
+    "                ng-model=\"currentSession\"\n" +
+    "                class=\"form-control text-center\"\n" +
+    "                config=\"selectizeConfig\"\n" +
+    "                options=\"selectizeOptions\"\n" +
+    "                placeholder=\"Select a session to get started.\">\n" +
+    "            </selectize>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -4692,14 +4742,6 @@ angular.module("profile/partials/demo-trends.html", []).run(["$templateCache", f
     "\n" +
     "    <!-- Extra info -->\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-3\">\n" +
-    "            <canvas\n" +
-    "                data-gauge-chart\n" +
-    "                data-gauge-data=\"gauge.data\"\n" +
-    "                data-gauge-options=\"gauge.options\"\n" +
-    "                style=\"width: 340px; height: 170px;\">\n" +
-    "            </canvas>\n" +
-    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "</section>\n" +
@@ -5019,26 +5061,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        	</div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div class=\"row text-center\">\n" +
-    "            <a href=\"javascript:;\" style=\"padding: 20px 0; margin: 160px 0 40px; display: block;\">\n" +
-    "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
     "        <!-- Demo: training sesion -->\n" +
     "        <div ng-controller=\"DemoTrainingSessionController\" id=\"trendsDemo\">\n" +
     "            <ng-include src=\"'profile/partials/demo-session.html'\"></ng-include>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <div class=\"row text-center\">\n" +
-    "            <a href=\"javascript:;\" style=\"padding: 20px 0; margin: 140px 0 20px; display: block;\">\n" +
-    "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Demo: aggregate data -->\n" +
-    "        <div ng-controller=\"DemoTrendsController\" id=\"trendsDemo\">\n" +
-    "            <ng-include src=\"'profile/partials/demo-trends.html'\"></ng-include>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "</div>\n" +

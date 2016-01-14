@@ -251,8 +251,8 @@ angular.module('app.controllers')
             }
 
             // Update input placeholder
-            $('.selectize-input input').attr('placeholder', filter.placeholder);
-            $('.selectize-input input').innerWidth(340);
+            $('.top-nav .selectize-input input').attr('placeholder', filter.placeholder);
+            $('.top-nav .selectize-input input').innerWidth(340);
 
             // Update selected filter.
             $scope.selectedFilter = Rover.store.searchFilter = filter;

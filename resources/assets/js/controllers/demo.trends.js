@@ -72,37 +72,5 @@ angular.module('app.controllers')
             },
             colors: ["#383d43", "#db5031", "#fef9d9"]
         };
-
-        //
-        // Gauge.
-        //
-        $scope.gauge =
-        {
-            // data: DemoTrendsService.gauge.dummyData,
-            data: {
-                maxValue: 1000,
-                animationSpeed: 20,
-                val: 400
-            },
-            options: {
-                lines: 12,
-                angle: 0,
-                lineWidth: 0.3,
-                pointer: {
-                    length: 0.6,
-                    strokeWidth: 0.03,
-                    color: "#555555"
-                },
-                limitMax: "false",
-                colorStart: "#3bd6b2",
-                colorStop: "#3bd6b2",
-                strokeColor: "#383d43",
-                generateGradient: true,
-                percentColors: [
-                    [0, "#3bd6b2"],
-                    [1, "#383d43"]
-                ]
-            }
-        };
     }
 ]);

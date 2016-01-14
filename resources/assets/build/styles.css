@@ -5082,17 +5082,6 @@ button.toast-close-button {
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
-.demo-trends-section .demo-trends-info {
-  display: none; }
-  .demo-trends-section .demo-trends-info span, .demo-trends-section .demo-trends-info label {
-    display: block;
-    text-align: center; }
-  .demo-trends-section .demo-trends-info span {
-    font-size: 1.2em; }
-  .demo-trends-section .demo-trends-info label {
-    font-size: 0.8em;
-    text-transform: uppercase;
-    color: #777; }
 .demo-trends-section .demo-trends-info-2 {
   color: #5b707d;
   text-transform: uppercase; }
@@ -5104,7 +5093,6 @@ button.toast-close-button {
 .demo-trends-section .demo-trends-session-legend {
   display: block;
   margin: 25px 0;
-  height: 125px;
   background: transparent url("../../images/demo/trends-session-legend.png") center center no-repeat;
   background-size: contain; }
 .demo-trends-section .qb-icon {
