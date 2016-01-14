@@ -1,0 +1,49 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<section class="demo-trends-section">
+    <h2 class="title">
+        QB Training Session
+        <span></span>
+    </h2>
+    <br>
+    <br>
+
+    <!-- Information -->
+    <div class="row demo-trends-info">
+        <div class="col-md-2">
+            <span>Jan 26, 2016</span>
+            <label>Date</label>
+        </div>
+
+        <div class="col-md-2">
+            <span>122</span>
+            <label># of Throws</label>
+        </div>
+
+        <div class="col-md-2">
+            <span>Sunny, Light Drizzle</span>
+            <label>Conditions</label>
+        </div>
+    </div>
+
+    <!-- Plot -->
+    <div class="row">
+        <div class="col-md-3 qb-icon"></div>
+
+        <div id="chartRow" class="col-md-9">
+
+            <h3 class="text-center">Peak Angular Velocity of Elbow</h3>
+
+            <theme-chart-timeout
+                data-type="Line"
+                data-data="chartjsData"
+                data-options="chartjsOptions"
+                data-height="300"
+                data-width="{{ chartjsWidth() }}"
+                data-value="chartjsObject"
+                class="demo-chartjs">
+            </theme-chart-timeout>
+        </div>
+    </div>
+</section>

@@ -5082,9 +5082,22 @@ button.toast-close-button {
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
  */
-.demo-trends-page .demo-trendline .legend .legendLabel {
+.demo-trends-section .demo-trends-info span, .demo-trends-section .demo-trends-info label {
+  display: block;
+  text-align: center; }
+.demo-trends-section .demo-trends-info span {
+  font-size: 1.2em; }
+.demo-trends-section .demo-trends-info label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: #777; }
+.demo-trends-section .qb-icon {
+  height: 400px;
+  background: transparent url("../../images/demo/qb throw.png") center center no-repeat;
+  background-size: 60%; }
+.demo-trends-section .demo-trendline .legend .legendLabel {
   color: #fff; }
-.demo-trends-page .demo-chartjs canvas {
+.demo-trends-section .demo-chartjs canvas {
   margin: 0 auto; }
 
 .demo-analysis-page #emphasizedViewContainer {
@@ -8629,8 +8642,7 @@ svg {
     font-size: 0.5em; }
 .ui-editable-fields .ui-editable-field-value {
   color: #ddd;
-  font-size: 1.2em;
-  letter-spacing: 1.1px; }
+  font-size: 1.2em; }
   .ui-editable-fields .ui-editable-field-value .edit-icon {
     margin: 0 10px;
     color: #777;

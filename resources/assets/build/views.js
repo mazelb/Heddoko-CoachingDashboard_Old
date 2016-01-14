@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo.trends.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/demo-trends.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -4586,53 +4586,86 @@ angular.module("profile/partials/current-fms-plot.html", []).run(["$templateCach
     "");
 }]);
 
-angular.module("profile/partials/demo.trends.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("profile/partials/demo.trends.html",
+angular.module("profile/partials/demo-session.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/demo-session.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<section>\n" +
+    "<section class=\"demo-trends-section\">\n" +
     "    <h2 class=\"title\">\n" +
-    "        Historical Data\n" +
+    "        QB Training Session\n" +
     "        <span></span>\n" +
     "    </h2>\n" +
     "    <br>\n" +
+    "    <br>\n" +
     "\n" +
-    "    <!-- Trendline -->\n" +
-    "    <div id=\"chartRow\" class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
+    "    <!-- Information -->\n" +
+    "    <div class=\"row demo-trends-info\">\n" +
+    "        <div class=\"col-md-2\">\n" +
+    "            <span>Jan 26, 2016</span>\n" +
+    "            <label>Date</label>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-md-2\">\n" +
+    "            <span>122</span>\n" +
+    "            <label># of Throws</label>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-md-2\">\n" +
+    "            <span>Sunny, Light Drizzle</span>\n" +
+    "            <label>Conditions</label>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Plot -->\n" +
+    "    <div class=\"row\">\n" +
+    "        <div class=\"col-md-3 qb-icon\"></div>\n" +
+    "\n" +
+    "        <div id=\"chartRow\" class=\"col-md-9\">\n" +
+    "\n" +
+    "            <h3 class=\"text-center\">Peak Angular Velocity of Elbow</h3>\n" +
+    "\n" +
     "            <theme-chart-timeout\n" +
     "                data-type=\"Line\"\n" +
     "                data-data=\"chartjsData\"\n" +
     "                data-options=\"chartjsOptions\"\n" +
+    "                data-height=\"300\"\n" +
     "                data-width=\"{{ chartjsWidth() }}\"\n" +
     "                data-value=\"chartjsObject\"\n" +
     "                class=\"demo-chartjs\">\n" +
     "            </theme-chart-timeout>\n" +
     "        </div>\n" +
     "    </div>\n" +
+    "</section>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/demo-trends.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/demo-trends.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
+    "<section class=\"demo-trends-section\">\n" +
     "    <h2 class=\"title\">\n" +
-    "        Historical Data\n" +
+    "        Rehabilitation\n" +
     "        <span></span>\n" +
     "    </h2>\n" +
+    "    <br>\n" +
     "    <br>\n" +
     "\n" +
     "    <!-- Bar chart -->\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "            <theme-chart\n" +
-    "                data-type=\"Bar\"\n" +
-    "                data-data=\"chartjsData\"\n" +
-    "                data-options=\"chartjsOptions\"\n" +
-    "                data-width=\"{{ chartjsWidth() }}\"\n" +
-    "                class=\"demo-chartjs\">\n" +
-    "            </theme-chart>\n" +
+    "        <div class=\"col-md-12\">\n" +
+    "            <div\n" +
+    "                data-theme-flot-chart\n" +
+    "                data-data=\"flotData\"\n" +
+    "                data-options=\"flotOptions\"\n" +
+    "                style=\"width: 100%; height: 400px;\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <!-- TBD -->\n" +
+    "    <!-- Extra info -->\n" +
     "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
+    "        <div class=\"col-md-3\">\n" +
     "            <canvas\n" +
     "                data-gauge-chart\n" +
     "                data-gauge-data=\"gauge.data\"\n" +
@@ -4640,11 +4673,8 @@ angular.module("profile/partials/demo.trends.html", []).run(["$templateCache", f
     "                style=\"width: 340px; height: 170px;\">\n" +
     "            </canvas>\n" +
     "        </div>\n" +
-    "\n" +
-    "        <div class=\"col-sm-12 col-md-6\">\n" +
-    "\n" +
-    "        </div>\n" +
     "    </div>\n" +
+    "\n" +
     "</section>\n" +
     "");
 }]);
@@ -4962,9 +4992,20 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "            </a>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Trends demo -->\n" +
+    "        <!-- Demo: training sesion -->\n" +
+    "        <div ng-controller=\"DemoTrainingSessionController\" id=\"trendsDemo\">\n" +
+    "            <ng-include src=\"'profile/partials/demo-session.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"row text-center\">\n" +
+    "            <a href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-angle-double-down fa-5x\"></i>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Demo: aggregate data -->\n" +
     "        <div ng-controller=\"DemoTrendsController\" id=\"trendsDemo\">\n" +
-    "            <ng-include src=\"'profile/partials/demo.trends.html'\"></ng-include>\n" +
+    "            <ng-include src=\"'profile/partials/demo-trends.html'\"></ng-include>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "</div>\n" +

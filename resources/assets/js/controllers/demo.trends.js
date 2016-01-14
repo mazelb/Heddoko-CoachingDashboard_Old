@@ -11,92 +11,67 @@ angular.module('app.controllers')
     function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrendsController');
 
-        // Data points.
-        $scope.data = {
-            gauge: [],
-            chart: [
-                ['January',     0,  5,      2],
-                ['February',    0,  7,      -0.5],
-                ['March',       0,  -12,    -14],
-                ['April',       0,  -34,    -29],
-                ['May',         0,  -3,     -9],
-                ['June',        0,  2,      0],
-                ['July',        0,  4,      -2],
+        //
+        $scope.flotData = [{
+            data: [
+                [2008, 20],
+                [2009, 10],
+                [2010, 5],
+                [2011, 5],
+                [2012, 20],
+                [2013, 28]
             ]
-        };
+        }, {
+            data: [
+                [2008, 16],
+                [2009, 22],
+                [2010, 14],
+                [2011, 12],
+                [2012, 19],
+                [2013, 22]
+            ]
+        }, {
+            data: [
+                [2008, 12],
+                [2009, 30],
+                [2010, 20],
+                [2011, 19],
+                [2012, 13],
+                [2013, 20]
+            ]
+        }];
 
-        // Chart options.
-        $scope.chartjsOptions = {
-            animation: false,
-            datasetFill: false,
-            pointDot: false,
-            scaleBeginAtZero: false,
-            scaleFontColor: '#888',
-            scaleFontFamily: '"Proxima Nova", sans-serif',
-            scaleGridLineColor: '#383d43',
-            scaleLineColor: '#383d43',
-            showTooltips: false,
-            legendTemplate: '<ul class="<%= name.toLowerCase() %>-legend">' +
-                                '<% for (var i = 0; i < datasets.length; i++){%>' +
-                                    '<li>' +
-                                        '<span style="background-color:<%= datasets[i].strokeColor %>">' +
-                                        '</span>' +
-
-                                        '<% if (datasets[i].label) { %>' +
-                                            '<%= datasets[i].label %>' +
-                                        '<% } %>' +
-                                    '</li>' +
-                                '<% } %>' +
-                            '</ul>'
-        };
-
-        // Chart data.
-        $scope.chartjsData = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'Zero Position',
-                    strokeColor: '#bbb',
-                    data: [0, 0, 0, 0, 0, 0, 0]
-                },
-                {
-                    label: 'Vertical Abduction',
-                    strokeColor: '#3bd6b2',
-                    strokeFillColor: '#3bd6b2',
-                    data: [5, 7, -12, -34, -3, 2, 4]
-                },
-                {
-                    label: 'Horizontal Abduction',
-                    strokeColor: '#fabd39',
-                    strokeFillColor: '#fabd39',
-                    data: [2, -0.5, -14, -29, -9, 0, -2]
+        $scope.flotOptions = {
+            grid: {
+                hoverable: false,
+                borderWidth: 1,
+                borderColor: "#eeeeee"
+            },
+            legend: {
+                show: false
+            },
+            series: {
+                bars: {
+                    show: true
                 }
-            ]
+            },
+            xaxis: {
+
+            },
+            yaxes: [
+                {
+
+                }, {
+                    position: 'right',
+                    min: 20
+                }
+            ],
+            tooltip: !0,
+            tooltipOpts: {
+                defaultTheme: !1
+            },
+            colors: ["#383d43", "#db5031", "#fef9d9"]
         };
-
-        /**
-         *
-         */
-        $scope.chartjsWidth = function() {
-            return $('#chartRow').width() - 30;
-        };
-
-        /**
-         *
-         */
-        $scope.step = function() {
-            Utilities.debug('Stepping...');
-            Utilities.debug($scope.chartjsObject);
-
-            // Add a step.
-            $scope.chartjsData.datasets[0].data.push(0);
-            $scope.chartjsData.datasets[1].data.push(5);
-            $scope.chartjsData.datasets[2].data.push(-5);
-
-            $timeout($scope.step, 1000);
-        };
-
-        // $scope.step();
 
         //
         // Gauge.

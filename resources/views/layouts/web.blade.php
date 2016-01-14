@@ -16,7 +16,7 @@
     <body class="@yield('body-class', '')">
 		<header>
 			<a class="nav-logo" href="/">
-				<img src="{{ asset('images/logo/heddoko_logo.svg') }}" alt="Heddoko">
+				<img src="{{ asset('images/logos/heddoko_logo.svg') }}" alt="Heddoko">
 			</a>
 
 			<div class="social">

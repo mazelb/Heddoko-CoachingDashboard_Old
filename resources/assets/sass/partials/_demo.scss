@@ -3,7 +3,30 @@
  *
  */
 
-.demo-trends-page {
+.demo-trends-section {
+    .demo-trends-info {
+        span, label {
+            display: block;
+            text-align: center;
+        }
+
+        span {
+            font-size: 1.2em;
+        }
+
+        label {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            color: #777;
+        }
+    }
+
+    .qb-icon {
+        height: 400px;
+        background: transparent url("../../images/demo/qb throw.png") center center no-repeat;
+        background-size: 60%;
+    }
+
     .demo-trendline {
         .legend {
             .legendLabel {
