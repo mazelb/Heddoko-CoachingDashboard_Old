@@ -14500,7 +14500,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                    <span></span>\n" +
     "                </h5>\n" +
     "\n" +
-    "                <div class=\"col-md-6 col-md-offset-3\">\n" +
+    "                <div class=\"col-md-8 col-md-offset-4 col-lg-4 col-lg-offset-4\">\n" +
     "                    <div class=\"input-group\">\n" +
     "\n" +
     "                        <!-- Decrease -->\n" +
