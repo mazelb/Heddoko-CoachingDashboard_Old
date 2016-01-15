@@ -1040,37 +1040,75 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "    <div class=\"row demo-trends-section\">\n" +
     "        <div class=\"col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3\">\n" +
     "            <h3 class=\"text-center\">\n" +
-    "                Peak Elbow Angular Velocity / Jan 22 - Feb 6 2016\n" +
+    "                Peak Elbow Angular Velocity / Dec 19 - Feb 6 2016\n" +
     "            </h3>\n" +
     "        </div>\n" +
     "\n" +
     "        <div class=\"col-xs-12 col-md-5 col-lg-3  demo-trends-info-2\">\n" +
-    "            <div class=\"col-md-5\">\n" +
-    "                <div\n" +
-    "                    ng-style=\"{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}\"\n" +
-    "                    class=\"aspect-ratio aspect-square\">\n" +
+    "\n" +
+    "            <!-- Athlete details -->\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-5\">\n" +
+    "                    <div\n" +
+    "                        ng-style=\"{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}\"\n" +
+    "                        class=\"aspect-ratio aspect-square\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-md-7\">\n" +
+    "                    <small>Date:</small>\n" +
+    "                    <b>Feb 6, 2016</b>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <small>Rehab Start:</small>\n" +
+    "                    <b>Dec 19, 2016</b>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <small>Athlete: </small>\n" +
+    "                    <b>\n" +
+    "                        <a href=\"#/profile/{{ profile.id }}\">\n" +
+    "                            {{ profile.firstName + ' ' + profile.lastName }}\n" +
+    "                        </a>\n" +
+    "                    </b>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <small>Team: </small>\n" +
+    "                    <b>\n" +
+    "                        {{ global.getSelectedGroup().name }}\n" +
+    "                    </b>\n" +
     "                </div>\n" +
     "            </div>\n" +
+    "            <br>\n" +
+    "            <br>\n" +
     "\n" +
-    "            <div class=\"col-md-7\">\n" +
-    "                <small>Date:</small>\n" +
-    "                <b>Feb 6, 2016</b>\n" +
-    "                <br>\n" +
+    "            <!-- Threshold input -->\n" +
+    "            <div class=\"row\">\n" +
+    "                <h5 class=\"text-center\">\n" +
+    "                    Return To Play Threshold\n" +
+    "                    <span></span>\n" +
+    "                </h5>\n" +
     "\n" +
-    "                <small>Rehab Start:</small>\n" +
-    "                <b>Jan 22, 2016</b>\n" +
-    "                <br>\n" +
+    "                <div class=\"col-md-6 col-md-offset-3\">\n" +
+    "                    <div class=\"input-group\">\n" +
     "\n" +
-    "                <small>Athlete: </small>\n" +
-    "                <b>\n" +
-    "                    {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
-    "                </b>\n" +
-    "                <br>\n" +
+    "                        <!-- Decrease -->\n" +
+    "                        <span class=\"input-group-btn\">\n" +
+    "                            <button ng-click=\"decreaseThreshold()\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                                <i class=\"fa fa-minus\"></i>\n" +
+    "                            </button>\n" +
+    "                        </span>\n" +
     "\n" +
-    "                <small>Team: </small>\n" +
-    "                <b>\n" +
-    "                    {{ global.getSelectedGroup().name }}\n" +
-    "                </b>\n" +
+    "                        <!-- Edit -->\n" +
+    "                        <input ng-model=\"thresholdValue\" type=\"text\" class=\"form-control text-center\">\n" +
+    "\n" +
+    "                        <!-- Increase -->\n" +
+    "                        <span class=\"input-group-btn\">\n" +
+    "                            <button ng-click=\"increaseThreshold()\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                                <i class=\"fa fa-plus\"></i>\n" +
+    "                            </button>\n" +
+    "                        </span>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
@@ -1078,6 +1116,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            <div\n" +
     "                data-theme-flot-chart\n" +
     "                data-data=\"flotData\"\n" +
+    "                data-threshold=\"thresholdValue\"\n" +
     "                data-options=\"flotOptions\"\n" +
     "                style=\"width: 100%; height: 600px;\">\n" +
     "            </div>\n" +

@@ -4041,15 +4041,16 @@ fieldset[disabled] .btn-danger.active {
     .page > header .sub-header .sub-header-btn {
       margin: 0 10px 0 0; }
 
-h1.title, h2.title, h3.title {
+h1.title, h2.title, h3.title, h4.title {
+  border-bottom: none;
   margin: none;
   display: inline-block;
   text-transform: uppercase;
   color: #ddd; }
-  h1.title .fa, h2.title .fa, h3.title .fa {
+  h1.title .fa, h2.title .fa, h3.title .fa, h4.title .fa {
     font-size: 0.9em;
     margin: auto 10px; }
-  h1.title span, h2.title span, h3.title span {
+  h1.title span, h2.title span, h3.title span, h4.title span {
     margin: 10px 0 0;
     display: block;
     width: 90%;

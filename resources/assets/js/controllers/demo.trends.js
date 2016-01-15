@@ -13,18 +13,40 @@ angular.module('app.controllers')
 
         $scope.profile = $scope.global.getSelectedProfile();
 
+        $scope.thresholdValue = 2800;
+        $scope.thresholdIncrement = 20;
+
+        /**
+         *
+         */
+        $scope.increaseThreshold = function() {
+            $scope.thresholdValue =
+                $scope.thresholdValue >= ($scope.flotOptions.yaxes[0].max - $scope.thresholdIncrement) ?
+                    $scope.flotOptions.yaxes[0].max :
+                    $scope.thresholdValue + $scope.thresholdIncrement;
+        };
+
+        /**
+         *
+         */
+        $scope.decreaseThreshold = function() {
+            $scope.thresholdValue =
+                $scope.thresholdValue <= ($scope.flotOptions.yaxes[0].min + $scope.thresholdIncrement) ?
+                    $scope.flotOptions.yaxes[0].min :
+                    $scope.thresholdValue - $scope.thresholdIncrement;
+        };
+
         //
         // Flot chart options.
         //
 
         $scope.flotOptions = {
-            clickable: true,
             grid: {
-                // hoverable: true,
+                clickable: true,
+                hoverable: true,
                 borderWidth: 1,
                 borderColor: Utilities.colour.blue
             },
-            hoverable: true,
             legend: {
                 show: false
             },
@@ -42,8 +64,8 @@ angular.module('app.controllers')
             yaxes: [
                 {
                     color: Utilities.colour.blue,
-                    min: 800,
-                    max: 3200,
+                    min: 500,
+                    max: 3500,
                     position: 'left'
                 }, {
                     color: Utilities.colour.blue,
@@ -65,8 +87,8 @@ angular.module('app.controllers')
                 '#79d9d8',                      // Week 5
                 '#6eb4d2',                      // Week 6
                 Utilities.colour.heddokoGreen,  // Week 7
-                '#fff',         // Median line
-                '#fff',         // Return to play
+                '#fff',                         // Median line
+                Utilities.colour.heddokoGreen,  // Return to play
             ]
         };
 
@@ -172,13 +194,14 @@ angular.module('app.controllers')
             {
                 bars: {show: false},
                 clickable: true,
-                data: [[0, 2800], [$scope.dataLastPoint, 2800]],
+                data: [],
                 label: 'Return to play',
                 lines: {
                     fill: false,
                     lineWidth: 2,
                     show: true
                 },
+                isThresholdSeries: true,
                 yaxis: 1
             }
         ];
@@ -212,7 +235,7 @@ angular.module('app.controllers')
             x++;
 
             // Set density and midpoint for given week.
-            density = $scope.dataPointsInitialDensity + Math.floor(Math.pow((i * $scope.dataPointsInitialDensity), 1.2));
+            density = $scope.dataPointsInitialDensity + Math.floor(Math.pow((i * $scope.dataPointsInitialDensity), 1.1));
             midPoint = Math.floor(density/2) + x;
 
             Utilities.debug('Week: ' + (i + 1));
@@ -237,7 +260,7 @@ angular.module('app.controllers')
 
                 // Data point value.
                 min = $scope.dataMedians[i] - 100 + j * 2;
-                max = $scope.dataMedians[i] + 100 + j * 2;
+                max = $scope.dataMedians[i] + 20 + j * 2;
                 y = $scope.randomDataPoint(min, max);
 
                 //

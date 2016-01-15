@@ -9,71 +9,42 @@
  */
 angular.module('app.directives')
 
-.directive('themeFlotChart', [
-    function() {
+.directive('themeFlotChart', ['Utilities',
+    function(Utilities) {
         return {
-            restrict: "A",
+            restrict: 'AE',
             scope: {
-                data: "=",
-                options: "="
+                data: '=',
+                threshold: '=?',
+                options: '='
             },
-            link: function(scope, ele) {
-                var data, options, plot;
+            link: function(scope, element) {
 
-                // hard-code color indices to prevent them from shifting as
-                // countries are turned on/off
+                // Draw plot.
+                var plot = $.plot(element[0], scope.data, scope.options);
 
-                var datasets;
+                // If plot has a moveable threshold, redraw on update.
+                if (scope.threshold)
+                {
+                    scope.$watch('threshold', function(newThreshold) {
 
-                datasets = scope.data;
+                        // Update plot.
+                        angular.forEach(scope.data, function(series) {
 
-                var i = 0;
-                $.each(datasets, function(key, val) {
-                    val.color = i;
-                    ++i;
-                });
-
-                // insert checkboxes
-
-                if($(ele[0]).parent().find(".choices").length > 0){
-
-                    // insert checkboxes
-                    var choiceContainer = $(ele[0]).parent().find(".choices");
-
-                    choiceContainer.html("");
-
-                    $.each(datasets, function(key, val) {
-
-                        choiceContainer.append("<br/><div class='choice-item'><label for='id" + key + "' class='ui-checkbox'>" +
-                        "<input name='" + key +
-                        "' type='checkbox' id='id" + key + "' checked='checked' value='option1'>" +
-                        "<span>" + val.label + "</span>" +
-                        "</label></div>");
-
-                    });
-
-                    var plotAccordingToChoices = function() {
-
-                        var data_to_push = [];
-
-                        choiceContainer.find("input:checked").each(function () {
-                            var key = $(this).attr("name");
-                            if (key && datasets[key]) {
-                                data_to_push.push(datasets[key]);
+                            // Performance check.
+                            if (series.isThresholdSeries)
+                            {
+                                series.data[0] = [0, newThreshold];
+                                series.data[1] = [series.data[1][0], newThreshold];
                             }
                         });
 
-                        if (data_to_push.length > 0) {
-                            $.plot(ele[0], data_to_push, scope.options);
-                        }
-                    };
-
-                    choiceContainer.find("input").click(plotAccordingToChoices);
+                        // Redraw plot.
+                        plot.setData(scope.data, scope.options);
+                        // plot.setupGrid();
+                        plot.draw();
+                    });
                 }
-
-                //plotAccordingToChoices();
-
-                return data = scope.data, options = scope.options, plot = $.plot(ele[0], data, options);
             }
         };
     }

@@ -13,37 +13,75 @@
     <div class="row demo-trends-section">
         <div class="col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3">
             <h3 class="text-center">
-                Peak Elbow Angular Velocity / Jan 22 - Feb 6 2016
+                Peak Elbow Angular Velocity / Dec 19 - Feb 6 2016
             </h3>
         </div>
 
         <div class="col-xs-12 col-md-5 col-lg-3  demo-trends-info-2">
-            <div class="col-md-5">
-                <div
-                    ng-style="{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}"
-                    class="aspect-ratio aspect-square">
+
+            <!-- Athlete details -->
+            <div class="row">
+                <div class="col-md-5">
+                    <div
+                        ng-style="{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}"
+                        class="aspect-ratio aspect-square">
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <small>Date:</small>
+                    <b>Feb 6, 2016</b>
+                    <br>
+
+                    <small>Rehab Start:</small>
+                    <b>Dec 19, 2016</b>
+                    <br>
+
+                    <small>Athlete: </small>
+                    <b>
+                        <a href="#/profile/{{ profile.id }}">
+                            {{ profile.firstName + ' ' + profile.lastName }}
+                        </a>
+                    </b>
+                    <br>
+
+                    <small>Team: </small>
+                    <b>
+                        {{ global.getSelectedGroup().name }}
+                    </b>
                 </div>
             </div>
+            <br>
+            <br>
 
-            <div class="col-md-7">
-                <small>Date:</small>
-                <b>Feb 6, 2016</b>
-                <br>
+            <!-- Threshold input -->
+            <div class="row">
+                <h5 class="text-center">
+                    Return To Play Threshold
+                    <span></span>
+                </h5>
 
-                <small>Rehab Start:</small>
-                <b>Jan 22, 2016</b>
-                <br>
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="input-group">
 
-                <small>Athlete: </small>
-                <b>
-                    {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}
-                </b>
-                <br>
+                        <!-- Decrease -->
+                        <span class="input-group-btn">
+                            <button ng-click="decreaseThreshold()" class="btn btn-default" type="button">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </span>
 
-                <small>Team: </small>
-                <b>
-                    {{ global.getSelectedGroup().name }}
-                </b>
+                        <!-- Edit -->
+                        <input ng-model="thresholdValue" type="text" class="form-control text-center">
+
+                        <!-- Increase -->
+                        <span class="input-group-btn">
+                            <button ng-click="increaseThreshold()" class="btn btn-default" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -51,6 +89,7 @@
             <div
                 data-theme-flot-chart
                 data-data="flotData"
+                data-threshold="thresholdValue"
                 data-options="flotOptions"
                 style="width: 100%; height: 600px;">
             </div>
