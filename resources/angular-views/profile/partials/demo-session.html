@@ -13,6 +13,7 @@
         <span></span>
     </h2>
     <br>
+    <br>
 
     <span ng-hide="currentSessionTitle == ''">
         <small class="text-muted">Current Session:</small> {{ currentSessionTitle }}
@@ -64,7 +65,16 @@
                 </div>
             </div>
 
-            <div id="chartRow" class="col-md-9 demo-trends-session-plot">
+            <div id="chartRow" class="col-md-9">
+                <theme-chart
+                    data-type="Line"
+                    data-data="chartjsData"
+                    data-options="chartjsOptions"
+                    data-height="300"
+                    data-width="{{ chartjsWidth() }}"
+                    data-value="chartjsObject"
+                    class="demo-chartjs">
+                </theme-chart>
             </div>
         </div>
         <br>

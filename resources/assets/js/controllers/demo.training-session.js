@@ -14,8 +14,92 @@ angular.module('app.controllers')
         $scope.currentSession = 0;
         $scope.currentSessionTitle = '';
         $scope.isFetchingSessionData = false;
-        $scope.fakeData = {};
         $scope.colours = [Utilities.colour.heddokoGreen, '#79d9d8', '#6eb4d2'];
+        $scope.fakeData = {};
+
+        //
+        // Demo data (chartJs).
+        //
+
+        $scope.chartjsCustomTooltip = function(tooltip) {
+
+            // tooltip will be false if tooltip is not visible or should be hidden
+            if (!tooltip) {
+                return;
+            }
+
+            Utilities.debug(tooltip);
+
+            // Otherwise, tooltip will be an object with all tooltip properties like:
+
+            // tooltip.caretHeight
+            // tooltip.caretPadding
+            // tooltip.chart
+            // tooltip.cornerRadius
+            // tooltip.fillColor
+            // tooltip.font...
+            // tooltip.text
+            // tooltip.x
+            // tooltip.y
+            // etc...
+
+            return tooltip.title;
+
+        };
+
+        $scope.chartjsOptions = {
+            animation: true,
+            datasetFill: false,
+            pointDot: false,
+            scaleBeginAtZero: false,
+            scaleFontColor: '#888',
+            scaleFontFamily: '"Proxima Nova", sans-serif',
+            scaleGridLineColor: Utilities.colour.blue,
+            scaleLabel: "<%=value%> °/s",
+            scaleLineColor: Utilities.colour.blue,
+            showTooltips: true,
+            tooltipFillColor: $scope.colours[1],
+            tooltipFontColor: Utilities.colour.blue,
+            tooltipFontFamily: '"Proxima Nova", sans-serif',
+            tooltipTitleFontFamily: '"Proxima Nova", sans-serif',
+            tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+            customTooltips: $scope.chartjsCustomTooltip,
+            legendTemplate: '<ul class="<%= name.toLowerCase() %>-legend">' +
+                                '<% for (var i = 0; i < datasets.length; i++){%>' +
+                                    '<li>' +
+                                        '<span style="background-color:<%= datasets[i].strokeColor %>">' +
+                                        '</span>' +
+
+                                        '<% if (datasets[i].label) { %>' +
+                                            '<%= datasets[i].label %>' +
+                                        '<% } %>' +
+                                    '</li>' +
+                                '<% } %>' +
+                            '</ul>'
+        };
+
+        $scope.chartjsData = {
+            labels: ['0', '20 Throws', '40 Throws', '60 Throws', '80 Throws', '100 Throws', '120 Throws', '140 Throws', '160 Throws'],
+            datasets: [
+                {
+                    datasetFill: true,
+                    fillColor: 'rgba(187, 187, 187, 0.1)',
+                    label: 'Threshold',
+                    strokeColor: 'rgba(187, 187, 187, 0.1)',
+                    data: [2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100, 2100]
+                },
+                {
+                    label: 'Angular Velocity',
+                    strokeColor: $scope.colours[2],
+                    strokeFillColor: $scope.colours[2],
+                    data: [2550, 2600, 2750, 2810, 2740, 2530, 2100, 1988, 1902]
+                }
+            ]
+        };
+
+        $scope.chartjsWidth = function() {
+            return $('#chartRow').width() - 30;
+        };
 
         //
         // Selectize input.

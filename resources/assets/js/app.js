@@ -35,9 +35,11 @@ var app = angular.module('app', [
 
 // Defines some constants.
 var _appIsLocal =
-    (window.location.hostname == 'localhost' ||
+    (
+        // window.location.hostname == 'localhost' ||
         window.location.hostname.match(/.*\.local$/i) ||
-        window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
+        window.location.hostname.match(/.*\.vagrant$/i)
+    ) ? true : false;
 var _apiEndpoint = '/api/v1';
 
 app.constant('isLocalEnvironment', _appIsLocal)
