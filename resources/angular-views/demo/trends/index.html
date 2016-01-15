@@ -9,39 +9,45 @@
         </h1>
     </header>
 
-    <!-- Profile summary -->
-    <div class="row">
-        <div class="col-xs-6 col-md-3 col-lg-1">
-            <div
-                ng-style="{background: 'transparent center center no-repeat url('+ global.getSelectedProfile().avatarSrc +')', 'background-size': 'contain'}"
-                style="background-size: contain"
-                class="aspect-ratio aspect-square"></div>
-        </div>
-
-        <div class="col-xs-6 col-md-9 col-lg-11">
-            <small>For: </small>
-            <b>
-                {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}
-            </b>
-            <br>
-
-            <small>Started:</small>
-            <b>January 22, 2016</b>
-            <br>
-
-            <small>Today:</small>
-            <b>February 6, 2016</b>
-        </div>
-    </div>
-
     <!-- Bar chart -->
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row demo-trends-section">
+        <div class="col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3">
             <h3 class="text-center">
                 Peak Elbow Angular Velocity / Jan 22 - Feb 6 2016
             </h3>
         </div>
-        <div class="col-md-12">
+
+        <div class="col-xs-12 col-md-5 col-lg-3  demo-trends-info-2">
+            <div class="col-md-5">
+                <div
+                    ng-style="{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}"
+                    class="aspect-ratio aspect-square">
+                </div>
+            </div>
+
+            <div class="col-md-7">
+                <small>Date:</small>
+                <b>Feb 6, 2016</b>
+                <br>
+
+                <small>Rehab Start:</small>
+                <b>Jan 22, 2016</b>
+                <br>
+
+                <small>Athlete: </small>
+                <b>
+                    {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}
+                </b>
+                <br>
+
+                <small>Team: </small>
+                <b>
+                    {{ global.getSelectedGroup().name }}
+                </b>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-7 col-lg-9">
             <div
                 data-theme-flot-chart
                 data-data="flotData"

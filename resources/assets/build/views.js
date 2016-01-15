@@ -1036,39 +1036,45 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
-    "    <!-- Profile summary -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-xs-6 col-md-3 col-lg-1\">\n" +
-    "            <div\n" +
-    "                ng-style=\"{background: 'transparent center center no-repeat url('+ global.getSelectedProfile().avatarSrc +')', 'background-size': 'contain'}\"\n" +
-    "                style=\"background-size: contain\"\n" +
-    "                class=\"aspect-ratio aspect-square\"></div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <div class=\"col-xs-6 col-md-9 col-lg-11\">\n" +
-    "            <small>For: </small>\n" +
-    "            <b>\n" +
-    "                {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
-    "            </b>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            <small>Started:</small>\n" +
-    "            <b>January 22, 2016</b>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            <small>Today:</small>\n" +
-    "            <b>February 6, 2016</b>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
     "    <!-- Bar chart -->\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-md-12\">\n" +
+    "    <div class=\"row demo-trends-section\">\n" +
+    "        <div class=\"col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3\">\n" +
     "            <h3 class=\"text-center\">\n" +
     "                Peak Elbow Angular Velocity / Jan 22 - Feb 6 2016\n" +
     "            </h3>\n" +
     "        </div>\n" +
-    "        <div class=\"col-md-12\">\n" +
+    "\n" +
+    "        <div class=\"col-xs-12 col-md-5 col-lg-3  demo-trends-info-2\">\n" +
+    "            <div class=\"col-md-5\">\n" +
+    "                <div\n" +
+    "                    ng-style=\"{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}\"\n" +
+    "                    class=\"aspect-ratio aspect-square\">\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"col-md-7\">\n" +
+    "                <small>Date:</small>\n" +
+    "                <b>Feb 6, 2016</b>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <small>Rehab Start:</small>\n" +
+    "                <b>Jan 22, 2016</b>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <small>Athlete: </small>\n" +
+    "                <b>\n" +
+    "                    {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}\n" +
+    "                </b>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <small>Team: </small>\n" +
+    "                <b>\n" +
+    "                    {{ global.getSelectedGroup().name }}\n" +
+    "                </b>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
     "            <div\n" +
     "                data-theme-flot-chart\n" +
     "                data-data=\"flotData\"\n" +
@@ -4629,10 +4635,10 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "            </div>\n" +
     "\n" +
     "            <div class=\"col-md-3 demo-trends-info-2\">\n" +
-    "                <b>Conditions: Sunny, Light Drizzle</b>\n" +
+    "                Conditions: <b>Sunny, Light Drizzle</b>\n" +
     "                <br>\n" +
     "\n" +
-    "                <b>Wind: 8 km/h</b>\n" +
+    "                Wind: <b>8 km/h</b>\n" +
     "                <br>\n" +
     "                <br>\n" +
     "\n" +

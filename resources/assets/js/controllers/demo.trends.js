@@ -11,112 +11,26 @@ angular.module('app.controllers')
     function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrendsController');
 
+        $scope.profile = $scope.global.getSelectedProfile();
+
         //
-        // Flot chart setup.
+        // Flot chart options.
         //
-
-        $scope.dataMax = 2800;
-        $scope.dataPointsPerWeek = 80;
-        $scope.dataMedian = [1400, 1680, 1960, 2240, 2600];
-        $scope.dataLastPoint = $scope.dataPointsPerWeek * $scope.dataMedian.length +
-            $scope.dataMedian.length;
-
-        $scope.flotData = [
-
-            // 100% shadow
-            {
-                bars: {show: false},
-                data: [[0, 3000], [$scope.dataLastPoint, 3000]],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 80% shadow
-            {
-                bars: {show: false},
-                data: [[0, 2500], [$scope.dataLastPoint, 2500]],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 60% shadow
-            {
-                bars: {show: false},
-                data: [[0, 2000], [$scope.dataLastPoint, 2000]],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 40% shadow
-            {
-                bars: {show: false},
-                data: [[0, 1500], [$scope.dataLastPoint, 1500]],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            {data: [], yaxis: 1},   // Week 3
-            {data: [], yaxis: 1},   // Week 4
-            {data: [], yaxis: 1},   // Week 5
-            {data: [], yaxis: 1},   // Week 6
-            {data: [], yaxis: 1},   // Week 7
-
-            // Ideal return to play line
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    color: Utilities.colour.silver,
-                    colors: [Utilities.colour.silver],
-                    fill: false,
-                    lineWidth: 2,
-                    show: true
-                },
-                points: {
-                    fill: true,
-                    fillColor: Utilities.colour.silver,
-                    radius: 5,
-                    show: true
-                },
-                yaxis: 1
-            }
-        ];
-
-        // Indicates index of first dataset in $scope.flotData
-        $scope.flotDataStartIndex = 4;
 
         $scope.flotOptions = {
+            clickable: true,
             grid: {
-                hoverable: true,
+                // hoverable: true,
                 borderWidth: 1,
                 borderColor: Utilities.colour.blue
             },
+            hoverable: true,
             legend: {
                 show: false
             },
             series: {
                 bars: {
-                    barWidth: 0.1,
+                    barWidth: 0.5,
                     fill: 1,
                     show: true
                 },
@@ -128,8 +42,8 @@ angular.module('app.controllers')
             yaxes: [
                 {
                     color: Utilities.colour.blue,
-                    min: 1000,
-                    max: 3000,
+                    min: 800,
+                    max: 3200,
                     position: 'left'
                 }, {
                     color: Utilities.colour.blue,
@@ -142,12 +56,143 @@ angular.module('app.controllers')
             tooltipOpts: {
                 defaultTheme: !1
             },
-            colors: [Utilities.colour.heddokoGreen, '#79d9d8', '#6eb4d2']
+            colors: [
+                '#fff', '#fff', '#fff', '#fff', '#fff', // % marks
+                Utilities.colour.heddokoGreen,  // Week 1
+                '#79d9d8',                      // Week 2
+                '#6eb4d2',                      // Week 3
+                Utilities.colour.heddokoGreen,  // Week 4
+                '#79d9d8',                      // Week 5
+                '#6eb4d2',                      // Week 6
+                Utilities.colour.heddokoGreen,  // Week 7
+                '#fff',         // Median line
+                '#fff',         // Return to play
+            ]
         };
 
         //
-        // Flot chart data.
+        // Flot chart setup.
         //
+
+        $scope.flotData = [
+
+            // 100% mark
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 0,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            // 80% mark
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 0,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            // 60% mark
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 0,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            // 40% mark
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 0,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            // 20% mark
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(255, 255, 255, 0.1)',
+                    lineWidth: 0,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 1
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 2
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 3
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 4
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 5
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 6
+            {data: [], highlightColor: '#fff', yaxis: 1},   // Week 7
+
+            // Median line.
+            {
+                bars: {show: false},
+                data: [],
+                lines: {
+                    color: '#fff',
+                    fill: false,
+                    lineWidth: 2,
+                    show: true
+                },
+                points: {
+                    fill: true,
+                    fillColor: '#fff',
+                    radius: 5,
+                    show: true
+                },
+                yaxis: 1
+            },
+
+            // Return to play.
+            {
+                bars: {show: false},
+                clickable: true,
+                data: [[0, 2800], [$scope.dataLastPoint, 2800]],
+                label: 'Return to play',
+                lines: {
+                    fill: false,
+                    lineWidth: 2,
+                    show: true
+                },
+                yaxis: 1
+            }
+        ];
+
+        //
+        // Flot chart data generation.
+        //
+
+        $scope.dataMax = 2800;
+        $scope.dataPointsInitialDensity = 5;
+        $scope.dataMedians = [1250, 1320, 1400, 1590, 1960, 2240, 2750];
+
+        // Indicates index of first dataset in $scope.flotData
+        $scope.flotDataStartIndex = 5;
 
         /**
          * Generates a random data point, within the specified range.
@@ -156,38 +201,78 @@ angular.module('app.controllers')
          * @param int max
          * @return int
          */
-        $scope.generateDataPoint = function(min, max) {
+        $scope.randomDataPoint = function(min, max) {
             return Math.floor(Math.random() * (max - min)) + min;
         };
 
-        var i, j, midPoint, min, max, x, y;
-        for (i = 0; i < $scope.dataMedian.length; i++)
+        //
+        var i, j, density, midPoint, label, min, max, x = 0, y;
+        for (i = 0; i < $scope.dataMedians.length; i++)
         {
-            midPoint = $scope.dataPointsPerWeek/2 + $scope.dataPointsPerWeek * i + i;
+            x++;
+
+            // Set density and midpoint for given week.
+            density = $scope.dataPointsInitialDensity + Math.floor(Math.pow((i * $scope.dataPointsInitialDensity), 1.2));
+            midPoint = Math.floor(density/2) + x;
+
+            Utilities.debug('Week: ' + (i + 1));
+            Utilities.debug('Density: ' + density);
+            Utilities.debug('Midpoint: ' + midPoint);
 
             // Add ticks on x-axis.
-            $scope.flotOptions.xaxis.ticks.push([midPoint, 'Week ' + (i + 3)]);
+            label = i > 1 ? 'Week ' + (i + 1) : (i + 1);
+            $scope.flotOptions.xaxis.ticks.push([midPoint, label]);
 
             // Generate ideal return-to-play line.
-            $scope.flotData[$scope.flotDataStartIndex + $scope.dataMedian.length].data.push([
+            $scope.flotData[$scope.flotDataStartIndex + $scope.dataMedians.length].data.push([
                 midPoint,
-                $scope.dataMedian[i] + 80 + 40 * i
+                $scope.dataMedians[i]
             ]);
 
             // Add data points.
-            for (j = 0; j < $scope.dataPointsPerWeek; j++)
+            for (j = 0; j < density; j++)
             {
                 // Data point offset on x-axis.
-                x = i + j + $scope.dataPointsPerWeek * i;
+                // x = 1 + i + j + $scope.dataPointsPerWeek * i;
 
                 // Data point value.
-                min = $scope.dataMedian[i] - 100 + j * 1.5;
-                max = $scope.dataMedian[i] + 60 + j * 1.5;
-                y = $scope.generateDataPoint(min, max);
+                min = $scope.dataMedians[i] - 100 + j * 2;
+                max = $scope.dataMedians[i] + 100 + j * 2;
+                y = $scope.randomDataPoint(min, max);
 
                 //
-                $scope.flotData[$scope.flotDataStartIndex + i].data.push([x, y]);
+                $scope.flotData[$scope.flotDataStartIndex + i].data.push([x++, y]);
             }
         }
+
+        //
+        // Flot chart setup finalization.
+        //
+
+        $scope.dataLastPoint = x;
+
+        // 100% line.
+        $scope.flotData[0].data.push([0, 3000]);
+        $scope.flotData[0].data.push([$scope.dataLastPoint, 3000]);
+
+        // 80% line.
+        $scope.flotData[1].data.push([0, 2400]);
+        $scope.flotData[1].data.push([$scope.dataLastPoint, 2400]);
+
+        // 60% line.
+        $scope.flotData[2].data.push([0, 1800]);
+        $scope.flotData[2].data.push([$scope.dataLastPoint, 1800]);
+
+        // 40% line.
+        $scope.flotData[3].data.push([0, 1200]);
+        $scope.flotData[3].data.push([$scope.dataLastPoint, 1200]);
+
+        // 20% line.
+        $scope.flotData[4].data.push([0, 600]);
+        $scope.flotData[4].data.push([$scope.dataLastPoint, 600]);
+
+        // Return to play line.
+        $scope.flotData[$scope.flotData.length - 1].data.push([0, 2800]);
+        $scope.flotData[$scope.flotData.length - 1].data.push([$scope.dataLastPoint, 2800]);
     }
 ]);
