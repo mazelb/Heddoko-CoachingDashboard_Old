@@ -92,8 +92,7 @@ angular.module('app.controllers')
          * @return object
          */
         $scope.global.getSelectedProfile = function() {
-            return $scope.global.store.profileId > 0 ?
-                $scope.global.state.profile.list[$scope.global.store.profileId] : {id: 0};
+            return Rover.getState('profile', Rover.store.profileId, {id: 0});
         };
 
         /**

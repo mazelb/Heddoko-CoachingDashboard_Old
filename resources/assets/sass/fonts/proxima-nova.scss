@@ -45,3 +45,17 @@
         url(/fonts/ProximaNova-Bold.svg#proxima_novabold) format('svg')
         ;
 }
+
+@font-face {
+    font-family: 'Proxima Nova Condensed';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/ProximaNovaCond-Regular.eot);
+    src: local('Proxima Nova Condensed'), local('ProximaNova-Condensed'),
+        url(/fonts/ProximaNovaCond-Regular.eot?#iefix) format('embedded-opentype'),
+        url(/fonts/ProximaNovaCond-Regular.woff2) format('woff2'),
+        url(/fonts/ProximaNovaCond-Regular.woff) format('woff'),
+        url(/fonts/ProximaNovaCond-Regular.ttf) format('truetype'),
+        url(/fonts/ProximaNovaCond-Regular.svg#proxima_nova_cn_rgregular) format('svg')
+        ;
+}

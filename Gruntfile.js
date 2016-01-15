@@ -26,42 +26,41 @@ module.exports = function(grunt) {
                 src: [ 'tmp' ]
             },
             dist: {
-                src: ['public/images']
+                src: ['public/fonts', 'public/images']
             }
         },
 
         copy: {
             dist: {
                 files: [
-                    //
-                    // // jQuery
-                    // {
-                    //     expand: true,
-                    //     dot: true,
-                    //     cwd: 'bower_components/jquery/dist',
-                    //     src: ['jquery.min.js','jquery.min.map'],
-                    //     dest: 'public/js'
-                    // },
-                    //
-                    // // Bootstrap fonts
-                    // {
-                    //     expand: true,
-                    //     dot: true,
-                    //     cwd: 'bower_components/bootstrap/dist',
-                    //     src: ['fonts/*.*'],
-                    //     dest: 'public'
-                    // },
-                    //
-                    // // Font-awesome
-                    // {
-                    //     expand: true,
-                    //     dot: true,
-                    //     cwd: 'bower_components/font-awesome',
-                    //     src: ['fonts/*.*'],
-                    //     dest: 'public'
-                    // },
+                    // Bootstrap fonts.
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: 'bower_components/bootstrap/dist',
+                        src: ['fonts/*.*'],
+                        dest: 'public/fonts'
+                    },
 
-                    // Other images
+                    // Font-Awesome.
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: 'bower_components/fontawesome',
+                        src: ['fonts/*.*'],
+                        dest: 'public/fonts'
+                    },
+
+                    // App fonts.
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: 'resources/assets/fonts',
+                        src: ['*.*'],
+                        dest: 'public/fonts'
+                    },
+
+                    // App images.
                     {
                         expand: true,
                         dot: true,

@@ -11,29 +11,42 @@
 
     <!-- Profile summary -->
     <div class="row">
-        <div class="col-xs-12 col-md-5 col-lg-3">
+        <div class="col-xs-6 col-md-3 col-lg-1">
             <div
-                ng-style="{background: 'transparent center center no-repeat url('+ global.getSelectedProfile().avatarSrc +')'}"
+                ng-style="{background: 'transparent center center no-repeat url('+ global.getSelectedProfile().avatarSrc +')', 'background-size': 'contain'}"
+                style="background-size: contain"
                 class="aspect-ratio aspect-square"></div>
         </div>
 
-        <div class="col-xs-12 col-md-7 col-lg-9">
-            {{ global.getSelectedProfile().firstName }}
-            {{ global.getSelectedProfile().lastName }}
+        <div class="col-xs-6 col-md-9 col-lg-11">
+            <small>For: </small>
+            <b>
+                {{ global.getSelectedProfile().firstName }} {{ global.getSelectedProfile().lastName }}
+            </b>
             <br>
 
-            {{ global.getSelectedProfile() }}
+            <small>Started:</small>
+            <b>January 22, 2016</b>
+            <br>
+
+            <small>Today:</small>
+            <b>February 6, 2016</b>
         </div>
     </div>
 
     <!-- Bar chart -->
     <div class="row">
         <div class="col-md-12">
+            <h3 class="text-center">
+                Peak Elbow Angular Velocity / Jan 22 - Feb 6 2016
+            </h3>
+        </div>
+        <div class="col-md-12">
             <div
                 data-theme-flot-chart
                 data-data="flotData"
                 data-options="flotOptions"
-                style="width: 100%; height: 400px;">
+                style="width: 100%; height: 600px;">
             </div>
         </div>
     </div>
