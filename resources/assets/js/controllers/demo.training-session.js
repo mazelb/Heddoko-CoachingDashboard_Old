@@ -11,9 +11,11 @@ angular.module('app.controllers')
     function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrainingSessionController');
 
-        $scope.currentSession = 0;
-        $scope.currentSessionTitle = '';
+        $scope.metric = null;
+        $scope.session = null;
         $scope.isFetchingSessionData = false;
+        $scope.isFetchingSelectedMetricData = false;
+        $scope.isSessionDataLoaded = false;
         $scope.colours = [Utilities.colour.heddokoGreen, '#79d9d8', '#6eb4d2'];
         $scope.fakeData = {};
 
@@ -28,6 +30,10 @@ angular.module('app.controllers')
                 return;
             }
 
+            // Unique ID for this tooltip.
+            var id = 'session-plot-' + tooltip.labels[0] + '-' + tooltip.labels[1];
+
+            Utilities.debug(id);
             Utilities.debug(tooltip);
 
             // Otherwise, tooltip will be an object with all tooltip properties like:
@@ -62,8 +68,8 @@ angular.module('app.controllers')
             tooltipFontColor: Utilities.colour.blue,
             tooltipFontFamily: '"Proxima Nova", sans-serif',
             tooltipTitleFontFamily: '"Proxima Nova", sans-serif',
-            tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-            customTooltips: $scope.chartjsCustomTooltip,
+            tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>',
+            // customTooltips: $scope.chartjsCustomTooltip,
             legendTemplate: '<ul class="<%= name.toLowerCase() %>-legend">' +
                                 '<% for (var i = 0; i < datasets.length; i++){%>' +
                                     '<li>' +
@@ -102,15 +108,17 @@ angular.module('app.controllers')
         };
 
         //
-        // Selectize input.
+        // Selectize inputs.
         //
 
-        $scope.selectizeConfig = {
+        $scope.selectizeSessionModel = 0;
+        $scope.selectizeMetricModel = 0;
+
+        $scope.selectizeSessionConfig = {
             create: false,
             valueField: 'id',
             labelField: 'title',
             searchField: ['title'],
-            maxOptions: 15,
             maxItems: 1,
 
             /**
@@ -119,20 +127,60 @@ angular.module('app.controllers')
              * @param array data
              */
             onChange: function(id) {
-                angular.forEach($scope.selectizeOptions, function(option) {
-                    if (option.id === id) {
-                        $scope.currentSessionTitle = option.title;
+                Utilities.debug('Session: ' + id);
+
+                angular.forEach($scope.selectizeSessionOptions, function(option) {
+                    Utilities.debug(option);
+
+                    if (option.id == id) {
+                        $timeout(function() {
+                            $scope.session = option;
+                        });
                     }
                 });
             }
         };
 
-        $scope.selectizeOptions = [
-            {id: 5, title: 'February 3, 2016'},
-            {id: 4, title: 'February 2, 2016'},
-            {id: 3, title: 'February 1, 2016'},
-            {id: 2, title: 'January 29, 2016'},
-            {id: 1, title: 'January 28, 2016'}
+        $scope.selectizeMetricConfig = {
+            create: false,
+            valueField: 'id',
+            labelField: 'title',
+            searchField: ['title'],
+            maxItems: 1,
+
+            /**
+             * Called anytime the value of the input changes.
+             *
+             * @param array data
+             */
+            onChange: function(id) {
+                Utilities.debug('Metric: ' + id);
+
+                angular.forEach($scope.selectizeMetricOptions, function(option) {
+                    Utilities.debug(option);
+
+                    if (option.id == id) {
+                        $timeout(function() {
+                            $scope.metric = option;
+                        });
+                    }
+                });
+            }
+        };
+
+        $scope.selectizeSessionOptions = [
+            {id: 5, type: 'session', title: 'February 3, 2016'},
+            {id: 4, type: 'session', title: 'February 2, 2016'},
+            {id: 3, type: 'session', title: 'February 1, 2016'},
+            {id: 2, type: 'session', title: 'January 29, 2016'},
+            {id: 1, type: 'session', title: 'January 28, 2016'}
+        ];
+
+        $scope.selectizeMetricOptions = [
+            {id: 1, type: 'metric', title: 'Peak Elbow Angular Velocity'},
+            {id: 2, type: 'metric', title: 'Sample Metric 1'},
+            {id: 3, type: 'metric', title: 'Sample Metric 2'},
+            {id: 4, type: 'metric', title: 'Sample Metric 3'}
         ];
 
         //
@@ -207,5 +255,41 @@ angular.module('app.controllers')
 
         $scope.fakeData.morrisColours = '["'+ $scope.colours[0] +'","'+ $scope.colours[1] +'","'+
             $scope.colours[2] +'"]';
+
+        //
+        // Simulate data fetching.
+        //
+
+        $scope.fetchDataDemo = function(newData, oldData) {
+
+            // Wait for both the session and metric to be selected.
+            if (!$scope.session || !$scope.metric || $scope.isFetchingSessionData || !newData) {
+                return;
+            }
+
+            // Update metric plots.
+            if (newData.type == 'metric' && $scope.isSessionDataLoaded)
+            {
+                $scope.isFetchingSelectedMetricData = true;
+
+                $timeout(function() {
+                    $scope.isFetchingSelectedMetricData = false;
+                }, 800);
+            }
+
+            // Update session data.
+            else
+            {
+                $scope.isFetchingSessionData = true;
+
+                $timeout(function() {
+                    $scope.isSessionDataLoaded = true;
+                    $scope.isFetchingSessionData = false;
+                }, 800);
+            }
+        };
+
+        $scope.$watch('session', $scope.fetchDataDemo);
+        $scope.$watch('metric', $scope.fetchDataDemo);
     }
 ]);

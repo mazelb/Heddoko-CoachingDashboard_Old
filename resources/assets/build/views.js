@@ -1081,14 +1081,26 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            <br>\n" +
     "            <br>\n" +
     "\n" +
+    "            <!-- Recovery percent -->\n" +
+    "            <div class=\"row text-center\">\n" +
+    "                <h3>\n" +
+    "                    Percent Recovery\n" +
+    "                </h3>\n" +
+    "\n" +
+    "                <div easypiechart options=\"easypie.options\" percent=\"easypie.percent\" class=\"easypiechart\">\n" +
+    "                    <span class=\"pie-percent\" ng-bind=\"easypie.percent\"></span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "\n" +
     "            <!-- Threshold input -->\n" +
     "            <div class=\"row\">\n" +
-    "                <h5 class=\"text-center\">\n" +
-    "                    Return To Play Threshold\n" +
-    "                    <span></span>\n" +
-    "                </h5>\n" +
+    "                <h3 class=\"text-center\">\n" +
+    "                    Threshold for Return To Play\n" +
+    "                </h3>\n" +
     "\n" +
-    "                <div class=\"col-md-8 col-md-offset-4 col-lg-4 col-lg-offset-4\">\n" +
+    "                <div class=\"col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3\">\n" +
     "                    <div class=\"input-group\">\n" +
     "\n" +
     "                        <!-- Decrease -->\n" +
@@ -4644,13 +4656,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
   $templateCache.put("profile/partials/demo-session.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<br>\n" +
-    "<section class=\"demo-trends-section\">\n" +
+    "<section class=\"demo-trends-section\" style=\"margin: 50px auto 300px;\">\n" +
     "    <h2 class=\"title\">\n" +
     "        Training Session Review\n" +
     "        <span></span>\n" +
@@ -4658,39 +4664,59 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "    <br>\n" +
     "    <br>\n" +
     "\n" +
-    "    <span ng-hide=\"currentSessionTitle == ''\">\n" +
-    "        <small class=\"text-muted\">Current Session:</small> {{ currentSessionTitle }}\n" +
-    "    </span>\n" +
+    "    <!-- Demo data -->\n" +
+    "    <div ng-show=\"session && metric && isFetchingSessionData === false\">\n" +
     "\n" +
-    "    <!-- Plots -->\n" +
-    "    <div ng-show=\"currentSession > 0 && isFetchingSessionData === false\">\n" +
-    "\n" +
-    "        <!-- Demo plots -->\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-9 col-md-offset-3\">\n" +
     "                <h3 class=\"text-center\">\n" +
-    "                    Peak Elbow Angular Velocity\n" +
+    "                    {{ metric.title }}\n" +
     "                </h3>\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"col-md-3 demo-trends-info-2\">\n" +
-    "                Conditions: <b>Sunny, Light Drizzle</b>\n" +
-    "                <br>\n" +
+    "                <div class=\"row\">\n" +
     "\n" +
-    "                Wind: <b>8 km/h</b>\n" +
-    "                <br>\n" +
-    "                <br>\n" +
+    "                    <div class=\"col-sm-4 text-right\" style=\"line-height: 35px\">\n" +
+    "                        Session:\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-8\">\n" +
+    "                        <selectize\n" +
+    "                            ng-model=\"selectizeSessionModel\"\n" +
+    "                            class=\"form-control text-center\"\n" +
+    "                            config=\"selectizeSessionConfig\"\n" +
+    "                            options=\"selectizeSessionOptions\">\n" +
+    "                        </selectize>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                <selectize\n" +
-    "                    ng-model=\"currentSession\"\n" +
-    "                    class=\"form-control text-center\"\n" +
-    "                    config=\"selectizeConfig\"\n" +
-    "                    options=\"selectizeOptions\"\n" +
-    "                    placeholder=\"Select a session to get started.\">\n" +
-    "                </selectize>\n" +
-    "                <br>\n" +
+    "                    <div class=\"col-sm-4 text-right\" style=\"line-height: 35px\">\n" +
+    "                        Conditions:\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-8\" style=\"line-height: 35px\">\n" +
+    "                        <b>Sunny, Light Drizzle</b>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                <div class=\"demo-trends-session-legend\" style=\"height: 100px\"></div>\n" +
+    "                    <div class=\"col-sm-4 text-right\" style=\"line-height: 35px\">\n" +
+    "                        Wind:\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-8\" style=\"line-height: 35px\">\n" +
+    "                        <b>8 km/h</b>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"col-sm-4 text-right\" style=\"line-height: 35px\">\n" +
+    "                        Metric:\n" +
+    "                    </div>\n" +
+    "                    <div class=\"col-sm-8\">\n" +
+    "                        <selectize\n" +
+    "                            ng-model=\"selectizeMetricModel\"\n" +
+    "                            class=\"form-control text-center\"\n" +
+    "                            config=\"selectizeMetricConfig\"\n" +
+    "                            options=\"selectizeMetricOptions\">\n" +
+    "                        </selectize>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"demo-trends-session-legend\" style=\"height: 80px\"></div>\n" +
     "\n" +
     "                <div class=\"row\">\n" +
     "                    <div class=\"col-xs-4 demo-warning\" style=\"height: 70px\">\n" +
@@ -4708,22 +4734,33 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
-    "            <div id=\"chartRow\" class=\"col-md-9\">\n" +
-    "                <theme-chart\n" +
-    "                    data-type=\"Line\"\n" +
-    "                    data-data=\"chartjsData\"\n" +
-    "                    data-options=\"chartjsOptions\"\n" +
-    "                    data-height=\"300\"\n" +
-    "                    data-width=\"{{ chartjsWidth() }}\"\n" +
-    "                    data-value=\"chartjsObject\"\n" +
-    "                    class=\"demo-chartjs\">\n" +
-    "                </theme-chart>\n" +
+    "            <!-- Metric plots -->\n" +
+    "            <div ng-show=\"isFetchingSelectedMetricData === false\">\n" +
+    "\n" +
+    "                <!-- Peak Elbow Angular Velocity -->\n" +
+    "                <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity'\" id=\"chartRow\" class=\"col-md-9\">\n" +
+    "                    <theme-chart\n" +
+    "                        data-type=\"Line\"\n" +
+    "                        data-data=\"chartjsData\"\n" +
+    "                        data-options=\"chartjsOptions\"\n" +
+    "                        data-height=\"400\"\n" +
+    "                        data-width=\"{{ chartjsWidth() }}\"\n" +
+    "                        data-value=\"chartjsObject\"\n" +
+    "                        class=\"demo-chartjs\">\n" +
+    "                    </theme-chart>\n" +
+    "                </div>\n" +
+    "\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Loading metric plots -->\n" +
+    "            <div ng-show=\"isFetchingSelectedMetricData === true\" class=\"col-md-9 text-center\">\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-3x\" style=\"margin: 75px auto 0;\"></i>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <br>\n" +
     "\n" +
-    "        <!-- Fake plots -->\n" +
+    "        <!-- Filler plots -->\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-9\">\n" +
     "                <h3 class=\"text-center\">\n" +
@@ -4753,27 +4790,39 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                </canvas>\n" +
     "            </div>\n" +
     "        </div>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "        <br>\n" +
-    "\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Loading data -->\n" +
     "    <div ng-show=\"isFetchingSessionData === true\" class=\"row text-center\">\n" +
-    "        <i class=\"fa fa-spinner fa-spin fa-3x\" style=\"display: block; margin: 40px 0\"></i>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-5x\" style=\"display: block; margin: 200px 0\"></i>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- No data selected -->\n" +
-    "    <div ng-show=\"currentSession === 0 && isFetchingSessionData === false\" class=\"row\">\n" +
-    "        <div class=\"col-md-4 col-md-offset-4\" style=\"margin-bottom: 300px\">\n" +
+    "    <div ng-show=\"(!session || !metric) && isFetchingSessionData === false\" class=\"row\">\n" +
+    "\n" +
+    "        <div class=\"col-md-12\">\n" +
+    "            To get started, please select the training session and metric to be reviewed.\n" +
+    "        </div>\n" +
+    "        <br>\n" +
+    "        <br>\n" +
+    "\n" +
+    "        <div class=\"col-md-4 col-md-offset-2\">\n" +
     "            <selectize\n" +
-    "                ng-model=\"currentSession\"\n" +
+    "                ng-model=\"selectizeSessionModel\"\n" +
     "                class=\"form-control text-center\"\n" +
-    "                config=\"selectizeConfig\"\n" +
-    "                options=\"selectizeOptions\"\n" +
-    "                placeholder=\"Select a session to get started.\">\n" +
+    "                config=\"selectizeSessionConfig\"\n" +
+    "                options=\"selectizeSessionOptions\"\n" +
+    "                placeholder=\"Select a training session.\">\n" +
+    "            </selectize>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-md-4\">\n" +
+    "            <selectize\n" +
+    "                ng-model=\"selectizeMetricModel\"\n" +
+    "                class=\"form-control text-center\"\n" +
+    "                config=\"selectizeMetricConfig\"\n" +
+    "                options=\"selectizeMetricOptions\"\n" +
+    "                placeholder=\"Select a metric.\">\n" +
     "            </selectize>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -5089,8 +5138,11 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </h3>\n" +
     "                        <br>\n" +
     "\n" +
+    "                        Rotator cuff tear (Dec 14, 2015)\n" +
+    "                        <br>\n" +
+    "\n" +
     "                        <a href=\"#/demo/trends\" style=\"display: inline-block; margin: 10px 0 0 5px;\">\n" +
-    "                            <i class=\"fa fa-angle-double-right fa-fw\"></i> Follow-Up\n" +
+    "                            <i class=\"fa fa-angle-double-right fa-fw\"></i> Track Rehabilitation\n" +
     "                        </a>\n" +
     "                    </div>\n" +
     "                </div>\n" +

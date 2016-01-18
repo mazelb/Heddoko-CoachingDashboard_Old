@@ -54,14 +54,26 @@
             <br>
             <br>
 
+            <!-- Recovery percent -->
+            <div class="row text-center">
+                <h3>
+                    Percent Recovery
+                </h3>
+
+                <div easypiechart options="easypie.options" percent="easypie.percent" class="easypiechart">
+                    <span class="pie-percent" ng-bind="easypie.percent"></span>
+                </div>
+            </div>
+            <br>
+            <br>
+
             <!-- Threshold input -->
             <div class="row">
-                <h5 class="text-center">
-                    Return To Play Threshold
-                    <span></span>
-                </h5>
+                <h3 class="text-center">
+                    Threshold for Return To Play
+                </h3>
 
-                <div class="col-md-8 col-md-offset-4 col-lg-4 col-lg-offset-4">
+                <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group">
 
                         <!-- Decrease -->

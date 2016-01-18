@@ -1,13 +1,7 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<section class="demo-trends-section">
+<section class="demo-trends-section" style="margin: 50px auto 300px;">
     <h2 class="title">
         Training Session Review
         <span></span>
@@ -15,39 +9,59 @@
     <br>
     <br>
 
-    <span ng-hide="currentSessionTitle == ''">
-        <small class="text-muted">Current Session:</small> {{ currentSessionTitle }}
-    </span>
+    <!-- Demo data -->
+    <div ng-show="session && metric && isFetchingSessionData === false">
 
-    <!-- Plots -->
-    <div ng-show="currentSession > 0 && isFetchingSessionData === false">
-
-        <!-- Demo plots -->
         <div class="row">
             <div class="col-md-9 col-md-offset-3">
                 <h3 class="text-center">
-                    Peak Elbow Angular Velocity
+                    {{ metric.title }}
                 </h3>
             </div>
 
             <div class="col-md-3 demo-trends-info-2">
-                Conditions: <b>Sunny, Light Drizzle</b>
-                <br>
+                <div class="row">
 
-                Wind: <b>8 km/h</b>
-                <br>
-                <br>
+                    <div class="col-sm-4 text-right" style="line-height: 35px">
+                        Session:
+                    </div>
+                    <div class="col-sm-8">
+                        <selectize
+                            ng-model="selectizeSessionModel"
+                            class="form-control text-center"
+                            config="selectizeSessionConfig"
+                            options="selectizeSessionOptions">
+                        </selectize>
+                    </div>
 
-                <selectize
-                    ng-model="currentSession"
-                    class="form-control text-center"
-                    config="selectizeConfig"
-                    options="selectizeOptions"
-                    placeholder="Select a session to get started.">
-                </selectize>
-                <br>
+                    <div class="col-sm-4 text-right" style="line-height: 35px">
+                        Conditions:
+                    </div>
+                    <div class="col-sm-8" style="line-height: 35px">
+                        <b>Sunny, Light Drizzle</b>
+                    </div>
 
-                <div class="demo-trends-session-legend" style="height: 100px"></div>
+                    <div class="col-sm-4 text-right" style="line-height: 35px">
+                        Wind:
+                    </div>
+                    <div class="col-sm-8" style="line-height: 35px">
+                        <b>8 km/h</b>
+                    </div>
+
+                    <div class="col-sm-4 text-right" style="line-height: 35px">
+                        Metric:
+                    </div>
+                    <div class="col-sm-8">
+                        <selectize
+                            ng-model="selectizeMetricModel"
+                            class="form-control text-center"
+                            config="selectizeMetricConfig"
+                            options="selectizeMetricOptions">
+                        </selectize>
+                    </div>
+                </div>
+
+                <div class="demo-trends-session-legend" style="height: 80px"></div>
 
                 <div class="row">
                     <div class="col-xs-4 demo-warning" style="height: 70px">
@@ -65,22 +79,33 @@
                 </div>
             </div>
 
-            <div id="chartRow" class="col-md-9">
-                <theme-chart
-                    data-type="Line"
-                    data-data="chartjsData"
-                    data-options="chartjsOptions"
-                    data-height="300"
-                    data-width="{{ chartjsWidth() }}"
-                    data-value="chartjsObject"
-                    class="demo-chartjs">
-                </theme-chart>
+            <!-- Metric plots -->
+            <div ng-show="isFetchingSelectedMetricData === false">
+
+                <!-- Peak Elbow Angular Velocity -->
+                <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="chartRow" class="col-md-9">
+                    <theme-chart
+                        data-type="Line"
+                        data-data="chartjsData"
+                        data-options="chartjsOptions"
+                        data-height="400"
+                        data-width="{{ chartjsWidth() }}"
+                        data-value="chartjsObject"
+                        class="demo-chartjs">
+                    </theme-chart>
+                </div>
+
+            </div>
+
+            <!-- Loading metric plots -->
+            <div ng-show="isFetchingSelectedMetricData === true" class="col-md-9 text-center">
+                <i class="fa fa-spinner fa-spin fa-3x" style="margin: 75px auto 0;"></i>
             </div>
         </div>
         <br>
         <br>
 
-        <!-- Fake plots -->
+        <!-- Filler plots -->
         <div class="row">
             <div class="col-md-9">
                 <h3 class="text-center">
@@ -110,27 +135,39 @@
                 </canvas>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-
     </div>
 
     <!-- Loading data -->
     <div ng-show="isFetchingSessionData === true" class="row text-center">
-        <i class="fa fa-spinner fa-spin fa-3x" style="display: block; margin: 40px 0"></i>
+        <i class="fa fa-spinner fa-spin fa-5x" style="display: block; margin: 200px 0"></i>
     </div>
 
     <!-- No data selected -->
-    <div ng-show="currentSession === 0 && isFetchingSessionData === false" class="row">
-        <div class="col-md-4 col-md-offset-4" style="margin-bottom: 300px">
+    <div ng-show="(!session || !metric) && isFetchingSessionData === false" class="row">
+
+        <div class="col-md-12">
+            To get started, please select the training session and metric to be reviewed.
+        </div>
+        <br>
+        <br>
+
+        <div class="col-md-4 col-md-offset-2">
             <selectize
-                ng-model="currentSession"
+                ng-model="selectizeSessionModel"
                 class="form-control text-center"
-                config="selectizeConfig"
-                options="selectizeOptions"
-                placeholder="Select a session to get started.">
+                config="selectizeSessionConfig"
+                options="selectizeSessionOptions"
+                placeholder="Select a training session.">
+            </selectize>
+        </div>
+
+        <div class="col-md-4">
+            <selectize
+                ng-model="selectizeMetricModel"
+                class="form-control text-center"
+                config="selectizeMetricConfig"
+                options="selectizeMetricOptions"
+                placeholder="Select a metric.">
             </selectize>
         </div>
     </div>

@@ -19,7 +19,7 @@ var app = angular.module('app', [
     // TODO: review what these dependencies do and whether they can be removed or not.
     "app.ui.services", "app.ui.form.ctrls", "app.ui.form.directives", "app.ui.ctrls",
     "ui.bootstrap",
-    // "easypiechart",
+    "easypiechart",
     // "mgo-angular-wizard",
     // "textAngular",
     // "app.form.validation", "app.tables",

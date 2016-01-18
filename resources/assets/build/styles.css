@@ -7600,8 +7600,7 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:hover, a.list-g
   display: inline-block;
   line-height: 130px;
   font-size: 30px;
-  font-weight: 300;
-  color: #333; }
+  font-weight: 300; }
 
 .easypiechartsmall {
   display: inline-block;

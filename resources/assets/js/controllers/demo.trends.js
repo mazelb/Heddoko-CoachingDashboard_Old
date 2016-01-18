@@ -17,7 +17,7 @@ angular.module('app.controllers')
         $scope.thresholdIncrement = 20;
 
         /**
-         *
+         * Increases "return to play" threshold.
          */
         $scope.increaseThreshold = function() {
             $scope.thresholdValue =
@@ -27,7 +27,7 @@ angular.module('app.controllers')
         };
 
         /**
-         *
+         * Decreases "return to play" threshold.
          */
         $scope.decreaseThreshold = function() {
             $scope.thresholdValue =
@@ -35,6 +35,49 @@ angular.module('app.controllers')
                     $scope.flotOptions.yaxes[0].min :
                     $scope.thresholdValue - $scope.thresholdIncrement;
         };
+
+        //
+        // Easypie data.
+        //
+        $scope.easypie = {
+            percent: Math.round($scope.thresholdValue * 100 / 3000),
+            options: {
+                animate: {
+                    duration: 1e2,
+                    enabled: !0
+                },
+                barColor: function(percent) {
+                    if (percent < 80) {
+                        return '#db5031';
+                    } else if (percent < 85) {
+                        return '#fabd39';
+                    } else if (percent < 90) {
+                        return '#6eb4d2';
+                    } else if (percent < 95) {
+                        return '#79d9d8';
+                    }
+
+                    return '#3bd6b2';
+                },
+                lineCap: 'round',
+                lineWidth: 4,
+                scaleColor: false,
+                size: 130,
+                trackColor: false
+            }
+        };
+
+        // Threshold watcher.
+        $scope.$watch('thresholdValue', function(newThreshold, oldThreshold) {
+
+            // Performance check.
+            if (newThreshold == oldThreshold) {
+                return;
+            }
+
+            // Update easypie chart.
+            $scope.easypie.percent = Math.min(100, Math.round(2750 * 100 / $scope.thresholdValue));
+        });
 
         //
         // Flot chart options.
