@@ -219,7 +219,7 @@ angular.module('app.directives')
                     case 'length':
 
                         // Supported length units.
-                        scope.config.unitForLength = scope.config.unitForLength || 'm';
+                        scope.config.unitForLength = scope.config.unitForLength || 'ft/in';
                         scope.units = [/*'mm', */'cm', 'm', 'in', 'ft/in'];
 
                         // Default length value.
@@ -246,17 +246,17 @@ angular.module('app.directives')
                                     scope.data.displayStr = $filter('number')(scope.data.lengthVal) + '"';
                                     break;
 
-                                case 'ft/in':
+                                case 'm':
+                                    scope.config.unitForLength = 'm';
+                                    scope.data.lengthVal = scope.model[scope.key];
+                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + ' m';
+                                    break;
+
+                                default:
                                     scope.config.unitForLength = unit;
                                     scope.data.lengthFeet = Math.floor(scope.model[scope.key] * 3.28084);
                                     scope.data.lengthInches = Math.floor(scope.model[scope.key] * 39.3701 - 12 * scope.data.lengthFeet);
                                     scope.data.displayStr = scope.data.lengthFeet + '\' '+ scope.data.lengthInches +'"';
-                                    break;
-
-                                default:
-                                    scope.config.unitForLength = 'm';
-                                    scope.data.lengthVal = scope.model[scope.key];
-                                    scope.data.displayStr = $filter('number')(scope.data.lengthVal) + ' m';
                                     break;
                             }
                         };
@@ -304,7 +304,7 @@ angular.module('app.directives')
                     case 'mass':
 
                         // Supported mass units.
-                        scope.config.unitForMass = scope.config.unitForMass || 'kg';
+                        scope.config.unitForMass = scope.config.unitForMass || 'lbs';
                         scope.units = [/*'g', */'kg', 'lbs', 'stone'];
 
                         // Default mass value.
@@ -323,10 +323,10 @@ angular.module('app.directives')
                                     scope.data.displayStr = $filter('number')(scope.data.massVal) + ' g';
                                     break;
 
-                                case 'lbs':
-                                    scope.config.unitForMass = unit;
-                                    scope.data.massVal = scope.model[scope.key] * 2.20462;
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' lbs';
+                                case 'kg':
+                                    scope.config.unitForMass = 'kg';
+                                    scope.data.massVal = scope.model[scope.key];
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' kg';
                                     break;
 
                                 case 'stone':
@@ -336,9 +336,9 @@ angular.module('app.directives')
                                     break;
 
                                 default:
-                                    scope.config.unitForMass = 'kg';
-                                    scope.data.massVal = scope.model[scope.key];
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' kg';
+                                    scope.config.unitForMass = unit;
+                                    scope.data.massVal = scope.model[scope.key] * 2.20462;
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' lbs';
                                     break;
                             }
                         };

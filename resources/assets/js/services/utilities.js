@@ -24,8 +24,14 @@ angular.module('app.utilities', [])
         {
             blue: '#2c3a46',
             blueDark: '#1c242c',
+            danger: '#db5031',
             heddokoGreen: '#3bd6b2',
-            silver: '#cbd4e3'
+            info: '#8170ca',
+            orange: '#fabd39',
+            silver: '#cbd4e3',
+            textColour: '#ddd',
+            textColourBlue: '#5b707d',
+            warning: '#eec95a'
         };
 
         /**

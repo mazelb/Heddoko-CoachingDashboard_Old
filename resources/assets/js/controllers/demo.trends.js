@@ -7,14 +7,16 @@
  */
 angular.module('app.controllers')
 
-.controller('DemoTrendsController', ['$scope', '$timeout', 'DemoTrendsService', 'Rover', 'Utilities',
-    function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
+.controller('DemoTrendsController', ['$scope', '$timeout', '$filter', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, $timeout, $filter, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrendsController');
 
         $scope.profile = $scope.global.getSelectedProfile();
 
         $scope.thresholdValue = 2800;
         $scope.thresholdIncrement = 20;
+        $scope.isFetchingData = false;
+        $scope.metric = null;
 
         /**
          * Increases "return to play" threshold.
@@ -22,8 +24,8 @@ angular.module('app.controllers')
         $scope.increaseThreshold = function() {
             $scope.thresholdValue =
                 $scope.thresholdValue >= ($scope.flotOptions.yaxes[0].max - $scope.thresholdIncrement) ?
-                    $scope.flotOptions.yaxes[0].max :
-                    $scope.thresholdValue + $scope.thresholdIncrement;
+                    parseInt($scope.flotOptions.yaxes[0].max) :
+                    parseInt($scope.thresholdValue) + $scope.thresholdIncrement;
         };
 
         /**
@@ -32,9 +34,45 @@ angular.module('app.controllers')
         $scope.decreaseThreshold = function() {
             $scope.thresholdValue =
                 $scope.thresholdValue <= ($scope.flotOptions.yaxes[0].min + $scope.thresholdIncrement) ?
-                    $scope.flotOptions.yaxes[0].min :
-                    $scope.thresholdValue - $scope.thresholdIncrement;
+                    parseInt($scope.flotOptions.yaxes[0].min) :
+                    parseInt($scope.thresholdValue) - $scope.thresholdIncrement;
         };
+
+        //
+        // Selectize input.
+        //
+
+        $scope.selectizeMetricModel = 0;
+
+        $scope.selectizeMetricConfig = {
+            create: false,
+            valueField: 'id',
+            labelField: 'title',
+            searchField: ['title'],
+            maxItems: 1,
+
+            /**
+             * Called anytime the value of the input changes.
+             *
+             * @param array data
+             */
+            onChange: function(id) {
+                angular.forEach($scope.selectizeMetricOptions, function(option) {
+                    if (option.id == id) {
+                        $timeout(function() {
+                            $scope.metric = option;
+                        });
+                    }
+                });
+            }
+        };
+
+        $scope.selectizeMetricOptions = [
+            {id: 1, type: 'metric', title: 'Peak Elbow Angular Velocity'},
+            {id: 2, type: 'metric', title: 'Sample Metric 1'},
+            {id: 3, type: 'metric', title: 'Sample Metric 2'},
+            {id: 4, type: 'metric', title: 'Sample Metric 3'}
+        ];
 
         //
         // Easypie data.
@@ -249,6 +287,45 @@ angular.module('app.controllers')
             }
         ];
 
+        $scope.flotPlotHover = function (event, pos, item) {
+
+            // Display tooltip for data point.
+			if (item)
+            {
+				$("#demo-flot-tooltip")
+                    .html(
+                        '<b>' + $filter('number')(item.datapoint[1], 0) + ' &deg;/s</b>' +
+                        '<br>' +
+                        '<span style="text-transform: uppercase; color: #333;">' +
+                            'Recovery: ' +
+                            Math.min(100, Math.round(item.datapoint[1] * 100 / $scope.thresholdValue)) +
+                            '%' +
+                        '</span>'
+                    )
+					.css({
+                        top: item.pageY - $('#demo-flot-tooltip').height() - 35,
+                        left: item.pageX + 5,
+                        'background-color': item.series.color
+                    })
+					.fadeIn(200);
+			}
+
+            // Hide tooltip if no element is selected.
+            else {
+				$('#demo-flot-tooltip').hide();
+			}
+		};
+
+        // Create tooltip template element.
+        $('<div id="demo-flot-tooltip"></div>').css({
+            position: 'absolute',
+            display: 'none',
+            padding: '5px 10px',
+            color: '#000',
+            'text-align': 'center',
+            opacity: 0.7
+        }).appendTo('body');
+
         //
         // Flot chart data generation.
         //
@@ -340,5 +417,26 @@ angular.module('app.controllers')
         // Return to play line.
         $scope.flotData[$scope.flotData.length - 1].data.push([0, 2800]);
         $scope.flotData[$scope.flotData.length - 1].data.push([$scope.dataLastPoint, 2800]);
+
+    //
+    // Simulate data fetching.
+    //
+
+    $scope.fetchDataDemo = function(newData, oldData) {
+
+        // Performance check.
+        if ($scope.isFetchingData || !newData) {
+            return;
+        }
+
+        $scope.isFetchingData = true;
+
+        $timeout(function() {
+            $scope.isFetchingData = false;
+        }, 800);
+    };
+
+    $scope.$watch('session', $scope.fetchDataDemo);
+    $scope.$watch('metric', $scope.fetchDataDemo);
     }
 ]);

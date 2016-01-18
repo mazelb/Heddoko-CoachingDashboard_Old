@@ -1039,8 +1039,8 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "    <!-- Bar chart -->\n" +
     "    <div class=\"row demo-trends-section\">\n" +
     "        <div class=\"col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3\">\n" +
-    "            <h3 class=\"text-center\">\n" +
-    "                Peak Elbow Angular Velocity / Dec 19 - Feb 6 2016\n" +
+    "            <h3 ng-show=\"metric\" class=\"text-center\">\n" +
+    "                {{ metric.title }} / Dec 19 - Feb 6 2016\n" +
     "            </h3>\n" +
     "        </div>\n" +
     "\n" +
@@ -1076,13 +1076,25 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                    <b>\n" +
     "                        {{ global.getSelectedGroup().name }}\n" +
     "                    </b>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <!-- Metric -->\n" +
+    "                    <div ng-show=\"metric\">\n" +
+    "                        <selectize\n" +
+    "                            ng-model=\"selectizeMetricModel\"\n" +
+    "                            class=\"form-control text-center\"\n" +
+    "                            config=\"selectizeMetricConfig\"\n" +
+    "                            options=\"selectizeMetricOptions\"\n" +
+    "                            placeholder=\"Select a metric.\">\n" +
+    "                        </selectize>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "            <br>\n" +
     "            <br>\n" +
     "\n" +
     "            <!-- Recovery percent -->\n" +
-    "            <div class=\"row text-center\">\n" +
+    "            <div ng-show=\"metric && !isFetchingData\" class=\"row text-center\">\n" +
     "                <h3>\n" +
     "                    Percent Recovery\n" +
     "                </h3>\n" +
@@ -1095,7 +1107,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            <br>\n" +
     "\n" +
     "            <!-- Threshold input -->\n" +
-    "            <div class=\"row\">\n" +
+    "            <div ng-show=\"metric && !isFetchingData\" class=\"row\">\n" +
     "                <h3 class=\"text-center\">\n" +
     "                    Threshold for Return To Play\n" +
     "                </h3>\n" +
@@ -1124,14 +1136,39 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
+    "        <!-- Peak Elbow Angular Velocity -->\n" +
+    "        <div ng-show=\"metric && !isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
     "            <div\n" +
     "                data-theme-flot-chart\n" +
     "                data-data=\"flotData\"\n" +
-    "                data-threshold=\"thresholdValue\"\n" +
     "                data-options=\"flotOptions\"\n" +
+    "                data-plot-hover=\"flotPlotHover\"\n" +
+    "                data-threshold=\"thresholdValue\"\n" +
+    "                data-threshold-label=\"'Return To Play'\"\n" +
     "                style=\"width: 100%; height: 600px;\">\n" +
     "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Select metric -->\n" +
+    "        <div ng-show=\"!metric && !isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center\">\n" +
+    "            Select a metric to get started.\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <div class=\"col-md-4 col-md-offset-4\">\n" +
+    "                <selectize\n" +
+    "                    ng-model=\"selectizeMetricModel\"\n" +
+    "                    class=\"form-control text-center\"\n" +
+    "                    config=\"selectizeMetricConfig\"\n" +
+    "                    options=\"selectizeMetricOptions\"\n" +
+    "                    placeholder=\"Select a metric.\">\n" +
+    "                </selectize>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Loading data -->\n" +
+    "        <div ng-show=\"isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-3x\" style=\"display: block; margin: 100px 0 0\"></i>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -4665,7 +4702,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "    <br>\n" +
     "\n" +
     "    <!-- Demo data -->\n" +
-    "    <div ng-show=\"session && metric && isFetchingSessionData === false\">\n" +
+    "    <div ng-show=\"session && metric && isFetchingSessionData === false\" class=\"animate-fade-up\">\n" +
     "\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-9 col-md-offset-3\">\n" +
@@ -4793,7 +4830,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "    </div>\n" +
     "\n" +
     "    <!-- Loading data -->\n" +
-    "    <div ng-show=\"isFetchingSessionData === true\" class=\"row text-center\">\n" +
+    "    <div ng-show=\"isFetchingSessionData === true\" class=\"row text-center animate-fade-up\">\n" +
     "        <i class=\"fa fa-spinner fa-spin fa-5x\" style=\"display: block; margin: 200px 0\"></i>\n" +
     "    </div>\n" +
     "\n" +
@@ -4801,7 +4838,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "    <div ng-show=\"(!session || !metric) && isFetchingSessionData === false\" class=\"row\">\n" +
     "\n" +
     "        <div class=\"col-md-12\">\n" +
-    "            To get started, please select the training session and metric to be reviewed.\n" +
+    "            Select a training session and metric to get started.\n" +
     "        </div>\n" +
     "        <br>\n" +
     "        <br>\n" +
@@ -5031,6 +5068,45 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
+    "                    <!-- DEMO -->\n" +
+    "                    <div class=\"row\">\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "\n" +
+    "                            <!-- Hand size -->\n" +
+    "                            <div class=\"row ui-editable-field ui-editable-field-vertical\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ui-editable-field-value\">\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "                                            9.6\"\n" +
+    "                                        </a>\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-xs-12 ui-editable-field-label\">\n" +
+    "                                    Hand Size\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"col-xs-12 col-sm-6\">\n" +
+    "\n" +
+    "                            <!-- Arm length -->\n" +
+    "                            <div class=\"row ui-editable-field ui-editable-field-vertical\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ui-editable-field-value\">\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "                                            33\"\n" +
+    "                                        </a>\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-xs-12 ui-editable-field-label\">\n" +
+    "                                    Arm Length\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
     "                    <div class=\"row\">\n" +
     "\n" +
     "                        <!-- Date of Birth -->\n" +
@@ -5052,7 +5128,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div class=\"row\">\n" +
+    "                    <!-- REMOVED FOR DEMO -->\n" +
+    "                    <div ng-show=\"false\" class=\"row\">\n" +
     "\n" +
     "                        <!-- Phone -->\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
@@ -5094,7 +5171,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    </div>\n" +
     "\n" +
     "                    <!-- Profile creation date -->\n" +
-    "                    <div class=\"row\">\n" +
+    "                    <!-- REMOVED FOR DEMO -->\n" +
+    "                    <div ng-show=\"false\" class=\"row\">\n" +
     "                        <div class=\"col-xs-12\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Profile Created\"\n" +
@@ -5102,6 +5180,44 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                                data-type=\"datetime\"\n" +
     "                                data-disabled=\"true\">\n" +
     "                            </ui-editable-field>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <!-- DEMO -->\n" +
+    "                    <div class=\"row\">\n" +
+    "\n" +
+    "                        <!-- Experience -->\n" +
+    "                        <div class=\"col-xs-12 col-md-6\">\n" +
+    "                            <div class=\"row ui-editable-field ui-editable-field-vertical\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ui-editable-field-value\">\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "                                            16th Season\n" +
+    "                                        </a>\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-xs-12 ui-editable-field-label\">\n" +
+    "                                    Experience\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Snap count -->\n" +
+    "                        <div class=\"col-xs-12 col-md-6\">\n" +
+    "                            <div class=\"row ui-editable-field ui-editable-field-vertical\">\n" +
+    "                                <div class=\"col-xs-12\">\n" +
+    "                                    <div class=\"ui-editable-field-value\">\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "                                            992\n" +
+    "                                        </a>\n" +
+    "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                                <div class=\"col-xs-12 ui-editable-field-label\">\n" +
+    "                                    Snap Count\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </ui-editable-fields>\n" +
