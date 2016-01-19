@@ -7,8 +7,8 @@
  */
 angular.module('app.controllers')
 
-.controller('DemoTrainingSessionController', ['$scope', '$timeout', 'DemoTrendsService', 'Rover', 'Utilities',
-    function($scope, $timeout, DemoTrendsService, Rover, Utilities) {
+.controller('DemoTrainingSessionController', ['$scope', '$timeout', '$filter', 'DemoTrendsService', 'Rover', 'Utilities',
+    function($scope, $timeout, $filter, DemoTrendsService, Rover, Utilities) {
         Utilities.debug('DemoTrainingSessionController');
 
         $scope.metric = null;
@@ -19,9 +19,152 @@ angular.module('app.controllers')
         $scope.colours = [Utilities.colour.heddokoGreen, '#79d9d8', '#6eb4d2'];
         $scope.fakeData = {};
 
-        //
-        // Demo data (chartJs).
-        //
+
+        ///
+        /// Demo: Peak Elbow Angular Velocity
+        ///
+        /////////////////////////////////////////////////////////////////
+
+
+        // Markings.
+        $scope.flotPeakElbowAngularVelocityLabels = [
+            {
+                color: '#db5031',
+                point: {x: 10, y: 2900},
+                text: 'Throw Degradation'
+            }
+        ];
+
+
+        $scope.flotPeakElbowAngularVelocityOptions = {
+            grid: {
+                borderWidth: 1,
+                borderColor: Utilities.colour.blue,
+                clickable: true,
+                hoverable: true,
+                markings: [
+                    {
+                        color: '#db5031',
+                        lineWidth: 2,
+                        xaxis: {from: 10, to: 10}
+                    }
+                ]
+            },
+            legend: {
+                show: false
+            },
+            series: {
+                hoverable: true
+            },
+            xaxis: {
+                ticks: [
+                    [0, '0'],
+                    [2, '20 Throws'],
+                    [4, '40 Throws'],
+                    [6, '60 Throws'],
+                    [8, '80 Throws'],
+                    [10, '100 Throws'],
+                    [12, '120 Throws'],
+                    [14, '140 Throws'],
+                    [16, '160 Throws']
+                ]
+            },
+            yaxis: {
+                color: Utilities.colour.blue,
+                min: 1000,
+                max: 3000,
+                position: 'left'
+            },
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme: true
+            },
+            colors: [Utilities.colour.orange, '#6eb4d2']
+        };
+
+        $scope.flotPeakElbowAngularVelocityData = [
+
+            // Threshold
+            {
+                bars: {show: false},
+                lines: {
+                    fill: true,
+                    fillColor: 'rgba(250, 189, 57, 0.05)',
+                    lineWidth: 2,
+                    show: true
+                },
+                data: [
+                    [0, 2100],
+                    [16, 2100]
+                ],
+                isThresholdSeries: true
+            },
+
+            // Data line.
+            {
+                bars: {show: false},
+                lines: {
+                    color: '#fff',
+                    fill: false,
+                    lineWidth: 2,
+                    show: true
+                },
+                data: [
+                    [0, 2550],
+                    [1, 2540],
+                    [2, 2600],
+                    [3, 2660],
+                    [4, 2750],
+                    [5, 2790],
+                    [6, 2810],
+                    [8, 2740],
+                    [10, 2530],
+                    [12, 2100],
+                    [14, 1988],
+                    [16, 1879]
+                ]
+            }
+        ];
+
+        $scope.flotPeakElbowAngularVelocityHover = function (event, pos, item) {
+
+            // Display tooltip for data point.
+			if (item)
+            {
+				$("#flot-peak-angular-velocity-tooltip")
+                    .html(
+                        '<b>' + $filter('number')(item.datapoint[1], 0) + ' &deg;/s</b>'
+                    )
+					.css({
+                        top: item.pageY - $('#flot-peak-angular-velocity-tooltip').height() - 35,
+                        left: item.pageX + 5,
+                        'background-color': item.series.color
+                    })
+					.fadeIn(200);
+			}
+
+            // Hide tooltip if no element is selected.
+            else {
+				$('#flot-peak-angular-velocity-tooltip').hide();
+			}
+		};
+
+        // Create tooltip template element.
+        $('<div id="flot-peak-angular-velocity-tooltip"></div>').css({
+            position: 'absolute',
+            display: 'none',
+            padding: '5px 10px',
+            color: '#000',
+            'text-align': 'center',
+            opacity: 0.7
+        }).appendTo('body');
+
+
+        ///
+        /// Demo: Peak Elbow Angular Velocity (chartJS)
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.chartjsCustomTooltip = function(tooltip) {
 
@@ -53,7 +196,7 @@ angular.module('app.controllers')
 
         };
 
-        $scope.chartjsOptions = {
+        $scope.demoPeakElbowAngularVelocityOptions = {
             animation: true,
             datasetFill: false,
             pointDot: false,
@@ -84,7 +227,7 @@ angular.module('app.controllers')
                             '</ul>'
         };
 
-        $scope.chartjsData = {
+        $scope.demoPeakElbowAngularVelocityData = {
             labels: ['0', '20 Throws', '40 Throws', '60 Throws', '80 Throws', '100 Throws', '120 Throws', '140 Throws', '160 Throws'],
             datasets: [
                 {
@@ -103,13 +246,16 @@ angular.module('app.controllers')
             ]
         };
 
-        $scope.chartjsWidth = function() {
-            return $('#chartRow').width() - 30;
+        $scope.demoPeakElbowAngularVelocityWidth = function() {
+            return $('#demoPeakElbowAngularVelocityRow').width() - 30;
         };
 
-        //
-        // Selectize inputs.
-        //
+
+        ///
+        /// Demo: Selectize
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.selectizeSessionModel = 0;
         $scope.selectizeMetricModel = 0;
@@ -176,16 +322,24 @@ angular.module('app.controllers')
             {id: 1, type: 'session', title: 'January 28, 2016'}
         ];
 
+        // Metrics
         $scope.selectizeMetricOptions = [
-            {id: 1, type: 'metric', title: 'Peak Elbow Angular Velocity'},
-            {id: 2, type: 'metric', title: 'Sample Metric 1'},
-            {id: 3, type: 'metric', title: 'Sample Metric 2'},
-            {id: 4, type: 'metric', title: 'Sample Metric 3'}
+            {id: 1, type: 'metric', title: 'External Rotation of the Shoulder'},
+            {id: 2, type: 'metric', title: 'Kinematic Sequence'},
+            {id: 3, type: 'metric', title: 'Peak Elbow Angular Velocity'},
+            {id: 4, type: 'metric', title: 'Peak Forearm Snap Velocity'},
+            {id: 5, type: 'metric', title: 'Stride Timing'},
+            {id: 6, type: 'metric', title: 'Torso Rotation in Transverse Plane'}
         ];
 
-        //
-        // Gauge chart.
-        //
+
+        ///
+        /// Demo: Session charts
+        ///
+        ///     Gauge, morris
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.fakeData.gauge =
         {
@@ -214,10 +368,6 @@ angular.module('app.controllers')
                 ]
             }
         };
-
-        //
-        // Fake: Morris Charts.
-        //
 
         $scope.fakeData.morris = [
             {
@@ -256,9 +406,12 @@ angular.module('app.controllers')
         $scope.fakeData.morrisColours = '["'+ $scope.colours[0] +'","'+ $scope.colours[1] +'","'+
             $scope.colours[2] +'"]';
 
-        //
-        // Simulate data fetching.
-        //
+
+        ///
+        /// Demo: Simulate data fetching.
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.fetchDataDemo = function(newData, oldData) {
 

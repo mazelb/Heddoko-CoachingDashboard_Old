@@ -1044,18 +1044,20 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            </h3>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div class=\"col-xs-12 col-md-5 col-lg-3  demo-trends-info-2\">\n" +
+    "\n" +
+    "        <!-- DEMO: Left Panel -->\n" +
+    "        <div class=\"col-xs-12 col-md-5 col-lg-3 demo-trends-info-2\">\n" +
     "\n" +
     "            <!-- Athlete details -->\n" +
     "            <div class=\"row\">\n" +
-    "                <div class=\"col-md-5\">\n" +
+    "                <div class=\"col-md-4\">\n" +
     "                    <div\n" +
     "                        ng-style=\"{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}\"\n" +
     "                        class=\"aspect-ratio aspect-square\">\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"col-md-7\">\n" +
+    "                <div class=\"col-md-8\">\n" +
     "                    <small>Date:</small>\n" +
     "                    <b>Feb 6, 2016</b>\n" +
     "                    <br>\n" +
@@ -1136,8 +1138,9 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
+    "\n" +
     "        <!-- Peak Elbow Angular Velocity -->\n" +
-    "        <div ng-show=\"metric && !isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
+    "        <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
     "            <div\n" +
     "                data-theme-flot-chart\n" +
     "                data-data=\"flotData\"\n" +
@@ -1149,7 +1152,8 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Select metric -->\n" +
+    "\n" +
+    "        <!-- No metric selected -->\n" +
     "        <div ng-show=\"!metric && !isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center\">\n" +
     "            Select a metric to get started.\n" +
     "            <br>\n" +
@@ -1165,6 +1169,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                </selectize>\n" +
     "            </div>\n" +
     "        </div>\n" +
+    "\n" +
     "\n" +
     "        <!-- Loading data -->\n" +
     "        <div ng-show=\"isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center\">\n" +
@@ -4711,6 +4716,9 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                </h3>\n" +
     "            </div>\n" +
     "\n" +
+    "\n" +
+    "\n" +
+    "            <!-- Left Panel -->\n" +
     "            <div class=\"col-md-3 demo-trends-info-2\">\n" +
     "                <div class=\"row\">\n" +
     "\n" +
@@ -4752,40 +4760,44 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                        </selectize>\n" +
     "                    </div>\n" +
     "                </div>\n" +
+    "                <br>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <div class=\"row text-center\">\n" +
+    "                    Throw Count Before Degradation: 97\n" +
+    "                </div>\n" +
     "\n" +
     "                <div class=\"demo-trends-session-legend\" style=\"height: 80px\"></div>\n" +
-    "\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-xs-4 demo-warning\" style=\"height: 70px\">\n" +
-    "                    </div>\n" +
-    "\n" +
-    "                    <div class=\"col-xs-8\">\n" +
-    "                        Throw Count: 157\n" +
-    "                        <br>\n" +
-    "\n" +
-    "                        Recommendation:\n" +
-    "                        <br>\n" +
-    "\n" +
-    "                        <b style=\"color: #3bd6b2\">Stop Athlete's Training</b>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "            </div>\n" +
+    "\n" +
+    "\n" +
     "\n" +
     "            <!-- Metric plots -->\n" +
     "            <div ng-show=\"isFetchingSelectedMetricData === false\">\n" +
     "\n" +
     "                <!-- Peak Elbow Angular Velocity -->\n" +
-    "                <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity'\" id=\"chartRow\" class=\"col-md-9\">\n" +
+    "                <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity'\" id=\"demoPeakElbowAngularVelocityRow\" class=\"col-md-9\">\n" +
+    "                    <div\n" +
+    "                        data-theme-flot-chart\n" +
+    "                        data-data=\"flotPeakElbowAngularVelocityData\"\n" +
+    "                        data-options=\"flotPeakElbowAngularVelocityOptions\"\n" +
+    "                        data-plot-hover=\"flotPeakElbowAngularVelocityHover\"\n" +
+    "                        data-plot-labels=\"flotPeakElbowAngularVelocityLabels\"\n" +
+    "                        data-threshold-label=\"'Pause Training'\"\n" +
+    "                        style=\"width: 100%; height: 400px;\">\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "                <!-- <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity'\" id=\"demoPeakElbowAngularVelocityRow\" class=\"col-md-9\">\n" +
     "                    <theme-chart\n" +
     "                        data-type=\"Line\"\n" +
-    "                        data-data=\"chartjsData\"\n" +
-    "                        data-options=\"chartjsOptions\"\n" +
+    "                        data-data=\"demoPeakElbowAngularVelocityData\"\n" +
+    "                        data-options=\"demoPeakElbowAngularVelocityOptions\"\n" +
     "                        data-height=\"400\"\n" +
-    "                        data-width=\"{{ chartjsWidth() }}\"\n" +
+    "                        data-width=\"{{ demoPeakElbowAngularVelocityWidth() }}\"\n" +
     "                        data-value=\"chartjsObject\"\n" +
     "                        class=\"demo-chartjs\">\n" +
     "                    </theme-chart>\n" +
-    "                </div>\n" +
+    "                </div> -->\n" +
     "\n" +
     "            </div>\n" +
     "\n" +
@@ -4797,7 +4809,9 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "        <br>\n" +
     "        <br>\n" +
     "\n" +
-    "        <!-- Filler plots -->\n" +
+    "\n" +
+    "\n" +
+    "        <!-- Session plots -->\n" +
     "        <div class=\"row\">\n" +
     "            <div class=\"col-md-9\">\n" +
     "                <h3 class=\"text-center\">\n" +

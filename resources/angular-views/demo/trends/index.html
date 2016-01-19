@@ -17,18 +17,20 @@
             </h3>
         </div>
 
-        <div class="col-xs-12 col-md-5 col-lg-3  demo-trends-info-2">
+
+        <!-- DEMO: Left Panel -->
+        <div class="col-xs-12 col-md-5 col-lg-3 demo-trends-info-2">
 
             <!-- Athlete details -->
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <div
                         ng-style="{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}"
                         class="aspect-ratio aspect-square">
                     </div>
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-md-8">
                     <small>Date:</small>
                     <b>Feb 6, 2016</b>
                     <br>
@@ -109,8 +111,9 @@
             </div>
         </div>
 
+
         <!-- Peak Elbow Angular Velocity -->
-        <div ng-show="metric && !isFetchingData" class="col-xs-12 col-md-7 col-lg-9">
+        <div ng-show="metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData" class="col-xs-12 col-md-7 col-lg-9">
             <div
                 data-theme-flot-chart
                 data-data="flotData"
@@ -122,7 +125,8 @@
             </div>
         </div>
 
-        <!-- Select metric -->
+
+        <!-- No metric selected -->
         <div ng-show="!metric && !isFetchingData" class="col-xs-12 col-md-7 col-lg-9 text-center">
             Select a metric to get started.
             <br>
@@ -138,6 +142,7 @@
                 </selectize>
             </div>
         </div>
+
 
         <!-- Loading data -->
         <div ng-show="isFetchingData" class="col-xs-12 col-md-7 col-lg-9 text-center">

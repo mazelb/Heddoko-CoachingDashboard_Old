@@ -38,9 +38,12 @@ angular.module('app.controllers')
                     parseInt($scope.thresholdValue) - $scope.thresholdIncrement;
         };
 
-        //
-        // Selectize input.
-        //
+
+        ///
+        /// Demo: Selectize
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.selectizeMetricModel = 0;
 
@@ -67,16 +70,24 @@ angular.module('app.controllers')
             }
         };
 
+        // Metrics
         $scope.selectizeMetricOptions = [
-            {id: 1, type: 'metric', title: 'Peak Elbow Angular Velocity'},
-            {id: 2, type: 'metric', title: 'Sample Metric 1'},
-            {id: 3, type: 'metric', title: 'Sample Metric 2'},
-            {id: 4, type: 'metric', title: 'Sample Metric 3'}
+            {id: 1, type: 'metric', title: 'Hawkins Impingement Test Results'},
+            {id: 2, type: 'metric', title: 'Neer Impingement Test Results'},
+            {id: 3, type: 'metric', title: 'Peak Elbow Angular Velocity'},
+            {id: 4, type: 'metric', title: 'Peak Shoulder Internal Rotation Velocity'},
+            {id: 5, type: 'metric', title: 'Range of Motion'},
+            {id: 6, type: 'metric', title: 'Shoulder Strength'},
         ];
 
-        //
-        // Easypie data.
-        //
+
+
+        ///
+        /// Demo: Percent recovery (easypie)
+        ///
+        /////////////////////////////////////////////////////////////////
+
+
         $scope.easypie = {
             percent: Math.round($scope.thresholdValue * 100 / 3000),
             options: {
@@ -117,9 +128,12 @@ angular.module('app.controllers')
             $scope.easypie.percent = Math.min(100, Math.round(2750 * 100 / $scope.thresholdValue));
         });
 
-        //
-        // Flot chart options.
-        //
+
+        ///
+        /// Demo: Peak Elbow Angular Velocity
+        ///
+        /////////////////////////////////////////////////////////////////
+
 
         $scope.flotOptions = {
             grid: {
@@ -172,10 +186,6 @@ angular.module('app.controllers')
                 Utilities.colour.heddokoGreen,  // Return to play
             ]
         };
-
-        //
-        // Flot chart setup.
-        //
 
         $scope.flotData = [
 
@@ -418,25 +428,28 @@ angular.module('app.controllers')
         $scope.flotData[$scope.flotData.length - 1].data.push([0, 2800]);
         $scope.flotData[$scope.flotData.length - 1].data.push([$scope.dataLastPoint, 2800]);
 
-    //
-    // Simulate data fetching.
-    //
 
-    $scope.fetchDataDemo = function(newData, oldData) {
+        ///
+        /// Demo: Simulate data fetching.
+        ///
+        /////////////////////////////////////////////////////////////////
 
-        // Performance check.
-        if ($scope.isFetchingData || !newData) {
-            return;
-        }
 
-        $scope.isFetchingData = true;
+        $scope.fetchDataDemo = function(newData, oldData) {
 
-        $timeout(function() {
-            $scope.isFetchingData = false;
-        }, 800);
-    };
+            // Performance check.
+            if ($scope.isFetchingData || !newData) {
+                return;
+            }
 
-    $scope.$watch('session', $scope.fetchDataDemo);
-    $scope.$watch('metric', $scope.fetchDataDemo);
+            $scope.isFetchingData = true;
+
+            $timeout(function() {
+                $scope.isFetchingData = false;
+            }, 800);
+        };
+
+        $scope.$watch('session', $scope.fetchDataDemo);
+        $scope.$watch('metric', $scope.fetchDataDemo);
     }
 ]);

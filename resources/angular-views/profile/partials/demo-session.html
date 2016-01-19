@@ -19,6 +19,9 @@
                 </h3>
             </div>
 
+
+
+            <!-- Left Panel -->
             <div class="col-md-3 demo-trends-info-2">
                 <div class="row">
 
@@ -60,40 +63,44 @@
                         </selectize>
                     </div>
                 </div>
+                <br>
+                <br>
+
+                <div class="row text-center">
+                    Throw Count Before Degradation: 97
+                </div>
 
                 <div class="demo-trends-session-legend" style="height: 80px"></div>
-
-                <div class="row">
-                    <div class="col-xs-4 demo-warning" style="height: 70px">
-                    </div>
-
-                    <div class="col-xs-8">
-                        Throw Count: 157
-                        <br>
-
-                        Recommendation:
-                        <br>
-
-                        <b style="color: #3bd6b2">Stop Athlete's Training</b>
-                    </div>
-                </div>
             </div>
+
+
 
             <!-- Metric plots -->
             <div ng-show="isFetchingSelectedMetricData === false">
 
                 <!-- Peak Elbow Angular Velocity -->
-                <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="chartRow" class="col-md-9">
+                <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="demoPeakElbowAngularVelocityRow" class="col-md-9">
+                    <div
+                        data-theme-flot-chart
+                        data-data="flotPeakElbowAngularVelocityData"
+                        data-options="flotPeakElbowAngularVelocityOptions"
+                        data-plot-hover="flotPeakElbowAngularVelocityHover"
+                        data-plot-labels="flotPeakElbowAngularVelocityLabels"
+                        data-threshold-label="'Pause Training'"
+                        style="width: 100%; height: 400px;">
+                    </div>
+                </div>
+                <!-- <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="demoPeakElbowAngularVelocityRow" class="col-md-9">
                     <theme-chart
                         data-type="Line"
-                        data-data="chartjsData"
-                        data-options="chartjsOptions"
+                        data-data="demoPeakElbowAngularVelocityData"
+                        data-options="demoPeakElbowAngularVelocityOptions"
                         data-height="400"
-                        data-width="{{ chartjsWidth() }}"
+                        data-width="{{ demoPeakElbowAngularVelocityWidth() }}"
                         data-value="chartjsObject"
                         class="demo-chartjs">
                     </theme-chart>
-                </div>
+                </div> -->
 
             </div>
 
@@ -105,7 +112,9 @@
         <br>
         <br>
 
-        <!-- Filler plots -->
+
+
+        <!-- Session plots -->
         <div class="row">
             <div class="col-md-9">
                 <h3 class="text-center">

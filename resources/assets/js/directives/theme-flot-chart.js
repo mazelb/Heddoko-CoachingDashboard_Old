@@ -18,6 +18,7 @@ angular.module('app.directives')
                 options: '=',
                 plotClick: '=?',
                 plotHover: '=?',
+                plotLabels: '=?',
                 threshold: '=?',
                 thresholdLabel: '=?'
             },
@@ -99,6 +100,54 @@ angular.module('app.directives')
                     scope.options.hooks = scope.options.hooks || {};
                     scope.options.hooks.draw = scope.options.hooks.draw || [];
                     scope.options.hooks.draw.push(writeThresholdLabel);
+                }
+
+                // Create hook for static labels.
+                if (scope.plotLabels)
+                {
+                    /**
+                     * Adds static labels for plot
+                     *
+                     * @param plot
+                     * @param canvascontext
+                     */
+                    var writeStaticLabel = function(plot, canvascontext) {
+
+                        // Label colour and position.
+                        var createContainers = false;
+
+                        // Create label containers.
+                        if (!scope.staticLabelElements)
+                        {
+                            createContainers = true;
+                            scope.staticLabelElements = [];
+
+                            angular.forEach(scope.plotLabels, function(label, index) {
+
+                                var offset = plot.pointOffset(label.point);
+
+                                scope.staticLabelElements.push(
+                                    $('<div id="theme-flot-chart-label-'+ index +'"></div>')
+                                    .html(label.text)
+                                    .css({
+                                        position: 'absolute',
+                                        top: offset.top,
+                                        left: offset.left,
+                                        display: 'inline-block',
+                                        padding: '5px 10px',
+                                        color: label.color || '#333',
+                                        'background-color': label.backgroundColor || 'transparent',
+                                        opacity: label.opacity || 0.9
+                                    })
+                                    .appendTo(plot.getPlaceholder()));
+                            });
+                        }
+                    };
+
+                    // Add hook.
+                    scope.options.hooks = scope.options.hooks || {};
+                    scope.options.hooks.draw = scope.options.hooks.draw || [];
+                    scope.options.hooks.draw.push(writeStaticLabel);
                 }
 
                 // Draw plot.
