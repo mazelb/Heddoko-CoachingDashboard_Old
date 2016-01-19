@@ -66,10 +66,9 @@
                 </div>
             </div>
             <br>
-            <br>
 
             <!-- Recovery percent -->
-            <div ng-show="metric && !isFetchingData" class="row text-center">
+            <div ng-show="metric && !isFetchingData" class="row text-center" style="color: #ddd;">
                 <h3>
                     Percent Recovery
                 </h3>
@@ -79,13 +78,13 @@
                 </div>
             </div>
             <br>
-            <br>
 
             <!-- Threshold input -->
             <div ng-show="metric && !isFetchingData" class="row">
-                <h3 class="text-center">
+                <h3 class="text-center" style="color: #ddd;">
                     Threshold for Return To Play
                 </h3>
+                <br>
 
                 <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
                     <div class="input-group">
@@ -98,7 +97,7 @@
                         </span>
 
                         <!-- Edit -->
-                        <input ng-model="thresholdValue" type="text" class="form-control text-center">
+                        <input ng-model="thresholdValue" type="text" class="form-control text-center" style="font-size: 1.2em">
 
                         <!-- Increase -->
                         <span class="input-group-btn">

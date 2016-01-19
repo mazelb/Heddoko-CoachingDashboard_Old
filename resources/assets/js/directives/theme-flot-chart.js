@@ -52,6 +52,9 @@ angular.module('app.directives')
                                 }
 
                                 // Set text colour for label.
+                                if (series.updateColor) {
+                                    series.color = series.updateColor(series.data[0][1]);
+                                }
                                 color = series.color;
 
                                 // Calculate pixels from top for where label should appear.
@@ -76,8 +79,8 @@ angular.module('app.directives')
                                     position: 'absolute',
                                     display: 'inline-block',
                                     padding: '5px 10px',
-                                    color: color,
                                     'background-color': 'transparent',
+                                    'text-shadow': '2px 2px #333',
                                     opacity: 0.9
                                 })
                                 .appendTo(plot.getPlaceholder());
@@ -86,7 +89,8 @@ angular.module('app.directives')
                         // Set position.
                         scope.thresholdLabelElement.css({
                             top: top,
-                            left: left
+                            left: left,
+                            color: color
                         });
 
                         if (top === 0) {
@@ -113,13 +117,9 @@ angular.module('app.directives')
                      */
                     var writeStaticLabel = function(plot, canvascontext) {
 
-                        // Label colour and position.
-                        var createContainers = false;
-
                         // Create label containers.
                         if (!scope.staticLabelElements)
                         {
-                            createContainers = true;
                             scope.staticLabelElements = [];
 
                             angular.forEach(scope.plotLabels, function(label, index) {
@@ -150,6 +150,56 @@ angular.module('app.directives')
                     scope.options.hooks.draw.push(writeStaticLabel);
                 }
 
+                // Create hook for drawing threshold zones.
+                if (scope.options.grid.thresholdZones)
+                {
+                    scope.options.grid.markings = scope.options.grid.markings || [];
+
+                    /**
+                     * Adds static labels for plot
+                     *
+                     * @param plot
+                     * @param convascontext
+                     */
+                    var drawThresholdZones = function(plot, convascontext) {
+                        Utilities.debug('drawThresholdZones...');
+
+                        // Remove existing threshold zones.
+                        var originalMarkings = [], options = plot.getOptions();
+                        angular.forEach(options.grid.markings, function(marking, index) {
+                            if (!marking.isThresholdZone) {
+                                originalMarkings.push(marking);
+                            }
+                        });
+                        options.grid.markings = originalMarkings;
+
+                        // Calculate zone increment.
+                        var tzIncrement = Math.round(
+                            (scope.threshold - options.grid.thresholdZones.min) /
+                            options.grid.thresholdZones.total
+                        );
+
+                        // Add threshold zones.
+                        for (var i = 0; i < options.grid.thresholdZones.total; i++)
+                        {
+                            options.grid.markings.push({
+                                isThresholdZone: true,
+                                color: 'rgba(91, 112, 125, '+ (i / options.grid.thresholdZones.total) +')',
+                                yaxis:
+                                {
+                                    from: i * tzIncrement + options.grid.thresholdZones.min,
+                                    to: i * tzIncrement + tzIncrement + options.grid.thresholdZones.min
+                                }
+                            });
+                        }
+                    };
+
+                    // Add hook.
+                    scope.options.hooks = scope.options.hooks || {};
+                    scope.options.hooks.draw = scope.options.hooks.draw || [];
+                    scope.options.hooks.draw.push(drawThresholdZones);
+                }
+
                 // Draw plot.
                 var plot = $.plot(element[0], scope.data, scope.options);
 
@@ -176,12 +226,16 @@ angular.module('app.directives')
                             {
                                 series.data[0] = [0, newThreshold];
                                 series.data[1] = [series.data[1][0], newThreshold];
+
+                                if (series.updateColor) {
+                                    series.color = series.updateColor(newThreshold);
+                                }
                             }
                         });
 
                         // Redraw plot.
+                        Utilities.debug('Redrawing...');
                         plot.setData(scope.data, scope.options);
-                        // plot.setupGrid();
                         plot.draw();
                     });
                 }

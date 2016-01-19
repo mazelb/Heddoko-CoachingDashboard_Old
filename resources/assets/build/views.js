@@ -1093,10 +1093,9 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                </div>\n" +
     "            </div>\n" +
     "            <br>\n" +
-    "            <br>\n" +
     "\n" +
     "            <!-- Recovery percent -->\n" +
-    "            <div ng-show=\"metric && !isFetchingData\" class=\"row text-center\">\n" +
+    "            <div ng-show=\"metric && !isFetchingData\" class=\"row text-center\" style=\"color: #ddd;\">\n" +
     "                <h3>\n" +
     "                    Percent Recovery\n" +
     "                </h3>\n" +
@@ -1106,13 +1105,13 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                </div>\n" +
     "            </div>\n" +
     "            <br>\n" +
-    "            <br>\n" +
     "\n" +
     "            <!-- Threshold input -->\n" +
     "            <div ng-show=\"metric && !isFetchingData\" class=\"row\">\n" +
-    "                <h3 class=\"text-center\">\n" +
+    "                <h3 class=\"text-center\" style=\"color: #ddd;\">\n" +
     "                    Threshold for Return To Play\n" +
     "                </h3>\n" +
+    "                <br>\n" +
     "\n" +
     "                <div class=\"col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3\">\n" +
     "                    <div class=\"input-group\">\n" +
@@ -1125,7 +1124,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                        </span>\n" +
     "\n" +
     "                        <!-- Edit -->\n" +
-    "                        <input ng-model=\"thresholdValue\" type=\"text\" class=\"form-control text-center\">\n" +
+    "                        <input ng-model=\"thresholdValue\" type=\"text\" class=\"form-control text-center\" style=\"font-size: 1.2em\">\n" +
     "\n" +
     "                        <!-- Increase -->\n" +
     "                        <span class=\"input-group-btn\">\n" +
@@ -4763,11 +4762,11 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                <br>\n" +
     "                <br>\n" +
     "\n" +
-    "                <div class=\"row text-center\">\n" +
-    "                    Throw Count Before Degradation: 97\n" +
+    "                <div class=\"row text-center\" style=\"color: #fabd39;\">\n" +
+    "                    Throw Count Before Degradation: <b>97</b>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"demo-trends-session-legend\" style=\"height: 80px\"></div>\n" +
+    "                <!-- <div class=\"demo-trends-session-legend\" style=\"height: 80px\"></div> -->\n" +
     "            </div>\n" +
     "\n" +
     "\n" +
@@ -4812,7 +4811,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "\n" +
     "\n" +
     "        <!-- Session plots -->\n" +
-    "        <div class=\"row\">\n" +
+    "        <div ng-show=\"false\" class=\"row\">\n" +
     "            <div class=\"col-md-9\">\n" +
     "                <h3 class=\"text-center\">\n" +
     "                    Energy Expended\n" +

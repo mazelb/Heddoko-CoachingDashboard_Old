@@ -20,19 +20,23 @@ angular.module('app.utilities', [])
                 $window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
 
         // Colours.
-        this.colour =
+        this.color =
         {
             blue: '#2c3a46',
             blueDark: '#1c242c',
+            darkBlue: '#1c242c',
             danger: '#db5031',
             heddokoGreen: '#3bd6b2',
             info: '#8170ca',
             orange: '#fabd39',
             silver: '#cbd4e3',
+            textColor: '#ddd',
             textColour: '#ddd',
+            textColorBlue: '#5b707d',
             textColourBlue: '#5b707d',
             warning: '#eec95a'
         };
+        this.colour = this.color;
 
         /**
          * Formats an embed parameter for an API query.

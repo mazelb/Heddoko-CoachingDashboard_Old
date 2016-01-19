@@ -88,28 +88,31 @@ angular.module('app.controllers')
         /////////////////////////////////////////////////////////////////
 
 
+        /**
+         * Returns a colour depending on the percent recovery.
+         *
+         * @param int percent   A number between 0 and 100.
+         */
+        $scope.easypiePercentColor = function(percent) {
+            if (percent < 85) {
+                return '#db5031';
+            } else if (percent < 95) {
+                return '#fabd39';
+            }
+
+            return '#3bd6b2';
+        };
+
         $scope.easypie = {
-            percent: Math.round($scope.thresholdValue * 100 / 3000),
+            percent: Math.min(100, Math.round(2750 * 100 / $scope.thresholdValue)),
             options: {
                 animate: {
                     duration: 1e2,
                     enabled: !0
                 },
-                barColor: function(percent) {
-                    if (percent < 80) {
-                        return '#db5031';
-                    } else if (percent < 85) {
-                        return '#fabd39';
-                    } else if (percent < 90) {
-                        return '#6eb4d2';
-                    } else if (percent < 95) {
-                        return '#79d9d8';
-                    }
-
-                    return '#3bd6b2';
-                },
+                barColor: $scope.easypiePercentColor,
                 lineCap: 'round',
-                lineWidth: 4,
+                lineWidth: 8,
                 scaleColor: false,
                 size: 130,
                 trackColor: false
@@ -137,10 +140,15 @@ angular.module('app.controllers')
 
         $scope.flotOptions = {
             grid: {
-                clickable: true,
-                hoverable: true,
                 borderWidth: 1,
-                borderColor: Utilities.colour.blue
+                borderColor: '#888',
+                clickable: false,
+                hoverable: true,
+                thresholdZones: {
+                    min: 500,
+                    max: 3500,
+                    total: 5
+                }
             },
             legend: {
                 show: false
@@ -158,12 +166,10 @@ angular.module('app.controllers')
             },
             yaxes: [
                 {
-                    color: Utilities.colour.blue,
                     min: 500,
                     max: 3500,
                     position: 'left'
                 }, {
-                    color: Utilities.colour.blue,
                     position: 'right',
                     min: 20,
                     max: 100
@@ -174,7 +180,7 @@ angular.module('app.controllers')
                 defaultTheme: !1
             },
             colors: [
-                '#fff', '#fff', '#fff', '#fff', '#fff', // % marks
+                // '#fff', '#fff', '#fff', '#fff', '#fff', // % marks
                 Utilities.colour.heddokoGreen,  // Week 1
                 '#79d9d8',                      // Week 2
                 '#6eb4d2',                      // Week 3
@@ -183,76 +189,76 @@ angular.module('app.controllers')
                 '#6eb4d2',                      // Week 6
                 Utilities.colour.heddokoGreen,  // Week 7
                 '#fff',                         // Median line
-                Utilities.colour.heddokoGreen,  // Return to play
+                Utilities.colour.orange,        // Return to play
             ]
         };
 
         $scope.flotData = [
 
-            // 100% mark
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 80% mark
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 60% mark
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 40% mark
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
-
-            // 20% mark
-            {
-                bars: {show: false},
-                data: [],
-                lines: {
-                    fill: true,
-                    fillColor: 'rgba(255, 255, 255, 0.1)',
-                    lineWidth: 0,
-                    show: true
-                },
-                yaxis: 1
-            },
+            // // 100% mark
+            // {
+            //     bars: {show: false},
+            //     data: [],
+            //     lines: {
+            //         fill: false,
+            //         fillColor: 'rgba(255, 255, 255, 0.1)',
+            //         lineWidth: 0,
+            //         show: true
+            //     },
+            //     yaxis: 1
+            // },
+            //
+            // // 80% mark
+            // {
+            //     bars: {show: false},
+            //     data: [],
+            //     lines: {
+            //         fill: false,
+            //         fillColor: 'rgba(255, 255, 255, 0.1)',
+            //         lineWidth: 0,
+            //         show: true
+            //     },
+            //     yaxis: 1
+            // },
+            //
+            // // 60% mark
+            // {
+            //     bars: {show: false},
+            //     data: [],
+            //     lines: {
+            //         fill: false,
+            //         fillColor: 'rgba(255, 255, 255, 0.1)',
+            //         lineWidth: 0,
+            //         show: true
+            //     },
+            //     yaxis: 1
+            // },
+            //
+            // // 40% mark
+            // {
+            //     bars: {show: false},
+            //     data: [],
+            //     lines: {
+            //         fill: false,
+            //         fillColor: 'rgba(255, 255, 255, 0.1)',
+            //         lineWidth: 0,
+            //         show: true
+            //     },
+            //     yaxis: 1
+            // },
+            //
+            // // 20% mark
+            // {
+            //     bars: {show: false},
+            //     data: [],
+            //     lines: {
+            //         fill: false,
+            //         fillColor: 'rgba(255, 255, 255, 0.1)',
+            //         lineWidth: 0,
+            //         show: true
+            //     },
+            //     yaxis: 1
+            // },
 
             {data: [], highlightColor: '#fff', yaxis: 1},   // Week 1
             {data: [], highlightColor: '#fff', yaxis: 1},   // Week 2
@@ -293,6 +299,11 @@ angular.module('app.controllers')
                     show: true
                 },
                 isThresholdSeries: true,
+                updateColor: function(val) {
+
+                    // Return a colour depending on the current value of the threshold.
+                    return $scope.easypiePercentColor(Math.min(100, Math.round(2750 * 100 / val)));
+                },
                 yaxis: 1
             }
         ];
@@ -306,16 +317,16 @@ angular.module('app.controllers')
                     .html(
                         '<b>' + $filter('number')(item.datapoint[1], 0) + ' &deg;/s</b>' +
                         '<br>' +
-                        '<span style="text-transform: uppercase; color: #333;">' +
-                            'Recovery: ' +
+                        '<span style="text-transform: uppercase;">' +
                             Math.min(100, Math.round(item.datapoint[1] * 100 / $scope.thresholdValue)) +
-                            '%' +
+                            '% of baseline' +
                         '</span>'
                     )
 					.css({
                         top: item.pageY - $('#demo-flot-tooltip').height() - 35,
-                        left: item.pageX + 5,
-                        'background-color': item.series.color
+                        left: item.pageX - 85
+                        // 'background-color': item.series.color
+                        // 'background': 'linear-gradient(to right, rgba(91, 112, 125, 0.8) 0%, transparent 60%)'
                     })
 					.fadeIn(200);
 			}
@@ -331,9 +342,11 @@ angular.module('app.controllers')
             position: 'absolute',
             display: 'none',
             padding: '5px 10px',
-            color: '#000',
+            color: '#fff',
+            'border': '1px solid ' + Utilities.color.textColorBlue,
+            'background-color': Utilities.color.darkBlue,
             'text-align': 'center',
-            opacity: 0.7
+            opacity: 1
         }).appendTo('body');
 
         //
@@ -345,7 +358,7 @@ angular.module('app.controllers')
         $scope.dataMedians = [1250, 1320, 1400, 1590, 1960, 2240, 2750];
 
         // Indicates index of first dataset in $scope.flotData
-        $scope.flotDataStartIndex = 5;
+        $scope.flotDataStartIndex = 0;
 
         /**
          * Generates a random data point, within the specified range.
@@ -404,25 +417,25 @@ angular.module('app.controllers')
 
         $scope.dataLastPoint = x;
 
-        // 100% line.
-        $scope.flotData[0].data.push([0, 3000]);
-        $scope.flotData[0].data.push([$scope.dataLastPoint, 3000]);
-
-        // 80% line.
-        $scope.flotData[1].data.push([0, 2400]);
-        $scope.flotData[1].data.push([$scope.dataLastPoint, 2400]);
-
-        // 60% line.
-        $scope.flotData[2].data.push([0, 1800]);
-        $scope.flotData[2].data.push([$scope.dataLastPoint, 1800]);
-
-        // 40% line.
-        $scope.flotData[3].data.push([0, 1200]);
-        $scope.flotData[3].data.push([$scope.dataLastPoint, 1200]);
-
-        // 20% line.
-        $scope.flotData[4].data.push([0, 600]);
-        $scope.flotData[4].data.push([$scope.dataLastPoint, 600]);
+        // // 100% line.
+        // $scope.flotData[0].data.push([0, 3000]);
+        // $scope.flotData[0].data.push([$scope.dataLastPoint, 3000]);
+        //
+        // // 80% line.
+        // $scope.flotData[1].data.push([0, 2400]);
+        // $scope.flotData[1].data.push([$scope.dataLastPoint, 2400]);
+        //
+        // // 60% line.
+        // $scope.flotData[2].data.push([0, 1800]);
+        // $scope.flotData[2].data.push([$scope.dataLastPoint, 1800]);
+        //
+        // // 40% line.
+        // $scope.flotData[3].data.push([0, 1200]);
+        // $scope.flotData[3].data.push([$scope.dataLastPoint, 1200]);
+        //
+        // // 20% line.
+        // $scope.flotData[4].data.push([0, 600]);
+        // $scope.flotData[4].data.push([$scope.dataLastPoint, 600]);
 
         // Return to play line.
         $scope.flotData[$scope.flotData.length - 1].data.push([0, 2800]);
@@ -449,7 +462,6 @@ angular.module('app.controllers')
             }, 800);
         };
 
-        $scope.$watch('session', $scope.fetchDataDemo);
         $scope.$watch('metric', $scope.fetchDataDemo);
     }
 ]);

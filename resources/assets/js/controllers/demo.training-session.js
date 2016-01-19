@@ -29,7 +29,7 @@ angular.module('app.controllers')
         // Markings.
         $scope.flotPeakElbowAngularVelocityLabels = [
             {
-                color: '#db5031',
+                color: Utilities.colour.orange,
                 point: {x: 10, y: 2900},
                 text: 'Throw Degradation'
             }
@@ -38,13 +38,14 @@ angular.module('app.controllers')
 
         $scope.flotPeakElbowAngularVelocityOptions = {
             grid: {
+                backgroundColor: 'rgba(44, 58, 70, 1)',
                 borderWidth: 1,
-                borderColor: Utilities.colour.blue,
-                clickable: true,
+                borderColor: '#888',
+                clickable: false,
                 hoverable: true,
                 markings: [
                     {
-                        color: '#db5031',
+                        color: Utilities.color.orange,
                         lineWidth: 2,
                         xaxis: {from: 10, to: 10}
                     }
@@ -57,6 +58,8 @@ angular.module('app.controllers')
                 hoverable: true
             },
             xaxis: {
+                color: '#888',
+                tickColor: '#888',
                 ticks: [
                     [0, '0'],
                     [2, '20 Throws'],
@@ -70,7 +73,8 @@ angular.module('app.controllers')
                 ]
             },
             yaxis: {
-                color: Utilities.colour.blue,
+                color: '#888',
+                tickColor: '#888',
                 min: 1000,
                 max: 3000,
                 position: 'left'
@@ -79,7 +83,7 @@ angular.module('app.controllers')
             tooltipOpts: {
                 defaultTheme: true
             },
-            colors: [Utilities.colour.orange, '#6eb4d2']
+            colors: ['#ddd', '#6eb4d2']
         };
 
         $scope.flotPeakElbowAngularVelocityData = [
@@ -89,7 +93,7 @@ angular.module('app.controllers')
                 bars: {show: false},
                 lines: {
                     fill: true,
-                    fillColor: 'rgba(250, 189, 57, 0.05)',
+                    fillColor: {colors: [ 'rgba(44, 58, 70, 0.8)', 'rgba(91, 112, 125, 0.1)']},
                     lineWidth: 2,
                     show: true
                 },
@@ -106,7 +110,7 @@ angular.module('app.controllers')
                 lines: {
                     color: '#fff',
                     fill: false,
-                    lineWidth: 2,
+                    lineWidth: 4,
                     show: true
                 },
                 data: [
@@ -136,9 +140,10 @@ angular.module('app.controllers')
                         '<b>' + $filter('number')(item.datapoint[1], 0) + ' &deg;/s</b>'
                     )
 					.css({
-                        top: item.pageY - $('#flot-peak-angular-velocity-tooltip').height() - 35,
-                        left: item.pageX + 5,
-                        'background-color': item.series.color
+                        top: item.pageY - $('#flot-peak-angular-velocity-tooltip').height() - 45,
+                        left: item.pageX - 40,
+                        // 'background-color': item.series.color
+                        'background-color': Utilities.color.darkBlue
                     })
 					.fadeIn(200);
 			}
@@ -154,9 +159,11 @@ angular.module('app.controllers')
             position: 'absolute',
             display: 'none',
             padding: '5px 10px',
-            color: '#000',
+            color: Utilities.color.textColor,
+            border: '1px solid ' + Utilities.color.textColorBlue,
+            'background-color': Utilities.color.darkBlue,
             'text-align': 'center',
-            opacity: 0.7
+            opacity: 0.9
         }).appendTo('body');
 
 
