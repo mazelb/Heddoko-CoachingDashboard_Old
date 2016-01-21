@@ -320,25 +320,25 @@ angular.module('app.directives')
                                 case 'g':
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 1000;
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' g';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal, 2) + ' g';
                                     break;
 
                                 case 'kg':
                                     scope.config.unitForMass = 'kg';
                                     scope.data.massVal = scope.model[scope.key];
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' kg';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal, 0) + ' kg';
                                     break;
 
                                 case 'stone':
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 0.157473;
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' stone';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal, 2) + ' stone';
                                     break;
 
                                 default:
                                     scope.config.unitForMass = unit;
                                     scope.data.massVal = scope.model[scope.key] * 2.20462;
-                                    scope.data.displayStr = $filter('number')(scope.data.massVal) + ' lbs';
+                                    scope.data.displayStr = $filter('number')(scope.data.massVal, 0) + ' lbs';
                                     break;
                             }
                         };

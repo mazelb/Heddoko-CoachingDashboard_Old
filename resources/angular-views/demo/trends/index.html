@@ -13,6 +13,9 @@
     <div class="row demo-trends-section">
         <div class="col-xs-12 col-md-7 col-md-offset-5 col-lg-9 col-lg-offset-3">
             <h3 ng-show="metric" class="text-center">
+                <span ng-show="metric.title == 'Shoulder Range of Motion'">
+                    {{ selectizeRomModel == 1 ? 'Passive ' : 'Active ' }}
+                </span>
                 {{ metric.title }} / Dec 19 - Feb 6 2016
             </h3>
         </div>
@@ -24,10 +27,12 @@
             <!-- Athlete details -->
             <div class="row">
                 <div class="col-md-4">
-                    <div
-                        ng-style="{background: 'transparent center center no-repeat url('+ profile.avatarSrc +')', 'background-size': 'contain'}"
+                    <a
+                        ng-style="{'background-image': 'url('+ profile.avatarSrc +')'}"
+                        style="display: block; background: transparent center center no-repeat; background-size: contain;"
+                        href="#/profile/{{ profile.id }}"
                         class="aspect-ratio aspect-square">
-                    </div>
+                    </a>
                 </div>
 
                 <div class="col-md-8">
@@ -63,12 +68,26 @@
                             placeholder="Select a metric.">
                         </selectize>
                     </div>
-                </div>
-            </div>
-            <br>
 
-            <!-- Recovery percent -->
-            <div ng-show="metric && !isFetchingData" class="row text-center" style="color: #ddd;">
+                    <!-- Active/Passive selector -->
+                    <div ng-show="metric.title == 'Shoulder Range of Motion'">
+                        <selectize
+                            ng-model="selectizeRomModel"
+                            class="form-control text-center"
+                            data-config="selectizeRomConfig"
+                            data-options="selectizeRomOptions">
+                        </selectize>
+                    </div>
+                </div>
+                <br>
+            </div>
+
+            <!-- Recovery percent for Peak Elbow Angular Velocity -->
+            <div
+                ng-show="metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData"
+                class="row text-center"
+                style="color: #ddd;">
+
                 <h3>
                     Percent Recovery
                 </h3>
@@ -76,11 +95,14 @@
                 <div easypiechart options="easypie.options" percent="easypie.percent" class="easypiechart">
                     <span class="pie-percent" ng-bind="easypie.percent"></span>
                 </div>
+                <br>
             </div>
-            <br>
 
-            <!-- Threshold input -->
-            <div ng-show="metric && !isFetchingData" class="row">
+            <!-- Threshold input for Peak Elbow Angular Velocity -->
+            <div
+                ng-show="metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData"
+                class="row">
+
                 <h3 class="text-center" style="color: #ddd;">
                     Threshold for Return To Play
                 </h3>
@@ -108,11 +130,24 @@
                     </div>
                 </div>
             </div>
+
+            <!-- ROM percent -->
+            <div
+                ng-show="metric.title == 'Shoulder Range of Motion' && !isFetchingData"
+                class="row">
+
+                <div class="col-md-12 text-center">
+                    <span id="romPercent"></span>
+                </div>
+            </div>
         </div>
 
 
         <!-- Peak Elbow Angular Velocity -->
-        <div ng-show="metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData" class="col-xs-12 col-md-7 col-lg-9">
+        <div
+            ng-show="metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData"
+            class="col-xs-12 col-md-7 col-lg-9">
+
             <div
                 data-theme-flot-chart
                 data-data="flotData"
@@ -121,6 +156,86 @@
                 data-threshold="thresholdValue"
                 data-threshold-label="'Return To Play'"
                 style="width: 100%; height: 600px;">
+            </div>
+        </div>
+
+
+        <!-- Passive Shoulder Range of Motion -->
+        <div
+            ng-show="metric.title == 'Shoulder Range of Motion' && selectizeRomModel == 1 && !isFetchingData"
+            class="col-xs-12 col-md-7 col-lg-9">
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-4 text-right">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.extRot}"></div> External Rot.
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.flexion}"></div> Flexion
+                </div>
+                <div class="col-md-4 text-left">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.abduction}"></div> Abduction
+                </div>
+            </div>
+
+            <div
+                data-theme-flot-chart
+                data-data="flotRomData"
+                data-options="flotRomOptions"
+                data-plot-hover="flotRomHover"
+                data-plot-labels="flotRomLabels"
+                style="width: 100%; height: 450px;">
+            </div>
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-4 text-right">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.intRot}"></div> Internal Rot.
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.extension}"></div> Extension
+                </div>
+                <div class="col-md-4 text-left">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.adduction}"></div> Adduction
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Active Shoulder Range of Motion -->
+        <div
+            ng-show="metric.title == 'Shoulder Range of Motion' && selectizeRomModel == 2 && !isFetchingData"
+            class="col-xs-12 col-md-7 col-lg-9">
+
+            <div class="row" style="margin-top: 15px;">
+                <div class="col-md-4 text-right">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.extRot}"></div> External Rot.
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.flexion}"></div> Flexion
+                </div>
+                <div class="col-md-4 text-left">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.abduction}"></div> Abduction
+                </div>
+            </div>
+
+            <div
+                data-theme-flot-chart
+                data-data="flotActiveRomData"
+                data-options="flotActiveRomOptions"
+                data-plot-hover="flotRomHover"
+                data-plot-labels="flotActiveRomLabels"
+                style="width: 100%; height: 450px;">
+            </div>
+
+            <div class="row" style="margin-top: 15px">
+                <div class="col-md-4 text-right">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.intRot}"></div> Internal Rot.
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.extension}"></div> Extension
+                </div>
+                <div class="col-md-4 text-left">
+                    <div class="demo-legend-color" ng-style="{'background-color': colors.adduction}"></div> Adduction
+                </div>
             </div>
         </div>
 

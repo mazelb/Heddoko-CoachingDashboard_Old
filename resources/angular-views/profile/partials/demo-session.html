@@ -1,7 +1,7 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<section class="demo-trends-section" style="margin: 50px auto 300px;">
+<section class="demo-trends-section" style="margin: 50px auto">
     <h2 class="title">
         Training Session Review
         <span></span>
@@ -14,7 +14,7 @@
 
         <div class="row">
             <div class="col-md-9 col-md-offset-3">
-                <h3 class="text-center">
+                <h3 class="text-center" style="margin-bottom: 35px">
                     {{ metric.title }}
                 </h3>
             </div>
@@ -63,14 +63,35 @@
                         </selectize>
                     </div>
                 </div>
-                <br>
-                <br>
 
-                <div class="row text-center" style="color: #fabd39;">
-                    Throw Count Before Degradation: <b>97</b>
+                <!-- Extra Info -->
+                <div ng-hide="isFetchingSelectedMetricData || isFetchingSessionData">
+
+                    <div
+                        ng-show="metric.title == 'Peak Elbow Angular Velocity'"
+                        class="row text-center"
+                        style="color: #ddd; margin-top: 10px">
+
+                        <div class="col-xs-12">
+                            <div style="margin: 25px 0 0">
+                                <img src="/images/demo/qb throw.png" style="height: 65px; margin-right: 15px; vertical-align: top">
+                                <span style="font-size: 3.5em; vertical-align: bottom;">97</span>
+                            </div>
+
+                            <span style="font-size: 1.3em">
+                                Throw Count <br>
+                                Before Degradation
+                            </span>
+                        </div>
+                    </div>
+                    <div ng-show="metric.title == 'Peak Forearm Snap Velocity'" class="row text-center">
+                        <div class="col-xs-12">
+                            The snapping of the wrist from supinated to pronated is what gives the ball its
+                            spin. The faster this happens, the tighter the spin will be, and the higher the
+                            chances the ball will travel faster and further.
+                        </div>
+                    </div>
                 </div>
-
-                <!-- <div class="demo-trends-session-legend" style="height: 80px"></div> -->
             </div>
 
 
@@ -79,80 +100,110 @@
             <div ng-show="isFetchingSelectedMetricData === false">
 
                 <!-- Peak Elbow Angular Velocity -->
-                <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="demoPeakElbowAngularVelocityRow" class="col-md-9">
+                <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" class="col-md-9">
                     <div
                         data-theme-flot-chart
-                        data-data="flotPeakElbowAngularVelocityData"
-                        data-options="flotPeakElbowAngularVelocityOptions"
-                        data-plot-hover="flotPeakElbowAngularVelocityHover"
-                        data-plot-labels="flotPeakElbowAngularVelocityLabels"
+                        data-data="flotElbowVelocityData"
+                        data-options="flotElbowVelocityOptions"
+                        data-plot-hover="flotElbowVelocityHover"
+                        data-plot-labels="flotElbowVelocityLabels"
                         data-threshold-label="'Pause Training'"
                         style="width: 100%; height: 400px;">
                     </div>
+
+                    <div class="row text-center">
+                        <div class="col-md-4" style="margin-top: 30px">
+                            <div class="col-md-10 col-md-offset-2">
+                                <h4>
+                                    Fastest Throw
+                                </h4>
+                                <canvas
+                                    data-gauge-chart
+                                    data-gauge-data="elbowVelocityMaxGauge.data"
+                                    data-gauge-options="elbowVelocityMaxGauge.options"
+                                    style="width: 100%; vertical-align: bottom">
+                                </canvas>
+
+                                <div style="position: absolute; left: 39%; bottom: 15px;">
+                                    2,810 &deg;/s
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4" style="margin-top: 30px">
+                            <div class="col-md-10 col-md-offset-1">
+                                <h4>
+                                    Average
+                                </h4>
+                                <canvas
+                                    data-gauge-chart
+                                    data-gauge-data="elbowVelocityAvgGauge.data"
+                                    data-gauge-options="elbowVelocityAvgGauge.options"
+                                    style="width: 100%; vertical-align: bottom">
+                                </canvas>
+
+                                <div style="position: absolute; left: 39%; bottom: 15px;">
+                                    2,501 &deg;/s
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin-top: 30px">
+                            <div class="col-md-10">
+                                <h4>
+                                    Slowest Throw
+                                </h4>
+                                <canvas
+                                    data-gauge-chart
+                                    data-gauge-data="elbowVelocityMinGauge.data"
+                                    data-gauge-options="elbowVelocityMinGauge.options"
+                                    style="width: 100%; vertical-align: bottom">
+                                </canvas>
+
+                                <div style="position: absolute; left: 39%; bottom: 15px;">
+                                    1,879 &deg;/s
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <!-- <div ng-show="metric.title == 'Peak Elbow Angular Velocity'" id="demoPeakElbowAngularVelocityRow" class="col-md-9">
-                    <theme-chart
-                        data-type="Line"
-                        data-data="demoPeakElbowAngularVelocityData"
-                        data-options="demoPeakElbowAngularVelocityOptions"
-                        data-height="400"
-                        data-width="{{ demoPeakElbowAngularVelocityWidth() }}"
-                        data-value="chartjsObject"
-                        class="demo-chartjs">
-                    </theme-chart>
-                </div> -->
+
+                <!-- Shoulder External Rotation -->
+                <div ng-show="metric.title == 'Shoulder External Rotation'" class="col-md-9">
+                    <div
+                        data-theme-flot-chart
+                        data-data="flotShoulderRotData"
+                        data-options="flotShoulderRotOptions"
+                        data-plot-hover="flotShoulderRotHover"
+                        style="width: 100%; height: 400px;">
+                    </div>
+                </div>
+
+                <!-- Stride Length -->
+                <div ng-show="metric.title == 'Stride Length'" class="col-md-9">
+                    <div
+                        data-theme-flot-chart
+                        data-data="flotStrideData"
+                        data-options="flotStrideOptions"
+                        style="width: 100%; height: 400px;">
+                    </div>
+                </div>
 
             </div>
 
             <!-- Loading metric plots -->
-            <div ng-show="isFetchingSelectedMetricData === true" class="col-md-9 text-center">
-                <i class="fa fa-spinner fa-spin fa-3x" style="margin: 75px auto 0;"></i>
-            </div>
-        </div>
-        <br>
-        <br>
-
-
-
-        <!-- Session plots -->
-        <div ng-show="false" class="row">
-            <div class="col-md-9">
-                <h3 class="text-center">
-                    Energy Expended
-                </h3>
-
-                <div morris-chart
-                             data-data="fakeData.morris"
-                             data-type="area"
-                             data-xkey="year"
-                             data-ykeys='["a", "b", "c"]'
-                             data-labels='["Value A", "Value B", "Value C"]'
-                             data-line-colors='{{ fakeData.morrisColours }}'
-                             data-line-width="2"
-                             ></div>
-            </div>
-            <div class="col-md-3">
-                <h3 class="text-center">
-                    Energy Expended
-                </h3>
-
-                <canvas
-                    data-gauge-chart
-                    data-gauge-data="fakeData.gauge.data"
-                    data-gauge-options="fakeData.gauge.options"
-                    style="width: 340px; height: 170px;">
-                </canvas>
+            <div ng-show="isFetchingSelectedMetricData === true" class="col-md-9 text-center text-muted">
+                <i class="fa fa-spinner fa-spin fa-3x" style="margin: 200px auto"></i>
             </div>
         </div>
     </div>
 
     <!-- Loading data -->
-    <div ng-show="isFetchingSessionData === true" class="row text-center animate-fade-up">
-        <i class="fa fa-spinner fa-spin fa-5x" style="display: block; margin: 200px 0"></i>
+    <div ng-show="isFetchingSessionData === true" class="row text-center text-muted">
+        <i class="fa fa-spinner fa-spin fa-3x" style="display: block; margin: 200px 0 300px"></i>
     </div>
 
     <!-- No data selected -->
-    <div ng-show="(!session || !metric) && isFetchingSessionData === false" class="row">
+    <div ng-show="(!session || !metric) && isFetchingSessionData === false" class="row" style="margin: 0 auto 250px;">
 
         <div class="col-md-12">
             Select a training session and metric to get started.

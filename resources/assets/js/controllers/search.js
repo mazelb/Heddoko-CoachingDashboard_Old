@@ -202,14 +202,14 @@ angular.module('app.controllers')
                     // Browse to selected profile.
                     case 'profile':
                         $timeout(function() {
-                            Rover.browseTo.profile(item);
+                            Rover.browseTo.path('/profile/' + item);
                         });
                         break;
 
                     // Browse to selected group.
                     case 'group':
                         $timeout(function() {
-                            Rover.browseTo.group(item);
+                            Rover.browseTo.group('/group/' + item);
                         });
                         break;
                 }

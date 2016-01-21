@@ -14,7 +14,7 @@ angular.module('app.controllers')
         $scope.profile = $scope.global.getSelectedProfile();
 
         $scope.thresholdValue = 2800;
-        $scope.thresholdIncrement = 20;
+        $scope.thresholdIncrement = 50;
         $scope.isFetchingData = false;
         $scope.metric = null;
 
@@ -40,7 +40,7 @@ angular.module('app.controllers')
 
 
         ///
-        /// Demo: Selectize
+        /// Demo: Metric Selection
         ///
         /////////////////////////////////////////////////////////////////
 
@@ -72,12 +72,12 @@ angular.module('app.controllers')
 
         // Metrics
         $scope.selectizeMetricOptions = [
-            {id: 1, type: 'metric', title: 'Hawkins Impingement Test Results'},
-            {id: 2, type: 'metric', title: 'Neer Impingement Test Results'},
+            // {id: 1, type: 'metric', title: 'Hawkins Impingement Test Results'},
+            // {id: 2, type: 'metric', title: 'Neer Impingement Test Results'},
             {id: 3, type: 'metric', title: 'Peak Elbow Angular Velocity'},
-            {id: 4, type: 'metric', title: 'Peak Shoulder Internal Rotation Velocity'},
-            {id: 5, type: 'metric', title: 'Range of Motion'},
-            {id: 6, type: 'metric', title: 'Shoulder Strength'},
+            // {id: 4, type: 'metric', title: 'Peak Shoulder Internal Rotation Velocity'},
+            {id: 5, type: 'metric', title: 'Shoulder Range of Motion'},
+            // {id: 6, type: 'metric', title: 'Shoulder Strength Ratings'},
         ];
 
 
@@ -180,7 +180,6 @@ angular.module('app.controllers')
                 defaultTheme: !1
             },
             colors: [
-                // '#fff', '#fff', '#fff', '#fff', '#fff', // % marks
                 Utilities.colour.heddokoGreen,  // Week 1
                 '#79d9d8',                      // Week 2
                 '#6eb4d2',                      // Week 3
@@ -194,71 +193,6 @@ angular.module('app.controllers')
         };
 
         $scope.flotData = [
-
-            // // 100% mark
-            // {
-            //     bars: {show: false},
-            //     data: [],
-            //     lines: {
-            //         fill: false,
-            //         fillColor: 'rgba(255, 255, 255, 0.1)',
-            //         lineWidth: 0,
-            //         show: true
-            //     },
-            //     yaxis: 1
-            // },
-            //
-            // // 80% mark
-            // {
-            //     bars: {show: false},
-            //     data: [],
-            //     lines: {
-            //         fill: false,
-            //         fillColor: 'rgba(255, 255, 255, 0.1)',
-            //         lineWidth: 0,
-            //         show: true
-            //     },
-            //     yaxis: 1
-            // },
-            //
-            // // 60% mark
-            // {
-            //     bars: {show: false},
-            //     data: [],
-            //     lines: {
-            //         fill: false,
-            //         fillColor: 'rgba(255, 255, 255, 0.1)',
-            //         lineWidth: 0,
-            //         show: true
-            //     },
-            //     yaxis: 1
-            // },
-            //
-            // // 40% mark
-            // {
-            //     bars: {show: false},
-            //     data: [],
-            //     lines: {
-            //         fill: false,
-            //         fillColor: 'rgba(255, 255, 255, 0.1)',
-            //         lineWidth: 0,
-            //         show: true
-            //     },
-            //     yaxis: 1
-            // },
-            //
-            // // 20% mark
-            // {
-            //     bars: {show: false},
-            //     data: [],
-            //     lines: {
-            //         fill: false,
-            //         fillColor: 'rgba(255, 255, 255, 0.1)',
-            //         lineWidth: 0,
-            //         show: true
-            //     },
-            //     yaxis: 1
-            // },
 
             {data: [], highlightColor: '#fff', yaxis: 1},   // Week 1
             {data: [], highlightColor: '#fff', yaxis: 1},   // Week 2
@@ -381,10 +315,6 @@ angular.module('app.controllers')
             density = $scope.dataPointsInitialDensity + Math.floor(Math.pow((i * $scope.dataPointsInitialDensity), 1.1));
             midPoint = Math.floor(density/2) + x;
 
-            Utilities.debug('Week: ' + (i + 1));
-            Utilities.debug('Density: ' + density);
-            Utilities.debug('Midpoint: ' + midPoint);
-
             // Add ticks on x-axis.
             label = i > 1 ? 'Week ' + (i + 1) : (i + 1);
             $scope.flotOptions.xaxis.ticks.push([midPoint, label]);
@@ -417,29 +347,537 @@ angular.module('app.controllers')
 
         $scope.dataLastPoint = x;
 
-        // // 100% line.
-        // $scope.flotData[0].data.push([0, 3000]);
-        // $scope.flotData[0].data.push([$scope.dataLastPoint, 3000]);
-        //
-        // // 80% line.
-        // $scope.flotData[1].data.push([0, 2400]);
-        // $scope.flotData[1].data.push([$scope.dataLastPoint, 2400]);
-        //
-        // // 60% line.
-        // $scope.flotData[2].data.push([0, 1800]);
-        // $scope.flotData[2].data.push([$scope.dataLastPoint, 1800]);
-        //
-        // // 40% line.
-        // $scope.flotData[3].data.push([0, 1200]);
-        // $scope.flotData[3].data.push([$scope.dataLastPoint, 1200]);
-        //
-        // // 20% line.
-        // $scope.flotData[4].data.push([0, 600]);
-        // $scope.flotData[4].data.push([$scope.dataLastPoint, 600]);
-
         // Return to play line.
         $scope.flotData[$scope.flotData.length - 1].data.push([0, 2800]);
         $scope.flotData[$scope.flotData.length - 1].data.push([$scope.dataLastPoint, 2800]);
+
+
+        ///
+        /// Demo: Shoulder Range Of Motion
+        ///
+        /////////////////////////////////////////////////////////////////
+
+
+        $scope.selectizeRomOptions = [
+            {id: 1, title: 'Passive Range of Motion'},
+            {id: 2, title: 'Active Range of Motion'},
+        ];
+
+        $scope.selectedRom = $scope.selectizeRomOptions[0];
+
+        $scope.selectizeRomModel = 1;
+
+        $scope.selectizeRomConfig = {
+            create: false,
+            valueField: 'id',
+            labelField: 'title',
+            searchField: ['title'],
+            maxItems: 1,
+
+            /**
+             * Called anytime the value of the input changes.
+             *
+             * @param array data
+             */
+            onChange: function(id) {
+                angular.forEach($scope.selectizeRomOptions, function(rom) {
+                    if (rom.id == id) {
+                        $timeout(function() {
+                            $scope.rom = rom;
+                        });
+                    }
+                });
+            }
+        };
+
+        $scope.colors = {
+            extRot: '#28b9d7',      // External Rotation.
+            intRot: '#469db1',      // Internal Rotation.
+            flexion: '#3fd5ae',     // Flexion.
+            extension: '#3ca88e',   // Extension.
+            abduction: '#488bb7',   // Abduction.
+            adduction: '#336180',   // Adduction.
+        };
+
+        $scope.romWeeks = [
+            [1, 'Week 3'],
+            [5, 'Week 4'],
+            [9, 'Week 5'],
+            [13, 'Week 6'],
+            [17, 'Week 7'],
+            [21, 'Week 8'],
+            [25, 'Week 9'],
+            [29, 'Week 10'],
+            [33, 'Week 11'],
+            [37, 'Week 12'],
+            [41, 'Week 13'],
+            [45, 'Week 14'],
+        ];
+
+        $scope.romScale = [
+            [-100, '100%'],
+            [-80, '80%'],
+            [-60, '60%'],
+            [-40, '40%'],
+            [-20, '20%'],
+            [0, '0%'],
+            [20, '20%'],
+            [40, '40%'],
+            [60, '60%'],
+            [80, '80%'],
+            [100, '100%'],
+        ];
+
+        $scope.flotRomLabels = [
+            // {
+            //     color: Utilities.colour.darkBlue,
+            //     point: {x: 0, y: 97},
+            //     lineWidth: 3,
+            //     styles: {
+            //         padding: '5px 10px',
+            //         color: Utilities.color.silver,
+            //         'border-left': '4px solid #fff',
+            //         'background': 'linear-gradient(to right, '+ Utilities.color.textColorBlue +' 0%, transparent 30%)'
+            //     },
+            //     text: 'Passive Range of Motion'
+            // }
+        ];
+
+        $scope.flotRomOptions = {
+            grid: {
+                borderWidth: 1,
+                // borderColor: '#888',
+                clickable: false,
+                hoverable: true,
+                markings: [
+                    // {
+                    //     // color: Utilities.color.textColorBlue,
+                    //     color: 'rgba(91, 112, 125, 0.5)',
+                    //     xaxis: {from: 0, to: 15}
+                    // },
+                    // {
+                    //     // color: Utilities.color.textColorBlue,
+                    //     color: 'rgba(91, 112, 125, 0.4)',
+                    //     xaxis: {from: 16, to: 47}
+                    // },
+                    // {
+                    //     color: '#888',
+                    //     lineWidth: 5,
+                    //     yaxis: {from: 0, to: 0}
+                    // },
+                ],
+                // thresholdZones: {
+                //     mirror: true,
+                //     min: 0,
+                //     max: 100,
+                //     total: 5
+                // }
+            },
+            legend: {
+                show: false
+            },
+            series: {
+                bars: {
+                    barWidth: 0.95,
+                    fill: 1,
+                    show: true
+                },
+                hoverable: true
+            },
+            xaxis: {
+                color: 'transparent',
+                // tickColor: '#888',
+                min: -1,
+                max: 48,
+                ticks: $scope.romWeeks
+            },
+            yaxis: {
+                color: '#888',
+                tickColor: '#888',
+                min: -110,
+                max: 110,
+                ticks: $scope.romScale
+            },
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme:false
+            },
+            colors: [
+                $scope.colors.extRot,
+                $scope.colors.intRot,
+                $scope.colors.flexion,
+                $scope.colors.extension,
+                $scope.colors.abduction,
+                $scope.colors.adduction,
+                '#ddd'
+            ]
+        };
+
+        $scope.flotRomData = [
+
+            // External Rotation.
+            {
+                data: [
+                    [0, 58],
+                    [4, 63],
+                    [8, 71],
+                    [12, 89],
+                    [16, 91],
+                    [20, 90],
+                    [24, 96],
+                    [28, 99],
+                    [32, 97],
+                    [36, 101],
+                    [40, 103],
+                    [44, 100],
+                ]
+            },
+
+            // Internal Rotation.
+            {
+                data: [
+                    [0, -48],
+                    [4, -61],
+                    [8, -74],
+                    [12, -89],
+                    [16, -96],
+                    [20, -98],
+                    [24, -94],
+                    [28, -99],
+                    [32, -102],
+                    [36, -98],
+                    [40, -101],
+                    [44, -97],
+                ]
+            },
+
+            // Flexion.
+            {
+                data: [
+                    [1, 51],
+                    [5, 60],
+                    [9, 73],
+                    [13, 91],
+                    [17, 90],
+                    [21, 93],
+                    [25, 99],
+                    [29, 100],
+                    [33, 104],
+                    [37, 99],
+                    [41, 101],
+                    [45, 99],
+                ]
+            },
+
+            // Extension.
+            {
+                data: [
+                    [1, -29],
+                    [5, -33],
+                    [9, -38],
+                    [13, -57],
+                    [17, -64],
+                    [21, -70],
+                    [25, -86],
+                    [29, -92],
+                    [33, -87],
+                    [37, -93],
+                    [41, -99],
+                    [45, -102],
+                ]
+            },
+
+            // Abduction.
+            {
+                data: [
+                    [2, 12],
+                    [6, 20],
+                    [10, 22],
+                    [14, 39],
+                    [18, 48],
+                    [22, 63],
+                    [26, 58],
+                    [30, 72],
+                    [34, 78],
+                    [38, 81],
+                    [42, 84],
+                    [46, 87],
+                ]
+            },
+
+            // Adduction.
+            {
+                data: [
+                    [2, -31],
+                    [6, -33],
+                    [10, -38],
+                    [14, -42],
+                    [18, -44],
+                    [22, -49],
+                    [26, -58],
+                    [30, -62],
+                    [34, -65],
+                    [38, -69],
+                    [42, -74],
+                    [46, -83],
+                ]
+            },
+
+            // 0 line
+            {
+                bars: {show: false},
+                lines: {
+                    color: '#ddd',
+                    lineWidth: 2,
+                    show: true
+                },
+                data: [
+                    [-1, 0],
+                    [48, 0],
+                ]
+            }
+        ];
+
+        $scope.flotActiveRomLabels = [
+            // {
+            //     color: Utilities.colour.darkBlue,
+            //     point: {x: 0, y: 97},
+            //     lineWidth: 3,
+            //     styles: {
+            //         padding: '5px 10px',
+            //         color: Utilities.color.silver,
+            //         'border-left': '4px solid #fff',
+            //         'background': 'linear-gradient(to right, '+ Utilities.color.textColorBlue +' 0%, transparent 30%)'
+            //     },
+            //     text: 'Active Range of Motion'
+            // }
+        ];
+
+        $scope.flotActiveRomOptions = {
+            grid: {
+                borderWidth: 1,
+                // borderColor: '#888',
+                clickable: false,
+                hoverable: true,
+                markings: [
+                    // {
+                    //     color: '#888',
+                    //     lineWidth: 5,
+                    //     yaxis: {from: 0, to: 0}
+                    // },
+                ],
+                // thresholdZones: {
+                //     mirror: true,
+                //     min: 0,
+                //     max: 100,
+                //     total: 5
+                // }
+            },
+            legend: {
+                show: false
+            },
+            series: {
+                bars: {
+                    barWidth: 0.95,
+                    fill: 1,
+                    show: true
+                },
+                hoverable: true
+            },
+            xaxis: {
+                color: 'transparent',
+                // tickColor: '#888',
+                min: -1,
+                max: 48,
+                ticks: $scope.romWeeks
+            },
+            yaxis: {
+                color: '#888',
+                tickColor: '#888',
+                min: -110,
+                max: 110,
+                ticks: $scope.romScale
+            },
+            tooltip: true,
+            tooltipOpts: {
+                defaultTheme:false
+            },
+            colors: [
+                $scope.colors.extRot,
+                $scope.colors.intRot,
+                $scope.colors.flexion,
+                $scope.colors.extension,
+                $scope.colors.abduction,
+                $scope.colors.adduction,
+                '#ddd'
+            ]
+        };
+
+        $scope.flotActiveRomData = [
+
+            // External Rotation.
+            {
+                data: [
+                    // [0, 0],
+                    [4, 28],
+                    [8, 36],
+                    [12, 55],
+                    [16, 68],
+                    [20, 81],
+                    [24, 91],
+                    [28, 89],
+                    [32, 96],
+                    [36, 97],
+                    [40, 99],
+                    [44, 100],
+                ]
+            },
+
+            // Internal Rotation.
+            {
+                data: [
+                    // [0, -0],
+                    [4, -27],
+                    [8, -30],
+                    [12, -53],
+                    [16, -66],
+                    [20, -73],
+                    [24, -82],
+                    [28, -91],
+                    [32, -88],
+                    [36, -94],
+                    [40, -94],
+                    [44, -97],
+                ]
+            },
+
+            // Flexion.
+            {
+                data: [
+                    // [1, 0],
+                    [5, 31],
+                    [9, 36],
+                    [13, 61],
+                    [17, 66],
+                    [21, 79],
+                    [25, 93],
+                    [29, 91],
+                    [33, 94],
+                    [37, 99],
+                    [41, 101],
+                    [45, 99],
+                ]
+            },
+
+            // Extension.
+            {
+                data: [
+                    // [1, -0],
+                    [5, -29],
+                    [9, -38],
+                    [13, -57],
+                    [17, -64],
+                    [21, -70],
+                    [25, -86],
+                    [29, -92],
+                    [33, -87],
+                    [37, -93],
+                    [41, -99],
+                    [45, -102],
+                ]
+            },
+
+            // Abduction.
+            {
+                data: [
+                    // [2, 0],
+                    [6, 19],
+                    [10, 22],
+                    [14, 39],
+                    [18, 48],
+                    [22, 63],
+                    [26, 58],
+                    [30, 72],
+                    [34, 78],
+                    [38, 81],
+                    [42, 84],
+                    [46, 87],
+                ]
+            },
+
+            // Adduction.
+            {
+                data: [
+                    // [2, -0],
+                    [6, -10],
+                    [10, -18],
+                    [14, -27],
+                    [18, -36],
+                    [22, -49],
+                    [26, -58],
+                    [30, -71],
+                    [34, -78],
+                    [38, -77],
+                    [42, -84],
+                    [46, -89],
+                ]
+            },
+
+            // 0 line
+            {
+                bars: {show: false},
+                lines: {
+                    color: '#ddd',
+                    lineWidth: 2,
+                    show: true
+                },
+                data: [
+                    [-1, 0],
+                    [48, 0],
+                ]
+            },
+        ];
+
+        $scope.flotRomHover = function (event, pos, item) {
+
+            // Display tooltip for data point.
+			if (item)
+            {
+				$("#demo-rom-tooltip")
+                    .html(
+                        '<b>' + Math.abs($filter('number')(item.datapoint[1], 0)) + ' %</b>'
+                    )
+					.css({
+                        top: item.pageY - $('#demo-rom-tooltip').height() - 5,
+                        left: item.pageX - 17
+                        // 'background-color': item.series.color
+                        // 'background': 'linear-gradient(to right, rgba(91, 112, 125, 0.8) 0%, transparent 60%)'
+                    })
+					.fadeIn(200);
+
+                $('#romPercent')
+                    .html('<b>' + Math.abs($filter('number')(item.datapoint[1], 0)) + ' %</b>')
+					.fadeIn(200);
+			}
+
+            // Hide tooltip if no element is selected.
+            else {
+				$('#romPercent').fadeOut(200);
+				$('#demo-rom-tooltip').hide();
+			}
+		};
+
+        // Create tooltip template element.
+        $('<div id="demo-rom-tooltip"></div>').css({
+            position: 'absolute',
+            display: 'none',
+            padding: '5px 10px',
+            color: '#fff',
+            'border': '1px solid ' + Utilities.color.textColorBlue,
+            'background-color': Utilities.color.darkBlue,
+            'text-align': 'center',
+            opacity: 1
+        }).appendTo('body');
 
 
         ///
