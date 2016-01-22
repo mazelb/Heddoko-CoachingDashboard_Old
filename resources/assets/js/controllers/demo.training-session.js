@@ -71,6 +71,26 @@ angular.module('app.controllers')
         /////////////////////////////////////////////////////////////////
 
 
+        $scope.flotTicksX = [
+            // [0, '0'],
+            [1, '10'],
+            [2, '20'],
+            [3, '30'],
+            [4, '40'],
+            [5, '50'],
+            [6, '60'],
+            [7, '70'],
+            [8, '80'],
+            [9, '90'],
+            [10, '100'],
+            [11, '110'],
+            [12, '120'],
+            [13, '130'],
+            [14, '140'],
+            [15, '150'],
+            [16, 'Throws']
+        ];
+
         // Markings.
         $scope.flotElbowVelocityLabels = [
             {
@@ -90,6 +110,8 @@ angular.module('app.controllers')
 
         $scope.flotElbowVelocityOptions = $.extend(true, {}, flotOptions, {
             grid: {
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgba(0, 0, 0, 0)',
                 markings: [
                     {
                         color: Utilities.color.orange,
@@ -99,24 +121,40 @@ angular.module('app.controllers')
                 ]
             },
             xaxis: {
-                ticks: [
-                    [0, '0'],
-                    [2, '20 Throws'],
-                    [4, '40 Throws'],
-                    [6, '60 Throws'],
-                    [8, '80 Throws'],
-                    [10, '100 Throws'],
-                    [12, '120 Throws'],
-                    [14, '140 Throws'],
-                    [16, '160 Throws']
-                ]
+                tickColor: 'rgba(91, 112, 125, 0.4)',
+                ticks: $scope.flotTicksX
             },
             yaxis: {
+                tickColor: 'rgba(0, 0, 0, 0)',
                 min: 1000,
                 max: 3000
             },
-            colors: ['#ddd', '#6eb4d2']
+            colors: [
+                '#4dc5de',
+                '#4dc5de',
+                '#fff'
+            ]
         });
+
+        $scope.flotElbowVelocityDataPoints = [
+            [0, 2550],
+            [1, 2540],
+            [2, 2578],
+            [3, 2660],
+            [4, 2750],
+            [5, 2790],
+            [6, 2810],
+            [7, 2792],
+            [8, 2740],
+            [9, 2657],
+            [10, 2530],
+            [11, 2275],
+            [12, 2100],
+            [13, 2003],
+            [14, 1961],
+            [15, 1899],
+            [16, 1879]
+        ];
 
         $scope.flotElbowVelocityData = [
 
@@ -125,7 +163,7 @@ angular.module('app.controllers')
                 bars: {show: false},
                 lines: {
                     fill: true,
-                    fillColor: {colors: [ 'rgba(44, 58, 70, 0.8)', 'rgba(91, 112, 125, 0.1)']},
+                    fillColor: {colors: ['rgba(77, 197, 222, 0)', 'rgba(77, 197, 222, 0.3)']},
                     lineWidth: 2,
                     show: true
                 },
@@ -145,30 +183,18 @@ angular.module('app.controllers')
                     lineWidth: 4,
                     show: true
                 },
+                data: $scope.flotElbowVelocityDataPoints
+            },
+
+            // Data Points.
+            {
+                bars: {show: false},
                 points: {
                     color: '#ddd',
                     lineWidth: 4,
                     show: true
                 },
-                data: [
-                    [0, 2550],
-                    [1, 2540],
-                    [2, 2578],
-                    [3, 2660],
-                    [4, 2750],
-                    [5, 2790],
-                    [6, 2810],
-                    [7, 2792],
-                    [8, 2740],
-                    [9, 2657],
-                    [10, 2530],
-                    [11, 2275],
-                    [12, 2100],
-                    [13, 2003],
-                    [14, 1961],
-                    [15, 1899],
-                    [16, 1879]
-                ]
+                data: $scope.flotElbowVelocityDataPoints
             }
         ];
 
@@ -288,106 +314,92 @@ angular.module('app.controllers')
 
         $scope.flotShoulderRotOptions = $.extend(true, {}, flotOptions, {
             grid: {
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgba(0, 0, 0, 0)',
+                color: 'rgba(91, 112, 125, 1)',
                 markings: [
+                    // {
+                    //     color: 'rgba(219, 80, 49, 0.15)',
+                    //     color: Utilities.color.darkBlue,
+                    //     yaxis: {from: 100}
+                    // },
                     {
-                        // color: 'rgba(219, 80, 49, 0.15)',
-                        color: Utilities.color.darkBlue,
-                        yaxis: {from: 100}
-                    },
-                    {
-                        // color: 'rgba(59, 214, 178, 0.15)',
-                        color: Utilities.color.textColorBlue,
+                        color: 'rgba(77, 197, 222, 0.3)',
                         yaxis: {from: 60, to: 100}
                     },
-                    {
-                        color: Utilities.color.darkBlue,
-                        yaxis: {from: 0, to: 60}
-                    },
+                    // {
+                    //     color: Utilities.color.darkBlue,
+                    //     yaxis: {from: 0, to: 60}
+                    // },
                 ]
             },
             xaxis: {
-                ticks: [
-                    [0, '0'],
-                    [2, '20 Throws'],
-                    [4, '40 Throws'],
-                    [6, '60 Throws'],
-                    [8, '80 Throws'],
-                    [10, '100 Throws'],
-                    [12, '120 Throws'],
-                    [14, '140 Throws'],
-                    [16, '160 Throws']
-                ]
+                color: 'rgba(91, 112, 125, 0.4)',
+                tickColor: 'rgba(91, 112, 125, 0.4)',
+                ticks: $scope.flotTicksX
             },
             yaxis: {
-                min: 0,
-                max: 120,
+                color: 'rgba(0, 0, 0, 0)',
+                tickColor: 'rgba(0, 0, 0, 0)',
                 ticks: [
-                    [0, '0%'],
-                    [20, '20%'],
-                    [40, '40%'],
-                    [60, '60%'],
-                    [80, '80%'],
-                    [100, '100%'],
-                    [120, '120%'],
+                    [0, '0'],
+                    [20, '20'],
+                    [40, '40'],
+                    [60, '60'],
+                    [80, '80'],
+                    [100, '100'],
+                    [120, '%'],
                 ]
             },
             colors: [
-                // '#ddd',
-                Utilities.color.heddokoGreen
+                '#4dc5de',
+                '#fff',
             ]
         });
 
-        $scope.flotShoulderRotData = [
+        $scope.flotShoulderRotDataPoints = [
+            [0, 82],
+            [1, 89],
+            [2, 91],
+            [3, 90],
+            [4, 88],
+            [5, 91],
+            [6, 94],
+            [7, 91],
+            [8, 85],
+            [9, 67],
+            [10, 63],
+            [11, 61],
+            [12, 64],
+            [13, 62],
+            [14, 58],
+            [15, 53],
+            [16, 60]
+        ];
 
-            // // Threshold
-            // {
-            //     bars: {show: false},
-            //     lines: {
-            //         fill: true,
-            //         fillColor: {colors: ['rgba(91, 112, 125, 0.1)', 'rgba(44, 58, 70, 0.8)']},
-            //         lineWidth: 2,
-            //         show: true
-            //     },
-            //     data: [
-            //         [0, 100],
-            //         [16, 100]
-            //     ],
-            //     isThresholdSeries: true
-            // },
+        $scope.flotShoulderRotData = [
 
             // Data line.
             {
                 bars: {show: false},
                 lines: {
-                    color: '#fff',
+                    color: '#4dc5de',
                     fill: false,
                     lineWidth: 4,
                     show: true
                 },
+                data: $scope.flotShoulderRotDataPoints
+            },
+
+            // Data points.
+            {
+                bars: {show: false},
                 points: {
-                    color: '#ddd',
+                    color: '#fff',
                     lineWidth: 4,
                     show: true
                 },
-                data: [
-                    [0, 82],
-                    [1, 89],
-                    [2, 91],
-                    [3, 90],
-                    [4, 88],
-                    [5, 91],
-                    [6, 94],
-                    [7, 91],
-                    [8, 85],
-                    [9, 67],
-                    [10, 63],
-                    [11, 61],
-                    [12, 64],
-                    [13, 62],
-                    [14, 58],
-                    [15, 53],
-                    [16, 60]
-                ]
+                data: $scope.flotShoulderRotDataPoints
             }
         ];
 
@@ -426,89 +438,91 @@ angular.module('app.controllers')
 
         $scope.flotStrideOptions = $.extend(true, {}, flotOptions, {
             grid: {
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgba(0, 0, 0, 0)',
                 markings: [
+                    // {
+                    //     color: Utilities.color.textColorBlue,
+                    //     yaxis: {from: 30}
+                    // },
                     {
-                        color: Utilities.color.textColorBlue,
-                        yaxis: {from: 30}
-                    },
-                    {
-                        color: Utilities.color.darkBlue,
+                        color: 'rgba(63, 213, 174, 0.3)',
                         yaxis: {from: 26, to: 30}
                     },
-                    {
-                        color: Utilities.color.textColorBlue,
-                        yaxis: {from: 15, to: 26}
-                    },
+                    // {
+                    //     color: Utilities.color.textColorBlue,
+                    //     yaxis: {from: 15, to: 26}
+                    // },
                 ]
             },
             xaxis: {
-                ticks: [
-                    [0, '0'],
-                    [2, '20 Throws'],
-                    [4, '40 Throws'],
-                    [6, '60 Throws'],
-                    [8, '80 Throws'],
-                    [10, '100 Throws'],
-                    [12, '120 Throws'],
-                    [14, '140 Throws'],
-                    [16, '160 Throws']
-                ]
+                color: 'rgba(91, 112, 125, 0.4)',
+                tickColor: 'rgba(91, 112, 125, 0.4)',
+                ticks: $scope.flotTicksX
             },
             yaxis: {
+                color: 'rgba(0, 0, 0, 0)',
+                tickColor: 'rgba(0, 0, 0, 0)',
                 ticks: [
-                    // [0, '0'],
-                    // [5, '5"'],
-                    // [15, '15"'],
-                    [20, '20"'],
-                    [25, '25"'],
-                    [30, '30"'],
-                    [35, '35"'],
-                    // [40, '40"'],
-                    // [45, '45"'],
-                    // [50, '50"'],
+                    [20, '20'],
+                    [22, '22'],
+                    [24, '24'],
+                    [26, '26'],
+                    [28, '28'],
+                    [30, '30'],
+                    [32, '32'],
+                    [34, '34'],
+                    [36, 'in.'],
                 ]
             },
             colors: [
-                // '#ddd',
-                Utilities.color.danger
+                'rgba(63, 213, 174, 1)',
+                '#fff',
             ]
         });
+
+        $scope.flowStrideDataPoints = [
+            [0, 27.4],
+            [1, 28],
+            [2, 26.5],
+            [3, 25.9],
+            [4, 26.9],
+            [5, 27.9],
+            [6, 28.1],
+            [7, 28.7],
+            [8, 28.3],
+            [9, 27.9],
+            [10, 27.4],
+            [11, 26.1],
+            [12, 25.3],
+            [13, 25],
+            [14, 24.6],
+            [15, 23.1],
+            [16, 22.9]
+        ];
 
         $scope.flotStrideData = [
 
             // Data line.
             {
                 bars: {show: false},
-                points: {
-                    color: '#ddd',
-                    lineWidth: 4,
-                    show: true
-                },
                 lines: {
-                    color: '#fff',
                     fill: false,
                     lineWidth: 4,
                     show: true
                 },
-                data: [
-                    [0, 27.4],
-                    [1, 28],
-                    [2, 26.5],
-                    [3, 25.9],
-                    [4, 26.9],
-                    [5, 27.9],
-                    [6, 28.1],
-                    [7, 28.7],
-                    [8, 28.3],
-                    [9, 27.9],
-                    [10, 27.4],
-                    [11, 26.1],
-                    [12, 25.3],
-                    [13, 25],
-                    [14, 24.6],
-                    [15, 23.1],
-                    [16, 22.9]
-                ]
+                data: $scope.flowStrideDataPoints
+            },
+
+            // Data scatter.
+            {
+                bars: {show: false},
+                points: {
+                    fill: true,
+                    lineWidth: 4,
+                    show: true
+                },
+                data: $scope.flowStrideDataPoints
             }
         ];
 

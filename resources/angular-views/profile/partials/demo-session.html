@@ -84,11 +84,19 @@
                             </span>
                         </div>
                     </div>
+
                     <div ng-show="metric.title == 'Peak Forearm Snap Velocity'" class="row text-center">
                         <div class="col-xs-12">
                             The snapping of the wrist from supinated to pronated is what gives the ball its
                             spin. The faster this happens, the tighter the spin will be, and the higher the
                             chances the ball will travel faster and further.
+                        </div>
+                    </div>
+
+                    <div ng-show="metric.title == 'Stride Length'" class="row text-center">
+                        <div class="col-xs-12">
+                            The proper stride length is approximately the athlete’s tibial
+                            tuberosity X 1.5, or about 26-30 inches in most quarterbacks.
                         </div>
                     </div>
                 </div>
@@ -114,7 +122,7 @@
                     <div class="row text-center">
                         <div class="col-md-4" style="margin-top: 30px">
                             <div class="col-md-10 col-md-offset-2">
-                                <h4>
+                                <h4 style="display: inline-block">
                                     Fastest Throw
                                 </h4>
                                 <canvas
@@ -132,7 +140,7 @@
 
                         <div class="col-md-4" style="margin-top: 30px">
                             <div class="col-md-10 col-md-offset-1">
-                                <h4>
+                                <h4 style="display: inline-block">
                                     Average
                                 </h4>
                                 <canvas
@@ -149,7 +157,7 @@
                         </div>
                         <div class="col-md-4" style="margin-top: 30px">
                             <div class="col-md-10">
-                                <h4>
+                                <h4 style="display: inline-block">
                                     Slowest Throw
                                 </h4>
                                 <canvas

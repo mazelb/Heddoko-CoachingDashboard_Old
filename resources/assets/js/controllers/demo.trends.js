@@ -141,7 +141,7 @@ angular.module('app.controllers')
         $scope.flotOptions = {
             grid: {
                 borderWidth: 1,
-                borderColor: '#888',
+                borderColor: 'rgba(0, 0, 0, 0)',
                 clickable: false,
                 hoverable: true,
                 thresholdZones: {
@@ -162,17 +162,15 @@ angular.module('app.controllers')
                 hoverable: true
             },
             xaxis: {
+                color: 'rgba(0, 0, 0, 0)',
                 ticks: []
             },
             yaxes: [
                 {
+                    color: 'rgba(91, 112, 125, 0.4)',
                     min: 500,
                     max: 3500,
                     position: 'left'
-                }, {
-                    position: 'right',
-                    min: 20,
-                    max: 100
                 }
             ],
             tooltip: !0,
@@ -180,14 +178,14 @@ angular.module('app.controllers')
                 defaultTheme: !1
             },
             colors: [
-                Utilities.colour.heddokoGreen,  // Week 1
-                '#79d9d8',                      // Week 2
-                '#6eb4d2',                      // Week 3
-                Utilities.colour.heddokoGreen,  // Week 4
-                '#79d9d8',                      // Week 5
-                '#6eb4d2',                      // Week 6
-                Utilities.colour.heddokoGreen,  // Week 7
-                '#fff',                         // Median line
+                '#22aaaa',      // Week 1
+                '#6ae1e1',      // Week 2
+                '#22aaaa',      // Week 3
+                '#6ae1e1',      // Week 4
+                '#22aaaa',      // Week 5
+                '#6ae1e1',      // Week 6
+                '#22aaaa',      // Week 7
+                'rgba(255, 255, 255, 0.5)',     // Median line
                 Utilities.colour.orange,        // Return to play
             ]
         };
@@ -445,8 +443,8 @@ angular.module('app.controllers')
 
         $scope.flotRomOptions = {
             grid: {
-                borderWidth: 1,
-                // borderColor: '#888',
+                borderWidth: 0,
+                borderColor: 'rgba(0, 0, 0, 0)',
                 clickable: false,
                 hoverable: true,
                 markings: [
@@ -486,14 +484,12 @@ angular.module('app.controllers')
             },
             xaxis: {
                 color: 'transparent',
-                // tickColor: '#888',
                 min: -1,
                 max: 48,
                 ticks: $scope.romWeeks
             },
             yaxis: {
-                color: '#888',
-                tickColor: '#888',
+                color: 'rgba(91, 112, 125, 0.4)',
                 min: -110,
                 max: 110,
                 ticks: $scope.romScale
@@ -655,8 +651,8 @@ angular.module('app.controllers')
 
         $scope.flotActiveRomOptions = {
             grid: {
-                borderWidth: 1,
-                // borderColor: '#888',
+                borderWidth: 0,
+                borderColor: 'rgba(0, 0, 0, 0)',
                 clickable: false,
                 hoverable: true,
                 markings: [
@@ -685,15 +681,13 @@ angular.module('app.controllers')
                 hoverable: true
             },
             xaxis: {
-                color: 'transparent',
-                // tickColor: '#888',
+                color: 'rgba(0, 0, 0, 0)',
                 min: -1,
                 max: 48,
                 ticks: $scope.romWeeks
             },
             yaxis: {
-                color: '#888',
-                tickColor: '#888',
+                color: 'rgba(91, 112, 125, 0.4)',
                 min: -110,
                 max: 110,
                 ticks: $scope.romScale
@@ -843,12 +837,17 @@ angular.module('app.controllers')
             // Display tooltip for data point.
 			if (item)
             {
+                var sign = item.datapoint[1]/Math.abs(item.datapoint[1]),
+                    top = sign > 0 ?
+                        item.pageY - $('#demo-rom-tooltip').height() - 25 :
+                        item.pageY + 15;
+
 				$("#demo-rom-tooltip")
                     .html(
                         '<b>' + Math.abs($filter('number')(item.datapoint[1], 0)) + ' %</b>'
                     )
 					.css({
-                        top: item.pageY - $('#demo-rom-tooltip').height() - 5,
+                        top: top,
                         left: item.pageX - 17
                         // 'background-color': item.series.color
                         // 'background': 'linear-gradient(to right, rgba(91, 112, 125, 0.8) 0%, transparent 60%)'
@@ -858,12 +857,23 @@ angular.module('app.controllers')
                 $('#romPercent')
                     .html('<b>' + Math.abs($filter('number')(item.datapoint[1], 0)) + ' %</b>')
 					.fadeIn(200);
+
+                $timeout(function() {
+                    $scope.romGaugeValue = ((item.datapoint[1] + 100) * 1000 / 200) > 1000 ?
+                        1000 : (item.datapoint[1] + 100) * 1000 / 200;
+                    $scope.romGaugeValuePercent = $filter('number')(item.datapoint[1], 0) + ' %';
+                });
 			}
 
             // Hide tooltip if no element is selected.
             else {
 				$('#romPercent').fadeOut(200);
 				$('#demo-rom-tooltip').hide();
+
+                $timeout(function() {
+                    $scope.romGaugeValue = 500;
+                    $scope.romGaugeValuePercent = '';
+                });
 			}
 		};
 
@@ -878,6 +888,34 @@ angular.module('app.controllers')
             'text-align': 'center',
             opacity: 1
         }).appendTo('body');
+
+        // Gauge
+        $scope.romGaugeValue = 500;
+        $scope.romGauge =
+        {
+            data: {
+                maxValue: 1000,
+                animationSpeed: 4,
+                val: $scope.romGaugeValue
+            },
+            options: {
+                lines: 12,
+                angle: 0,
+                lineWidth: 0.3,
+                pointer: {
+                    length: 0,
+                    strokeWidth: 0
+                },
+                limitMax: 'false',
+                strokeColor: Utilities.colour.blue,
+                generateGradient: false,
+                percentColors: [
+                    [0, '#6eb4d2'],
+                    [0.5, '#6eb4d2'],
+                    [1, '#6eb4d2']
+                ]
+            }
+        };
 
 
         ///

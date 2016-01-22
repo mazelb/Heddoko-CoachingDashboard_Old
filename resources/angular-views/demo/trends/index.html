@@ -133,11 +133,33 @@
 
             <!-- ROM percent -->
             <div
-                ng-show="metric.title == 'Shoulder Range of Motion' && !isFetchingData"
+                ng-show="false && metric.title == 'Shoulder Range of Motion' && !isFetchingData"
                 class="row">
 
                 <div class="col-md-12 text-center">
                     <span id="romPercent"></span>
+                </div>
+            </div>
+
+            <!-- ROM gauge -->
+            <div
+                ng-show="metric.title == 'Shoulder Range of Motion' && !isFetchingData"
+                class="row">
+
+                <br>
+                <br>
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <canvas
+                        data-theme-gauge-chart
+                        data-gauge-data="romGauge.data"
+                        data-live-gauge-value="romGaugeValue"
+                        data-gauge-options="romGauge.options"
+                        style="width: 100%;">
+                    </canvas>
+
+                    <div style="position: absolute; left: 42%; bottom: 15px; font-size: 1.2em">
+                        {{ romGaugeValuePercent }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -259,7 +281,7 @@
 
 
         <!-- Loading data -->
-        <div ng-show="isFetchingData" class="col-xs-12 col-md-7 col-lg-9 text-center">
+        <div ng-show="isFetchingData" class="col-xs-12 col-md-7 col-lg-9 text-center text-muted">
             <i class="fa fa-spinner fa-spin fa-3x" style="display: block; margin: 100px 0 0"></i>
         </div>
     </div>

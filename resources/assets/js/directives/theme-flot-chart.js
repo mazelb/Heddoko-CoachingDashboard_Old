@@ -65,7 +65,7 @@ angular.module('app.directives')
                                         plot.getPlaceholder().height() -
                                         plot.getPlotOffset().top -
                                         plot.getPlotOffset().bottom
-                                    ) - 20;
+                                    ) + 10;
                             }
                         });
 
@@ -164,12 +164,13 @@ angular.module('app.directives')
                      * @param convascontext
                      */
                     var drawThresholdZones = function(plot, convascontext) {
-                        Utilities.debug('zones');
 
                         // Remove existing threshold zones.
-                        var originalMarkings = [], options = plot.getOptions(), tzIncrement;
+                        var originalMarkings = [],
+                            options = plot.getOptions(),
+                            plotData = plot.getData(),
+                            tzIncrement;
                         angular.forEach(options.grid.markings, function(marking) {
-                            Utilities.debug(marking);
                             if (!marking.isThresholdZone) {
                                 originalMarkings.push(marking);
                             }
@@ -187,21 +188,20 @@ angular.module('app.directives')
                         {
                             options.grid.markings.push({
                                 isThresholdZone: true,
-                                color: 'rgba(91, 112, 125, '+ (i / options.grid.thresholdZones.total) +')',
+                                color: 'rgba(91, 112, 125, '+ (i * 0.5 / options.grid.thresholdZones.total) +')',
                                 yaxis:
                                 {
                                     from: i * tzIncrement + options.grid.thresholdZones.min,
-                                    to: i * tzIncrement + tzIncrement + options.grid.thresholdZones.min
+                                    to: (i + 1) * tzIncrement + options.grid.thresholdZones.min
                                 }
                             });
 
                             // Mirror the zone.
                             if (options.grid.thresholdZones.mirror)
                             {
-                                Utilities.debug('zones mirror');
                                 options.grid.markings.push({
                                     isThresholdZone: true,
-                                    color: 'rgba(91, 112, 125, '+ (i / options.grid.thresholdZones.total) +')',
+                                    color: 'rgba(91, 112, 125, '+ (i * 0.5 / options.grid.thresholdZones.total) +')',
                                     yaxis:
                                     {
                                         from: -1 * i * tzIncrement - options.grid.thresholdZones.min,
@@ -214,8 +214,8 @@ angular.module('app.directives')
 
                     // Add hook.
                     scope.options.hooks = scope.options.hooks || {};
-                    scope.options.hooks.draw = scope.options.hooks.draw || [];
-                    scope.options.hooks.draw.push(drawThresholdZones);
+                    scope.options.hooks.drawBackground = scope.options.hooks.drawBackground || [];
+                    scope.options.hooks.drawBackground.push(drawThresholdZones);
                 }
 
                 // Draw plot.

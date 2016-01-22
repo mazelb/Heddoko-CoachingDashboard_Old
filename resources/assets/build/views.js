@@ -1160,11 +1160,33 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "\n" +
     "            <!-- ROM percent -->\n" +
     "            <div\n" +
-    "                ng-show=\"metric.title == 'Shoulder Range of Motion' && !isFetchingData\"\n" +
+    "                ng-show=\"false && metric.title == 'Shoulder Range of Motion' && !isFetchingData\"\n" +
     "                class=\"row\">\n" +
     "\n" +
     "                <div class=\"col-md-12 text-center\">\n" +
     "                    <span id=\"romPercent\"></span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- ROM gauge -->\n" +
+    "            <div\n" +
+    "                ng-show=\"metric.title == 'Shoulder Range of Motion' && !isFetchingData\"\n" +
+    "                class=\"row\">\n" +
+    "\n" +
+    "                <br>\n" +
+    "                <br>\n" +
+    "                <div class=\"col-md-8 col-md-offset-2 text-center\">\n" +
+    "                    <canvas\n" +
+    "                        data-theme-gauge-chart\n" +
+    "                        data-gauge-data=\"romGauge.data\"\n" +
+    "                        data-live-gauge-value=\"romGaugeValue\"\n" +
+    "                        data-gauge-options=\"romGauge.options\"\n" +
+    "                        style=\"width: 100%;\">\n" +
+    "                    </canvas>\n" +
+    "\n" +
+    "                    <div style=\"position: absolute; left: 42%; bottom: 15px; font-size: 1.2em\">\n" +
+    "                        {{ romGaugeValuePercent }}\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1286,7 +1308,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "\n" +
     "\n" +
     "        <!-- Loading data -->\n" +
-    "        <div ng-show=\"isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center\">\n" +
+    "        <div ng-show=\"isFetchingData\" class=\"col-xs-12 col-md-7 col-lg-9 text-center text-muted\">\n" +
     "            <i class=\"fa fa-spinner fa-spin fa-3x\" style=\"display: block; margin: 100px 0 0\"></i>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -4895,11 +4917,19 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                            </span>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
+    "\n" +
     "                    <div ng-show=\"metric.title == 'Peak Forearm Snap Velocity'\" class=\"row text-center\">\n" +
     "                        <div class=\"col-xs-12\">\n" +
     "                            The snapping of the wrist from supinated to pronated is what gives the ball its\n" +
     "                            spin. The faster this happens, the tighter the spin will be, and the higher the\n" +
     "                            chances the ball will travel faster and further.\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div ng-show=\"metric.title == 'Stride Length'\" class=\"row text-center\">\n" +
+    "                        <div class=\"col-xs-12\">\n" +
+    "                            The proper stride length is approximately the athlete’s tibial\n" +
+    "                            tuberosity X 1.5, or about 26-30 inches in most quarterbacks.\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
@@ -4925,7 +4955,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                    <div class=\"row text-center\">\n" +
     "                        <div class=\"col-md-4\" style=\"margin-top: 30px\">\n" +
     "                            <div class=\"col-md-10 col-md-offset-2\">\n" +
-    "                                <h4>\n" +
+    "                                <h4 style=\"display: inline-block\">\n" +
     "                                    Fastest Throw\n" +
     "                                </h4>\n" +
     "                                <canvas\n" +
@@ -4943,7 +4973,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "\n" +
     "                        <div class=\"col-md-4\" style=\"margin-top: 30px\">\n" +
     "                            <div class=\"col-md-10 col-md-offset-1\">\n" +
-    "                                <h4>\n" +
+    "                                <h4 style=\"display: inline-block\">\n" +
     "                                    Average\n" +
     "                                </h4>\n" +
     "                                <canvas\n" +
@@ -4960,7 +4990,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                        </div>\n" +
     "                        <div class=\"col-md-4\" style=\"margin-top: 30px\">\n" +
     "                            <div class=\"col-md-10\">\n" +
-    "                                <h4>\n" +
+    "                                <h4 style=\"display: inline-block\">\n" +
     "                                    Slowest Throw\n" +
     "                                </h4>\n" +
     "                                <canvas\n" +
