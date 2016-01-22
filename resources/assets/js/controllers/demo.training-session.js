@@ -425,6 +425,22 @@ angular.module('app.controllers')
 
 
         $scope.flotStrideOptions = $.extend(true, {}, flotOptions, {
+            grid: {
+                markings: [
+                    {
+                        color: Utilities.color.darkBlue,
+                        yaxis: {from: 30}
+                    },
+                    {
+                        color: Utilities.color.textColorBlue,
+                        yaxis: {from: 26, to: 30}
+                    },
+                    {
+                        color: Utilities.color.darkBlue,
+                        yaxis: {from: 0, to: 26}
+                    },
+                ]
+            },
             xaxis: {
                 ticks: [
                     [0, '0'],
@@ -439,34 +455,26 @@ angular.module('app.controllers')
                 ]
             },
             yaxis: {
-                min: 1000,
-                max: 3000
+                ticks: [
+                    [0, '0'],
+                    [5, '5"'],
+                    [15, '15"'],
+                    [20, '20"'],
+                    [25, '25"'],
+                    [30, '30"'],
+                    [35, '35"'],
+                    [40, '40"'],
+                    [45, '45"'],
+                    [50, '50"'],
+                ]
             },
-            colors: ['#ddd', '#6eb4d2']
+            colors: [
+                // '#ddd',
+                Utilities.color.heddokoGreen
+            ]
         });
 
         $scope.flotStrideData = [
-
-            // Threshold
-            {
-                bars: {show: false},
-                lines: {
-                    fill: true,
-                    fillColor: {colors: [ 'rgba(44, 58, 70, 0.8)', 'rgba(91, 112, 125, 0.1)']},
-                    lineWidth: 2,
-                    show: true
-                },
-                points: {
-                    color: '#ddd',
-                    lineWidth: 4,
-                    show: true
-                },
-                data: [
-                    [0, 2100],
-                    [16, 2100]
-                ],
-                isThresholdSeries: true
-            },
 
             // Data line.
             {
@@ -478,19 +486,19 @@ angular.module('app.controllers')
                     show: true
                 },
                 data: [
-                    [0, 2550],
-                    [1, 2540],
-                    [2, 2600],
-                    [3, 2660],
-                    [4, 2750],
-                    [5, 2790],
-                    [6, 2810],
-                    [8, 2740],
-                    [10, 2530],
-                    [11, 2275],
-                    [12, 2100],
-                    [14, 1988],
-                    [16, 1879]
+                    [0, 27.4],
+                    [1, 28],
+                    [2, 26.5],
+                    [3, 25.9],
+                    [4, 26.9],
+                    [5, 27.9],
+                    [6, 28.1],
+                    [8, 28.3],
+                    [10, 27.4],
+                    [11, 26.1],
+                    [12, 25.3],
+                    [14, 24.6],
+                    [16, 22.9]
                 ]
             }
         ];
@@ -503,7 +511,7 @@ angular.module('app.controllers')
             {
 				$("#flot-stride-tooltip")
                     .html(
-                        '<b>' + $filter('number')(item.datapoint[1], 0) + ' &deg;/s</b>'
+                        '<b>' + $filter('number')(item.datapoint[1], 1) + '"</b>'
                     )
 					.css({
                         top: item.pageY - $('#flot-stride-tooltip').height() - 45,
