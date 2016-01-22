@@ -18338,12 +18338,12 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div ng-show=\"metric.title == 'Stride Length'\" class=\"row text-center\">\n" +
+    "                    <!-- <div ng-show=\"false && metric.title == 'Stride Length'\" class=\"row text-center\">\n" +
     "                        <div class=\"col-xs-12\">\n" +
     "                            The proper stride length is approximately the athlete’s tibial\n" +
     "                            tuberosity X 1.5, or about 26-30 inches in most quarterbacks.\n" +
     "                        </div>\n" +
-    "                    </div>\n" +
+    "                    </div> -->\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
