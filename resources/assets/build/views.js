@@ -4989,12 +4989,13 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <!-- One Step Drop Stride Length -->\n" +
-    "                <div ng-show=\"metric.title == 'One Step Drop Stride Length'\" class=\"col-md-9\">\n" +
+    "                <!-- Stride Length -->\n" +
+    "                <div ng-show=\"metric.title == 'Stride Length'\" class=\"col-md-9\">\n" +
     "                    <div\n" +
     "                        data-theme-flot-chart\n" +
     "                        data-data=\"flotStrideData\"\n" +
     "                        data-options=\"flotStrideOptions\"\n" +
+    "                        data-plot-hover=\"flotStrideHover\"\n" +
     "                        style=\"width: 100%; height: 400px;\">\n" +
     "                    </div>\n" +
     "                </div>\n" +

@@ -428,16 +428,16 @@ angular.module('app.controllers')
             grid: {
                 markings: [
                     {
-                        color: Utilities.color.darkBlue,
+                        color: Utilities.color.textColorBlue,
                         yaxis: {from: 30}
                     },
                     {
-                        color: Utilities.color.textColorBlue,
+                        color: Utilities.color.darkBlue,
                         yaxis: {from: 26, to: 30}
                     },
                     {
-                        color: Utilities.color.darkBlue,
-                        yaxis: {from: 0, to: 26}
+                        color: Utilities.color.textColorBlue,
+                        yaxis: {from: 15, to: 26}
                     },
                 ]
             },
@@ -456,21 +456,21 @@ angular.module('app.controllers')
             },
             yaxis: {
                 ticks: [
-                    [0, '0'],
-                    [5, '5"'],
-                    [15, '15"'],
+                    // [0, '0'],
+                    // [5, '5"'],
+                    // [15, '15"'],
                     [20, '20"'],
                     [25, '25"'],
                     [30, '30"'],
                     [35, '35"'],
-                    [40, '40"'],
-                    [45, '45"'],
-                    [50, '50"'],
+                    // [40, '40"'],
+                    // [45, '45"'],
+                    // [50, '50"'],
                 ]
             },
             colors: [
                 // '#ddd',
-                Utilities.color.heddokoGreen
+                Utilities.color.danger
             ]
         });
 
@@ -479,6 +479,11 @@ angular.module('app.controllers')
             // Data line.
             {
                 bars: {show: false},
+                points: {
+                    color: '#ddd',
+                    lineWidth: 4,
+                    show: true
+                },
                 lines: {
                     color: '#fff',
                     fill: false,
@@ -493,11 +498,15 @@ angular.module('app.controllers')
                     [4, 26.9],
                     [5, 27.9],
                     [6, 28.1],
+                    [7, 28.7],
                     [8, 28.3],
+                    [9, 27.9],
                     [10, 27.4],
                     [11, 26.1],
                     [12, 25.3],
+                    [13, 25],
                     [14, 24.6],
+                    [15, 23.1],
                     [16, 22.9]
                 ]
             }
