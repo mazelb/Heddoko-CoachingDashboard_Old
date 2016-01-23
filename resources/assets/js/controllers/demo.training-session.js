@@ -420,11 +420,21 @@ angular.module('app.controllers')
                         'background-color': Utilities.color.darkBlue
                     })
 					.fadeIn(200);
+
+                $timeout(function() {
+                    $scope.demoGaugeOneValue = (item.datapoint[1]) * 1000 / 100;
+                    $scope.demoGaugeOneValuePercent = $filter('number')(item.datapoint[1], 0) + ' %';
+                });
 			}
 
             // Hide tooltip if no element is selected.
             else {
 				$('#flot-shoulder-rot-tooltip').hide();
+
+                $timeout(function() {
+                    $scope.demoGaugeOneValue = 500;
+                    $scope.demoGaugeOneValuePercent = '';
+                });
 			}
 		};
         $('<div id="flot-shoulder-rot-tooltip"></div>').css(flotTooltipStyles).appendTo('body');
@@ -543,14 +553,85 @@ angular.module('app.controllers')
                         'background-color': Utilities.color.darkBlue
                     })
 					.fadeIn(200);
+
+                $timeout(function() {
+                    $scope.demoGaugeTwoValue = (item.datapoint[1]) * 1000 / 30;
+                    $scope.demoGaugeTwoValuePercent = $filter('number')(item.datapoint[1], 0) + '"';
+                });
 			}
 
             // Hide tooltip if no element is selected.
             else {
 				$('#flot-stride-tooltip').hide();
+
+                $timeout(function() {
+                    $scope.demoGaugeTwoValue = 500;
+                    $scope.demoGaugeTwoValuePercent = '';
+                });
 			}
 		};
         $('<div id="flot-stride-tooltip"></div>').css(flotTooltipStyles).appendTo('body');
+
+
+        ///
+        /// Demo: Gauge
+        ///
+        /////////////////////////////////////////////////////////////////
+
+
+        $scope.demoGaugeOneValue = 500;
+        $scope.demoGaugeOne =
+        {
+            data: {
+                maxValue: 1000,
+                animationSpeed: 4,
+                val: $scope.demoGaugeOneValue
+            },
+            options: {
+                lines: 12,
+                angle: 0,
+                lineWidth: 0.3,
+                pointer: {
+                    length: 0,
+                    strokeWidth: 0
+                },
+                limitMax: 'false',
+                strokeColor: Utilities.colour.blue,
+                generateGradient: false,
+                percentColors: [
+                    [0, '#4dc5de'],
+                    [0.5, '#4dc5de'],
+                    [1, '#4dc5de']
+                ]
+            }
+        };
+
+        $scope.demoGaugeTwoValue = 500;
+        $scope.demoGaugeTwo =
+        {
+            data: {
+                maxValue: 1000,
+                animationSpeed: 4,
+                val: $scope.demoGaugeTwoValue
+            },
+            options: {
+                lines: 12,
+                angle: 0,
+                lineWidth: 0.3,
+                pointer: {
+                    length: 0,
+                    strokeWidth: 0
+                },
+                limitMax: 'false',
+                strokeColor: Utilities.colour.blue,
+                generateGradient: false,
+                percentColors: [
+                    [0, '#3FD5AE'],
+                    [0.5, '#3FD5AE'],
+                    [1, '#3FD5AE']
+                ]
+            }
+        };
 
 
         ///

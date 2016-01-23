@@ -99,6 +99,40 @@
                             tuberosity X 1.5, or about 26-30 inches in most quarterbacks.
                         </div>
                     </div> -->
+
+                    <div ng-show="metric.title == 'Shoulder External Rotation'" class="col-xs-12">
+
+                        <br>
+                        <br>
+                        <canvas
+                            data-theme-gauge-chart
+                            data-gauge-data="demoGaugeOne.data"
+                            data-live-gauge-value="demoGaugeOneValue"
+                            data-gauge-options="demoGaugeOne.options"
+                            style="width: 100%;">
+                        </canvas>
+
+                        <div style="position: absolute; left: 45%; bottom: 15px; font-size: 1.2em">
+                            {{ demoGaugeOneValuePercent }}
+                        </div>
+                    </div>
+
+                    <div ng-show="metric.title == 'Stride Length'" class="col-xs-12">
+
+                        <br>
+                        <br>
+                        <canvas
+                            data-theme-gauge-chart
+                            data-gauge-data="demoGaugeTwo.data"
+                            data-live-gauge-value="demoGaugeTwoValue"
+                            data-gauge-options="demoGaugeTwo.options"
+                            style="width: 100%;">
+                        </canvas>
+
+                        <div style="position: absolute; left: 45%; bottom: 15px; font-size: 1.2em">
+                            {{ demoGaugeTwoValuePercent }}
+                        </div>
+                    </div>
                 </div>
             </div>
 

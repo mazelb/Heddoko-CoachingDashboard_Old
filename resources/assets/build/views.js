@@ -4932,6 +4932,40 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                            tuberosity X 1.5, or about 26-30 inches in most quarterbacks.\n" +
     "                        </div>\n" +
     "                    </div> -->\n" +
+    "\n" +
+    "                    <div ng-show=\"metric.title == 'Shoulder External Rotation'\" class=\"col-xs-12\">\n" +
+    "\n" +
+    "                        <br>\n" +
+    "                        <br>\n" +
+    "                        <canvas\n" +
+    "                            data-theme-gauge-chart\n" +
+    "                            data-gauge-data=\"demoGaugeOne.data\"\n" +
+    "                            data-live-gauge-value=\"demoGaugeOneValue\"\n" +
+    "                            data-gauge-options=\"demoGaugeOne.options\"\n" +
+    "                            style=\"width: 100%;\">\n" +
+    "                        </canvas>\n" +
+    "\n" +
+    "                        <div style=\"position: absolute; left: 45%; bottom: 15px; font-size: 1.2em\">\n" +
+    "                            {{ demoGaugeOneValuePercent }}\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div ng-show=\"metric.title == 'Stride Length'\" class=\"col-xs-12\">\n" +
+    "\n" +
+    "                        <br>\n" +
+    "                        <br>\n" +
+    "                        <canvas\n" +
+    "                            data-theme-gauge-chart\n" +
+    "                            data-gauge-data=\"demoGaugeTwo.data\"\n" +
+    "                            data-live-gauge-value=\"demoGaugeTwoValue\"\n" +
+    "                            data-gauge-options=\"demoGaugeTwo.options\"\n" +
+    "                            style=\"width: 100%;\">\n" +
+    "                        </canvas>\n" +
+    "\n" +
+    "                        <div style=\"position: absolute; left: 45%; bottom: 15px; font-size: 1.2em\">\n" +
+    "                            {{ demoGaugeTwoValuePercent }}\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
