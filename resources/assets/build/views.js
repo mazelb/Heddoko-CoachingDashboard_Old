@@ -1115,6 +1115,7 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                class=\"row text-center\"\n" +
     "                style=\"color: #ddd;\">\n" +
     "\n" +
+    "                <br>\n" +
     "                <h3>\n" +
     "                    Percent Recovery\n" +
     "                </h3>\n" +
@@ -1130,12 +1131,13 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                ng-show=\"metric.title == 'Peak Elbow Angular Velocity' && !isFetchingData\"\n" +
     "                class=\"row\">\n" +
     "\n" +
+    "                <br>\n" +
     "                <h3 class=\"text-center\" style=\"color: #ddd;\">\n" +
     "                    Threshold for Return To Play\n" +
     "                </h3>\n" +
     "                <br>\n" +
     "\n" +
-    "                <div class=\"col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3\">\n" +
+    "                <div class=\"col-md-12 col-lg-8 col-lg-offset-2\">\n" +
     "                    <div class=\"input-group\">\n" +
     "\n" +
     "                        <!-- Decrease -->\n" +
@@ -4974,17 +4976,65 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "            <!-- Metric plots -->\n" +
     "            <div ng-show=\"isFetchingSelectedMetricData === false\">\n" +
     "\n" +
+    "\n" +
     "                <!-- Peak Elbow Angular Velocity -->\n" +
     "                <div ng-show=\"metric.title == 'Peak Elbow Angular Velocity'\" class=\"col-md-9\">\n" +
-    "                    <div\n" +
-    "                        data-theme-flot-chart\n" +
-    "                        data-data=\"flotElbowVelocityData\"\n" +
-    "                        data-options=\"flotElbowVelocityOptions\"\n" +
-    "                        data-plot-hover=\"flotElbowVelocityHover\"\n" +
-    "                        data-plot-labels=\"flotElbowVelocityLabels\"\n" +
-    "                        data-threshold-label=\"'Pause Training'\"\n" +
-    "                        style=\"width: 100%; height: 400px;\">\n" +
+    "                    <div ng-show=\"session.id === 5\">\n" +
+    "                        <div\n" +
+    "                            data-theme-flot-chart\n" +
+    "                            data-data=\"flotElbowData[4]\"\n" +
+    "                            data-options=\"flotElbowOptions[4]\"\n" +
+    "                            data-plot-hover=\"flotElbowHover\"\n" +
+    "                            data-plot-labels=\"flotElbowLabels[4]\"\n" +
+    "                            data-threshold-label=\"'Pause Training'\"\n" +
+    "                            style=\"width: 100%; height: 400px;\">\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
+    "                    <div ng-show=\"session.id === 4\">\n" +
+    "                        <div\n" +
+    "                            data-theme-flot-chart\n" +
+    "                            data-data=\"flotElbowData[3]\"\n" +
+    "                            data-options=\"flotElbowOptions[3]\"\n" +
+    "                            data-plot-hover=\"flotElbowHover\"\n" +
+    "                            data-plot-labels=\"flotElbowLabels[3]\"\n" +
+    "                            data-threshold-label=\"'Pause Training'\"\n" +
+    "                            style=\"width: 100%; height: 400px;\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div ng-show=\"session.id === 3\">\n" +
+    "                        <div\n" +
+    "                            data-theme-flot-chart\n" +
+    "                            data-data=\"flotElbowData[2]\"\n" +
+    "                            data-options=\"flotElbowOptions[2]\"\n" +
+    "                            data-plot-hover=\"flotElbowHover\"\n" +
+    "                            data-plot-labels=\"flotElbowLabels[2]\"\n" +
+    "                            data-threshold-label=\"'Pause Training'\"\n" +
+    "                            style=\"width: 100%; height: 400px;\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div ng-show=\"session.id === 2\">\n" +
+    "                        <div\n" +
+    "                            data-theme-flot-chart\n" +
+    "                            data-data=\"flotElbowData[1]\"\n" +
+    "                            data-options=\"flotElbowOptions[1]\"\n" +
+    "                            data-plot-hover=\"flotElbowHover\"\n" +
+    "                            data-plot-labels=\"flotElbowLabels[1]\"\n" +
+    "                            data-threshold-label=\"'Pause Training'\"\n" +
+    "                            style=\"width: 100%; height: 400px;\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                    <div ng-show=\"session.id === 1\">\n" +
+    "                        <div\n" +
+    "                            data-theme-flot-chart\n" +
+    "                            data-data=\"flotElbowData[0]\"\n" +
+    "                            data-options=\"flotElbowOptions[0]\"\n" +
+    "                            data-plot-hover=\"flotElbowHover\"\n" +
+    "                            data-plot-labels=\"flotElbowLabels[0]\"\n" +
+    "                            data-threshold-label=\"'Pause Training'\"\n" +
+    "                            style=\"width: 100%; height: 400px;\">\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "\n" +
     "\n" +
     "                    <div class=\"row text-center\">\n" +
     "                        <div class=\"col-md-4\" style=\"margin-top: 30px\">\n" +
@@ -4994,8 +5044,8 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                                </h4>\n" +
     "                                <canvas\n" +
     "                                    data-gauge-chart\n" +
-    "                                    data-gauge-data=\"elbowVelocityMaxGauge.data\"\n" +
-    "                                    data-gauge-options=\"elbowVelocityMaxGauge.options\"\n" +
+    "                                    data-gauge-data=\"elbowMaxGauge.data\"\n" +
+    "                                    data-gauge-options=\"elbowMaxGauge.options\"\n" +
     "                                    style=\"width: 100%; vertical-align: bottom\">\n" +
     "                                </canvas>\n" +
     "\n" +
@@ -5012,8 +5062,8 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                                </h4>\n" +
     "                                <canvas\n" +
     "                                    data-gauge-chart\n" +
-    "                                    data-gauge-data=\"elbowVelocityAvgGauge.data\"\n" +
-    "                                    data-gauge-options=\"elbowVelocityAvgGauge.options\"\n" +
+    "                                    data-gauge-data=\"elbowAvgGauge.data\"\n" +
+    "                                    data-gauge-options=\"elbowAvgGauge.options\"\n" +
     "                                    style=\"width: 100%; vertical-align: bottom\">\n" +
     "                                </canvas>\n" +
     "\n" +
@@ -5022,6 +5072,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
+    "\n" +
     "                        <div class=\"col-md-4\" style=\"margin-top: 30px\">\n" +
     "                            <div class=\"col-md-10\">\n" +
     "                                <h4 style=\"display: inline-block\">\n" +
@@ -5029,8 +5080,8 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                                </h4>\n" +
     "                                <canvas\n" +
     "                                    data-gauge-chart\n" +
-    "                                    data-gauge-data=\"elbowVelocityMinGauge.data\"\n" +
-    "                                    data-gauge-options=\"elbowVelocityMinGauge.options\"\n" +
+    "                                    data-gauge-data=\"elbowMinGauge.data\"\n" +
+    "                                    data-gauge-options=\"elbowMinGauge.options\"\n" +
     "                                    style=\"width: 100%; vertical-align: bottom\">\n" +
     "                                </canvas>\n" +
     "\n" +
@@ -5234,8 +5285,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <!-- Profile shortcuts -->\n" +
     "                <div class=\"profile-shortcuts\">\n" +
     "\n" +
+    "                    <!-- DEMO -->\n" +
     "                    <span style=\"line-height: 60px; font-size: 1.2em;\">\n" +
-    "                        Quarterback\n" +
+    "                        Position: Quarterback\n" +
     "                    </span>\n" +
     "\n" +
     "                    <div class=\"pull-right\">\n" +
@@ -5506,7 +5558,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                    </ui-editable-standalone-field> -->\n" +
     "\n" +
-    "                    <!-- Demo -->\n" +
+    "                    <!-- DEMO -->\n" +
     "                    <div class=\"ui-editable-list-container\">\n" +
     "                        <h3 class=\"title\">\n" +
     "                            Previous Injuries\n" +
@@ -5514,7 +5566,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </h3>\n" +
     "                        <br>\n" +
     "\n" +
-    "                        Rotator cuff tear (Dec 14, 2015)\n" +
+    "                        Rotator cuff tear on Dec 10, 2015\n" +
+    "                        <br>\n" +
+    "                        (surgery Dec 14, 2015).\n" +
     "                        <br>\n" +
     "\n" +
     "                        <a href=\"#/demo/trends\" style=\"display: inline-block; margin: 10px 0 0 5px;\">\n" +

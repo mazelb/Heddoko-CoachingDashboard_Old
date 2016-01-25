@@ -20,10 +20,12 @@ angular.module('app.controllers')
         $scope.fakeData = {};
 
 
+
         ///
         /// General options for flot charts
         ///
         /////////////////////////////////////////////////////////////////
+
 
 
         var flotOptions =
@@ -48,9 +50,8 @@ angular.module('app.controllers')
             tooltipOpts: {
                 defaultTheme: true
             }
-        };
-
-        var flotTooltipStyles = {
+        },
+        flotTooltipStyles = {
             position: 'absolute',
             display: 'none',
             padding: '5px 10px',
@@ -59,9 +60,8 @@ angular.module('app.controllers')
             'background-color': Utilities.color.darkBlue,
             'text-align': 'center',
             opacity: 0.9
-        };
-
-        var flotTicksX = [
+        },
+        flotTicksX = [
             // [0, '0'],
             [1, '10'],
             [2, '20'],
@@ -82,41 +82,51 @@ angular.module('app.controllers')
         ];
 
 
+
         ///
         /// Demo: Peak Elbow Angular Velocity
         ///
         /////////////////////////////////////////////////////////////////
 
 
+
         // Markings.
-        $scope.flotElbowVelocityLabels = [
-            {
-                color: Utilities.colour.orange,
+        var flotElbowLabelTmpl = {
+            color: Utilities.colour.orange,
+            lineWidth: 3
+        };
+
+        $scope.flotElbowLabels = [
+
+            $.extend({}, flotElbowLabelTmpl, {
                 point: {x: 10, y: 2900},
-                lineWidth: 3,
-                // styles: {
-                //     padding: '5px 10px',
-                //     color: Utilities.color.silver,
-                //     'border-left': '4px solid #fff',
-                //     'background': 'linear-gradient(to right, '+ Utilities.color.textColorBlue +' 0%, transparent 30%)'
-                // },
+                text: 'Throw degradation<br>around <b>105<sup>th</sup></b> throw'
+            }),
+
+            $.extend({}, flotElbowLabelTmpl, {
+                point: {x: 10, y: 2900},
+                text: 'Throw degradation<br>around <b>104<sup>th</sup></b> throw'
+            }),
+
+            $.extend({}, flotElbowLabelTmpl, {
+                point: {x: 10, y: 2900},
+                text: 'Throw degradation<br>around <b>103<sup>rd</sup></b> throw'
+            }),
+
+            $.extend({}, flotElbowLabelTmpl, {
+                point: {x: 10, y: 2900},
+                text: 'Throw degradation<br>around <b>102<sup>nd</sup></b> throw'
+            }),
+
+            $.extend({}, flotElbowLabelTmpl, {
+                point: {x: 10, y: 2900},
                 text: 'Throw degradation<br>around <b>97<sup style="">th</sup></b> throw'
-            }
+            }),
         ];
 
-        $scope.flotElbowVelocityOptions = $.extend(true, {}, flotOptions, {
-            grid: {
-                markings: [
-                    {
-                        color: Utilities.color.orange,
-                        lineWidth: 2,
-                        xaxis: {from: 10, to: 10}
-                    }
-                ]
-            },
-            xaxis: {
-                ticks: flotTicksX
-            },
+        // Options
+        var flotElbowOptionsTmpl = $.extend({}, flotOptions, {
+            xaxis: {ticks: flotTicksX},
             yaxis: {
                 min: 1000,
                 max: 3000
@@ -128,69 +138,234 @@ angular.module('app.controllers')
             ]
         });
 
-        $scope.flotElbowVelocityDataPoints = [
-            [0, 2550],
-            [1, 2540],
-            [2, 2578],
-            [3, 2660],
-            [4, 2750],
-            [5, 2790],
-            [6, 2810],
-            [7, 2792],
-            [8, 2740],
-            [9, 2657],
-            [10, 2530],
-            [11, 2275],
-            [12, 2100],
-            [13, 2003],
-            [14, 1961],
-            [15, 1899],
-            [16, 1879]
+        $scope.flotElbowOptions = [
+
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 10, to: 10}
+                        }
+                    ]
+                },
+            }),
+
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 10, to: 10}
+                        }
+                    ]
+                },
+            }),
+
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 10, to: 10}
+                        }
+                    ]
+                },
+            }),
+
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 10, to: 10}
+                        }
+                    ]
+                },
+            }),
+
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 10, to: 10}
+                        }
+                    ]
+                },
+            }),
         ];
 
-        $scope.flotElbowVelocityData = [
+        Utilities.debug('options');
+        Utilities.debug($scope.flotElbowOptions);
 
-            // Threshold
-            {
-                bars: {show: false},
-                lines: {
-                    fill: true,
-                    fillColor: {colors: ['rgba(77, 197, 222, 0)', 'rgba(77, 197, 222, 0.3)']},
-                    lineWidth: 2,
-                    show: true
-                },
-                data: [
-                    [0, 2100],
-                    [16, 2100]
-                ],
-                isThresholdSeries: true
+        // Data points
+        var flotElbowDataPointsData = [
+
+            [
+                [0, 2550],
+                [1, 2540],
+                [2, 2578],
+                [3, 2660],
+                [4, 2750],
+                [5, 2790],
+                [6, 2810],
+                [7, 2792],
+                [8, 2740],
+                [9, 2657],
+                [10, 2530],
+                [11, 2275],
+                [12, 2100],
+                [13, 2003],
+                [14, 1961],
+                [15, 1899],
+                [16, 1005]
+            ],
+
+            [
+                [0, 2550],
+                [1, 2540],
+                [2, 2578],
+                [3, 2660],
+                [4, 2750],
+                [5, 2790],
+                [6, 2810],
+                [7, 2792],
+                [8, 2740],
+                [9, 2657],
+                [10, 2530],
+                [11, 2275],
+                [12, 2100],
+                [13, 2003],
+                [14, 1961],
+                [15, 1899],
+                [16, 1004]
+            ],
+
+            [
+                [0, 2550],
+                [1, 2540],
+                [2, 2578],
+                [3, 2660],
+                [4, 2750],
+                [5, 2790],
+                [6, 2810],
+                [7, 2792],
+                [8, 2740],
+                [9, 2657],
+                [10, 2530],
+                [11, 2275],
+                [12, 2100],
+                [13, 2003],
+                [14, 1961],
+                [15, 1899],
+                [16, 1003]
+            ],
+
+            [
+                [0, 2550],
+                [1, 2540],
+                [2, 2578],
+                [3, 2660],
+                [4, 2750],
+                [5, 2790],
+                [6, 2810],
+                [7, 2792],
+                [8, 2740],
+                [9, 2657],
+                [10, 2530],
+                [11, 2275],
+                [12, 2100],
+                [13, 2003],
+                [14, 1961],
+                [15, 1899],
+                [16, 1002]
+            ],
+
+            [
+                [0, 2550],
+                [1, 2540],
+                [2, 2578],
+                [3, 2660],
+                [4, 2750],
+                [5, 2790],
+                [6, 2810],
+                [7, 2792],
+                [8, 2740],
+                [9, 2657],
+                [10, 2530],
+                [11, 2275],
+                [12, 2100],
+                [13, 2003],
+                [14, 1961],
+                [15, 1899],
+                [16, 1879]
+            ],
+        ];
+
+
+        // Data objects
+        var flotElbowDataThresholdTmpl = {
+            bars: {show: false},
+            lines: {
+                fill: true,
+                fillColor: {colors: ['rgba(77, 197, 222, 0)', 'rgba(77, 197, 222, 0.3)']},
+                lineWidth: 2,
+                show: true
             },
-
-            // Data line.
-            {
-                bars: {show: false},
-                lines: {
-                    color: '#ddd',
-                    fill: false,
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flotElbowVelocityDataPoints
-            },
-
-            // Data Points.
-            {
-                bars: {show: false},
-                points: {
-                    color: '#ddd',
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flotElbowVelocityDataPoints
+            data: [
+                [0, 2100],
+                [16, 2100]
+            ],
+            isThresholdSeries: true
+        },
+        flotElbowDataLinesTmpl = {
+            bars: {show: false},
+            lines: {
+                color: '#ddd',
+                fill: false,
+                lineWidth: 4,
+                show: true
             }
+        },
+        flotElbowDataPointsTmpl = {
+            bars: {show: false},
+            points: {
+                color: '#ddd',
+                lineWidth: 4,
+                show: true
+            }
+        },
+
+        flotElbowDataThresholds = [
+            {},
+            {},
+            {},
+            {},
+            {},
         ];
 
-        $scope.flotElbowVelocityHover = function (event, pos, item) {
+        $scope.flotElbowData = [];
+
+        for (var i = 0; i < 5; i++)
+        {
+            $scope.flotElbowData.push([
+                flotElbowDataThresholds[i],
+                $.extend({}, flotElbowDataLinesTmpl, {
+                    data: flotElbowDataPointsData[i]
+                }),
+                $.extend({}, flotElbowDataPointsTmpl, {
+                    data: flotElbowDataPointsData[i]
+                })
+            ]);
+        }
+
+        $scope.flotElbowHover = function (event, pos, item) {
 
             // Display tooltip for data point.
 			if (item)
@@ -219,7 +394,7 @@ angular.module('app.controllers')
 
         // Gauge charts.
 
-        $scope.elbowVelocityMinGauge =
+        $scope.elbowMinGauge =
         {
             data: {
                 maxValue: 1000,
@@ -245,7 +420,7 @@ angular.module('app.controllers')
             }
         };
 
-        $scope.elbowVelocityAvgGauge =
+        $scope.elbowAvgGauge =
         {
             data: {
                 maxValue: 1000,
@@ -271,7 +446,7 @@ angular.module('app.controllers')
             }
         };
 
-        $scope.elbowVelocityMaxGauge =
+        $scope.elbowMaxGauge =
         {
             data: {
                 maxValue: 1000,
@@ -298,10 +473,12 @@ angular.module('app.controllers')
         };
 
 
+
         ///
         /// Demo: Shoulder External Rotation
         ///
         /////////////////////////////////////////////////////////////////
+
 
 
         $scope.flotShoulderRotOptions = $.extend(true, {}, flotOptions, {
@@ -614,10 +791,12 @@ angular.module('app.controllers')
         };
 
 
+
         ///
         /// Demo: Selectize
         ///
         /////////////////////////////////////////////////////////////////
+
 
 
         $scope.selectizeSessionModel = 0;
@@ -690,10 +869,12 @@ angular.module('app.controllers')
         ];
 
 
+
         ///
         /// Demo: Simulate data fetching.
         ///
         /////////////////////////////////////////////////////////////////
+
 
 
         $scope.fetchDataDemo = function(newData, oldData) {
