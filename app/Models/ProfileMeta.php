@@ -50,7 +50,7 @@ class ProfileMeta extends Model
      *
      * @var array
      */
-    protected $dates = ['dob'];
+    // protected $dates = ['dob'];
 
     /**
      * Attributes which are mass-assignable.

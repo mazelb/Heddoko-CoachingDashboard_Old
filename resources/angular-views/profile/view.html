@@ -4,9 +4,24 @@
 <div ng-hide="profile.id === 0" class="page profile-page">
     <header>
         <h1>
-            {{ profile.firstName }} {{ profile.lastName }}
+            {{ profile.firstName }} {{ profile.lastName }} <i class="fa fa-user"></i>
             <span></span>
         </h1>
+
+        <!-- Append main group to profile name -->
+        <div ng-show="profile.groups.length > 0" class="h1-append">
+            Team:
+
+            <a href="#/group/{{ profile.groups[0].id }}">
+                {{ profile.groups[0].name }}
+            </a>
+
+            <small>
+                <a href="javascript:;">
+                    (update)
+                </a>
+            </small>
+        </div>
     </header>
 
     <section ng-show="profile.id > 0">
@@ -27,17 +42,17 @@
                 <div class="profile-shortcuts">
 
                     <span style="line-height: 60px; font-size: 1.2em;">
-                        Position: Quarterback
+                        Quarterback
                     </span>
 
                     <div class="pull-right">
+
                         <!-- Delete group button -->
                         <a
                             ng-show="profile.id > 0"
                             data-toggle="modal"
                             data-target="#deleteProfileConfirmation"
-                            href="javascript:;"
-                            class="sub-header-btn">
+                            href="javascript:;">
 
                             <button class="btn btn-danger btn-circle btn-lg">
                                 <i class="fa fa-trash"></i>
@@ -199,7 +214,8 @@
                         </div>
                     </div>
 
-                    <div class="row" style="display: none;">
+                    <!-- REMOVED FOR DEMO -->
+                    <div ng-show="false" class="row">
 
                         <!-- Primary Tag -->
                         <div class="col-xs-12 col-sm-6">

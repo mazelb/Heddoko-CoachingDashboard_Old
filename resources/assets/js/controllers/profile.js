@@ -46,6 +46,22 @@ angular.module('app.controllers')
         // Alias for the list of profiles.
         $scope.profiles = $scope.global.state.profile.list;
 
+        // Group avatars.
+        $scope.groupLinks = [];
+        if ($scope.profile.id > 0 && $scope.profile.groups.length > 0)
+        {
+            angular.forEach($scope.profile.groups, function(group) {
+
+                // Fetch group details from state, which includes avatars.
+                if (Rover.hasState('group', group.id)) {
+                    $scope.groupLinks.push({
+                        id: group.id,
+                        avatarSrc: Rover.getState('group', group.id).avatarSrc
+                    });
+                }
+            });
+        }
+
         // Computes the width of the avatar depending on the height of the details panel.
         $scope.calculateAvatarHeight = function() {
             return $('#profileDetails') ? $('#profileDetails').css('height') : 0;
@@ -53,9 +69,9 @@ angular.module('app.controllers')
 
         // Creates a new profile in the database.
         $scope.createProfile = function() {
+            Utilities.debug('Creating profile...');
 
             Rover.addBackgroundProcess();
-            Utilities.debug('Creating profile...');
 
             var profile = ProfileService.formatForStorage($scope.newProfile);
 
@@ -68,6 +84,7 @@ angular.module('app.controllers')
 
                     // Update profile list and browse to newly created profile.
                     Rover.setState('profile', response.data.id, response.data);
+                    $scope.global.updateFilteredProfiles();
                     Rover.browseTo.path('/profile/' + response.data.id);
                     Rover.doneBackgroundProcess();
                 },

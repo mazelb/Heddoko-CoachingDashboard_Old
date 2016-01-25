@@ -5197,9 +5197,24 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "<div ng-hide=\"profile.id === 0\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
-    "            {{ profile.firstName }} {{ profile.lastName }}\n" +
+    "            {{ profile.firstName }} {{ profile.lastName }} <i class=\"fa fa-user\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
+    "\n" +
+    "        <!-- Append main group to profile name -->\n" +
+    "        <div ng-show=\"profile.groups.length > 0\" class=\"h1-append\">\n" +
+    "            Team:\n" +
+    "\n" +
+    "            <a href=\"#/group/{{ profile.groups[0].id }}\">\n" +
+    "                {{ profile.groups[0].name }}\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <small>\n" +
+    "                <a href=\"javascript:;\">\n" +
+    "                    (update)\n" +
+    "                </a>\n" +
+    "            </small>\n" +
+    "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <section ng-show=\"profile.id > 0\">\n" +
@@ -5220,17 +5235,17 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <div class=\"profile-shortcuts\">\n" +
     "\n" +
     "                    <span style=\"line-height: 60px; font-size: 1.2em;\">\n" +
-    "                        Position: Quarterback\n" +
+    "                        Quarterback\n" +
     "                    </span>\n" +
     "\n" +
     "                    <div class=\"pull-right\">\n" +
+    "\n" +
     "                        <!-- Delete group button -->\n" +
     "                        <a\n" +
     "                            ng-show=\"profile.id > 0\"\n" +
     "                            data-toggle=\"modal\"\n" +
     "                            data-target=\"#deleteProfileConfirmation\"\n" +
-    "                            href=\"javascript:;\"\n" +
-    "                            class=\"sub-header-btn\">\n" +
+    "                            href=\"javascript:;\">\n" +
     "\n" +
     "                            <button class=\"btn btn-danger btn-circle btn-lg\">\n" +
     "                                <i class=\"fa fa-trash\"></i>\n" +
@@ -5392,7 +5407,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div class=\"row\" style=\"display: none;\">\n" +
+    "                    <!-- REMOVED FOR DEMO -->\n" +
+    "                    <div ng-show=\"false\" class=\"row\">\n" +
     "\n" +
     "                        <!-- Primary Tag -->\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
