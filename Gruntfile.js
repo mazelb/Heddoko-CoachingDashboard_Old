@@ -133,25 +133,19 @@ module.exports = function(grunt) {
                     'bower_components/angular-sanitize/angular-sanitize.min.js',
                     'bower_components/ng-file-upload/ng-file-upload-shim.min.js',
                     'bower_components/ng-file-upload/ng-file-upload.min.js',
-
-                    // Intro.js: for onboarding.
-                    'bower_components/intro.js/minified/intro.min.js',
+                    // 'bower_components/textAngular/dist/textAngular.min.js',
 
                     // Bootstrap 3 Datepicker.
                     'bower_components/moment/min/moment.min.js',
                     'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
 
-                    // Selectize: select boxes with AJAX options.
-                    'bower_components/selectize/dist/js/standalone/selectize.min.js',
-                    'bower_components/angular-selectize2/dist/angular-selectize.js',
+                    // Chart.js: creates charts. (http://www.chartjs.org/)
+                    'bower_components/chartjs/Chart.min.js',
 
-                    // morris.js: creates charts.
-                    // http://morrisjs.github.io/morris.js/
-                    'bower_components/raphael/raphael-min.js',
-                    'bower_components/morrisjs/morris.min.js',
+                    // Easypie
+                    'bower_components/easypie/dist/angular.easypiechart.min.js',
 
-                    // Flot: creates charts.
-                    // http://www.flotcharts.org/
+                    // Flot: creates charts. (http://www.flotcharts.org/)
                     'bower_components/flot/jquery.flot.js',
                     'bower_components/flot/jquery.flot.canvas.js',
                     'bower_components/flot/jquery.flot.categories.js',
@@ -164,25 +158,31 @@ module.exports = function(grunt) {
                     'bower_components/flot/jquery.flot.selection.js',
                     'bower_components/flot/jquery.flot.stack.js',
 
-                    // Chart.js: creates charts.
-                    // http://www.chartjs.org/
-                    'bower_components/chartjs/Chart.min.js',
+                    // Intro.js: for onboarding.
+                    'bower_components/intro.js/minified/intro.min.js',
 
+                    // morris.js: creates charts.
+                    'bower_components/raphael/raphael-min.js',
+                    'bower_components/morrisjs/morris.min.js',
+
+                    // Selectize: select boxes with AJAX options.
+                    'bower_components/selectize/dist/js/standalone/selectize.min.js',
+                    'bower_components/angular-selectize2/dist/angular-selectize.js',
+
+                    // TODO: determine which of these dependencies are still needed.
                     'bower_components/slimScroll/jquery.slimscroll.min.js',
                     'angular-app/scripts/gmap.js',
-                    'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
-                    'bower_components/easypie/dist/angular.easypiechart.min.js',
-                    'bower_components/angular-wizard/dist/angular-wizard.js',
+                    // 'bower_components/jquery.sparkline.build/dist/jquery.sparkline.min.js',
+                    // 'bower_components/angular-wizard/dist/angular-wizard.js',
                     'bower_components/rangy/rangy-core.min.js',
                     'bower_components/rangy/rangy-selectionsaverestore.min.js',
-                    'bower_components/textAngular/dist/textAngular.min.js',
                     'bower_components/angular-ui-tree/dist/angular-ui-tree.js',
                     'bower_components/jqvmap/jqvmap/jquery.vmap.min.js',
                     'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
                     'angular-app/scripts/other_charts.js',
                     'angular-app/scripts/extras.js',
-                    'bower_components/chartist/dist/chartist.js',
-                    'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
+                    // 'bower_components/chartist/dist/chartist.js',
+                    // 'bower_components/angular-chartist.js/dist/angular-chartist.min.js',
 
                     // Pre-compiled Angular views.
                     'resources/assets/build/views.js',
@@ -214,6 +214,9 @@ module.exports = function(grunt) {
 
                         // Font-Awesome icons
                         'bower_components/fontawesome/css/font-awesome.min.css',
+
+                        // AngularJS
+                        // 'bower_components/textAngular/dist/textAngular.css',
 
                         // Charts
                         'bower_components/chartist/dist/chartist.min.css',

@@ -4962,7 +4962,7 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "                            style=\"width: 100%;\">\n" +
     "                        </canvas>\n" +
     "\n" +
-    "                        <div style=\"position: absolute; left: 45%; bottom: 15px; font-size: 1.2em\">\n" +
+    "                        <div style=\"position: absolute; left: 46%; bottom: 15px; font-size: 1.2em\">\n" +
     "                            {{ demoGaugeTwoValuePercent }}\n" +
     "                        </div>\n" +
     "                    </div>\n" +

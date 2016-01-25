@@ -25,7 +25,7 @@ var app = angular.module('app', [
     // "app.form.validation", "app.tables",
     // "app.task",
     // "countTo",
-    "angular-chartist",
+    // "angular-chartist",
     // "app.map",
     // "ui.tree",
     // "ngMap",

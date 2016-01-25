@@ -30,21 +30,18 @@ angular.module('app.controllers')
         {
             grid:
             {
-                backgroundColor: 'rgba(44, 58, 70, 1)',
-                borderWidth: 1,
-                borderColor: '#888',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgba(0, 0, 0, 0)',
                 clickable: false,
                 hoverable: true
             },
             legend: {show: false},
             series: {hoverable: true},
             xaxis: {
-                color: '#888',
-                tickColor: '#888'
+                tickColor: 'rgba(91, 112, 125, 0.4)'
             },
             yaxis: {
-                color: '#888',
-                tickColor: '#888',
+                tickColor: 'rgba(0, 0, 0, 0)',
                 position: 'left'
             },
             tooltip: true,
@@ -64,14 +61,7 @@ angular.module('app.controllers')
             opacity: 0.9
         };
 
-
-        ///
-        /// Demo: Peak Elbow Angular Velocity
-        ///
-        /////////////////////////////////////////////////////////////////
-
-
-        $scope.flotTicksX = [
+        var flotTicksX = [
             // [0, '0'],
             [1, '10'],
             [2, '20'],
@@ -91,6 +81,13 @@ angular.module('app.controllers')
             [16, 'Throws']
         ];
 
+
+        ///
+        /// Demo: Peak Elbow Angular Velocity
+        ///
+        /////////////////////////////////////////////////////////////////
+
+
         // Markings.
         $scope.flotElbowVelocityLabels = [
             {
@@ -107,11 +104,8 @@ angular.module('app.controllers')
             }
         ];
 
-
         $scope.flotElbowVelocityOptions = $.extend(true, {}, flotOptions, {
             grid: {
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderColor: 'rgba(0, 0, 0, 0)',
                 markings: [
                     {
                         color: Utilities.color.orange,
@@ -121,11 +115,9 @@ angular.module('app.controllers')
                 ]
             },
             xaxis: {
-                tickColor: 'rgba(91, 112, 125, 0.4)',
-                ticks: $scope.flotTicksX
+                ticks: flotTicksX
             },
             yaxis: {
-                tickColor: 'rgba(0, 0, 0, 0)',
                 min: 1000,
                 max: 3000
             },
@@ -314,8 +306,6 @@ angular.module('app.controllers')
 
         $scope.flotShoulderRotOptions = $.extend(true, {}, flotOptions, {
             grid: {
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderColor: 'rgba(0, 0, 0, 0)',
                 color: 'rgba(91, 112, 125, 1)',
                 markings: [
                     // {
@@ -334,13 +324,9 @@ angular.module('app.controllers')
                 ]
             },
             xaxis: {
-                color: 'rgba(91, 112, 125, 0.4)',
-                tickColor: 'rgba(91, 112, 125, 0.4)',
-                ticks: $scope.flotTicksX
+                ticks: flotTicksX
             },
             yaxis: {
-                color: 'rgba(0, 0, 0, 0)',
-                tickColor: 'rgba(0, 0, 0, 0)',
                 ticks: [
                     [0, '0'],
                     [20, '20'],
@@ -448,8 +434,6 @@ angular.module('app.controllers')
 
         $scope.flotStrideOptions = $.extend(true, {}, flotOptions, {
             grid: {
-                backgroundColor: 'rgba(0, 0, 0, 0)',
-                borderColor: 'rgba(0, 0, 0, 0)',
                 markings: [
                     // {
                     //     color: Utilities.color.textColorBlue,
@@ -466,13 +450,9 @@ angular.module('app.controllers')
                 ]
             },
             xaxis: {
-                color: 'rgba(91, 112, 125, 0.4)',
-                tickColor: 'rgba(91, 112, 125, 0.4)',
-                ticks: $scope.flotTicksX
+                ticks: flotTicksX
             },
             yaxis: {
-                color: 'rgba(0, 0, 0, 0)',
-                tickColor: 'rgba(0, 0, 0, 0)',
                 ticks: [
                     [20, '20'],
                     [22, '22'],
@@ -555,7 +535,7 @@ angular.module('app.controllers')
 					.fadeIn(200);
 
                 $timeout(function() {
-                    $scope.demoGaugeTwoValue = (item.datapoint[1]) * 1000 / 30;
+                    $scope.demoGaugeTwoValue = (item.datapoint[1] - 20) * 1000 / 10;
                     $scope.demoGaugeTwoValuePercent = $filter('number')(item.datapoint[1], 0) + '"';
                 });
 			}
