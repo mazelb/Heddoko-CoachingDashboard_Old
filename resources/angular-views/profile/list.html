@@ -13,9 +13,11 @@
         <div class="col-sm-12">
 
             <!-- New profile button -->
+            <!-- TODO: figure out why the right margin is needed -->
             <a
                 href="#/profile/create"
-                class="btn btn-primary btn-metro">
+                class="btn btn-info btn-metro"
+                style="margin-right: 0">
 
                 <i class="fa fa-plus"></i>
             </a>
@@ -24,7 +26,7 @@
                 ng-repeat="profile in global.state.profile.list"
                 ng-show="profile.id"
                 href="#/profile/{{ profile.id }}"
-                class="btn btn-primary btn-metro"
+                class="btn btn-info btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
                 <div class="btn-title">{{ profile.firstName | characters:30 }}</div>

@@ -94,45 +94,74 @@ angular.module('app.controllers')
         var flotElbowLabelTmpl = {
             color: Utilities.colour.orange,
             lineWidth: 3
+        },
+        flotElbowDrops = [
+            {
+                num: 109,
+                sup: 'th'
+            },
+            {
+                num: 104,
+                sup: 'th'
+            },
+            {
+                num: 117,
+                sup: 'th'
+            },
+            {
+                num: 109,
+                sup: 'th'
+            },
+            {
+                num: 97,
+                sup: 'th'
+            },
+        ],
+        flotElbowLabelText = function(index) {
+            return 'Drop in velocity<br>around <b>'+ flotElbowDrops[index].num +
+                    '<sup>'+ flotElbowDrops[index].sup +'</sup></b> throw';
         };
+
+        $scope.flotElbowDrops = flotElbowDrops;
 
         $scope.flotElbowLabels = [
 
             [   // Jan 28
                 $.extend({}, flotElbowLabelTmpl, {
-                    point: {x: 10, y: 2900},
-                    text: 'Throw degradation<br>around <b>109<sup>th</sup></b> throw'
+                    point: {x: 10.9, y: 2900},
+                    text: flotElbowLabelText(0)
                 })
             ],
 
             [   // Jan 29
                 $.extend({}, flotElbowLabelTmpl, {
-                    point: {x: 10, y: 2900},
-                    text: 'Throw degradation<br>around <b>104<sup>th</sup></b> throw'
+                    point: {x: 10.4, y: 2900},
+                    text: flotElbowLabelText(1)
                 })
             ],
 
             [   // Feb 1
                 $.extend({}, flotElbowLabelTmpl, {
-                    point: {x: 10, y: 2900},
-                    text: 'Throw degradation<br>around <b>103<sup>rd</sup></b> throw'
+                    point: {x: 11.7, y: 2900},
+                    text: flotElbowLabelText(2)
                 })
             ],
 
             [   // Feb 2
                 $.extend({}, flotElbowLabelTmpl, {
-                    point: {x: 10, y: 2900},
-                    text: 'Throw degradation<br>around <b>102<sup>nd</sup></b> throw'
+                    point: {x: 10.9, y: 2900},
+                    text: flotElbowLabelText(3)
                 })
             ],
 
             [   // Feb 3
                 $.extend({}, flotElbowLabelTmpl, {
-                    point: {x: 10, y: 2900},
-                    text: 'Throw degradation<br>around <b>97<sup style="">th</sup></b> throw'
+                    point: {x: 9.7, y: 2900},
+                    text: flotElbowLabelText(4)
                 })
             ],
         ];
+
         // Options
         var flotElbowOptionsTmpl = $.extend({}, flotOptions, {
             xaxis: {ticks: flotTicksX},
@@ -156,7 +185,7 @@ angular.module('app.controllers')
                         {
                             color: Utilities.color.orange,
                             lineWidth: 2,
-                            xaxis: {from: 11, to: 11}
+                            xaxis: {from: 10.9, to: 10.9}
                         }
                     ]
                 },
@@ -169,7 +198,7 @@ angular.module('app.controllers')
                         {
                             color: Utilities.color.orange,
                             lineWidth: 2,
-                            xaxis: {from: 10, to: 10}
+                            xaxis: {from: 10.4, to: 10.4}
                         }
                     ]
                 },
@@ -182,7 +211,7 @@ angular.module('app.controllers')
                         {
                             color: Utilities.color.orange,
                             lineWidth: 2,
-                            xaxis: {from: 10, to: 10}
+                            xaxis: {from: 11.7, to: 11.7}
                         }
                     ]
                 },
@@ -195,7 +224,7 @@ angular.module('app.controllers')
                         {
                             color: Utilities.color.orange,
                             lineWidth: 2,
-                            xaxis: {from: 10, to: 10}
+                            xaxis: {from: 10.9, to: 10.9}
                         }
                     ]
                 },
@@ -208,7 +237,7 @@ angular.module('app.controllers')
                         {
                             color: Utilities.color.orange,
                             lineWidth: 2,
-                            xaxis: {from: 10, to: 10}
+                            xaxis: {from: 9.7, to: 9.7}
                         }
                     ]
                 },
@@ -240,42 +269,42 @@ angular.module('app.controllers')
 
             [   // Jan 29
                 [0, 2550],
-                [1, 2540],
-                [2, 2578],
+                [1, 2570],
+                [2, 2579],
                 [3, 2660],
-                [4, 2750],
-                [5, 2790],
-                [6, 2810],
-                [7, 2792],
-                [8, 2740],
+                [4, 2740],
+                [5, 2756],
+                [6, 2741],
+                [7, 2724],
+                [8, 2694],
                 [9, 2657],
                 [10, 2530],
                 [11, 2275],
                 [12, 2100],
                 [13, 2003],
-                [14, 1961],
-                [15, 1899],
-                [16, 1004]
+                [14, 1911],
+                [15, 1822],
+                [16, 1737]
             ],
 
             [   // Feb 1
-                [0, 2550],
-                [1, 2540],
-                [2, 2578],
-                [3, 2660],
+                [0, 2784],
+                [1, 2779],
+                [2, 2748],
+                [3, 2661],
                 [4, 2750],
                 [5, 2790],
                 [6, 2810],
                 [7, 2792],
                 [8, 2740],
                 [9, 2657],
-                [10, 2530],
-                [11, 2275],
-                [12, 2100],
-                [13, 2003],
-                [14, 1961],
-                [15, 1899],
-                [16, 1003]
+                [10, 2597],
+                [11, 2530],
+                [12, 2276],
+                [13, 2213],
+                [14, 2187],
+                [15, 2196],
+                [16, 2192]
             ],
 
             [   // Feb 2
@@ -289,13 +318,13 @@ angular.module('app.controllers')
                 [7, 2792],
                 [8, 2740],
                 [9, 2657],
-                [10, 2530],
-                [11, 2275],
-                [12, 2100],
-                [13, 2079],
-                [14, 2097],
-                [15, 2102],
-                [16, 2077]
+                [10, 2598],
+                [11, 2468],
+                [12, 2318],
+                [13, 2296],
+                [14, 2306],
+                [15, 2293],
+                [16, 2275]
             ],
 
             [   // Feb 3
@@ -363,15 +392,15 @@ angular.module('app.controllers')
 
         $scope.flotElbowData = [];
 
-        for (var i = 0; i < 5; i++)
+        for (var iElbow = 0; iElbow < 5; iElbow++)
         {
             $scope.flotElbowData.push([
-                flotElbowDataThresholds[i],
+                flotElbowDataThresholds[iElbow],
                 $.extend({}, flotElbowDataLinesTmpl, {
-                    data: flotElbowDataPointsData[i]
+                    data: flotElbowDataPointsData[iElbow]
                 }),
                 $.extend({}, flotElbowDataPointsTmpl, {
-                    data: flotElbowDataPointsData[i]
+                    data: flotElbowDataPointsData[iElbow]
                 })
             ]);
         }
@@ -404,6 +433,23 @@ angular.module('app.controllers')
         $('<div id="flot-elbow-velocity-tooltip"></div>').css(flotTooltipStyles).appendTo('body');
 
         // Gauge charts.
+        $scope.elbowMinVel = 0;
+        $scope.elbowAvgVel = 0;
+        $scope.elbowMaxVel = 0;
+        $scope.calcElbowGauge = function() {
+
+            var dataPoints = flotElbowDataPointsData[$scope.session.id - 1],
+                data = dataPoints.map(function(point) {
+                    return point[1];
+                }),
+                sum = data.reduce(function(previous, current, index, data) {
+                    return previous + current;
+                });
+
+            $scope.elbowMinVel = Math.min.apply(Math, data);
+            $scope.elbowAvgVel = Math.round(sum / data.length);
+            $scope.elbowMaxVel = Math.max.apply(Math, data);
+        };
 
         $scope.elbowMinGauge =
         {
@@ -492,23 +538,15 @@ angular.module('app.controllers')
 
 
 
-        $scope.flotShoulderRotOptions = $.extend(true, {}, flotOptions, {
+        // Options
+        var flotShoulderOptionsTmpl = $.extend(true, {}, flotOptions, {
             grid: {
                 color: 'rgba(91, 112, 125, 1)',
                 markings: [
-                    // {
-                    //     color: 'rgba(219, 80, 49, 0.15)',
-                    //     color: Utilities.color.darkBlue,
-                    //     yaxis: {from: 100}
-                    // },
                     {
                         color: 'rgba(77, 197, 222, 0.3)',
                         yaxis: {from: 60, to: 100}
                     },
-                    // {
-                    //     color: Utilities.color.darkBlue,
-                    //     yaxis: {from: 0, to: 60}
-                    // },
                 ]
             },
             xaxis: {
@@ -531,51 +569,152 @@ angular.module('app.controllers')
             ]
         });
 
-        $scope.flotShoulderRotDataPoints = [
-            [0, 82],
-            [1, 89],
-            [2, 91],
-            [3, 90],
-            [4, 88],
-            [5, 91],
-            [6, 94],
-            [7, 91],
-            [8, 85],
-            [9, 67],
-            [10, 63],
-            [11, 61],
-            [12, 64],
-            [13, 62],
-            [14, 58],
-            [15, 53],
-            [16, 60]
+        $scope.flotShoulderOptions = [
+            $.extend({}, flotShoulderOptionsTmpl),
+            $.extend({}, flotShoulderOptionsTmpl),
+            $.extend({}, flotShoulderOptionsTmpl),
+            $.extend({}, flotShoulderOptionsTmpl),
+            $.extend({}, flotShoulderOptionsTmpl),
         ];
 
-        $scope.flotShoulderRotData = [
+        $scope.flotShoulderDataPoints = [
 
-            // Data line.
-            {
-                bars: {show: false},
-                lines: {
-                    color: '#4dc5de',
-                    fill: false,
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flotShoulderRotDataPoints
-            },
+            [   // Jan 28
+                [0, 82],
+                [1, 89],
+                [2, 91],
+                [3, 90],
+                [4, 88],
+                [5, 91],
+                [6, 94],
+                [7, 91],
+                [8, 85],
+                [9, 67],
+                [10, 63],
+                [11, 61],
+                [12, 64],
+                [13, 62],
+                [14, 58],
+                [15, 53],
+                [16, 60]
+            ],
 
-            // Data points.
-            {
-                bars: {show: false},
-                points: {
-                    color: '#fff',
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flotShoulderRotDataPoints
+            [   // Jan 29
+                [0, 82],
+                [1, 89],
+                [2, 91],
+                [3, 90],
+                [4, 88],
+                [5, 91],
+                [6, 94],
+                [7, 91],
+                [8, 85],
+                [9, 67],
+                [10, 63],
+                [11, 61],
+                [12, 64],
+                [13, 62],
+                [14, 58],
+                [15, 53],
+                [16, 60]
+            ],
+
+            [   // Feb 1
+                [0, 82],
+                [1, 89],
+                [2, 91],
+                [3, 90],
+                [4, 88],
+                [5, 91],
+                [6, 94],
+                [7, 91],
+                [8, 85],
+                [9, 67],
+                [10, 63],
+                [11, 61],
+                [12, 64],
+                [13, 62],
+                [14, 58],
+                [15, 53],
+                [16, 60]
+            ],
+
+            [   // Feb 2
+                [0, 82],
+                [1, 89],
+                [2, 91],
+                [3, 90],
+                [4, 88],
+                [5, 91],
+                [6, 94],
+                [7, 91],
+                [8, 85],
+                [9, 67],
+                [10, 63],
+                [11, 61],
+                [12, 64],
+                [13, 62],
+                [14, 58],
+                [15, 53],
+                [16, 60]
+            ],
+
+            [   // Feb 3
+                [0, 82],
+                [1, 89],
+                [2, 91],
+                [3, 90],
+                [4, 88],
+                [5, 91],
+                [6, 94],
+                [7, 91],
+                [8, 85],
+                [9, 67],
+                [10, 63],
+                [11, 61],
+                [12, 64],
+                [13, 62],
+                [14, 58],
+                [15, 53],
+                [16, 60]
+            ],
+        ];
+
+        var flowShoulderDataLinesTmpl = {
+            bars: {show: false},
+            lines: {
+                color: '#4dc5de',
+                fill: false,
+                lineWidth: 4,
+                show: true
             }
-        ];
+        },
+        flotShoulderDataPointsTmpl = {
+            bars: {show: false},
+            points: {
+                color: '#fff',
+                lineWidth: 4,
+                show: true
+            }
+        };
+
+        $scope.flotShoulderData = [];
+
+        for (var iShoulder = 0; iShoulder < 5; iShoulder++)
+        {
+            $scope.flotShoulderData.push([
+
+                // Data line
+                $.extend({}, flowShoulderDataLinesTmpl, {
+                    data: $scope.flotShoulderDataPoints[iShoulder]
+                }),
+
+                // Data points
+                $.extend({}, flotShoulderDataPointsTmpl, {
+                    data: $scope.flotShoulderDataPoints[iShoulder]
+                }),
+            ]);
+        }
 
         // Chart tooltips
         $scope.flotShoulderRotHover = function (event, pos, item) {
@@ -593,7 +732,7 @@ angular.module('app.controllers')
                         // 'background-color': item.series.color
                         'background-color': Utilities.color.darkBlue
                     })
-					.fadeIn(200);
+					.fadeIn(300);
 
                 $timeout(function() {
                     $scope.demoGaugeOneValue = (item.datapoint[1]) * 1000 / 100;
@@ -620,21 +759,13 @@ angular.module('app.controllers')
         /////////////////////////////////////////////////////////////////
 
 
-        $scope.flotStrideOptions = $.extend(true, {}, flotOptions, {
+        var flotStrideOptionsTmpl = $.extend(true, {}, flotOptions, {
             grid: {
                 markings: [
-                    // {
-                    //     color: Utilities.color.textColorBlue,
-                    //     yaxis: {from: 30}
-                    // },
                     {
                         color: 'rgba(63, 213, 174, 0.3)',
                         yaxis: {from: 26, to: 30}
                     },
-                    // {
-                    //     color: Utilities.color.textColorBlue,
-                    //     yaxis: {from: 15, to: 26}
-                    // },
                 ]
             },
             xaxis: {
@@ -659,50 +790,150 @@ angular.module('app.controllers')
             ]
         });
 
+        $scope.flotStrideOptions = [
+            $.extend({}, flotStrideOptionsTmpl),
+            $.extend({}, flotStrideOptionsTmpl),
+            $.extend({}, flotStrideOptionsTmpl),
+            $.extend({}, flotStrideOptionsTmpl),
+            $.extend({}, flotStrideOptionsTmpl),
+        ];
+
         $scope.flowStrideDataPoints = [
-            [0, 27.4],
-            [1, 28],
-            [2, 26.5],
-            [3, 25.9],
-            [4, 26.9],
-            [5, 27.9],
-            [6, 28.1],
-            [7, 28.7],
-            [8, 28.3],
-            [9, 27.9],
-            [10, 27.4],
-            [11, 26.1],
-            [12, 25.3],
-            [13, 25],
-            [14, 24.6],
-            [15, 23.1],
-            [16, 22.9]
+
+            [   // Jan 28
+                [0, 27.4],
+                [1, 28],
+                [2, 26.5],
+                [3, 25.9],
+                [4, 26.9],
+                [5, 27.9],
+                [6, 28.1],
+                [7, 28.7],
+                [8, 28.3],
+                [9, 27.9],
+                [10, 27.4],
+                [11, 26.1],
+                [12, 25.3],
+                [13, 25],
+                [14, 24.6],
+                [15, 23.1],
+                [16, 22.9]
+            ],
+
+            [   // Jan 29
+                [0, 27.4],
+                [1, 28],
+                [2, 26.5],
+                [3, 25.9],
+                [4, 26.9],
+                [5, 27.9],
+                [6, 28.1],
+                [7, 28.7],
+                [8, 28.3],
+                [9, 27.9],
+                [10, 27.4],
+                [11, 26.1],
+                [12, 25.3],
+                [13, 25],
+                [14, 24.6],
+                [15, 23.1],
+                [16, 22.9]
+            ],
+
+            [   // Feb 1
+                [0, 27.4],
+                [1, 26.8],
+                [2, 26.8],
+                [3, 26.3],
+                [4, 26.9],
+                [5, 27.9],
+                [6, 28.1],
+                [7, 28.7],
+                [8, 28.3],
+                [9, 27.9],
+                [10, 27.4],
+                [11, 26.9],
+                [12, 27.3],
+                [13, 27.9],
+                [14, 27.5],
+                [15, 26.9],
+                [16, 26.2]
+            ],
+
+            [   // Feb 2
+                [0, 26.9],
+                [1, 27.7],
+                [2, 27.9],
+                [3, 28.2],
+                [4, 28.6],
+                [5, 28.3],
+                [6, 28.1],
+                [7, 28.7],
+                [8, 28.3],
+                [9, 27.9],
+                [10, 27.4],
+                [11, 26.1],
+                [12, 25.3],
+                [13, 25],
+                [14, 24.6],
+                [15, 24.8],
+                [16, 24.9]
+            ],
+
+            [   // Feb 3
+                [0, 27.4],
+                [1, 28],
+                [2, 26.5],
+                [3, 25.9],
+                [4, 26.9],
+                [5, 27.9],
+                [6, 28.1],
+                [7, 28.7],
+                [8, 28.3],
+                [9, 27.9],
+                [10, 27.4],
+                [11, 26.1],
+                [12, 25.3],
+                [13, 25],
+                [14, 24.6],
+                [15, 23.1],
+                [16, 22.9]
+            ],
         ];
 
-        $scope.flotStrideData = [
-
-            // Data line.
-            {
-                bars: {show: false},
-                lines: {
-                    fill: false,
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flowStrideDataPoints
-            },
-
-            // Data scatter.
-            {
-                bars: {show: false},
-                points: {
-                    fill: true,
-                    lineWidth: 4,
-                    show: true
-                },
-                data: $scope.flowStrideDataPoints
+        var flotStrideDataLinesTmpl = {
+            bars: {show: false},
+            lines: {
+                fill: false,
+                lineWidth: 4,
+                show: true
             }
-        ];
+        }, flotStrideDataPointsTmpl = {
+            bars: {show: false},
+            points: {
+                fill: true,
+                lineWidth: 4,
+                show: true
+            }
+        };
+
+        $scope.flotStrideData = [];
+
+        for (var iStride = 0; iStride < 5; iStride++)
+        {
+            $scope.flotStrideData.push([
+
+                // Data line.
+                $.extend({}, flotStrideDataLinesTmpl, {
+                    data: $scope.flowStrideDataPoints[iStride]
+                }),
+
+                // Data scatter.
+                $.extend({}, flotStrideDataPointsTmpl, {
+                    data: $scope.flowStrideDataPoints[iStride]
+                })
+            ]);
+        }
 
         // Chart tooltips
         $scope.flotStrideHover = function (event, pos, item) {
@@ -909,6 +1140,7 @@ angular.module('app.controllers')
             else
             {
                 $scope.isFetchingSessionData = true;
+                $scope.calcElbowGauge();
 
                 $timeout(function() {
                     $scope.isSessionDataLoaded = true;

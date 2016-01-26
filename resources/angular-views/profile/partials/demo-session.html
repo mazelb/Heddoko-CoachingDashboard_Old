@@ -75,7 +75,9 @@
                         <div class="col-xs-12">
                             <div style="margin: 25px 0 0">
                                 <img src="/images/demo/qb throw.png" style="height: 65px; margin-right: 15px; vertical-align: top">
-                                <span style="font-size: 3.5em; vertical-align: bottom;">97</span>
+                                <span style="font-size: 3.5em; vertical-align: bottom;">
+                                    {{ flotElbowDrops[session.id - 1].num }}
+                                </span>
                             </div>
 
                             <span style="font-size: 1.3em">
@@ -215,7 +217,7 @@
                                 </canvas>
 
                                 <div style="position: absolute; left: 39%; bottom: 15px;">
-                                    2,810 &deg;/s
+                                    {{ elbowMaxVel | number:0 }} &deg;/s
                                 </div>
                             </div>
                         </div>
@@ -233,7 +235,7 @@
                                 </canvas>
 
                                 <div style="position: absolute; left: 39%; bottom: 15px;">
-                                    2,501 &deg;/s
+                                    {{ elbowAvgVel | number:0 }} &deg;/s
                                 </div>
                             </div>
                         </div>
@@ -251,7 +253,7 @@
                                 </canvas>
 
                                 <div style="position: absolute; left: 39%; bottom: 15px;">
-                                    1,879 &deg;/s
+                                    {{ elbowMinVel | number:0 }} &deg;/s
                                 </div>
                             </div>
                         </div>
@@ -260,23 +262,99 @@
 
                 <!-- Shoulder External Rotation -->
                 <div ng-show="metric.title == 'Shoulder External Rotation'" class="col-md-9">
-                    <div
-                        data-theme-flot-chart
-                        data-data="flotShoulderRotData"
-                        data-options="flotShoulderRotOptions"
-                        data-plot-hover="flotShoulderRotHover"
-                        style="width: 100%; height: 400px;">
+                    <div ng-show="session.id === 5">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotShoulderData[4]"
+                            data-options="flotShoulderOptions[4]"
+                            data-plot-hover="flotShoulderRotHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 4">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotShoulderData[3]"
+                            data-options="flotShoulderOptions[3]"
+                            data-plot-hover="flotShoulderRotHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 3">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotShoulderData[2]"
+                            data-options="flotShoulderOptions[2]"
+                            data-plot-hover="flotShoulderRotHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 2">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotShoulderData[1]"
+                            data-options="flotShoulderOptions[1]"
+                            data-plot-hover="flotShoulderRotHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 1">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotShoulderData[0]"
+                            data-options="flotShoulderOptions[0]"
+                            data-plot-hover="flotShoulderRotHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Stride Length -->
                 <div ng-show="metric.title == 'Stride Length'" class="col-md-9">
-                    <div
-                        data-theme-flot-chart
-                        data-data="flotStrideData"
-                        data-options="flotStrideOptions"
-                        data-plot-hover="flotStrideHover"
-                        style="width: 100%; height: 400px;">
+                    <div ng-show="session.id === 5">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotStrideData[4]"
+                            data-options="flotStrideOptions[4]"
+                            data-plot-hover="flotStrideHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 4">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotStrideData[3]"
+                            data-options="flotStrideOptions[3]"
+                            data-plot-hover="flotStrideHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 3">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotStrideData[2]"
+                            data-options="flotStrideOptions[2]"
+                            data-plot-hover="flotStrideHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 2">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotStrideData[1]"
+                            data-options="flotStrideOptions[1]"
+                            data-plot-hover="flotStrideHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
+                    </div>
+                    <div ng-show="session.id === 1">
+                        <div
+                            data-theme-flot-chart
+                            data-data="flotStrideData[0]"
+                            data-options="flotStrideOptions[0]"
+                            data-plot-hover="flotStrideHover"
+                            style="width: 100%; height: 400px;">
+                        </div>
                     </div>
                 </div>
 

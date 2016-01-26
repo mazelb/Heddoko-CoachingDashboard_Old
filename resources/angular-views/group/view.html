@@ -165,17 +165,19 @@
             <br>
 
             <!-- New profile button -->
+            <!-- TODO: figure out why the right margin is needed -->
             <a
                 href="#/profile/create"
-                class="btn btn-info btn-metro">
+                class="btn btn-info btn-metro"
+                style="margin-right: 0">
 
                 <i class="fa fa-plus"></i>
             </a>
 
             <a
-                ng-repeat="profile in global.state.profile.filtered"
+                ng-repeat="profile in global.data.filteredProfiles"
                 href="#/profile/{{ profile.id }}"
-                class="btn btn-default btn-metro"
+                class="btn btn-info btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
                 <span>{{ profile.lastName.toUpperCase() }}</span>

@@ -354,4 +354,17 @@
 </div>
 
 <!-- No profile selected -->
-<div ng-show="profile.id === 0" ng-include="'partials/select-profile.html'" class="page"></div>
+<div ng-show="profile.id === 0 && !global.data.isFetchingProfiles" ng-include="'partials/select-profile.html'" class="page"></div>
+
+<!-- Loading profiles -->
+<div ng-show="global.data.isFetchingProfiles" class="page">
+    <h2 class="text-center">Retrieving profile data...</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="text-center">
+        <i class="fa fa-spinner fa-spin fa-3x text-muted"></i>
+    </div>
+</div>

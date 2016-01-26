@@ -148,7 +148,7 @@ angular.module('app.controllers')
                         break;
 
                     case 'movement':
-                        Rover.debug('Looking up movements...');
+                        Utilities.debug('Looking up movements...');
 
                         Utilities.alert('In Development.');
                         callback();
@@ -230,7 +230,8 @@ angular.module('app.controllers')
             {
                 case 'profile':
                     $scope.options = [];
-                    angular.forEach($scope.global.state.profile.list, function(profile) {
+                    // angular.forEach($scope.global.state.profile.list, function(profile) {
+                    angular.forEach(Utilities.listVars('profile', []), function(profile) {
                         if (profile && profile.id) {
                             $scope.options.push(profile);
                         }
@@ -255,11 +256,11 @@ angular.module('app.controllers')
             $('.top-nav .selectize-input input').innerWidth(340);
 
             // Update selected filter.
-            $scope.selectedFilter = Rover.store.searchFilter = filter;
+            $scope.selectedFilter = Utilities.store.searchFilter = filter;
         };
 
         $timeout(function() {
-            $scope.filterBy(Rover.store.searchFilter || $scope.filters[0]);
+            $scope.filterBy(Utilities.store.searchFilter || $scope.filters[0]);
         });
     }
 ]);
