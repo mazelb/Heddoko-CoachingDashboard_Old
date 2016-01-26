@@ -9,15 +9,12 @@
  */
 angular.module('app.utilities', [])
 
-.service('Utilities', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout',
-    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout) {
+.service('Utilities', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout', 'isLocalEnvironment',
+    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout, isLocalEnvironment) {
 
         // Dev variables.
         this.timestamp = Date.now();
-        this.isLocal =
-            ($window.location.hostname == 'localhost' ||
-                $window.location.hostname.match(/.*\.local$/i) ||
-                $window.location.hostname.match(/.*\.vagrant$/i)) ? true : false;
+        this.isLocal = isLocalEnvironment;
 
         // User-specific hash. Used for user-specific data.
         this.userHash = $('meta[name="user-hash"]').attr('content');
