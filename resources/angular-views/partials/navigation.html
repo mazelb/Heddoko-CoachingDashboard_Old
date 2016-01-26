@@ -76,12 +76,12 @@
 
 		<li>
             <!-- List of athletes -->
-            <a ng-show="global.state.profile.list.length > 0" href="#/profile/list">
+            <a ng-show="global.getNamespaceLength('profile') > 0" href="#/profile/list">
                 <i class="fa fa-user"></i>
                 <span>Athletes</span>
                 <span class="pull-right">
                     <small>
-                        ( {{ global.state.profile.list.length }} )
+                        ( {{ global.getNamespaceLength('profile') }} )
                     </small>
                 </span>
             </a>
@@ -95,7 +95,7 @@
             <!-- No profiles available -->
             <a
                 ng-show="global.data.isFetchingProfiles === false &&
-                    global.state.profile.list.length === 0"
+                    global.getNamespaceLength('profile') === 0"
                 href="#/profile/create">
 
                 <i class="fa fa-user"></i>

@@ -25,18 +25,19 @@ angular.module('app.controllers')
             isLocal: isLocalEnvironment,
 
             // The localStorage persists across browser sessions.
-            store: Rover.store,
+            store: Utilities.store,
 
             // The sessionStorage persists throughout a single browser session.
-            state: Rover.state,
+            state: Utilities.state,
 
             // The data object is ephemeral, and will reset at the end of the user session.
-            data: {},
+            data: Utilities.temp,
 
             // Helper methods.
             endSession: Rover.endSession,
             browseTo: Rover.browseTo,
             alert: Utilities.alert,
+            getNamespaceLength: Utilities.getNamespaceLength,
 
             // Onboarding messages.
             onboarding:
@@ -54,10 +55,10 @@ angular.module('app.controllers')
         $scope.global.store.groupId = $scope.global.store.groupId || 0;
 
         // Setup profile data.
-        $scope.global.state.profile = $scope.global.state.profile || {};
-        $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
-        $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
-        $scope.global.store.profileId = $scope.global.store.profileId || 0;
+        // $scope.global.state.profile = $scope.global.state.profile || {};
+        // $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
+        // $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
+        Utilities.store.profileId = Utilities.store.profileId || 0;
 
         // Setup screening data.
         $scope.global.state.screening = $scope.global.state.screening || {};
@@ -92,7 +93,7 @@ angular.module('app.controllers')
          * @return object
          */
         $scope.global.getSelectedProfile = function() {
-            return Rover.getState('profile', Rover.store.profileId, {id: 0});
+            return Utilities.getVar('profile', Utilities.store.profileId, {id: 0});
         };
 
         /**
@@ -102,7 +103,7 @@ angular.module('app.controllers')
          */
         $scope.global.selectProfile = function(profile) {
             $timeout(function() {
-                $scope.global.store.profileId = Utilities.getId(profile);
+                Utilities.store.profileId = Utilities.getId(profile);
             });
         };
 
@@ -159,10 +160,17 @@ angular.module('app.controllers')
          */
         $scope.global.updateFilteredProfiles = function(newGroup, oldGroup) {
 
-            var isCurrentProfileIncluded = false;
-            $scope.global.state.profile.filtered = [];
+            // Performance check.
+            if (!Utilities.hasNamespace('profile')) {
+                return;
+            }
 
-            angular.forEach($scope.global.state.profile.list, function(profile) {
+            var isCurrentProfileIncluded = false;
+            // $scope.global.state.profile.filtered = [];
+            Utilities.temp.filteredProfiles = [];
+
+            // angular.forEach($scope.global.state.profile.list, function(profile) {
+            angular.forEach(Utilities.temp.profile.list, function(profile) {
 
                 // Make sure we have a profile object.
                 if (!profile || !profile.id) {
@@ -172,10 +180,11 @@ angular.module('app.controllers')
                 // If no group was selected, include all profiles.
                 if (newGroup === 0)
                 {
-                    $scope.global.state.profile.filtered.push(profile);
+                    // $scope.global.state.profile.filtered.push(profile);
+                    Utilities.temp.filteredProfiles.push(profile);
 
                     // Check if selected profile is part of newly filtered list.
-                    if (profile.id == $scope.global.store.profileId) {
+                    if (profile.id == Utilities.store.profileId) {
                         isCurrentProfileIncluded = true;
                     }
                 }
@@ -191,7 +200,7 @@ angular.module('app.controllers')
 
                             // ...
                             if (group.id == newGroup) {
-                                $scope.global.state.profile.filtered.push(profile);
+                                Utilities.temp.filteredProfiles.push(profile);
 
                                 // Check if selected profile is part of newly filtered list.
                                 if (profile.id == $scope.global.store.profileId) {
@@ -206,9 +215,14 @@ angular.module('app.controllers')
             // If the selected profile is not part of the filtered list, select a new one.
             if (!isCurrentProfileIncluded)
             {
-                $scope.global.store.profileId = $scope.global.state.profile.filtered.length ?
-                    $scope.global.state.profile.filtered[0].id : 0;
+                $scope.global.store.profileId = Utilities.temp.filteredProfiles.length > 0 ?
+                    Utilities.temp.filteredProfiles[0].id : 0;
             }
+
+            // TODO: deprecated using the sessionStorage for this.
+            $scope.global.state.profile = {
+                filtered: Utilities.temp.filteredProfiles
+            };
         };
 
         /**
@@ -225,11 +239,13 @@ angular.module('app.controllers')
                 function(response) {
 
                     // Reset profile list.
-                    $scope.global.state.profile.list = {length: 0};
+                    // $scope.global.state.profile.list = {length: 0};
+                    Utilities.resetVarNamespace('profile');
                     angular.forEach(response.data, function(profile) {
 
                         // Add profile to list.
-                        Rover.setState('profile', profile.id, profile);
+                        // Rover.setState('profile', profile.id, profile);
+                        Utilities.setVar('profile', profile.id, profile);
                     });
 
                     // Select a default profile.
@@ -250,16 +266,16 @@ angular.module('app.controllers')
         };
 
         // Fetch user details.
-        if ($scope.global.state.user.id === 0)
+        if (Utilities.state.user.id === 0)
         {
             Utilities.debug('Retrieving user details');
             $scope.global.data.isFetchingUser = true;
 
-            UserService.get(Rover.userHash).then(
+            UserService.get(Utilities.userHash).then(
 
                 // Update user data.
                 function(response) {
-                    $scope.global.state.user = response.data;
+                    Utilities.state.user = response.data;
                     $scope.global.data.isFetchingUser = false;
                 },
                 function(response) {
@@ -273,7 +289,8 @@ angular.module('app.controllers')
 
         // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
         // exceed the maximum # simultaneous requests on the server.
-    	if ($scope.global.state.profile.list.length === 0) {
+    	// if ($scope.global.state.profile.list.length === 0) {
+    	if (Utilities.getNamespaceLength('profile') === 0) {
     		$timeout($scope.fetchProfiles, 1000);
     	}
 

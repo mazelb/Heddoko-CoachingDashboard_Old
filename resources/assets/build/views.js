@@ -4373,12 +4373,12 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "		<li>\n" +
     "            <!-- List of athletes -->\n" +
-    "            <a ng-show=\"global.state.profile.list.length > 0\" href=\"#/profile/list\">\n" +
+    "            <a ng-show=\"global.getNamespaceLength('profile') > 0\" href=\"#/profile/list\">\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
     "                    <small>\n" +
-    "                        ( {{ global.state.profile.list.length }} )\n" +
+    "                        ( {{ global.getNamespaceLength('profile') }} )\n" +
     "                    </small>\n" +
     "                </span>\n" +
     "            </a>\n" +
@@ -4392,7 +4392,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            <!-- No profiles available -->\n" +
     "            <a\n" +
     "                ng-show=\"global.data.isFetchingProfiles === false &&\n" +
-    "                    global.state.profile.list.length === 0\"\n" +
+    "                    global.getNamespaceLength('profile') === 0\"\n" +
     "                href=\"#/profile/create\">\n" +
     "\n" +
     "                <i class=\"fa fa-user\"></i>\n" +

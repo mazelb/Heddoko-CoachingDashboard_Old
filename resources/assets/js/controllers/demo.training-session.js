@@ -98,32 +98,41 @@ angular.module('app.controllers')
 
         $scope.flotElbowLabels = [
 
-            $.extend({}, flotElbowLabelTmpl, {
-                point: {x: 10, y: 2900},
-                text: 'Throw degradation<br>around <b>105<sup>th</sup></b> throw'
-            }),
+            [   // Jan 28
+                $.extend({}, flotElbowLabelTmpl, {
+                    point: {x: 10, y: 2900},
+                    text: 'Throw degradation<br>around <b>109<sup>th</sup></b> throw'
+                })
+            ],
 
-            $.extend({}, flotElbowLabelTmpl, {
-                point: {x: 10, y: 2900},
-                text: 'Throw degradation<br>around <b>104<sup>th</sup></b> throw'
-            }),
+            [   // Jan 29
+                $.extend({}, flotElbowLabelTmpl, {
+                    point: {x: 10, y: 2900},
+                    text: 'Throw degradation<br>around <b>104<sup>th</sup></b> throw'
+                })
+            ],
 
-            $.extend({}, flotElbowLabelTmpl, {
-                point: {x: 10, y: 2900},
-                text: 'Throw degradation<br>around <b>103<sup>rd</sup></b> throw'
-            }),
+            [   // Feb 1
+                $.extend({}, flotElbowLabelTmpl, {
+                    point: {x: 10, y: 2900},
+                    text: 'Throw degradation<br>around <b>103<sup>rd</sup></b> throw'
+                })
+            ],
 
-            $.extend({}, flotElbowLabelTmpl, {
-                point: {x: 10, y: 2900},
-                text: 'Throw degradation<br>around <b>102<sup>nd</sup></b> throw'
-            }),
+            [   // Feb 2
+                $.extend({}, flotElbowLabelTmpl, {
+                    point: {x: 10, y: 2900},
+                    text: 'Throw degradation<br>around <b>102<sup>nd</sup></b> throw'
+                })
+            ],
 
-            $.extend({}, flotElbowLabelTmpl, {
-                point: {x: 10, y: 2900},
-                text: 'Throw degradation<br>around <b>97<sup style="">th</sup></b> throw'
-            }),
+            [   // Feb 3
+                $.extend({}, flotElbowLabelTmpl, {
+                    point: {x: 10, y: 2900},
+                    text: 'Throw degradation<br>around <b>97<sup style="">th</sup></b> throw'
+                })
+            ],
         ];
-
         // Options
         var flotElbowOptionsTmpl = $.extend({}, flotOptions, {
             xaxis: {ticks: flotTicksX},
@@ -140,6 +149,20 @@ angular.module('app.controllers')
 
         $scope.flotElbowOptions = [
 
+            // Jan 28
+            $.extend(true, {}, flotElbowOptionsTmpl, {
+                grid: {
+                    markings: [
+                        {
+                            color: Utilities.color.orange,
+                            lineWidth: 2,
+                            xaxis: {from: 11, to: 11}
+                        }
+                    ]
+                },
+            }),
+
+            // Jan 29
             $.extend(true, {}, flotElbowOptionsTmpl, {
                 grid: {
                     markings: [
@@ -152,6 +175,7 @@ angular.module('app.controllers')
                 },
             }),
 
+            // Feb 1
             $.extend(true, {}, flotElbowOptionsTmpl, {
                 grid: {
                     markings: [
@@ -164,6 +188,7 @@ angular.module('app.controllers')
                 },
             }),
 
+            // Feb 2
             $.extend(true, {}, flotElbowOptionsTmpl, {
                 grid: {
                     markings: [
@@ -176,18 +201,7 @@ angular.module('app.controllers')
                 },
             }),
 
-            $.extend(true, {}, flotElbowOptionsTmpl, {
-                grid: {
-                    markings: [
-                        {
-                            color: Utilities.color.orange,
-                            lineWidth: 2,
-                            xaxis: {from: 10, to: 10}
-                        }
-                    ]
-                },
-            }),
-
+            // Feb 3
             $.extend(true, {}, flotElbowOptionsTmpl, {
                 grid: {
                     markings: [
@@ -201,13 +215,10 @@ angular.module('app.controllers')
             }),
         ];
 
-        Utilities.debug('options');
-        Utilities.debug($scope.flotElbowOptions);
-
         // Data points
         var flotElbowDataPointsData = [
 
-            [
+            [   // Jan 28
                 [0, 2550],
                 [1, 2540],
                 [2, 2578],
@@ -219,15 +230,15 @@ angular.module('app.controllers')
                 [8, 2740],
                 [9, 2657],
                 [10, 2530],
-                [11, 2275],
-                [12, 2100],
-                [13, 2003],
-                [14, 1961],
-                [15, 1899],
-                [16, 1005]
+                [11, 2430],
+                [12, 2368],
+                [13, 2275],
+                [14, 2263],
+                [15, 2189],
+                [16, 2175]
             ],
 
-            [
+            [   // Jan 29
                 [0, 2550],
                 [1, 2540],
                 [2, 2578],
@@ -247,7 +258,7 @@ angular.module('app.controllers')
                 [16, 1004]
             ],
 
-            [
+            [   // Feb 1
                 [0, 2550],
                 [1, 2540],
                 [2, 2578],
@@ -267,27 +278,27 @@ angular.module('app.controllers')
                 [16, 1003]
             ],
 
-            [
+            [   // Feb 2
                 [0, 2550],
-                [1, 2540],
-                [2, 2578],
+                [1, 2578],
+                [2, 2599],
                 [3, 2660],
                 [4, 2750],
-                [5, 2790],
-                [6, 2810],
+                [5, 2733],
+                [6, 2777],
                 [7, 2792],
                 [8, 2740],
                 [9, 2657],
                 [10, 2530],
                 [11, 2275],
                 [12, 2100],
-                [13, 2003],
-                [14, 1961],
-                [15, 1899],
-                [16, 1002]
+                [13, 2079],
+                [14, 2097],
+                [15, 2102],
+                [16, 2077]
             ],
 
-            [
+            [   // Feb 3
                 [0, 2550],
                 [1, 2540],
                 [2, 2578],
@@ -343,11 +354,11 @@ angular.module('app.controllers')
         },
 
         flotElbowDataThresholds = [
-            {},
-            {},
-            {},
-            {},
-            {},
+            $.extend({}, flotElbowDataThresholdTmpl),
+            $.extend({}, flotElbowDataThresholdTmpl),
+            $.extend({}, flotElbowDataThresholdTmpl),
+            $.extend({}, flotElbowDataThresholdTmpl),
+            $.extend({}, flotElbowDataThresholdTmpl),
         ];
 
         $scope.flotElbowData = [];
@@ -380,7 +391,7 @@ angular.module('app.controllers')
                         // 'background-color': item.series.color
                         'background-color': Utilities.color.darkBlue
                     })
-					.fadeIn(200);
+					.fadeIn(300);
 			}
 
             // Hide tooltip if no element is selected.

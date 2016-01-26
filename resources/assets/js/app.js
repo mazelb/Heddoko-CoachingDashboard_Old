@@ -46,10 +46,10 @@ app.constant('isLocalEnvironment', _appIsLocal)
     .constant('apiEndpoint', _apiEndpoint);
 
 // Initializes the 'app.services' module so we can add factories from separate files.
-var appServices = angular.module('app.services', ['app.rover']);
+var appServices = angular.module('app.services', ['app.utilities']);
 
 // Initializes the 'app.directives' module so we can add directives from separate files.
-var appDirectives = angular.module('app.directives', ['app.rover']);
+var appDirectives = angular.module('app.directives', ['app.utilities']);
 
 // Initializes the 'app.filters' module so we can add filters from separate files.
 var appFilters = angular.module('app.filters', ['app.utilities']);

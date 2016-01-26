@@ -5,6 +5,9 @@
  *          modules and controllers through dependency injection.
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    November 2015
+ *
+ *  TODO: Move helper methods to Utilities service (e.g. getState, etc.)
+ *  TODO: Keep only UI-changing methods (e.g. openOverlay, etc.)
  */
 angular.module('app.rover', [])
 
@@ -20,17 +23,12 @@ angular.module('app.rover', [])
 
         // User-specific hash. Used for user-specific data.
         // @deprecated
-        this.userHash = $('meta[name="user-hash"]').attr('content');
+        this.userHash = Utilities.userHash;
 
         // User-namespaced storage.
         // @deprecated
-        $localStorage[this.userHash] = $localStorage[this.userHash] || {};
-        $sessionStorage[this.userHash] = $sessionStorage[this.userHash] || {};
-        this.store = $localStorage[this.userHash];
-        this.state = $sessionStorage[this.userHash];
-
-        // Configuration object.
-        this.store.config = this.store.config || {};
+        this.store = Utilities.store;
+        this.state = Utilities.state;
 
         // Counts the # of requests being made, and displays the loading icon accordingly.
         // We start the counter at 1 and decrement it once the application is running.
@@ -216,63 +214,30 @@ angular.module('app.rover', [])
 
         }.bind(this);
 
-        //
-        // General helper methods.
-        //
-
         /**
-         * Checks whether a state variable is defined.
-         *
-         * @param string namespace
-         * @param string id
-         * @return bool
+         * @deprecated
          */
         this.hasState = function(namespace, id) {
-            return (this.state[namespace] && this.state[namespace].list['_' + id]) ? true : false;
-        };
+            Utilities.debug('Rover.hasState is deprecated...');
 
-        /**
-         * Retrieves a state variable.
-         *
-         * @param string namespace
-         * @param string id
-         * @param mixed def
-         * @return bool
-         */
+            return namespace == 'profile' ?
+                    Utilities.hasVar(namespace, id) :
+                    Utilities.hasState(namespace, id);
+        };
         this.getState = function(namespace, id, def) {
-            return this.hasState(namespace, id) ? this.state[namespace].list['_' + id] : def;
-        };
+            Utilities.debug('Rover.getState is deprecated...');
 
-        /**
-         * Sets a state variable.
-         *
-         * @param string namespace
-         * @param string id
-         * @param mixed value
-         */
+            return namespace == 'profile' ?
+                    Utilities.getVar(namespace, id, def) :
+                    Utilities.getState(namespace, id, def);
+        };
         this.setState = function(namespace, id, value) {
+            Utilities.debug('Rover.setState is deprecated...');
 
-            // Setup namespace.
-            if (!this.state[namespace]) {
-                this.state[namespace] = {
-                    list: {
-                        length: 0
-                    }
-                };
-            }
-
-            // Update namespace counter.
-            if (!this.hasState(namespace, id)) {
-                this.state[namespace].list.length++;
-            }
-
-            // Add an underscore to the state key, so that we may store objects by ID
-            // without any problems.
-            this.state[namespace].list['_' + id] = value;
+            return namespace == 'profile' ?
+                    Utilities.setVar(namespace, id, value) :
+                    Utilities.setState(namespace, id, value);
         };
-
-        // Logs a message to the console.
-        // @deprecated
         this.debug = function(msg) {
             Utilities.debug('Rover.debug is deprecated...');
             Utilities.debug(msg);
@@ -285,32 +250,14 @@ angular.module('app.rover', [])
             Utilities.debug('Rover.alert is deprecated...');
             Utilities.alert(msg);
         };
-
-        /**
-         * Retrieves a configuration value.
-         *
-         * @param string key
-         * @param mixed defaultValue
-         * @return mixed
-         */
         this.getConfig = function(key, defaultValue) {
-            return this.store.config[key] ? this.store.config[key] : defaultValue;
-        }.bind(this);
-
-        /**
-         * Sets a configuration value.
-         *
-         * @param string key
-         * @param mixed value
-         * @return mixed
-         */
+            Utilities.debug('Rover.getConfig is deprecated...');
+            return Utilities.getConfig(key, defaultValue);
+        };
         this.setConfig = function(key, value) {
-            this.store.config[key] = value;
-            return value;
-        }.bind(this);
-
-        // Retrieves the ID of an object.
-        // @deprecated
+            Utilities.debug('Rover.setConfig is deprecated...');
+            return Utilities.setConfig(key, value);
+        };
         this.getId = function(obj) {
             Utilities.debug('Rover.getId is deprecated...');
             return Utilities.getId(obj);
