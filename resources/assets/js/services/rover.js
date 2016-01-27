@@ -197,6 +197,13 @@ angular.module('app.rover', [])
             onEndSession: []
         };
 
+        /**
+         * @param string name
+         */
+        this.fireEvent = function(name) {
+            Utilities.info('Firing event: ' + name);
+        };
+
         // Performs final tasks before logging out.
         this.onEndSession = function()
         {
@@ -221,14 +228,14 @@ angular.module('app.rover', [])
             Utilities.debug('Rover.hasState is deprecated...');
 
             return namespace == 'profile' ?
-                    Utilities.hasVar(namespace, id) :
-                    Utilities.hasState(namespace, id);
+                    Utilities.hasDataKey(namespace, id) :
+                    Utilities.hasStateKey(namespace, id);
         };
         this.getState = function(namespace, id, def) {
             Utilities.debug('Rover.getState is deprecated...');
 
             return namespace == 'profile' ?
-                    Utilities.getVar(namespace, id, def) :
+                    Utilities.getData(namespace, id, def) :
                     Utilities.getState(namespace, id, def);
         };
         this.setState = function(namespace, id, value) {

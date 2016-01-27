@@ -47,7 +47,7 @@ angular.module('app.controllers')
 
             // List of profiles.
             // profiles = profiles || $scope.global.state.profile.list;
-            profiles = profiles || Utilities.listVars('profile');
+            profiles = profiles || Utilities.getDataList('profile');
 
             $scope.folders = [];
             if (profiles.length)

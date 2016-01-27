@@ -231,7 +231,7 @@ angular.module('app.controllers')
                 case 'profile':
                     $scope.options = [];
                     // angular.forEach($scope.global.state.profile.list, function(profile) {
-                    angular.forEach(Utilities.listVars('profile', []), function(profile) {
+                    angular.forEach(Utilities.getDataList('profile', []), function(profile) {
                         if (profile && profile.id) {
                             $scope.options.push(profile);
                         }

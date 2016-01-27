@@ -16,7 +16,7 @@ angular.module('app.controllers')
         $scope.isFetchingSessionData = false;
         $scope.isFetchingSelectedMetricData = false;
         $scope.isSessionDataLoaded = false;
-        $scope.colours = [Utilities.colour.heddokoGreen, '#79d9d8', '#6eb4d2'];
+        $scope.colours = [Utilities.color.heddokoGreen, '#79d9d8', '#6eb4d2'];
         $scope.fakeData = {};
 
 
@@ -92,7 +92,7 @@ angular.module('app.controllers')
 
         // Markings.
         var flotElbowLabelTmpl = {
-            color: Utilities.colour.orange,
+            color: Utilities.color.orange,
             lineWidth: 3
         },
         flotElbowDrops = [
@@ -467,7 +467,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, $scope.colours[2]],
@@ -493,7 +493,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, $scope.colours[1]],
@@ -519,7 +519,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, Utilities.color.heddokoGreen],
@@ -995,7 +995,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, '#4dc5de'],
@@ -1022,7 +1022,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, '#3FD5AE'],

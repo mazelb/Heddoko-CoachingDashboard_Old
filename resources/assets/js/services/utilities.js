@@ -9,8 +9,8 @@
  */
 angular.module('app.utilities', [])
 
-.service('Utilities', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$log', '$timeout', 'isLocalEnvironment',
-    function($window, $localStorage, $sessionStorage, $route, $location, $log, $timeout, isLocalEnvironment) {
+.service('Utilities', ['$window', '$localStorage', '$sessionStorage', '$route', '$location', '$timeout', 'isLocalEnvironment',
+    function($window, $localStorage, $sessionStorage, $route, $location, $timeout, isLocalEnvironment) {
 
         // Dev variables.
         this.timestamp = Date.now();
@@ -26,16 +26,15 @@ angular.module('app.utilities', [])
         this.state = $sessionStorage[this.userHash];
 
         // Ephemeral storage.
-        this.temp = {};
+        this.data = {};
 
         // Configuration object.
         this.store.config = this.store.config || {};
 
-        // Colours.
+        // Theme colours (American spelling).
         this.color =
         {
             blue: '#2c3a46',
-            blueDark: '#1c242c',
             darkBlue: '#1c242c',
             danger: '#db5031',
             heddokoGreen: '#3bd6b2',
@@ -43,12 +42,9 @@ angular.module('app.utilities', [])
             orange: '#fabd39',
             silver: '#cbd4e3',
             textColor: '#ddd',
-            textColour: '#ddd',
             textColorBlue: '#5b707d',
-            textColourBlue: '#5b707d',
             warning: '#eec95a'
         };
-        this.colour = this.color;
 
         /**
          * Retrieves a configuration value.
@@ -73,16 +69,24 @@ angular.module('app.utilities', [])
             return value;
         }.bind(this);
 
+
+        ///
+        /// State variables are stored in the sessionStorage. The following methods deal with
+        /// associative arrays, usually keyed by ID.
+        ///
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
+
         /**
-         * Checks whether a state variable is defined.
+         * Checks whether a key exists within an associative array.
          *
          * @param string namespace
          * @param string id
          * @return bool
          */
-        this.hasState = function(namespace, id) {
+        this.hasStateKey = function(namespace, id) {
             return (this.state[namespace] && this.state[namespace].list['_' + id]) ? true : false;
-        };
+        }.bind(this);
 
         /**
          * Retrieves a state variable.
@@ -93,8 +97,8 @@ angular.module('app.utilities', [])
          * @return bool
          */
         this.getState = function(namespace, id, def) {
-            return this.hasState(namespace, id) ? this.state[namespace].list['_' + id] : def;
-        };
+            return this.hasStateKey(namespace, id) ? this.state[namespace].list['_' + id] : def;
+        }.bind(this);
 
         /**
          * Sets a state variable.
@@ -122,7 +126,15 @@ angular.module('app.utilities', [])
             // Add an underscore to the state key, so that we may store objects by ID
             // without any problems.
             this.state[namespace].list['_' + id] = value;
-        };
+        }.bind(this);
+
+
+        ///
+        /// Ephemeral variables are stored in this.data. The following methods deal with
+        /// associative arrays, usually keyed by ID.
+        ///
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
 
         /**
          * Checks whether a namespace is configured in the ephemeral storage.
@@ -130,9 +142,9 @@ angular.module('app.utilities', [])
          * @param string namespace
          * @return bool
          */
-        this.hasNamespace = function(namespace) {
-            return (this.temp[namespace] && this.temp[namespace].list);
-        };
+        this.hasDataNamespace = function(namespace) {
+            return (this.data[namespace] && this.data[namespace].list);
+        }.bind(this);
 
         /**
          * Checks the length of a list in the specified namespace.
@@ -140,8 +152,8 @@ angular.module('app.utilities', [])
          * @param string namespace
          * @return int
          */
-        this.getNamespaceLength = function(namespace) {
-            return this.hasNamespace(namespace) ? this.temp[namespace].list.length : 0;
+        this.getDataLength = function(namespace) {
+            return this.hasDataNamespace(namespace) ? this.data[namespace].list.length : 0;
         }.bind(this);
 
         /**
@@ -151,9 +163,9 @@ angular.module('app.utilities', [])
          * @param string id
          * @return bool
          */
-        this.hasVar = function(namespace, id) {
-            return (this.temp[namespace] && this.temp[namespace].list['_' + id]) ? true : false;
-        };
+        this.hasData = function(namespace, id) {
+            return (this.hasDataNamespace(namespace) && this.data[namespace].list['_' + id]);
+        }.bind(this);
 
         /**
          * Retrieves an ephemeral variable from the specified namespace.
@@ -163,8 +175,31 @@ angular.module('app.utilities', [])
          * @param mixed def
          * @return bool
          */
-        this.getVar = function(namespace, id, def) {
-            return this.hasVar(namespace, id) ? this.temp[namespace].list['_' + id] : def;
+        this.getData = function(namespace, id, def) {
+            return this.hasData(namespace, id) ? this.data[namespace].list['_' + id] : def;
+        }.bind(this);
+
+        /**
+         * Sets an ephemeral variable in the specified namespace.
+         *
+         * @param string namespace
+         * @param string id
+         * @param mixed value
+         */
+        this.setData = function(namespace, id, value) {
+
+            // Setup namespace.
+            if (!this.hasDataNamespace(namespace)) {
+                this.resetVarNamespace(namespace);
+            }
+
+            // Update namespace counter.
+            if (!this.hasData(namespace, id)) {
+                this.data[namespace].list.length++;
+            }
+
+            // We add an underscore to the key so that we may store objects by ID without any problems.
+            this.data[namespace].list['_' + id] = value;
         };
 
         /**
@@ -174,47 +209,24 @@ angular.module('app.utilities', [])
          * @param mixed def
          * @return mixed
          */
-        this.listVars = function(namespace, def) {
-            return this.hasNamespace(namespace) ? this.temp[namespace].list : def;
-        };
-
-        /**
-         * Sets an ephemeral variable in the specified namespace.
-         *
-         * @param string namespace
-         * @param string id
-         * @param mixed value
-         */
-        this.setVar = function(namespace, id, value) {
-
-            // Setup namespace.
-            if (!this.temp[namespace]) {
-                this.resetVarNamespace(namespace);
-            }
-
-            // Update namespace counter.
-            if (!this.hasVar(namespace, id)) {
-                this.temp[namespace].list.length++;
-            }
-
-            // We add an underscore to the key so that we may store objects by ID without any problems.
-            this.temp[namespace].list['_' + id] = value;
-        };
+        this.getDataList = function(namespace, def) {
+            return this.hasDataNamespace(namespace) ? this.data[namespace].list : def;
+        }.bind(this);
 
         /**
          * Resets an ephemeral namespace.
          *
          * @param string namespace
          */
-        this.resetVarNamespace = function(namespace) {
-            this.temp[namespace] = {
+        this.resetDataNamespace = function(namespace) {
+            this.data[namespace] = {
                 list: {
                     length: 0
                 }
             };
+        }.bind(this);
 
-            return namespace;
-        };
+
 
         /**
          * Formats an embed parameter for an API query.
@@ -290,19 +302,69 @@ angular.module('app.utilities', [])
         /**
          * Logs a message to the console.
          *
-         * @param string msg
+         * @param mixed msg
          */
-        this.debug = function(msg) {
-            if (this.isLocal) {
-                $log.debug(msg);
+        this.log = function(msg) {
+            if (this.isLocal && typeof console.log == 'function') {
+                console.log(msg);
             }
         };
-        this.error = function(msg) {
-            $log.error(msg);
+        this.debug = function(msg) {
+            this.log('Utilities.debug is deprecated...');
+            this.log(msg);
+        }.bind(this);
+
+        /**
+         * Logs an info message to the console.
+         *
+         * @param mixed msg
+         */
+        this.info = function(msg) {
+            if (this.isLocal && typeof console.info == 'function') {
+                console.info(msg);
+            }
         };
+
+        /**
+         * Logs an error message to the console.
+         *
+         * @param mixed msg
+         */
+        this.error = function(msg) {
+            if (this.isLocal && typeof console.error == 'function') {
+                console.error(msg);
+            }
+        };
+
+        /**
+         *
+         * @param mixed msg
+         */
         this.alert = function(msg) {
             $window.alert(msg);
         };
+
+        /**
+         * Performance timer. See: https://developer.mozilla.org/en-US/docs/Web/API/Console/time
+         *
+         * @param string label
+         */
+        this.time = function(label) {
+            if (this.isLocal && typeof console.time == 'function') {
+                console.time(label);
+            }
+        }.bind(this);
+
+        /**
+         * Performance timer. See: https://developer.mozilla.org/en-US/docs/Web/API/Console/timeEnd
+         *
+         * @param string label
+         */
+        this.timeEnd = function(label) {
+            if (this.isLocal && typeof console.timeEnd == 'function') {
+                console.timeEnd(label);
+            }
+        }.bind(this);
 
         /**
          * Displays the loading animation.

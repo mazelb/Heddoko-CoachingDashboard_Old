@@ -186,7 +186,7 @@ angular.module('app.controllers')
                 '#6ae1e1',      // Week 6
                 '#22aaaa',      // Week 7
                 'rgba(255, 255, 255, 0.5)',     // Median line
-                Utilities.colour.orange,        // Return to play
+                Utilities.color.orange,        // Return to play
             ]
         };
 
@@ -428,7 +428,7 @@ angular.module('app.controllers')
 
         $scope.flotRomLabels = [
             // {
-            //     color: Utilities.colour.darkBlue,
+            //     color: Utilities.color.darkBlue,
             //     point: {x: 0, y: 97},
             //     lineWidth: 3,
             //     styles: {
@@ -636,7 +636,7 @@ angular.module('app.controllers')
 
         $scope.flotActiveRomLabels = [
             // {
-            //     color: Utilities.colour.darkBlue,
+            //     color: Utilities.color.darkBlue,
             //     point: {x: 0, y: 97},
             //     lineWidth: 3,
             //     styles: {
@@ -907,7 +907,7 @@ angular.module('app.controllers')
                     strokeWidth: 0
                 },
                 limitMax: 'false',
-                strokeColor: Utilities.colour.blue,
+                strokeColor: Utilities.color.blue,
                 generateGradient: false,
                 percentColors: [
                     [0, '#6eb4d2'],

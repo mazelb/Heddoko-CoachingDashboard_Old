@@ -15,10 +15,10 @@ angular.module('app.controllers')
 
         // Currently displayed group.
         $scope.profile = {id: 0};
-        if ($routeParams.profileId > 0 && Utilities.hasVar('profile', $routeParams.profileId))
+        if ($routeParams.profileId > 0 && Utilities.hasDataKey('profile', $routeParams.profileId))
         {
             Utilities.store.profileId = $routeParams.profileId;
-            $scope.profile = Utilities.getVar('profile', $routeParams.profileId);
+            $scope.profile = Utilities.getData('profile', $routeParams.profileId);
         }
 
         // Current URL path.
@@ -45,7 +45,7 @@ angular.module('app.controllers')
 
         // Alias for the list of profiles.
         // $scope.profiles = $scope.global.state.profile.list;
-        $scope.profiles = Utilities.listVars('profile');
+        $scope.profiles = Utilities.getDataList('profile');
 
         // Computes the width of the avatar depending on the height of the details panel.
         $scope.calculateAvatarHeight = function() {
@@ -156,7 +156,7 @@ angular.module('app.controllers')
 
             // Update the avatar on the currently selected profile.
             // Rover.getState('profile', $scope.profile.id).avatarSrc = this.avatarSrc;
-            Utilities.getVar('profile', $scope.profile.id).avatarSrc = this.avatarSrc;
+            Utilities.getData('profile', $scope.profile.id).avatarSrc = this.avatarSrc;
 
             // Update the filtered list.
             // angular.forEach($scope.global.state.profile.filtered, function(profile) {

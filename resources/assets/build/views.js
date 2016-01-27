@@ -3118,7 +3118,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
   $templateCache.put("group/view.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"group.id\" class=\"page profile-page\">\n" +
+    "<div ng-if=\"group.id\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
@@ -3314,19 +3314,19 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            </a>\n" +
     "\n" +
     "            <a\n" +
-    "                ng-repeat=\"profile in global.data.filteredProfiles\"\n" +
+    "                ng-repeat=\"profile in global.data.filteredProfiles | limitTo:global.data.filteredProfiles.length track by profile.id\"\n" +
     "                href=\"#/profile/{{ profile.id }}\"\n" +
     "                class=\"btn btn-info btn-metro\"\n" +
-    "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
+    "                style=\"background-image: url({{ ::profile.avatarSrc || '' }});\">\n" +
     "\n" +
-    "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ profile.lastName.toUpperCase() }}</span>\n" +
+    "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ ::profile.lastName.toUpperCase() }}</span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No group selected -->\n" +
-    "<div ng-show=\"group.id === 0\" class=\"page\">\n" +
+    "<div ng-if=\"group.id === 0\" class=\"page\">\n" +
     "    <h1 class=\"text-center\">No group selected</h1>\n" +
     "    <br>\n" +
     "\n" +
@@ -4368,19 +4368,15 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            </a>\n" +
     "        </li>\n" +
     "\n" +
+    "        <!-- Groups -->\n" +
     "		<li>\n" +
     "            <!-- List of groups -->\n" +
-    "            <a ng-show=\"global.state.group.list.length > 0\" href=\"#/group/list\">\n" +
+    "            <a ng-if=\"global.data.group && global.data.group.list.length > 0\" href=\"#/group\">\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Teams</span>\n" +
-    "                <!-- <span class=\"pull-right\">\n" +
-    "                    <small>\n" +
-    "                        ( {{ global.state.group.list.length }} )\n" +
-    "                    </small>\n" +
-    "                </span> -->\n" +
     "            </a>\n" +
     "\n" +
-    "            <ul ng-show=\"global.state.group.list.length > 0\" style=\"display: block\">\n" +
+    "            <ul ng-if=\"global.data.group && global.data.group.list.length > 0\" style=\"display: block\">\n" +
     "                <li>\n" +
     "                    <a href=\"#/group/{{ global.getSelectedGroup().id }}\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
@@ -4393,55 +4389,48 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                        <span>View All Teams</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
-    "\n" +
-    "                <!-- Disabled until we're sure we only need the \"modal\" form on the group listing page -->\n" +
-    "                <li ng-show=\"false\">\n" +
-    "                    <a href=\"#/group/create\">\n" +
-    "                        <i class=\"fa fa-angle-right\"></i>\n" +
-    "                        <span>Create a Team</span>\n" +
-    "                    </a>\n" +
-    "                </li>\n" +
     "            </ul>\n" +
     "\n" +
     "            <!-- Fetching groups -->\n" +
-    "            <a ng-show=\"global.data.isFetchingGroups === true\" href=\"javascript:;\">\n" +
+    "            <a ng-if=\"global.data.isFetchingGroups === true\" href=\"javascript:;\">\n" +
     "                <i class=\"fa fa-spinner fa-spin\"></i>\n" +
     "                <span>Teams</span>\n" +
     "            </a>\n" +
     "\n" +
     "            <!-- No groups available -->\n" +
     "            <a\n" +
-    "                ng-show=\"global.data.isFetchingGroups === false &&\n" +
-    "                    global.state.group.list.length === 0\"\n" +
-    "                href=\"#/group/create\">\n" +
+    "                ng-if=\"global.data.isFetchingGroups === false &&\n" +
+    "                    global.data.group.list.length === 0\"\n" +
+    "                href=\"javascript:;\">\n" +
     "\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Create a Team</span>\n" +
     "            </a>\n" +
     "        </li>\n" +
     "\n" +
+    "        <!-- Profiles -->\n" +
     "		<li>\n" +
-    "            <!-- List of athletes -->\n" +
-    "            <a ng-show=\"global.getNamespaceLength('profile') > 0\" href=\"#/profile/list\">\n" +
+    "            <!-- List of profiles -->\n" +
+    "            <a ng-if=\"global.data.profile && global.data.profile.list.length > 0\" href=\"#/profile\">\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
     "                    <small>\n" +
-    "                        ( {{ global.getNamespaceLength('profile') }} )\n" +
+    "                        ( {{ global.data.profile.list.length }} )\n" +
     "                    </small>\n" +
     "                </span>\n" +
     "            </a>\n" +
     "\n" +
     "            <!-- Fetching profiles -->\n" +
-    "            <a ng-show=\"global.data.isFetchingProfiles === true\" href=\"javascript:;\">\n" +
+    "            <a ng-if=\"global.data.isFetchingProfiles === true\" href=\"javascript:;\">\n" +
     "                <i class=\"fa fa-spinner fa-spin\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "            </a>\n" +
     "\n" +
     "            <!-- No profiles available -->\n" +
     "            <a\n" +
-    "                ng-show=\"global.data.isFetchingProfiles === false &&\n" +
-    "                    global.getNamespaceLength('profile') === 0\"\n" +
+    "                ng-if=\"global.data.isFetchingProfiles === false &&\n" +
+    "                    global.data.profile.list.length === 0\"\n" +
     "                href=\"#/profile/create\">\n" +
     "\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
@@ -4580,21 +4569,6 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <li class=\"app-version\">\n" +
     "            {{ global.appVersion }}\n" +
     "		</li>\n" +
-    "\n" +
-    "		<!-- <li ng-controller=\"MovementScreenController\" ng-show=\"Rover.isLocal == true\">\n" +
-    "            <a href=\"#/movements\"><span>movement screen</span></a>\n" +
-    "			<ul style=\"display: block;\">\n" +
-    "                <li ng-repeat=\"movement_page in data.movement_pages\">\n" +
-    "					<a\n" +
-    "                        href=\"#/movements\"\n" +
-    "                        ng-click=\"select_movement(movement_page)\">\n" +
-    "\n" +
-    "                        <i ng-if=\"movement_page.submitted\" class=\"fa fa-2x fa-check\" style=\"color:white;\"></i>\n" +
-    "                        <span>{{movement_page.name}}</span>\n" +
-    "                    </a>\n" +
-    "				</li>\n" +
-    "            </ul>\n" +
-    "        </li> -->\n" +
     "    </ul>\n" +
     "</div>\n" +
     "");

@@ -10,14 +10,15 @@ angular.module('app.controllers')
 .controller('GroupController',
     ['$scope', '$routeParams', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
     function($scope, $routeParams, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
-        Utilities.debug('GroupController');
+        Utilities.info('GroupController');
 
         // Currently displayed group.
         $scope.group = {id: 0};
-        if ($routeParams.groupId > 0 && Rover.hasState('group', $routeParams.groupId))
+        if ($routeParams.groupId > 0 && Utilities.hasData('group', $routeParams.groupId))
         {
-            Rover.store.groupId = $routeParams.groupId;
-            $scope.group = Rover.getState('group', $routeParams.groupId);
+            // Utilities.store.groupId = $routeParams.groupId;
+            $scope.global.selectGroup($routeParams.groupId);
+            $scope.group = Utilities.getData('group', $routeParams.groupId);
         }
 
         // Model for new group details.
@@ -26,31 +27,28 @@ angular.module('app.controllers')
             name: ''
         };
 
-        // Computes the width of the avatar depending on the height of the details panel.
-        $scope.calculateAvatarHeight = function() {
-            return $('#groupDetails') ? $('#groupDetails').css('height') : 0;
-        };
-
-        // Creates a new group in the database.
+        /**
+         * Adds a group record to the database.
+         */
         $scope.createGroup = function() {
-            Utilities.debug("Creating group...");
+            Utilities.time('Creating Group');
             Rover.addBackgroundProcess();
 
-            // var form = $scope.group;
             var form = $scope.newGroup;
 
-            // Teams.create(form).then(
             GroupService.create(form).then(
 
                 // On success.
                 function(response) {
+                    Utilities.timeEnd('Creating Group');
                     Rover.doneBackgroundProcess();
 
                     if (response.status === 200) {
 
                         // Update the group list
                         // Rover.state.group.list[response.data.id] = response.data;
-                        Rover.setState('group', response.data.id, response.data);
+                        // Rover.setState('group', response.data.id, response.data);
+                        Utilities.setData('group', response.data.id, response.data);
 
                         // Navigate to newly created group.
                         Rover.browseTo.group(response.data);
@@ -59,6 +57,7 @@ angular.module('app.controllers')
 
                 // On failure.
                 function(response) {
+                    Utilities.timeEnd('Creating Group');
                     Rover.doneBackgroundProcess();
                 }
             );
@@ -66,10 +65,11 @@ angular.module('app.controllers')
 
         // Saves a profile through the uiEditableListContainer directive.
         $scope.saveGroupDetails = function() {
-            return GroupService.update(
-                $scope.global.getSelectedGroup().id,
-                $scope.global.getSelectedGroup()
-            );
+            // return GroupService.update(
+            //     $scope.global.getSelectedGroup().id,
+            //     $scope.global.getSelectedGroup()
+            // );
+            return GroupService.update($scope.group.id, $scope.group);
         };
 
         // Callback for uiEditableListContainer directive.
@@ -78,7 +78,8 @@ angular.module('app.controllers')
             // Update group list.
             if (saved) {
                 // $scope.global.state.group.list[this.id] = this;
-                Rover.setState('group', this.id, this);
+                // Rover.setState('group', this.id, this);
+                Utilities.setData('group', this.id, this);
 
                 // Navigate to group page.
                 Rover.browseTo.group();
@@ -94,17 +95,16 @@ angular.module('app.controllers')
 
         // Updates the details for an existing group.
         $scope.updateGroup = function() {
-
-            Utilities.debug('Updating group...');
+            Utilities.time('Updating Group');
             Rover.addBackgroundProcess();
 
             var form = $scope.group;
 
-            // Teams.update(form.id, form).then(
             GroupService.update(form.id, form).then(
 
                 // On success.
                 function(response) {
+                    Utilities.timeEnd('Updating Group');
                     Rover.doneBackgroundProcess();
 
                     if (response.status === 200)
@@ -116,7 +116,8 @@ angular.module('app.controllers')
 
                 // On failure.
                 function(response) {
-                    Utilities.debug('Could not update group: ' + response.responseText);
+                    Utilities.timeEnd('Updating Group');
+                    Utilities.error('Could not update group: ' + response.responseText);
                     Rover.doneBackgroundProcess();
                 }
             );
@@ -124,9 +125,9 @@ angular.module('app.controllers')
 
         // Deletes a group and its profiles.
         $scope.deleteGroup = function() {
-            Utilities.debug('Deleting group...');
+            Utilities.log('Deleting group...');
 
-            Utilities.debug('TODO: update group list update on success...');
+            Utilities.log('TODO: update group list update on success...');
 
             Utilities.alert('In Development.');
 
@@ -177,18 +178,8 @@ angular.module('app.controllers')
             $scope.global.getSelectedGroup().avatarSrc = this.avatarSrc;
 
             // Update the list of groups.
-            $scope.global.state.group.list[this.group.id].avatarSrc = this.avatarSrc;
+            // $scope.global.state.group.list[this.group.id].avatarSrc = this.avatarSrc;
+            Utilities.getData('group', this.group.id).avatarSrc = this.avatarSrc;
         };
-
-        $scope.$watch('global.store.groupId', function(newGrp, oldGrp)
-        {
-            // Performance check.
-            if (newGrp === oldGrp) {
-                return;
-            }
-
-            // Shortcut for the currently selected group.
-            $scope.group = $scope.global.getSelectedGroup();
-        });
     }
 ]);
