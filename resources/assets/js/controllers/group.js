@@ -14,11 +14,31 @@ angular.module('app.controllers')
 
         // Currently displayed group.
         $scope.group = {id: 0};
-        if ($routeParams.groupId > 0 && Utilities.hasData('group', $routeParams.groupId))
+        if ($routeParams.groupId > 0)
         {
-            // Utilities.store.groupId = $routeParams.groupId;
-            $scope.global.selectGroup($routeParams.groupId);
-            $scope.group = Utilities.getData('group', $routeParams.groupId);
+            if (Utilities.hasData('group', $routeParams.groupId))
+            {
+                $scope.global.selectGroup($routeParams.groupId);
+                $scope.group = Utilities.getData('group', $routeParams.groupId);
+            }
+
+            // If we're still loading groups, wait for those results.
+            else if (Utilities.data.isFetchingGroups)
+            {
+                // TODO: fix this watcher.
+                var stopWatchingGroups = $scope.$watch('global.data.isFetchingGroups', function(status) {
+
+                    // Update group.
+                    if (Utilities.hasData('group', $routeParams.groupId))
+                    {
+                        $scope.global.selectGroup($routeParams.groupId);
+                        $scope.group = Utilities.getData('group', $routeParams.groupId);
+                    }
+
+                    // Remove $watch binding.
+                    stopWatchingGroups();
+                });
+            }
         }
 
         // Model for new group details.
@@ -82,7 +102,7 @@ angular.module('app.controllers')
                 Utilities.setData('group', this.id, this);
 
                 // Navigate to group page.
-                Rover.browseTo.group();
+                Rover.browseTo.path('/group/' + this.id);
             }
 
             //
@@ -123,48 +143,42 @@ angular.module('app.controllers')
             );
         };
 
-        // Deletes a group and its profiles.
-        $scope.deleteGroup = function() {
-            Utilities.log('Deleting group...');
+        /**
+         * Deletes a group and its profiles.
+         *
+         * @param int groupId
+         */
+        $scope.deleteGroup = function(groupId) {
+            Utilities.time('Deleting Group');
 
-            Utilities.log('TODO: update group list update on success...');
+            // Show loading animation.
+            Rover.addBackgroundProcess();
 
-            Utilities.alert('In Development.');
+            GroupService.destroy(groupId || $scope.group.id).then(
 
-            return false;
+                // On success, update profile list and browse to selected group.
+                function(response) {
+                    Utilities.timeEnd('Deleting Group');
 
-            // // Show loading animation.
-            // Rover.addBackgroundProcess();
-            //
-            // GroupService.destroy($scope.global.getSelectedGroup().id).then(
-            //
-            //     // On success, update group list and browse to groups page.
-            //     function(response) {
-            //
-            //         if (response.status === 200)
-            //         {
-            //             Rover.state.group.list = {length: 0};
-            //             angular.forEach(response.data, function(group) {
-            //                 Rover.state.group.list.length++;
-            //                 Rover.state.group.list[group.id] = group;
-            //             });
-            //
-            //             // Update selected group.
-            //             if (response.data.length > 0) {
-            //                 Rover.store.groupId = response.data[0].id;
-            //             }
-            //         }
-            //
-            //         Rover.doneBackgroundProcess();
-            //         Rover.browseTo.path('/group/list');
-            //     },
-            //
-            //     // On failure.
-            //     function(response) {
-            //         Utilities.debug('Could not delete group: ' + response.responseText);
-            //         Rover.doneBackgroundProcess();
-            //     }
-            // );
+                    // Update group list.
+                    Utilities.setData('group', $scope.group.id, null);
+                    $scope.global.updateFilteredProfiles();
+
+                    // Unselect profile by default.
+                    Utilities.store.groupId = 0;
+
+                    Rover.browseTo.path('/group');
+                    Rover.doneBackgroundProcess();
+                },
+
+                // On failure.
+                function(response) {
+                    Utilities.timeEnd('Deleting Group');
+                    Utilities.error('Could not delete group: ' + response.responseText);
+                    Utilities.alert('Could not delete group. Please try again later.');
+                    Rover.doneBackgroundProcess();
+                }
+            );
         };
 
         // POST endpoint for avatar uploads.

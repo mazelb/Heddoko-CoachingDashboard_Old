@@ -2951,15 +2951,17 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
-    "    <div class=\"row\">\n" +
+    "    <div ng-if=\"global.data.isFetchingGroups === false\" class=\"row\">\n" +
     "        <div class=\"col-xs-12\">\n" +
     "\n" +
     "            <!-- New group button -->\n" +
+    "            <!-- TODO: figure out why the right margin is needed -->\n" +
     "            <a\n" +
     "                data-toggle=\"modal\"\n" +
     "                data-target=\"#newGroupForm\"\n" +
     "                href=\"javascript:;\"\n" +
-    "                class=\"btn btn-info btn-metro\">\n" +
+    "                class=\"btn btn-info btn-metro\"\n" +
+    "                style=\"margin-right: 0\">\n" +
     "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
     "            </a>\n" +
@@ -3008,7 +3010,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "\n" +
     "            <!-- List of groups -->\n" +
     "            <a\n" +
-    "                ng-repeat=\"group in global.state.group.list\"\n" +
+    "                ng-repeat=\"group in global.data.group.list\"\n" +
     "                ng-show=\"group.id\"\n" +
     "                href=\"#/group/{{ group.id }}\"\n" +
     "                class=\"btn btn-info btn-metro\"\n" +
@@ -3016,6 +3018,18 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "\n" +
     "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ group.name | characters:15 }}</span>\n" +
     "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <div ng-if=\"global.data.isFetchingGroups === true\" class=\"row text-center\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "            <h3>Retrieving Data</h3>\n" +
+    "            <br>\n" +
+    "            <br>\n" +
+    "\n" +
+    "            <div>\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -3118,7 +3132,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
   $templateCache.put("group/view.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-if=\"group.id\" class=\"page profile-page\">\n" +
+    "<div ng-if=\"global.data.isFetchingGroups === false && group.id\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
@@ -3202,15 +3216,16 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        </div>\n" +
     "\n" +
     "                        <!-- Tags -->\n" +
-    "                        <!-- Replaced with placeholder for demo -->\n" +
-    "                        <!-- <div ng-show=\"false\" class=\"col-xs-6\">\n" +
+    "                        <div class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Sport\"\n" +
     "                                data-key=\"tags\"\n" +
     "                                data-type=\"tag\">\n" +
     "                            </ui-editable-field>\n" +
-    "                        </div> -->\n" +
-    "                        <div class=\"col-xs-6\">\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Placeholder for Tags (NFL TechCrunch demo) -->\n" +
+    "                        <div ng-if=\"false\" class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Sport\"\n" +
     "                                data-type=\"placeholder\"\n" +
@@ -3235,7 +3250,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                            <ui-editable-field\n" +
     "                                data-label=\"Number of athletes\"\n" +
     "                                data-type=\"placeholder\"\n" +
-    "                                data-display=\"53\">\n" +
+    "                                data-display=\"{{ global.data.filteredProfiles }}\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3266,8 +3281,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            </div>\n" +
     "\n" +
     "            <!-- Notes -->\n" +
-    "            <!-- Placeholder data for demo -->\n" +
-    "            <div ng-show=\"false\" class=\"col-xs-12 col-lg-4\">\n" +
+    "            <div class=\"col-xs-12 col-lg-4\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Notes\"\n" +
     "                    data-model=\"group\"\n" +
@@ -3278,9 +3292,9 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    data-save-callback=\"saveGroupDetailsCallback\">\n" +
     "                </ui-editable-standalone-field>\n" +
     "            </div>\n" +
-    "            <div class=\"col-xs-12 col-lg-4\">\n" +
     "\n" +
-    "                <!-- DEMO -->\n" +
+    "            <!-- Placeholder for Notes (NFL TechCrunch demo) -->\n" +
+    "            <div ng-if=\"false\" class=\"col-xs-12 col-lg-4\">\n" +
     "                <div class=\"ui-editable-list-container\">\n" +
     "                    <h3 class=\"title\">\n" +
     "                        Notes\n" +
@@ -3325,8 +3339,17 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "    </div>\n" +
     "</div>\n" +
     "\n" +
+    "<!-- Fetching group data -->\n" +
+    "<div ng-if=\"global.data.isFetchingGroups === true\" class=\"page text-center\">\n" +
+    "    <h1>Retrieving Data...</h1>\n" +
+    "    <br>\n" +
+    "    <br>\n" +
+    "\n" +
+    "    <i class=\"fa fa-spinner fa-spin fa-4x text-muted\"></i>\n" +
+    "</div>\n" +
+    "\n" +
     "<!-- No group selected -->\n" +
-    "<div ng-if=\"group.id === 0\" class=\"page\">\n" +
+    "<div ng-if=\"global.data.isFetchingGroups === false && group.id === 0\" class=\"page\">\n" +
     "    <h1 class=\"text-center\">No group selected</h1>\n" +
     "    <br>\n" +
     "\n" +

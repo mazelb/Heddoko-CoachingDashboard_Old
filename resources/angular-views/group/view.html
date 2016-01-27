@@ -1,7 +1,7 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<div ng-if="group.id" class="page profile-page">
+<div ng-if="global.data.isFetchingGroups === false && group.id" class="page profile-page">
     <header>
         <h1>
             {{ group.name }} <i class="fa fa-users"></i>
@@ -85,15 +85,16 @@
                         </div>
 
                         <!-- Tags -->
-                        <!-- Replaced with placeholder for demo -->
-                        <!-- <div ng-show="false" class="col-xs-6">
+                        <div class="col-xs-6">
                             <ui-editable-field
                                 data-label="Sport"
                                 data-key="tags"
                                 data-type="tag">
                             </ui-editable-field>
-                        </div> -->
-                        <div class="col-xs-6">
+                        </div>
+
+                        <!-- Placeholder for Tags (NFL TechCrunch demo) -->
+                        <div ng-if="false" class="col-xs-6">
                             <ui-editable-field
                                 data-label="Sport"
                                 data-type="placeholder"
@@ -118,7 +119,7 @@
                             <ui-editable-field
                                 data-label="Number of athletes"
                                 data-type="placeholder"
-                                data-display="53">
+                                data-display="{{ global.data.filteredProfiles }}">
                             </ui-editable-field>
                         </div>
                     </div>
@@ -149,8 +150,7 @@
             </div>
 
             <!-- Notes -->
-            <!-- Placeholder data for demo -->
-            <div ng-show="false" class="col-xs-12 col-lg-4">
+            <div class="col-xs-12 col-lg-4">
                 <ui-editable-standalone-field
                     data-heading="Notes"
                     data-model="group"
@@ -161,9 +161,9 @@
                     data-save-callback="saveGroupDetailsCallback">
                 </ui-editable-standalone-field>
             </div>
-            <div class="col-xs-12 col-lg-4">
 
-                <!-- DEMO -->
+            <!-- Placeholder for Notes (NFL TechCrunch demo) -->
+            <div ng-if="false" class="col-xs-12 col-lg-4">
                 <div class="ui-editable-list-container">
                     <h3 class="title">
                         Notes
@@ -208,8 +208,17 @@
     </div>
 </div>
 
+<!-- Fetching group data -->
+<div ng-if="global.data.isFetchingGroups === true" class="page text-center">
+    <h1>Retrieving Data...</h1>
+    <br>
+    <br>
+
+    <i class="fa fa-spinner fa-spin fa-4x text-muted"></i>
+</div>
+
 <!-- No group selected -->
-<div ng-if="group.id === 0" class="page">
+<div ng-if="global.data.isFetchingGroups === false && group.id === 0" class="page">
     <h1 class="text-center">No group selected</h1>
     <br>
 

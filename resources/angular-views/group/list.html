@@ -9,15 +9,17 @@
         </h1>
     </header>
 
-    <div class="row">
+    <div ng-if="global.data.isFetchingGroups === false" class="row">
         <div class="col-xs-12">
 
             <!-- New group button -->
+            <!-- TODO: figure out why the right margin is needed -->
             <a
                 data-toggle="modal"
                 data-target="#newGroupForm"
                 href="javascript:;"
-                class="btn btn-info btn-metro">
+                class="btn btn-info btn-metro"
+                style="margin-right: 0">
 
                 <i class="fa fa-plus"></i>
             </a>
@@ -66,7 +68,7 @@
 
             <!-- List of groups -->
             <a
-                ng-repeat="group in global.state.group.list"
+                ng-repeat="group in global.data.group.list"
                 ng-show="group.id"
                 href="#/group/{{ group.id }}"
                 class="btn btn-info btn-metro"
@@ -74,6 +76,18 @@
 
                 <span style="background-color: rgba(0, 0, 0, 0.4)">{{ group.name | characters:15 }}</span>
             </a>
+        </div>
+    </div>
+
+    <div ng-if="global.data.isFetchingGroups === true" class="row text-center">
+        <div class="col-xs-12">
+            <h3>Retrieving Data</h3>
+            <br>
+            <br>
+
+            <div>
+                <i class="fa fa-spinner fa-spin fa-3x"></i>
+            </div>
         </div>
     </div>
 </div>

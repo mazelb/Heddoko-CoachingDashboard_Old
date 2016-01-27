@@ -11,18 +11,36 @@ angular.module('app.controllers')
     ['$scope', '$routeParams', '$filter', 'Rover', 'ProfileService', 'GroupService',
     'Utilities', '$http',
     function($scope, $routeParams, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
-        Utilities.debug('ProfileController');
+        Utilities.info('ProfileController');
 
-        // Currently displayed group.
+        // Currently displayed profile.
         $scope.profile = {id: 0};
-        if ($routeParams.profileId > 0 && Utilities.hasDataKey('profile', $routeParams.profileId))
+        if ($routeParams.profileId > 0)
         {
-            Utilities.store.profileId = $routeParams.profileId;
-            $scope.profile = Utilities.getData('profile', $routeParams.profileId);
-        }
+            if (Utilities.hasData('profile', $routeParams.profileId))
+            {
+                $scope.global.selectProfile($routeParams.profileId);
+                $scope.profile = Utilities.getData('profile', $routeParams.profileId);
+            }
 
-        // Current URL path.
-        $scope.isProfilePage = true;
+            // If we're still loading profiles, wait for those results.
+            else if (Utilities.data.isFetchingProfiles)
+            {
+                // TODO: fix this watcher.
+                var stopWatchingProfiles = $scope.$watch('global.data.isFetchingProfiles', function(status) {
+
+                    // Update profile.
+                    if (Utilities.hasData('profile', $routeParams.profileId))
+                    {
+                        $scope.global.selectProfile($routeParams.profileId);
+                        $scope.profile = Utilities.getData('profile', $routeParams.profileId);
+                    }
+
+                    // Remove $watch binding.
+                    stopWatchingProfiles();
+                });
+            }
+        }
 
         // Model for new profile details.
         $scope.newProfile =
@@ -38,7 +56,8 @@ angular.module('app.controllers')
         };
 
         // Alias for the list of groups.
-        $scope.groups = $scope.global.state.group.list;
+        // $scope.groups = $scope.global.state.group.list;
+        $scope.groups = Utilities.getDataList('group');
 
         // Alias for the selected group.
         $scope.group = $scope.global.getSelectedGroup();
@@ -47,14 +66,9 @@ angular.module('app.controllers')
         // $scope.profiles = $scope.global.state.profile.list;
         $scope.profiles = Utilities.getDataList('profile');
 
-        // Computes the width of the avatar depending on the height of the details panel.
-        $scope.calculateAvatarHeight = function() {
-            return $('#profileDetails') ? $('#profileDetails').css('height') : 0;
-        };
-
         // Creates a new profile in the database.
         $scope.createProfile = function() {
-            Utilities.debug('Creating profile...');
+            Utilities.time('Creating Profile');
 
             Rover.addBackgroundProcess();
 
@@ -66,16 +80,18 @@ angular.module('app.controllers')
 
             ProfileService.create(profile, ['avatarSrc', 'groups', 'meta']).then(
                 function(response) {
+                    Utilities.timeEnd('Creating Profile');
 
                     // Update profile list and browse to newly created profile.
                     // Rover.setState('profile', response.data.id, response.data);
-                    Utilities.setVar('profile', response.data.id, response.data);
+                    Utilities.setData('profile', response.data.id, response.data);
                     $scope.global.updateFilteredProfiles();
                     Rover.browseTo.path('/profile/' + response.data.id);
                     Rover.doneBackgroundProcess();
                 },
                 function(response) {
-                    Utilities.debug('Could not create profile: ' + response.statusText);
+                    Utilities.timeEnd('Creating Profile');
+                    Utilities.error('Could not create profile: ' + response.statusText);
                     Utilities.alert('Could not create profile. Please try again later.');
                     Rover.doneBackgroundProcess();
                 }
@@ -98,7 +114,7 @@ angular.module('app.controllers')
 
                 // Update profile data.
                 // Rover.setState('profile', this.id, ProfileService.format(this));
-                Utilities.setVar('profile', this.id, ProfileService.format(this));
+                Utilities.setData('profile', this.id, ProfileService.format(this));
                 $scope.global.updateFilteredProfiles();
 
                 // Update the selected profile.
@@ -116,7 +132,7 @@ angular.module('app.controllers')
 
         // Deletes a profile
         $scope.deleteProfile = function() {
-            Utilities.debug('Deleting profile...');
+            Utilities.time('Deleting Profile');
 
             // Show loading animation.
             Rover.addBackgroundProcess();
@@ -125,15 +141,15 @@ angular.module('app.controllers')
 
                 // On success, update profile list and browse to selected group.
                 function(response) {
+                    Utilities.timeEnd('Deleting Profile');
 
                     // Update profile list.
                     // Rover.setState('profile', $scope.profile.id, null);
-                    Utilities.setVar('profile', $scope.profile.id, null);
-                    $scope.global.state.profile.list.length--;
+                    Utilities.setData('profile', $scope.profile.id, null);
                     $scope.global.updateFilteredProfiles();
 
                     // Unselect profile by default.
-                    $scope.global.store.profileId = 0;
+                    Utilities.store.profileId = 0;
 
                     Rover.browseTo.group();
                     Rover.doneBackgroundProcess();
@@ -141,7 +157,8 @@ angular.module('app.controllers')
 
                 // On failure.
                 function(response) {
-                    Utilities.debug('Could not delete profile: ' + response.responseText);
+                    Utilities.timeEnd('Deleting Profile');
+                    Utilities.error('Could not delete profile: ' + response.responseText);
                     Utilities.alert('Could not delete profile. Please try again later.');
                     Rover.doneBackgroundProcess();
                 }
@@ -160,26 +177,26 @@ angular.module('app.controllers')
 
             // Update the filtered list.
             // angular.forEach($scope.global.state.profile.filtered, function(profile) {
-            angular.forEach(Utilities.temp.filteredProfiles, function(profile) {
+            angular.forEach(Utilities.data.filteredProfiles, function(profile) {
                 if (profile.id === $scope.profile.id) {
                     profile.avatarSrc = this.avatarSrc;
                 }
             }.bind(this));
         };
 
-        $scope.$watch('global.store.profileId', function(id, oldId)
-        {
-            // Performance check.
-            if (id === oldId) {
-                return;
-            }
-
-            // Shortcut for the currently selected profile.
-            $scope.profile = $scope.global.getSelectedProfile();
-
-            // Format profile fields.
-            $scope.profile = ProfileService.format($scope.profile);
-        });
+        // $scope.$watch('global.store.profileId', function(id, oldId)
+        // {
+        //     // Performance check.
+        //     if (id === oldId) {
+        //         return;
+        //     }
+        //
+        //     // Shortcut for the currently selected profile.
+        //     $scope.profile = $scope.global.getSelectedProfile();
+        //
+        //     // Format profile fields.
+        //     $scope.profile = ProfileService.format($scope.profile);
+        // });
 
         if ($scope.profile.id > 0) {
             $scope.profile = ProfileService.format($scope.profile);

@@ -200,6 +200,11 @@ angular.module('app.utilities', [])
 
             // We add an underscore to the key so that we may store objects by ID without any problems.
             this.data[namespace].list['_' + id] = value;
+
+            // Update object length.
+            if (value === null) {
+                this.data[namespace].list.length--;
+            }
         };
 
         /**
