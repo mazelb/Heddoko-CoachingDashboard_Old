@@ -30,11 +30,11 @@
 
         <!-- Working animation -->
         <div ng-switch-when="saving" class="text-center" style="padding: 20px 0;">
-            <i class="fa fa-spin fa-4x fa-spinner"></i>
+            <i class="fa fa-spin fa-2x fa-spinner"></i>
         </div>
 
         <!-- Displayed field -->
-        <div ng-switch-default class="col-sm-12 ui-editable-fields-muted">
+        <div ng-switch-default class="col-sm-12">
             {{ model[key] || empty }}
         </div>
     </div>

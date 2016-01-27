@@ -8696,6 +8696,9 @@ svg {
 .ui-editable-fields-muted {
   color: #777; }
 
+.ui-editable-list-container {
+  margin-bottom: 15px; }
+
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *

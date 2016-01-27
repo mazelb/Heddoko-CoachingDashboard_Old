@@ -260,7 +260,7 @@
                                 <div class="col-xs-12">
                                     <div class="ui-editable-field-value">
                                         <a href="javascript:;" class="edit-text">
-                                            16th Season
+                                            {{ profile.id }} Seasons
                                         </a>
                                         <a href="javascript:;" class="edit-icon fa fa-pencil"></a>
                                     </div>
@@ -277,7 +277,7 @@
                                 <div class="col-xs-12">
                                     <div class="ui-editable-field-value">
                                         <a href="javascript:;" class="edit-text">
-                                            992
+                                            {{ profile.id * 59 | number:0 }}
                                         </a>
                                         <a href="javascript:;" class="edit-icon fa fa-pencil"></a>
                                     </div>
@@ -322,14 +322,20 @@
                         </h3>
                         <br>
 
-                        Rotator cuff tear on Dec 10, 2015
-                        <br>
-                        (surgery Dec 14, 2015).
-                        <br>
+                        <div ng-show="profile.lastName == 'Todd'">
+                            Rotator cuff tear on Nov 17, 2015
+                            <br>
+                            (surgery Nov 21, 2015).
+                            <br>
 
-                        <a href="#/demo/trends" style="display: inline-block; margin: 10px 0 0 5px;">
-                            <i class="fa fa-angle-double-right fa-fw"></i> Track Rehabilitation
-                        </a>
+                            <a href="#/demo/trends" style="display: inline-block; margin: 10px 0 0 5px;">
+                                <i class="fa fa-angle-double-right fa-fw"></i> Track Rehabilitation
+                            </a>
+                        </div>
+
+                        <div ng-show="profile.lastName != 'Todd'">
+                            No previous injuries.
+                        </div>
                     </div>
                 </div>
 

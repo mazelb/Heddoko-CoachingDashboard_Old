@@ -22,7 +22,7 @@
                     </ui-avatar>
                 </div>
 
-                <div class="text-center profile-shortcuts">
+                <div class="text-right profile-shortcuts">
 
                     <!-- Delete group button -->
                     <a
@@ -85,11 +85,19 @@
                         </div>
 
                         <!-- Tags -->
-                        <div class="col-xs-6">
+                        <!-- Replaced with placeholder for demo -->
+                        <!-- <div ng-show="false" class="col-xs-6">
                             <ui-editable-field
                                 data-label="Sport"
                                 data-key="tags"
                                 data-type="tag">
+                            </ui-editable-field>
+                        </div> -->
+                        <div class="col-xs-6">
+                            <ui-editable-field
+                                data-label="Sport"
+                                data-type="placeholder"
+                                data-display="Football">
                             </ui-editable-field>
                         </div>
                     </div>
@@ -99,7 +107,7 @@
                         <!-- Managers -->
                         <div class="col-xs-6">
                             <ui-editable-field
-                                data-label="Coach"
+                                data-label="Head Coach"
                                 data-type="placeholder"
                                 data-display="Rick Springfield">
                             </ui-editable-field>
@@ -110,7 +118,7 @@
                             <ui-editable-field
                                 data-label="Number of athletes"
                                 data-type="placeholder"
-                                data-display="10">
+                                data-display="53">
                             </ui-editable-field>
                         </div>
                     </div>
@@ -120,7 +128,7 @@
                         <!-- Date created -->
                         <div class="col-xs-6">
                             <ui-editable-field
-                                data-label="Date created"
+                                data-label="Date Created"
                                 data-key="createdAt"
                                 data-type="date"
                                 data-required="true">
@@ -130,7 +138,7 @@
                         <!-- Date modified -->
                         <div class="col-xs-6">
                             <ui-editable-field
-                                data-label="Date created"
+                                data-label="Date Modified"
                                 data-key="updatedAt"
                                 data-type="date"
                                 data-required="true">
@@ -141,7 +149,8 @@
             </div>
 
             <!-- Notes -->
-            <div class="col-xs-12 col-lg-4">
+            <!-- Placeholder data for demo -->
+            <div ng-show="false" class="col-xs-12 col-lg-4">
                 <ui-editable-standalone-field
                     data-heading="Notes"
                     data-model="group"
@@ -151,6 +160,19 @@
                     data-save="saveGroupDetails"
                     data-save-callback="saveGroupDetailsCallback">
                 </ui-editable-standalone-field>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+
+                <!-- DEMO -->
+                <div class="ui-editable-list-container">
+                    <h3 class="title">
+                        Notes
+                        <span></span>
+                    </h3>
+                    <br>
+
+                    Wins: 12 / Losses: 4 / Ties: 0
+                </div>
             </div>
         </div>
     </section>
@@ -180,7 +202,7 @@
                 class="btn btn-info btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
-                <span>{{ profile.lastName.toUpperCase() }}</span>
+                <span style="background-color: rgba(0, 0, 0, 0.4)">{{ profile.lastName.toUpperCase() }}</span>
             </a>
         </div>
     </div>

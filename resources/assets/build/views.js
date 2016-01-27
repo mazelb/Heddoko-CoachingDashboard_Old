@@ -1176,7 +1176,6 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                class=\"row\">\n" +
     "\n" +
     "                <br>\n" +
-    "                <br>\n" +
     "                <div class=\"col-md-8 col-md-offset-2 text-center\">\n" +
     "                    <canvas\n" +
     "                        data-theme-gauge-chart\n" +
@@ -1217,14 +1216,20 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
     "\n" +
     "            <div class=\"row\" style=\"margin-top: 15px;\">\n" +
-    "                <div class=\"col-md-4 text-right\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extRot}\"></div> External Rot.\n" +
+    "                <div class=\"col-md-2 col-md-offset-3 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extRot}\"></div>\n" +
+    "                    External Rot. <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 90&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-center\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.flexion}\"></div> Flexion\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.flexion}\"></div>\n" +
+    "                    Flexion <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 175&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-left\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.abduction}\"></div> Abduction\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.abduction}\"></div>\n" +
+    "                    Abduction <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 180&deg;</span>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -1238,14 +1243,20 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            </div>\n" +
     "\n" +
     "            <div class=\"row\" style=\"margin-top: 15px;\">\n" +
-    "                <div class=\"col-md-4 text-right\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.intRot}\"></div> Internal Rot.\n" +
+    "                <div class=\"col-md-2 col-md-offset-3 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.intRot}\"></div>\n" +
+    "                    Internal Rot. <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -80&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-center\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extension}\"></div> Extension\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extension}\"></div>\n" +
+    "                    Extension <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -60&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-left\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.adduction}\"></div> Adduction\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.adduction}\"></div>\n" +
+    "                    Adduction <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -40&deg;</span>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1257,14 +1268,20 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "            class=\"col-xs-12 col-md-7 col-lg-9\">\n" +
     "\n" +
     "            <div class=\"row\" style=\"margin-top: 15px;\">\n" +
-    "                <div class=\"col-md-4 text-right\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extRot}\"></div> External Rot.\n" +
+    "                <div class=\"col-md-2 col-md-offset-3 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extRot}\"></div>\n" +
+    "                    External Rot. <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 90&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-center\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.flexion}\"></div> Flexion\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.flexion}\"></div>\n" +
+    "                    Flexion <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 175&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-left\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.abduction}\"></div> Abduction\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.abduction}\"></div>\n" +
+    "                    Abduction <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = 180&deg;</span>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -1277,15 +1294,21 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
     "                style=\"width: 100%; height: 450px;\">\n" +
     "            </div>\n" +
     "\n" +
-    "            <div class=\"row\" style=\"margin-top: 15px\">\n" +
-    "                <div class=\"col-md-4 text-right\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.intRot}\"></div> Internal Rot.\n" +
+    "            <div class=\"row\" style=\"margin-top: 15px;\">\n" +
+    "                <div class=\"col-md-2 col-md-offset-3 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.intRot}\"></div>\n" +
+    "                    Internal Rot. <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -80&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-center\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extension}\"></div> Extension\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.extension}\"></div>\n" +
+    "                    Extension <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -60&deg;</span>\n" +
     "                </div>\n" +
-    "                <div class=\"col-md-4 text-left\">\n" +
-    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.adduction}\"></div> Adduction\n" +
+    "                <div class=\"col-md-2 text-center\">\n" +
+    "                    <div class=\"demo-legend-color\" ng-style=\"{'background-color': colors.adduction}\"></div>\n" +
+    "                    Adduction <br>\n" +
+    "                    <span class=\"text-muted\" style=\"display: inline-block; margin-top: 5px\">100% = -40&deg;</span>\n" +
     "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
@@ -1838,11 +1861,11 @@ angular.module("directive-partials/ui-editable-fields/standalone-field.html", []
     "\n" +
     "        <!-- Working animation -->\n" +
     "        <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
-    "            <i class=\"fa fa-spin fa-4x fa-spinner\"></i>\n" +
+    "            <i class=\"fa fa-spin fa-2x fa-spinner\"></i>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Displayed field -->\n" +
-    "        <div ng-switch-default class=\"col-sm-12 ui-editable-fields-muted\">\n" +
+    "        <div ng-switch-default class=\"col-sm-12\">\n" +
     "            {{ model[key] || empty }}\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -2936,7 +2959,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "                data-toggle=\"modal\"\n" +
     "                data-target=\"#newGroupForm\"\n" +
     "                href=\"javascript:;\"\n" +
-    "                class=\"btn btn-primary btn-metro\">\n" +
+    "                class=\"btn btn-info btn-metro\">\n" +
     "\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +
     "            </a>\n" +
@@ -2988,10 +3011,10 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "                ng-repeat=\"group in global.state.group.list\"\n" +
     "                ng-show=\"group.id\"\n" +
     "                href=\"#/group/{{ group.id }}\"\n" +
-    "                class=\"btn btn-default btn-metro\"\n" +
-    "                style=\"background-image: url({{ group.avatarSrc || '' }});\">\n" +
+    "                class=\"btn btn-info btn-metro\"\n" +
+    "                style=\"background-image: url({{ group.avatarSrc || '' }})\">\n" +
     "\n" +
-    "                <span>{{ group.name | characters:15 }}</span>\n" +
+    "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ group.name | characters:15 }}</span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -3116,7 +3139,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    </ui-avatar>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"text-center profile-shortcuts\">\n" +
+    "                <div class=\"text-right profile-shortcuts\">\n" +
     "\n" +
     "                    <!-- Delete group button -->\n" +
     "                    <a\n" +
@@ -3179,11 +3202,19 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        </div>\n" +
     "\n" +
     "                        <!-- Tags -->\n" +
-    "                        <div class=\"col-xs-6\">\n" +
+    "                        <!-- Replaced with placeholder for demo -->\n" +
+    "                        <!-- <div ng-show=\"false\" class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Sport\"\n" +
     "                                data-key=\"tags\"\n" +
     "                                data-type=\"tag\">\n" +
+    "                            </ui-editable-field>\n" +
+    "                        </div> -->\n" +
+    "                        <div class=\"col-xs-6\">\n" +
+    "                            <ui-editable-field\n" +
+    "                                data-label=\"Sport\"\n" +
+    "                                data-type=\"placeholder\"\n" +
+    "                                data-display=\"Football\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3193,7 +3224,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        <!-- Managers -->\n" +
     "                        <div class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
-    "                                data-label=\"Coach\"\n" +
+    "                                data-label=\"Head Coach\"\n" +
     "                                data-type=\"placeholder\"\n" +
     "                                data-display=\"Rick Springfield\">\n" +
     "                            </ui-editable-field>\n" +
@@ -3204,7 +3235,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                            <ui-editable-field\n" +
     "                                data-label=\"Number of athletes\"\n" +
     "                                data-type=\"placeholder\"\n" +
-    "                                data-display=\"10\">\n" +
+    "                                data-display=\"53\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3214,7 +3245,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        <!-- Date created -->\n" +
     "                        <div class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
-    "                                data-label=\"Date created\"\n" +
+    "                                data-label=\"Date Created\"\n" +
     "                                data-key=\"createdAt\"\n" +
     "                                data-type=\"date\"\n" +
     "                                data-required=\"true\">\n" +
@@ -3224,7 +3255,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        <!-- Date modified -->\n" +
     "                        <div class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
-    "                                data-label=\"Date created\"\n" +
+    "                                data-label=\"Date Modified\"\n" +
     "                                data-key=\"updatedAt\"\n" +
     "                                data-type=\"date\"\n" +
     "                                data-required=\"true\">\n" +
@@ -3235,7 +3266,8 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "            </div>\n" +
     "\n" +
     "            <!-- Notes -->\n" +
-    "            <div class=\"col-xs-12 col-lg-4\">\n" +
+    "            <!-- Placeholder data for demo -->\n" +
+    "            <div ng-show=\"false\" class=\"col-xs-12 col-lg-4\">\n" +
     "                <ui-editable-standalone-field\n" +
     "                    data-heading=\"Notes\"\n" +
     "                    data-model=\"group\"\n" +
@@ -3245,6 +3277,19 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                    data-save=\"saveGroupDetails\"\n" +
     "                    data-save-callback=\"saveGroupDetailsCallback\">\n" +
     "                </ui-editable-standalone-field>\n" +
+    "            </div>\n" +
+    "            <div class=\"col-xs-12 col-lg-4\">\n" +
+    "\n" +
+    "                <!-- DEMO -->\n" +
+    "                <div class=\"ui-editable-list-container\">\n" +
+    "                    <h3 class=\"title\">\n" +
+    "                        Notes\n" +
+    "                        <span></span>\n" +
+    "                    </h3>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    Wins: 12 / Losses: 4 / Ties: 0\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </section>\n" +
@@ -3274,7 +3319,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                class=\"btn btn-info btn-metro\"\n" +
     "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
     "\n" +
-    "                <span>{{ profile.lastName.toUpperCase() }}</span>\n" +
+    "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ profile.lastName.toUpperCase() }}</span>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -3714,7 +3759,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "    <!-- Main container -->\n" +
     "    <div\n" +
-    "        ng-show=\"global.state.profile.list.length > 0 || global.data.isFetchingProfiles === true\"\n" +
+    "        ng-show=\"global.getNamespaceLength('profile') > 0 || global.data.isFetchingProfiles === true\"\n" +
     "        class=\"file-explorer-container\">\n" +
     "\n" +
     "        <header>\n" +
@@ -3747,7 +3792,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "    <!-- No profile exists -->\n" +
     "    <div\n" +
     "        ng-show=\"global.data.isFetchingProfiles === false\n" +
-    "            && global.state.profile.list.length === 0\"\n" +
+    "            && global.getNamespaceLength('profile') === 0\"\n" +
     "        class=\"text-center\">\n" +
     "\n" +
     "        <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
@@ -4348,7 +4393,9 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                        <span>View All Teams</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
-    "                <li>\n" +
+    "\n" +
+    "                <!-- Disabled until we're sure we only need the \"modal\" form on the group listing page -->\n" +
+    "                <li ng-show=\"false\">\n" +
     "                    <a href=\"#/group/create\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
     "                        <span>Create a Team</span>\n" +
@@ -4799,13 +4846,13 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "            </a>\n" +
     "\n" +
     "            <a\n" +
-    "                ng-repeat=\"profile in global.state.profile.list\"\n" +
+    "                ng-repeat=\"profile in profiles\"\n" +
     "                ng-show=\"profile.id\"\n" +
     "                href=\"#/profile/{{ profile.id }}\"\n" +
     "                class=\"btn btn-info btn-metro\"\n" +
     "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
     "\n" +
-    "                <div class=\"btn-title\">{{ profile.firstName | characters:30 }}</div>\n" +
+    "                <div class=\"btn-title\">{{ profile.lastName.toUpperCase() | characters:30 }}</div>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -4855,6 +4902,10 @@ angular.module("profile/partials/demo-session.html", []).run(["$templateCache", 
     "            <div class=\"col-md-9 col-md-offset-3\">\n" +
     "                <h3 class=\"text-center\" style=\"margin-bottom: 35px\">\n" +
     "                    {{ metric.title }}\n" +
+    "\n" +
+    "                    <small ng-show=\"metric.title == 'Shoulder External Rotation'\" style=\"display: block; margin-top: 5px\">\n" +
+    "                        100% = 90&deg;\n" +
+    "                    </small>\n" +
     "                </h3>\n" +
     "            </div>\n" +
     "\n" +
@@ -5586,7 +5637,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                                <div class=\"col-xs-12\">\n" +
     "                                    <div class=\"ui-editable-field-value\">\n" +
     "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
-    "                                            16th Season\n" +
+    "                                            {{ profile.id }} Seasons\n" +
     "                                        </a>\n" +
     "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
     "                                    </div>\n" +
@@ -5603,7 +5654,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                                <div class=\"col-xs-12\">\n" +
     "                                    <div class=\"ui-editable-field-value\">\n" +
     "                                        <a href=\"javascript:;\" class=\"edit-text\">\n" +
-    "                                            992\n" +
+    "                                            {{ profile.id * 59 | number:0 }}\n" +
     "                                        </a>\n" +
     "                                        <a href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
     "                                    </div>\n" +
@@ -5648,14 +5699,20 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </h3>\n" +
     "                        <br>\n" +
     "\n" +
-    "                        Rotator cuff tear on Dec 10, 2015\n" +
-    "                        <br>\n" +
-    "                        (surgery Dec 14, 2015).\n" +
-    "                        <br>\n" +
+    "                        <div ng-show=\"profile.lastName == 'Todd'\">\n" +
+    "                            Rotator cuff tear on Nov 17, 2015\n" +
+    "                            <br>\n" +
+    "                            (surgery Nov 21, 2015).\n" +
+    "                            <br>\n" +
     "\n" +
-    "                        <a href=\"#/demo/trends\" style=\"display: inline-block; margin: 10px 0 0 5px;\">\n" +
-    "                            <i class=\"fa fa-angle-double-right fa-fw\"></i> Track Rehabilitation\n" +
-    "                        </a>\n" +
+    "                            <a href=\"#/demo/trends\" style=\"display: inline-block; margin: 10px 0 0 5px;\">\n" +
+    "                                <i class=\"fa fa-angle-double-right fa-fw\"></i> Track Rehabilitation\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div ng-show=\"profile.lastName != 'Todd'\">\n" +
+    "                            No previous injuries.\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
@@ -5913,7 +5970,7 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "        </table>\n" +
     "\n" +
     "        <!-- No screenings to show -->\n" +
-    "        <div ng-show=\"global.state.screening.list.length === 0\">\n" +
+    "        <div ng-show=\"global.state.screening.list.length === 0\" class=\"text-center\">\n" +
     "\n" +
     "            <a href=\"#/screenings/current\" class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "                <i class=\"fa fa-plus\"></i>\n" +

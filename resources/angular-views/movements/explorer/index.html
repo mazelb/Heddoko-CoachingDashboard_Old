@@ -64,7 +64,7 @@
 
     <!-- Main container -->
     <div
-        ng-show="global.state.profile.list.length > 0 || global.data.isFetchingProfiles === true"
+        ng-show="global.getNamespaceLength('profile') > 0 || global.data.isFetchingProfiles === true"
         class="file-explorer-container">
 
         <header>
@@ -97,7 +97,7 @@
     <!-- No profile exists -->
     <div
         ng-show="global.data.isFetchingProfiles === false
-            && global.state.profile.list.length === 0"
+            && global.getNamespaceLength('profile') === 0"
         class="text-center">
 
         <h3 class="text-center">You do not have any profiles yet.</h3>

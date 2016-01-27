@@ -46,7 +46,8 @@ angular.module('app.controllers')
         $scope.updateRootFolders = function(profiles) {
 
             // List of profiles.
-            profiles = profiles || $scope.global.state.profile.list;
+            // profiles = profiles || $scope.global.state.profile.list;
+            profiles = profiles || Utilities.listVars('profile');
 
             $scope.folders = [];
             if (profiles.length)
@@ -181,6 +182,7 @@ angular.module('app.controllers')
         };
 
         // If a root folder was selected, try to display its contents or sub-contents.
+        // TODO: update
         if ($routeParams.rootId && Rover.state.profile.list[$routeParams.rootId])
         {
             $scope.rootProfile = Rover.state.profile.list[$routeParams.rootId];

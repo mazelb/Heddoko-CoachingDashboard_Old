@@ -23,13 +23,13 @@
             </a>
 
             <a
-                ng-repeat="profile in global.state.profile.list"
+                ng-repeat="profile in profiles"
                 ng-show="profile.id"
                 href="#/profile/{{ profile.id }}"
                 class="btn btn-info btn-metro"
                 style="background-image: url({{ profile.avatarSrc || '' }});">
 
-                <div class="btn-title">{{ profile.firstName | characters:30 }}</div>
+                <div class="btn-title">{{ profile.lastName.toUpperCase() | characters:30 }}</div>
             </a>
         </div>
     </div>
