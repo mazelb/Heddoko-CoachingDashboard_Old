@@ -69,6 +69,18 @@ angular.module('app.utilities', [])
             return value;
         }.bind(this);
 
+        /**
+         * Turns a flag on or off, and forces the app to refresh accordingly.
+         *
+         * @param string name
+         * @param bool|string state
+         */
+        this.setFlag = function(name, state) {
+            $timeout(function() {
+                this.data[name] = state;
+            }.bind(this));
+        }.bind(this);
+
 
         ///
         /// State variables are stored in the sessionStorage. The following methods deal with
@@ -130,7 +142,7 @@ angular.module('app.utilities', [])
 
 
         ///
-        /// Ephemeral variables are stored in this.data. The following methods deal with
+        /// Ephemeral variables are stored in Utilities.data. The following methods deal with
         /// associative arrays, usually keyed by ID.
         ///
         ////////////////////////////////////////////////////////////////////////////////////////////

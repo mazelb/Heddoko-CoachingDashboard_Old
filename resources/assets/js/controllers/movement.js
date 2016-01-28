@@ -9,12 +9,12 @@ angular.module('app.controllers')
 
 .controller('MovementController', ['$scope', '$routeParams', 'FolderService', 'Rover', 'Utilities',
     function($scope, $routeParams, FolderService, Rover, Utilities) {
-        Utilities.debug('MovementController');
+        Utilities.info('MovementController');
 
         // Initial setup.
-        $scope.global.data.isFetchingMovementData = true;
+        Utilities.data.isFetchingMovementData = false;
         $scope.layout = {
-            name: Rover.getConfig('movements.layout', 'large-tiles'),
+            name: Utilities.getConfig('movements.layout', 'large-tiles'),
             list: [
                 {
                     name: 'large-tiles',
@@ -39,6 +39,16 @@ angular.module('app.controllers')
         $scope.rootProfile = false;
 
         /**
+         * Saves the layout
+         *
+         * @param string layout
+         */
+        $scope.setLayout = function(layout) {
+            $scope.layout.name = layout;
+            Utilities.setConfig('movements.layout', layout);
+        };
+
+        /**
          * Updates the view with the root folders (one for each profile).
          *
          * @param object profiles
@@ -46,7 +56,6 @@ angular.module('app.controllers')
         $scope.updateRootFolders = function(profiles) {
 
             // List of profiles.
-            // profiles = profiles || $scope.global.state.profile.list;
             profiles = profiles || Utilities.getDataList('profile');
 
             $scope.folders = [];
@@ -63,7 +72,7 @@ angular.module('app.controllers')
                 });
             }
 
-            $scope.global.data.isFetchingMovementData = false;
+            Utilities.data.isFetchingMovementData = false;
         };
 
         /**
@@ -95,14 +104,15 @@ angular.module('app.controllers')
          * @param int folderId
          */
         $scope.fetchMovementData = function(folderId) {
-            Utilities.debug('Fetching movement data...');
+            Utilities.time('Fetching Movement Data');
 
-            $scope.global.data.isFetchingMovementData = true;
+            Utilities.data.isFetchingMovementData = true;
 
             folderId = folderId || 0;
 
             FolderService.get($scope.rootProfile.id, folderId).then(
                 function(response) {
+                    Utilities.timeEnd('Fetching Movement Data');
 
                     // Update folders.
                     $scope.updateFolders(response.data.children);
@@ -138,12 +148,12 @@ angular.module('app.controllers')
                     // Update movment data.
                     $scope.movements = response.data.movements;
 
-                    $scope.global.data.isFetchingMovementData = false;
+                    Utilities.data.isFetchingMovementData = false;
                 },
                 function(response) {
+                    Utilities.timeEnd('Fetching Movement Data');
                     Utilities.alert('Could not retrieve movement data. Please try again later.');
-
-                    $scope.global.data.isFetchingMovementData = false;
+                    Utilities.data.isFetchingMovementData = false;
                 }
             );
         };
@@ -161,7 +171,7 @@ angular.module('app.controllers')
          * @param int id
          */
         $scope.shareMovement = function(id) {
-            Utilities.debug('Sharing movement #' + id);
+            Utilities.log('Sharing movement #' + id);
 
             // TODO
 
@@ -174,7 +184,7 @@ angular.module('app.controllers')
          * @param int id
          */
         $scope.deleteMovement = function(id) {
-            Utilities.debug('Deleting movement #' + id);
+            Utilities.log('Deleting movement #' + id);
 
             // TODO
 
@@ -182,46 +192,60 @@ angular.module('app.controllers')
         };
 
         // If a root folder was selected, try to display its contents or sub-contents.
-        // TODO: update
-        if ($routeParams.rootId && Rover.state.profile.list[$routeParams.rootId])
+        var unbindWatcher;
+        if ($routeParams.rootId)
         {
-            $scope.rootProfile = Rover.state.profile.list[$routeParams.rootId];
+            if (Utilities.hasData('profile', $routeParams.rootId))
+            {
+                // Update path name and retrive movement data.
+                $scope.rootProfile = Utilities.getData('profile', $routeParams.rootId);
+                $scope.fetchMovementData($routeParams.folderId);
+                $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
+            }
 
-            // Update path name.
-            $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
+            // If we're still loading profiles, wait for the results.
+            else if (Utilities.data.isFetchingProfiles)
+            {
+                unbindWatcher = $scope.$watch('global.data.isFetchingProfiles',
+                    function(status) {
+                        if (status === false)
+                        {
+                            unbindWatcher();
 
-            // Retrieve movement data.
-            $scope.fetchMovementData($routeParams.folderId);
+                            // Update path name and retrive movement data.
+                            $scope.rootProfile = Utilities.getData('profile', $routeParams.rootId);
+                            $scope.fetchMovementData($routeParams.folderId);
+                            $scope.path += ' ' + $scope.rootProfile.firstName + ' ' + $scope.rootProfile.lastName;
+                        }
+                    }
+                );
+            }
+
+            // If a folder was selected, but the profile doesn't exit,
+            // redirect the user to the root folders.
+            else {
+                Rover.browseTo.path('/movements');
+            }
         }
 
-        // If no root folder was selected, display the root folders.
-        else if (!$routeParams.rootId)
+        // If no root folder was selected, show the root folders.
+        else
         {
-            // Wait for the profile list to be loaded. We will setup a watcher later in case
-            // the list gets updated or modified.
-            if ($scope.global.data.isFetchingProfiles === false) {
+            if (Utilities.data.isFetchingProfiles === true)
+            {
+                unbindWatcher = $scope.$watch('global.data.isFetchingProfiles',
+                    function(status) {
+                        if (status === false) {
+                            unbindWatcher();
+                            $scope.updateRootFolders();
+                        }
+                    }
+                );
+            }
+
+            else {
                 $scope.updateRootFolders();
             }
         }
-
-        // If a folder was selected, but the profile doesn't exit, redirect the user to the root
-        // folders.
-        else {
-            Rover.browseTo.path('/movements');
-        }
-
-        // Watches the global profile list.
-        $scope.$watch('global.profile.list', function(newList, oldList) {
-
-            // If we're displaying root folders, update the view with the new list.
-            if (!$routeParams.rootId) {
-                $scope.updateRootFolders(newList);
-            }
-        });
-
-        // Saves the layout as it changes.
-        $scope.$watch('layout.name', function(name) {
-            Rover.setConfig('movements.layout', name);
-        });
     }
 ]);

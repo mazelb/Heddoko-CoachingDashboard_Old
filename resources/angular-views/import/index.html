@@ -9,22 +9,27 @@
         </h1>
 
         <!-- Append profile name to page title -->
-        <div ng-show="global.getSelectedProfile().id > 0" class="h1-append">
+        <div ng-if="global.getSelectedProfile().id > 0" class="h1-append">
             for
-            <a ng-click="global.store.profileId = 0" href="javascript:;">
-                {{ global.getSelectedProfile().firstName }}
-                {{ global.getSelectedProfile().lastName }}
-                <i class="fa fa-refresh"></i>
+            <a href="#/profile/{{ global.getSelectedProfile().id }}">
+                {{ ::global.getSelectedProfile().firstName }}
+                {{ ::global.getSelectedProfile().lastName }}
             </a>
+
+            <small>
+                <a ng-click="global.store.profileId = 0" href="javascript:;">
+                    (change)
+                </a>
+            </small>
         </div>
     </header>
 
     <!-- Import page -->
-    <div ng-show="global.getSelectedProfile().id > 0">
+    <div ng-if="global.getSelectedProfile().id > 0">
         <div class="movement-import row">
 
             <!-- Import new movement -->
-            <div ng-show="global.data.isImporting === false" class="col-xs-12 text-center">
+            <div ng-if="global.data.isImporting === false" class="col-xs-12 text-center">
                 <button
                     ngf-select="startImport($files)"
                     ngf-drop="startImport($files)"
@@ -99,7 +104,8 @@
             </div>
         </div>
 
-        <div ng-show="global.data.import.imported.length > 0">
+        <div ng-if="global.data.import.imported.length > 0">
+
             <!-- List of uploaded movements -->
             <div ng-repeat="file in global.data.import.imported" class="movement-import row">
                 <div class="col-md-3 col-md-offset-1">
@@ -190,23 +196,13 @@
         </div>
     </div>
 
+    <!-- Loading profiles -->
+    <div ng-if="global.data.isFetchingProfiles">
+        <div ng-include="'partials/page-loading.html'"></div>
+    </div>
+
     <!-- No profile selected -->
-    <!-- <div ng-show="global.getSelectedProfile().id === 0">
+    <div ng-if="!global.data.isFetchingProfiles && global.getSelectedProfile().id === 0">
         <div ng-include="'partials/select-profile.html'"></div>
-    </div> -->
-    <div ng-show="global.getSelectedProfile().id === 0">
-        <h3 class="text-center">Select a profile to get started</h3>
-        <br>
-
-        <div class="col-md-4 col-md-offset-4 text-center">
-            <ui-profile-lookup
-                profiles="global.state.profile.list"
-                select-profile="global.selectProfile(profile)">
-            </ui-profile-lookup>
-            <br>
-
-            You can also take this opportunity to
-            <a href="#/profile/create">create one</a>.
-        </div>
     </div>
 </div>

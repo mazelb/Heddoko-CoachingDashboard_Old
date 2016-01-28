@@ -9,16 +9,16 @@ angular.module('app.controllers')
 
 .controller('ImportController', ['$scope', '$timeout', 'Upload', 'Rover', 'Utilities',
     function($scope, $timeout, Upload, Rover, Utilities) {
-        Utilities.debug('ImportController');
+        Utilities.info('ImportController');
 
         // Setup import data.
-        $scope.global.data.isImporting = $scope.global.data.isImporting || false;
-        $scope.global.data.import = $scope.global.data.import || {};
-        $scope.global.data.import.progress = $scope.global.data.import.progress || 0;
-        $scope.global.data.import.imported = $scope.global.data.import.imported || [];
-        $scope.global.data.import.queue = $scope.global.data.import.queue || [];
-        $scope.global.data.import.queueTotal = $scope.global.data.import.queueTotal || 0;
-        $scope.global.data.import.status = $scope.global.data.import.status || '';
+        Utilities.data.isImporting = Utilities.data.isImporting || false;
+        Utilities.data.import = Utilities.data.import || {};
+        Utilities.data.import.progress = Utilities.data.import.progress || 0;
+        Utilities.data.import.imported = Utilities.data.import.imported || [];
+        Utilities.data.import.queue = Utilities.data.import.queue || [];
+        Utilities.data.import.queueTotal = Utilities.data.import.queueTotal || 0;
+        Utilities.data.import.status = Utilities.data.import.status || '';
 
         /**
          * Launches the "import chain" to import several movement files. We avoid using
@@ -34,13 +34,13 @@ angular.module('app.controllers')
             }
 
             // Turn on "uploading" flag.
-            $scope.global.data.isImporting = true;
-            $scope.global.data.import.queue = files;
-            Utilities.debug('Uploading ' + files.length + ' movement files...');
+            Utilities.data.isImporting = true;
+            Utilities.data.import.queue = files;
+            Utilities.log('Uploading ' + files.length + ' movement files...');
 
             // Start uploading files.
-            $scope.global.data.import.queueTotal = files.length;
-            $scope.global.data.import.progress = 0;
+            Utilities.data.import.queueTotal = files.length;
+            Utilities.data.import.progress = 0;
             $scope.chainImport();
         };
 
@@ -50,15 +50,15 @@ angular.module('app.controllers')
         $scope.chainImport = function() {
 
             // Performance check.
-            if ($scope.global.data.import.queue.length < 1) {
-                $scope.global.data.isImporting = false;
-                return Utilities.debug('Uploading done.');
+            if (Utilities.data.import.queue.length < 1) {
+                Utilities.data.isImporting = false;
+                return Utilities.log('Uploading done.');
             }
 
             // Retrieve file to be uploaded.
-            var file = $scope.global.data.import.queue[0];
-            Utilities.debug('Uploading "' + file.name + '"...');
-            $scope.global.data.import.status = 'Importing "' + file.name + '"...';
+            var file = Utilities.data.import.queue[0];
+            Utilities.log('Uploading "' + file.name + '"...');
+            Utilities.data.import.status = 'Importing "' + file.name + '"...';
 
             Upload.upload({
                 url: '/api/v1/movements',
@@ -70,28 +70,28 @@ angular.module('app.controllers')
                 function (response) {
 
                     // Add the new movement to the top of the list.
-                    $scope.global.data.import.imported.unshift(response.data);
+                    Utilities.data.import.imported.unshift(response.data);
 
                     // Update the import progress and continue uploading.
-                    $scope.global.data.import.queue.splice(0, 1);
-                    $scope.global.data.import.progress =
+                    Utilities.data.import.queue.splice(0, 1);
+                    Utilities.data.import.progress =
                         Math.round(
-                            ($scope.global.data.import.queueTotal -
-                                $scope.global.data.import.queue.length) * 100 /
-                                $scope.global.data.import.queueTotal);
+                            (Utilities.data.import.queueTotal -
+                                Utilities.data.import.queue.length) * 100 /
+                                Utilities.data.import.queueTotal);
                     $scope.chainImport();
                 },
                 function (response) {
-                    Utilities.debug(response.status + ': ' + response.data);
+                    Utilities.error(response.status + ': ' + response.data);
                     Utilities.alert('Could not import "' + file.name + '". Please try again later.');
 
                     // Update import progress.
-                    $scope.global.data.import.queue.splice(0, 1);
-                    $scope.global.data.import.progress =
+                    Utilities.data.import.queue.splice(0, 1);
+                    Utilities.data.import.progress =
                         Math.round(
-                            ($scope.global.data.import.queueTotal -
-                                $scope.global.data.import.queue.length) * 100 /
-                                $scope.global.data.import.queueTotal);
+                            (Utilities.data.import.queueTotal -
+                                Utilities.data.import.queue.length) * 100 /
+                                Utilities.data.import.queueTotal);
 
                     // Continue with the import process.
                     $scope.chainImport();
@@ -99,12 +99,12 @@ angular.module('app.controllers')
                 function (event) {
 
                     // We use "event" to try and make the import progress more accurate.
-                    $scope.global.data.import.progress =
+                    Utilities.data.import.progress =
                         Math.round(
-                            ($scope.global.data.import.queueTotal -
-                                $scope.global.data.import.queue.length +
+                            (Utilities.data.import.queueTotal -
+                                Utilities.data.import.queue.length +
                                 Math.min(1, event.loaded / event.total)) * 100 /
-                                $scope.global.data.import.queueTotal);
+                                Utilities.data.import.queueTotal);
                 }
             );
         };
@@ -121,7 +121,7 @@ angular.module('app.controllers')
 
         // Deletes a movement.
         $scope.deleteMovement = function(id) {
-            Rover.debug('Deleting movement #' + id);
+            Utilities.log('Deleting movement #' + id);
 
             // TODO
 

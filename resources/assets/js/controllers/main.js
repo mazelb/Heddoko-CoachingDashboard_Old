@@ -36,6 +36,7 @@ angular.module('app.controllers')
             data: Utilities.data,
 
             // Helper methods.
+            getDataLength: Utilities.getDataLength,
             endSession: Rover.endSession,
             browseTo: Rover.browseTo,
             alert: Utilities.alert,
@@ -126,7 +127,8 @@ angular.module('app.controllers')
             Utilities.time('Fetching Groups');
 
             // Turn on fetching flag
-            Utilities.data.isFetchingGroups = true;
+            // Utilities.data.isFetchingGroups = true;
+            Utilities.setFlag('isFetchingGroups', true);
 
             // Retrieve available groups.
     		GroupService.list(['avatarSrc']).then(
@@ -153,12 +155,14 @@ angular.module('app.controllers')
                     }
 
 
-                    Utilities.data.isFetchingGroups = false;
+                    // Utilities.data.isFetchingGroups = false;
+                    Utilities.setFlag('isFetchingGroups', false);
         		},
                 function(response) {
                     Utilities.timeEnd('Fetching Groups');
                     Utilities.error('Could not retrieve group list: ' + response.statusText);
-                    Utilities.data.isFetchingGroups = false;
+                    // Utilities.data.isFetchingGroups = false;
+                    Utilities.setFlag('isFetchingGroups', false);
                 }
             );
         };
@@ -242,6 +246,7 @@ angular.module('app.controllers')
 
             // Turn on fetching flag.
             Utilities.data.isFetchingProfiles = true;
+            // Utilities.setFlag('isFetchingProfiles', true);
 
             // Retrieve profiles.
     		ProfileService.list(null, ['avatarSrc', 'groups', 'meta']).then(
@@ -264,11 +269,13 @@ angular.module('app.controllers')
                     $scope.global.updateFilteredProfiles();
 
                     Utilities.data.isFetchingProfiles = false;
+                    // Utilities.setFlag('isFetchingProfiles', false);
     		    },
                 function(response) {
                     Utilities.timeEnd('Fetching Profiles');
                     Utilities.error('Could not retrieve profile list: ' + response.statusText);
                     Utilities.data.isFetchingProfiles = false;
+                    // Utilities.setFlag('isFetchingProfiles', false);
                 }
             );
         };
@@ -298,13 +305,13 @@ angular.module('app.controllers')
 
         // Fetch groups and profiles. We'll set a timeout for these requests, so that we don't
         // exceed the maximum # simultaneous requests on the server.
-    	// if ($scope.global.state.profile.list.length === 0) {
     	if (Utilities.getDataLength('profile') === 0) {
+            Utilities.data.isFetchingProfiles = true;
     		$timeout($scope.fetchProfiles, 1000);
     	}
 
-    	// if ($scope.global.state.group.list.length === 0) {
     	if (Utilities.getDataLength('group') === 0) {
+            Utilities.data.isFetchingGroups = true;
     		$timeout($scope.fetchGroups, 2000);
     	}
 

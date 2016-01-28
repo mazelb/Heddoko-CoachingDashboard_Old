@@ -3372,22 +3372,27 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        </h1>\n" +
     "\n" +
     "        <!-- Append profile name to page title -->\n" +
-    "        <div ng-show=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
+    "        <div ng-if=\"global.getSelectedProfile().id > 0\" class=\"h1-append\">\n" +
     "            for\n" +
-    "            <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
-    "                {{ global.getSelectedProfile().firstName }}\n" +
-    "                {{ global.getSelectedProfile().lastName }}\n" +
-    "                <i class=\"fa fa-refresh\"></i>\n" +
+    "            <a href=\"#/profile/{{ global.getSelectedProfile().id }}\">\n" +
+    "                {{ ::global.getSelectedProfile().firstName }}\n" +
+    "                {{ ::global.getSelectedProfile().lastName }}\n" +
     "            </a>\n" +
+    "\n" +
+    "            <small>\n" +
+    "                <a ng-click=\"global.store.profileId = 0\" href=\"javascript:;\">\n" +
+    "                    (change)\n" +
+    "                </a>\n" +
+    "            </small>\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <!-- Import page -->\n" +
-    "    <div ng-show=\"global.getSelectedProfile().id > 0\">\n" +
+    "    <div ng-if=\"global.getSelectedProfile().id > 0\">\n" +
     "        <div class=\"movement-import row\">\n" +
     "\n" +
     "            <!-- Import new movement -->\n" +
-    "            <div ng-show=\"global.data.isImporting === false\" class=\"col-xs-12 text-center\">\n" +
+    "            <div ng-if=\"global.data.isImporting === false\" class=\"col-xs-12 text-center\">\n" +
     "                <button\n" +
     "                    ngf-select=\"startImport($files)\"\n" +
     "                    ngf-drop=\"startImport($files)\"\n" +
@@ -3462,7 +3467,8 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div ng-show=\"global.data.import.imported.length > 0\">\n" +
+    "        <div ng-if=\"global.data.import.imported.length > 0\">\n" +
+    "\n" +
     "            <!-- List of uploaded movements -->\n" +
     "            <div ng-repeat=\"file in global.data.import.imported\" class=\"movement-import row\">\n" +
     "                <div class=\"col-md-3 col-md-offset-1\">\n" +
@@ -3553,24 +3559,14 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
+    "    <!-- Loading profiles -->\n" +
+    "    <div ng-if=\"global.data.isFetchingProfiles\">\n" +
+    "        <div ng-include=\"'partials/page-loading.html'\"></div>\n" +
+    "    </div>\n" +
+    "\n" +
     "    <!-- No profile selected -->\n" +
-    "    <!-- <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
+    "    <div ng-if=\"!global.data.isFetchingProfiles && global.getSelectedProfile().id === 0\">\n" +
     "        <div ng-include=\"'partials/select-profile.html'\"></div>\n" +
-    "    </div> -->\n" +
-    "    <div ng-show=\"global.getSelectedProfile().id === 0\">\n" +
-    "        <h3 class=\"text-center\">Select a profile to get started</h3>\n" +
-    "        <br>\n" +
-    "\n" +
-    "        <div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
-    "            <ui-profile-lookup\n" +
-    "                profiles=\"global.state.profile.list\"\n" +
-    "                select-profile=\"global.selectProfile(profile)\">\n" +
-    "            </ui-profile-lookup>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            You can also take this opportunity to\n" +
-    "            <a href=\"#/profile/create\">create one</a>.\n" +
-    "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -3727,7 +3723,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "            <!-- Create new folder -->\n" +
     "            <div class=\"btn-group\">\n" +
-    "                <button ng-show=\"rootProfile\" type=\"button\" class=\"btn btn-default\">\n" +
+    "                <button ng-if=\"rootProfile\" type=\"button\" class=\"btn btn-default\">\n" +
     "                    <i class=\"fa fa-plus\"></i> New Folder\n" +
     "                </button>\n" +
     "            </div>\n" +
@@ -3778,7 +3774,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "    <!-- Main container -->\n" +
     "    <div\n" +
-    "        ng-show=\"global.getNamespaceLength('profile') > 0 || global.data.isFetchingProfiles === true\"\n" +
+    "        ng-if=\"global.getDataLength('profile') > 0 || global.data.isFetchingProfiles === true\"\n" +
     "        class=\"file-explorer-container\">\n" +
     "\n" +
     "        <header>\n" +
@@ -3786,17 +3782,15 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "        <!-- Movements and folders -->\n" +
     "        <section\n" +
-    "            ng-show=\"global.data.isFetchingMovementData === false\"\n" +
+    "            ng-if=\"!global.data.isFetchingMovementData && !global.data.isFetchingProfiles\"\n" +
     "            ng-include=\"'movements/explorer/partials/' + layout.name + '-layout.html'\"\n" +
     "            ng-class=\"layout.name + '-layout'\">\n" +
     "        </section>\n" +
     "\n" +
     "        <!-- Loading notice -->\n" +
-    "        <section\n" +
-    "            ng-show=\"global.data.isFetchingMovementData === true\n" +
-    "                || global.data.isFetchingProfiles === true\">\n" +
+    "        <section ng-show=\"global.data.isFetchingMovementData || global.data.isFetchingProfiles\">\n" +
     "            <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
     "            </div>\n" +
     "        </section>\n" +
     "\n" +
@@ -3810,8 +3804,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "    <!-- No profile exists -->\n" +
     "    <div\n" +
-    "        ng-show=\"global.data.isFetchingProfiles === false\n" +
-    "            && global.getNamespaceLength('profile') === 0\"\n" +
+    "        ng-show=\"global.data.isFetchingProfiles === false && global.getDataLength('profile') === 0\"\n" +
     "        class=\"text-center\">\n" +
     "\n" +
     "        <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
@@ -5345,7 +5338,7 @@ angular.module("profile/partials/movement-indicators.html", []).run(["$templateC
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <h1 class=\"text-center text-muted\">In Development</h1>\n" +
+    "    <h1 class=\"text-center text-muted\" style=\"margin: 200px auto\">In Development</h1>\n" +
     "</section>\n" +
     "");
 }]);
@@ -5357,7 +5350,7 @@ angular.module("profile/partials/screening-indicators.html", []).run(["$template
     "<section class=\"demo-trends-section\" style=\"margin: 50px auto\">\n" +
     "    <header>\n" +
     "        <h2 class=\"title\">\n" +
-    "            Performance Indicators - Movement Tests\n" +
+    "            Performance Indicators\n" +
     "            <span></span>\n" +
     "        </h2>\n" +
     "\n" +
@@ -5366,7 +5359,7 @@ angular.module("profile/partials/screening-indicators.html", []).run(["$template
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <h1 class=\"text-center text-muted\">In Development</h1>\n" +
+    "    <h1 class=\"text-center text-muted\" style=\"margin: 200px auto\">In Development</h1>\n" +
     "</section>\n" +
     "");
 }]);

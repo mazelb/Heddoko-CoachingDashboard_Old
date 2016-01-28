@@ -13,7 +13,7 @@
 
             <!-- Create new folder -->
             <div class="btn-group">
-                <button ng-show="rootProfile" type="button" class="btn btn-default">
+                <button ng-if="rootProfile" type="button" class="btn btn-default">
                     <i class="fa fa-plus"></i> New Folder
                 </button>
             </div>
@@ -64,7 +64,7 @@
 
     <!-- Main container -->
     <div
-        ng-show="global.getNamespaceLength('profile') > 0 || global.data.isFetchingProfiles === true"
+        ng-if="global.getDataLength('profile') > 0 || global.data.isFetchingProfiles === true"
         class="file-explorer-container">
 
         <header>
@@ -72,17 +72,15 @@
 
         <!-- Movements and folders -->
         <section
-            ng-show="global.data.isFetchingMovementData === false"
+            ng-if="!global.data.isFetchingMovementData && !global.data.isFetchingProfiles"
             ng-include="'movements/explorer/partials/' + layout.name + '-layout.html'"
             ng-class="layout.name + '-layout'">
         </section>
 
         <!-- Loading notice -->
-        <section
-            ng-show="global.data.isFetchingMovementData === true
-                || global.data.isFetchingProfiles === true">
+        <section ng-show="global.data.isFetchingMovementData || global.data.isFetchingProfiles">
             <div class="text-center" style="margin: 60px auto">
-                <i class="fa fa-spinner fa-spin fa-2x"></i>
+                <i class="fa fa-spinner fa-spin fa-2x text-muted"></i>
             </div>
         </section>
 
@@ -96,8 +94,7 @@
 
     <!-- No profile exists -->
     <div
-        ng-show="global.data.isFetchingProfiles === false
-            && global.getNamespaceLength('profile') === 0"
+        ng-show="global.data.isFetchingProfiles === false && global.getDataLength('profile') === 0"
         class="text-center">
 
         <h3 class="text-center">You do not have any profiles yet.</h3>
