@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/page-loading.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -3185,7 +3185,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                                    <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
     "                                        Cancel\n" +
     "                                    </button>\n" +
-    "                                    <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                                    <button ng-click=\"deleteGroup()\" type=\"button\" class=\"btn btn-danger\" data-dismiss=\"modal\">\n" +
     "                                        Yes, delete {{ group.name }}\n" +
     "                                    </button>\n" +
     "                                </div>\n" +
@@ -3250,7 +3250,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                            <ui-editable-field\n" +
     "                                data-label=\"Number of athletes\"\n" +
     "                                data-type=\"placeholder\"\n" +
-    "                                data-display=\"{{ global.data.filteredProfiles }}\">\n" +
+    "                                data-display=\"{{ global.data.filteredProfiles.length }}\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -3340,12 +3340,8 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "</div>\n" +
     "\n" +
     "<!-- Fetching group data -->\n" +
-    "<div ng-if=\"global.data.isFetchingGroups === true\" class=\"page text-center\">\n" +
-    "    <h1>Retrieving Data...</h1>\n" +
-    "    <br>\n" +
-    "    <br>\n" +
-    "\n" +
-    "    <i class=\"fa fa-spinner fa-spin fa-4x text-muted\"></i>\n" +
+    "<div ng-if=\"global.data.isFetchingGroups === true\" class=\"page\">\n" +
+    "    <ng-include src=\"'partials/page-loading.html'\"></ng-include>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No group selected -->\n" +
@@ -4597,6 +4593,19 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "");
 }]);
 
+angular.module("partials/page-loading.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/page-loading.html",
+    "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "    <div class=\"col-sm-12 text-center\">\n" +
+    "        <h1 class=\"text-muted\" style=\"margin: 200px auto 75px\">Working</h1>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("partials/select-profile.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/select-profile.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
@@ -4606,13 +4615,14 @@ angular.module("partials/select-profile.html", []).run(["$templateCache", functi
     "\n" +
     "<div class=\"col-md-4 col-md-offset-4 text-center\">\n" +
     "    <ui-profile-lookup\n" +
-    "        profiles=\"global.state.profile.list\"\n" +
-    "        select-profile=\"global.selectProfile(profile)\">\n" +
+    "        profiles=\"global.data.profile.list\"\n" +
+    "        select-profile=\"global.selectProfile(profile, true)\"\n" +
+    "        placeholder=\"Lookup a profile\">\n" +
     "    </ui-profile-lookup>\n" +
     "    <br>\n" +
     "\n" +
     "    You can also take this opportunity to\n" +
-    "    <a href=\"#profile/create\">create one</a>.\n" +
+    "    <a href=\"#/profile/create\">create one</a>.\n" +
     "</div>\n" +
     "");
 }]);
@@ -5319,6 +5329,48 @@ angular.module("profile/partials/final-fms-plot.html", []).run(["$templateCache"
     "");
 }]);
 
+angular.module("profile/partials/movement-indicators.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/movement-indicators.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<section class=\"demo-trends-section\" style=\"margin: 50px auto\">\n" +
+    "    <header>\n" +
+    "        <h2 class=\"title\">\n" +
+    "            Performance Indicators\n" +
+    "            <span></span>\n" +
+    "        </h2>\n" +
+    "\n" +
+    "        <div class=\"h1-append\">\n" +
+    "            Single Movements\n" +
+    "        </div>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <h1 class=\"text-center text-muted\">In Development</h1>\n" +
+    "</section>\n" +
+    "");
+}]);
+
+angular.module("profile/partials/screening-indicators.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("profile/partials/screening-indicators.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<section class=\"demo-trends-section\" style=\"margin: 50px auto\">\n" +
+    "    <header>\n" +
+    "        <h2 class=\"title\">\n" +
+    "            Performance Indicators - Movement Tests\n" +
+    "            <span></span>\n" +
+    "        </h2>\n" +
+    "\n" +
+    "        <div class=\"h1-append\">\n" +
+    "            Movement Tests\n" +
+    "        </div>\n" +
+    "    </header>\n" +
+    "\n" +
+    "    <h1 class=\"text-center text-muted\">In Development</h1>\n" +
+    "</section>\n" +
+    "");
+}]);
+
 angular.module("profile/partials/upload-photo.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("profile/partials/upload-photo.html",
     "<div class=\"panel panel-default\">\n" +
@@ -5375,7 +5427,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
   $templateCache.put("profile/view.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-hide=\"profile.id === 0\" class=\"page profile-page\">\n" +
+    "<div ng-if=\"profile.id > 0\" class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ profile.firstName }} {{ profile.lastName }} <i class=\"fa fa-user\"></i>\n" +
@@ -5383,22 +5435,16 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        </h1>\n" +
     "\n" +
     "        <!-- Append main group to profile name -->\n" +
-    "        <div ng-show=\"profile.groups.length > 0\" class=\"h1-append\">\n" +
+    "        <div ng-if=\"profile.groups.length > 0\" class=\"h1-append\">\n" +
     "            Team:\n" +
     "\n" +
     "            <a href=\"#/group/{{ profile.groups[0].id }}\">\n" +
     "                {{ profile.groups[0].name }}\n" +
     "            </a>\n" +
-    "\n" +
-    "            <small>\n" +
-    "                <a href=\"javascript:;\">\n" +
-    "                    (update)\n" +
-    "                </a>\n" +
-    "            </small>\n" +
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <section ng-show=\"profile.id > 0\">\n" +
+    "    <section ng-if=\"profile.id > 0\">\n" +
     "    	<div class=\"row\">\n" +
     "\n" +
     "    		<div class=\"col-xs-12 col-md-5 col-lg-3\">\n" +
@@ -5415,8 +5461,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <!-- Profile shortcuts -->\n" +
     "                <div class=\"profile-shortcuts\">\n" +
     "\n" +
-    "                    <!-- DEMO -->\n" +
-    "                    <span style=\"line-height: 60px; font-size: 1.2em;\">\n" +
+    "                    <!-- Placeholder for football position (NFL TechCrunch demo) -->\n" +
+    "                    <span ng-if=\"false\" style=\"line-height: 60px; font-size: 1.2em;\">\n" +
     "                        Position: Quarterback\n" +
     "                    </span>\n" +
     "\n" +
@@ -5424,7 +5470,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "                        <!-- Delete group button -->\n" +
     "                        <a\n" +
-    "                            ng-show=\"profile.id > 0\"\n" +
+    "                            ng-if=\"profile.id > 0\"\n" +
     "                            data-toggle=\"modal\"\n" +
     "                            data-target=\"#deleteProfileConfirmation\"\n" +
     "                            href=\"javascript:;\">\n" +
@@ -5569,8 +5615,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- REMOVED FOR DEMO -->\n" +
-    "                    <div ng-show=\"false\" class=\"row\">\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
     "                        <!-- Phone -->\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
@@ -5589,8 +5634,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- REMOVED FOR DEMO -->\n" +
-    "                    <div ng-show=\"false\" class=\"row\">\n" +
+    "                    <div class=\"row\">\n" +
     "\n" +
     "                        <!-- Primary Tag -->\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
@@ -5613,8 +5657,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    </div>\n" +
     "\n" +
     "                    <!-- Profile creation date -->\n" +
-    "                    <!-- REMOVED FOR DEMO -->\n" +
-    "                    <div ng-show=\"false\" class=\"row\">\n" +
+    "                    <div class=\"row\">\n" +
     "                        <div class=\"col-xs-12\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Profile Created\"\n" +
@@ -5625,8 +5668,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- DEMO -->\n" +
-    "                    <div class=\"row\">\n" +
+    "                    <!-- Placeholder info (NFL TechCrunch demo) -->\n" +
+    "                    <div ng-if=\"false\" class=\"row\">\n" +
     "\n" +
     "                        <!-- Experience -->\n" +
     "                        <div class=\"col-xs-12 col-md-6\">\n" +
@@ -5679,24 +5722,24 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                </div>\n" +
     "\n" +
     "                <div class=\"col-xs-12\">\n" +
-    "                    <!-- <ui-editable-standalone-field\n" +
+    "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Previous Injuries\"\n" +
     "                        data-model=\"profile\"\n" +
     "                        data-key=\"injuries\"\n" +
     "                        data-empty=\"No previous injuries.\"\n" +
     "                        data-save=\"saveProfileDetails\"\n" +
     "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
-    "                    </ui-editable-standalone-field> -->\n" +
+    "                    </ui-editable-standalone-field>\n" +
     "\n" +
-    "                    <!-- DEMO -->\n" +
-    "                    <div class=\"ui-editable-list-container\">\n" +
+    "                    <!-- Placeholder for previous injuries (NFL TechCrunch demo) -->\n" +
+    "                    <div ng-if=\"false\" class=\"ui-editable-list-container\">\n" +
     "                        <h3 class=\"title\">\n" +
     "                            Previous Injuries\n" +
     "                            <span></span>\n" +
     "                        </h3>\n" +
     "                        <br>\n" +
     "\n" +
-    "                        <div ng-show=\"profile.lastName == 'Todd'\">\n" +
+    "                        <div ng-if=\"profile.lastName == 'Todd'\">\n" +
     "                            Rotator cuff tear on Nov 17, 2015\n" +
     "                            <br>\n" +
     "                            (surgery Nov 21, 2015).\n" +
@@ -5707,7 +5750,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                            </a>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <div ng-show=\"profile.lastName != 'Todd'\">\n" +
+    "                        <div ng-if=\"profile.lastName != 'Todd'\">\n" +
     "                            No previous injuries.\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -5726,27 +5769,31 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        	</div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Demo: training sesion -->\n" +
-    "        <div ng-controller=\"DemoTrainingSessionController\" id=\"trendsDemo\">\n" +
-    "            <ng-include src=\"'profile/partials/demo-session.html'\"></ng-include>\n" +
+    "        <!-- Demo: training sesion (NFL TechCrunch demo) -->\n" +
+    "        <div ng-if=\"false\">\n" +
+    "            <div ng-controller=\"DemoTrainingSessionController\" id=\"trendsDemo\">\n" +
+    "                <ng-include src=\"'profile/partials/demo-session.html'\"></ng-include>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Performance indicators for single movements -->\n" +
+    "        <div ng-controller=\"TestController\">\n" +
+    "            <ng-include src=\"'profile/partials/movement-indicators.html'\"></ng-include>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Performance indicators for movement screenings -->\n" +
+    "        <div ng-controller=\"TestController\">\n" +
+    "            <ng-include src=\"'profile/partials/screening-indicators.html'\"></ng-include>\n" +
     "        </div>\n" +
     "    </section>\n" +
     "</div>\n" +
     "\n" +
     "<!-- No profile selected -->\n" +
-    "<div ng-show=\"profile.id === 0 && !global.data.isFetchingProfiles\" ng-include=\"'partials/select-profile.html'\" class=\"page\"></div>\n" +
+    "<div ng-if=\"profile.id === 0 && !global.data.isFetchingProfiles\" ng-include=\"'partials/select-profile.html'\" class=\"page\"></div>\n" +
     "\n" +
     "<!-- Loading profiles -->\n" +
-    "<div ng-show=\"global.data.isFetchingProfiles\" class=\"page\">\n" +
-    "    <h2 class=\"text-center\">Retrieving profile data...</h2>\n" +
-    "    <br>\n" +
-    "    <br>\n" +
-    "    <br>\n" +
-    "    <br>\n" +
-    "\n" +
-    "    <div class=\"text-center\">\n" +
-    "        <i class=\"fa fa-spinner fa-spin fa-3x text-muted\"></i>\n" +
-    "    </div>\n" +
+    "<div ng-if=\"global.data.isFetchingProfiles\" class=\"page\">\n" +
+    "    <ng-include src=\"'partials/page-loading.html'\"></ng-include>\n" +
     "</div>\n" +
     "");
 }]);

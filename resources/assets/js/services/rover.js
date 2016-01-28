@@ -67,60 +67,57 @@ angular.module('app.rover', [])
         // Shortcut to browse through app.
         this.browseTo = {
 
-            // Dashboard index page.
+            /**
+             * Dashboard index page.
+             */
             dashboard: function() {
                 $location.path('/dashboard');
-
             }.bind(this),
 
-            // Group listing page.
+            /**
+             * Group listing page.
+             */
             groups: function() {
                 $location.path('/group');
-
             }.bind(this),
 
-            // Group page.
+            /**
+             * Group page.
+             *
+             * @param object|int group
+             */
             group: function(group) {
 
                 // Update the selected group.
                 if (group !== undefined) {
-                    this.store.groupId = Utilities.getId(group);
+                    Utilities.store.groupId = Utilities.getId(group);
                 }
 
-                Utilities.debug('Browsing to group #' + this.store.groupId);
-                $location.path('/group/' + this.store.groupId);
-
+                $location.path('/group/' + Utilities.store.groupId);
             }.bind(this),
 
-            // Profile page.
+            /**
+             * Profile page.
+             *
+             * @param object|int profile
+             */
             profile: function(profile) {
 
                 // Update the selected profile.
                 if (profile !== undefined) {
-                    this.store.profileId = Utilities.getId(profile);
-                    profile = this.store.profileId > 0 ?
-                        this.state.profile.list[this.store.profileId] : null;
+                    Utilities.store.profileId = Utilities.getId(profile);
                 }
 
-                // If the profile somehow belongs to a different group, reload the profile
-                // list and related data before browsing to the profile page.
-                if (profile && profile.groups && profile.groups.length &&
-                    profile.groups[0].id != this.store.groupId) {
-
-                    this.store.groupId = profile.groups[0].id;
-                }
-
-                Utilities.debug('Browsing to profile #' + this.store.profileId);
-                $location.path('/profile/view');
-
+                $location.path('/profile/' + Utilities.store.profileId);
             }.bind(this),
 
-            // General page.
+            /**
+             * General page.
+             *
+             * @param string path
+             */
             path: function(path) {
-
-                Utilities.debug('Browsing to path: ' + path);
                 $location.path(path);
-
             }.bind(this),
 
             hash: function(hash) {
@@ -136,7 +133,6 @@ angular.module('app.rover', [])
                 }
             }
         };
-        this.browse = this.browseTo;
 
         //
         // Overlays.

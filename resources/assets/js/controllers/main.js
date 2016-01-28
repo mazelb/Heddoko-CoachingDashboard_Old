@@ -50,15 +50,8 @@ angular.module('app.controllers')
         // Setup user data
         $scope.global.state.user = $scope.global.state.user || {id: 0};
 
-        // Setup group data.
-        // $scope.global.state.group = $scope.global.state.group || {};
-        // $scope.global.state.group.list = $scope.global.state.group.list || {length: 0};
+        // Set some defaults.
         Utilities.store.groupId = Utilities.store.groupId || 0;
-
-        // Setup profile data.
-        // $scope.global.state.profile = $scope.global.state.profile || {};
-        // $scope.global.state.profile.list = $scope.global.state.profile.list || {length: 0};
-        // $scope.global.state.profile.filtered = $scope.global.state.profile.filtered || [];
         Utilities.store.profileId = Utilities.store.profileId || 0;
 
         // Setup screening data.
@@ -112,11 +105,17 @@ angular.module('app.controllers')
         /**
          * Updates the selected profile.
          *
-         * @param mixed
+         * @param object|int profile
+         * @param bool browseTo
          */
-        $scope.global.selectProfile = function(profile) {
+        $scope.global.selectProfile = function(profile, browseTo) {
             $timeout(function() {
                 Utilities.store.profileId = Utilities.getId(profile);
+
+                // Browse to profile page.
+                if (browseTo) {
+                    Rover.browseTo.profile(profile);
+                }
             });
         };
 

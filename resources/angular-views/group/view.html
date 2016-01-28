@@ -54,7 +54,7 @@
                                     <button type="button" class="btn btn-default" data-dismiss="modal">
                                         Cancel
                                     </button>
-                                    <button ng-click="deleteGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
+                                    <button ng-click="deleteGroup()" type="button" class="btn btn-danger" data-dismiss="modal">
                                         Yes, delete {{ group.name }}
                                     </button>
                                 </div>
@@ -119,7 +119,7 @@
                             <ui-editable-field
                                 data-label="Number of athletes"
                                 data-type="placeholder"
-                                data-display="{{ global.data.filteredProfiles }}">
+                                data-display="{{ global.data.filteredProfiles.length }}">
                             </ui-editable-field>
                         </div>
                     </div>
@@ -209,12 +209,8 @@
 </div>
 
 <!-- Fetching group data -->
-<div ng-if="global.data.isFetchingGroups === true" class="page text-center">
-    <h1>Retrieving Data...</h1>
-    <br>
-    <br>
-
-    <i class="fa fa-spinner fa-spin fa-4x text-muted"></i>
+<div ng-if="global.data.isFetchingGroups === true" class="page">
+    <ng-include src="'partials/page-loading.html'"></ng-include>
 </div>
 
 <!-- No group selected -->

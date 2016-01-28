@@ -1,7 +1,7 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<div ng-hide="profile.id === 0" class="page profile-page">
+<div ng-if="profile.id > 0" class="page profile-page">
     <header>
         <h1>
             {{ profile.firstName }} {{ profile.lastName }} <i class="fa fa-user"></i>
@@ -9,22 +9,16 @@
         </h1>
 
         <!-- Append main group to profile name -->
-        <div ng-show="profile.groups.length > 0" class="h1-append">
+        <div ng-if="profile.groups.length > 0" class="h1-append">
             Team:
 
             <a href="#/group/{{ profile.groups[0].id }}">
                 {{ profile.groups[0].name }}
             </a>
-
-            <small>
-                <a href="javascript:;">
-                    (update)
-                </a>
-            </small>
         </div>
     </header>
 
-    <section ng-show="profile.id > 0">
+    <section ng-if="profile.id > 0">
     	<div class="row">
 
     		<div class="col-xs-12 col-md-5 col-lg-3">
@@ -41,8 +35,8 @@
                 <!-- Profile shortcuts -->
                 <div class="profile-shortcuts">
 
-                    <!-- DEMO -->
-                    <span style="line-height: 60px; font-size: 1.2em;">
+                    <!-- Placeholder for football position (NFL TechCrunch demo) -->
+                    <span ng-if="false" style="line-height: 60px; font-size: 1.2em;">
                         Position: Quarterback
                     </span>
 
@@ -50,7 +44,7 @@
 
                         <!-- Delete group button -->
                         <a
-                            ng-show="profile.id > 0"
+                            ng-if="profile.id > 0"
                             data-toggle="modal"
                             data-target="#deleteProfileConfirmation"
                             href="javascript:;">
@@ -195,8 +189,7 @@
                         </div>
                     </div>
 
-                    <!-- REMOVED FOR DEMO -->
-                    <div ng-show="false" class="row">
+                    <div class="row">
 
                         <!-- Phone -->
                         <div class="col-xs-12 col-sm-6">
@@ -215,8 +208,7 @@
                         </div>
                     </div>
 
-                    <!-- REMOVED FOR DEMO -->
-                    <div ng-show="false" class="row">
+                    <div class="row">
 
                         <!-- Primary Tag -->
                         <div class="col-xs-12 col-sm-6">
@@ -239,8 +231,7 @@
                     </div>
 
                     <!-- Profile creation date -->
-                    <!-- REMOVED FOR DEMO -->
-                    <div ng-show="false" class="row">
+                    <div class="row">
                         <div class="col-xs-12">
                             <ui-editable-field
                                 data-label="Profile Created"
@@ -251,8 +242,8 @@
                         </div>
                     </div>
 
-                    <!-- DEMO -->
-                    <div class="row">
+                    <!-- Placeholder info (NFL TechCrunch demo) -->
+                    <div ng-if="false" class="row">
 
                         <!-- Experience -->
                         <div class="col-xs-12 col-md-6">
@@ -305,24 +296,24 @@
                 </div>
 
                 <div class="col-xs-12">
-                    <!-- <ui-editable-standalone-field
+                    <ui-editable-standalone-field
                         data-heading="Previous Injuries"
                         data-model="profile"
                         data-key="injuries"
                         data-empty="No previous injuries."
                         data-save="saveProfileDetails"
                         data-save-callback="saveProfileDetailsCallback">
-                    </ui-editable-standalone-field> -->
+                    </ui-editable-standalone-field>
 
-                    <!-- DEMO -->
-                    <div class="ui-editable-list-container">
+                    <!-- Placeholder for previous injuries (NFL TechCrunch demo) -->
+                    <div ng-if="false" class="ui-editable-list-container">
                         <h3 class="title">
                             Previous Injuries
                             <span></span>
                         </h3>
                         <br>
 
-                        <div ng-show="profile.lastName == 'Todd'">
+                        <div ng-if="profile.lastName == 'Todd'">
                             Rotator cuff tear on Nov 17, 2015
                             <br>
                             (surgery Nov 21, 2015).
@@ -333,7 +324,7 @@
                             </a>
                         </div>
 
-                        <div ng-show="profile.lastName != 'Todd'">
+                        <div ng-if="profile.lastName != 'Todd'">
                             No previous injuries.
                         </div>
                     </div>
@@ -352,25 +343,29 @@
         	</div>
         </div>
 
-        <!-- Demo: training sesion -->
-        <div ng-controller="DemoTrainingSessionController" id="trendsDemo">
-            <ng-include src="'profile/partials/demo-session.html'"></ng-include>
+        <!-- Demo: training sesion (NFL TechCrunch demo) -->
+        <div ng-if="false">
+            <div ng-controller="DemoTrainingSessionController" id="trendsDemo">
+                <ng-include src="'profile/partials/demo-session.html'"></ng-include>
+            </div>
+        </div>
+
+        <!-- Performance indicators for single movements -->
+        <div ng-controller="TestController">
+            <ng-include src="'profile/partials/movement-indicators.html'"></ng-include>
+        </div>
+
+        <!-- Performance indicators for movement screenings -->
+        <div ng-controller="TestController">
+            <ng-include src="'profile/partials/screening-indicators.html'"></ng-include>
         </div>
     </section>
 </div>
 
 <!-- No profile selected -->
-<div ng-show="profile.id === 0 && !global.data.isFetchingProfiles" ng-include="'partials/select-profile.html'" class="page"></div>
+<div ng-if="profile.id === 0 && !global.data.isFetchingProfiles" ng-include="'partials/select-profile.html'" class="page"></div>
 
 <!-- Loading profiles -->
-<div ng-show="global.data.isFetchingProfiles" class="page">
-    <h2 class="text-center">Retrieving profile data...</h2>
-    <br>
-    <br>
-    <br>
-    <br>
-
-    <div class="text-center">
-        <i class="fa fa-spinner fa-spin fa-3x text-muted"></i>
-    </div>
+<div ng-if="global.data.isFetchingProfiles" class="page">
+    <ng-include src="'partials/page-loading.html'"></ng-include>
 </div>
