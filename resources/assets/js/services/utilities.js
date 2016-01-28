@@ -69,18 +69,6 @@ angular.module('app.utilities', [])
             return value;
         }.bind(this);
 
-        /**
-         * Turns a flag on or off, and forces the app to refresh accordingly.
-         *
-         * @param string name
-         * @param bool|string state
-         */
-        this.setFlag = function(name, state) {
-            $timeout(function() {
-                this.data[name] = state;
-            }.bind(this));
-        }.bind(this);
-
 
         ///
         /// State variables are stored in the sessionStorage. The following methods deal with
@@ -155,7 +143,7 @@ angular.module('app.utilities', [])
          * @return bool
          */
         this.hasDataNamespace = function(namespace) {
-            return (this.data[namespace] && this.data[namespace].list);
+            return (this.data[namespace]);
         }.bind(this);
 
         /**
@@ -165,7 +153,7 @@ angular.module('app.utilities', [])
          * @return int
          */
         this.getDataLength = function(namespace) {
-            return this.hasDataNamespace(namespace) ? this.data[namespace].list.length : 0;
+            return this.hasDataNamespace(namespace) ? this.data[namespace].length : 0;
         }.bind(this);
 
         /**
@@ -176,7 +164,7 @@ angular.module('app.utilities', [])
          * @return bool
          */
         this.hasData = function(namespace, id) {
-            return (this.hasDataNamespace(namespace) && this.data[namespace].list['_' + id]);
+            return (this.hasDataNamespace(namespace) && this.data[namespace]['_' + id]);
         }.bind(this);
 
         /**
@@ -188,7 +176,43 @@ angular.module('app.utilities', [])
          * @return bool
          */
         this.getData = function(namespace, id, def) {
-            return this.hasData(namespace, id) ? this.data[namespace].list['_' + id] : def;
+            return this.hasData(namespace, id) ? this.data[namespace]['_' + id] : def;
+        }.bind(this);
+
+        /**
+         * Retrieves all ephemeral variables within the specified namespace.
+         *
+         * @param string namespace
+         * @param mixed def
+         * @return mixed
+         */
+        this.getDataList = function(namespace, def) {
+            return this.hasDataNamespace(namespace) ? this.data[namespace] : def;
+        }.bind(this);
+
+        /**
+         * Converts an ephemeral namespace to an array.
+         *
+         * @param string namespace
+         * @param mixed def
+         * @return mixed
+         */
+        this.getDataArray = function(namespace) {
+            if (this.hasDataNamespace(namespace))
+            {
+                var array = [];
+                for (var key in this.data[namespace]) {
+                    if (this.data[namespace].hasOwnProperty(key) && key[0] == '_' && this.data[namespace][key] !== null) {
+                        array.push(this.data[namespace][key]);
+                    }
+                }
+
+                return array;
+            }
+
+            else {
+                return [];
+            }
         }.bind(this);
 
         /**
@@ -202,46 +226,45 @@ angular.module('app.utilities', [])
 
             // Setup namespace.
             if (!this.hasDataNamespace(namespace)) {
-                this.resetVarNamespace(namespace);
+                this.createDataNamespace(namespace);
             }
 
             // Update namespace counter.
             if (!this.hasData(namespace, id)) {
-                this.data[namespace].list.length++;
+                this.data[namespace].length++;
+                this.data[namespace].list.length++; // @deprecated
             }
 
             // We add an underscore to the key so that we may store objects by ID without any problems.
+            this.data[namespace]['_' + id] = value;
+
+            // For backwards compatibility...
+            // @deprecated
             this.data[namespace].list['_' + id] = value;
 
             // Update object length.
             if (value === null) {
-                this.data[namespace].list.length--;
+                this.data[namespace].length--;
+                this.data[namespace].list.length--; // @deprecated
             }
         };
-
-        /**
-         * Retrieves all ephemeral variables within the specified namespace.
-         *
-         * @param string namespace
-         * @param mixed def
-         * @return mixed
-         */
-        this.getDataList = function(namespace, def) {
-            return this.hasDataNamespace(namespace) ? this.data[namespace].list : def;
-        }.bind(this);
 
         /**
          * Resets an ephemeral namespace.
          *
          * @param string namespace
          */
-        this.resetDataNamespace = function(namespace) {
+        this.createDataNamespace = function(namespace) {
             this.data[namespace] = {
+                length: 0,
+
+                // @ deprecated
                 list: {
                     length: 0
                 }
             };
         }.bind(this);
+        this.resetDataNamespace = this.createDataNamespace;
 
 
 

@@ -3397,7 +3397,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "                    ngf-select=\"startImport($files)\"\n" +
     "                    ngf-drop=\"startImport($files)\"\n" +
     "                    accept=\".csv,.txt\"\n" +
-    "                    ngf-max-size=\"2MB\"\n" +
+    "                    ngf-max-size=\"1GB\"\n" +
     "                    multiple\n" +
     "                    class=\"btn btn-primary btn-circle btn-lg\">\n" +
     "\n" +
@@ -3719,10 +3719,20 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "            <span></span>\n" +
     "        </h1>\n" +
     "\n" +
-    "        <div class=\"btn-toolbar pull-right\" role=\"toolbar\">\n" +
+    "        <div ng-if=\"false\" class=\"btn-toolbar pull-right\" role=\"toolbar\">\n" +
     "\n" +
-    "            <!-- Create new folder -->\n" +
     "            <div class=\"btn-group\">\n" +
+    "\n" +
+    "                <!-- Delete selection -->\n" +
+    "                <button\n" +
+    "                    ng-if=\"global.data.selectedMovements.length > 0 || global.data.selectedMovementFolders.length > 0\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn btn-danger\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-trash\"></i>\n" +
+    "                </button>\n" +
+    "\n" +
+    "                <!-- Create new folder -->\n" +
     "                <button ng-if=\"rootProfile\" type=\"button\" class=\"btn btn-default\">\n" +
     "                    <i class=\"fa fa-plus\"></i> New Folder\n" +
     "                </button>\n" +
@@ -3778,6 +3788,80 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "        class=\"file-explorer-container\">\n" +
     "\n" +
     "        <header>\n" +
+    "            <div class=\"btn-toolbar\" role=\"toolbar\">\n" +
+    "\n" +
+    "                <!-- Layout selector -->\n" +
+    "                <div class=\"btn-group\" role=\"group\">\n" +
+    "                    <button\n" +
+    "                        ng-repeat=\"btn in layout.list\"\n" +
+    "                        ng-click=\"layout.name = btn.name\"\n" +
+    "                        ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn\">\n" +
+    "\n" +
+    "                        <i ng-class=\"'fa-' + btn.icon\" class=\"fa\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Sorting -->\n" +
+    "                <div class=\"btn-group\">\n" +
+    "                    <div class=\"dropdown\">\n" +
+    "                        <button\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            type=\"button\"\n" +
+    "                            id=\"sortMenu\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
+    "\n" +
+    "                            Sort <span class=\"caret\"></span>\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"sortMenu\">\n" +
+    "                            <li>\n" +
+    "                                <a href=\"#\">\n" +
+    "                                    Alphabetically\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                            <li>\n" +
+    "                                <a href=\"#\">\n" +
+    "                                    By Date\n" +
+    "                                </a>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Create new folder -->\n" +
+    "                <div class=\"btn-group\">\n" +
+    "                    <button ng-class=\"{disabled: !rootProfile}\" type=\"button\" class=\"btn btn-default\">\n" +
+    "                        <i class=\"fa fa-plus\"></i> New Folder\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Resource actions -->\n" +
+    "                <div class=\"btn-group\">\n" +
+    "\n" +
+    "                    <!-- Edit resource -->\n" +
+    "                    <button\n" +
+    "                        ng-class=\"{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length !== 1)}\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-pencil\"></i>\n" +
+    "                    </button>\n" +
+    "\n" +
+    "                    <!-- Delete resources -->\n" +
+    "                    <button\n" +
+    "                        ng-click=\"deleteResource()\"\n" +
+    "                        ng-class=\"{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length === 0)}\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-danger\">\n" +
+    "\n" +
+    "                        <i class=\"fa fa-trash\"></i>\n" +
+    "                    </button>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </header>\n" +
     "\n" +
     "        <!-- Movements and folders -->\n" +
@@ -3831,8 +3915,8 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            <a ng-if=\"rootProfile\" ng-click=\"toggleSelect()\" href=\"javascript:;\">\n" +
+    "                <i class=\"fa fa-square-o fa-fw\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "\n" +
@@ -3855,16 +3939,19 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "            <a href=\"{{ parentFolder.href }}\">\n" +
     "                <i class=\"fa fa-level-up\"></i> Parent Folder\n" +
     "            </a>\n" +
+    "            <br>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders\" class=\"row\">\n" +
+    "    <div ng-repeat=\"folder in folders\" ng-hide=\"folder === null\" class=\"row\">\n" +
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            <a ng-if=\"rootProfile\" ng-click=\"toggleSelect('folder', folder)\" href=\"javascript:;\">\n" +
+    "                <i\n" +
+    "                    ng-class=\"{'fa-square-o': !folder.selected, 'fa-check-square-o': folder.selected}\"\n" +
+    "                    class=\"fa fa-fw\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "\n" +
@@ -3877,12 +3964,14 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements\" class=\"row\">\n" +
+    "    <div ng-repeat=\"movement in movements\" ng-hide=\"movement === null\" class=\"row\">\n" +
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-square-o\"></i>\n" +
+    "            <a ng-click=\"toggleSelect('movement', movement)\" href=\"javascript:;\">\n" +
+    "                <i\n" +
+    "                    ng-class=\"{'fa-square-o': !movement.selected, 'fa-check-square-o': movement.selected}\"\n" +
+    "                    class=\"fa fa-fw\"></i>\n" +
     "            </a>\n" +
     "        </div>\n" +
     "\n" +
@@ -3932,7 +4021,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-repeat=\"folder in folders track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
@@ -3942,7 +4031,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-repeat=\"movement in movements track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
     "            <div>\n" +
     "\n" +

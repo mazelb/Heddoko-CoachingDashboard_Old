@@ -310,7 +310,7 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         // Make sure we have a valid profile.
-        if (!$profile = Profile::with('avatar')->find($id)) {
+        if (!$profile = Auth::user()->profiles()->with('avatar')->find($id)) {
             return response('Profile Not Found.', 404);
         }
 

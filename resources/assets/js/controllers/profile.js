@@ -26,8 +26,11 @@ angular.module('app.controllers')
             // If we're still loading profiles, wait for those results.
             else if (Utilities.data.isFetchingProfiles)
             {
-                // TODO: fix this watcher.
                 var stopWatchingProfiles = $scope.$watch('global.data.isFetchingProfiles', function(status) {
+
+                    if (status === true) {
+                        return;
+                    }
 
                     // Update profile.
                     if (Utilities.hasData('profile', $routeParams.profileId))

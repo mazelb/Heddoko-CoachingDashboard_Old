@@ -14,7 +14,7 @@
     </div>
 
     <!-- Other folders -->
-    <div ng-repeat="folder in folders" class="col-xs-6 col-md-4 col-lg-3">
+    <div ng-repeat="folder in folders track by id" class="col-xs-6 col-md-4 col-lg-3">
         <a href="{{ folder.href }}" class="folder">
             <i class="fa fa-folder-open fa-3x"></i>
             <span class="name">
@@ -24,7 +24,7 @@
     </div>
 
     <!-- Movements -->
-    <div ng-repeat="movement in movements" class="col-xs-6 col-md-4 col-lg-3">
+    <div ng-repeat="movement in movements track by id" class="col-xs-6 col-md-4 col-lg-3">
         <div class="aspect-ratio aspect-4-3 active-element text-center">
             <div>
 

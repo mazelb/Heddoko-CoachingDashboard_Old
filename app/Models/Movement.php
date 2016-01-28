@@ -26,6 +26,16 @@ class Movement extends Model
     ];
 
     /**
+     * Attributes that SHOULD be appended to the model's array form.
+     */
+    protected $appends = [];
+
+    /**
+     * Attributes that CAN be appended to the model's array form.
+     */
+    public static $appendable = [];
+
+    /**
      * Extra details about this movement.
      */
 	public function meta()

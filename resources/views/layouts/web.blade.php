@@ -6,6 +6,9 @@
         <title>Heddoko</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/logos/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/images/logos/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/logos/favicon-16x16.png">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,700,600,400' rel='stylesheet' type='text/css'>
         <script src="{{ url('js/jquery.min.js') }}"></script>
         <link rel="stylesheet" href="{{ asset('css/styles.css?'. config('app.version')) }}">

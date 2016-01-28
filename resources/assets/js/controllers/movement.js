@@ -7,12 +7,18 @@
  */
 angular.module('app.controllers')
 
-.controller('MovementController', ['$scope', '$routeParams', 'FolderService', 'Rover', 'Utilities',
-    function($scope, $routeParams, FolderService, Rover, Utilities) {
+.controller('MovementController', ['$scope', '$routeParams', 'FolderService', 'MovementService', 'Rover', 'Utilities',
+    function($scope, $routeParams, FolderService, MovementService, Rover, Utilities) {
         Utilities.info('MovementController');
 
-        // Initial setup.
+        // Fetching movement data flag.
         Utilities.data.isFetchingMovementData = false;
+
+        // Setup namespaces to store selected movements.
+        Utilities.createDataNamespace('selectedMovements');
+        Utilities.createDataNamespace('selectedMovementFolders');
+
+        // Setup layout data.
         $scope.layout = {
             name: Utilities.getConfig('movements.layout', 'large-tiles'),
             list: [
@@ -58,7 +64,11 @@ angular.module('app.controllers')
             // List of profiles.
             profiles = profiles || Utilities.getDataList('profile');
 
+            // Reset data.
             $scope.folders = [];
+            Utilities.resetDataNamespace('selectedMovements');
+            Utilities.resetDataNamespace('selectedMovementFolders');
+
             if (profiles.length)
             {
                 angular.forEach(profiles, function(profile) {
@@ -82,7 +92,11 @@ angular.module('app.controllers')
          */
         $scope.updateFolders = function(folders) {
 
+            // Reset data.
             $scope.folders = [];
+            Utilities.resetDataNamespace('selectedMovements');
+            Utilities.resetDataNamespace('selectedMovementFolders');
+
             if (folders && folders.length)
             {
                 angular.forEach(folders, function(folder) {
@@ -159,6 +173,53 @@ angular.module('app.controllers')
         };
 
         /**
+         * Selects a movement file or folder.
+         *
+         * @param string type
+         * @param object resource
+         */
+        $scope.toggleSelect = function(type, resource) {
+
+            // Toggle all resources.
+            if (!type && !resource)
+            {
+                angular.forEach($scope.folders, function(folder) {
+                    folder.selected = !folder.selected;
+                    Utilities.setData('selectedMovementFolders', folder.id, {id: folder.id});
+                });
+
+                angular.forEach($scope.movements, function(movement) {
+                    movement.selected = !movement.selected;
+                    Utilities.setData('selectedMovements', movement.id, {id: movement.id});
+                });
+
+                return;
+            }
+
+            var namespace, data;
+            switch (type)
+            {
+                case 'movement':
+                    namespace = 'selectedMovements';
+                    break;
+
+                case 'folder':
+                    namespace = 'selectedMovementFolders';
+                    break;
+
+                default:
+                    Utilities.log('Invalid resource type: ' + type);
+                    return;
+            }
+
+            // Toggle selected
+            resource.selected = !resource.selected;
+
+            // Update selected list.
+            Utilities.setData(namespace, resource.id, (resource.selected ? {id: resource.id} : null));
+        };
+
+        /**
          * Opens the movement editor overlay.
          */
         $scope.editMovement = function() {
@@ -179,16 +240,132 @@ angular.module('app.controllers')
         };
 
         /**
-         * Deletes a movement.
+         * Deletes one or more resources.
          *
-         * @param int id
+         * @param string type
+         * @param object resource
          */
-        $scope.deleteMovement = function(id) {
-            Utilities.log('Deleting movement #' + id);
+        $scope.deleteResource = function(type, resource) {
 
-            // TODO
+            // Delete a specified resource.
+            if (type && resource)
+            {
+                switch (type)
+                {
+                    case 'folders':
+                        $scope.deleteFolders([resource.id]);
+                        break;
 
-            Utilities.alert('In Development.');
+                    case 'movements':
+                        $scope.deleteMovements([resource.id]);
+                        break;
+                }
+            }
+
+            // Delete selected resources.
+            else
+            {
+                // Delete folders.
+                if (Utilities.getDataLength('selectedMovementFolders')) {
+                    $scope.deleteFolders(Utilities.getDataArray('selectedMovementFolders').map(
+                        function(folder) {
+                            return folder.id;
+                        }
+                    ));
+                }
+
+                // Delete movements.
+                if (Utilities.getDataLength('selectedMovements')) {
+                    console.log(Utilities.getDataArray('selectedMovements'));
+                    $scope.deleteMovements(Utilities.getDataArray('selectedMovements').map(
+                        function(movement) {
+                            return movement.id;
+                        }
+                    ));
+                }
+            }
+        };
+
+        /**
+         * Deletes the specified folders.
+         *
+         * @param array IDs
+         */
+        $scope.deleteFolders = function(IDs) {
+            Utilities.time('Deleting Folders');
+
+            // Turn on flag
+            Utilities.data.isFetchingMovementData = true;
+
+            FolderService.destroy(IDs.join()).then(
+
+                // On success, update profile list and browse to selected group.
+                function(response) {
+                    Utilities.timeEnd('Deleting Folders');
+
+                    // Remove deleted folders.
+                    var testStr = ',' + IDs.join() + ',';
+                    angular.forEach($scope.folders, function(folder) {
+
+                        // Check if folder was deleted.
+                        if (folder && testStr.indexOf(',' + folder.id + ',') > -1) {
+                            Utilities.setData('selectedMovementFolders', folder.id, null);
+                            folder = null;
+                        }
+                    });
+
+                    Utilities.data.isFetchingMovementData = false;
+                },
+
+                // On failure.
+                function(response) {
+                    Utilities.timeEnd('Deleting Folders');
+                    Utilities.error('Could not delete folders: ' + response.responseText);
+                    Utilities.alert('Could not delete folders. Please try again later.');
+                    Utilities.data.isFetchingMovementData = false;
+                }
+            );
+        };
+
+        /**
+         * Deletes the specified movements.
+         *
+         * @param array IDs
+         */
+        $scope.deleteMovements = function(IDs) {
+            Utilities.time('Deleting Movements');
+
+            // Turn on flag
+            Utilities.data.isFetchingMovementData = true;
+
+            MovementService.destroy(IDs.join()).then(
+
+                // On success, update profile list and browse to selected group.
+                function(response) {
+                    Utilities.timeEnd('Deleting Movements');
+
+                    // Remove deleted movements.
+                    var testStr = ',' + IDs.join() + ',';
+                    angular.forEach($scope.movements, function(movement, index) {
+
+                        // Check if folder was deleted.
+                        if (movement && testStr.indexOf(',' + movement.id + ',') > -1) {
+                            Utilities.setData('selectedMovements', movement.id, null);
+                            $scope.movements[index] = null;
+                        }
+                    });
+
+                    Utilities.data.isFetchingMovementData = false;
+                },
+
+                // On failure.
+                function(response) {
+                    Utilities.timeEnd('Deleting Movements');
+                    Utilities.error('Could not delete movements: ' + response.responseText);
+                    Utilities.alert('Could not delete movements. Please try again later.');
+                    Utilities.data.isFetchingMovementData = false;
+                }
+            );
         };
 
         // If a root folder was selected, try to display its contents or sub-contents.

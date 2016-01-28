@@ -8,8 +8,8 @@
 
         <!-- Checkbox -->
         <div class="col-xs-2 col-md-1 text-right">
-            <a href="javascript:;">
-                <i class="fa fa-square-o"></i>
+            <a ng-if="rootProfile" ng-click="toggleSelect()" href="javascript:;">
+                <i class="fa fa-square-o fa-fw"></i>
             </a>
         </div>
 
@@ -32,16 +32,19 @@
             <a href="{{ parentFolder.href }}">
                 <i class="fa fa-level-up"></i> Parent Folder
             </a>
+            <br>
         </div>
     </div>
 
     <!-- Other folders -->
-    <div ng-repeat="folder in folders" class="row">
+    <div ng-repeat="folder in folders" ng-hide="folder === null" class="row">
 
         <!-- Checkbox -->
         <div class="col-xs-2 col-md-1 text-right">
-            <a href="javascript:;">
-                <i class="fa fa-square-o"></i>
+            <a ng-if="rootProfile" ng-click="toggleSelect('folder', folder)" href="javascript:;">
+                <i
+                    ng-class="{'fa-square-o': !folder.selected, 'fa-check-square-o': folder.selected}"
+                    class="fa fa-fw"></i>
             </a>
         </div>
 
@@ -54,12 +57,14 @@
     </div>
 
     <!-- Movements -->
-    <div ng-repeat="movement in movements" class="row">
+    <div ng-repeat="movement in movements" ng-hide="movement === null" class="row">
 
         <!-- Checkbox -->
         <div class="col-xs-2 col-md-1 text-right">
-            <a href="javascript:;">
-                <i class="fa fa-square-o"></i>
+            <a ng-click="toggleSelect('movement', movement)" href="javascript:;">
+                <i
+                    ng-class="{'fa-square-o': !movement.selected, 'fa-check-square-o': movement.selected}"
+                    class="fa fa-fw"></i>
             </a>
         </div>
 

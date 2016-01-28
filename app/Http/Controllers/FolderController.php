@@ -106,6 +106,26 @@ class FolderController extends Controller
      */
     public function destroy($id)
     {
-        abort(501);
+        // Make sure that only folders accessible by the authenticated user can be deleted.
+        $builder = Folder::whereIn('profile_id', Auth::user()->getProfileIDs());
+
+        // Delete an array of folders.
+        $deleted = false;
+        if (strpos($id, ',') !== false)
+        {
+            $folders = $builder->whereIn('id', explode(',', $id))->lists('id');
+
+            if (count($folders)) {
+                $deleted = Folder::destroy($folders);
+            }
+        }
+
+        // Delete a single folder.
+        elseif ($builder->exists($id))
+        {
+            $deleted = Folder::destroy($id);
+        }
+
+        return $deleted ? response('', 200) : response('', 500);
     }
 }

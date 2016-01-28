@@ -127,8 +127,7 @@ angular.module('app.controllers')
             Utilities.time('Fetching Groups');
 
             // Turn on fetching flag
-            // Utilities.data.isFetchingGroups = true;
-            Utilities.setFlag('isFetchingGroups', true);
+            Utilities.data.isFetchingGroups = true;
 
             // Retrieve available groups.
     		GroupService.list(['avatarSrc']).then(
@@ -155,14 +154,12 @@ angular.module('app.controllers')
                     }
 
 
-                    // Utilities.data.isFetchingGroups = false;
-                    Utilities.setFlag('isFetchingGroups', false);
+                    Utilities.data.isFetchingGroups = false;
         		},
                 function(response) {
                     Utilities.timeEnd('Fetching Groups');
                     Utilities.error('Could not retrieve group list: ' + response.statusText);
-                    // Utilities.data.isFetchingGroups = false;
-                    Utilities.setFlag('isFetchingGroups', false);
+                    Utilities.data.isFetchingGroups = false;
                 }
             );
         };

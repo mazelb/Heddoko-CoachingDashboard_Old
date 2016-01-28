@@ -57,7 +57,7 @@ angular.module('app.services')
              * Deletes a folder.
              *
              * @param int profileId
-             * @param int folderId
+             * @param int|string folderId
              * @return object $http
              */
             destroy: function(profileId, folderId) {

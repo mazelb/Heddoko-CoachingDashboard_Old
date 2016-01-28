@@ -35,7 +35,7 @@ class MovementController extends Controller
     public function index()
     {
         // Profile-based query builder.
-        if ($this->request->has('profile_id'))
+        if ($this->request->has('profileId'))
         {
             $profileId = (int) $this->request->input('profileId');
             if (!$profile = Auth::user()->profiles()->find($profileId)) {
@@ -82,7 +82,7 @@ class MovementController extends Controller
         }
 
         if (!$profile = Auth::user()->profiles()->find($profileId)) {
-            return response('Profile Not Found ('. json_encode($profile) .').', 400);
+            return response('Profile Not Found.', 400);
         }
 
         // Make sure we have a file to work with.
@@ -120,7 +120,21 @@ class MovementController extends Controller
      */
     public function show($id)
     {
-        abort(501);
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Movement::$appendable
+        );
+
+        // Make sure we have a valid movement.
+        $builder = Movement::whereIn('profile_id', Auth::user()->getProfileIDs());
+        if (!$movement = $builder->with($embed['relations'])->find($id)) {
+            return response('Movement Not Found.', 404);
+        }
+
+        // There are no movement attributes to append. Keep going...
+
+        return $movement;
     }
 
     /**
@@ -142,6 +156,27 @@ class MovementController extends Controller
      */
     public function destroy($id)
     {
-        abort(501);
+        // Make sure that only movements accessible by the authenticated user can be deleted.
+        $builder = Movement::whereIn('profile_id', Auth::user()->getProfileIDs());
+
+        // Delete an array of movements.
+        $deleted = false;
+        if (strpos($id, ',') !== false)
+        {
+            $movements = $builder->whereIn('id', explode(',', $id))->lists('id');
+
+            // TODO: find out why this doesn't work.
+            if (count($movements)) {
+                $deleted = Movement::destroy($movements);
+            }
+        }
+
+        // Delete a single movement.
+        elseif ($builder->exists($id))
+        {
+            $deleted = Movement::destroy($id);
+        }
+
+        return $deleted ? response('', 200) : response('', 500);
     }
 }

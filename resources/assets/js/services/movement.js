@@ -64,7 +64,7 @@ angular.module('app.services')
             /**
              * Deletes an API resource.
              *
-             * @param int id
+             * @param int|string id
              * @return object $http
              */
             destroy: function(id) {
