@@ -3729,7 +3729,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "        class=\"file-explorer-container\">\n" +
     "\n" +
     "        <header>\n" +
-    "            <div class=\"btn-toolbar\" role=\"toolbar\">\n" +
+    "            <div role=\"toolbar\">\n" +
     "\n" +
     "                <!-- Layout selector -->\n" +
     "                <div class=\"btn-group\" role=\"group\">\n" +
@@ -3758,14 +3758,14 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "                            Sort <span class=\"caret\"></span>\n" +
     "                        </button>\n" +
     "\n" +
-    "                        <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"sortMenu\">\n" +
+    "                        <ul class=\"dropdown-menu\" aria-labelledby=\"sortMenu\">\n" +
     "                            <li>\n" +
-    "                                <a href=\"#\">\n" +
+    "                                <a href=\"javascript:;\">\n" +
     "                                    Alphabetically\n" +
     "                                </a>\n" +
     "                            </li>\n" +
     "                            <li>\n" +
-    "                                <a href=\"#\">\n" +
+    "                                <a href=\"javascript:;\">\n" +
     "                                    By Date\n" +
     "                                </a>\n" +
     "                            </li>\n" +
@@ -3775,12 +3775,41 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "                <!-- Create new folder -->\n" +
     "                <div class=\"btn-group\">\n" +
-    "                    <button\n" +
-    "                        ng-class=\"{disabled: (!rootProfile || global.data.isFetchingMovementData)}\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default\">\n" +
-    "                        <i class=\"fa fa-plus\"></i> New Folder\n" +
-    "                    </button>\n" +
+    "                    <div class=\"dropdown\">\n" +
+    "                        <button\n" +
+    "                            ng-class=\"{disabled: (!rootProfile || global.data.isFetchingMovementData)}\"\n" +
+    "                            type=\"button\"\n" +
+    "                            id=\"createFolder\"\n" +
+    "                            class=\"btn btn-default dropdown-toggle\"\n" +
+    "                            data-toggle=\"dropdown\"\n" +
+    "                            aria-haspopup=\"true\"\n" +
+    "                            aria-expanded=\"false\">\n" +
+    "\n" +
+    "                            <i class=\"fa fa-plus\"></i> New Folder\n" +
+    "                        </button>\n" +
+    "\n" +
+    "                        <ul class=\"dropdown-menu\" aria-labelledby=\"createFolder\">\n" +
+    "                            <li>\n" +
+    "                                <div class=\"input-group\">\n" +
+    "                                    <input\n" +
+    "                                        ng-model=\"newFolderName\"\n" +
+    "                                        type=\"text\"\n" +
+    "                                        class=\"form-control\"\n" +
+    "                                        placeholder=\"Folder Name\">\n" +
+    "\n" +
+    "                                    <span class=\"input-group-btn\">\n" +
+    "                                        <button\n" +
+    "                                            ng-click=\"createFolder(newFolderName)\"\n" +
+    "                                            class=\"btn btn-default\"\n" +
+    "                                            type=\"button\">\n" +
+    "\n" +
+    "                                            <i class=\"fa fa-plus\"></i>\n" +
+    "                                        </button>\n" +
+    "                                    </span>\n" +
+    "                                </div>\n" +
+    "                            </li>\n" +
+    "                        </ul>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "\n" +
     "                <!-- Resource actions -->\n" +
@@ -3991,7 +4020,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "                    <br>\n" +
     "\n" +
     "                    <!-- Movement title -->\n" +
-    "                    <span>\n" +
+    "                    <span title=\"{{ movement.title }}\">\n" +
     "                        {{ movement.title | characters:25 }}\n" +
     "                    </span>\n" +
     "\n" +

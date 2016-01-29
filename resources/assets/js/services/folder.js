@@ -7,8 +7,8 @@
  */
 angular.module('app.services')
 
-.factory('FolderService', ['$http', 'apiEndpoint',
-    function($http, apiEndpoint) {
+.factory('FolderService', ['$http', 'apiEndpoint', 'Utilities',
+    function($http, apiEndpoint, Utilities) {
 
         return {
 
@@ -24,10 +24,15 @@ angular.module('app.services')
              *
              * @param int profileId
              * @param int folderId
+             * @param array|string embed
              * @return object $http
              */
-            get: function(profileId, folderId) {
-    			return $http.get(this.endpoint(profileId) + folderId);
+            get: function(profileId, folderId, embed) {
+    			return $http.get(this.endpoint(profileId) + folderId, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**

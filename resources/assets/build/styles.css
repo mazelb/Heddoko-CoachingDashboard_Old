@@ -5249,6 +5249,9 @@ button.toast-close-button {
   -ms-border-radius: 0px;
   -o-border-radius: 0px;
   border-radius: 0px; }
+  .dropdown-menu .form-control {
+    background-color: transparent;
+    color: #333; }
 
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   text-decoration: none;

@@ -173,7 +173,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Saves profile relations.
+     * Saves a profile and its relations.
      *
      * @param \App\Models\Profile $profile
      */

@@ -16,7 +16,7 @@
         class="file-explorer-container">
 
         <header>
-            <div class="btn-toolbar" role="toolbar">
+            <div role="toolbar">
 
                 <!-- Layout selector -->
                 <div class="btn-group" role="group">
@@ -45,14 +45,14 @@
                             Sort <span class="caret"></span>
                         </button>
 
-                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortMenu">
+                        <ul class="dropdown-menu" aria-labelledby="sortMenu">
                             <li>
-                                <a href="#">
+                                <a href="javascript:;">
                                     Alphabetically
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="javascript:;">
                                     By Date
                                 </a>
                             </li>
@@ -62,12 +62,41 @@
 
                 <!-- Create new folder -->
                 <div class="btn-group">
-                    <button
-                        ng-class="{disabled: (!rootProfile || global.data.isFetchingMovementData)}"
-                        type="button"
-                        class="btn btn-default">
-                        <i class="fa fa-plus"></i> New Folder
-                    </button>
+                    <div class="dropdown">
+                        <button
+                            ng-class="{disabled: (!rootProfile || global.data.isFetchingMovementData)}"
+                            type="button"
+                            id="createFolder"
+                            class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+
+                            <i class="fa fa-plus"></i> New Folder
+                        </button>
+
+                        <ul class="dropdown-menu" aria-labelledby="createFolder">
+                            <li>
+                                <div class="input-group">
+                                    <input
+                                        ng-model="newFolderName"
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="Folder Name">
+
+                                    <span class="input-group-btn">
+                                        <button
+                                            ng-click="createFolder(newFolderName)"
+                                            class="btn btn-default"
+                                            type="button">
+
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Resource actions -->
