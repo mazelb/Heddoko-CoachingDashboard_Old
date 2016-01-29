@@ -72,7 +72,7 @@ h1.title, h2.title, h3.title, h4.title {
     @include transition(background-color .7s)
 }
 .import-page .row.movement-import.ng-enter-active {
-    background-color: rgba(59, 214, 178, .6);
+    background-color: rgba(59, 214, 178, .4);
 }
 .import-page .row .movement-title {
     margin: 0 auto 20px;

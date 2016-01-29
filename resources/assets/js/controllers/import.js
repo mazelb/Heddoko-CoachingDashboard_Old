@@ -7,18 +7,20 @@
  */
 angular.module('app.controllers')
 
-.controller('ImportController', ['$scope', '$timeout', 'Upload', 'Rover', 'Utilities',
-    function($scope, $timeout, Upload, Rover, Utilities) {
+.controller('ImportController', ['$scope', '$timeout', 'MovementService', 'Upload', 'Rover', 'Utilities',
+    function($scope, $timeout, MovementService, Upload, Rover, Utilities) {
         Utilities.info('ImportController');
 
         // Setup import data.
-        Utilities.data.isImporting = Utilities.data.isImporting || false;
         Utilities.data.import = Utilities.data.import || {};
         Utilities.data.import.progress = Utilities.data.import.progress || 0;
-        Utilities.data.import.imported = Utilities.data.import.imported || [];
         Utilities.data.import.queue = Utilities.data.import.queue || [];
         Utilities.data.import.queueTotal = Utilities.data.import.queueTotal || 0;
         Utilities.data.import.status = Utilities.data.import.status || '';
+        Utilities.data.isImporting = Utilities.data.isImporting || false;
+        if (!Utilities.hasDataNamespace('importedMovements')) {
+            Utilities.createDataNamespace('importedMovements');
+        }
 
         /**
          * Launches the "import chain" to import several movement files. We avoid using
@@ -70,7 +72,8 @@ angular.module('app.controllers')
                 function (response) {
 
                     // Add the new movement to the top of the list.
-                    Utilities.data.import.imported.unshift(response.data);
+                    Utilities.setData('importedMovements', response.data.id, response.data);
+                    // Utilities.data.import.imported.unshift(response.data);
 
                     // Update the import progress and continue uploading.
                     Utilities.data.import.queue.splice(0, 1);
@@ -120,12 +123,30 @@ angular.module('app.controllers')
         };
 
         // Deletes a movement.
-        $scope.deleteMovement = function(id) {
-            Utilities.log('Deleting movement #' + id);
+        $scope.deleteMovement = function(movement) {
+            Utilities.time('Deleting Movement');
 
-            // TODO
+            // Turn on "updating" flag
+            movement.isUpdating = true;
 
-            Utilities.alert('In Development.');
+            MovementService.destroy(movement.id).then(
+
+                // On success, update profile list and browse to selected group.
+                function(response) {
+                    Utilities.timeEnd('Deleting Movement');
+
+                    // Remove deleted movements.
+                    Utilities.setData('importedMovements', movement.id, null);
+                },
+
+                // On failure.
+                function(response) {
+                    Utilities.timeEnd('Deleting Movement');
+                    Utilities.error('Could not delete movement: ' + response.responseText);
+                    Utilities.alert('Could not delete movement file. Please try again later.');
+                    movement.isUpdating = false;
+                }
+            );
         };
     }
 ]);

@@ -3389,28 +3389,42 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "\n" +
     "    <!-- Import page -->\n" +
     "    <div ng-if=\"global.getSelectedProfile().id > 0\">\n" +
-    "        <div class=\"movement-import row\">\n" +
     "\n" +
-    "            <!-- Import new movement -->\n" +
-    "            <div ng-if=\"global.data.isImporting === false\" class=\"col-xs-12 text-center\">\n" +
-    "                <button\n" +
+    "        <!-- Import new movement -->\n" +
+    "        <div class=\"movement-import row\">\n" +
+    "            <div class=\"col-md-2 col-md-offset-2 text-center\">\n" +
+    "                <a\n" +
     "                    ngf-select=\"startImport($files)\"\n" +
     "                    ngf-drop=\"startImport($files)\"\n" +
     "                    accept=\".csv,.txt\"\n" +
     "                    ngf-max-size=\"1GB\"\n" +
     "                    multiple\n" +
-    "                    class=\"btn btn-primary btn-circle btn-lg\">\n" +
+    "                    class=\"btn btn-info btn-metro\"\n" +
+    "                    style=\"margin-right: 0\">\n" +
     "\n" +
     "                    <i class=\"fa fa-plus\"></i>\n" +
-    "                </button>\n" +
+    "                </a>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div ng-if=\"global.data.importedMovements.length === 0 && global.data.isImporting === false\" class=\"col-md-6\">\n" +
+    "                <h3>\n" +
+    "                    Upload your movement files.\n" +
+    "                </h3>\n" +
+    "\n" +
+    "                Once you upload or capture a new movement, it will show up here.\n" +
+    "                <br>\n" +
+    "                <br>\n" +
+    "\n" +
+    "                <b>\n" +
+    "                    Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button to import\n" +
+    "                    your data files.\n" +
+    "                </b>\n" +
     "            </div>\n" +
     "\n" +
     "            <!-- Uploading movement file -->\n" +
-    "            <div ng-show=\"global.data.isImporting === true\">\n" +
+    "            <div ng-if=\"global.data.isImporting === true\" class=\"col-md-6\">\n" +
     "\n" +
     "                <!-- Import status -->\n" +
-    "                <br>\n" +
-    "                <br>\n" +
     "                <h3 class=\"text-center\">\n" +
     "                    {{ global.data.import.status }}\n" +
     "\n" +
@@ -3422,7 +3436,6 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "                        Almost done...\n" +
     "                    </small>\n" +
     "                </h3>\n" +
-    "                <br>\n" +
     "\n" +
     "                <!-- Import progress -->\n" +
     "                <div class=\"col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4\">\n" +
@@ -3446,8 +3459,8 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "                <div class=\"col-xs-12 text-center\">\n" +
     "                    <div class=\"btn-group\">\n" +
     "                        <button\n" +
-    "                            ng-disabled=\"global.data.import.imported.length === 0\"\n" +
-    "                            ng-click=\"global.data.import.imported = []\"\n" +
+    "                            ng-disabled=\"global.data.importedMovements.length === 0\"\n" +
+    "                            ng-click=\"global.data.importedMovements = []\"\n" +
     "                            type=\"button\"\n" +
     "                            class=\"btn btn-default\">\n" +
     "\n" +
@@ -3467,68 +3480,86 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <div ng-if=\"global.data.import.imported.length > 0\">\n" +
+    "        <div ng-show=\"global.data.importedMovements.length > 0\">\n" +
     "\n" +
     "            <!-- List of uploaded movements -->\n" +
-    "            <div ng-repeat=\"file in global.data.import.imported\" class=\"movement-import row\">\n" +
-    "                <div class=\"col-md-3 col-md-offset-1\">\n" +
+    "            <div ng-repeat=\"file in global.data.importedMovements\" ng-if=\"file && file.id\" class=\"movement-import row\">\n" +
     "\n" +
-    "                    <!-- Movement title -->\n" +
-    "                    <input\n" +
-    "                        ng-model=\"file.title\"\n" +
-    "                        type=\"text\"\n" +
-    "                        class=\"form-control movement-title\"\n" +
-    "                        placeholder=\"Movement Title\">\n" +
-    "\n" +
-    "                    <!-- Tags -->\n" +
-    "                    <ui-taggable-input\n" +
-    "                        data-model=\"file\"\n" +
-    "                        data-key=\"tags\"\n" +
-    "                        data-max-tags=\"20\">\n" +
-    "                    </ui-taggable-input>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"col-md-3\">\n" +
-    "\n" +
+    "                <div ng-show=\"!file.isUpdating\">\n" +
     "                    <!-- Movement preview -->\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-xs-12\">\n" +
-    "                            <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "                    <div class=\"col-md-2 col-md-offset-2\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-xs-12\">\n" +
+    "                                <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- Delete movement -->\n" +
-    "                    <div class=\"row\">\n" +
-    "                        <div class=\"col-xs-12\">\n" +
-    "                            <a ng-click=\"deleteMovement(file.id)\" href=\"javascript:;\" class=\"pull-right\">\n" +
-    "                                Delete Movement <i class=\"fa fa-trash-o\"></i>\n" +
-    "                            </a>\n" +
+    "                    <div class=\"col-md-6\">\n" +
+    "\n" +
+    "                        <!-- Movement title -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-xs-12\">\n" +
+    "                                <input\n" +
+    "                                    ng-model=\"file.title\"\n" +
+    "                                    type=\"text\"\n" +
+    "                                    class=\"form-control movement-title\"\n" +
+    "                                    placeholder=\"Movement Title\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Tags -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-xs-12\">\n" +
+    "                                <ui-taggable-input\n" +
+    "                                    data-model=\"file\"\n" +
+    "                                    data-key=\"tags\"\n" +
+    "                                    data-max-tags=\"20\">\n" +
+    "                                </ui-taggable-input>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Action buttons -->\n" +
+    "                        <br>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-xs-12\">\n" +
+    "\n" +
+    "                                <!-- Thumbnail link -->\n" +
+    "                                <a\n" +
+    "                                    ng-click=\"selectThumbnail()\"\n" +
+    "                                    href=\"javascript:;\"\n" +
+    "                                    class=\"btn btn-lg btn-default\">\n" +
+    "\n" +
+    "                                    <i class=\"fa fa-picture-o fa-fw\"></i>\n" +
+    "                                </a>\n" +
+    "\n" +
+    "                                <!-- Edit -->\n" +
+    "                                <a\n" +
+    "                                    ng-click=\"editMovement()\"\n" +
+    "                                    href=\"javascript:;\"\n" +
+    "                                    class=\"btn btn-lg btn-default\">\n" +
+    "\n" +
+    "                                    <i class=\"fa fa-pencil fa-fw\"></i>\n" +
+    "                                </a>\n" +
+    "\n" +
+    "                                <!-- Delete -->\n" +
+    "                                <a\n" +
+    "                                    ng-click=\"deleteMovement(file)\"\n" +
+    "                                    href=\"javascript:;\"\n" +
+    "                                    class=\"btn btn-lg btn-danger\">\n" +
+    "\n" +
+    "                                    <i class=\"fa fa-trash-o fa-fw\"></i>\n" +
+    "                                </a>\n" +
+    "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <!-- Edit movement -->\n" +
-    "                <div class=\"col-md-4\">\n" +
-    "                    <div class=\"movement-edit row\">\n" +
+    "                <!-- Updating movement details -->\n" +
+    "                <div ng-show=\"file.isUpdating\" class=\"text-center\" style=\"margin: 50px auto;\">\n" +
+    "                    <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
     "\n" +
-    "                        <!-- Thumbnail link -->\n" +
-    "                        <div class=\"col-md-5 text-right\">\n" +
-    "                            <a ng-click=\"selectThumbnail()\" href=\"javascript:;\">\n" +
-    "                                Choose Thumbnail <i class=\"fa fa-picture-o\"></i>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <div class=\"col-md-1 text-center\">\n" +
-    "                            <i class=\"fa fa-angle-double-right\"></i>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <!-- Video edit link -->\n" +
-    "                        <div class=\"col-md-5 text-left\">\n" +
-    "                            <a ng-click=\"editMovement()\" href=\"javascript:;\">\n" +
-    "                                Edit Video <i class=\"fa fa-pencil\"></i>\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
+    "                    {{ file }}\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -3536,26 +3567,14 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <div class=\"movement-import row\">\n" +
     "                <div class=\"col-sm-12 text-center\">\n" +
     "                    <button\n" +
-    "                        ng-click=\"global.data.import.imported = []\"\n" +
+    "                        ng-click=\"global.data.importedMovements = []\"\n" +
     "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default\">\n" +
+    "                        class=\"btn btn-info\">\n" +
     "\n" +
     "                        Clear List\n" +
     "                    </button>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- No recently uploaded movement -->\n" +
-    "        <div\n" +
-    "            ng-show=\"global.data.import.imported.length === 0 && global.data.isImporting === false\"\n" +
-    "            class=\"col-md-6 col-md-offset-3 text-center\">\n" +
-    "\n" +
-    "            <h3>There are no movements to display.</h3>\n" +
-    "            Once you upload or capture a new movement, it will show up here.\n" +
-    "            <br><br>\n" +
-    "\n" +
-    "            <b>Go ahead and use the <i class=\"fa fa-plus fa-lg fa-fw\"></i> button above to start.</b>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -4681,7 +4700,7 @@ angular.module("partials/page-loading.html", []).run(["$templateCache", function
     "\n" +
     "<div class=\"row\">\n" +
     "    <div class=\"col-sm-12 text-center\">\n" +
-    "        <h1 class=\"text-muted\" style=\"margin: 200px auto 75px\">Working</h1>\n" +
+    "        <h1 class=\"text-muted\" style=\"margin: 150px auto 75px\">Working</h1>\n" +
     "        <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
