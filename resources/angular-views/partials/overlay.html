@@ -1,5 +1,7 @@
 
-<div class="modal fade" id="overlay-screen" tabindex="-1" data-ng-controller="ModalController">
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="modal fade" id="overlay-screen" tabindex="-1">
     <div class="modal-dialog modal-responsive">
         <div class="modal-content">
 
@@ -13,23 +15,22 @@
 
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h2 class="modal-title text-center" id="overlay-screen-title">{{ title }}</h2>
+                <h2 class="modal-title text-center" id="overlay-screen-title">
+                    {{ global.data.overlay.title }}
+                </h2>
             </header>
 
             <!-- Overlay content -->
             <div
-                data-ng-show="bodyTemplate.length > 0"
-                data-ng-include="bodyTemplate"
+                data-ng-if="global.data.overlay.bodyTemplate.length > 0"
+                data-ng-include="global.data.overlay.bodyTemplate"
                 class="modal-body">
-            </div>
-            <div data-ng-show="bodyTemplate.length === 0" class="modal-body">
-                Nothing here...
             </div>
 
             <!-- Overlay footer -->
             <footer
-                data-ng-show="footerTemplate.length > 0"
-                data-ng-include="footerTemplate"
+                data-ng-if="global.data.overlay.footerTemplate.length > 0"
+                data-ng-include="global.data.overlay.footerTemplate"
                 class="modal-footer">
             </footer>
         </div>

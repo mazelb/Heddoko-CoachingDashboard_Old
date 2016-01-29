@@ -58,7 +58,7 @@
         </div>
 
         <!-- Overlayed screens (all overlayed screens are shown through this modal) -->
-        <div data-ng-include="'partials/modal.html'"></div>
+        <div data-ng-include="'partials/overlay.html'"></div>
 
         <!-- Scripts -->
         <script type="text/javascript" src="{{ asset('js/scripts.js?'. config('app.version')) }}"></script>

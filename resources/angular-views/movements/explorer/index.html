@@ -8,68 +8,6 @@
             <i class="fa fa-th"></i>
             <span></span>
         </h1>
-
-        <div ng-if="false" class="btn-toolbar pull-right" role="toolbar">
-
-            <div class="btn-group">
-
-                <!-- Delete selection -->
-                <button
-                    ng-if="global.data.selectedMovementFiles.length > 0 || global.data.selectedMovementFolders.length > 0"
-                    type="button"
-                    class="btn btn-danger">
-
-                    <i class="fa fa-trash"></i>
-                </button>
-
-                <!-- Create new folder -->
-                <button ng-if="rootProfile" type="button" class="btn btn-default">
-                    <i class="fa fa-plus"></i> New Folder
-                </button>
-            </div>
-
-            <!-- Sorting -->
-            <div class="btn-group">
-                <div class="dropdown">
-                    <button
-                        class="btn btn-default dropdown-toggle"
-                        type="button"
-                        id="sortMenu"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false">
-
-                        Sort <span class="caret"></span>
-                    </button>
-
-                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="sortMenu">
-                        <li>
-                            <a href="#">
-                                Alphabetically
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                By Date
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Layout selector -->
-            <div class="btn-group" role="group">
-                <button
-                    ng-repeat="btn in layout.list"
-                    ng-click="layout.name = btn.name"
-                    ng-class="{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}"
-                    type="button"
-                    class="btn">
-
-                    <i ng-class="'fa-' + btn.icon" class="fa"></i>
-                </button>
-            </div>
-        </div>
     </header>
 
     <!-- Main container -->
@@ -84,7 +22,7 @@
                 <div class="btn-group" role="group">
                     <button
                         ng-repeat="btn in layout.list"
-                        ng-click="layout.name = btn.name"
+                        ng-click="setLayout(btn.name)"
                         ng-class="{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}"
                         type="button"
                         class="btn">
@@ -124,7 +62,10 @@
 
                 <!-- Create new folder -->
                 <div class="btn-group">
-                    <button ng-class="{disabled: !rootProfile}" type="button" class="btn btn-default">
+                    <button
+                        ng-class="{disabled: (!rootProfile || global.data.isFetchingMovementData)}"
+                        type="button"
+                        class="btn btn-default">
                         <i class="fa fa-plus"></i> New Folder
                     </button>
                 </div>

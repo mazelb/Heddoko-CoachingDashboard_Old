@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movement-editor/footer.html', 'movement-editor/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/modal.html', 'partials/navigation.html', 'partials/page-loading.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html', 'thumbnail-selector/footer.html', 'thumbnail-selector/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/page-loading.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -3590,21 +3590,6 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
-angular.module("movement-editor/footer.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("movement-editor/footer.html",
-    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
-    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Save changes</button>\n" +
-    "");
-}]);
-
-angular.module("movement-editor/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("movement-editor/index.html",
-    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
-    "    In Development.\n" +
-    "</h3>\n" +
-    "");
-}]);
-
 angular.module("movements/analysis-demo/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movements/analysis-demo/index.html",
     "<div class=\"page demo-analysis-page\">\n" +
@@ -3736,68 +3721,6 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "            <i class=\"fa fa-th\"></i>\n" +
     "            <span></span>\n" +
     "        </h1>\n" +
-    "\n" +
-    "        <div ng-if=\"false\" class=\"btn-toolbar pull-right\" role=\"toolbar\">\n" +
-    "\n" +
-    "            <div class=\"btn-group\">\n" +
-    "\n" +
-    "                <!-- Delete selection -->\n" +
-    "                <button\n" +
-    "                    ng-if=\"global.data.selectedMovementFiles.length > 0 || global.data.selectedMovementFolders.length > 0\"\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"btn btn-danger\">\n" +
-    "\n" +
-    "                    <i class=\"fa fa-trash\"></i>\n" +
-    "                </button>\n" +
-    "\n" +
-    "                <!-- Create new folder -->\n" +
-    "                <button ng-if=\"rootProfile\" type=\"button\" class=\"btn btn-default\">\n" +
-    "                    <i class=\"fa fa-plus\"></i> New Folder\n" +
-    "                </button>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Sorting -->\n" +
-    "            <div class=\"btn-group\">\n" +
-    "                <div class=\"dropdown\">\n" +
-    "                    <button\n" +
-    "                        class=\"btn btn-default dropdown-toggle\"\n" +
-    "                        type=\"button\"\n" +
-    "                        id=\"sortMenu\"\n" +
-    "                        data-toggle=\"dropdown\"\n" +
-    "                        aria-haspopup=\"true\"\n" +
-    "                        aria-expanded=\"false\">\n" +
-    "\n" +
-    "                        Sort <span class=\"caret\"></span>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <ul class=\"dropdown-menu dropdown-menu-right\" aria-labelledby=\"sortMenu\">\n" +
-    "                        <li>\n" +
-    "                            <a href=\"#\">\n" +
-    "                                Alphabetically\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                        <li>\n" +
-    "                            <a href=\"#\">\n" +
-    "                                By Date\n" +
-    "                            </a>\n" +
-    "                        </li>\n" +
-    "                    </ul>\n" +
-    "                </div>\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Layout selector -->\n" +
-    "            <div class=\"btn-group\" role=\"group\">\n" +
-    "                <button\n" +
-    "                    ng-repeat=\"btn in layout.list\"\n" +
-    "                    ng-click=\"layout.name = btn.name\"\n" +
-    "                    ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"btn\">\n" +
-    "\n" +
-    "                    <i ng-class=\"'fa-' + btn.icon\" class=\"fa\"></i>\n" +
-    "                </button>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
     "    </header>\n" +
     "\n" +
     "    <!-- Main container -->\n" +
@@ -3812,7 +3735,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "                <div class=\"btn-group\" role=\"group\">\n" +
     "                    <button\n" +
     "                        ng-repeat=\"btn in layout.list\"\n" +
-    "                        ng-click=\"layout.name = btn.name\"\n" +
+    "                        ng-click=\"setLayout(btn.name)\"\n" +
     "                        ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
     "                        type=\"button\"\n" +
     "                        class=\"btn\">\n" +
@@ -3852,7 +3775,10 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "                <!-- Create new folder -->\n" +
     "                <div class=\"btn-group\">\n" +
-    "                    <button ng-class=\"{disabled: !rootProfile}\" type=\"button\" class=\"btn btn-default\">\n" +
+    "                    <button\n" +
+    "                        ng-class=\"{disabled: (!rootProfile || global.data.isFetchingMovementData)}\"\n" +
+    "                        type=\"button\"\n" +
+    "                        class=\"btn btn-default\">\n" +
     "                        <i class=\"fa fa-plus\"></i> New Folder\n" +
     "                    </button>\n" +
     "                </div>\n" +
@@ -3950,7 +3876,7 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "    </div>\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
-    "    <div ng-show=\"parentFolder\" class=\"row\">\n" +
+    "    <div ng-if=\"parentFolder\" class=\"row\">\n" +
     "\n" +
     "        <!-- Title -->\n" +
     "        <div class=\"col-xs-10 col-xs-offset-2 col-md-11 col-md-offset-1\">\n" +
@@ -4029,7 +3955,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "<div class=\"row\">\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
-    "    <div ng-show=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <a href=\"{{ parentFolder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-hand-o-left fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
@@ -4039,7 +3965,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
     "            <span class=\"name\">\n" +
@@ -4049,7 +3975,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"file in files track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-repeat=\"movement in movements track by movement.id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
     "            <div>\n" +
     "\n" +
@@ -4059,14 +3985,14 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "                <div class=\"tools text-left\">\n" +
     "\n" +
     "                    <!-- Movement date -->\n" +
-    "                    <span style=\"color: #aaa\">\n" +
-    "                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
+    "                    <span>\n" +
+    "                        {{ movement.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
     "                    </span>\n" +
     "                    <br>\n" +
     "\n" +
     "                    <!-- Movement title -->\n" +
-    "                    <span style=\"color: #999\">\n" +
-    "                        {{ file.title | characters:25 }}\n" +
+    "                    <span>\n" +
+    "                        {{ movement.title | characters:25 }}\n" +
     "                    </span>\n" +
     "\n" +
     "                    <!-- Movement actions -->\n" +
@@ -4090,22 +4016,29 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "                                </li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"shareMovement(file)\"\n" +
+    "                                        ng-click=\"selectThumbnail(movement)\"\n" +
     "                                        href=\"javascript:;\">\n" +
-    "                                        Share\n" +
+    "                                        Choose Thumbnail\n" +
     "                                    </a>\n" +
     "                                </li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"editMovement(file)\"\n" +
+    "                                        ng-click=\"editMovement(movement)\"\n" +
     "                                        href=\"javascript:;\">\n" +
     "                                        Edit\n" +
+    "                                    </a>\n" +
+    "                                </li>\n" +
+    "                                <li>\n" +
+    "                                    <a\n" +
+    "                                        ng-click=\"shareMovement(movement)\"\n" +
+    "                                        href=\"javascript:;\">\n" +
+    "                                        Share\n" +
     "                                    </a>\n" +
     "                                </li>\n" +
     "                                <li role=\"separator\" class=\"divider\"></li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"deleteMovement(file)\"\n" +
+    "                                        ng-click=\"deleteResource('movement', movement)\"\n" +
     "                                        href=\"javascript:;\">\n" +
     "                                        Delete\n" +
     "                                    </a>\n" +
@@ -4120,7 +4053,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "\n" +
     "    <!-- No movements or folders to show -->\n" +
     "    <div\n" +
-    "        ng-if=\"folders.length + files.length === 0\"\n" +
+    "        ng-if=\"folders.length + movements.length === 0\"\n" +
     "        class=\"col-xs-6 col-md-8 col-lg-9\"\n" +
     "        style=\"margin-top: 35px\">\n" +
     "\n" +
@@ -4142,7 +4075,7 @@ angular.module("movements/explorer/partials/small-tiles-layout.html", []).run(["
     "<div class=\"row\">\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
-    "    <div ng-show=\"parentFolder\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
     "        <a href=\"{{ parentFolder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-hand-o-left fa-2x\"></i>\n" +
     "            <span class=\"name\">\n" +
@@ -4152,28 +4085,28 @@ angular.module("movements/explorer/partials/small-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
-    "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "        <a href=\"{{ ::folder.href }}\" class=\"folder\">\n" +
     "            <i class=\"fa fa-folder-open fa-2x\"></i>\n" +
     "            <span class=\"name\">\n" +
-    "                {{ folder.name | characters:20 }}\n" +
+    "                {{ ::folder.name | characters:20 }}\n" +
     "            </span>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
-    "        <span class=\"file\">\n" +
+    "    <div ng-repeat=\"movement in movements track by movement.id\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "        <span class=\"file\" title=\"{{ ::movement.title }}\">\n" +
     "            <i class=\"fa fa-files-o fa-2x\"></i>\n" +
     "            <span class=\"name\">\n" +
-    "                {{ movement.title | characters:20 }}\n" +
+    "                {{ ::movement.title | characters:10 }}\n" +
     "            </span>\n" +
     "        </span>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- No movements or folders to show -->\n" +
     "    <div\n" +
-    "        ng-show=\"folders.length === 0 && movements.length === 0\"\n" +
+    "        ng-if=\"folders.length + movements.length === 0\"\n" +
     "        class=\"col-xs-8 col-md-9 col-lg-11 text-center\">\n" +
     "\n" +
     "        <h3>There are no movements to display.</h3>\n" +
@@ -4183,6 +4116,36 @@ angular.module("movements/explorer/partials/small-tiles-layout.html", []).run(["
     "        Start by <b><a href=\"#/movements/upload\">importing</a></b> your own movements.\n" +
     "    </div>\n" +
     "</div>\n" +
+    "");
+}]);
+
+angular.module("overlay/movement-editor/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("overlay/movement-editor/footer.html",
+    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
+    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Save changes</button>\n" +
+    "");
+}]);
+
+angular.module("overlay/movement-editor/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("overlay/movement-editor/index.html",
+    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
+    "    In Development.\n" +
+    "</h3>\n" +
+    "");
+}]);
+
+angular.module("overlay/thumbnail-selector/footer.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("overlay/thumbnail-selector/footer.html",
+    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
+    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Use as thumbnail</button>\n" +
+    "");
+}]);
+
+angular.module("overlay/thumbnail-selector/index.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("overlay/thumbnail-selector/index.html",
+    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
+    "    In Development.\n" +
+    "</h3>\n" +
     "");
 }]);
 
@@ -4419,47 +4382,6 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "");
 }]);
 
-angular.module("partials/modal.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("partials/modal.html",
-    "<div class=\"modal fade\" id=\"overlay-screen\" tabindex=\"-1\" data-ng-controller=\"ModalController\">\n" +
-    "    <div class=\"modal-dialog modal-responsive\">\n" +
-    "        <div class=\"modal-content\">\n" +
-    "\n" +
-    "            <!-- Overlay title -->\n" +
-    "            <header class=\"modal-header\">\n" +
-    "                <button\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"close\"\n" +
-    "                    data-dismiss=\"modal\"\n" +
-    "                    aria-label=\"Close\">\n" +
-    "\n" +
-    "                    <span aria-hidden=\"true\">&times;</span>\n" +
-    "                </button>\n" +
-    "                <h2 class=\"modal-title text-center\" id=\"overlay-screen-title\">{{ title }}</h2>\n" +
-    "            </header>\n" +
-    "\n" +
-    "            <!-- Overlay content -->\n" +
-    "            <div\n" +
-    "                data-ng-show=\"bodyTemplate.length > 0\"\n" +
-    "                data-ng-include=\"bodyTemplate\"\n" +
-    "                class=\"modal-body\">\n" +
-    "            </div>\n" +
-    "            <div data-ng-show=\"bodyTemplate.length === 0\" class=\"modal-body\">\n" +
-    "                Nothing here...\n" +
-    "            </div>\n" +
-    "\n" +
-    "            <!-- Overlay footer -->\n" +
-    "            <footer\n" +
-    "                data-ng-show=\"footerTemplate.length > 0\"\n" +
-    "                data-ng-include=\"footerTemplate\"\n" +
-    "                class=\"modal-footer\">\n" +
-    "            </footer>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("partials/navigation.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/navigation.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
@@ -4689,6 +4611,48 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            {{ global.appVersion }}\n" +
     "		</li>\n" +
     "    </ul>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("partials/overlay.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/overlay.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"modal fade\" id=\"overlay-screen\" tabindex=\"-1\">\n" +
+    "    <div class=\"modal-dialog modal-responsive\">\n" +
+    "        <div class=\"modal-content\">\n" +
+    "\n" +
+    "            <!-- Overlay title -->\n" +
+    "            <header class=\"modal-header\">\n" +
+    "                <button\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"close\"\n" +
+    "                    data-dismiss=\"modal\"\n" +
+    "                    aria-label=\"Close\">\n" +
+    "\n" +
+    "                    <span aria-hidden=\"true\">&times;</span>\n" +
+    "                </button>\n" +
+    "                <h2 class=\"modal-title text-center\" id=\"overlay-screen-title\">\n" +
+    "                    {{ global.data.overlay.title }}\n" +
+    "                </h2>\n" +
+    "            </header>\n" +
+    "\n" +
+    "            <!-- Overlay content -->\n" +
+    "            <div\n" +
+    "                data-ng-if=\"global.data.overlay.bodyTemplate.length > 0\"\n" +
+    "                data-ng-include=\"global.data.overlay.bodyTemplate\"\n" +
+    "                class=\"modal-body\">\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Overlay footer -->\n" +
+    "            <footer\n" +
+    "                data-ng-if=\"global.data.overlay.footerTemplate.length > 0\"\n" +
+    "                data-ng-include=\"global.data.overlay.footerTemplate\"\n" +
+    "                class=\"modal-footer\">\n" +
+    "            </footer>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -6190,20 +6154,5 @@ angular.module("screenings/view/index.html", []).run(["$templateCache", function
     "        </h2>\n" +
     "    </div>\n" +
     "</div>\n" +
-    "");
-}]);
-
-angular.module("thumbnail-selector/footer.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("thumbnail-selector/footer.html",
-    "<button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Cancel</button>\n" +
-    "<button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">Use as thumbnail</button>\n" +
-    "");
-}]);
-
-angular.module("thumbnail-selector/index.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("thumbnail-selector/index.html",
-    "<h3 style=\"color: #ccc; text-align: center; margin: 100px auto\">\n" +
-    "    In Development.\n" +
-    "</h3>\n" +
     "");
 }]);

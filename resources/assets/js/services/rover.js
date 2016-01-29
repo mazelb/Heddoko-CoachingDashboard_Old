@@ -151,8 +151,8 @@ angular.module('app.rover', [])
         this.openThumbnailSelector = function() {
             this.openOverlay(
                 'Choose Thumbnail Cover',
-                'thumbnail-selector/index.html',
-                'thumbnail-selector/footer.html'
+                'overlay/thumbnail-selector/index.html',
+                'overlay/thumbnail-selector/footer.html'
             );
         };
 
@@ -162,19 +162,22 @@ angular.module('app.rover', [])
         this.openMovementEditor = function() {
             this.openOverlay(
                 'Movement Editor',
-                'movement-editor/index.html',
-                'movement-editor/footer.html'
+                'overlay/movement-editor/index.html',
+                'overlay/movement-editor/footer.html'
             );
         };
 
         /**
-         * Opens the overlay screen.
+         * Opens the overlay screen (modal).
+         *
+         * @param string title
+         * @param string bodyTemplate
+         * @param stirng footerTemplate
          */
         this.openOverlay = function(title, bodyTemplate, footerTemplate) {
-            this.debug('Opening overlay "' + title + '"');
 
             // Update overlay data.
-            this.overlayData = {
+            Utilities.data.overlay = {
                 title: title,
                 bodyTemplate: bodyTemplate,
                 footerTemplate: footerTemplate

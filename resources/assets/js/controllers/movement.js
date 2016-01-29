@@ -236,6 +236,13 @@ angular.module('app.controllers')
         };
 
         /**
+         * Opens the thumbnail overlay.
+         */
+        $scope.selectThumbnail = function() {
+            Rover.openThumbnailSelector();
+        };
+
+        /**
          * Opens the movement editor overlay.
          */
         $scope.editMovement = function() {
@@ -268,10 +275,12 @@ angular.module('app.controllers')
             {
                 switch (type)
                 {
+                    case 'folder':
                     case 'folders':
                         $scope.deleteFolders([resource.id]);
                         break;
 
+                    case 'movement':
                     case 'movements':
                         $scope.deleteMovements([resource.id]);
                         break;
