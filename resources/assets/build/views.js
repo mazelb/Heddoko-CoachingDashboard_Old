@@ -3486,6 +3486,7 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "            <div ng-repeat=\"file in global.data.importedMovements\" ng-if=\"file && file.id\" class=\"movement-import row\">\n" +
     "\n" +
     "                <div ng-show=\"!file.isUpdating\">\n" +
+    "\n" +
     "                    <!-- Movement preview -->\n" +
     "                    <div class=\"col-md-2 col-md-offset-2\">\n" +
     "                        <div class=\"row\">\n" +
@@ -3558,8 +3559,6 @@ angular.module("import/index.html", []).run(["$templateCache", function($templat
     "                <!-- Updating movement details -->\n" +
     "                <div ng-show=\"file.isUpdating\" class=\"text-center\" style=\"margin: 50px auto;\">\n" +
     "                    <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
-    "\n" +
-    "                    {{ file }}\n" +
     "                </div>\n" +
     "            </div>\n" +
     "\n" +
@@ -3744,7 +3743,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "                <!-- Delete selection -->\n" +
     "                <button\n" +
-    "                    ng-if=\"global.data.selectedMovements.length > 0 || global.data.selectedMovementFolders.length > 0\"\n" +
+    "                    ng-if=\"global.data.selectedMovementFiles.length > 0 || global.data.selectedMovementFolders.length > 0\"\n" +
     "                    type=\"button\"\n" +
     "                    class=\"btn btn-danger\">\n" +
     "\n" +
@@ -3863,7 +3862,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "                    <!-- Edit resource -->\n" +
     "                    <button\n" +
-    "                        ng-class=\"{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length !== 1)}\"\n" +
+    "                        ng-class=\"{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length !== 1)}\"\n" +
     "                        type=\"button\"\n" +
     "                        class=\"btn btn-default\">\n" +
     "\n" +
@@ -3873,7 +3872,7 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "                    <!-- Delete resources -->\n" +
     "                    <button\n" +
     "                        ng-click=\"deleteResource()\"\n" +
-    "                        ng-class=\"{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length === 0)}\"\n" +
+    "                        ng-class=\"{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length === 0)}\"\n" +
     "                        type=\"button\"\n" +
     "                        class=\"btn btn-danger\">\n" +
     "\n" +
@@ -3963,7 +3962,7 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders\" ng-hide=\"folder === null\" class=\"row\">\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" ng-hide=\"folder === null\" class=\"row\">\n" +
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
@@ -3983,7 +3982,7 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements\" ng-hide=\"movement === null\" class=\"row\">\n" +
+    "    <div ng-repeat=\"movement in movements track by movement.id\" class=\"row\">\n" +
     "\n" +
     "        <!-- Checkbox -->\n" +
     "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
@@ -4008,7 +4007,7 @@ angular.module("movements/explorer/partials/details-layout.html", []).run(["$tem
     "    </div>\n" +
     "\n" +
     "    <!-- No movements or folders to show -->\n" +
-    "    <div ng-show=\"folders.length === 0 && movements.length === 0\" class=\"row text-center\">\n" +
+    "    <div ng-if=\"folders.length + movements.length === 0\" class=\"row text-center\">\n" +
     "\n" +
     "        <div class=\"col-xs-12\" style=\"margin-top: 20px; margin-bottom: 20px;\">\n" +
     "            <h3>There are no movements to display.</h3>\n" +
@@ -4050,7 +4049,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "    </div>\n" +
     "\n" +
     "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "    <div ng-repeat=\"file in files track by id\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
     "        <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
     "            <div>\n" +
     "\n" +
@@ -4061,13 +4060,13 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "\n" +
     "                    <!-- Movement date -->\n" +
     "                    <span style=\"color: #aaa\">\n" +
-    "                        {{ movement.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
+    "                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
     "                    </span>\n" +
     "                    <br>\n" +
     "\n" +
     "                    <!-- Movement title -->\n" +
     "                    <span style=\"color: #999\">\n" +
-    "                        {{ movement.title | characters:25 }}\n" +
+    "                        {{ file.title | characters:25 }}\n" +
     "                    </span>\n" +
     "\n" +
     "                    <!-- Movement actions -->\n" +
@@ -4091,14 +4090,14 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "                                </li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"shareMovement(movement)\"\n" +
+    "                                        ng-click=\"shareMovement(file)\"\n" +
     "                                        href=\"javascript:;\">\n" +
     "                                        Share\n" +
     "                                    </a>\n" +
     "                                </li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"editMovement(movement)\"\n" +
+    "                                        ng-click=\"editMovement(file)\"\n" +
     "                                        href=\"javascript:;\">\n" +
     "                                        Edit\n" +
     "                                    </a>\n" +
@@ -4106,7 +4105,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "                                <li role=\"separator\" class=\"divider\"></li>\n" +
     "                                <li>\n" +
     "                                    <a\n" +
-    "                                        ng-click=\"deleteMovement(movement)\"\n" +
+    "                                        ng-click=\"deleteMovement(file)\"\n" +
     "                                        href=\"javascript:;\">\n" +
     "                                        Delete\n" +
     "                                    </a>\n" +
@@ -4121,7 +4120,7 @@ angular.module("movements/explorer/partials/large-tiles-layout.html", []).run(["
     "\n" +
     "    <!-- No movements or folders to show -->\n" +
     "    <div\n" +
-    "        ng-show=\"folders.length === 0 && movements.length === 0\"\n" +
+    "        ng-if=\"folders.length + files.length === 0\"\n" +
     "        class=\"col-xs-6 col-md-8 col-lg-9\"\n" +
     "        style=\"margin-top: 35px\">\n" +
     "\n" +

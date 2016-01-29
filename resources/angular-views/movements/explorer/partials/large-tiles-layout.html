@@ -24,7 +24,7 @@
     </div>
 
     <!-- Movements -->
-    <div ng-repeat="movement in movements track by id" class="col-xs-6 col-md-4 col-lg-3">
+    <div ng-repeat="file in files track by id" class="col-xs-6 col-md-4 col-lg-3">
         <div class="aspect-ratio aspect-4-3 active-element text-center">
             <div>
 
@@ -35,13 +35,13 @@
 
                     <!-- Movement date -->
                     <span style="color: #aaa">
-                        {{ movement.createdAt | mysqlDate : 'MMMM d, h:mma' }}
+                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}
                     </span>
                     <br>
 
                     <!-- Movement title -->
                     <span style="color: #999">
-                        {{ movement.title | characters:25 }}
+                        {{ file.title | characters:25 }}
                     </span>
 
                     <!-- Movement actions -->
@@ -65,14 +65,14 @@
                                 </li>
                                 <li>
                                     <a
-                                        ng-click="shareMovement(movement)"
+                                        ng-click="shareMovement(file)"
                                         href="javascript:;">
                                         Share
                                     </a>
                                 </li>
                                 <li>
                                     <a
-                                        ng-click="editMovement(movement)"
+                                        ng-click="editMovement(file)"
                                         href="javascript:;">
                                         Edit
                                     </a>
@@ -80,7 +80,7 @@
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a
-                                        ng-click="deleteMovement(movement)"
+                                        ng-click="deleteMovement(file)"
                                         href="javascript:;">
                                         Delete
                                     </a>
@@ -95,7 +95,7 @@
 
     <!-- No movements or folders to show -->
     <div
-        ng-show="folders.length === 0 && movements.length === 0"
+        ng-if="folders.length + files.length === 0"
         class="col-xs-6 col-md-8 col-lg-9"
         style="margin-top: 35px">
 

@@ -163,9 +163,8 @@ class MovementController extends Controller
         $deleted = false;
         if (strpos($id, ',') !== false)
         {
-            $movements = $builder->whereIn('id', explode(',', $id))->lists('id');
+            $movements = $builder->whereIn('id', explode(',', $id))->lists('id')->toArray();
 
-            // TODO: find out why this doesn't work.
             if (count($movements)) {
                 $deleted = Movement::destroy($movements);
             }

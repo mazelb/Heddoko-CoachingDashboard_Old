@@ -15,7 +15,7 @@
 
                 <!-- Delete selection -->
                 <button
-                    ng-if="global.data.selectedMovements.length > 0 || global.data.selectedMovementFolders.length > 0"
+                    ng-if="global.data.selectedMovementFiles.length > 0 || global.data.selectedMovementFolders.length > 0"
                     type="button"
                     class="btn btn-danger">
 
@@ -134,7 +134,7 @@
 
                     <!-- Edit resource -->
                     <button
-                        ng-class="{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length !== 1)}"
+                        ng-class="{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length !== 1)}"
                         type="button"
                         class="btn btn-default">
 
@@ -144,7 +144,7 @@
                     <!-- Delete resources -->
                     <button
                         ng-click="deleteResource()"
-                        ng-class="{disabled: (global.data.selectedMovements.length + global.data.selectedMovementFolders.length === 0)}"
+                        ng-class="{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length === 0)}"
                         type="button"
                         class="btn btn-danger">
 

@@ -37,7 +37,7 @@
     </div>
 
     <!-- Other folders -->
-    <div ng-repeat="folder in folders" ng-hide="folder === null" class="row">
+    <div ng-repeat="folder in folders track by $index" ng-hide="folder === null" class="row">
 
         <!-- Checkbox -->
         <div class="col-xs-2 col-md-1 text-right">
@@ -57,7 +57,7 @@
     </div>
 
     <!-- Movements -->
-    <div ng-repeat="movement in movements" ng-hide="movement === null" class="row">
+    <div ng-repeat="movement in movements track by movement.id" class="row">
 
         <!-- Checkbox -->
         <div class="col-xs-2 col-md-1 text-right">
@@ -82,7 +82,7 @@
     </div>
 
     <!-- No movements or folders to show -->
-    <div ng-show="folders.length === 0 && movements.length === 0" class="row text-center">
+    <div ng-if="folders.length + movements.length === 0" class="row text-center">
 
         <div class="col-xs-12" style="margin-top: 20px; margin-bottom: 20px;">
             <h3>There are no movements to display.</h3>

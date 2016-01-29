@@ -14,8 +14,10 @@ angular.module('app.controllers')
         // Fetching movement data flag.
         Utilities.data.isFetchingMovementData = false;
 
-        // Setup namespaces to store selected movements.
-        Utilities.createDataNamespace('selectedMovements');
+        // Setup namespaces.
+        Utilities.createDataNamespace('movementFiles');
+        Utilities.createDataNamespace('movementFolders');
+        Utilities.createDataNamespace('selectedMovementFiles');
         Utilities.createDataNamespace('selectedMovementFolders');
 
         // Setup layout data.
@@ -39,8 +41,8 @@ angular.module('app.controllers')
 
         // Setup path data.
         $scope.path = '/';
+        $scope.files = [];
         $scope.folders = [];
-        $scope.movements = [];
         $scope.parentFolder = false;
         $scope.rootProfile = false;
 
@@ -65,8 +67,9 @@ angular.module('app.controllers')
             profiles = profiles || Utilities.getDataList('profile');
 
             // Reset data.
-            $scope.folders = [];
-            Utilities.resetDataNamespace('selectedMovements');
+            Utilities.resetDataNamespace('movementFiles');
+            Utilities.resetDataNamespace('movementFolders');
+            Utilities.resetDataNamespace('selectedMovementFiles');
             Utilities.resetDataNamespace('selectedMovementFolders');
 
             if (profiles.length)
@@ -74,13 +77,16 @@ angular.module('app.controllers')
                 angular.forEach(profiles, function(profile) {
                     if (profile.id && profile.id > 0)
                     {
-                        $scope.folders.push({
+                        Utilities.setData('movementFolders', profile.id, {
                             name: profile.firstName + ' ' + profile.lastName,
                             href: '#/movements/' + profile.id
                         });
                     }
                 });
             }
+
+            $scope.movements = Utilities.getDataArray('movementFiles');
+            $scope.folders = Utilities.getDataArray('movementFolders');
 
             Utilities.data.isFetchingMovementData = false;
         };
@@ -93,14 +99,15 @@ angular.module('app.controllers')
         $scope.updateFolders = function(folders) {
 
             // Reset data.
-            $scope.folders = [];
-            Utilities.resetDataNamespace('selectedMovements');
+            Utilities.resetDataNamespace('movementFiles');
+            Utilities.resetDataNamespace('movementFolders');
+            Utilities.resetDataNamespace('selectedMovementFiles');
             Utilities.resetDataNamespace('selectedMovementFolders');
 
             if (folders && folders.length)
             {
                 angular.forEach(folders, function(folder) {
-                    $scope.folders.push({
+                    Utilities.setData('movementFolders', folder.id, {
                         name: folder.name,
                         href: '#/movements/' +
                                 folder.profileId + '/' +
@@ -121,7 +128,6 @@ angular.module('app.controllers')
             Utilities.time('Fetching Movement Data');
 
             Utilities.data.isFetchingMovementData = true;
-
             folderId = folderId || 0;
 
             FolderService.get($scope.rootProfile.id, folderId).then(
@@ -160,7 +166,11 @@ angular.module('app.controllers')
                     }
 
                     // Update movment data.
-                    $scope.movements = response.data.movements;
+                    angular.forEach(response.data.movements, function(movement) {
+                        Utilities.setData('movementFiles', movement.id, movement);
+                    });
+                    $scope.movements = Utilities.getDataArray('movementFiles');
+                    $scope.folders = Utilities.getDataArray('movementFolders');
 
                     Utilities.data.isFetchingMovementData = false;
                 },
@@ -183,14 +193,20 @@ angular.module('app.controllers')
             // Toggle all resources.
             if (!type && !resource)
             {
-                angular.forEach($scope.folders, function(folder) {
-                    folder.selected = !folder.selected;
-                    Utilities.setData('selectedMovementFolders', folder.id, {id: folder.id});
+                angular.forEach(Utilities.getDataList('movementFiles'), function(movement) {
+                    if (movement && movement.id)
+                    {
+                        movement.selected = !movement.selected;
+                        Utilities.setData('selectedMovementFiles', movement.id, {id: movement.id});
+                    }
                 });
 
-                angular.forEach($scope.movements, function(movement) {
-                    movement.selected = !movement.selected;
-                    Utilities.setData('selectedMovements', movement.id, {id: movement.id});
+                angular.forEach(Utilities.getDataList('movementFolders'), function(folder) {
+                    if (folder && folder.id)
+                    {
+                        folder.selected = !folder.selected;
+                        Utilities.setData('selectedMovementFolders', folder.id, {id: folder.id});
+                    }
                 });
 
                 return;
@@ -200,7 +216,7 @@ angular.module('app.controllers')
             switch (type)
             {
                 case 'movement':
-                    namespace = 'selectedMovements';
+                    namespace = 'selectedMovementFiles';
                     break;
 
                 case 'folder':
@@ -275,9 +291,8 @@ angular.module('app.controllers')
                 }
 
                 // Delete movements.
-                if (Utilities.getDataLength('selectedMovements')) {
-                    console.log(Utilities.getDataArray('selectedMovements'));
-                    $scope.deleteMovements(Utilities.getDataArray('selectedMovements').map(
+                if (Utilities.getDataLength('selectedMovementFiles')) {
+                    $scope.deleteMovements(Utilities.getDataArray('selectedMovementFiles').map(
                         function(movement) {
                             return movement.id;
                         }
@@ -304,15 +319,11 @@ angular.module('app.controllers')
                     Utilities.timeEnd('Deleting Folders');
 
                     // Remove deleted folders.
-                    var testStr = ',' + IDs.join() + ',';
-                    angular.forEach($scope.folders, function(folder) {
-
-                        // Check if folder was deleted.
-                        if (folder && testStr.indexOf(',' + folder.id + ',') > -1) {
-                            Utilities.setData('selectedMovementFolders', folder.id, null);
-                            folder = null;
-                        }
-                    });
+                    for (var i = 0; i < IDs.length; i++) {
+                        Utilities.setData('movementFolders', IDs[i], null);
+                        Utilities.setData('selectedMovementFolders', IDs[i], null);
+                    }
+                    $scope.folders = Utilities.getDataArray('movementFolders');
 
                     Utilities.data.isFetchingMovementData = false;
                 },
@@ -345,15 +356,11 @@ angular.module('app.controllers')
                     Utilities.timeEnd('Deleting Movements');
 
                     // Remove deleted movements.
-                    var testStr = ',' + IDs.join() + ',';
-                    angular.forEach($scope.movements, function(movement, index) {
-
-                        // Check if folder was deleted.
-                        if (movement && testStr.indexOf(',' + movement.id + ',') > -1) {
-                            Utilities.setData('selectedMovements', movement.id, null);
-                            $scope.movements[index] = null;
-                        }
-                    });
+                    for (var i = 0; i < IDs.length; i++) {
+                        Utilities.setData('movementFiles', IDs[i], null);
+                        Utilities.setData('selectedMovementFiles', IDs[i], null);
+                    }
+                    $scope.movements = Utilities.getDataArray('movementFiles');
 
                     Utilities.data.isFetchingMovementData = false;
                 },
