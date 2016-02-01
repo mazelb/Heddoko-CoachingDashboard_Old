@@ -7,9 +7,10 @@
  */
 namespace App\Http\Controllers\Auth;
 
+use Validator;
+
 use App\Models\User;
 use App\Models\Role;
-use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -43,11 +44,11 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
 		return Validator::make($data, [
-			'first_name' => 'required|max:100',
-			'last_name' => 'required|max:100',
+			'firstName' => 'required|max:100',
+			'lastName' => 'required|max:100',
 			'email' => 'required|email|max:255',
 			'username' => 'required|max:255|unique:users',
-			'password' => 'required|confirmed|min:6',
+			'password' => 'required|confirmed|min:6|max:60',
 		]);
     }
 
@@ -64,13 +65,14 @@ class AuthController extends Controller
 			'email' => $data['email'],
 			'username' => $data['username'],
 			'password' => bcrypt($data['password']),
-			'first_name' => $data['first_name'],
-			'last_name' => @$data['last_name'],
+			'firstName' => $data['firstName'],
+			'lastName' => @$data['lastName'],
 			'phone' => @$data['phone'],
 			'country' => isset($data['country']) ? $data['country'] : 'US',
 		]);
 
         // Attach role to user.
+        // TODO: replace Zizaco/Entrust with Laravel Authorization.
         switch ($data['role'])
         {
             case 'admin':

@@ -13,9 +13,11 @@
 Route::group(['prefix' => 'api'], function()
 {
     /**
-     * API Draft 1
+     * API Draft 1.
+     *
+     * Middleware for these routes are defined in App\Providers\AppAuthenticationProvider
      */
-    Route::group(['prefix' => 'v1', 'middleware' => 'auth'], function()
+    Route::group(['prefix' => 'v1'], function()
     {
         // Profile endpoints.
         Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');
@@ -50,7 +52,7 @@ Route::group(['prefix' => 'api'], function()
         Route::post('users/{idOrHash}/avatar', 'UserController@saveAvatar');
         Route::delete('users/{idOrHash}/avatar', 'UserController@destroyAvatar');
         Route::resource('users', 'UserController', [
-            'only' => ['index', 'store', 'show', 'update', 'destroy']
+            'only' => ['store', 'show', 'update', 'destroy']
         ]);
 
         // Tag endpoints.

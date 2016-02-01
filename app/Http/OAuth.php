@@ -26,6 +26,6 @@ class OAuth
             'password' => $password,
         ];
 
-        return Auth::once($credentials) ? Auth::user()->id : false;
+        return Auth::attempt($credentials) ? Auth::user()->id : false;
     }
 }

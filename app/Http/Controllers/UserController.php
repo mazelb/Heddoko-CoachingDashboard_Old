@@ -10,8 +10,10 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Image;
+use Validator;
 
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,24 +28,54 @@ class UserController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Stores a newly created resource in storage.
      *
      * @return Response
      */
     public function store()
     {
-        // Create new user.
-        $user = User::create($this->request->only([
-            'username',
-            'password',
-            'first_name',
-            'last_name',
-            'phone',
-            'email',
-            'config'
-        ]));
+        $validator = Validator::make($this->request->all(), [
+			'firstName' => 'required|max:100',
+			'lastName' => 'required|max:100',
+			'email' => 'required|email|max:255',
+			'username' => 'required|max:255|unique:users',
+			'password' => 'required|confirmed|min:6|max:60',
+		]);
 
-        return $user;
+        if ($validator->fails()) {
+            return response($validator->errors()->first(), 400);
+        }
+
+        // Create new user.
+        $data = $this->request->all();
+		$user = User::create([
+			'email' => $data['email'],
+			'username' => $data['username'],
+			'password' => bcrypt($data['password']),
+			'firstName' => $data['firstName'],
+			'lastName' => $data['lastName'],
+			'phone' => @$data['phone'],
+			'country' => isset($data['country']) ? $data['country'] : 'US',
+		]);
+
+        // Attach role to user.
+        // TODO: replace Zizaco/Entrust with Laravel Authorization.
+        switch (@$data['role'])
+        {
+            case 'admin':
+                if ($role = Role::where('name', 'admin')->first()) {
+                    $user->attachRole($role->id);
+                }
+                break;
+
+            case 'manager':
+                if ($role = Role::where('name', 'manager')->first()) {
+                    $user->attachRole($role->id);
+                }
+                break;
+        }
+
+		return $user;
     }
 
     /**

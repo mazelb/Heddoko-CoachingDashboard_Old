@@ -47,8 +47,8 @@
                         maxlength="100"
                         class="form-control"
                         placeholder="First Name"
-                        name="first_name"
-                        value="{{ old('first_name') }}">
+                        name="firstName"
+                        value="{{ old('firstName') }}">
                 </div>
             </div>
 
@@ -63,8 +63,8 @@
                         maxlength="100"
                         class="form-control"
                         placeholder="Last Name"
-                        name="last_name"
-                        value="{{ old('last_name') }}">
+                        name="lastName"
+                        value="{{ old('lastName') }}">
                 </div>
             </div>
 
