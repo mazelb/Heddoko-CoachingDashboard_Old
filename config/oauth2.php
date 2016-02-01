@@ -1,5 +1,4 @@
 <?php
-
 /*
  * This file is part of OAuth 2.0 Laravel.
  *
@@ -29,18 +28,24 @@ return [
 
     'grant_types' => [
 
-        // Resource owner credentials grant: for Android & iOS apps.
-        'password' => [
-            'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
-            'callback' => '\App\OAuth@verifyCredentials',
-            'access_token_ttl' => 3600
-        ],
-
         // Authorization code grant: for web apps.
         'authorization_code' => [
             'class' => '\League\OAuth2\Server\Grant\AuthCodeGrant',
             'access_token_ttl' => 3600,
             'auth_token_ttl' => 60
+        ],
+
+        // Resource owner credentials grant: for Android & iOS apps.
+        'password' => [
+            'class' => '\League\OAuth2\Server\Grant\PasswordGrant',
+            'callback' => '\App\Http\OAuth@verifyCredentials',
+            'access_token_ttl' => 3600
+        ],
+
+        // Client credentials grant: for Heddoko mobile apps.
+        'client_credentials' => [
+            'class' => '\League\OAuth2\Server\Grant\ClientCredentialsGrant',
+            'access_token_ttl' => 3600
         ],
 
         // Refresh token grant: for refreshing tokens.

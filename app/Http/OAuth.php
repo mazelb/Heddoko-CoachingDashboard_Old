@@ -6,7 +6,9 @@
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    December 2015
  */
-namespace App;
+namespace App\Http;
+
+use Auth;
 
 class OAuth
 {
@@ -20,7 +22,7 @@ class OAuth
     public function verifyCredentials($username, $password)
     {
         $credentials = [
-            'email'    => $username,
+            'username' => $username,
             'password' => $password,
         ];
 

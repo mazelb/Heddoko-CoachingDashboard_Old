@@ -26,7 +26,7 @@ class OAuthController extends Controller
     }
 
     /**
-     *
+     * Issues an access token.
      */
     public function accessToken()
     {

@@ -10,48 +10,72 @@
 /**
  * API routes.
  */
-Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function()
+Route::group(['prefix' => 'api'], function()
 {
-    // Profile endpoints.
-    Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');
-    Route::delete('profiles/{id}/avatar', 'ProfileController@destroyAvatar');
-    Route::resource('profiles', 'ProfileController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+    /**
+     * API Draft 1
+     */
+    Route::group(['prefix' => 'v1', 'middleware' => 'auth'], function()
+    {
+        // Profile endpoints.
+        Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');
+        Route::delete('profiles/{id}/avatar', 'ProfileController@destroyAvatar');
+        Route::resource('profiles', 'ProfileController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // Folder endpoints.
-    Route::resource('profiles.folders', 'FolderController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+        // Folder endpoints.
+        Route::resource('profiles.folders', 'FolderController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // Movement endpoints.
-    Route::resource('movements', 'MovementController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+        // Movement endpoints.
+        Route::resource('movements', 'MovementController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // Screening endpoints.
-    Route::resource('screenings', 'ScreeningController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+        // Screening endpoints.
+        Route::resource('screenings', 'ScreeningController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // Group endpoints.
-    Route::post('groups/{id}/avatar', 'GroupController@saveAvatar');
-    Route::delete('groups/{id}/avatar', 'GroupController@destroyAvatar');
-    Route::resource('groups', 'GroupController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+        // Group endpoints.
+        Route::post('groups/{id}/avatar', 'GroupController@saveAvatar');
+        Route::delete('groups/{id}/avatar', 'GroupController@destroyAvatar');
+        Route::resource('groups', 'GroupController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // User endpoints.
-    Route::post('users/{idOrHash}/avatar', 'UserController@saveAvatar');
-    Route::delete('users/{idOrHash}/avatar', 'UserController@destroyAvatar');
-    Route::resource('users', 'UserController', [
-        'only' => ['index', 'store', 'show', 'update', 'destroy']
-    ]);
+        // User endpoints.
+        Route::post('users/{idOrHash}/avatar', 'UserController@saveAvatar');
+        Route::delete('users/{idOrHash}/avatar', 'UserController@destroyAvatar');
+        Route::resource('users', 'UserController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
 
-    // Tag endpoints.
-    Route::resource('tags', 'TagController', [
-        'only' => ['index', 'store']
-    ]);
+        // Tag endpoints.
+        Route::resource('tags', 'TagController', [
+            'only' => ['index', 'store']
+        ]);
+    });
+
+    /**
+     * OAuth2
+     */
+    Route::group(['prefix' => 'oauth2'], function()
+    {
+        Route::post('token', 'Auth\OAuthController@accessToken');
+        Route::get('authorize', [
+            'as' => 'oauth.authorize.get',
+            'use' => 'Auth\OAuthController@showAuthorizationForm',
+            'middleware' => ['oauth.authorization', 'auth']
+        ]);
+        Route::post('authorize', [
+            'as' => 'oauth.authorize.post',
+            'use' => 'Auth\OAuthController@authorize',
+            'middleware' => ['csrf', 'check-authorization-params', 'auth']
+        ]);
+    });
 });
 
 /**
@@ -68,18 +92,6 @@ Route::get('reset', 'Auth\PasswordController@getEmail')->name('auth.password');
 Route::post('reset/email', 'Auth\PasswordController@postEmail')->name('auth.password.post');
 Route::get('reset/{token}', 'Auth\PasswordController@getReset')->name('auth.reset');
 Route::post('reset', 'Auth\PasswordController@postReset')->name('auth.reset.post');
-
-Route::post('oauth/token', 'Auth\OAuthController@accessToken');
-Route::get('oauth/authorize', [
-    'as' => 'oauth.authorize.get',
-    'use' => 'Auth\OAuthController@showAuthorizationForm',
-    'middleware' => ['oauth.authorization', 'auth']
-]);
-Route::post('oauth/authorize', [
-    'as' => 'oauth.authorize.post',
-    'use' => 'Auth\OAuthController@authorize',
-    'middleware' => ['csrf', 'check-authorization-params', 'auth']
-]);
 
 /**
  * General Angular app routes.
