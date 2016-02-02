@@ -13,6 +13,17 @@ angular.module('app.controllers')
     function($scope, $routeParams, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
         Utilities.info('ProfileController');
 
+        // Data for profile list.
+        $scope.profileList = [];
+
+        // Parameters for profile list.
+        $scope.profileListParams = {
+            firstName: 'First Name',
+            lastName: 'Last Name',
+            group: 'Team',
+            createdAt: 'Date'
+        };
+
         // Currently displayed profile.
         $scope.profile = {id: 0};
         if ($routeParams.profileId > 0)
@@ -65,9 +76,26 @@ angular.module('app.controllers')
         // Alias for the selected group.
         $scope.group = $scope.global.getSelectedGroup();
 
-        // Alias for the list of profiles.
-        // $scope.profiles = $scope.global.state.profile.list;
-        $scope.profiles = Utilities.getDataList('profile');
+        /**
+         * Updates the profile list.
+         */
+        $scope.updateProfileList = function() {
+            var list = Utilities.getDataArray('profile'), i;
+
+            $scope.profileList = [];
+            for (i = 0; i < list.length; i++)
+            {
+                $scope.profileList.push({
+                    title: list[i].firstName + ' ' + list[i].lastName,
+                    image: list[i].avatarSrc,
+                    href: '#/profile/' + list[i].id,
+                    firstName: list[i].firstName,
+                    lastName: list[i].lastName,
+                    group: list[i].groups[0].name || '',
+                    createdAt: $filter('mysqlDate')(list[i].createdAt)
+                });
+            }
+        };
 
         // Creates a new profile in the database.
         $scope.createProfile = function() {
@@ -186,6 +214,21 @@ angular.module('app.controllers')
                 }
             }.bind(this));
         };
+
+        // Loads the list of profiles.
+        if (Utilities.data.isFetchingProfiles)
+        {
+            var stopWatching = $scope.$watch('global.data.isFetchingProfiles', function(status) {
+                if (status === false) {
+                    stopWatching();
+                    $scope.updateProfileList();
+                }
+            });
+        }
+
+        else {
+            $scope.updateProfileList();
+        }
 
         // $scope.$watch('global.store.profileId', function(id, oldId)
         // {

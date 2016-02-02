@@ -232,20 +232,14 @@ angular.module('app.utilities', [])
             // Update namespace counter.
             if (!this.hasData(namespace, id)) {
                 this.data[namespace].length++;
-                this.data[namespace].list.length++; // @deprecated
             }
 
             // We add an underscore to the key so that we may store objects by ID without any problems.
             this.data[namespace]['_' + id] = value;
 
-            // For backwards compatibility...
-            // @deprecated
-            this.data[namespace].list['_' + id] = value;
-
             // Update object length.
             if (value === null) {
                 this.data[namespace].length--;
-                this.data[namespace].list.length--; // @deprecated
             }
         };
 
@@ -256,12 +250,7 @@ angular.module('app.utilities', [])
          */
         this.createDataNamespace = function(namespace) {
             this.data[namespace] = {
-                length: 0,
-
-                // @ deprecated
-                list: {
-                    length: 0
-                }
+                length: 0
             };
         }.bind(this);
         this.resetDataNamespace = this.createDataNamespace;

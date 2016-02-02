@@ -1,0 +1,36 @@
+
+<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->
+
+<table class="table table-striped">
+
+    <!-- Heading -->
+    <thead>
+        <tr>
+            <td class="text-center">...</td>
+            <td ng-repeat="(key, value) in listParams track by key" class="text-center">
+                {{ value }}
+            </td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Parent folder -->
+        <tr ng-if="parentFolder">
+
+        </tr>
+
+        <!-- Folders -->
+        <tr ng-repeat="folder in folders track by $index">
+
+        </tr>
+
+        <!-- Files -->
+        <tr ng-repeat="file in files track by $index">
+            <td class="text-center">...</td>
+
+            <td ng-repeat="(key, value) in listParams track by key" class="text-center">
+                {{ file[key] }}
+            </td>
+        </tr>
+    </tbody>
+</table>

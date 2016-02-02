@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/page-loading.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-filesystem/container.html', 'directive-partials/ui-filesystem/layouts/details.html', 'directive-partials/ui-filesystem/layouts/large-tiles.html', 'directive-partials/ui-filesystem/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/page-loading.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/current/index.html', 'screenings/index.html', 'screenings/view/index.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -1343,7 +1343,8 @@ angular.module("demo/trends/index.html", []).run(["$templateCache", function($te
 
 angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-avatar.html",
-    "<!-- Main wrapper -->\n" +
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
     "<div class=\"ui-avatar-container\" ng-style=\"{width: containerWidth}\">\n" +
     "\n" +
     "    <!-- Avatar container -->\n" +
@@ -1868,6 +1869,175 @@ angular.module("directive-partials/ui-editable-fields/standalone-field.html", []
     "        <div ng-switch-default class=\"col-sm-12\">\n" +
     "            {{ model[key] || empty }}\n" +
     "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-filesystem/container.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-filesystem/container.html",
+    "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"ui-filesystem-container\" ng-attr-id=\"{{ ::id }}\">\n" +
+    "\n" +
+    "    <!-- Toolbar -->\n" +
+    "    <div ng-if=\"!hideToolbar\" class=\"row ui-filesystem-toolbar\" role=\"toolbar\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "\n" +
+    "            <!-- Layout selector -->\n" +
+    "            <div ng-if=\"layout.list.length > 1\" class=\"btn-group\" role=\"group\">\n" +
+    "                <button\n" +
+    "                    ng-repeat=\"btn in layout.list\"\n" +
+    "                    ng-click=\"setLayout(btn.name)\"\n" +
+    "                    ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
+    "                    type=\"button\"\n" +
+    "                    class=\"btn\">\n" +
+    "\n" +
+    "                    <i ng-class=\"'fa-' + btn.icon\" class=\"fa\"></i>\n" +
+    "                </button>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Contents -->\n" +
+    "    <ng-include\n" +
+    "        src=\"'directive-partials/ui-filesystem/layouts/' + layout.name + '.html'\">\n" +
+    "    </ng-include>\n" +
+    "\n" +
+    "    <!-- Location -->\n" +
+    "\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-filesystem/layouts/details.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-filesystem/layouts/details.html",
+    "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
+    "\n" +
+    "<table class=\"table table-striped\">\n" +
+    "\n" +
+    "    <!-- Heading -->\n" +
+    "    <thead>\n" +
+    "        <tr>\n" +
+    "            <td class=\"text-center\">...</td>\n" +
+    "            <td ng-repeat=\"(key, value) in listParams track by key\" class=\"text-center\">\n" +
+    "                {{ value }}\n" +
+    "            </td>\n" +
+    "        </tr>\n" +
+    "    </thead>\n" +
+    "\n" +
+    "    <tbody>\n" +
+    "        <!-- Parent folder -->\n" +
+    "        <tr ng-if=\"parentFolder\">\n" +
+    "\n" +
+    "        </tr>\n" +
+    "\n" +
+    "        <!-- Folders -->\n" +
+    "        <tr ng-repeat=\"folder in folders track by $index\">\n" +
+    "\n" +
+    "        </tr>\n" +
+    "\n" +
+    "        <!-- Files -->\n" +
+    "        <tr ng-repeat=\"file in files track by $index\">\n" +
+    "            <td class=\"text-center\">...</td>\n" +
+    "\n" +
+    "            <td ng-repeat=\"(key, value) in listParams track by key\" class=\"text-center\">\n" +
+    "                {{ file[key] }}\n" +
+    "            </td>\n" +
+    "        </tr>\n" +
+    "    </tbody>\n" +
+    "</table>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-filesystem/layouts/large-tiles.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-filesystem/layouts/large-tiles.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <!-- Parent folder -->\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "        <a href=\"{{ parentFolder.href }}\" class=\"folder\">\n" +
+    "            <i class=\"fa fa-hand-o-left fa-3x\"></i>\n" +
+    "            <span class=\"name\">\n" +
+    "                Back\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Other folders -->\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "        <a href=\"{{ folder.href }}\" class=\"folder\">\n" +
+    "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
+    "            <span class=\"name\">\n" +
+    "                {{ folder.name | characters:25 }}\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Files -->\n" +
+    "    <div ng-repeat=\"file in files track by $index\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
+    "        <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
+    "            <div>\n" +
+    "\n" +
+    "                <!-- Movement preview -->\n" +
+    "                <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
+    "\n" +
+    "                <div class=\"tools text-left\">\n" +
+    "\n" +
+    "                    <!-- Date -->\n" +
+    "                    <span>\n" +
+    "                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
+    "                    </span>\n" +
+    "                    <br>\n" +
+    "\n" +
+    "                    <!-- Title -->\n" +
+    "                    <span title=\"{{ file.title }}\">\n" +
+    "                        {{ file.title | characters:25 }}\n" +
+    "                    </span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("directive-partials/ui-filesystem/layouts/small-tiles.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-filesystem/layouts/small-tiles.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"row\">\n" +
+    "\n" +
+    "    <!-- Parent folder -->\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "        <a href=\"{{ parentFolder.href }}\" class=\"folder\">\n" +
+    "            <i class=\"fa fa-hand-o-left fa-2x\"></i>\n" +
+    "            <span class=\"name\">\n" +
+    "                Back\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Other folders -->\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "        <a href=\"{{ ::folder.href }}\" class=\"folder\">\n" +
+    "            <i class=\"fa fa-folder-open fa-2x\"></i>\n" +
+    "            <span class=\"name\">\n" +
+    "                {{ ::folder.name | characters:12 }}\n" +
+    "            </span>\n" +
+    "        </a>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Files -->\n" +
+    "    <div ng-repeat=\"file in files track by $index\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
+    "        <span class=\"file\" title=\"{{ ::file.title }}\">\n" +
+    "            <i class=\"fa fa-files-o fa-2x\"></i>\n" +
+    "            <span class=\"name\">\n" +
+    "                {{ ::file.title | characters:12 }}\n" +
+    "            </span>\n" +
+    "        </span>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -4441,12 +4611,12 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <!-- Groups -->\n" +
     "		<li>\n" +
     "            <!-- List of groups -->\n" +
-    "            <a ng-if=\"global.data.group && global.data.group.list.length > 0\" href=\"#/group\">\n" +
+    "            <a ng-if=\"global.data.group && global.data.group.length > 0\" href=\"#/group\">\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
     "                <span>Teams</span>\n" +
     "            </a>\n" +
     "\n" +
-    "            <ul ng-if=\"global.data.group && global.data.group.list.length > 0\" style=\"display: block\">\n" +
+    "            <ul ng-if=\"global.data.group && global.data.group.length > 0\" style=\"display: block\">\n" +
     "                <li>\n" +
     "                    <a href=\"#/group/{{ global.getSelectedGroup().id }}\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
@@ -4470,7 +4640,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            <!-- No groups available -->\n" +
     "            <a\n" +
     "                ng-if=\"global.data.isFetchingGroups === false &&\n" +
-    "                    global.data.group.list.length === 0\"\n" +
+    "                    global.data.group.length === 0\"\n" +
     "                href=\"javascript:;\">\n" +
     "\n" +
     "                <i class=\"fa fa-users\"></i>\n" +
@@ -4481,12 +4651,12 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <!-- Profiles -->\n" +
     "		<li>\n" +
     "            <!-- List of profiles -->\n" +
-    "            <a ng-if=\"global.data.profile && global.data.profile.list.length > 0\" href=\"#/profile\">\n" +
+    "            <a ng-if=\"global.data.profile && global.data.profile.length > 0\" href=\"#/profile\">\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
     "                    <small>\n" +
-    "                        ( {{ global.data.profile.list.length }} )\n" +
+    "                        ( {{ global.data.profile.length }} )\n" +
     "                    </small>\n" +
     "                </span>\n" +
     "            </a>\n" +
@@ -4499,8 +4669,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "\n" +
     "            <!-- No profiles available -->\n" +
     "            <a\n" +
-    "                ng-if=\"global.data.isFetchingProfiles === false &&\n" +
-    "                    global.data.profile.list.length === 0\"\n" +
+    "                ng-if=\"global.data.isFetchingProfiles === false && global.data.profile.length === 0\"\n" +
     "                href=\"#/profile/create\">\n" +
     "\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
@@ -4932,29 +5101,20 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
-    "    <div class=\"row\">\n" +
-    "        <div class=\"col-sm-12\">\n" +
+    "    <div ng-if=\"global.data.isFetchingProfiles === false\" class=\"row\">\n" +
+    "        <ui-filesystem\n" +
+    "            data-id=\"profiles-explorer\"\n" +
+    "            data-files=\"profileList\"\n" +
+    "            data-hide-location=\"true\"\n" +
+    "            data-hide-small-tiles-layout=\"true\"\n" +
+    "            data-list-params=\"profileListParams\"\n" +
+    "            class=\"col-sm-12\">\n" +
+    "        </ui-filesystem>\n" +
+    "    </div>\n" +
     "\n" +
-    "            <!-- New profile button -->\n" +
-    "            <!-- TODO: figure out why the right margin is needed -->\n" +
-    "            <a\n" +
-    "                href=\"#/profile/create\"\n" +
-    "                class=\"btn btn-info btn-metro\"\n" +
-    "                style=\"margin-right: 0\">\n" +
-    "\n" +
-    "                <i class=\"fa fa-plus\"></i>\n" +
-    "            </a>\n" +
-    "\n" +
-    "            <a\n" +
-    "                ng-repeat=\"profile in profiles\"\n" +
-    "                ng-show=\"profile.id\"\n" +
-    "                href=\"#/profile/{{ profile.id }}\"\n" +
-    "                class=\"btn btn-info btn-metro\"\n" +
-    "                style=\"background-image: url({{ profile.avatarSrc || '' }});\">\n" +
-    "\n" +
-    "                <div class=\"btn-title\">{{ profile.lastName.toUpperCase() | characters:30 }}</div>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
+    "    <div ng-if=\"global.data.isFetchingProfiles === true\" class=\"loading-notice\">\n" +
+    "        <h3>Retrieving Athletes</h3>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -6060,6 +6220,12 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "\n" +
     "    <!-- List of screenings -->\n" +
     "    <div ng-if=\"global.data.isFetchingScreeningData === false\" class=\"table-responsive\">\n" +
+    "\n" +
+    "        <ui-filesystem>\n" +
+    "            \n" +
+    "        </ui-filesystem>\n" +
+    "\n" +
+    "\n" +
     "        <table\n" +
     "            ng-show=\"global.state.screening.list.length > 0\"\n" +
     "            class=\"table table-striped\">\n" +

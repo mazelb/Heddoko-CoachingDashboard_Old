@@ -27,12 +27,12 @@
         <!-- Groups -->
 		<li>
             <!-- List of groups -->
-            <a ng-if="global.data.group && global.data.group.list.length > 0" href="#/group">
+            <a ng-if="global.data.group && global.data.group.length > 0" href="#/group">
                 <i class="fa fa-users"></i>
                 <span>Teams</span>
             </a>
 
-            <ul ng-if="global.data.group && global.data.group.list.length > 0" style="display: block">
+            <ul ng-if="global.data.group && global.data.group.length > 0" style="display: block">
                 <li>
                     <a href="#/group/{{ global.getSelectedGroup().id }}">
                         <i class="fa fa-angle-right"></i>
@@ -56,7 +56,7 @@
             <!-- No groups available -->
             <a
                 ng-if="global.data.isFetchingGroups === false &&
-                    global.data.group.list.length === 0"
+                    global.data.group.length === 0"
                 href="javascript:;">
 
                 <i class="fa fa-users"></i>
@@ -67,12 +67,12 @@
         <!-- Profiles -->
 		<li>
             <!-- List of profiles -->
-            <a ng-if="global.data.profile && global.data.profile.list.length > 0" href="#/profile">
+            <a ng-if="global.data.profile && global.data.profile.length > 0" href="#/profile">
                 <i class="fa fa-user"></i>
                 <span>Athletes</span>
                 <span class="pull-right">
                     <small>
-                        ( {{ global.data.profile.list.length }} )
+                        ( {{ global.data.profile.length }} )
                     </small>
                 </span>
             </a>
@@ -85,8 +85,7 @@
 
             <!-- No profiles available -->
             <a
-                ng-if="global.data.isFetchingProfiles === false &&
-                    global.data.profile.list.length === 0"
+                ng-if="global.data.isFetchingProfiles === false && global.data.profile.length === 0"
                 href="#/profile/create">
 
                 <i class="fa fa-user"></i>

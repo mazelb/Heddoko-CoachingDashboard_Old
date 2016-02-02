@@ -11,6 +11,12 @@
 
     <!-- List of screenings -->
     <div ng-if="global.data.isFetchingScreeningData === false" class="table-responsive">
+
+        <ui-filesystem>
+            
+        </ui-filesystem>
+
+
         <table
             ng-show="global.state.screening.list.length > 0"
             class="table table-striped">

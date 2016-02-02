@@ -1,0 +1,35 @@
+
+<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
+
+<div class="row">
+
+    <!-- Parent folder -->
+    <div ng-if="parentFolder" class="col-xs-4 col-md-3 col-lg-1">
+        <a href="{{ parentFolder.href }}" class="folder">
+            <i class="fa fa-hand-o-left fa-2x"></i>
+            <span class="name">
+                Back
+            </span>
+        </a>
+    </div>
+
+    <!-- Other folders -->
+    <div ng-repeat="folder in folders track by $index" class="col-xs-4 col-md-3 col-lg-1">
+        <a href="{{ ::folder.href }}" class="folder">
+            <i class="fa fa-folder-open fa-2x"></i>
+            <span class="name">
+                {{ ::folder.name | characters:12 }}
+            </span>
+        </a>
+    </div>
+
+    <!-- Files -->
+    <div ng-repeat="file in files track by $index" class="col-xs-4 col-md-3 col-lg-1">
+        <span class="file" title="{{ ::file.title }}">
+            <i class="fa fa-files-o fa-2x"></i>
+            <span class="name">
+                {{ ::file.title | characters:12 }}
+            </span>
+        </span>
+    </div>
+</div>
