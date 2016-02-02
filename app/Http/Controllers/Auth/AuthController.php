@@ -65,8 +65,8 @@ class AuthController extends Controller
 			'email' => $data['email'],
 			'username' => $data['username'],
 			'password' => bcrypt($data['password']),
-			'firstName' => $data['firstName'],
-			'lastName' => @$data['lastName'],
+			'first_name' => $data['firstName'],
+			'last_name' => @$data['lastName'],
 			'phone' => @$data['phone'],
 			'country' => isset($data['country']) ? $data['country'] : 'US',
 		]);
