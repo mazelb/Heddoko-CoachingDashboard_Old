@@ -27,6 +27,8 @@
                             name="username"
                             placeholder="Username"
                             required autofocus>
+
+                        <a href="{{ route('auth.username') }}">Forgot your username?</a>
                     </div>
 
                     <!-- Password -->
@@ -37,7 +39,7 @@
                             placeholder="Password"
                             required>
 
-                        <a href="{{ route('auth.password') }}">Forgot password?</a>
+                        <a href="{{ route('auth.password') }}">Forgot your password?</a>
                     </div>
 
                     <!-- Submit button -->

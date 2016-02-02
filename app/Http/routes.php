@@ -81,7 +81,7 @@ Route::group(['prefix' => 'api'], function()
 });
 
 /**
- * Authentication, registration and password recovery routes.
+ * Authentication, registration and account recovery routes.
  */
 Route::get('login', 'Auth\AuthController@getLogin')->name('auth.login');
 Route::post('login', 'Auth\AuthController@postLogin')->name('auth.login.post');
@@ -94,6 +94,9 @@ Route::get('reset', 'Auth\PasswordController@getEmail')->name('auth.password');
 Route::post('reset/email', 'Auth\PasswordController@postEmail')->name('auth.password.post');
 Route::get('reset/{token}', 'Auth\PasswordController@getReset')->name('auth.reset');
 Route::post('reset', 'Auth\PasswordController@postReset')->name('auth.reset.post');
+
+Route::get('username', 'Auth\UsernameController@getUsername')->name('auth.username');
+Route::post('username', 'Auth\UsernameController@postUsername')->name('auth.username.post');
 
 /**
  * General Angular app routes.

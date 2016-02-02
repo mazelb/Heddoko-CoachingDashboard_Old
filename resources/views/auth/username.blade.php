@@ -19,7 +19,7 @@
 
                     <p class="info text-center">
                         Enter the email address that you used to register. We'll send you an email with
-                        your username and a link to reset your password.
+                        your username.
                     </p>
 
                     @if (count($errors) > 0)
@@ -33,7 +33,12 @@
                         </div>
                     @endif
 
-                    <form class="form-horizontal" name="forgotPasswordForm" method="POST" action="{{ route('auth.password.post') }}">
+                    <form
+                        class="form-horizontal"
+                        name="forgotUsernameForm"
+                        method="POST"
+                        action="{{ route('auth.username.post') }}">
+
                         {!! csrf_field() !!}
 
                         {{-- Email --}}
@@ -52,12 +57,11 @@
                                 type="submit"
                                 class="btn btn-default"
                                 name="name"
-                                value="Reset password">
+                                value="Retrieve Username">
                         </div>
                     </form>
 
                 @endif
-
             </div>
         </div>
     </div>
