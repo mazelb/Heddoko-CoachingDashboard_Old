@@ -10,7 +10,7 @@
     </header>
 
     <!-- List of screenings -->
-    <div ng-show="global.data.isFetchingScreeningData === false" class="table-responsive">
+    <div ng-if="global.data.isFetchingScreeningData === false" class="table-responsive">
         <table
             ng-show="global.state.screening.list.length > 0"
             class="table table-striped">
@@ -73,10 +73,8 @@
     </div>
 
     <!-- Loading data -->
-    <div ng-show="global.data.isFetchingScreeningData === true">
-        <h3 class="text-center">Retrieving Tests</h3>
-        <div class="text-center" style="margin: 60px auto">
-            <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </div>
+    <div ng-if="global.data.isFetchingScreeningData === true" class="loading-notice">
+        <h3>Retrieving Tests</h3>
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
     </div>
 </div>

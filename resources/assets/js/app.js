@@ -42,10 +42,9 @@ var _appIsLocal =
     ) ? true : false;
 var _apiEndpoint = '/api/v1';
 
-app.constant('isLocalEnvironment', _appIsLocal)
-    .constant('apiEndpoint', _apiEndpoint);
+app.constant('isLocalEnvironment', _appIsLocal).constant('apiEndpoint', _apiEndpoint);
 
-// Initializes the 'app.services' module so we can add factories from separate files.
+// Initializes the 'app.services' module so we can add factories & services from separate files.
 var appServices = angular.module('app.services', ['app.utilities']);
 
 // Initializes the 'app.directives' module so we can add directives from separate files.

@@ -4691,9 +4691,9 @@ angular.module("partials/page-loading.html", []).run(["$templateCache", function
     "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
     "\n" +
     "<div class=\"row\">\n" +
-    "    <div class=\"col-sm-12 text-center\">\n" +
-    "        <h1 class=\"text-muted\" style=\"margin: 150px auto 75px\">Working</h1>\n" +
-    "        <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
+    "    <div class=\"col-sm-12 loading-notice text-muted\">\n" +
+    "        <h2>Working</h2>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -6059,7 +6059,7 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "    </header>\n" +
     "\n" +
     "    <!-- List of screenings -->\n" +
-    "    <div ng-show=\"global.data.isFetchingScreeningData === false\" class=\"table-responsive\">\n" +
+    "    <div ng-if=\"global.data.isFetchingScreeningData === false\" class=\"table-responsive\">\n" +
     "        <table\n" +
     "            ng-show=\"global.state.screening.list.length > 0\"\n" +
     "            class=\"table table-striped\">\n" +
@@ -6122,11 +6122,9 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "    </div>\n" +
     "\n" +
     "    <!-- Loading data -->\n" +
-    "    <div ng-show=\"global.data.isFetchingScreeningData === true\">\n" +
-    "        <h3 class=\"text-center\">Retrieving Tests</h3>\n" +
-    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
-    "            <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
-    "        </div>\n" +
+    "    <div ng-if=\"global.data.isFetchingScreeningData === true\" class=\"loading-notice\">\n" +
+    "        <h3>Retrieving Tests</h3>\n" +
+    "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");

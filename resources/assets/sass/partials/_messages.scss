@@ -243,3 +243,14 @@ button.toast-close-button {
         color: $danger;
     }
 }
+
+/*
+ * AJAX loading messages.
+ */
+.loading-notice {
+    text-align: center;
+
+    h1, h2, h3 {
+        margin: 100px auto 75px;
+    }
+}

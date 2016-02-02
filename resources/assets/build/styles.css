@@ -5084,6 +5084,14 @@ button.toast-close-button {
   .callout-elem-danger h4 {
     color: #db5031; }
 
+/*
+ * AJAX loading messages.
+ */
+.loading-notice {
+  text-align: center; }
+  .loading-notice h1, .loading-notice h2, .loading-notice h3 {
+    margin: 100px auto 75px; }
+
 /* Specific */
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

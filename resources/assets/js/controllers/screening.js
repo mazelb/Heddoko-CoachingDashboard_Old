@@ -9,13 +9,13 @@ angular.module('app.controllers')
 
 .controller('ScreeningController', ['$scope', '$routeParams', 'ScreeningService', 'Rover', 'Utilities',
     function($scope, $routeParams, ScreeningService, Rover, Utilities) {
-        Utilities.debug('ScreeningController');
+        Utilities.info('ScreeningController');
 
         // Shortcut to global objects.
         $scope.screening = $scope.global.state.screening.current;
         if ($scope.screening.id > 0 && $scope.screening.profileId) {
             $scope.screeningProfile =
-                $scope.global.state.profile.list[$scope.screening.profileId] || {id: 0};
+                Utilities.getData('profile', $scope.screening.profileId) || {id: 0};
         } else {
             $scope.screeningProfile = {id: 0};
         }
@@ -142,9 +142,9 @@ angular.module('app.controllers')
          * Retrieves screenings based on search parameters
          */
         $scope.fetchScreeningList = function() {
-            Utilities.debug('Retrieving list of screenings...');
+            Utilities.time('Retrieve Screenings');
 
-            $scope.global.data.isFetchingScreeningData = true;
+            Utilities.data.isFetchingScreeningData = true;
 
             ScreeningService.search({
                 query: '',
@@ -155,16 +155,18 @@ angular.module('app.controllers')
                 orderDir: 'desc'
             }).then(
                 function(response) {
-                    Utilities.debug('Received ' + response.data.results.length + ' results.');
+                    Utilities.timeEnd('Retrieve Screenings');
+                    Utilities.log('Received ' + response.data.results.length + ' results.');
 
                     // Save screening data.
                     $scope.global.state.screening.list =
                         response.data.results.map($scope.formatScreening);
-                    $scope.global.data.isFetchingScreeningData = false;
+                    Utilities.data.isFetchingScreeningData = false;
                 },
                 function(response) {
-                    Utilities.debug('Could not retrieve screening data. Please try again later.');
-                    $scope.global.data.isFetchingScreeningData = false;
+                    Utilities.timeEnd('Retrieve Screenings');
+                    Utilities.alert('Could not retrieve screening data. Please try again later.');
+                    $Utilities.data.isFetchingScreeningData = false;
                 }
             );
         };
@@ -183,14 +185,12 @@ angular.module('app.controllers')
             };
 
             // Performance check.
-            if (!screening || !Rover.state.profile.list[screening.profileId]) {
+            if (!screening || !Utilities.hasData('profile', screening.profileId)) {
                 return screening;
             }
 
-            screening.profile.firstName =
-                $scope.global.state.profile.list[screening.profileId].firstName;
-            screening.profile.lastName =
-                $scope.global.state.profile.list[screening.profileId].lastName;
+            screening.profile.firstName = Utilities.getData('profile', screening.profileId).firstName;
+            screening.profile.lastName = Utilities.getData('profile', screening.profileId).lastName;
 
             return screening;
         };
