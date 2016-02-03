@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
 		$this->call('GroupSeeder');
 		$this->call('ProfileSeeder');
 		$this->call('TagSeeder');
+
+		$this->call('SuitManagementSeeder');
 	}
 
 }
