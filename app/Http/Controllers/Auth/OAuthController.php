@@ -38,9 +38,6 @@ class OAuthController extends Controller
      */
     public function showAuthorizationForm()
     {
-        abort(501, 'Not Implemented.');
-
-
         $authParams = Authorizer::getAuthCodeRequestParams();
 
         $formParams = array_except($authParams,'client');

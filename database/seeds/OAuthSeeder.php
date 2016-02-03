@@ -6,9 +6,11 @@
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    December 2015
  */
-// use DB;
-use App\Models\OAuthClient;
+
 use Illuminate\Database\Seeder;
+
+use App\Models\OAuthClient;
+use App\Models\OAuthClientEndpoint;
 
 class OAuthSeeder extends Seeder
 {
@@ -22,6 +24,7 @@ class OAuthSeeder extends Seeder
         $this->command->info('Running OAuthSeeder...');
 
         // TODO: Create scopes.
+        // ...
 
         // Create sample client.
         if (!OAuthClient::where('name', 'Sample Client')->first())
@@ -44,10 +47,25 @@ class OAuthSeeder extends Seeder
             $this->command->info("--> ID: oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs");
             $this->command->info("--> Secret: r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d");
 
-            OAuthClient::create([
+            $client = OAuthClient::create([
                 'name' => 'Suits Management Dashbaord',
                 'id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
                 'secret' => 'r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d'
+            ]);
+
+            OAuthClientEndpoint::create([
+                'client_id' => $client->id,
+                'redirect_uri' => 'http://suits.dashboard.vagrant'
+            ]);
+
+            OAuthClientEndpoint::create([
+                'client_id' => $client->id,
+                'redirect_uri' => 'http://localhost'
+            ]);
+
+            OAuthClientEndpoint::create([
+                'client_id' => $client->id,
+                'redirect_uri' => 'http://localhost:8000'
             ]);
         }
     }
