@@ -13,7 +13,7 @@ use App\Models\Equipment;
 use App\Models\Material;
 use App\Models\MaterialType;
 use App\Models\Status;
-use App\Models\SuitEquipment;
+use App\Models\ComplexEquipment;
 
 class SuitManagementSeeder extends Seeder
 {
@@ -24,15 +24,13 @@ class SuitManagementSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
         $this->command->info('Seeding Suit Management sample data');
 
         DB::table('equipment')->delete();
         DB::table('statuses')->delete();
         DB::table('materials')->delete();
         DB::table('material_types')->delete();
-        DB::table('suits_equipment')->delete();
+        DB::table('complex_equipment')->delete();
         DB::table('anatomical_positions')->delete();
 
         $this->command->info('Entries successfully deleted. Beginning seed.');
@@ -67,7 +65,7 @@ class SuitManagementSeeder extends Seeder
 //            Material::create(['material_type_id' => $new_material_type->id, 'name' => 'StretchSensor', 'part_no' => 274321]);
 //        }
 
-        // Create SuitEquipments.
+        // Create ComplexEquipment.
         $materials = [$material_nod->id, $material_ss->id, $material_battery->id];
         for ($x = 0; $x <= rand(15, 30); $x++)
         {
@@ -78,28 +76,30 @@ class SuitManagementSeeder extends Seeder
                 $mac_address[] = substr($hex, $y++, 2);
             }
 
-            // Create a new SuitEquipment.
-            $suit_equipment = SuitEquipment::create([
+            // Create a new ComplexEquipment.
+            $suit_equipment = ComplexEquipment::create([
                 'mac_address' => implode(':', $mac_address),
+                'serial_no' => substr(str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890'), 0, 10),
                 'physical_location' => 'Warehouse',
-                'anatomical_position_id' => $left_tibia_pos->id
+                'status_id' => $status_unavailable->id
             ]);
 
             // Attach some equipment.
             for ($z = 0; $z <= rand(1, 4); $z++)
             {
                 Equipment::create([
-                    'suits_equipment_id' => $suit_equipment->id,
+                    'complex_equipment_id' => $suit_equipment->id,
                     'material_id' => $materials[rand(0, 1)],
                     'serial_no' => substr(str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890'), 0, 10),
                     'physical_location' => 'Box 2',
-                    'status_id' => $status_unavailable->id]
-                );
+                    'status_id' => $status_unavailable->id,
+                    'anatomical_position_id' => $left_tibia_pos->id
+                ]);
             }
 
             // Attach a battery pack
             Equipment::create([
-                'suits_equipment_id' => $suit_equipment->id,
+                'complex_equipment_id' => $suit_equipment->id,
                 'material_id' => $material_battery->id,
                 'serial_no' => substr(str_shuffle('abcdefghijklmnopqrstuvwxyz1234567890'), 0, 10),
                 'physical_location' => 'Box 2',
@@ -117,7 +117,5 @@ class SuitManagementSeeder extends Seeder
                 'status_id' => $status_available->id]
             );
         }
-
-        Model::reguard();
     }
 }

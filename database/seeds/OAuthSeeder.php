@@ -36,5 +36,19 @@ class OAuthSeeder extends Seeder
                 'secret' => 'wXkCVjBEOuw1mDUF8lJk5LPjZLek9bKk1V2UnRDh'
             ]);
         }
+
+        // Suits Management Dashboard app
+        if (!OAuthClient::where('name', 'Suits Management Dashbaord')->first())
+        {
+            $this->command->info('Creating "Suits Management Dashbaord Client"');
+            $this->command->info("--> ID: oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs");
+            $this->command->info("--> Secret: r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d");
+
+            OAuthClient::create([
+                'name' => 'Suits Management Dashbaord',
+                'id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
+                'secret' => 'r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d'
+            ]);
+        }
     }
 }

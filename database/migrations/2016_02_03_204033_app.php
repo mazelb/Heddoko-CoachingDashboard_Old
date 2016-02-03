@@ -1,15 +1,15 @@
 <?php
 /**
- * Copyright Heddoko(TM) 2015, all rights reserved.
+ * Copyright Heddoko(TM) 2016, all rights reserved.
  *
- * @brief   DB updates.
+ * @brief   Consolidated migration for Coaching & Suits Management dashboards.
  * @author  Francis Amankrah (frank@heddoko.com)
- * @date    December 2015
+ * @date    February 2016
  */
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class UpdatesDec2015 extends Migration
+class App extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,78 @@ class UpdatesDec2015 extends Migration
      */
     public function up()
     {
+        //
+        // Create Suits Management Dashboard tables.
+        //
+
+        Schema::create('anatomical_positions', function(Blueprint $table)
+		{
+			$table->integer('id')->unsigned();
+			$table->primary('id');
+
+			$table->string('name');
+		});
+
+		Schema::create('statuses', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('name');
+		});
+
+		Schema::create('material_types', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('identifier');
+		});
+
+		Schema::create('materials', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+			$table->integer('material_type_id')->unsigned();
+			$table->foreign('material_type_id')->references('id')->on('material_types');
+
+			$table->string('name');
+			$table->string('part_no');
+		});
+
+		Schema::create('complex_equipment', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+			$table->integer('status_id')->unsigned();
+			$table->foreign('status_id')->references('id')->on('statuses');
+
+			$table->string('mac_address');
+            $table->string('serial_no');
+			$table->string('physical_location');
+		});
+
+		Schema::create('equipment', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+			$table->integer('status_id')->unsigned();
+			$table->foreign('status_id')->references('id')->on('statuses');
+
+			$table->integer('material_id')->unsigned();
+			$table->foreign('material_id')->references('id')->on('materials');
+
+			$table->integer('anatomical_position_id')->unsigned();
+			$table->foreign('anatomical_position_id')->references('id')->on('anatomical_positions');
+
+			$table->integer('complex_equipment_id')->unsigned()->nullable();
+			$table->foreign('complex_equipment_id')->references('id')->on('complex_equipment');
+
+            $table->string('mac_address');
+			$table->string('serial_no');
+			$table->string('physical_location');
+		});
+
+        //
+        // Create Coaching Dashboard tables.
+        //
+
         // Create "images" table.
         Schema::create('images', function(Blueprint $table)
 		{
@@ -331,6 +403,10 @@ class UpdatesDec2015 extends Migration
      */
     public function down()
     {
+        //
+        // Drop Coaching Dashboard tables.
+        //
+
         // Drop pivot tables.
         Schema::hasTable('taggables') ? Schema::drop('taggables') : null;
         Schema::hasTable('group_manager') ? Schema::drop('group_manager') : null;
@@ -359,5 +435,16 @@ class UpdatesDec2015 extends Migration
 		Schema::hasTable('profiles') ? Schema::drop('profiles') : null;
 		Schema::hasTable('tags') ? Schema::drop('tags') : null;
 		Schema::hasTable('images') ? Schema::drop('images') : null;
+
+        //
+        // Drop Suits Management Dashboard tables.
+        //
+
+        Schema::drop('equipment');
+        Schema::drop('complex_equipment');
+        Schema::drop('materials');
+        Schema::drop('material_types');
+        Schema::drop('statuses');
+        Schema::drop('anatomical_positions');
     }
 }

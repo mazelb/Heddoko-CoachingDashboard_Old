@@ -8,22 +8,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MaterialType extends Model
+class ComplexEquipment extends Model
 {
-
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'material_types';
+    protected $table = 'complex_equipment';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['identifier'];
+    protected $fillable = ['status_id', 'mac_address', 'serial_no', 'physical_location'];
 
     /**
      * Indicates if the model should be timestamped.
@@ -33,11 +32,23 @@ class MaterialType extends Model
 	public $timestamps = false;
 
     /**
+     * Attributes that SHOULD be appended to the model's array form.
+     */
+    protected $appends = ['status', 'equipment'];
+
+    /**
      *
      */
-    public function materials()
-    {
-        return $this->hasMany('App\Models\Material');
-    }
+	public function status()
+	{
+		return $this->belongsTo('App\Models\Status');
+	}
 
+    /**
+     *
+     */
+	public function equipment()
+	{
+		return $this->hasMany('App\Models\Equipment', 'complex_equipment_id');
+	}
 }

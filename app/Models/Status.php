@@ -2,7 +2,7 @@
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- * @author  Maxwell (max@heddoko.com)
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 namespace App\Models;
 
@@ -23,13 +23,22 @@ class Status extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['name'];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
 	public $timestamps = false;
 
-	public static function getByName($status_string)
+    /**
+     *
+     * @param string $name
+     * @return \App\Models\Status
+     */
+	public static function getByName($name)
 	{
-		return Status::where('name', $status_string)->firstOrFail();
+		return static::where('name', $name)->first();
 	}
-
 }

@@ -2,7 +2,7 @@
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- * @author  Maxwell (max@heddoko.com)
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 namespace App\Models;
 
@@ -24,11 +24,19 @@ class Material extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'material_type_id', 'name', 'part_no'];
+    protected $fillable = ['material_type_id', 'name', 'part_no'];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
 	public $timestamps = false;
 
-    public function material_type()
+    /**
+     *
+     */
+    public function materialType()
     {
         return $this->belongsTo('App\Models\MaterialType');
     }

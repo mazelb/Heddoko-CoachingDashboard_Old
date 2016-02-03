@@ -36,6 +36,11 @@ Route::group(['prefix' => 'api'], function()
             'only' => ['index', 'store', 'show', 'update', 'destroy']
         ]);
 
+        // Movement frame endpoints.
+        Route::resource('movements.frames', 'FrameController', [
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
+        ]);
+
         // Screening endpoints.
         Route::resource('screenings', 'ScreeningController', [
             'only' => ['index', 'store', 'show', 'update', 'destroy']
@@ -59,6 +64,17 @@ Route::group(['prefix' => 'api'], function()
         Route::resource('tags', 'TagController', [
             'only' => ['index', 'store']
         ]);
+
+        //
+        // Suit Management Dashboard endpoints.
+        //
+
+        Route::resource('complexequipment', 'complexEquipmentController', ['only' => ['index', 'store', 'update', 'destroy']]);
+        Route::resource('equipment', 'EquipmentController', ['only' => ['index', 'store', 'update', 'destroy']]);
+        Route::resource('statuses', 'StatusController', ['only' => ['index']]);
+        Route::resource('materials', 'MaterialController', ['only' => ['index', 'store', 'update', 'destroy']]);
+        Route::resource('anatomicalpositions', 'AnatomicalPositionController', ['only' => ['index', 'store', 'update', 'destroy']]);
+        Route::resource('materialtypes', 'MaterialTypeController', ['only' => ['index', 'store', 'update', 'destroy']]);
     });
 
     /**

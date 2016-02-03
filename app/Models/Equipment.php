@@ -23,17 +23,57 @@ class Equipment extends Model
      *
      * @var array
      */
-    protected $fillable = ['id', 'material_id', 'serial_no', 'physical_location', 'status_id', 'suits_equipment_id'];
+    protected $fillable = [
+        'status_id',
+        'material_id',
+        'anatomical_position_id',
+        'complex_equipment_id',
+        'mac_address',
+        'serial_no',
+        'physical_location'
+    ];
 
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
 	public $timestamps = false;
 
+    /**
+     * Attributes that SHOULD be appended to the model's array form.
+     */
+    protected $appends = ['status', 'material', 'anatomical_position'];
+
+    /**
+     *
+     */
 	public function status()
 	{
 		return $this->belongsTo('App\Models\Status');
 	}
 
+    /**
+     *
+     */
     public function material()
     {
         return $this->belongsTo('App\Models\Material');
+    }
+
+    /**
+     *
+     */
+    public function anatomicalPosition()
+    {
+        return $this->belongsTo('App\Models\AnatomicalPosition');
+    }
+
+    /**
+     *
+     */
+    public function complexEquipment()
+    {
+        return $this->belongsTo('App\Models\ComplexEquipment');
     }
 }

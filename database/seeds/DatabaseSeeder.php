@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
 		$this->call('TagSeeder');
 
 		$this->call('SuitManagementSeeder');
+
+		$this->call('OAuthSeeder');
 	}
 
 }
