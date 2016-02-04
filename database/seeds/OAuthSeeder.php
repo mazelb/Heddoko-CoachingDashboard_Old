@@ -48,24 +48,24 @@ class OAuthSeeder extends Seeder
             $this->command->info("--> Secret: r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d");
 
             OAuthClient::create([
-                'name' => 'Suits Management Dashbaord',
+                'name' => 'Suits Management Dashboard',
                 'id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
                 'secret' => 'r9hEaW2ZAfNndWoDB7uZchd83dygt0K0TbBu283d'
             ]);
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://suits.heddoko.vagrant'
+                'redirect_uri' => 'http://suits.heddoko.vagrant/token'
             ]);
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://localhost'
+                'redirect_uri' => 'http://localhost/token'
             ]);
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://localhost:8000'
+                'redirect_uri' => 'http://localhost:8000/token'
             ]);
         }
     }

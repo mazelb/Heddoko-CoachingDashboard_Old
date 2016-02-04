@@ -24,8 +24,7 @@ class MaterialController extends Controller
 	public function index()
 	{
         // Build the database query.
-        $query = Material::with('material_type')
-            ->orderBy('id', 'desc');
+        $query = Material::with('materialType')->orderBy('id', 'desc');
 
         // Filter by search term.
         $search_term = strip_tags(trim(Request::input('search_term')));

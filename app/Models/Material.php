@@ -40,5 +40,4 @@ class Material extends Model
     {
         return $this->belongsTo('App\Models\MaterialType');
     }
-
 }

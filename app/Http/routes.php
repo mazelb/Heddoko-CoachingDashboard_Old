@@ -85,13 +85,13 @@ Route::group(['prefix' => 'api'], function()
         Route::post('token', 'Auth\OAuthController@accessToken');
         Route::get('authorize', [
             'as' => 'oauth.authorize.get',
-            'use' => 'Auth\OAuthController@showAuthorizationForm',
+            'uses' => 'Auth\OAuthController@showAuthorizationForm',
             'middleware' => ['oauth.authorization', 'auth']
         ]);
         Route::post('authorize', [
             'as' => 'oauth.authorize.post',
-            'use' => 'Auth\OAuthController@authorize',
-            'middleware' => ['csrf', 'check-authorization-params', 'auth']
+            'uses' => 'Auth\OAuthController@authorize',
+            'middleware' => ['csrf', 'oauth.authorization', 'auth']
         ]);
     });
 });

@@ -8,6 +8,7 @@
  */
 namespace App\Http\Controllers\Auth;
 
+use Auth;
 use Authorizer;
 use App\Http\Requests;
 use Illuminate\Http\Request;
