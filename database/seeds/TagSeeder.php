@@ -22,6 +22,16 @@ class TagSeeder extends Seeder
 
         $tags = [
 
+            // Popular sports.
+            'American Football',
+            'Cross Fit', 'Curling',
+            'Diving',
+            'Figure Skating', 'Football', 'Golf',
+            'Hockey',
+            'Soccer', 'Speed Skating', 'Swimming', 'Synchronized Swimming',
+            'Tennis',
+            'Weight Lifting',
+
             // General movements.
             'Back Squat', 'Behind the Neck Press', 'Behind The Neck Push Jerk',
             'Bench Fly', 'Bench Press',
@@ -47,8 +57,6 @@ class TagSeeder extends Seeder
             'Squat Jump', 'Standing Military Press', 'Step-ups', 'Stiff-legged Deadlift', 'Sumo Deadlift',
             'Trap Bar Deadlift', 'Travelling Lunges',
             'Wide Grip Behind the Neck Push Jerk', 'Wide Grip Deadlift',
-
-            // Popular sports.
 
             // Additional tags.
             'Barbell',

@@ -261,7 +261,7 @@ class AppTables extends Migration
             $table->string('format_revision')->nullable();
 
             // Timestamp in milliseconds.
-            $table->timestamp('timestamp');
+            $table->timestamp('timestamp')->nullabe();
 		});
 
         // Create "movement_meta" table.
