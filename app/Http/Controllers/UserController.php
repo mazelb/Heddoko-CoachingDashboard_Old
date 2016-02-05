@@ -59,20 +59,22 @@ class UserController extends Controller
 		]);
 
         // Attach role to user.
-        // TODO: replace Zizaco/Entrust with Laravel Authorization.
+        // TODO: abstract this process.
+        $role = null;
         switch (@$data['role'])
         {
             case 'admin':
-                if ($role = Role::where('name', 'admin')->first()) {
-                    $user->attachRole($role->id);
-                }
+                $role = Role::where('name', 'Admin')->first();
                 break;
 
             case 'manager':
-                if ($role = Role::where('name', 'manager')->first()) {
-                    $user->attachRole($role->id);
-                }
+                $role = Role::where('name', 'Manager')->first();
                 break;
+        }
+
+        if ($role)
+        {
+            $role->users()->attach([$user->id]);
         }
 
 		return $user;

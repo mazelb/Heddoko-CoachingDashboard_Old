@@ -94,6 +94,17 @@ class AppTables extends Migration
         // Create Coaching Dashboard tables.
         //
 
+        // Create "roles" table.
+        Schema::create('roles', function (Blueprint $table)
+        {
+            $table->increments('id');
+
+            $table->string('name')->unique();
+            $table->string('description')->nullable();
+
+            $table->timestamps();
+        });
+
         // Create "images" table.
         Schema::create('images', function(Blueprint $table)
 		{
@@ -361,6 +372,7 @@ class AppTables extends Migration
 
         $pivots = [
             ['group', 'profile'],
+            ['role', 'user'],
         ];
 
         foreach ($pivots as $tableNames)
@@ -457,6 +469,7 @@ class AppTables extends Migration
         Schema::hasTable('taggables') ? Schema::drop('taggables') : null;
         Schema::hasTable('group_manager') ? Schema::drop('group_manager') : null;
         Schema::hasTable('manager_profile') ? Schema::drop('manager_profile') : null;
+        Schema::hasTable('role_user') ? Schema::drop('role_user') : null;
         Schema::hasTable('group_profile') ? Schema::drop('group_profile') : null;
 
         // Drop other tables.
@@ -483,6 +496,7 @@ class AppTables extends Migration
 		Schema::hasTable('profiles') ? Schema::drop('profiles') : null;
 		Schema::hasTable('tags') ? Schema::drop('tags') : null;
 		Schema::hasTable('images') ? Schema::drop('images') : null;
+		Schema::hasTable('roles') ? Schema::drop('roles') : null;
 
         //
         // Drop Suits Management Dashboard tables.

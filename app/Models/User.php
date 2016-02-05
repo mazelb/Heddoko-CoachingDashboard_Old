@@ -14,14 +14,13 @@ use App\Traits\HasAvatarTrait as HasAvatar;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
-use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword, EntrustUserTrait, HasAvatar, CamelCaseAttrs;
+    use Authenticatable, CanResetPassword, HasAvatar, CamelCaseAttrs;
 
     /**
      * The attributes that are mass assignable.
@@ -66,6 +65,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     public function groups() {
         return $this->belongsToMany('App\Models\Group', 'group_manager', 'manager_id', 'group_id');
+    }
+
+    /**
+     * Roles taken on by this user.
+     */
+    public function roles() {
+        return $this->belongsToMany('App\Models\Role');
     }
 
     /**

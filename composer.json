@@ -8,7 +8,6 @@
         "php": ">=5.5.9",
         "laravel/framework": "~5.1.0",
 		"shpasser/gae-support-l5": "~1.0",
-        "zizaco/entrust": "dev-laravel-5",
         "doctrine/dbal": "^2.5",
         "intervention/image": "^2.3",
         "lucadegasperi/oauth2-server-laravel": "^5.1"

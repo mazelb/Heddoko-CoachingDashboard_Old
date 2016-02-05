@@ -117,17 +117,8 @@ Route::post('username', 'Auth\UsernameController@postUsername')->name('auth.user
 /**
  * General Angular app routes.
  */
-Route::get('/', ['middleware' => 'auth', function()
-{
-    // Coaching dashboard.
-	if (Entrust::hasRole('manager') || Entrust::hasRole('admin'))
-    {
-		return view('layouts.angular');
-	}
-
-	// Unauthorized access.
-    return 'Unauthorized.';
-
+Route::get('/', ['middleware' => 'auth', function() {
+    return view('layouts.angular');
 }])->name('home');
 
 /**

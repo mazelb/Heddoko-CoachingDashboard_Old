@@ -85,26 +85,33 @@ class AccountSeeder extends Seeder
             'created_at' => '2015-10-21 20:58:19'
 		]);
 
+        $this->command->info('Creating admin account');
+
+        $adminUser = User::create([
+			'email' => 'admin.demo@example.com',
+			'username' => 'admindemo',
+			'password' => bcrypt('hedd oko'),
+            'created_at' => '2015-10-21 20:58:19'
+		]);
+
         $this->command->info('Creating roles');
 
         DB::table('roles')->delete();
         DB::table('role_user')->delete();
 
-        $admin = Role::create([
-            'name' => 'admin',
-            'display_name' => 'Administrator',
+        $adminRole = Role::create([
+            'name' => 'Admin',
             'description' => 'Manages the web app.'
         ]);
 
-        $manager = Role::create([
-            'name' => 'manager',
-            'display_name' => 'Manager',
+        $managerRole = Role::create([
+            'name' => 'Manager',
             'description' => 'Manages one or more groups.'
         ]);
 
         $this->command->info('Attaching "manager" role to users.');
 
-        $manager->users()->attach([
+        $managerRole->users()->attach([
             $demoUser->id,
             $demoUser2->id,
             $demoUser3->id,
@@ -114,6 +121,12 @@ class AccountSeeder extends Seeder
             $lzaneUser->id,
             $sclarkUser->id,
             $paoloUser->id
+        ]);
+
+        $this->command->info('Attaching "admin" role to admin account.');
+
+        $adminRole->users()->attach([
+            $adminUser->id,
         ]);
     }
 }

@@ -10,7 +10,6 @@ namespace App\Http\Controllers\Auth;
 use Validator;
 
 use App\Models\User;
-use App\Models\Role;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -72,7 +71,6 @@ class AuthController extends Controller
 		]);
 
         // Attach role to user.
-        // TODO: replace Zizaco/Entrust with Laravel Authorization.
         switch ($data['role'])
         {
             case 'admin':
