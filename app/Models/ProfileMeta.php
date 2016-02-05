@@ -62,10 +62,7 @@ class ProfileMeta extends Model
         'gender',
         'phone',
         'email',
-        'medicalHistory',
-        'injuries',
-        'notes',
-        'meta'
+        'data'
     ];
 
     /**

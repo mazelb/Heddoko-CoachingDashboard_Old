@@ -25,7 +25,16 @@ class AnatomicalPosition extends Model
      */
     protected $fillable = ['id', 'name'];
 
+    /**
+     * Indicates if ID is auto-incremented
+     */
 	public $incrementing = false;
+
+    /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
 	public $timestamps = false;
 
 }

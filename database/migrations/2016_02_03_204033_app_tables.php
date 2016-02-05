@@ -9,7 +9,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class App extends Migration
+class AppTables extends Migration
 {
     /**
      * Run the migrations.
@@ -63,6 +63,8 @@ class App extends Migration
 			$table->string('mac_address');
             $table->string('serial_no');
 			$table->string('physical_location');
+
+			$table->timestamps();
 		});
 
 		Schema::create('equipment', function(Blueprint $table)
@@ -84,6 +86,8 @@ class App extends Migration
             $table->string('mac_address');
 			$table->string('serial_no');
 			$table->string('physical_location');
+
+			$table->timestamps();
 		});
 
         //
@@ -116,14 +120,11 @@ class App extends Migration
 		{
 			$table->increments('id');
 
+            $table->integer('main_tag_id')->unsigned()->nullable();
+			$table->foreign('main_tag_id')->references('id')->on('tags');
+
 			$table->string('first_name');
 			$table->string('last_name')->default('');
-            $table->integer('tag_id')->unsigned()->nullable();
-			$table->foreign('tag_id')
-                ->references('id')
-                ->on('tags')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
 
 			$table->timestamps();
 		});
@@ -141,13 +142,10 @@ class App extends Migration
             $table->float('height')->unsigned()->nullable();        // In meters (SI units).
             $table->float('mass')->unsigned()->nullable();          // In kilograms (SI units).
             $table->timestamp('dob')->nullable();
-            $table->tinyInteger('gender')->unsigned()->nullable();  // 1: female, 2: male.
+            $table->tinyInteger('gender')->unsigned()->nullable();  // 1: female, 2: male, 0: not specified
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->text('medical_history')->nullable();
-            $table->text('injuries')->nullable();
-            $table->text('notes')->nullable();
-            $table->text('params')->nullable();         // Other details in JSON format.
+            $table->text('data')->nullable();                       // Other details in JSON format.
 		});
 
         // Create "screenings" table.
@@ -163,8 +161,9 @@ class App extends Migration
                 ->onDelete('cascade');
 
             $table->string('title')->nullable();
-            $table->tinyInteger('score')->unsigned()->nullable();
-            $table->tinyInteger('score_max')->unsigned()->nullable();
+            $table->tinyInteger('score')->nullable()->default(0);
+            $table->tinyInteger('score_max')->nullable()->default(100);
+            $table->tinyInteger('score_min')->nullable()->default(0);
             $table->text('notes')->nullable();
 
 			$table->timestamps();
@@ -200,6 +199,9 @@ class App extends Migration
 		Schema::create('movements', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+			$table->integer('complex_equipment_id')->unsigned()->nullable();
+			$table->foreign('complex_equipment_id')->references('id')->on('complex_equipment');
 
 			$table->integer('profile_id')->unsigned()->nullable();
 			$table->foreign('profile_id')
@@ -244,6 +246,9 @@ class App extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
+            // Formet version
+            $table->string('format_revision')->nullable();
+
             // Timestamp in milliseconds.
             $table->timestamp('timestamp');
 		});
@@ -267,11 +272,10 @@ class App extends Migration
 			$table->foreign('end_keyframe')->references('id')->on('frames');
 
             // Other fields.
-            $table->tinyInteger('score')->unsigned()->nullable();
-            $table->tinyInteger('score_max')->unsigned()->nullable();
+            $table->tinyInteger('score')->nullable();
+            $table->tinyInteger('score_max')->nullable()->default(100);
+            $table->tinyInteger('score_min')->nullable()->default(0);
             $table->text('notes')->nullable();
-            $table->string('virtual_path')->nullable();
-            $table->string('filename')->nullable();
             $table->text('params')->nullable();
         });
 
@@ -298,10 +302,52 @@ class App extends Migration
             $table->string('comment')->nullable();
         });
 
+        // Create "movement_events" table.
+        Schema::create('movement_events', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+            $table->integer('movement_id')->unsigned();
+			$table->foreign('movement_id')
+                ->references('id')
+                ->on('movements')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            // Start and end keyframes, indicating how long a marker comment should be displayed
+            // during a playback of the movement.
+            $table->integer('start_keyframe')->unsigned()->nullable();
+			$table->foreign('start_keyframe')->references('id')->on('frames');
+            $table->integer('end_keyframe')->unsigned()->nullable();
+			$table->foreign('end_keyframe')->references('id')->on('frames');
+
+            $table->string('type')->nullable();
+            $table->text('data')->nullable();
+        });
+
+        // Create "aggregate_data" table.
+        Schema::create('aggregate_data', function(Blueprint $table)
+		{
+			$table->increments('id');
+
+            $table->integer('movement_id')->unsigned();
+			$table->foreign('movement_id')
+                ->references('id')
+                ->on('movements')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->string('type')->nullable();
+            $table->text('data')->nullable();
+        });
+
         // Create "groups" table.
 		Schema::create('groups', function(Blueprint $table)
 		{
 			$table->increments('id');
+
+            $table->integer('main_tag_id')->unsigned()->nullable();
+			$table->foreign('main_tag_id')->references('id')->on('tags');
 
 			$table->string('name');
             $table->text('meta')->nullable();
@@ -415,6 +461,8 @@ class App extends Migration
 
         // Drop other tables.
 		Schema::hasTable('groups') ? Schema::drop('groups') : null;
+		Schema::hasTable('aggregate_data') ? Schema::drop('aggregate_data') : null;
+		Schema::hasTable('movement_events') ? Schema::drop('movement_events') : null;
 		Schema::hasTable('movement_markers') ? Schema::drop('movement_markers') : null;
 		Schema::hasTable('movement_meta') ? Schema::drop('movement_meta') : null;
 		Schema::hasTable('frames') ? Schema::drop('frames') : null;

@@ -11,7 +11,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-
     /**
      * The database table used by the model.
      *
@@ -34,7 +33,7 @@ class Material extends Model
 	public $timestamps = false;
 
     /**
-     *
+     * Related material types
      */
     public function materialType()
     {

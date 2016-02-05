@@ -25,19 +25,12 @@ class ComplexEquipment extends Model
     protected $fillable = ['status_id', 'mac_address', 'serial_no', 'physical_location'];
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-	public $timestamps = false;
-
-    /**
      * Attributes that SHOULD be appended to the model's array form.
      */
     protected $appends = ['status', 'equipment'];
 
     /**
-     *
+     * Status of complex equipment.
      */
 	public function status()
 	{
@@ -45,10 +38,18 @@ class ComplexEquipment extends Model
 	}
 
     /**
-     *
+     * Equipment which make up this complex equipment.
      */
 	public function equipment()
 	{
 		return $this->hasMany('App\Models\Equipment', 'complex_equipment_id');
+	}
+
+    /**
+     * Movements recorded with this complex equipment.
+     */
+	public function movements()
+	{
+		return $this->hasMany('App\Models\Movement', 'complex_equipment_id');
 	}
 }

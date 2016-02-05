@@ -9,12 +9,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\TaggableTrait as Taggable;
 use App\Traits\HasAvatarTrait as HasAvatar;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class Group extends Model
 {
-    use HasAvatar, CamelCaseAttrs;
+    use Taggable, HasAvatar, CamelCaseAttrs;
 
     /**
      * Attributes which are mass-assignable.

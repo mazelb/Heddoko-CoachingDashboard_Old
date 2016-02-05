@@ -2,7 +2,7 @@
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.
  *
- * @author  Maxwell (max@heddoko.com)
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 namespace App\Models;
 
@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Equipment extends Model
 {
-
     /**
      * The database table used by the model.
      *
@@ -34,19 +33,12 @@ class Equipment extends Model
     ];
 
     /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-	public $timestamps = false;
-
-    /**
      * Attributes that SHOULD be appended to the model's array form.
      */
     protected $appends = ['status', 'material', 'anatomical_position'];
 
     /**
-     *
+     * Status of equipment.
      */
 	public function status()
 	{
@@ -54,7 +46,7 @@ class Equipment extends Model
 	}
 
     /**
-     *
+     * Material of this equipment.
      */
     public function material()
     {
@@ -62,7 +54,7 @@ class Equipment extends Model
     }
 
     /**
-     *
+     * Anatomical position of this equipemnt.
      */
     public function anatomicalPosition()
     {
@@ -70,7 +62,7 @@ class Equipment extends Model
     }
 
     /**
-     *
+     * Complex equipment this belongs to.
      */
     public function complexEquipment()
     {

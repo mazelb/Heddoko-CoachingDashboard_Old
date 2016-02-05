@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class MaterialType extends Model
 {
-
     /**
      * The database table used by the model.
      *
@@ -33,11 +32,10 @@ class MaterialType extends Model
 	public $timestamps = false;
 
     /**
-     *
+     * Related materials
      */
     public function materials()
     {
         return $this->hasMany('App\Models\Material');
     }
-
 }

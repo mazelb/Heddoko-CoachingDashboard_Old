@@ -9,12 +9,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\TaggableTrait as Taggable;
 use App\Traits\HasAvatarTrait as HasAvatar;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class Profile extends Model
 {
-    use HasAvatar, CamelCaseAttrs;
+    use Taggable, HasAvatar, CamelCaseAttrs;
 
     /**
      * Attributes which are mass-assignable.
@@ -36,7 +37,7 @@ class Profile extends Model
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['tag_id', 'avatar', 'pivot'];
+    protected $hidden = ['main_tag_id', 'avatar', 'pivot'];
 
     /**
      * Profile's additional details.
@@ -78,19 +79,5 @@ class Profile extends Model
      */
     public function folders() {
         return $this->hasMany('App\Models\Folder');
-    }
-
-    /**
-     * Primary tag belonging to this profile.
-     */
-    public function primaryTag() {
-        return $this->belongsTo('App\Models\Tag', 'tag_id');
-    }
-
-    /**
-     * Non-primary tags belonging to this profile.
-     */
-    public function secondaryTags() {
-        return $this->morphToMany('App\Models\Tag', 'taggable');
     }
 }

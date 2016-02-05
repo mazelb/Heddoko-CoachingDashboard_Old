@@ -117,7 +117,7 @@ class ScreeningController extends Controller
 
         $folder = $profile->folders()->create([
             'folder_id' => $screeningsFolder->id,
-            'name' => $screening->title,
+            'name' => $screening->title .' - '. date('M j, Y'),
             'system_name' => 'screenings.'. $screening->id,
             'path' => '/'. $screeningsFolder->name
         ]);
@@ -137,6 +137,7 @@ class ScreeningController extends Controller
                 $screening->movements()->save($movement);
                 $meta = isset($data['meta']) ? (array) $data['meta'] : [];
                 $meta['scoreMax'] = $screening->scoreMax;
+                $meta['scoreMin'] = $screening->scoreMin;
                 $movement->meta()->create($meta);
             }
         }
