@@ -256,6 +256,11 @@ angular.module('app.utilities', [])
         this.resetDataNamespace = this.createDataNamespace;
 
 
+        ///
+        /// Helper methods.
+        ///
+        ////////////////////////////////////////////////////////////////////////////////////////////
+
 
         /**
          * Formats an embed parameter for an API query.

@@ -9,7 +9,7 @@ angular.module('app.controllers')
 
 .controller('DashboardController', ['$scope', 'Rover', 'Utilities',
     function($scope, Rover, Utilities) {
-        Utilities.debug('DashboardController');
+        Utilities.info('DashboardController');
 
         // Greeting.
         var hour = new Date().getHours();

@@ -173,9 +173,10 @@ class AppTables extends Migration
 
             $table->string('title')->nullable();
             $table->tinyInteger('score')->nullable()->default(0);
-            $table->tinyInteger('score_max')->nullable()->default(100);
             $table->tinyInteger('score_min')->nullable()->default(0);
+            $table->tinyInteger('score_max')->nullable()->default(100);
             $table->text('notes')->nullable();
+            $table->text('meta')->nullable();
 
 			$table->timestamps();
         });
@@ -198,8 +199,8 @@ class AppTables extends Migration
 		});
         Schema::table('folders', function(Blueprint $table)
         {
-            $table->integer('folder_id')->unsigned()->nullable();
-            $table->foreign('folder_id')
+            $table->integer('parent_id')->unsigned()->nullable();
+            $table->foreign('parent_id')
                 ->references('id')
                 ->on('folders')
                 ->onUpdate('cascade')
@@ -277,17 +278,17 @@ class AppTables extends Migration
                 ->onDelete('cascade');
 
             // Start and end keyframes, indicating the range of useful frames.
-            $table->integer('start_keyframe')->unsigned()->nullable();
-			$table->foreign('start_keyframe')->references('id')->on('frames');
-            $table->integer('end_keyframe')->unsigned()->nullable();
-			$table->foreign('end_keyframe')->references('id')->on('frames');
+            $table->integer('start_frame')->unsigned()->nullable();
+			$table->foreign('start_frame')->references('id')->on('frames');
+            $table->integer('end_frame')->unsigned()->nullable();
+			$table->foreign('end_frame')->references('id')->on('frames');
 
             // Other fields.
             $table->tinyInteger('score')->nullable();
-            $table->tinyInteger('score_max')->nullable()->default(100);
             $table->tinyInteger('score_min')->nullable()->default(0);
+            $table->tinyInteger('score_max')->nullable()->default(100);
             $table->text('notes')->nullable();
-            $table->text('params')->nullable();
+            $table->text('data')->nullable();
         });
 
         // Create "movement_markers" table.
@@ -304,10 +305,10 @@ class AppTables extends Migration
 
             // Start and end keyframes, indicating how long a marker comment should be displayed
             // during a playback of the movement.
-            $table->integer('start_keyframe')->unsigned()->nullable();
-			$table->foreign('start_keyframe')->references('id')->on('frames');
-            $table->integer('end_keyframe')->unsigned()->nullable();
-			$table->foreign('end_keyframe')->references('id')->on('frames');
+            $table->integer('start_frame')->unsigned()->nullable();
+			$table->foreign('start_frame')->references('id')->on('frames');
+            $table->integer('end_frame')->unsigned()->nullable();
+			$table->foreign('end_frame')->references('id')->on('frames');
 
             // Marker comment.
             $table->string('comment')->nullable();
@@ -327,10 +328,10 @@ class AppTables extends Migration
 
             // Start and end keyframes, indicating how long a marker comment should be displayed
             // during a playback of the movement.
-            $table->integer('start_keyframe')->unsigned()->nullable();
-			$table->foreign('start_keyframe')->references('id')->on('frames');
-            $table->integer('end_keyframe')->unsigned()->nullable();
-			$table->foreign('end_keyframe')->references('id')->on('frames');
+            $table->integer('start_frame')->unsigned()->nullable();
+			$table->foreign('start_frame')->references('id')->on('frames');
+            $table->integer('end_frame')->unsigned()->nullable();
+			$table->foreign('end_frame')->references('id')->on('frames');
 
             $table->string('type')->nullable();
             $table->text('data')->nullable();
@@ -485,7 +486,7 @@ class AppTables extends Migration
         {
             Schema::table('folders', function(Blueprint $table)
             {
-                $table->dropForeign('folders_folder_id_foreign');
+                $table->dropForeign('folders_parent_id_foreign');
             });
 
             Schema::drop('folders');

@@ -805,6 +805,10 @@ $badge-colors:(
     font-size: 12px;
     line-height: 1.428571429;
     @include border-radius(15px);
+
+    .fa {
+        vertical-align: bottom;
+    }
 }
 .btn-circle.btn-lg {
     width: 50px;

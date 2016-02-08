@@ -7,7 +7,7 @@
  * @date    November 2015
  *
  *  TODO: Move helper methods to Utilities service (e.g. getState, etc.)
- *  TODO: Keep only UI-changing methods (e.g. openOverlay, etc.)
+ *  TODO: Keep only UI-changing methods (e.g. openOverlay, etc.) and programmatic methods.
  */
 angular.module('app.rover', [])
 
@@ -37,7 +37,7 @@ angular.module('app.rover', [])
         this.addBackgroundProcess = function() {
 
             this.backgroundProcessCount++;
-            Utilities.debug('Background processes: ' + this.backgroundProcessCount);
+            Utilities.info('Background processes: ' + this.backgroundProcessCount);
 
             // Show loading animation.
             if (this.backgroundProcessCount === 1) {
@@ -50,7 +50,7 @@ angular.module('app.rover', [])
                 this.backgroundProcessCount--;
             }
 
-            Utilities.debug('Background processes: ' + this.backgroundProcessCount);
+            Utilities.info('Background processes: ' + this.backgroundProcessCount);
 
             // Remove loading animation. We delay this by half a second to let the app's
             // bindings to update
@@ -63,6 +63,40 @@ angular.module('app.rover', [])
                 return;
             }
         }.bind(this);
+
+        /**
+         * Calls a method once a global flag becomes true or false.
+         *
+         * @param string flag
+         * @param object $scope
+         * @param mixed expectedStatus
+         * @param function callback
+         */
+        this.waitForFlag = function(flag, expectedStatus, $scope, callback) {
+
+            // Performance check.
+            if (typeof Utilities.data[flag] === undefined) {
+                return;
+            }
+
+            // If flag is already set to expected status, call callback function.
+            if (Utilities.data[flag] == expectedStatus) {
+                callback();
+                return;
+            }
+
+            // If not, we setup a temporary watcher.
+            var stopWatching = $scope.$watch('global.data.' + flag, function(status) {
+                if (status == expectedStatus)
+                {
+                    // Run method.
+                    callback();
+
+                    // Remove binding.
+                    stopWatching();
+                }
+            });
+        };
 
         // Shortcut to browse through app.
         this.browseTo = {
@@ -93,7 +127,7 @@ angular.module('app.rover', [])
                     Utilities.store.groupId = Utilities.getId(group);
                 }
 
-                $location.path('/group/' + Utilities.store.groupId);
+                $location.path('/groups/' + Utilities.store.groupId);
             }.bind(this),
 
             /**
@@ -108,7 +142,7 @@ angular.module('app.rover', [])
                     Utilities.store.profileId = Utilities.getId(profile);
                 }
 
-                $location.path('/profile/' + Utilities.store.profileId);
+                $location.path('/profiles/' + Utilities.store.profileId);
             }.bind(this),
 
             /**

@@ -11,7 +11,7 @@
         <!-- Append profile name to page title -->
         <div ng-if="global.getSelectedProfile().id > 0" class="h1-append">
             for
-            <a href="#/profile/{{ global.getSelectedProfile().id }}">
+            <a href="#/profiles/{{ global.getSelectedProfile().id }}">
                 {{ ::global.getSelectedProfile().firstName }}
                 {{ ::global.getSelectedProfile().lastName }}
             </a>
@@ -216,7 +216,7 @@
 
     <!-- Loading profiles -->
     <div ng-if="global.data.isFetchingProfiles">
-        <div ng-include="'partials/page-loading.html'"></div>
+        <div ng-include="'partials/loading.html'"></div>
     </div>
 
     <!-- No profile selected -->

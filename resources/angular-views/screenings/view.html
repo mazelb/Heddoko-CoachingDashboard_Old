@@ -9,14 +9,13 @@
         </h1>
 
         <!-- Append profile name to page title -->
-        <div ng-show="screeningProfile.id > 0" class="h1-append">
-            {{ screeningProfile.firstName }}
-            {{ screeningProfile.lastName }}
+        <div ng-if="profile.id > 0" class="h1-append">
+            {{ ::profile.firstName }} {{ ::profile.lastName }}
         </div>
     </header>
 
     <!-- Screening results -->
-    <div ng-show="screening.id > 0" class="text-center">
+    <div ng-if="!global.data.isFetchingSelectedScreening && screening.id > 0" class="text-center">
 
         <button class="btn btn-default">
             Test Score Table
@@ -42,9 +41,15 @@
         </a>
     </div>
 
-    <div ng-show="screening.id === 0">
+    <div ng-if="screening.id === 0">
         <h2 style="text-align: center; color: #ccc;">
-            In Development
+            An Error Occurred :(
+
+            <!-- TODO -->
         </h2>
+    </div>
+
+    <div ng-if="global.data.isFetchingSelectedScreening">
+        <ng-include src="'partials/loading.html'"></ng-include>
     </div>
 </div>

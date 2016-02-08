@@ -10,21 +10,12 @@
     </header>
 
     <!-- List of screenings -->
-    <div ng-if="global.data.isFetchingScreeningData === false" class="table-responsive">
-
-        <ui-filesystem>
-            
-        </ui-filesystem>
-
-
-        <table
-            ng-show="global.state.screening.list.length > 0"
-            class="table table-striped">
+    <div ng-if="!global.data.isFetchingScreeningData" class="table-responsive">
+        <table ng-if="global.data.screening.length > 0" class="table table-striped">
 
             <!-- Heading -->
             <thead>
                 <tr>
-                    <td class="text-center"></td>
                     <td class="text-center">Title</td>
                     <td class="text-center">Date</td>
                     <td class="text-center">Athlete</td>
@@ -34,25 +25,26 @@
 
             <!-- Screenings -->
             <tbody>
-                <tr ng-repeat="screening in global.state.screening.list">
-                    <td class="text-right">
-                        <a ng-click="selectScreening(screening)" href="javascript:;" title="Edit">
-                            <i class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <a href="#/screenings/{{ screening.id }}" title="">
-                            <i class="fa fa-list-alt"></i>
-                        </a>
-                    </td>
+                <tr ng-repeat="screening in global.data.screening track by screening.id" ng-if="screening.id">
                     <td class="text-center">
                         <a href="#/screenings/{{ screening.id }}">
                             {{ screening.title | characters:60 }}
+                        </a>
+
+                        <a
+                            ng-if="!screening.meta.isComplete"
+                            ng-click="editScreening(screening)"
+                            href="javascript:;"
+                            style="margin-left: 10px">
+
+                            &rarr; continue
                         </a>
                     </td>
                     <td class="text-center">
                         {{ screening.createdAt | mysqlDate }}
                     </td>
                     <td class="text-center">
-                        <a href="#/profile/{{ screening.profile.id }}">
+                        <a href="#/profiles/{{ screening.profile.id }}">
                             {{ screening.profile.firstName + ' ' + screening.profile.lastName | characters:40 }}
                         </a>
                     </td>
@@ -64,7 +56,7 @@
         </table>
 
         <!-- No screenings to show -->
-        <div ng-show="global.state.screening.list.length === 0" class="text-center">
+        <div ng-if="global.data.screening.length === 0" class="text-center">
 
             <a href="#/screenings/current" class="btn btn-primary btn-circle btn-lg">
                 <i class="fa fa-plus"></i>
@@ -79,8 +71,7 @@
     </div>
 
     <!-- Loading data -->
-    <div ng-if="global.data.isFetchingScreeningData === true" class="loading-notice">
-        <h3>Retrieving Tests</h3>
-        <i class="fa fa-spinner fa-spin fa-2x"></i>
+    <div ng-if="global.data.isFetchingScreeningData" class="loading-notice">
+        <ng-include src="'partials/loading.html'"></ng-include>
     </div>
 </div>

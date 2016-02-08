@@ -30,7 +30,7 @@
                     <a
                         ng-style="{'background-image': 'url('+ profile.avatarSrc +')'}"
                         style="display: block; background: transparent center center no-repeat; background-size: contain;"
-                        href="#/profile/{{ profile.id }}"
+                        href="#/profiles/{{ profile.id }}"
                         class="aspect-ratio aspect-square">
                     </a>
                 </div>
@@ -46,7 +46,7 @@
 
                     <small>Athlete: </small>
                     <b>
-                        <a href="#/profile/{{ profile.id }}">
+                        <a href="#/profiles/{{ profile.id }}">
                             {{ profile.firstName + ' ' + profile.lastName }}
                         </a>
                     </b>

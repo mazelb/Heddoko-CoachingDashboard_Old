@@ -8,7 +8,7 @@
         </a>
     </li>
     <li ng-show="global.store.groupId > 0">
-        <a class="active" href="#/group/list">
+        <a class="active" href="#/groups/list">
             Teams
         </a>
     </li>
@@ -17,17 +17,17 @@
             {{ global.state.group.list[global.store.groupId].name }}
         </a>
     </li>
-    <li ng-show="currentPath == '/profile/view' && global.store.profileId > 0">
+    <li ng-show="currentPath == '/profiles/view' && global.store.profileId > 0">
         <a class="active" href="javascript:;" ng-click="global.browseTo.profile()">
             {{ global.state.profile.list[global.store.profileId].firstName }}
         </a>
     </li>
-    <li ng-show="currentPath == '/group/create'">
+    <li ng-show="currentPath == '/groups/create'">
         <a class="active" href="javascript:;" ng-click="">
             Create a Team
         </a>
     </li>
-    <li ng-show="currentPath == '/profile/create'">
+    <li ng-show="currentPath == '/profiles/create'">
         <a class="active" href="javascript:;" ng-click="">
             Add an athlete
         </a>

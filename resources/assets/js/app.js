@@ -79,18 +79,18 @@ app.config(['$routeProvider', 'isLocalEnvironment',
             templateUrl: 'group/list.html',
             controller: 'GroupController'
 		})
-        .when('/group/list', {
+        .when('/groups/list', {
             redirectTo: '/group'
 		})
-        // .when('/group/create', {
+        // .when('/groups/create', {
 		// 	templateUrl: 'group/create.html',
         //     controller: 'GroupController'
 		// })
-        .when('/group/edit', {
+        .when('/groups/edit', {
 			templateUrl: 'group/edit.html',
             controller: 'GroupController'
 		})
-        .when('/group/:groupId', {
+        .when('/groups/:groupId', {
             templateUrl: 'group/view.html',
             controller: 'GroupController'
 		})
@@ -102,18 +102,18 @@ app.config(['$routeProvider', 'isLocalEnvironment',
             templateUrl: 'profile/list.html',
             controller: 'ProfileController'
 		})
-        .when('/profile/list', {
+        .when('/profiles/list', {
             redirectTo: '/profile'
 		})
-        .when('/profile/create', {
+        .when('/profiles/create', {
 			templateUrl: 'profile/create.html',
             controller: 'ProfileController'
 		})
-        .when('/profile/edit', {
+        .when('/profiles/edit', {
 			templateUrl: 'profile/edit.html',
             controller: 'ProfileController'
 		})
-        .when('/profile/:profileId', {
+        .when('/profiles/:profileId', {
 			templateUrl: 'profile/view.html',
             controller: 'ProfileController'
 		})
@@ -161,12 +161,12 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 			templateUrl: 'screenings/index.html',
             controller: 'ScreeningController'
 		})
-        .when('/screenings/current', {
-			templateUrl: 'screenings/current/index.html',
-            controller: 'ScreeningController'
+        .when('/screenings/live', {
+			templateUrl: 'screenings/live/index.html',
+            controller: 'LiveScreeningController'
 		})
-        .when('/screenings/:screeningId', {
-			templateUrl: 'screenings/view/index.html',
+        .when('/screenings/:screeningId/:screeningPage?', {
+			templateUrl: 'screenings/view.html',
             controller: 'ScreeningController'
 		})
 
@@ -237,11 +237,11 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 .run(['$rootScope', '$location', 'Rover', 'Utilities',
     function ($rootScope, $location, Rover, Utilities) {
 
-        Utilities.debug('Running app...');
+        Utilities.info('Running app...');
 
         $(document).ready(function() {
 
-            Utilities.debug('DOM ready');
+            Utilities.info('DOM ready');
 
             // Removes the loading animation.
             Rover.doneBackgroundProcess();

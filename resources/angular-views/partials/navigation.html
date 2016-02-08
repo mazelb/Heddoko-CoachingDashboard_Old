@@ -34,7 +34,7 @@
 
             <ul ng-if="global.data.group && global.data.group.length > 0" style="display: block">
                 <li>
-                    <a href="#/group/{{ global.getSelectedGroup().id }}">
+                    <a href="#/groups/{{ global.getSelectedGroup().id }}">
                         <i class="fa fa-angle-right"></i>
                         <span>{{ global.getSelectedGroup().name }}</span>
                     </a>
@@ -86,7 +86,7 @@
             <!-- No profiles available -->
             <a
                 ng-if="global.data.isFetchingProfiles === false && global.data.profile.length === 0"
-                href="#/profile/create">
+                href="#/profiles/create">
 
                 <i class="fa fa-user"></i>
                 <span>Create a Profile</span>
@@ -142,14 +142,14 @@
 
         <!-- Screenings -->
 		<li>
-            <a href="#/screening">
+            <a href="#/screenings">
                 <i class="fa fa-pencil-square-o"></i>
                 <span>Movement Tests</span>
             </a>
 
             <ul style="display: block">
                 <li>
-                    <a href="#/screenings/current">
+                    <a href="#/screenings/live">
                         <i class="fa fa-angle-right"></i>
                         <span>Record or Upload</span>
                     </a>

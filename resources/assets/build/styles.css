@@ -3987,6 +3987,8 @@ fieldset[disabled] .btn-danger.active {
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
   border-radius: 15px; }
+  .btn-circle .fa {
+    vertical-align: bottom; }
 
 .btn-circle.btn-lg {
   width: 50px;
@@ -5088,7 +5090,8 @@ button.toast-close-button {
  * AJAX loading messages.
  */
 .loading-notice {
-  text-align: center; }
+  text-align: center;
+  color: #5b707d; }
   .loading-notice h1, .loading-notice h2, .loading-notice h3 {
     margin: 100px auto 75px; }
 

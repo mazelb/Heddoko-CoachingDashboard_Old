@@ -9,7 +9,7 @@ angular.module('app.controllers')
 
 .controller('SearchController', ['$scope', '$timeout', 'Rover', 'Utilities',
     function($scope, $timeout, Rover, Utilities) {
-        Utilities.debug('SearchController');
+        Utilities.info('SearchController');
 
         // Available search filters.
         $scope.filters = [
@@ -202,14 +202,14 @@ angular.module('app.controllers')
                     // Browse to selected profile.
                     case 'profile':
                         $timeout(function() {
-                            Rover.browseTo.path('/profile/' + item);
+                            Rover.browseTo.path('/profiles/' + item);
                         });
                         break;
 
                     // Browse to selected group.
                     case 'group':
                         $timeout(function() {
-                            Rover.browseTo.group('/group/' + item);
+                            Rover.browseTo.group('/groups/' + item);
                         });
                         break;
                 }
@@ -240,7 +240,8 @@ angular.module('app.controllers')
 
                 case 'group':
                     $scope.options = [];
-                    angular.forEach($scope.global.state.group.list, function(group) {
+                    // angular.forEach($scope.global.state.group.list, function(group) {
+                    angular.forEach(Utilities.getDataList('group', []), function(group) {
                         if (group && group.id) {
                             $scope.options.push(group);
                         }

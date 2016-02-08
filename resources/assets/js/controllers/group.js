@@ -102,7 +102,7 @@ angular.module('app.controllers')
                 Utilities.setData('group', this.id, this);
 
                 // Navigate to group page.
-                Rover.browseTo.path('/group/' + this.id);
+                Rover.browseTo.path('/groups/' + this.id);
             }
 
             //

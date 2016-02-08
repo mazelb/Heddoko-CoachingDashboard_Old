@@ -35,8 +35,12 @@ angular.module('app.directives')
             // Stores some configuration values for this directive.
             $scope.config = $scope.config || {};
 
-            // Stores list of items in this container.
-            var items = $scope.items = {};
+            /**
+             * Stores list of items in this container.
+             *
+             * @param object item
+             * @return bool
+             */
             this.addItem = function(item) {
 
                 // Link item to controller.
@@ -47,8 +51,11 @@ angular.module('app.directives')
 
                 return true;
             };
+            var items = $scope.items = {};
 
-            // Switch state to "editing".
+            /**
+             * Switches directive state to "editing".
+             */
             $scope.edit = function() {
                 $scope.state = 'editing';
                 angular.forEach(items, function(item) {
@@ -56,7 +63,9 @@ angular.module('app.directives')
                 });
             };
 
-            // Saves changes.
+            /**
+             * Updates the model.
+             */
             $scope.save = function() {
 
                 // Switch state to "saving".
@@ -86,14 +95,21 @@ angular.module('app.directives')
                 );
             };
 
-            // Deletes a model.
+            /**
+             * Deletes a model.
+             */
             $scope.delete = function() {
                 $scope.deleteResource.apply();
             };
 
-            // Watches for updates to model from outside the directive.
+            /**
+             * Watches for updates to model from outside the directive.
+             *
+             * @param object model
+             */
             $scope.$watch('resource', function(model) {
                 $scope.state = 'idle';
+                
                 angular.forEach(items, function(item) {
                     item.state = $scope.state;
                     item.model = model;

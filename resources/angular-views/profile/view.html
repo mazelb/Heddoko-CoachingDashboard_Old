@@ -12,7 +12,7 @@
         <div ng-if="profile.groups.length > 0" class="h1-append">
             Team:
 
-            <a href="#/group/{{ profile.groups[0].id }}">
+            <a href="#/groups/{{ profile.groups[0].id }}">
                 {{ profile.groups[0].name }}
             </a>
         </div>
@@ -41,6 +41,17 @@
                     </span>
 
                     <div class="pull-right">
+
+                        <!-- New screening button -->
+                        <a
+                            ng-if="profile.id > 0"
+                            ng-click="startNewScreening()"
+                            href="javascript:;">
+
+                            <button class="btn btn-default btn-circle btn-lg">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </button>
+                        </a>
 
                         <!-- Delete group button -->
                         <a
@@ -367,5 +378,5 @@
 
 <!-- Loading profiles -->
 <div ng-if="global.data.isFetchingProfiles" class="page">
-    <ng-include src="'partials/page-loading.html'"></ng-include>
+    <ng-include src="'partials/loading.html'"></ng-include>
 </div>

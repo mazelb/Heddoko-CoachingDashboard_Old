@@ -88,7 +88,7 @@ angular.module('app.controllers')
                 $scope.profileList.push({
                     title: list[i].firstName + ' ' + list[i].lastName,
                     image: list[i].avatarSrc,
-                    href: '#/profile/' + list[i].id,
+                    href: '#/profiles/' + list[i].id,
                     firstName: list[i].firstName,
                     lastName: list[i].lastName,
                     group: list[i].groups[0].name || '',
@@ -117,7 +117,7 @@ angular.module('app.controllers')
                     // Rover.setState('profile', response.data.id, response.data);
                     Utilities.setData('profile', response.data.id, response.data);
                     $scope.global.updateFilteredProfiles();
-                    Rover.browseTo.path('/profile/' + response.data.id);
+                    Rover.browseTo.path('/profiles/' + response.data.id);
                     Rover.doneBackgroundProcess();
                 },
                 function(response) {
@@ -152,7 +152,7 @@ angular.module('app.controllers')
                 // Rover.store.profileId = this.id;
 
                 // Navigate to profile page.
-                // Rover.browseTo.path('/profile/' + this.id);
+                // Rover.browseTo.path('/profiles/' + this.id);
             }
 
             //
@@ -213,6 +213,22 @@ angular.module('app.controllers')
                     profile.avatarSrc = this.avatarSrc;
                 }
             }.bind(this));
+        };
+
+        /**
+         * Creates a new screening.
+         *
+         * @param int|object profile
+         */
+        $scope.startNewScreening = function(profile) {
+
+            // Update active profile.
+            if (profile) {
+                Utilities.store.profileId = Utilities.getId(profile);
+            }
+
+            Utilities.store.liveScreeningId = 0;
+            Rover.browseTo.path('/screenings/live');
         };
 
         // Loads the list of profiles.

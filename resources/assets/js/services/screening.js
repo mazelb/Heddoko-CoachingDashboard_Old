@@ -7,8 +7,8 @@
  */
 angular.module('app.services')
 
-.factory('ScreeningService', ['$http', 'apiEndpoint',
-    function($http, apiEndpoint) {
+.factory('ScreeningService', ['$http', 'apiEndpoint', 'Utilities',
+    function($http, apiEndpoint, Utilities) {
 
         return {
 
@@ -21,21 +21,29 @@ angular.module('app.services')
              * Retrieves the specified resource from the API.
              *
              * @param int id
+             * @param array|string embed
              * @return object $http
              */
-            get: function(id) {
-    			return $http.get(this.endpoint + '/' + id);
+            get: function(id, embed) {
+    			return $http.get(this.endpoint + '/' + id, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
              * Queries the API for the search term.
              *
              * @param object options
+             * @param array|string embed
              * @return object $http
              */
-            search: function(options) {
+            search: function(options, embed) {
     			return $http.get(this.endpoint, {
-                    params: {}
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
                 });
     		},
 
@@ -44,12 +52,14 @@ angular.module('app.services')
              *
              * @param int profileId
              * @param object data
+             * @param array|string embed
              * @return object $http
              */
-            create: function(profileId, data) {
+            create: function(profileId, data, embed) {
                 return $http.post(this.endpoint, data, {
                     params: {
-                        profileId: profileId
+                        profileId: profileId,
+                        embed: Utilities.getEmbedParameter(embed)
                     }
                 });
     		},
@@ -59,10 +69,15 @@ angular.module('app.services')
              *
              * @param int id
              * @param object data
+             * @param array|string embed
              * @return object $http
              */
-            update: function(id, data) {
-                return $http.put(this.endpoint + '/' + id, data);
+            update: function(id, data, embed) {
+                return $http.put(this.endpoint + '/' + id, data, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**

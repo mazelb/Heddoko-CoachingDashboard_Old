@@ -189,7 +189,7 @@
             <!-- New profile button -->
             <!-- TODO: figure out why the right margin is needed -->
             <a
-                href="#/profile/create"
+                href="#/profiles/create"
                 class="btn btn-info btn-metro"
                 style="margin-right: 0">
 
@@ -198,7 +198,7 @@
 
             <a
                 ng-repeat="profile in global.data.filteredProfiles | limitTo:global.data.filteredProfiles.length track by profile.id"
-                href="#/profile/{{ profile.id }}"
+                href="#/profiles/{{ profile.id }}"
                 class="btn btn-info btn-metro"
                 style="background-image: url({{ ::profile.avatarSrc || '' }});">
 
@@ -210,7 +210,7 @@
 
 <!-- Fetching group data -->
 <div ng-if="global.data.isFetchingGroups === true" class="page">
-    <ng-include src="'partials/page-loading.html'"></ng-include>
+    <ng-include src="'partials/loading.html'"></ng-include>
 </div>
 
 <!-- No group selected -->
@@ -223,6 +223,6 @@
         <br>
 
         You can also take this opportunity to
-        <a href="#/group/create">create one</a>.
+        <a href="#/groups/create">create one</a>.
     </div>
 </div>

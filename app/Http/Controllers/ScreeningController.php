@@ -44,6 +44,7 @@ class ScreeningController extends Controller
         if ($this->request->has('profileId'))
         {
             $profileId = (int) $this->request->input('profileId');
+
             if (!$profile = Auth::user()->profiles()->find($profileId)) {
                 return response('Profile Not Found.', 400);
             }
@@ -85,7 +86,7 @@ class ScreeningController extends Controller
      */
     public function store()
     {
-        // Retrieve profile this screening belongs to.
+        // Performance check.
         if (!$profileId = (int) $this->request->input('profileId')) {
             return response('Invalid Profile ID.', 400);
         }
@@ -94,15 +95,30 @@ class ScreeningController extends Controller
             return response('Profile Not Found.', 400);
         }
 
-        // Create a record for the screening.
-        $screening = $profile->screenings()->create($this->request->only([
+        // Retrieve screening details.
+        $details = $this->request->only([
             'title',
             'score',
+            'scoreMin',
             'scoreMax',
             'notes'
-        ]));
+        ]);
+        if (strlen(trim($details['title'])) < 1) {
+            $details['title'] = 'Functional Movement Screening - '. date('M j, Y');
+        }
 
-        // We'll also create a folder to organize the screening movements.
+        // Add some defaults.
+        $details['meta'] = [
+            'isComplete' => false
+        ];
+
+        // Create a record for the screening.
+        if (!$screening = $profile->screenings()->create($details)) {
+            return response('An Error Occurred.', 500);
+        }
+
+        // We'll also create a folder to organize the screening movements, if one doesn't already
+        // exist.
         $screeningsFolder = Folder::where('profile_id', $profileId)
                                 ->where('system_name', 'screenings')
                                 ->first();
@@ -116,13 +132,13 @@ class ScreeningController extends Controller
         }
 
         $folder = $profile->folders()->create([
-            'folder_id' => $screeningsFolder->id,
+            'parent_id' => $screeningsFolder->id,
             'name' => $screening->title .' - '. date('M j, Y'),
             'system_name' => 'screenings.'. $screening->id,
             'path' => '/'. $screeningsFolder->name
         ]);
 
-        // Add movements to the screening.
+        // Add movement data, if any.
         if ($this->request->has('movements'))
         {
             $movements = (array) $this->request->input('movements');
@@ -136,18 +152,22 @@ class ScreeningController extends Controller
                 // Update metadata.
                 $screening->movements()->save($movement);
                 $meta = isset($data['meta']) ? (array) $data['meta'] : [];
-                $meta['scoreMax'] = $screening->scoreMax;
                 $meta['scoreMin'] = $screening->scoreMin;
+                $meta['scoreMax'] = $screening->scoreMax;
                 $movement->meta()->create($meta);
             }
         }
 
-        // Return screening with movements.
-        foreach ($screening->movements as $movement) {
-            $movement->meta;
-        }
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Screening::$appendable
+        );
 
-        return $screening;
+        // Return updated model.
+        $updated = Screening::with($embed['relations'])->find($screening->id);
+
+        return $updated;
     }
 
     /**
@@ -167,11 +187,13 @@ class ScreeningController extends Controller
         // Retrieve screening.
         $builder = Screening::whereIn('profile_id', Auth::user()->getProfileIDs());
 
-        if ($embed = $this->request->input('embed')) {
-            $builder->with($embed);
-        }
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Screening::$appendable
+        );
 
-        if (!$screening = $builder->find($id)) {
+        if (!$screening = $builder->with($embed['relations'])->find($id)) {
             return response('Screening Not Found.', 404);
         }
 
@@ -188,7 +210,7 @@ class ScreeningController extends Controller
     {
         //
 
-        return $this->send(501, 'Not Implemented');
+        return response('Not Implemented.', 501);
     }
 
     /**
@@ -201,6 +223,6 @@ class ScreeningController extends Controller
     {
         //
 
-        return $this->send(501, 'Not Implemented');
+        return response('Not Implemented.', 501);
     }
 }
