@@ -138,7 +138,7 @@ angular.module('app.controllers')
         if ($routeParams.screeningId > 0)
         {
             // From the API, if it hasn't already been loaded.
-            if (!Utilities.data.selectedScreening) {
+            if (!Utilities.data.selectedScreening || Utilities.data.selectedScreening.id != $routeParams.screeningId) {
                 Utilities.data.isFetchingSelectedScreening = true;
                 Rover.waitForFlag('isFetchingProfiles', false, $scope, $scope.fetchScreening);
             }

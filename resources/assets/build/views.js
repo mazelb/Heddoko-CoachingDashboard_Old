@@ -4591,7 +4591,7 @@ angular.module("partials/loading.html", []).run(["$templateCache", function($tem
     "            Please bear with us\n" +
     "            <br>\n" +
     "\n" +
-    "            as we retrieve your data.\n" +
+    "            while we retrieve your data.\n" +
     "        </h3>\n" +
     "        <i class=\"fa fa-spinner fa-spin fa-2x\"></i>\n" +
     "    </div>\n" +

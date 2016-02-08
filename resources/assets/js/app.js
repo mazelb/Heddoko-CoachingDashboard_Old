@@ -98,7 +98,7 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         //
         // Profile routes.
         //
-        .when('/profile', {
+        .when('/profiles', {
             templateUrl: 'profile/list.html',
             controller: 'ProfileController'
 		})
