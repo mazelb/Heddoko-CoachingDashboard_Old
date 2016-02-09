@@ -7,5 +7,21 @@
  */
 
 .ui-filesystem-container {
-    
+
+    .ui-filesystem-toolbar {
+        margin: 5px 0 15px;
+
+        .ui-filesystem-toolbar-group {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .ui-filesystem-toolbar-btn {
+            color: $text-color-blue;
+
+            &:hover, &:active, &.ui-filesystem-active {
+                color: $heddokogreen;
+            }
+        }
+    }
 }

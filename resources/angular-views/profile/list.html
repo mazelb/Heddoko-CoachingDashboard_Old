@@ -14,10 +14,36 @@
             data-id="profiles-explorer"
             data-files="profileList"
             data-hide-location="true"
-            data-hide-small-tiles-layout="true"
-            data-list-params="profileListParams"
+            data-config="uiFilesystemConfig"
             class="col-sm-12">
         </ui-filesystem>
+
+        <!-- New profile modal form -->
+        <div class="modal fade" id="createProfileForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Profile Details
+                    </div>
+
+                    <div class="modal-body">
+
+                        <h1 class="text-center text-muted">
+                            In Development.
+                        </h1>
+                    </div>
+
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">
+                            Create
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div ng-if="global.data.isFetchingProfiles === true" class="loading-notice">

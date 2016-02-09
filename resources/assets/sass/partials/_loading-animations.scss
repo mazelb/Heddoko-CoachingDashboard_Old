@@ -57,31 +57,34 @@ $size: 0.5em;
 
 // teams page
 
-.card-container {
-  max-width:1210px;
-  margin-left: auto;
-  margin-right: auto;
-}
+// TODO: This is no longer used.. If used in the future, can be renamed or made more specific
+// so that it doesn't clash with other styles.
 
-.card{
-  height: 400px;
-  width: 220px;
-  background-color: black;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 36px;
-  position: relative;
-  text-shadow:1px 1px 0 rgba(0,0,0,1);
-  font-weight:normal;
-  font-variant:small-caps;
-  color:#FFFFFF;
-  background-color:black;
-  letter-spacing:1pt;
-  font-size:16px;
-  text-align:left;
-  font-family:arial black, sans-serif;
-  line-height:1;
-}
+// .card-container {
+//   max-width:1210px;
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+//
+// .card{
+//   height: 400px;
+//   width: 220px;
+//   background-color: black;
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-bottom: 36px;
+//   position: relative;
+//   text-shadow:1px 1px 0 rgba(0,0,0,1);
+//   font-weight:normal;
+//   font-variant:small-caps;
+//   color:#FFFFFF;
+//   background-color:black;
+//   letter-spacing:1pt;
+//   font-size:16px;
+//   text-align:left;
+//   font-family:arial black, sans-serif;
+//   line-height:1;
+// }
 
 .picture {
   height: 280px;
@@ -105,22 +108,25 @@ $size: 0.5em;
   height: 60px;
 }
 
-.cardtitle, .playername{
-  margin-left: 10px;
-}
+// TODO: This is no longer used.. If used in the future, can be renamed or made more specific
+// so that it doesn't clash with other styles.
 
-.cardpercentage{
-  margin-right: 16px;
-  z-index: 1;
-}
-
-.card .stat1 span, .card .stat2 span {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
+// .cardtitle, .playername{
+//   margin-left: 10px;
+// }
+//
+// .cardpercentage{
+//   margin-right: 16px;
+//   z-index: 1;
+// }
+//
+// .card .stat1 span, .card .stat2 span {
+//   position: relative;
+//   top: 50%;
+//   -webkit-transform: translateY(-50%);
+//   -ms-transform: translateY(-50%);
+//   transform: translateY(-50%);
+// }
 
 .bodyoverlay{
   position: absolute;

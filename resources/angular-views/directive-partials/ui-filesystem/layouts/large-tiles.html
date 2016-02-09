@@ -24,27 +24,27 @@
     </div>
 
     <!-- Files -->
-    <div ng-repeat="file in files track by $index" class="col-xs-6 col-md-4 col-lg-3">
-        <div class="aspect-ratio aspect-4-3 active-element text-center">
+    <div ng-repeat="file in files track by $index" class="col-sm-12 col-md-6 col-lg-4">
+        <a
+            href="{{ file.href }}"
+            class="aspect-ratio aspect-4-3 card"
+            style="background-image: url({{ file.image || '' }})">
             <div>
 
-                <!-- Movement preview -->
-                <ui-movement-preview data-aspect-ratio="4:3"></ui-movement-preview>
-
-                <div class="tools text-left">
-
-                    <!-- Date -->
-                    <span>
-                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}
-                    </span>
-                    <br>
+                <!-- File actions -->
+                <div class="data">
 
                     <!-- Title -->
-                    <span title="{{ file.title }}">
+                    <span class="title" title="{{ file.title }}">
                         {{ file.title | characters:25 }}
+                    </span>
+
+                    <!-- Sub title -->
+                    <span class="sub-title" ng-if="file.subTitle">
+                        {{ ::file.subTitle | characters:25 }}
                     </span>
                 </div>
             </div>
-        </div>
+        </a>
     </div>
 </div>

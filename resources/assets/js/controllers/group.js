@@ -8,43 +8,57 @@
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$routeParams', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
-    function($scope, $routeParams, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
+    ['$scope', '$routeParams', '$filter', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
+    function($scope, $routeParams, $filter, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
         Utilities.info('GroupController');
+
+        // Group list config for uiFilesystem.
+        $scope.uiFilesystemConfig = {
+            toolbar: {
+                createModal: 'createGroupForm',
+                createModalIcon: 'plus'
+            },
+            detailsLayoutTitles: {
+                name: 'Name',
+                createdAt: 'Created On'
+            }
+        };
+
+        // Data for group list.
+        $scope.groupList = [];
 
         // Currently displayed group.
         $scope.group = {id: 0};
         if ($routeParams.groupId > 0)
         {
-            if (Utilities.hasData('group', $routeParams.groupId))
-            {
+            Rover.waitForFlag('isFetchingGroups', false, $scope, function() {
                 $scope.global.selectGroup($routeParams.groupId);
                 $scope.group = Utilities.getData('group', $routeParams.groupId);
-            }
-
-            // If we're still loading groups, wait for those results.
-            else if (Utilities.data.isFetchingGroups)
-            {
-                // TODO: fix this watcher.
-                var stopWatchingGroups = $scope.$watch('global.data.isFetchingGroups', function(status) {
-
-                    // Update group.
-                    if (Utilities.hasData('group', $routeParams.groupId))
-                    {
-                        $scope.global.selectGroup($routeParams.groupId);
-                        $scope.group = Utilities.getData('group', $routeParams.groupId);
-                    }
-
-                    // Remove $watch binding.
-                    stopWatchingGroups();
-                });
-            }
+            });
         }
 
         // Model for new group details.
         $scope.newGroup = {
             id: 0,
             name: ''
+        };
+
+        /**
+         * Updates the group list.
+         */
+        $scope.updateGroupList = function() {
+            var list = Utilities.getDataArray('group'), i;
+
+            $scope.groupList = [];
+            for (i = 0; i < list.length; i++)
+            {
+                $scope.groupList.push({
+                    title: list[i].name,
+                    image: list[i].avatarSrc,
+                    href: '#/groups/' + list[i].id,
+                    createdAt: $filter('mysqlDate')(list[i].createdAt)
+                });
+            }
         };
 
         /**
@@ -182,8 +196,8 @@ angular.module('app.controllers')
         };
 
         // POST endpoint for avatar uploads.
-        $scope.uploadAvatarEndpoint = $scope.global.getSelectedGroup() ?
-            '/api/v1/groups/'+ $scope.global.getSelectedGroup().id +'/avatar' : '';
+        $scope.uploadAvatarEndpoint = $routeParams.groupId > 0 ?
+            '/api/v1/groups/'+ $routeParams.groupId +'/avatar' : '';
 
         // Callback for avatar uploads.
         $scope.uploadAvatarCallback = function() {
@@ -195,5 +209,8 @@ angular.module('app.controllers')
             // $scope.global.state.group.list[this.group.id].avatarSrc = this.avatarSrc;
             Utilities.getData('group', this.group.id).avatarSrc = this.avatarSrc;
         };
+
+        // Loads the list of groups.
+        Rover.waitForFlag('isFetchingGroups', false, $scope, $scope.updateGroupList);
     }
 ]);

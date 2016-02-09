@@ -1885,16 +1885,27 @@ angular.module("directive-partials/ui-filesystem/container.html", []).run(["$tem
     "        <div class=\"col-xs-12\">\n" +
     "\n" +
     "            <!-- Layout selector -->\n" +
-    "            <div ng-if=\"layout.list.length > 1\" class=\"btn-group\" role=\"group\">\n" +
-    "                <button\n" +
+    "            <div ng-if=\"layout.list.length > 1\" class=\"ui-filesystem-toolbar-group\">\n" +
+    "                <a\n" +
     "                    ng-repeat=\"btn in layout.list\"\n" +
     "                    ng-click=\"setLayout(btn.name)\"\n" +
-    "                    ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
-    "                    type=\"button\"\n" +
-    "                    class=\"btn\">\n" +
+    "                    ng-class=\"{'ui-filesystem-active': btn.name == layout.name}\"\n" +
+    "                    class=\"ui-filesystem-toolbar-btn\">\n" +
     "\n" +
-    "                    <i ng-class=\"'fa-' + btn.icon\" class=\"fa\"></i>\n" +
-    "                </button>\n" +
+    "                    <i class=\"fa fa-fw fa-lg fa-{{ btn.icon }}\"></i>\n" +
+    "                </a>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <!-- Create button -->\n" +
+    "            <div ng-if=\"config.toolbar.createModal\" class=\"ui-filesystem-toolbar-group\">\n" +
+    "                <a\n" +
+    "                    data-toggle=\"modal\"\n" +
+    "                    data-target=\"#{{ config.toolbar.createModal }}\"\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"ui-filesystem-toolbar-btn\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-fw fa-lg fa-{{ config.toolbar.createModalIcon }}\"></i>\n" +
+    "                </a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
@@ -1977,28 +1988,28 @@ angular.module("directive-partials/ui-filesystem/layouts/large-tiles.html", []).
     "    </div>\n" +
     "\n" +
     "    <!-- Files -->\n" +
-    "    <div ng-repeat=\"file in files track by $index\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
-    "        <div class=\"aspect-ratio aspect-4-3 active-element text-center\">\n" +
+    "    <div ng-repeat=\"file in files track by $index\" class=\"col-sm-12 col-md-6 col-lg-4\">\n" +
+    "        <a\n" +
+    "            href=\"{{ file.href }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card\"\n" +
+    "            style=\"background-image: url({{ file.image || '' }})\">\n" +
     "            <div>\n" +
     "\n" +
-    "                <!-- Movement preview -->\n" +
-    "                <ui-movement-preview data-aspect-ratio=\"4:3\"></ui-movement-preview>\n" +
-    "\n" +
-    "                <div class=\"tools text-left\">\n" +
-    "\n" +
-    "                    <!-- Date -->\n" +
-    "                    <span>\n" +
-    "                        {{ file.createdAt | mysqlDate : 'MMMM d, h:mma' }}\n" +
-    "                    </span>\n" +
-    "                    <br>\n" +
+    "                <!-- File actions -->\n" +
+    "                <div class=\"data\">\n" +
     "\n" +
     "                    <!-- Title -->\n" +
-    "                    <span title=\"{{ file.title }}\">\n" +
+    "                    <span class=\"title\" title=\"{{ file.title }}\">\n" +
     "                        {{ file.title | characters:25 }}\n" +
+    "                    </span>\n" +
+    "\n" +
+    "                    <!-- Sub title -->\n" +
+    "                    <span class=\"sub-title\" ng-if=\"file.subTitle\">\n" +
+    "                        {{ ::file.subTitle | characters:25 }}\n" +
     "                    </span>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "        </div>\n" +
+    "        </a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -2031,13 +2042,28 @@ angular.module("directive-partials/ui-filesystem/layouts/small-tiles.html", []).
     "    </div>\n" +
     "\n" +
     "    <!-- Files -->\n" +
-    "    <div ng-repeat=\"file in files track by $index\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
-    "        <span class=\"file\" title=\"{{ ::file.title }}\">\n" +
-    "            <i class=\"fa fa-files-o fa-2x\"></i>\n" +
-    "            <span class=\"name\">\n" +
-    "                {{ ::file.title | characters:12 }}\n" +
-    "            </span>\n" +
-    "        </span>\n" +
+    "    <div ng-repeat=\"file in files track by $index\" class=\"col-sm-6 col-md-4 col-lg-2\">\n" +
+    "        <a\n" +
+    "            href=\"{{ file.href }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card\"\n" +
+    "            style=\"background-image: url({{ file.image || '' }})\">\n" +
+    "            <div>\n" +
+    "\n" +
+    "                <!-- File actions -->\n" +
+    "                <div class=\"data\">\n" +
+    "\n" +
+    "                    <!-- Title -->\n" +
+    "                    <span class=\"title\" title=\"{{ file.title }}\">\n" +
+    "                        {{ ::file.title | characters:25 }}\n" +
+    "                    </span>\n" +
+    "\n" +
+    "                    <!-- Sub title -->\n" +
+    "                    <span class=\"sub-title\" ng-if=\"file.subTitle\">\n" +
+    "                        {{ ::file.subTitle | characters:25 }}\n" +
+    "                    </span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </a>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -3122,85 +3148,61 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "    </header>\n" +
     "\n" +
     "    <div ng-if=\"global.data.isFetchingGroups === false\" class=\"row\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
     "\n" +
-    "            <!-- New group button -->\n" +
-    "            <!-- TODO: figure out why the right margin is needed -->\n" +
-    "            <a\n" +
-    "                data-toggle=\"modal\"\n" +
-    "                data-target=\"#newGroupForm\"\n" +
-    "                href=\"javascript:;\"\n" +
-    "                class=\"btn btn-info btn-metro\"\n" +
-    "                style=\"margin-right: 0\">\n" +
+    "        <!-- Group list -->\n" +
+    "        <ui-filesystem\n" +
+    "            data-id=\"groups-explorer\"\n" +
+    "            data-files=\"groupList\"\n" +
+    "            data-hide-location=\"true\"\n" +
+    "            data-config=\"uiFilesystemConfig\"\n" +
+    "            class=\"col-sm-12\">\n" +
+    "        </ui-filesystem>\n" +
     "\n" +
-    "                <i class=\"fa fa-plus\"></i>\n" +
-    "            </a>\n" +
+    "        <!-- New group modal form -->\n" +
+    "        <div class=\"modal fade\" id=\"createGroupForm\">\n" +
+    "            <div class=\"modal-dialog\">\n" +
+    "                <div class=\"modal-content\">\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        Team Details\n" +
+    "                    </div>\n" +
     "\n" +
-    "            <!-- New group form -->\n" +
-    "            <div class=\"modal fade\" id=\"newGroupForm\">\n" +
-    "                <div class=\"modal-dialog\">\n" +
-    "                    <div class=\"modal-content\">\n" +
-    "                        <div class=\"modal-header\">\n" +
-    "                            Team Details\n" +
+    "                    <div class=\"modal-body\">\n" +
+    "\n" +
+    "                        <!-- Name -->\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <input\n" +
+    "                                type=\"text\"\n" +
+    "                                ng-model=\"newGroup.name\"\n" +
+    "                                placeholder=\"Name\"\n" +
+    "                                class=\"form-control\"\n" +
+    "                                required>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <div class=\"modal-body\">\n" +
-    "\n" +
-    "                            <!-- Name -->\n" +
-    "                            <div class=\"form-group\">\n" +
-    "                                <input\n" +
-    "                                    type=\"text\"\n" +
-    "                                    ng-model=\"newGroup.name\"\n" +
-    "                                    placeholder=\"Name\"\n" +
-    "                                    class=\"form-control\"\n" +
-    "                                    required>\n" +
-    "                            </div>\n" +
-    "\n" +
-    "                            <!-- Sport -->\n" +
-    "                            <div class=\"form-group\">\n" +
-    "                                <input\n" +
-    "                                    type=\"text\"\n" +
-    "                                    placeholder=\"Sport\"\n" +
-    "                                    class=\"form-control\"\n" +
-    "                                    disabled>\n" +
-    "                            </div>\n" +
+    "                        <!-- Sport -->\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <input\n" +
+    "                                type=\"text\"\n" +
+    "                                placeholder=\"Sport\"\n" +
+    "                                class=\"form-control\"\n" +
+    "                                disabled>\n" +
     "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                        <div class=\"modal-footer text-center\">\n" +
-    "                            <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
-    "                                Cancel\n" +
-    "                            </button>\n" +
-    "                            <button ng-click=\"createGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
-    "                                Create\n" +
-    "                            </button>\n" +
-    "                        </div>\n" +
+    "                    <div class=\"modal-footer text-center\">\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                            Cancel\n" +
+    "                        </button>\n" +
+    "                        <button ng-click=\"createGroup()\" type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                            Create\n" +
+    "                        </button>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +
-    "\n" +
-    "            <!-- List of groups -->\n" +
-    "            <a\n" +
-    "                ng-repeat=\"group in global.data.group.list\"\n" +
-    "                ng-show=\"group.id\"\n" +
-    "                href=\"#/groups/{{ group.id }}\"\n" +
-    "                class=\"btn btn-info btn-metro\"\n" +
-    "                style=\"background-image: url({{ group.avatarSrc || '' }})\">\n" +
-    "\n" +
-    "                <span style=\"background-color: rgba(0, 0, 0, 0.4)\">{{ group.name | characters:15 }}</span>\n" +
-    "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
-    "    <div ng-if=\"global.data.isFetchingGroups === true\" class=\"row text-center\">\n" +
-    "        <div class=\"col-xs-12\">\n" +
-    "            <h3>Retrieving Data</h3>\n" +
-    "            <br>\n" +
-    "            <br>\n" +
-    "\n" +
-    "            <div>\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-3x\"></i>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
+    "    <div ng-if=\"global.data.isFetchingGroups === true\">\n" +
+    "        <ng-include src=\"'partials/loading.html'\"></ng-include>\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -4669,7 +4671,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "        <!-- Profiles -->\n" +
     "		<li>\n" +
     "            <!-- List of profiles -->\n" +
-    "            <a ng-if=\"global.data.profile && global.data.profile.length > 0\" href=\"#/profile\">\n" +
+    "            <a ng-if=\"global.data.profile && global.data.profile.length > 0\" href=\"#/profiles\">\n" +
     "                <i class=\"fa fa-user\"></i>\n" +
     "                <span>Athletes</span>\n" +
     "                <span class=\"pull-right\">\n" +
@@ -5111,10 +5113,36 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "            data-id=\"profiles-explorer\"\n" +
     "            data-files=\"profileList\"\n" +
     "            data-hide-location=\"true\"\n" +
-    "            data-hide-small-tiles-layout=\"true\"\n" +
-    "            data-list-params=\"profileListParams\"\n" +
+    "            data-config=\"uiFilesystemConfig\"\n" +
     "            class=\"col-sm-12\">\n" +
     "        </ui-filesystem>\n" +
+    "\n" +
+    "        <!-- New profile modal form -->\n" +
+    "        <div class=\"modal fade\" id=\"createProfileForm\">\n" +
+    "            <div class=\"modal-dialog\">\n" +
+    "                <div class=\"modal-content\">\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        Profile Details\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"modal-body\">\n" +
+    "\n" +
+    "                        <h1 class=\"text-center text-muted\">\n" +
+    "                            In Development.\n" +
+    "                        </h1>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"modal-footer text-center\">\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                            Cancel\n" +
+    "                        </button>\n" +
+    "                        <button type=\"button\" class=\"btn btn-primary\" data-dismiss=\"modal\">\n" +
+    "                            Create\n" +
+    "                        </button>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <div ng-if=\"global.data.isFetchingProfiles === true\" class=\"loading-notice\">\n" +

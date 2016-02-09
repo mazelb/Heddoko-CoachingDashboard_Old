@@ -13,47 +13,31 @@ angular.module('app.controllers')
     function($scope, $routeParams, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
         Utilities.info('ProfileController');
 
+        // Profile list config for uiFilesystem.
+        $scope.uiFilesystemConfig = {
+            toolbar: {
+                createModal: 'createProfileForm',
+                createModalIcon: 'plus'
+            },
+            detailsLayoutTitles: {
+                firstName: 'First Name',
+                lastName: 'Last Name',
+                group: 'Team',
+                createdAt: 'Created On'
+            }
+        };
+
         // Data for profile list.
         $scope.profileList = [];
-
-        // Parameters for profile list.
-        $scope.profileListParams = {
-            firstName: 'First Name',
-            lastName: 'Last Name',
-            group: 'Team',
-            createdAt: 'Date'
-        };
 
         // Currently displayed profile.
         $scope.profile = {id: 0};
         if ($routeParams.profileId > 0)
         {
-            if (Utilities.hasData('profile', $routeParams.profileId))
-            {
+            Rover.waitForFlag('isFetchingProfiles', false, $scope, function() {
                 $scope.global.selectProfile($routeParams.profileId);
                 $scope.profile = Utilities.getData('profile', $routeParams.profileId);
-            }
-
-            // If we're still loading profiles, wait for those results.
-            else if (Utilities.data.isFetchingProfiles)
-            {
-                var stopWatchingProfiles = $scope.$watch('global.data.isFetchingProfiles', function(status) {
-
-                    if (status === true) {
-                        return;
-                    }
-
-                    // Update profile.
-                    if (Utilities.hasData('profile', $routeParams.profileId))
-                    {
-                        $scope.global.selectProfile($routeParams.profileId);
-                        $scope.profile = Utilities.getData('profile', $routeParams.profileId);
-                    }
-
-                    // Remove $watch binding.
-                    stopWatchingProfiles();
-                });
-            }
+            });
         }
 
         // Model for new profile details.
@@ -70,7 +54,6 @@ angular.module('app.controllers')
         };
 
         // Alias for the list of groups.
-        // $scope.groups = $scope.global.state.group.list;
         $scope.groups = Utilities.getDataList('group');
 
         // Alias for the selected group.
@@ -86,7 +69,8 @@ angular.module('app.controllers')
             for (i = 0; i < list.length; i++)
             {
                 $scope.profileList.push({
-                    title: list[i].firstName + ' ' + list[i].lastName,
+                    title: list[i].lastName,
+                    subTitle: list[i].groups[0].name || '',
                     image: list[i].avatarSrc,
                     href: '#/profiles/' + list[i].id,
                     firstName: list[i].firstName,
@@ -232,33 +216,7 @@ angular.module('app.controllers')
         };
 
         // Loads the list of profiles.
-        if (Utilities.data.isFetchingProfiles)
-        {
-            var stopWatching = $scope.$watch('global.data.isFetchingProfiles', function(status) {
-                if (status === false) {
-                    stopWatching();
-                    $scope.updateProfileList();
-                }
-            });
-        }
-
-        else {
-            $scope.updateProfileList();
-        }
-
-        // $scope.$watch('global.store.profileId', function(id, oldId)
-        // {
-        //     // Performance check.
-        //     if (id === oldId) {
-        //         return;
-        //     }
-        //
-        //     // Shortcut for the currently selected profile.
-        //     $scope.profile = $scope.global.getSelectedProfile();
-        //
-        //     // Format profile fields.
-        //     $scope.profile = ProfileService.format($scope.profile);
-        // });
+        Rover.waitForFlag('isFetchingProfiles', false, $scope, $scope.updateProfileList);
 
         if ($scope.profile.id > 0) {
             $scope.profile = ProfileService.format($scope.profile);

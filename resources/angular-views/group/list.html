@@ -10,84 +10,60 @@
     </header>
 
     <div ng-if="global.data.isFetchingGroups === false" class="row">
-        <div class="col-xs-12">
 
-            <!-- New group button -->
-            <!-- TODO: figure out why the right margin is needed -->
-            <a
-                data-toggle="modal"
-                data-target="#newGroupForm"
-                href="javascript:;"
-                class="btn btn-info btn-metro"
-                style="margin-right: 0">
+        <!-- Group list -->
+        <ui-filesystem
+            data-id="groups-explorer"
+            data-files="groupList"
+            data-hide-location="true"
+            data-config="uiFilesystemConfig"
+            class="col-sm-12">
+        </ui-filesystem>
 
-                <i class="fa fa-plus"></i>
-            </a>
+        <!-- New group modal form -->
+        <div class="modal fade" id="createGroupForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Team Details
+                    </div>
 
-            <!-- New group form -->
-            <div class="modal fade" id="newGroupForm">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            Team Details
+                    <div class="modal-body">
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                ng-model="newGroup.name"
+                                placeholder="Name"
+                                class="form-control"
+                                required>
                         </div>
 
-                        <div class="modal-body">
-
-                            <!-- Name -->
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    ng-model="newGroup.name"
-                                    placeholder="Name"
-                                    class="form-control"
-                                    required>
-                            </div>
-
-                            <!-- Sport -->
-                            <div class="form-group">
-                                <input
-                                    type="text"
-                                    placeholder="Sport"
-                                    class="form-control"
-                                    disabled>
-                            </div>
+                        <!-- Sport -->
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                placeholder="Sport"
+                                class="form-control"
+                                disabled>
                         </div>
+                    </div>
 
-                        <div class="modal-footer text-center">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                Cancel
-                            </button>
-                            <button ng-click="createGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
-                                Create
-                            </button>
-                        </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button ng-click="createGroup()" type="button" class="btn btn-primary" data-dismiss="modal">
+                            Create
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <!-- List of groups -->
-            <a
-                ng-repeat="group in global.data.group.list"
-                ng-show="group.id"
-                href="#/groups/{{ group.id }}"
-                class="btn btn-info btn-metro"
-                style="background-image: url({{ group.avatarSrc || '' }})">
-
-                <span style="background-color: rgba(0, 0, 0, 0.4)">{{ group.name | characters:15 }}</span>
-            </a>
         </div>
     </div>
 
-    <div ng-if="global.data.isFetchingGroups === true" class="row text-center">
-        <div class="col-xs-12">
-            <h3>Retrieving Data</h3>
-            <br>
-            <br>
-
-            <div>
-                <i class="fa fa-spinner fa-spin fa-3x"></i>
-            </div>
-        </div>
+    <div ng-if="global.data.isFetchingGroups === true">
+        <ng-include src="'partials/loading.html'"></ng-include>
     </div>
 </div>

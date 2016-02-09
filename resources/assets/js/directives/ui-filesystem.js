@@ -5,8 +5,10 @@
  * @author  Francis Amankrah (frank@heddoko.com)
  * @date    February 2016
  * @note    Use as:
- *              <div data-ui-filesystem data-id="myFilesystemContainer">
- *                  ...
+ *              <div
+ *                  data-ui-filesystem
+ *                  data-id="myFilesystemContainer"
+ *                  data-files="myFiles">
  *              </div>
  */
 angular.module('app.directives')
@@ -23,20 +25,29 @@ angular.module('app.directives')
             folders: '=',
             parentFolder: '=?',
 
+            config: '=?',
+
+            largeTileTemplate: '@?',
+
             defaultLayout: '@?',
             hideLocation: '=?',
             hideToolbar: '=?',
             hideLargeTilesLayout: '=?',
-            hideSmallTilesLayout: '=?',
-            listParams: '=?'
+            hideSmallTilesLayout: '=?'
         },
         controller: ['$scope', '$timeout', 'Utilities', function($scope, $timeout, Utilities) {
 
             // Storage namespace.
             var namespace = $scope.namespace = $scope.id || 'ui-filesystem';
 
-            // Config keys.
+            // Configuration.
             var layoutKey = namespace + '-layout';
+            $scope.config = $scope.config || {};
+            $scope.config.toolbar = $scope.config.toolbar || {};
+            $scope.config.detailsLayoutTitles = $scope.config.detailsLayoutTitles || {
+                title: 'Title',
+                updatedAt: 'Modified'
+            };
 
             // Defaults.
             $scope.defaultLayout = $scope.defaultLayout || 'details';
@@ -44,10 +55,6 @@ angular.module('app.directives')
             $scope.hideToolbar = ($scope.hideToolbar);
             $scope.hideLargeTilesLayout = ($scope.hideLargeTilesLayout);
             $scope.hideSmallTilesLayout = ($scope.hideSmallTilesLayout);
-            $scope.listParams = $scope.listParams || {
-                title: 'Title',
-                updatedAt: 'Modified'
-            };
 
             // Setup layout data.
             $scope.layout = {

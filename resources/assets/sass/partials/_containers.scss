@@ -45,30 +45,65 @@
 }
 
 /*
- * Active elements
+ * Cards
  */
+.card {
+    position: relative;
+    display: inline-block;
+    background: $blue center center no-repeat;
+    background-size: cover;
+    @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+
+    .data {
+        padding: 5px;
+        position: absolute;
+        bottom: 0;
+        height: 35%;
+        width: 100%;
+        color: #fff;
+        background-color: rgba(44, 58, 70, 0.8);
+
+        .title {
+            display: block;
+            padding: 4px 0 1px 10px;
+            text-transform: uppercase;
+            font-size: 1.2em;
+        }
+
+        .sub-title {
+            display: block;
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
+    }
+}
 .active-element {
     position: relative;
     display: inline-block;
-    background-color: $blue;
+    background: $blue center center no-repeat;
+    background-size: cover;
     @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
-}
-.active-element .tools {
-    position: absolute;
-    bottom: 0;
-    height: 60px;
-    width: 100%;
-    background-color: $text-color-blue;
-}
-.active-element .tools span {
-    display: inline-block;
-    padding: 4px 0 1px 10px;
-}
-.active-element .tools .hidden-tools {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
+
+    .tools {
+        position: absolute;
+        bottom: 0;
+        height: 60px;
+        width: 100%;
+        color: #fff;
+        background-color: rgba(44, 58, 70, 0.7);
+
+        span {
+            display: inline-block;
+            padding: 4px 0 1px 10px;
+        }
+
+        .hidden-tools {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 10px;
+        }
+    }
 }
 
 /**

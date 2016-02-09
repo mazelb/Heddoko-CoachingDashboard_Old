@@ -8,16 +8,27 @@
         <div class="col-xs-12">
 
             <!-- Layout selector -->
-            <div ng-if="layout.list.length > 1" class="btn-group" role="group">
-                <button
+            <div ng-if="layout.list.length > 1" class="ui-filesystem-toolbar-group">
+                <a
                     ng-repeat="btn in layout.list"
                     ng-click="setLayout(btn.name)"
-                    ng-class="{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}"
-                    type="button"
-                    class="btn">
+                    ng-class="{'ui-filesystem-active': btn.name == layout.name}"
+                    class="ui-filesystem-toolbar-btn">
 
-                    <i ng-class="'fa-' + btn.icon" class="fa"></i>
-                </button>
+                    <i class="fa fa-fw fa-lg fa-{{ btn.icon }}"></i>
+                </a>
+            </div>
+
+            <!-- Create button -->
+            <div ng-if="config.toolbar.createModal" class="ui-filesystem-toolbar-group">
+                <a
+                    data-toggle="modal"
+                    data-target="#{{ config.toolbar.createModal }}"
+                    href="javascript:;"
+                    class="ui-filesystem-toolbar-btn">
+
+                    <i class="fa fa-fw fa-lg fa-{{ config.toolbar.createModalIcon }}"></i>
+                </a>
             </div>
         </div>
     </div>
