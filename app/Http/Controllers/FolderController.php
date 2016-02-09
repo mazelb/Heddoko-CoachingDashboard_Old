@@ -94,7 +94,7 @@ class FolderController extends Controller
 
             if (array_search('children', $embed['relations']))
             {
-                $folder['children'] = $profile->folders()->whereNull('folder_id')->get();
+                $folder['children'] = $profile->folders()->whereNull('parent_id')->get();
             }
 
             if (array_search('movements', $embed['relations']))
