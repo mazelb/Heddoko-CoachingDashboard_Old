@@ -104,10 +104,7 @@ class ProfileController extends Controller
             'meta.gender' => 'string|in:female,male,',
             'meta.phone' => 'string',
             'meta.email' => 'string',
-            'meta.medicalHistory' => 'string|max:65,535',
-            'meta.injuries' => 'string|max:65,535',
-            'meta.notes' => 'string|max:65,535',
-            'meta.params' => 'json',
+            'meta.data' => 'json',
         ]);
 
         // Create new profile.
@@ -162,10 +159,7 @@ class ProfileController extends Controller
             'meta.gender' => 'string|in:female,male,',
             'meta.phone' => 'string',
             'meta.email' => 'string',
-            'meta.medicalHistory' => 'string|max:65,535',
-            'meta.injuries' => 'string|max:65,535',
-            'meta.notes' => 'string|max:65,535',
-            'meta.params' => 'json',
+            'meta.data' => 'json',
         ]);
 
         // Save profile.
@@ -210,10 +204,7 @@ class ProfileController extends Controller
                 'gender',
                 'phone',
                 'email',
-                'medicalHistory',
-                'injuries',
-                'notes',
-                'meta'
+                'data',
             ];
 
             // Create meta data.

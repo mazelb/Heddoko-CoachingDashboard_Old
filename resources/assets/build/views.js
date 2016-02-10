@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-filesystem/container.html', 'directive-partials/ui-filesystem/layouts/details.html', 'directive-partials/ui-filesystem/layouts/large-tiles.html', 'directive-partials/ui-filesystem/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'directive-partials/ui-avatar.html', 'directive-partials/ui-editable-fields/btn-group.html', 'directive-partials/ui-editable-fields/field-horizontal.html', 'directive-partials/ui-editable-fields/field-value-generic.html', 'directive-partials/ui-editable-fields/field-value-timestamp.html', 'directive-partials/ui-editable-fields/field-value-with-units.html', 'directive-partials/ui-editable-fields/field-vertical.html', 'directive-partials/ui-editable-fields/fields.html', 'directive-partials/ui-editable-fields/standalone-field.html', 'directive-partials/ui-filesystem/container.html', 'directive-partials/ui-filesystem/layouts/details.html', 'directive-partials/ui-filesystem/layouts/large-tiles.html', 'directive-partials/ui-filesystem/layouts/small-tiles.html', 'directive-partials/ui-movement-placeholder.html', 'directive-partials/ui-movement-preview.html', 'directive-partials/ui-page-title.html', 'directive-partials/ui-taggable-input.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -1383,6 +1383,21 @@ angular.module("directive-partials/ui-avatar.html", []).run(["$templateCache", f
     "");
 }]);
 
+angular.module("directive-partials/ui-editable-fields/btn-group.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("directive-partials/ui-editable-fields/btn-group.html",
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<span class=\"input-group-btn\">\n" +
+    "    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "        <i class=\"fa fa-times\"></i>\n" +
+    "    </button>\n" +
+    "    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "    </button>\n" +
+    "</span>\n" +
+    "");
+}]);
+
 angular.module("directive-partials/ui-editable-fields/field-horizontal.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("directive-partials/ui-editable-fields/field-horizontal.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
@@ -1550,20 +1565,25 @@ angular.module("directive-partials/ui-editable-fields/field-value-generic.html",
   $templateCache.put("directive-partials/ui-editable-fields/field-value-generic.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"ui-editable-field-value\">\n" +
+    "<div ng-show=\"state == 'idle'\" class=\"ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Displayed value -->\n" +
-    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
+    "    <a ng-if=\"!isDisabled\" ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-text\">\n" +
     "        {{ display || model[key] }}\n" +
     "    </a>\n" +
-    "    <span ng-show=\"isDisabled\">\n" +
+    "    <span ng-if=\"isDisabled\">\n" +
     "        {{ display || model[key] }}\n" +
     "    </span>\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
-    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "    <a ng-if=\"!isDisabled\" ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "    <i ng-if=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
     "\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"state == 'saving'\" class=\"ui-editable-field-value ui-editable-fields-muted\">\n" +
+    "    {{ display || model[key] }}\n" +
+    "    <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1572,20 +1592,25 @@ angular.module("directive-partials/ui-editable-fields/field-value-timestamp.html
   $templateCache.put("directive-partials/ui-editable-fields/field-value-timestamp.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"ui-editable-field-value\">\n" +
+    "<div ng-show=\"state == 'idle'\" class=\"ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Displayed value -->\n" +
-    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-text\">\n" +
+    "    <a ng-if=\"!isDisabled\" ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-text\">\n" +
     "        {{ timestamp | date:format }}\n" +
     "    </a>\n" +
-    "    <span ng-show=\"isDisabled\">\n" +
+    "    <span ng-if=\"isDisabled\">\n" +
     "        {{ timestamp | date:format }}\n" +
     "    </span>\n" +
     "\n" +
     "    <!-- Edit icon -->\n" +
-    "    <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "    <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "    <a ng-if=\"!isDisabled\" ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "    <i ng-if=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
     "\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"state == 'saving'\" class=\"ui-editable-field-value ui-editable-fields-muted\">\n" +
+    "    {{ timestamp | date:format }}\n" +
+    "    <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1594,7 +1619,7 @@ angular.module("directive-partials/ui-editable-fields/field-value-with-units.htm
   $templateCache.put("directive-partials/ui-editable-fields/field-value-with-units.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-show=\"state != 'editing'\" class=\"row no-gutter ui-editable-field-value\">\n" +
+    "<div ng-show=\"state == 'idle'\" class=\"row no-gutter ui-editable-field-value\">\n" +
     "\n" +
     "    <!-- Unit selector -->\n" +
     "    <div class=\"col-xs-2 text-center\">\n" +
@@ -1615,14 +1640,19 @@ angular.module("directive-partials/ui-editable-fields/field-value-with-units.htm
     "    <div class=\"col-xs-10\">\n" +
     "\n" +
     "        <!-- Displayed data -->\n" +
-    "        <a href=\"javascript:;\" class=\"edit-text\">\n" +
+    "        <a ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-text\">\n" +
     "            {{ data.displayStr }}\n" +
     "        </a>\n" +
     "\n" +
     "        <!-- Edit icons -->\n" +
-    "        <a ng-hide=\"isDisabled\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
-    "        <i ng-show=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
+    "        <a ng-if=\"!isDisabled\" ng-click=\"edit()\" href=\"javascript:;\" class=\"edit-icon fa fa-pencil\"></a>\n" +
+    "        <i ng-if=\"isDisabled\" class=\"edit-icon fa fa-ban\"></i>\n" +
     "    </div>\n" +
+    "</div>\n" +
+    "\n" +
+    "<div ng-show=\"state == 'saving'\" class=\"ui-editable-field-value ui-editable-fields-muted\">\n" +
+    "    {{ data.displayStr }}\n" +
+    "    <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
     "</div>\n" +
     "");
 }]);
@@ -1639,24 +1669,53 @@ angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).
     "        <div ng-switch-when=\"date\">\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-timestamp.html'\"></ng-include>\n" +
     "\n" +
-    "            <input\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-disabled=\"isDisabled\"\n" +
-    "                ng-required=\"isRequired\"\n" +
-    "                type=\"datetime\"\n" +
-    "                class=\"form-control\">\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <input\n" +
+    "                    ng-show=\"state == 'editing'\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    type=\"datetime\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Date & time -->\n" +
     "        <div ng-switch-when=\"datetime\">\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-timestamp.html'\"></ng-include>\n" +
     "\n" +
-    "            <input\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-disabled=\"isDisabled\"\n" +
-    "                ng-required=\"isRequired\"\n" +
-    "                type=\"datetime\"\n" +
-    "                class=\"form-control\">\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <input\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    type=\"datetime\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Length -->\n" +
@@ -1711,17 +1770,31 @@ angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).
     "        <div ng-switch-when=\"gender\">\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
     "\n" +
-    "            <select\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-model=\"model[key]\"\n" +
-    "                ng-selected=\"model[key]\"\n" +
-    "                ng-disabled=\"isDisabled\"\n" +
-    "                ng-required=\"isRequired\"\n" +
-    "                class=\"form-control\">\n" +
+    "                class=\"input-group\">\n" +
     "\n" +
-    "                <option value=\"female\">Female</option>\n" +
-    "                <option value=\"male\">Male</option>\n" +
-    "            </select>\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <select\n" +
+    "                    ng-model=\"model[key]\"\n" +
+    "                    ng-selected=\"model[key]\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    class=\"form-control\">\n" +
+    "\n" +
+    "                    <option value=\"female\">Female</option>\n" +
+    "                    <option value=\"male\">Male</option>\n" +
+    "                </select>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Mass -->\n" +
@@ -1729,8 +1802,23 @@ angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-with-units.html'\"></ng-include>\n" +
     "\n" +
     "            <!-- Edit field -->\n" +
-    "            <div class=\"input-group\" ng-show=\"state == 'editing'\">\n" +
+    "            <div\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <!-- Buttons -->\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <!-- Unit -->\n" +
     "                <span class=\"input-group-addon\">{{ config.unitForMass }}</span>\n" +
+    "\n" +
     "                <input\n" +
     "                    ng-model=\"data.massVal\"\n" +
     "                    ng-disabled=\"isDisabled\"\n" +
@@ -1745,7 +1833,19 @@ angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).
     "        <div ng-switch-when=\"tag\">\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
     "\n" +
-    "            <div ng-show=\"state == 'editing'\">\n" +
+    "            <div\n" +
+    "                ng-show=\"state == 'editing'\"\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
     "                <selectize\n" +
     "                    ng-model=\"data\"\n" +
     "                    class=\"form-control text-left\"\n" +
@@ -1759,26 +1859,53 @@ angular.module("directive-partials/ui-editable-fields/field-vertical.html", []).
     "        <div ng-switch-when=\"placeholder\">\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
     "\n" +
-    "            <input\n" +
+    "            <div\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-model=\"display\"\n" +
-    "                ng-disabled=\"isDisabled\"\n" +
-    "                ng-required=\"isRequired\"\n" +
-    "                type=\"text\"\n" +
-    "                class=\"form-control\">\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <input\n" +
+    "                    ng-model=\"display\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    type=\"text\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Default -->\n" +
     "        <div ng-switch-default>\n" +
     "            <ng-include src=\"'directive-partials/ui-editable-fields/field-value-generic.html'\"></ng-include>\n" +
     "\n" +
-    "            <input\n" +
+    "            <!-- Edit field -->\n" +
+    "            <div\n" +
     "                ng-show=\"state == 'editing'\"\n" +
-    "                ng-model=\"model[key]\"\n" +
-    "                ng-disabled=\"isDisabled\"\n" +
-    "                ng-required=\"isRequired\"\n" +
-    "                type=\"text\"\n" +
-    "                class=\"form-control\">\n" +
+    "                class=\"input-group\">\n" +
+    "\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <input\n" +
+    "                    ng-model=\"model[key]\"\n" +
+    "                    ng-disabled=\"isDisabled\"\n" +
+    "                    ng-required=\"isRequired\"\n" +
+    "                    type=\"text\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
@@ -1833,41 +1960,54 @@ angular.module("directive-partials/ui-editable-fields/standalone-field.html", []
   $templateCache.put("directive-partials/ui-editable-fields/standalone-field.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"ui-editable-list-container\">\n" +
+    "<div class=\"ui-editable-fields\">\n" +
     "\n" +
-    "    <h3 class=\"title\">\n" +
+    "    <h3 ng-if=\"heading\" class=\"title\">\n" +
     "        {{ heading }}\n" +
     "        <span></span>\n" +
     "    </h3>\n" +
-    "\n" +
-    "    <!-- Action buttons -->\n" +
-    "    <div class=\"ui-editable-fields-actions\">\n" +
-    "        <span ng-click=\"save()\" ng-show=\"state == 'editing'\">\n" +
-    "            Save &nbsp; <i class=\"fa fa-toggle-on\"></i>\n" +
-    "        </span>\n" +
-    "        <span ng-click=\"edit()\" ng-show=\"state == 'idle'\">\n" +
-    "            Edit &nbsp; <i class=\"fa fa-toggle-off\"></i>\n" +
-    "        </span>\n" +
-    "        <span ng-show=\"state == 'saving'\" style=\"color: #ccc;\">\n" +
-    "            <i class=\"fa fa-toggle-off\"></i>\n" +
-    "        </span>\n" +
-    "    </div>\n" +
     "\n" +
     "    <div class=\"row\" ng-switch=\"state\">\n" +
     "\n" +
     "        <!-- Editable field -->\n" +
     "        <div ng-switch-when=\"editing\" class=\"col-sm-12\">\n" +
-    "            <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
+    "            <textarea\n" +
+    "                ng-if=\"inputType == 'textarea'\"\n" +
+    "                ng-model=\"model[key]\"\n" +
+    "                class=\"form-control\">\n" +
+    "            </textarea>\n" +
+    "\n" +
+    "            <div ng-if=\"inputType == 'text'\" class=\"input-group\">\n" +
+    "                <span class=\"input-group-btn\">\n" +
+    "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </button>\n" +
+    "                    <button ng-click=\"save()\" title=\"Save\" class=\"btn btn-default\" type=\"button\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </button>\n" +
+    "                </span>\n" +
+    "\n" +
+    "                <input\n" +
+    "                    ng-model=\"model[key]\"\n" +
+    "                    type=\"text\"\n" +
+    "                    class=\"form-control\">\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
-    "        <!-- Working animation -->\n" +
-    "        <div ng-switch-when=\"saving\" class=\"text-center\" style=\"padding: 20px 0;\">\n" +
-    "            <i class=\"fa fa-spin fa-2x fa-spinner\"></i>\n" +
+    "        <!-- Saving notice -->\n" +
+    "        <div ng-switch-when=\"saving\" class=\"col-sm-12 text-muted\">\n" +
+    "            {{ model[key] || empty }}\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Displayed field -->\n" +
-    "        <div ng-switch-default class=\"col-sm-12\">\n" +
-    "            {{ model[key] || empty }}\n" +
+    "        <div ng-switch-default class=\"col-sm-12 ui-editable-field-value\">\n" +
+    "            <a ng-click=\"edit()\" href=\"javascript:;\">\n" +
+    "                <span class=\"edit-text\">\n" +
+    "                    {{ model[key] || empty }}\n" +
+    "                </span>\n" +
+    "                <i class=\"edit-icon fa fa-pencil\"></i>\n" +
+    "            </a>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "</div>\n" +
@@ -3139,7 +3279,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
   $templateCache.put("group/list.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"page page-dashboard\">\n" +
+    "<div class=\"page group-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            Teams <i class=\"fa fa-users\"></i>\n" +
@@ -3153,6 +3293,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "        <ui-filesystem\n" +
     "            data-id=\"groups-explorer\"\n" +
     "            data-files=\"groupList\"\n" +
+    "            data-default-layout=\"large-tiles\"\n" +
     "            data-hide-location=\"true\"\n" +
     "            data-config=\"uiFilesystemConfig\"\n" +
     "            class=\"col-sm-12\">\n" +
@@ -3304,7 +3445,7 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
   $templateCache.put("group/view.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div ng-if=\"global.data.isFetchingGroups === false && group.id\" class=\"page profile-page\">\n" +
+    "<div ng-if=\"global.data.isFetchingGroups === false && group.id\" class=\"page group-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            {{ group.name }} <i class=\"fa fa-users\"></i>\n" +
@@ -5100,7 +5241,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
   $templateCache.put("profile/list.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"page page-dashboard\">\n" +
+    "<div class=\"page profile-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            Athletes <i class=\"fa fa-user\"></i>\n" +
@@ -5112,6 +5253,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "        <ui-filesystem\n" +
     "            data-id=\"profiles-explorer\"\n" +
     "            data-files=\"profileList\"\n" +
+    "            data-default-layout=\"small-tiles\"\n" +
     "            data-hide-location=\"true\"\n" +
     "            data-config=\"uiFilesystemConfig\"\n" +
     "            class=\"col-sm-12\">\n" +
@@ -5852,8 +5994,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <!-- DEMO -->\n" +
-    "                    <div class=\"row\">\n" +
+    "                    <!-- Placeholder for NFL Techrunch demo -->\n" +
+    "                    <div ng-if=\"false\" class=\"row\">\n" +
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
     "\n" +
     "                            <!-- Hand size -->\n" +
@@ -5918,7 +6060,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Phone #\"\n" +
-    "                                data-key=\"phone\">\n" +
+    "                                data-key=\"phone\"\n" +
+    "                                data-empty=\"(xxx) xxx-xxxx\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "\n" +
@@ -5926,7 +6069,8 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Email\"\n" +
-    "                                data-key=\"email\">\n" +
+    "                                data-key=\"email\"\n" +
+    "                                data-empty=\"address@example.com\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -6007,7 +6151,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "\n" +
     "            <!-- General notes -->\n" +
     "            <div class=\"col-xs-12 col-lg-4\">\n" +
-    "        		<div class=\"col-xs-12\">\n" +
+    "        		<div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Medical Information\"\n" +
     "                        data-model=\"profile\"\n" +
@@ -6018,7 +6162,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    </ui-editable-standalone-field>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"col-xs-12\">\n" +
+    "                <div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Previous Injuries\"\n" +
     "                        data-model=\"profile\"\n" +
@@ -6053,7 +6197,7 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"col-xs-12\">\n" +
+    "                <div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Other Notes\"\n" +
     "                        data-model=\"profile\"\n" +
@@ -6135,7 +6279,7 @@ angular.module("screenings/index.html", []).run(["$templateCache", function($tem
     "                            href=\"javascript:;\"\n" +
     "                            style=\"margin-left: 10px\">\n" +
     "\n" +
-    "                            &rarr; continue\n" +
+    "                            <i class=\"fa fa-pencil-square-o\"></i>\n" +
     "                        </a>\n" +
     "                    </td>\n" +
     "                    <td class=\"text-center\">\n" +
@@ -6198,17 +6342,27 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "    <!-- Test progress -->\n" +
     "    <div ng-if=\"!global.data.isFetchingLiveScreening && screening.id > 0\">\n" +
     "\n" +
-    "        <h2 class=\"text-center\">\n" +
-    "            {{ screening.title }}\n" +
+    "        <h3 class=\"text-center\">\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-md-12 col-lg-6 col-lg-offset-3\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-model=\"screening\"\n" +
+    "                        data-key=\"title\"\n" +
+    "                        data-empty=\"Title\"\n" +
+    "                        data-input-type=\"text\"\n" +
+    "                        data-save=\"saveScreening\"\n" +
+    "                        data-save-callback=\"saveScreeningCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "\n" +
-    "            <br>\n" +
     "            <small>\n" +
     "                {{ screening.createdAt | mysqlDate:'d / M / yyyy' }} -\n" +
     "                <a href=\"#/profiles/{{ profile.id }}\">\n" +
     "                    {{ profile.firstName }} {{ profile.lastName }}\n" +
     "                </a>\n" +
     "            </small>\n" +
-    "        </h2>\n" +
+    "        </h3>\n" +
     "\n" +
     "        <!-- Headings -->\n" +
     "        <div class=\"row\">\n" +
@@ -6222,8 +6376,19 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "        <div ng-repeat=\"movement in screening.movements\" class=\"row\" style=\"margin-bottom: 15px;\">\n" +
     "\n" +
     "            <div class=\"col-md-4 col-md-offset-3\" style=\"line-height: 30px\">\n" +
-    "                <span class=\"text-muted\">{{ $index + 1 }}</span>\n" +
-    "                {{ movement.title }}\n" +
+    "                <div class=\"col-sm-1 text-muted text-right\">\n" +
+    "                    {{ $index + 1 }}\n" +
+    "                </div>\n" +
+    "                <div class=\"col-sm-11\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-model=\"movement\"\n" +
+    "                        data-key=\"title\"\n" +
+    "                        data-empty=\"Title\"\n" +
+    "                        data-input-type=\"text\"\n" +
+    "                        data-save=\"saveScreeningMovement\"\n" +
+    "                        data-save-callback=\"saveScreeningMovementCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "                </div>\n" +
     "            </div>\n" +
     "\n" +
     "            <div class=\"col-md-1\">\n" +
@@ -6266,6 +6431,15 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                        </li>\n" +
     "                    </ul>\n" +
     "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- View results -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-sm-12 text-center\">\n" +
+    "                <a href=\"#/screenings/{{ screening.id }}\" class=\"btn btn-info\">\n" +
+    "                    View Results\n" +
+    "                </a>\n" +
     "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +

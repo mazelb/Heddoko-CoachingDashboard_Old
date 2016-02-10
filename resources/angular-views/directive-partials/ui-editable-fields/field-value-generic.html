@@ -1,18 +1,23 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<div ng-show="state != 'editing'" class="ui-editable-field-value">
+<div ng-show="state == 'idle'" class="ui-editable-field-value">
 
     <!-- Displayed value -->
-    <a ng-hide="isDisabled" href="javascript:;" class="edit-text">
+    <a ng-if="!isDisabled" ng-click="edit()" href="javascript:;" class="edit-text">
         {{ display || model[key] }}
     </a>
-    <span ng-show="isDisabled">
+    <span ng-if="isDisabled">
         {{ display || model[key] }}
     </span>
 
     <!-- Edit icon -->
-    <a ng-hide="isDisabled" href="javascript:;" class="edit-icon fa fa-pencil"></a>
-    <i ng-show="isDisabled" class="edit-icon fa fa-ban"></i>
+    <a ng-if="!isDisabled" ng-click="edit()" href="javascript:;" class="edit-icon fa fa-pencil"></a>
+    <i ng-if="isDisabled" class="edit-icon fa fa-ban"></i>
 
+</div>
+
+<div ng-show="state == 'saving'" class="ui-editable-field-value ui-editable-fields-muted">
+    {{ display || model[key] }}
+    <i class="fa fa-spinner fa-spin fa-fw"></i>
 </div>

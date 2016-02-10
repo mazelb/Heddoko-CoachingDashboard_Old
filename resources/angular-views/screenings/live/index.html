@@ -19,17 +19,27 @@
     <!-- Test progress -->
     <div ng-if="!global.data.isFetchingLiveScreening && screening.id > 0">
 
-        <h2 class="text-center">
-            {{ screening.title }}
+        <h3 class="text-center">
+            <div class="row">
+                <div class="col-md-12 col-lg-6 col-lg-offset-3">
+                    <ui-editable-standalone-field
+                        data-model="screening"
+                        data-key="title"
+                        data-empty="Title"
+                        data-input-type="text"
+                        data-save="saveScreening"
+                        data-save-callback="saveScreeningCallback">
+                    </ui-editable-standalone-field>
+                </div>
+            </div>
 
-            <br>
             <small>
                 {{ screening.createdAt | mysqlDate:'d / M / yyyy' }} -
                 <a href="#/profiles/{{ profile.id }}">
                     {{ profile.firstName }} {{ profile.lastName }}
                 </a>
             </small>
-        </h2>
+        </h3>
 
         <!-- Headings -->
         <div class="row">
@@ -43,8 +53,19 @@
         <div ng-repeat="movement in screening.movements" class="row" style="margin-bottom: 15px;">
 
             <div class="col-md-4 col-md-offset-3" style="line-height: 30px">
-                <span class="text-muted">{{ $index + 1 }}</span>
-                {{ movement.title }}
+                <div class="col-sm-1 text-muted text-right">
+                    {{ $index + 1 }}
+                </div>
+                <div class="col-sm-11">
+                    <ui-editable-standalone-field
+                        data-model="movement"
+                        data-key="title"
+                        data-empty="Title"
+                        data-input-type="text"
+                        data-save="saveScreeningMovement"
+                        data-save-callback="saveScreeningMovementCallback">
+                    </ui-editable-standalone-field>
+                </div>
             </div>
 
             <div class="col-md-1">
@@ -87,6 +108,15 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <!-- View results -->
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a href="#/screenings/{{ screening.id }}" class="btn btn-info">
+                    View Results
+                </a>
             </div>
         </div>
     </div>

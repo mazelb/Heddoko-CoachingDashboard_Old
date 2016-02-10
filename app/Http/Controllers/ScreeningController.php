@@ -95,6 +95,16 @@ class ScreeningController extends Controller
             return response('Profile Not Found.', 400);
         }
 
+        // Validate incoming data.
+        $this->validate($this->request, [
+            'title' => 'string|min:1|max:255',
+            'score'  => 'int|between:-100,100',
+            'scoreMin'  => 'int|between:-100,100',
+            'scoreMax'  => 'int|between:-100,100',
+            'notes'  => 'string',
+            'meta'  => '',
+        ]);
+
         // Retrieve screening details.
         $details = $this->request->only([
             'title',
@@ -208,9 +218,44 @@ class ScreeningController extends Controller
      */
     public function update($id)
     {
-        //
+        // Performance check.
+        if (!$screening = Screening::whereIn('profile_id', Auth::user()->getProfileIDs())->find($id)) {
+            return response('Screening Not Found.', 400);
+        }
 
-        return response('Not Implemented.', 501);
+        // Validate incoming data.
+        $this->validate($this->request, [
+            'title' => 'string|min:1|max:255',
+            'score'  => 'int|between:-100,100',
+            'scoreMin'  => 'int|between:-100,100',
+            'scoreMax'  => 'int|between:-100,100',
+            'notes'  => 'string|max:65,535',
+            'meta'  => 'json',
+            'movement.title' => '',
+        ]);
+
+        // Update primary screening details.
+        foreach (['title', 'score', 'scoreMin', 'scoreMax', 'notes'] as $attribute) {
+            if ($this->request->has($attribute)) {
+                $screening->$attribute = $this->request->input($attribute);
+            }
+        }
+
+        // Save screening.
+        if (!$screening->save()) {
+            return response('Could not save screening data.', 500);
+        }
+
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Screening::$appendable
+        );
+
+        // Return updated model.
+        $updated = Screening::with($embed['relations'])->find($screening->id);
+
+        return $updated;
     }
 
     /**

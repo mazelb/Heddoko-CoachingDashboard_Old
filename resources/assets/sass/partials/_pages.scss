@@ -92,6 +92,15 @@ h1.title, h2.title, h3.title, h4.title {
 }
 
 /*
+ * Angular - Group pages.
+ */
+.group-page {
+    .ui-editable-field-value {
+        font-size: 1.2em;
+    }
+}
+
+/*
  * Angular - Profile pages.
  */
 .profile-page {
@@ -112,6 +121,10 @@ h1.title, h2.title, h3.title, h4.title {
         .has-background {
 
         }
+    }
+
+    .ui-editable-field-value {
+        font-size: 1.2em;
     }
 }
 

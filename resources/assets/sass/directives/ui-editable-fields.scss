@@ -20,7 +20,6 @@ $font-size-smaller: 0.7em;
 
     .ui-editable-field-value {
         color: $text-color;
-        font-size: 1.2em;
 
         .edit-icon {
             margin: 0 10px;
@@ -58,9 +57,5 @@ $font-size-smaller: 0.7em;
 }
 
 .ui-editable-fields-muted {
-    color: $muted-color;
-}
-
-.ui-editable-list-container {
-    margin-bottom: 15px;
+    color: $muted-color !important;
 }

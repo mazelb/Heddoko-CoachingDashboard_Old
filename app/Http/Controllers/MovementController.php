@@ -56,7 +56,7 @@ class MovementController extends Controller
 
         $offset = 0;
         $limit = 20;
-        $orderBy = 'created_at';
+        $orderBy = snake_case('createdAt');
         $orderDir = 'desc';
 
         $builder->orderBy($orderBy, $orderDir)->skip($offset)->take($limit);
@@ -145,7 +145,49 @@ class MovementController extends Controller
      */
     public function update($id)
     {
-        abort(501);
+        // Performance check.
+        if (!$movement = Movement::whereIn('profile_id', Auth::user()->getProfileIDs())->find($id)) {
+            return response('Movement Not Found.', 404);
+        }
+
+        // Main details.
+        if ($this->request->has('title')) {
+            $movement->title = $this->request->input('title');
+        }
+
+        $movement->save();
+
+        // TODO: save movement meta.
+        // ...
+
+        // TODO: save movement markers.
+        // ...
+
+        // TODO: save movement events.
+        // ...
+
+        // TODO: save tags.
+        // ...
+
+        // TODO: save folder changes.
+        // ...
+
+        // TODO: save aggregate data.
+        // ...
+
+        // TODO: save movement frames.
+        // ...
+
+        // Retrieve list of relations and attributes to append to results.
+        $embed = $this->getEmbedArrays(
+            $this->request->get('embed'),
+            Movement::$appendable
+        );
+
+        // Return updated model.
+        $updated = Movement::with($embed['relations'])->find($movement->id);
+
+        return $updated;
     }
 
     /**

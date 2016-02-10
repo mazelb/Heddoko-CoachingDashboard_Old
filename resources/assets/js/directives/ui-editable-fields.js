@@ -9,6 +9,16 @@
  *                  <div ui-editable-list-item label="Some Label" value="data.some.value">
  *                  </div>
  *              </ui-editable-fields>
+ *
+ *          Or:
+ *              <ui-editable-standalone-field
+ *                  data-heading="Some Heading"
+ *                  data-model="model"
+ *                  data-key="key"
+ *                  data-empty="Enter a value"
+ *                  data-save="someFunction"
+ *                  data-save-callback="someCallbackFunction">
+ *              </ui-editable-standalone-field>
  */
 angular.module('app.directives')
 
@@ -47,6 +57,8 @@ angular.module('app.directives')
                 item.state = $scope.state;
                 item.model = $scope.resource;
                 item.config = $scope.config;
+                item.saveResource = $scope.saveResource;
+                item.saveResourceCallback = $scope.saveResourceCallback;
                 items[item.key] = item;
 
                 return true;
@@ -75,7 +87,7 @@ angular.module('app.directives')
                 });
 
                 // Save resource.
-                $scope.saveResource.call().then(
+                $scope.saveResource.call($scope.model).then(
                     function(response) {
                         $scope.state = 'idle';
                         $scope.saveResourceCallback.call(response.data, true);
@@ -109,7 +121,7 @@ angular.module('app.directives')
              */
             $scope.$watch('resource', function(model) {
                 $scope.state = 'idle';
-                
+
                 angular.forEach(items, function(item) {
                     item.state = $scope.state;
                     item.model = model;
@@ -143,6 +155,41 @@ angular.module('app.directives')
                 if (!controller.addItem(scope)) {
                     return;
                 }
+
+                /**
+                 * Switches directive state to "editing".
+                 */
+                scope.edit = function() {
+                    scope.state = 'editing';
+                };
+
+                /**
+                 * Switch state to "idle".
+                 */
+                scope.cancel = function() {
+                    scope.state = 'idle';
+                };
+
+                /**
+                 * Saves changes.
+                 */
+                scope.save = function() {
+
+                    // Switch state to "saving".
+                    scope.state = 'saving';
+
+                    // Save resource.
+                    scope.saveResource.call(scope.model).then(
+                        function(response) {
+                            scope.state = 'idle';
+                            scope.saveResourceCallback.call(response.data, true);
+                        },
+                        function(response) {
+                            scope.state = 'idle';
+                            scope.saveResourceCallback.call(response.data, false);
+                        }
+                    );
+                };
 
                 // Data object.
                 scope.data = {};
@@ -560,10 +607,11 @@ angular.module('app.directives')
     return {
         restrict: 'AE',
         scope: {
-            heading: '@',
+            heading: '@?',
             model: '=',
             key: '@',
             empty: '@',
+            inputType: '@?',
             saveResource: '=save',
             saveResourceCallback: '=saveCallback',
             deleteResource: '=delete'
@@ -573,20 +621,41 @@ angular.module('app.directives')
             // Represents current state of directive.
             $scope.state = 'idle';
 
-            // Switch state to "editing".
+            // Input type to be used.
+            switch ($scope.inputType)
+            {
+                case 'textarea':
+                case 'text':
+                    break;
+
+                default:
+                    $scope.inputType = 'textarea';
+            }
+
+            /**
+             * Switch state to "editing".
+             */
             $scope.edit = function() {
                 $scope.state = 'editing';
             };
 
-            // Saves changes.
+            /**
+             * Switch state to "idle".
+             */
+            $scope.cancel = function() {
+                $scope.state = 'idle';
+            };
+
+            /**
+             * Saves changes.
+             */
             $scope.save = function() {
-                Utilities.debug('Saving model...');
 
                 // Switch state to "saving".
                 $scope.state = 'saving';
 
                 // Save resource.
-                $scope.saveResource.call().then(
+                $scope.saveResource.call($scope.model).then(
                     function(response) {
                         $scope.state = 'idle';
                         $scope.saveResourceCallback.call(response.data, true);

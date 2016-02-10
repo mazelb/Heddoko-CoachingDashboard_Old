@@ -1,41 +1,54 @@
 
 <!-- Copyright Heddoko(TM) 2015, all rights reserved. -->
 
-<div class="ui-editable-list-container">
+<div class="ui-editable-fields">
 
-    <h3 class="title">
+    <h3 ng-if="heading" class="title">
         {{ heading }}
         <span></span>
     </h3>
-
-    <!-- Action buttons -->
-    <div class="ui-editable-fields-actions">
-        <span ng-click="save()" ng-show="state == 'editing'">
-            Save &nbsp; <i class="fa fa-toggle-on"></i>
-        </span>
-        <span ng-click="edit()" ng-show="state == 'idle'">
-            Edit &nbsp; <i class="fa fa-toggle-off"></i>
-        </span>
-        <span ng-show="state == 'saving'" style="color: #ccc;">
-            <i class="fa fa-toggle-off"></i>
-        </span>
-    </div>
 
     <div class="row" ng-switch="state">
 
         <!-- Editable field -->
         <div ng-switch-when="editing" class="col-sm-12">
-            <textarea ng-model="model[key]" class="form-control"></textarea>
+            <textarea
+                ng-if="inputType == 'textarea'"
+                ng-model="model[key]"
+                class="form-control">
+            </textarea>
+
+            <div ng-if="inputType == 'text'" class="input-group">
+                <span class="input-group-btn">
+                    <button ng-click="cancel()" title="Cancel" class="btn btn-danger" type="button">
+                        <i class="fa fa-times"></i>
+                    </button>
+                    <button ng-click="save()" title="Save" class="btn btn-default" type="button">
+                        <i class="fa fa-floppy-o"></i>
+                    </button>
+                </span>
+
+                <input
+                    ng-model="model[key]"
+                    type="text"
+                    class="form-control">
+            </div>
         </div>
 
-        <!-- Working animation -->
-        <div ng-switch-when="saving" class="text-center" style="padding: 20px 0;">
-            <i class="fa fa-spin fa-2x fa-spinner"></i>
+        <!-- Saving notice -->
+        <div ng-switch-when="saving" class="col-sm-12 text-muted">
+            {{ model[key] || empty }}
+            <i class="fa fa-spinner fa-spin fa-fw"></i>
         </div>
 
         <!-- Displayed field -->
-        <div ng-switch-default class="col-sm-12">
-            {{ model[key] || empty }}
+        <div ng-switch-default class="col-sm-12 ui-editable-field-value">
+            <a ng-click="edit()" href="javascript:;">
+                <span class="edit-text">
+                    {{ model[key] || empty }}
+                </span>
+                <i class="edit-icon fa fa-pencil"></i>
+            </a>
         </div>
     </div>
 </div>

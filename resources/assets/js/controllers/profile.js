@@ -36,7 +36,7 @@ angular.module('app.controllers')
         {
             Rover.waitForFlag('isFetchingProfiles', false, $scope, function() {
                 $scope.global.selectProfile($routeParams.profileId);
-                $scope.profile = Utilities.getData('profile', $routeParams.profileId);
+                $scope.profile = ProfileService.format(Utilities.getData('profile', $routeParams.profileId));
             });
         }
 
@@ -81,7 +81,9 @@ angular.module('app.controllers')
             }
         };
 
-        // Creates a new profile in the database.
+        /**
+         * Creates a new profile in the database.
+         */
         $scope.createProfile = function() {
             Utilities.time('Creating Profile');
 
@@ -113,7 +115,9 @@ angular.module('app.controllers')
             );
         };
 
-        // Saves a profile through the uiEditableListContainer directive.
+        /**
+         * Saves a profile through the uiEditableListContainer directive.
+         */
         $scope.saveProfileDetails = function() {
 
             var profile = ProfileService.formatForStorage($scope.profile);

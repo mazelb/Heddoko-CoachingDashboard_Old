@@ -7,8 +7,8 @@
  */
 angular.module('app.controllers')
 
-.controller('LiveScreeningController', ['$scope', 'ScreeningService', 'Rover', 'Utilities',
-    function($scope, ScreeningService, Rover, Utilities) {
+.controller('LiveScreeningController', ['$scope', 'ScreeningService', 'MovementService', 'Rover', 'Utilities',
+    function($scope, ScreeningService, MovementService, Rover, Utilities) {
         Utilities.info('LiveScreeningController');
 
         // Setup controller.
@@ -123,6 +123,56 @@ angular.module('app.controllers')
                     Utilities.alert('Could not create screening. Please try again later.');
                 }
             );
+        };
+
+        /**
+         * Saves the details of the screening through the uiEditableStandaloneField directive.
+         *
+         * @return $http
+         */
+        $scope.saveScreening = function() {
+            return ScreeningService.update(this.id, this, ['movements']);
+        };
+
+        /**
+         * Callback uiEditableStandaloneField directive.
+         *
+         * @param bool screeningSaved
+         */
+        $scope.saveScreeningCallback = function(screeningSaved) {
+            if (screeningSaved)
+            {
+                // Add profile data to screening.
+                if (Utilities.hasData('profile', this.profileId))
+                {
+                    this.profile = {
+                        firstName: Utilities.getData('profile', this.profileId).firstName || '',
+                        lastName: Utilities.getData('profile', this.profileId).lastName || ''
+                    };
+                }
+
+                // Update screening in storage.
+                Utilities.setData('screening', this.id, this);
+            }
+        };
+
+        /**
+         * Saves the details of the screening movement through the
+         * uiEditableStandaloneField directive.
+         *
+         * @return $http
+         */
+        $scope.saveScreeningMovement = function() {
+            return MovementService.update(this.id, this);
+        };
+
+        /**
+         * Callback uiEditableStandaloneField directive.
+         *
+         * @param bool screeningSaved
+         */
+        $scope.saveScreeningMovementCallback = function(movementSaved) {
+            // ...
         };
 
         // Retrieve current screening.
