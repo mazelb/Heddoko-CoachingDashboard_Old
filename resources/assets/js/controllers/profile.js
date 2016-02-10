@@ -128,19 +128,11 @@ angular.module('app.controllers')
         // Callback for uiEditableListContainer directive.
         $scope.saveProfileDetailsCallback = function(profileSaved) {
 
-            // Update profile list.
+            // Update profile data.
             if (profileSaved) {
-
-                // Update profile data.
-                // Rover.setState('profile', this.id, ProfileService.format(this));
-                Utilities.setData('profile', this.id, ProfileService.format(this));
+                Utilities.setData('profile', this.id, this);
                 $scope.global.updateFilteredProfiles();
-
-                // Update the selected profile.
-                // Rover.store.profileId = this.id;
-
-                // Navigate to profile page.
-                // Rover.browseTo.path('/profiles/' + this.id);
+                $scope.profile = ProfileService.format(this);
             }
 
             //

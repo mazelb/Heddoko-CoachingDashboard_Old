@@ -198,6 +198,7 @@ angular.module('app.directives')
                 switch (attrs.type)
                 {
                     // Date, Datetime
+                    // TODO: set timezone elsewhere
                     case 'date':
                     case 'datetime':
 
