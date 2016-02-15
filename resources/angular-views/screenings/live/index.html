@@ -19,78 +19,84 @@
     <!-- Test progress -->
     <div ng-if="!global.data.isFetchingLiveScreening && screening.id > 0">
 
-        <!-- Test title -->
-        <div class="row">
-            <div class="col-lg-8">
-                <h3 class="title">
-                    <ui-editable-standalone-field
-                        data-model="screening"
-                        data-key="title"
-                        data-empty="Title"
-                        data-input-type="text"
-                        data-save="saveScreening"
-                        data-save-callback="saveScreeningCallback">
-                    </ui-editable-standalone-field>
-
-                    <span></span>
-                </h3>
-            </div>
-        </div>
-        <br>
-
         <!-- Container -->
         <div class="row no-gutter screening-container">
+
+            <!-- Test title -->
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3 class="title">
+                        <ui-editable-standalone-field
+                            data-model="screening"
+                            data-key="title"
+                            data-empty="Title"
+                            data-input-type="text"
+                            data-save="saveScreening"
+                            data-save-callback="saveScreeningCallback">
+                        </ui-editable-standalone-field>
+
+                        <span></span>
+                    </h3>
+                </div>
+            </div>
+            <br>
 
             <!-- Movement views -->
             <div class="col-lg-9">
 
-                <div class="col-lg-5 screening-example-view">
-                    <ui-movement-playback
-                        data-title="screening.movements[screeningStep].title"
-                        data-title-align="center"
-                        data-previous-movement="previousMovement"
-                        data-next-movement="nextMovement">
-                    </ui-movement-playback>
+                <div class="row no-gutter">
+                    <div class="col-lg-5 screening-example-view">
+                        <ui-movement-playback
+                            data-title="screeningMovement.title"
+                            data-title-align="center"
+                            data-height="'600px'"
+                            data-previous-movement="previousMovement"
+                            data-next-movement="nextMovement">
+                        </ui-movement-playback>
+                    </div>
+
+                    <div class="col-lg-7 screening-live-view">
+                        <ui-movement-playback
+                            data-title="'Live View'"
+                            data-height="'600px'"
+                            data-previous-movement="false"
+                            data-next-movement="false">
+                        </ui-movement-playback>
+                    </div>
                 </div>
 
-                <div class="col-lg-7 screening-live-view">
-                    <ui-movement-playback
-                        data-title="'Live View'"
-                        data-previous-movement="false"
-                        data-next-movement="false">
-                    </ui-movement-playback>
-                </div>
-
-                <div class="row no-gutter screening-meta">
+                <div class="row screening-meta">
 
                     <!-- Profile details -->
                     <div class="col-lg-5">
-                        <div class="col-md-5">
-                            <a
-                                href="#/profiles/{{ profile.id }}"
-                                class="aspect-ratio aspect-4-3 card profile-avatar"
-                                style="background-image: url({{ profile.avatarSrc || '' }})">
-                            </a>
-                        </div>
+                        <div class="row no-gutter">
+                            <div class="col-md-5">
+                                <a
+                                    href="#/profiles/{{ profile.id }}"
+                                    class="aspect-ratio aspect-4-3 card profile-avatar"
+                                    style="background-image: url({{ profile.avatarSrc || '' }})">
+                                </a>
+                            </div>
 
-                        <div class="col-md-6">
-                            <div class="profile-details">
-                                <div>
-                                    <a href="#/profiles/{{ profile.id }}">
-                                        {{ profile.lastName.toUpperCase() }}
-                                    </a>
-                                </div>
+                            <div class="col-md-7">
+                                <div class="profile-details">
+                                    <div>
+                                        <a href="#/profiles/{{ profile.id }}">
+                                            {{ profile.lastName.toUpperCase() }}
+                                        </a>
+                                    </div>
 
-                                <!-- Main group -->
-                                <div ng-if="profile.groups.length > 0">
-                                    <a href="#/groups/{{ profile.groups[0].id }}">
-                                        {{ profile.groups[0].name }}
-                                    </a>
-                                </div>
+                                    <!-- Main group -->
+                                    <div ng-if="profile.groups.length > 0">
+                                        <a href="#/groups/{{ profile.groups[0].id }}">
+                                            {{ profile.groups[0].name }}
+                                        </a>
+                                    </div>
 
-                                <!-- Test date -->
-                                <div>
-                                    Tested on: {{ screening.createdAt | mysqlDate:'d / M / yyyy' }}
+                                    <!-- Test date -->
+                                    <div>
+                                        Tested on: {{ screening.createdAt | mysqlDate:'d / M / yyyy' }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +105,7 @@
                     <div class="col-lg-7">
 
                         <ui-editable-standalone-field
-                            data-model="screening.movements[screeningStep]"
+                            data-model="screeningMovement"
                             data-key="title"
                             data-empty="Title"
                             data-input-type="text"
@@ -109,14 +115,14 @@
 
                         <!--  -->
                         <div class="row">
-                            <div class="col-sm-11">
+                            <div class="col-sm-12">
                                 Record, Save, ...
                             </div>
                         </div>
 
                         <!--  -->
                         <div class="row">
-                            <div class="col-sm-11">
+                            <div class="col-sm-12">
                                 <textarea class="form-control" placeholder="General Notes:"></textarea>
                             </div>
                         </div>
@@ -125,56 +131,60 @@
             </div>
 
             <!-- Test list and progress -->
-            <div class="col-lg-3 screening-progress">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="screening-progress-heading">
-                            <div class="movement-title">Test</div>
-                            <div class="movement-score">Score</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="divider-dot"></div>
-                        <div class="divider-end"></div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div
-                            ng-repeat="movement in screening.movements track by movement.id"
-                            class="screening-progress-movement-row">
-
-                            <a ng-click="screeningStep = $index" href="javascript:;" class="movement-title">
-                                {{ movement.title }}
-                            </a>
-
-                            <div class="movement-score">
-
+            <div class="col-lg-3">
+                <div class="col-sm-12">
+                    <div class="screening-progress">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="screening-progress-heading">
+                                    <div class="movement-title">Test</div>
+                                    <div class="movement-score">Score</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="divider-end"></div>
-                        <div class="divider-dot"></div>
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="divider-dot"></div>
+                                <div class="divider-end"></div>
+                            </div>
+                        </div>
 
-                <!-- Score -->
-                <div class="row">
-                    <div class="col-sm-12">
-                    </div>
-                </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div
+                                    ng-repeat="movement in screening.movements track by movement.id"
+                                    class="screening-progress-movement-row">
 
-                <!-- Percent completion -->
-                <div class="row">
-                    <div class="col-sm-12">
+                                    <a ng-click="screeningMovement = movement" href="javascript:;" class="movement-title">
+                                        {{ movement.title }}
+                                    </a>
+
+                                    <div class="movement-score">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="divider-end"></div>
+                                <div class="divider-dot"></div>
+                            </div>
+                        </div>
+
+                        <!-- Score -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
+
+                        <!-- Percent completion -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

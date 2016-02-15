@@ -4154,13 +4154,13 @@ h1.title, h2.title, h3.title, h4.title {
   .screening-page .screening-meta .profile-avatar {
     border: 0px;
     border-right: 4px solid #ddd;
-    -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3bd6b2), to(#5b707d)) 1 100%;
-    -webkit-border-image: -webkit-linear-gradient(#3bd6b2, #5b707d) 1 100%;
-    -moz-border-image: -moz-linear-gradient(#3bd6b2, #5b707d) 1 100%;
-    -o-border-image: -o-linear-gradient(#3bd6b2, #5b707d) 1 100%;
-    border-image: linear-gradient(to bottom, #3bd6b2, #5b707d) 1 100%; }
+    -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3bd6b2), to(#00ACD4)) 1 100%;
+    -webkit-border-image: -webkit-linear-gradient(#3bd6b2, #00ACD4) 1 100%;
+    -moz-border-image: -moz-linear-gradient(#3bd6b2, #00ACD4) 1 100%;
+    -o-border-image: -o-linear-gradient(#3bd6b2, #00ACD4) 1 100%;
+    border-image: linear-gradient(to bottom, #3bd6b2, #00ACD4) 1 100%; }
   .screening-page .screening-meta .profile-details {
-    margin-top: 20px; }
+    margin: 20px 0 0 20px; }
 
 .screening-container {
   width: 96%;
@@ -4169,8 +4169,12 @@ h1.title, h2.title, h3.title, h4.title {
     background-color: #2c3a46; }
   .screening-container .screening-live-view {
     background-color: #1c242c; }
+  .screening-container .screening-meta {
+    height: 200px;
+    background-color: #26333C; }
 
 .screening-progress {
+  height: 820px;
   background-color: #2c3a46; }
   .screening-progress .divider-end {
     position: relative;
@@ -4203,15 +4207,16 @@ h1.title, h2.title, h3.title, h4.title {
       position: absolute;
       top: 0;
       display: block;
-      margin: 0 2.5%;
-      height: 30px; }
+      padding: 0 2.5%;
+      height: 30px;
+      font-size: 0.9em; }
     .screening-progress .screening-progress-heading .movement-title, .screening-progress .screening-progress-movement-row .movement-title {
       left: 0;
-      width: 70%;
+      width: 65%;
       text-align: right; }
     .screening-progress .screening-progress-heading .movement-score, .screening-progress .screening-progress-movement-row .movement-score {
       right: 0;
-      width: 20%; }
+      width: 35%; }
   .screening-progress .screening-progress-heading {
     text-transform: uppercase; }
   .screening-progress .screening-progress-movement-row .movement-score {
@@ -8835,6 +8840,7 @@ svg {
   display: block;
   padding-bottom: 60px; }
   .ui-movement-container h1 {
+    margin: 20px;
     font-size: 1.2em;
     text-transform: uppercase;
     color: #ddd;

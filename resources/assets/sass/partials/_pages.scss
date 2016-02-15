@@ -140,19 +140,19 @@ h1.title, h2.title, h3.title, h4.title {
             border: 0px;
             border-right: 4px solid $text-color;
             -webkit-border-image:
-                -webkit-gradient(linear, 0 0, 0 100%, from($heddokogreen), to($text-color-blue)) 1 100%;
+                -webkit-gradient(linear, 0 0, 0 100%, from($heddokogreen), to(#00ACD4)) 1 100%;
             -webkit-border-image:
-                -webkit-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+                -webkit-linear-gradient($heddokogreen, #00ACD4) 1 100%;
             -moz-border-image:
-                -moz-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+                -moz-linear-gradient($heddokogreen, #00ACD4) 1 100%;
             -o-border-image:
-                -o-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+                -o-linear-gradient($heddokogreen, #00ACD4) 1 100%;
             border-image:
-                linear-gradient(to bottom, $heddokogreen, $text-color-blue) 1 100%;
+                linear-gradient(to bottom, $heddokogreen, #00ACD4) 1 100%;
         }
 
         .profile-details {
-            margin-top: 20px;
+            margin: 20px 0 0 20px;
         }
     }
 }
@@ -170,8 +170,14 @@ h1.title, h2.title, h3.title, h4.title {
     .screening-live-view {
         background-color: $dark-blue;
     }
+
+    .screening-meta {
+        height: 200px;
+        background-color: #26333C;
+    }
 }
 .screening-progress {
+    height: 820px;
     background-color: $blue;
 
     .divider-end {
@@ -202,20 +208,20 @@ h1.title, h2.title, h3.title, h4.title {
             position: absolute;
             top: 0;
             display: block;
-            margin: 0 2.5%;
+            padding: 0 2.5%;
             height: 30px;
             font-size: 0.9em;
         }
 
         .movement-title {
             left: 0;
-            width: 60%;
+            width: 65%;
             text-align: right;
         }
 
         .movement-score {
             right: 0;
-            width: 30%;
+            width: 35%;
         }
     }
 

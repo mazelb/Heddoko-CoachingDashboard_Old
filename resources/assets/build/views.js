@@ -4494,7 +4494,7 @@ angular.module("partials/directives/ui-movement/playback.html", []).run(["$templ
   $templateCache.put("partials/directives/ui-movement/playback.html",
     "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"ui-movement-container\">\n" +
+    "<div class=\"ui-movement-container\" ng-style=\"{height: height}\">\n" +
     "\n" +
     "    <h1 ng-style=\"{'text-align': titleAlign}\">\n" +
     "        <a ng-if=\"previousMovement\" ng-click=\"previousMovement()\" href=\"javascript:;\">\n" +
@@ -4508,8 +4508,8 @@ angular.module("partials/directives/ui-movement/playback.html", []).run(["$templ
     "        </a>\n" +
     "    </h1>\n" +
     "\n" +
-    "    <div style=\"display: block; margin: 150px 0; text-align: center\" class=\"text-muted\">\n" +
-    "        In Development...\n" +
+    "    <div style=\"display: block; margin: 50px 0; text-align: center\" class=\"text-muted\">\n" +
+    "        <i class=\"fa fa-cubes fa-fw\"></i> In Development...\n" +
     "    </div>\n" +
     "\n" +
     "    <div class=\"controls\">\n" +
@@ -6372,78 +6372,84 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "    <!-- Test progress -->\n" +
     "    <div ng-if=\"!global.data.isFetchingLiveScreening && screening.id > 0\">\n" +
     "\n" +
-    "        <!-- Test title -->\n" +
-    "        <div class=\"row\">\n" +
-    "            <div class=\"col-lg-8\">\n" +
-    "                <h3 class=\"title\">\n" +
-    "                    <ui-editable-standalone-field\n" +
-    "                        data-model=\"screening\"\n" +
-    "                        data-key=\"title\"\n" +
-    "                        data-empty=\"Title\"\n" +
-    "                        data-input-type=\"text\"\n" +
-    "                        data-save=\"saveScreening\"\n" +
-    "                        data-save-callback=\"saveScreeningCallback\">\n" +
-    "                    </ui-editable-standalone-field>\n" +
-    "\n" +
-    "                    <span></span>\n" +
-    "                </h3>\n" +
-    "            </div>\n" +
-    "        </div>\n" +
-    "        <br>\n" +
-    "\n" +
     "        <!-- Container -->\n" +
     "        <div class=\"row no-gutter screening-container\">\n" +
+    "\n" +
+    "            <!-- Test title -->\n" +
+    "            <div class=\"row\">\n" +
+    "                <div class=\"col-lg-8\">\n" +
+    "                    <h3 class=\"title\">\n" +
+    "                        <ui-editable-standalone-field\n" +
+    "                            data-model=\"screening\"\n" +
+    "                            data-key=\"title\"\n" +
+    "                            data-empty=\"Title\"\n" +
+    "                            data-input-type=\"text\"\n" +
+    "                            data-save=\"saveScreening\"\n" +
+    "                            data-save-callback=\"saveScreeningCallback\">\n" +
+    "                        </ui-editable-standalone-field>\n" +
+    "\n" +
+    "                        <span></span>\n" +
+    "                    </h3>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "            <br>\n" +
     "\n" +
     "            <!-- Movement views -->\n" +
     "            <div class=\"col-lg-9\">\n" +
     "\n" +
-    "                <div class=\"col-lg-5 screening-example-view\">\n" +
-    "                    <ui-movement-playback\n" +
-    "                        data-title=\"screening.movements[screeningStep].title\"\n" +
-    "                        data-title-align=\"center\"\n" +
-    "                        data-previous-movement=\"previousMovement\"\n" +
-    "                        data-next-movement=\"nextMovement\">\n" +
-    "                    </ui-movement-playback>\n" +
+    "                <div class=\"row no-gutter\">\n" +
+    "                    <div class=\"col-lg-5 screening-example-view\">\n" +
+    "                        <ui-movement-playback\n" +
+    "                            data-title=\"screeningMovement.title\"\n" +
+    "                            data-title-align=\"center\"\n" +
+    "                            data-height=\"'600px'\"\n" +
+    "                            data-previous-movement=\"previousMovement\"\n" +
+    "                            data-next-movement=\"nextMovement\">\n" +
+    "                        </ui-movement-playback>\n" +
+    "                    </div>\n" +
+    "\n" +
+    "                    <div class=\"col-lg-7 screening-live-view\">\n" +
+    "                        <ui-movement-playback\n" +
+    "                            data-title=\"'Live View'\"\n" +
+    "                            data-height=\"'600px'\"\n" +
+    "                            data-previous-movement=\"false\"\n" +
+    "                            data-next-movement=\"false\">\n" +
+    "                        </ui-movement-playback>\n" +
+    "                    </div>\n" +
     "                </div>\n" +
     "\n" +
-    "                <div class=\"col-lg-7 screening-live-view\">\n" +
-    "                    <ui-movement-playback\n" +
-    "                        data-title=\"'Live View'\"\n" +
-    "                        data-previous-movement=\"false\"\n" +
-    "                        data-next-movement=\"false\">\n" +
-    "                    </ui-movement-playback>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"row no-gutter screening-meta\">\n" +
+    "                <div class=\"row screening-meta\">\n" +
     "\n" +
     "                    <!-- Profile details -->\n" +
     "                    <div class=\"col-lg-5\">\n" +
-    "                        <div class=\"col-md-5\">\n" +
-    "                            <a\n" +
-    "                                href=\"#/profiles/{{ profile.id }}\"\n" +
-    "                                class=\"aspect-ratio aspect-4-3 card profile-avatar\"\n" +
-    "                                style=\"background-image: url({{ profile.avatarSrc || '' }})\">\n" +
-    "                            </a>\n" +
-    "                        </div>\n" +
+    "                        <div class=\"row no-gutter\">\n" +
+    "                            <div class=\"col-md-5\">\n" +
+    "                                <a\n" +
+    "                                    href=\"#/profiles/{{ profile.id }}\"\n" +
+    "                                    class=\"aspect-ratio aspect-4-3 card profile-avatar\"\n" +
+    "                                    style=\"background-image: url({{ profile.avatarSrc || '' }})\">\n" +
+    "                                </a>\n" +
+    "                            </div>\n" +
     "\n" +
-    "                        <div class=\"col-md-6\">\n" +
-    "                            <div class=\"profile-details\">\n" +
-    "                                <div>\n" +
-    "                                    <a href=\"#/profiles/{{ profile.id }}\">\n" +
-    "                                        {{ profile.lastName.toUpperCase() }}\n" +
-    "                                    </a>\n" +
-    "                                </div>\n" +
+    "                            <div class=\"col-md-7\">\n" +
+    "                                <div class=\"profile-details\">\n" +
+    "                                    <div>\n" +
+    "                                        <a href=\"#/profiles/{{ profile.id }}\">\n" +
+    "                                            {{ profile.lastName.toUpperCase() }}\n" +
+    "                                        </a>\n" +
+    "                                    </div>\n" +
     "\n" +
-    "                                <!-- Main group -->\n" +
-    "                                <div ng-if=\"profile.groups.length > 0\">\n" +
-    "                                    <a href=\"#/groups/{{ profile.groups[0].id }}\">\n" +
-    "                                        {{ profile.groups[0].name }}\n" +
-    "                                    </a>\n" +
-    "                                </div>\n" +
+    "                                    <!-- Main group -->\n" +
+    "                                    <div ng-if=\"profile.groups.length > 0\">\n" +
+    "                                        <a href=\"#/groups/{{ profile.groups[0].id }}\">\n" +
+    "                                            {{ profile.groups[0].name }}\n" +
+    "                                        </a>\n" +
+    "                                    </div>\n" +
     "\n" +
-    "                                <!-- Test date -->\n" +
-    "                                <div>\n" +
-    "                                    Tested on: {{ screening.createdAt | mysqlDate:'d / M / yyyy' }}\n" +
+    "                                    <!-- Test date -->\n" +
+    "                                    <div>\n" +
+    "                                        Tested on: {{ screening.createdAt | mysqlDate:'d / M / yyyy' }}\n" +
+    "                                    </div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -6452,7 +6458,7 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                    <div class=\"col-lg-7\">\n" +
     "\n" +
     "                        <ui-editable-standalone-field\n" +
-    "                            data-model=\"screening.movements[screeningStep]\"\n" +
+    "                            data-model=\"screeningMovement\"\n" +
     "                            data-key=\"title\"\n" +
     "                            data-empty=\"Title\"\n" +
     "                            data-input-type=\"text\"\n" +
@@ -6462,14 +6468,14 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "\n" +
     "                        <!--  -->\n" +
     "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-11\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
     "                                Record, Save, ...\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
     "                        <!--  -->\n" +
     "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-11\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
     "                                <textarea class=\"form-control\" placeholder=\"General Notes:\"></textarea>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
@@ -6478,56 +6484,60 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "            </div>\n" +
     "\n" +
     "            <!-- Test list and progress -->\n" +
-    "            <div class=\"col-lg-3 screening-progress\">\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <div class=\"screening-progress-heading\">\n" +
-    "                            <div class=\"movement-title\">Test</div>\n" +
-    "                            <div class=\"movement-score\">Score</div>\n" +
-    "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <div class=\"divider-dot\"></div>\n" +
-    "                        <div class=\"divider-end\"></div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <div\n" +
-    "                            ng-repeat=\"movement in screening.movements track by movement.id\"\n" +
-    "                            class=\"screening-progress-movement-row\">\n" +
-    "\n" +
-    "                            <a href=\"javascript:;\" class=\"movement-title\">\n" +
-    "                                {{ movement.title }}\n" +
-    "                            </a>\n" +
-    "\n" +
-    "                            <div class=\"movement-score\">\n" +
-    "\n" +
+    "            <div class=\"col-lg-3\">\n" +
+    "                <div class=\"col-sm-12\">\n" +
+    "                    <div class=\"screening-progress\">\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <div class=\"screening-progress-heading\">\n" +
+    "                                    <div class=\"movement-title\">Test</div>\n" +
+    "                                    <div class=\"movement-score\">Score</div>\n" +
+    "                                </div>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
     "\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                        <div class=\"divider-end\"></div>\n" +
-    "                        <div class=\"divider-dot\"></div>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <div class=\"divider-dot\"></div>\n" +
+    "                                <div class=\"divider-end\"></div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "\n" +
-    "                <!-- Score -->\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <div\n" +
+    "                                    ng-repeat=\"movement in screening.movements track by movement.id\"\n" +
+    "                                    class=\"screening-progress-movement-row\">\n" +
     "\n" +
-    "                <!-- Percent completion -->\n" +
-    "                <div class=\"row\">\n" +
-    "                    <div class=\"col-sm-12\">\n" +
+    "                                    <a ng-click=\"screeningMovement = movement\" href=\"javascript:;\" class=\"movement-title\">\n" +
+    "                                        {{ movement.title }}\n" +
+    "                                    </a>\n" +
+    "\n" +
+    "                                    <div class=\"movement-score\">\n" +
+    "\n" +
+    "                                    </div>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <div class=\"divider-end\"></div>\n" +
+    "                                <div class=\"divider-dot\"></div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Score -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Percent completion -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
     "                    </div>\n" +
     "                </div>\n" +
     "            </div>\n" +

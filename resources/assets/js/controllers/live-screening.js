@@ -64,7 +64,7 @@ angular.module('app.controllers')
             $scope.profile = Utilities.getData('profile', screening.profileId);
 
             // Set current movement in screening.
-            $scope.screeningStep = 0;
+            $scope.screeningMovement = null;
             for (var i = 0; i < screening.movements.length; i++)
             {
                 if (screening.movements[i].isComplete) {
@@ -72,7 +72,7 @@ angular.module('app.controllers')
                 }
 
                 else {
-                    $scope.screeningStep = i;
+                    $scope.screeningMovement = screening.movements[i];
                     break;
                 }
             }
@@ -103,32 +103,32 @@ angular.module('app.controllers')
                 scoreMax: 3,
                 movements: [
                     {title: 'Deep Squat'},
-                    {title: 'Hurdle Step - Left'},
-                    {title: 'Hurdle Step - Right'},
-                    {title: 'Inline Lunge - Left'},
-                    {title: 'Inline Lunge - Right'},
-                    {title: 'Shoulder Mobility - Left'},
-                    {title: 'Shoulder Mobility - Right'},
-                    {title: 'Impingment Test - Left', meta: {
+                    {title: 'Hurdle Step - L'},
+                    {title: 'Hurdle Step - R'},
+                    {title: 'Inline Lunge - L'},
+                    {title: 'Inline Lunge - R'},
+                    {title: 'Shoulder Mobility - L'},
+                    {title: 'Shoulder Mobility - R'},
+                    {title: 'Impingment Test - L', meta: {
                         data: {
                             isClearanceTest: true
                         }
                     }},
-                    {title: 'Impingment Test - Right', meta: {
+                    {title: 'Impingment Test - R', meta: {
                         data: {
                             isClearanceTest: true
                         }
                     }},
-                    {title: 'Active Straight-Leg Raise - Left'},
-                    {title: 'Active Straight-Leg Raise - Right'},
+                    {title: 'Active Straight-Leg Raise - L'},
+                    {title: 'Active Straight-Leg Raise - R'},
                     {title: 'Trunk Stability Push-Up'},
                     {title: 'Spinal Extension', meta: {
                         data: {
                             isClearanceTest: true
                         }
                     }},
-                    {title: 'Rotary Stability - Left'},
-                    {title: 'Rotary Stability - Right'},
+                    {title: 'Rotary Stability - L'},
+                    {title: 'Rotary Stability - R'},
                     {title: 'Posterior Rocking', meta: {
                         data: {
                             isClearanceTest: true

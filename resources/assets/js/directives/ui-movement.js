@@ -15,7 +15,9 @@ angular.module('app.directives')
         templateUrl: 'partials/directives/ui-movement/playback.html',
         scope: {
             title: '=',
-            titleClass: '@?',
+            titleAlign: '@?',
+
+            height: '=?',
 
             previousMovement: '=?',
             nextMovement: '=?'
@@ -25,15 +27,11 @@ angular.module('app.directives')
 
                 // Defaults.
                 $scope.titleAlign = $scope.titleAlign || 'left';
+                $scope.height = $scope.height || 'auto';
                 $scope.previousMovement = typeof $scope.previousMovement == 'function' ?
                     $scope.previousMovement : false;
                 $scope.nextMovement = typeof $scope.nextMovement == 'function' ?
                     $scope.nextMovement : false;
-
-                Utilities.log($scope.title);
-                Utilities.log(typeof $scope.previousMovement);
-                Utilities.log(typeof $scope.nextMovement);
-
             }
         ]
     };
