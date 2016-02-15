@@ -4150,6 +4150,8 @@ h1.title, h2.title, h3.title, h4.title {
  * Angular - Screening pages.
  */
 .screening-page .screening-meta {
+  height: 200px;
+  background-color: #26333C;
   color: #5b707d; }
   .screening-page .screening-meta .profile-avatar {
     border: 0px;
@@ -4161,6 +4163,8 @@ h1.title, h2.title, h3.title, h4.title {
     border-image: linear-gradient(to bottom, #3bd6b2, #00ACD4) 1 100%; }
   .screening-page .screening-meta .profile-details {
     margin: 20px 0 0 20px; }
+  .screening-page .screening-meta .screening-details {
+    margin-top: 20px; }
 
 .screening-container {
   width: 96%;
@@ -4169,13 +4173,11 @@ h1.title, h2.title, h3.title, h4.title {
     background-color: #2c3a46; }
   .screening-container .screening-live-view {
     background-color: #1c242c; }
-  .screening-container .screening-meta {
-    height: 200px;
-    background-color: #26333C; }
 
 .screening-progress {
   height: 820px;
-  background-color: #2c3a46; }
+  background-color: #2c3a46;
+  font-weight: bold; }
   .screening-progress .divider-end {
     position: relative;
     left: 65%;
@@ -4213,7 +4215,12 @@ h1.title, h2.title, h3.title, h4.title {
     .screening-progress .screening-progress-heading .movement-title, .screening-progress .screening-progress-movement-row .movement-title {
       left: 0;
       width: 65%;
-      text-align: right; }
+      text-align: right;
+      color: #5b707d; }
+      .screening-progress .screening-progress-heading .movement-title.pain, .screening-progress .screening-progress-movement-row .movement-title.pain {
+        color: #db5031; }
+      .screening-progress .screening-progress-heading .movement-title.active, .screening-progress .screening-progress-movement-row .movement-title.active {
+        color: #ddd; }
     .screening-progress .screening-progress-heading .movement-score, .screening-progress .screening-progress-movement-row .movement-score {
       right: 0;
       width: 35%; }

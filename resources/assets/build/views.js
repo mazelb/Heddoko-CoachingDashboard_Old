@@ -6369,7 +6369,6 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <!-- Test progress -->\n" +
     "    <div ng-if=\"!global.data.isFetchingLiveScreening && screening.id > 0\">\n" +
     "\n" +
     "        <!-- Container -->\n" +
@@ -6455,28 +6454,41 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                        </div>\n" +
     "                    </div>\n" +
     "\n" +
-    "                    <div class=\"col-lg-7\">\n" +
+    "                    <div class=\"col-lg-7 screening-details\">\n" +
     "\n" +
-    "                        <ui-editable-standalone-field\n" +
-    "                            data-model=\"screeningMovement\"\n" +
-    "                            data-key=\"title\"\n" +
-    "                            data-empty=\"Title\"\n" +
-    "                            data-input-type=\"text\"\n" +
-    "                            data-save=\"saveScreeningMovement\"\n" +
-    "                            data-save-callback=\"saveScreeningMovementCallback\">\n" +
-    "                        </ui-editable-standalone-field>\n" +
-    "\n" +
-    "                        <!--  -->\n" +
     "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                Record, Save, ...\n" +
+    "                            <div class=\"col-lg-2 text-right\">\n" +
+    "                                Title\n" +
+    "                            </div>\n" +
+    "\n" +
+    "                            <div class=\"col-lg-10\">\n" +
+    "                                <ui-editable-standalone-field\n" +
+    "                                    data-model=\"screeningMovement\"\n" +
+    "                                    data-key=\"title\"\n" +
+    "                                    data-empty=\"Title\"\n" +
+    "                                    data-input-type=\"text\"\n" +
+    "                                    data-save=\"saveScreeningMovement\"\n" +
+    "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
+    "                                </ui-editable-standalone-field>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <!--  -->\n" +
+    "                        <!-- Scoring, Saving -->\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
-    "                                <textarea class=\"form-control\" placeholder=\"General Notes:\"></textarea>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Screening notes -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <ui-editable-standalone-field\n" +
+    "                                    data-model=\"screeningMovement\"\n" +
+    "                                    data-key=\"notes\"\n" +
+    "                                    data-empty=\"General Notes\"\n" +
+    "                                    data-save=\"saveScreeningMovement\"\n" +
+    "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
+    "                                </ui-editable-standalone-field>\n" +
     "                            </div>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -6487,10 +6499,12 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "            <div class=\"col-lg-3\">\n" +
     "                <div class=\"col-sm-12\">\n" +
     "                    <div class=\"screening-progress\">\n" +
+    "\n" +
+    "                        <br>\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
     "                                <div class=\"screening-progress-heading\">\n" +
-    "                                    <div class=\"movement-title\">Test</div>\n" +
+    "                                    <div class=\"movement-title active\">Test</div>\n" +
     "                                    <div class=\"movement-score\">Score</div>\n" +
     "                                </div>\n" +
     "                            </div>\n" +
@@ -6509,7 +6523,12 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                                    ng-repeat=\"movement in screening.movements track by movement.id\"\n" +
     "                                    class=\"screening-progress-movement-row\">\n" +
     "\n" +
-    "                                    <a ng-click=\"screeningMovement = movement\" href=\"javascript:;\" class=\"movement-title\">\n" +
+    "                                    <a\n" +
+    "                                        ng-click=\"setScreeningMovement(movement)\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"movement-title\"\n" +
+    "                                        ng-class=\"{active: movement.id == screeningMovement.id}\">\n" +
+    "\n" +
     "                                        {{ movement.title }}\n" +
     "                                    </a>\n" +
     "\n" +

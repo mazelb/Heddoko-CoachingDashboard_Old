@@ -79,6 +79,13 @@ angular.module('app.controllers')
         };
 
         /**
+         *
+         */
+        $scope.setScreeningMovement = function(movement) {
+            $scope.screeningMovement = movement;
+        };
+
+        /**
          * Resets screening data.
          */
         $scope.resetScreening = function() {

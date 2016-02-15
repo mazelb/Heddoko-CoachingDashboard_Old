@@ -134,6 +134,8 @@ h1.title, h2.title, h3.title, h4.title {
 .screening-page {
 
     .screening-meta {
+        height: 200px;
+        background-color: #26333C;
         color: $text-color-blue;
 
         .profile-avatar {
@@ -154,6 +156,10 @@ h1.title, h2.title, h3.title, h4.title {
         .profile-details {
             margin: 20px 0 0 20px;
         }
+
+        .screening-details {
+            margin-top: 20px;
+        }
     }
 }
 .screening-container {
@@ -170,15 +176,11 @@ h1.title, h2.title, h3.title, h4.title {
     .screening-live-view {
         background-color: $dark-blue;
     }
-
-    .screening-meta {
-        height: 200px;
-        background-color: #26333C;
-    }
 }
 .screening-progress {
     height: 820px;
     background-color: $blue;
+    font-weight: bold;
 
     .divider-end {
         position: relative;
@@ -217,6 +219,15 @@ h1.title, h2.title, h3.title, h4.title {
             left: 0;
             width: 65%;
             text-align: right;
+            color: $text-color-blue;
+
+            &.pain {
+                color: $danger;
+            }
+
+            &.active {
+                color: $text-color;
+            }
         }
 
         .movement-score {
