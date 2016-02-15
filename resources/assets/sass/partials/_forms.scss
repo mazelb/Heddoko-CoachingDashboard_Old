@@ -432,7 +432,7 @@ $input-colors:(
   warning:$warning,
   danger:$danger,
   violet:$info-alt,
-  dark:$blue-dark
+  dark:$dark-blue
 );
 
 @each $input-class,$input-color in $input-colors{
@@ -854,11 +854,11 @@ $input-colors:(
 }
 
 .ui-accordion-dark .panel {
-  border: 1px solid $blue-dark;
+  border: 1px solid $dark-blue;
 }
 
 .ui-accordion-dark .panel-heading {
-  background-color: $blue-dark;
+  background-color: $dark-blue;
   color: #fff;
 }
 
@@ -1623,7 +1623,7 @@ $input-colors:(
   cursor: pointer;
   white-space: nowrap;
   text-overflow: ellipsis;
-  color: $blue-dark;
+  color: $dark-blue;
   background-color: #fff;
 }
 
@@ -1638,7 +1638,7 @@ $input-colors:(
 }
 
 .ui-tags-input .autocomplete .suggestion-item em {
-  color: $blue-dark;
+  color: $dark-blue;
   background-color: white;
 }
 

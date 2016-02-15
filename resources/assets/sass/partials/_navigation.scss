@@ -56,11 +56,11 @@
 }
 
 .dropdown-menu.dropdown-dark {
-    background-color: $blue-dark;
+    background-color: $dark-blue;
 }
 
 .dropdown-menu.dropdown-dark.with-arrow:after {
-    border-bottom: 7px solid $blue-dark;
+    border-bottom: 7px solid $dark-blue;
 }
 
 .dropdown-menu.dropdown-dark > li > a {
@@ -591,7 +591,7 @@
 }
 
 #nav>li.active>a {
-  background-color: $blue-dark;
+  background-color: $dark-blue;
   color: $silver;
   border-left: 2px solid $silver;
 }

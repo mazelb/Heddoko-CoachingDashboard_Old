@@ -128,7 +128,7 @@ angular.module('app.directives')
                 });
             });
         }],
-        templateUrl: 'directive-partials/ui-editable-fields/fields.html'
+        templateUrl: 'partials/directives/ui-editable-fields/fields.html'
     };
 })
 
@@ -144,6 +144,7 @@ angular.module('app.directives')
                 label: '@',
                 display: '@',
                 key: '@',
+                empty: '@',
                 inputType: '@type',
                 maxTags: '@',
                 isRequired: '=required',
@@ -193,6 +194,9 @@ angular.module('app.directives')
 
                 // Data object.
                 scope.data = {};
+
+                // Empty state.
+                scope.empty = scope.empty || '...';
 
                 // Initialize fields.
                 switch (attrs.type)
@@ -596,7 +600,7 @@ angular.module('app.directives')
                         });
                 }
             },
-            templateUrl: 'directive-partials/ui-editable-fields/field-vertical.html'
+            templateUrl: 'partials/directives/ui-editable-fields/field-vertical.html'
         };
     }
 ])
@@ -678,6 +682,6 @@ angular.module('app.directives')
                 $scope.state = 'idle';
             });
         }],
-        templateUrl: 'directive-partials/ui-editable-fields/standalone-field.html'
+        templateUrl: 'partials/directives/ui-editable-fields/standalone-field.html'
     };
 });

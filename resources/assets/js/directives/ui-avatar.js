@@ -19,7 +19,7 @@ angular.module('app.directives')
     return {
         restrict: 'E',
         transclude: true,
-        templateUrl: 'directive-partials/ui-avatar.html',
+        templateUrl: 'partials/directives/ui-avatar.html',
         scope: {
             avatarSrc: '=src',
             uploadEndpoint: '=',

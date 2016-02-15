@@ -9,10 +9,40 @@
  */
 angular.module('app.directives')
 
+.directive('uiMovementPlayback', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/directives/ui-movement/playback.html',
+        scope: {
+            title: '=',
+            titleClass: '@?',
+
+            previousMovement: '=?',
+            nextMovement: '=?'
+        },
+        controller: ['$scope', 'Rover', 'Utilities',
+            function($scope, Rover, Utilities) {
+
+                // Defaults.
+                $scope.titleAlign = $scope.titleAlign || 'left';
+                $scope.previousMovement = typeof $scope.previousMovement == 'function' ?
+                    $scope.previousMovement : false;
+                $scope.nextMovement = typeof $scope.nextMovement == 'function' ?
+                    $scope.nextMovement : false;
+
+                Utilities.log($scope.title);
+                Utilities.log(typeof $scope.previousMovement);
+                Utilities.log(typeof $scope.nextMovement);
+
+            }
+        ]
+    };
+})
+
 .directive('uiMovementPreview', function() {
     return {
         restrict: 'E',
-        templateUrl: 'directive-partials/ui-movement-preview.html',
+        templateUrl: 'partials/directives/ui-movement/preview.html',
         scope: {
             ratio: '='
         },
@@ -27,7 +57,7 @@ angular.module('app.directives')
 .directive('uiMovementPlaceholder', function() {
     return {
         restrict: 'E',
-        templateUrl: 'directive-partials/ui-movement-placeholder.html',
+        templateUrl: 'partials/directives/ui-movement/placeholder.html',
         scope: {
             ratio: '='
         },

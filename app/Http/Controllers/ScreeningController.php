@@ -114,7 +114,7 @@ class ScreeningController extends Controller
             'notes'
         ]);
         if (strlen(trim($details['title'])) < 1) {
-            $details['title'] = 'Functional Movement Screening - '. date('M j, Y');
+            $details['title'] = 'Functional Movement Test - '. date('M j, Y');
         }
 
         // Add some defaults.

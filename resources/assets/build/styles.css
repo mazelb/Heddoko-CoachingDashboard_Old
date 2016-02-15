@@ -4058,7 +4058,7 @@ fieldset[disabled] .btn-danger.active {
     .page > header h1 .fa, .page > header h2 .fa, .page > header h3 .fa, section > header h1 .fa, section > header h2 .fa, section > header h3 .fa {
       font-size: 0.9em;
       margin: auto 10px; }
-    .page > header h1 span, .page > header h2 span, .page > header h3 span, section > header h1 span, section > header h2 span, section > header h3 span {
+    .page > header h1 > span, .page > header h2 > span, .page > header h3 > span, section > header h1 > span, section > header h2 > span, section > header h3 > span {
       margin: 10px 0 0;
       display: block;
       width: 90%;
@@ -4087,7 +4087,7 @@ h1.title, h2.title, h3.title, h4.title {
   h1.title .fa, h2.title .fa, h3.title .fa, h4.title .fa {
     font-size: 0.9em;
     margin: auto 10px; }
-  h1.title span, h2.title span, h3.title span, h4.title span {
+  h1.title > span, h2.title > span, h3.title > span, h4.title > span {
     margin: 10px 0 0;
     display: block;
     width: 90%;
@@ -4145,6 +4145,78 @@ h1.title, h2.title, h3.title, h4.title {
     margin: 5px; }
 .profile-page .ui-editable-field-value {
   font-size: 1.2em; }
+
+/*
+ * Angular - Screening pages.
+ */
+.screening-page .screening-meta {
+  color: #5b707d; }
+  .screening-page .screening-meta .profile-avatar {
+    border: 0px;
+    border-right: 4px solid #ddd;
+    -webkit-border-image: -webkit-gradient(linear, 0 0, 0 100%, from(#3bd6b2), to(#5b707d)) 1 100%;
+    -webkit-border-image: -webkit-linear-gradient(#3bd6b2, #5b707d) 1 100%;
+    -moz-border-image: -moz-linear-gradient(#3bd6b2, #5b707d) 1 100%;
+    -o-border-image: -o-linear-gradient(#3bd6b2, #5b707d) 1 100%;
+    border-image: linear-gradient(to bottom, #3bd6b2, #5b707d) 1 100%; }
+  .screening-page .screening-meta .profile-details {
+    margin-top: 20px; }
+
+.screening-container {
+  width: 96%;
+  margin: 0 auto; }
+  .screening-container .screening-example-view {
+    background-color: #2c3a46; }
+  .screening-container .screening-live-view {
+    background-color: #1c242c; }
+
+.screening-progress {
+  background-color: #2c3a46; }
+  .screening-progress .divider-end {
+    position: relative;
+    left: 65%;
+    display: block;
+    height: 15px;
+    width: 2px;
+    background-color: #5B707D; }
+  .screening-progress .divider-dot {
+    position: relative;
+    left: 65%;
+    display: block;
+    height: 6px;
+    width: 6px;
+    background-color: #5b707d;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-transform: translateX(-30%);
+    -moz-transform: translateX(-30%);
+    -ms-transform: translateX(-30%);
+    -o-transform: translateX(-30%);
+    transform: translateX(-30%); }
+  .screening-progress .screening-progress-heading, .screening-progress .screening-progress-movement-row {
+    position: relative;
+    height: 30px; }
+    .screening-progress .screening-progress-heading .movement-title, .screening-progress .screening-progress-heading .movement-score, .screening-progress .screening-progress-movement-row .movement-title, .screening-progress .screening-progress-movement-row .movement-score {
+      position: absolute;
+      top: 0;
+      display: block;
+      margin: 0 2.5%;
+      height: 30px; }
+    .screening-progress .screening-progress-heading .movement-title, .screening-progress .screening-progress-movement-row .movement-title {
+      left: 0;
+      width: 70%;
+      text-align: right; }
+    .screening-progress .screening-progress-heading .movement-score, .screening-progress .screening-progress-movement-row .movement-score {
+      right: 0;
+      width: 20%; }
+  .screening-progress .screening-progress-heading {
+    text-transform: uppercase; }
+  .screening-progress .screening-progress-movement-row .movement-score {
+    border: 0px;
+    border-left: 2px solid #5b707d; }
 
 /*
  * Angular - Dashboard page.
@@ -8737,29 +8809,67 @@ svg {
  * @brief       Styles for uiMovement
  * @author      Francis Amankrah (frank@heddoko.com)
  */
-.ui-movement-container {
+.ui-movement-card {
   background-color: #2c3a46;
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   -ms-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
+  .ui-movement-card.four-three-aspect-ratio {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%; }
+  .ui-movement-card > div {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; }
+  .ui-movement-card .ui-movement-placeholder {
+    margin: 20%;
+    text-align: center; }
 
-.ui-movement-container.four-three-aspect-ratio {
+.ui-movement-container {
   position: relative;
-  width: 100%;
-  padding-bottom: 75%; }
-
-.ui-movement-container > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-
-.ui-movement-container .ui-movement-placeholder {
-  margin: 20%;
-  text-align: center; }
+  display: block;
+  padding-bottom: 60px; }
+  .ui-movement-container h1 {
+    font-size: 1.2em;
+    text-transform: uppercase;
+    color: #ddd;
+    text-align: left; }
+  .ui-movement-container .controls {
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    height: 60px;
+    width: 60px; }
+    .ui-movement-container .controls a {
+      position: absolute; }
+    .ui-movement-container .controls .controls-up, .ui-movement-container .controls .controls-down {
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      -moz-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+      -o-transform: translateX(-50%);
+      transform: translateX(-50%); }
+    .ui-movement-container .controls .controls-up {
+      top: 0; }
+    .ui-movement-container .controls .controls-down {
+      bottom: 0; }
+    .ui-movement-container .controls .controls-left, .ui-movement-container .controls .controls-right {
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%); }
+    .ui-movement-container .controls .controls-left {
+      left: 0; }
+    .ui-movement-container .controls .controls-right {
+      right: 0; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

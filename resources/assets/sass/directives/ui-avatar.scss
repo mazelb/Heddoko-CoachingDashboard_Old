@@ -24,7 +24,7 @@
         bottom: 0;
         height: 40px;
         width: 100%;
-        background-color: $blue-dark;
+        background-color: $dark-blue;
         @include opacity(.4);
         @include transition(opacity .3s);
     }

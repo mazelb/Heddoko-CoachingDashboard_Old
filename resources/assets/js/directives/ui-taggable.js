@@ -14,7 +14,7 @@ angular.module('app.directives')
     return {
         restrict: 'E',
         transclude: true,
-        templateUrl: 'directive-partials/ui-taggable-input.html',
+        templateUrl: 'partials/directives/ui-taggable-input.html',
         scope: {
             model: '=',
             key: '@',
@@ -159,7 +159,7 @@ angular.module('app.directives')
     return {
         restrict: 'E',
         transclude: true,
-        templateUrl: 'directive-partials/ui-taggable-input.html',
+        templateUrl: 'partials/directives/ui-taggable-input.html',
         scope: {
             model: '=?',
             profiles: '=?',

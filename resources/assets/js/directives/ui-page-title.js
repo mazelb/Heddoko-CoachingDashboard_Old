@@ -12,7 +12,7 @@ angular.module('app.directives')
 .directive('uiPageTitle', function() {
     return {
         restrict: 'E',
-        templateUrl: 'directive-partials/ui-page-title.html',
+        templateUrl: 'partials/directives/ui-page-title.html',
         scope: {
             title: '=',
             icon: '=?'

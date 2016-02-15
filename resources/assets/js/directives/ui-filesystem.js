@@ -99,6 +99,6 @@ angular.module('app.directives')
                 Utilities.setConfig(layoutKey, layout);
             };
         }],
-        templateUrl: 'directive-partials/ui-filesystem/container.html'
+        templateUrl: 'partials/directives/ui-filesystem/container.html'
     };
 });

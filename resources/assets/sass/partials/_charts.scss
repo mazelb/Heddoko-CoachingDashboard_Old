@@ -81,7 +81,7 @@
   position: absolute;
   display: none;
   @include border-radius(0px);
-  background: $blue-dark;
+  background: $dark-blue;
   color: #fff;
   font-size: smaller;
   padding: 3px;
@@ -91,7 +91,7 @@
   position: absolute;
   left: 10px;
   @include border-radius(0px);
-  background: $blue-dark;
+  background: $dark-blue;
   padding: 3px;
   color: #fff;
   cursor: pointer;

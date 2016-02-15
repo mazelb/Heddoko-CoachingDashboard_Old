@@ -12,7 +12,7 @@
 }
 
 .panel-body {
-    background-color: $blue-dark;
+    background-color: $dark-blue;
 }
 
 .panel-body:before, .panel-body:after {
@@ -265,7 +265,7 @@
 
 .modal-content {
     // background-color: #fff;
-    background-color: $blue-dark;
+    background-color: $dark-blue;
     color: $text-color;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -435,26 +435,26 @@
 }
 
 .panel-dark {
-  border-color: $blue-dark;
+  border-color: $dark-blue;
 }
 
 .panel-dark>.panel-heading {
   color: #fff;
-  background-color: $blue-dark;
-  border-color: $blue-dark;
+  background-color: $dark-blue;
+  border-color: $dark-blue;
 }
 
 .panel-dark>.panel-heading+.panel-collapse>.panel-body {
-  border-top-color: $blue-dark;
+  border-top-color: $dark-blue;
 }
 
 .panel-dark>.panel-heading .badge {
-  color: $blue-dark;
+  color: $dark-blue;
   background-color: #fff;
 }
 
 .panel-dark>.panel-footer+.panel-collapse>.panel-body {
-  border-bottom-color: $blue-dark;
+  border-bottom-color: $dark-blue;
 }
 
 .panel-box {

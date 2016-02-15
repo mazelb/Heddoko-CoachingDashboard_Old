@@ -18,7 +18,7 @@
         margin: auto 10px;
     }
 
-    span {
+    > span {
         margin: 10px 0 0;
         display: block;
         width: 90%;
@@ -129,6 +129,109 @@ h1.title, h2.title, h3.title, h4.title {
 }
 
 /*
+ * Angular - Screening pages.
+ */
+.screening-page {
+
+    .screening-meta {
+        color: $text-color-blue;
+
+        .profile-avatar {
+            border: 0px;
+            border-right: 4px solid $text-color;
+            -webkit-border-image:
+                -webkit-gradient(linear, 0 0, 0 100%, from($heddokogreen), to($text-color-blue)) 1 100%;
+            -webkit-border-image:
+                -webkit-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+            -moz-border-image:
+                -moz-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+            -o-border-image:
+                -o-linear-gradient($heddokogreen, $text-color-blue) 1 100%;
+            border-image:
+                linear-gradient(to bottom, $heddokogreen, $text-color-blue) 1 100%;
+        }
+
+        .profile-details {
+            margin-top: 20px;
+        }
+    }
+}
+.screening-container {
+    width: 96%;
+    margin: 0 auto;
+
+    .screening-example-view, .screening-live-view {
+    }
+
+    .screening-example-view {
+        background-color: $blue;
+    }
+
+    .screening-live-view {
+        background-color: $dark-blue;
+    }
+}
+.screening-progress {
+    background-color: $blue;
+
+    .divider-end {
+        position: relative;
+        left: 65%;
+        display: block;
+        height: 15px;
+        width: 2px;
+        background-color: #5B707D;
+    }
+
+    .divider-dot {
+        position: relative;
+        left: 65%;
+        display: block;
+        height: 6px;
+        width: 6px;
+        background-color: $text-color-blue;
+        @include border-radius(50%);
+        @include transform(translateX(-30%));
+    }
+
+    .screening-progress-heading, .screening-progress-movement-row {
+        position: relative;
+            height: 30px;
+
+        .movement-title, .movement-score {
+            position: absolute;
+            top: 0;
+            display: block;
+            margin: 0 2.5%;
+            height: 30px;
+            font-size: 0.9em;
+        }
+
+        .movement-title {
+            left: 0;
+            width: 60%;
+            text-align: right;
+        }
+
+        .movement-score {
+            right: 0;
+            width: 30%;
+        }
+    }
+
+    .screening-progress-heading {
+        text-transform: uppercase;
+    }
+
+    .screening-progress-movement-row {
+        .movement-score {
+            border: 0px;
+            border-left: 2px solid $text-color-blue;
+        }
+    }
+}
+
+/*
  * Angular - Dashboard page.
  */
 .page.dashboard {
@@ -191,7 +294,7 @@ h1.title, h2.title, h3.title, h4.title {
 
         h2 {
             font-size: 18px;
-            color: $blue-dark;
+            color: $dark-blue;
         }
     }
 

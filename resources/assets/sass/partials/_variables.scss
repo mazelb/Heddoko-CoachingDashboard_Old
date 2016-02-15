@@ -7,7 +7,7 @@
 
 $green: #45825A;
 $blue: #2c3a46;
-$blue-dark: #1c242c;
+$dark-blue: #1c242c;
 //$orange: #db5031;
 $orange: #fabd39;
 $light-gray: #c1bfc0;
@@ -21,7 +21,7 @@ $silver: #cbd4e3;
 $orangeaccent: #ff8d46;
 $text-color: #ddd;
 $text-color-blue: #5b707d;
-$background-color: $blue-dark;
+$background-color: $dark-blue;
 
 @mixin transform($transform){
     -webkit-transform: $transform;
@@ -55,20 +55,20 @@ $background-color: $blue-dark;
   box-shadow: $box-shadow;
 }
 
-@mixin border-radius($border-radius){
-  -webkit-border-radius: $border-radius;
-  -moz-border-radius: $border-radius;
-  -ms-border-radius: $border-radius;
-  -o-border-radius: $border-radius;
-  border-radius: $border-radius;
+@mixin border-radius($border-radius) {
+    -webkit-border-radius: $border-radius;
+    -moz-border-radius: $border-radius;
+    -ms-border-radius: $border-radius;
+    -o-border-radius: $border-radius;
+    border-radius: $border-radius;
 }
 
 @mixin vendor-prefix($name, $argument) {
-  -webkit-#{$name}: #{$argument};
-  -ms-#{$name}: #{$argument};
-  -moz-#{$name}: #{$argument};
-  -o-#{$name}: #{$argument};
-  #{$name}: #{$argument};
+    -webkit-#{$name}: #{$argument};
+    -ms-#{$name}: #{$argument};
+    -moz-#{$name}: #{$argument};
+    -o-#{$name}: #{$argument};
+    #{$name}: #{$argument};
 }
 
 @mixin opacity($opacity) {

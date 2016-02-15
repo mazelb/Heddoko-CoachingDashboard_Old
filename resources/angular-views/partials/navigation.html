@@ -151,7 +151,8 @@
                 <li>
                     <a href="#/screenings/live">
                         <i class="fa fa-angle-right"></i>
-                        <span>Record or Upload</span>
+                        <span ng-if="global.store.liveScreeningId">Live Test</span>
+                        <span ng-if="!global.store.liveScreeningId">New Test</span>
                     </a>
                 </li>
                 <li>
@@ -162,16 +163,6 @@
                 </li>
             </ul>
         </li>
-
-        <!-- Submit FMS test form -->
-		<li ng-show="false">
-            <a href="#/fmstest"><span>submit fms test results</span></a>
-        </li>
-
-        <!-- FMS results page -->
-		<li ng-show="false">
-            <a href="#/fmsresults"><span>fms results</span></a>
-		</li>
 
         <!-- Live FMS pages. -->
         <li ng-show="false">

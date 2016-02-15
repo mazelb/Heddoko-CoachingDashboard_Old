@@ -7,7 +7,7 @@
 
         <!-- Date -->
         <div ng-switch-when="date">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-timestamp.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-timestamp.html'"></ng-include>
 
             <!-- Edit field -->
             <div
@@ -34,7 +34,7 @@
 
         <!-- Date & time -->
         <div ng-switch-when="datetime">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-timestamp.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-timestamp.html'"></ng-include>
 
             <!-- Edit field -->
             <div
@@ -60,7 +60,7 @@
 
         <!-- Length -->
         <div ng-switch-when="length">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-with-units.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-with-units.html'"></ng-include>
 
             <!-- Feet & inches -->
             <div class="row" ng-show="state == 'editing' && config.unitForLength == 'ft/in'">
@@ -108,7 +108,7 @@
 
         <!-- Gender -->
         <div ng-switch-when="gender">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <!-- Edit field -->
             <div
@@ -139,7 +139,7 @@
 
         <!-- Mass -->
         <div ng-switch-when="mass">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-with-units.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-with-units.html'"></ng-include>
 
             <!-- Edit field -->
             <div
@@ -171,7 +171,7 @@
 
         <!-- Tag -->
         <div ng-switch-when="tag">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <div
                 ng-show="state == 'editing'"
@@ -197,7 +197,7 @@
 
         <!-- Placeholder -->
         <div ng-switch-when="placeholder">
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <div
                 ng-show="state == 'editing'"
@@ -223,7 +223,7 @@
 
         <!-- Default -->
         <div ng-switch-default>
-            <ng-include src="'directive-partials/ui-editable-fields/field-value-generic.html'"></ng-include>
+            <ng-include src="'partials/directives/ui-editable-fields/field-value-generic.html'"></ng-include>
 
             <!-- Edit field -->
             <div

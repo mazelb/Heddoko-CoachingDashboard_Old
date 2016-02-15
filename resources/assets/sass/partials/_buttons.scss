@@ -233,7 +233,7 @@ $button-styles:(
 
 .btn-dark {
   color: #fff;
-  background-color: $blue-dark;
+  background-color: $dark-blue;
   border-color: #191b24;
 }
 
@@ -256,12 +256,12 @@ $button-styles:(
 }
 
 .btn-dark.disabled, .btn-dark.disabled:hover, .btn-dark.disabled:focus, .btn-dark.disabled:active, .btn-dark.disabled.active, .btn-dark[disabled], .btn-dark[disabled]:hover, .btn-dark[disabled]:focus, .btn-dark[disabled]:active, .btn-dark[disabled].active, fieldset[disabled] .btn-dark, fieldset[disabled] .btn-dark:hover, fieldset[disabled] .btn-dark:focus, fieldset[disabled] .btn-dark:active, fieldset[disabled] .btn-dark.active {
-  background-color: $blue-dark;
+  background-color: $dark-blue;
   border-color: #191b24;
 }
 
 .btn-dark .badge {
-  color: $blue-dark;
+  color: $dark-blue;
   background-color: #fff;
 }
 
@@ -370,12 +370,12 @@ $button-styles:(
 
 .btn-bordered-dark:hover, .btn-bordered-dark:focus, .btn-bordered-dark:active, .btn-bordered-dark.active {
   color: #fff;
-  background-color: $blue-dark;
+  background-color: $dark-blue;
 }
 
 .open .btn-bordered-dark.dropdown-toggle {
   color: #fff;
-  background-color: $blue-dark;
+  background-color: $dark-blue;
 }
 
 .btn-direction {

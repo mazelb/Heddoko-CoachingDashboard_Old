@@ -27,11 +27,8 @@ angular.module('app.controllers')
                 function(response) {
                     Utilities.timeEnd('Retrieving Live Screening Data');
 
-                    // Store screening data.
-                    $scope.screening = Utilities.data.liveScreening = response.data;
-
-                    // Retrieve screening profile.
-                    $scope.profile = Utilities.getData('profile', response.data.profileId);
+                    // Setup screening.
+                    $scope.setupScreening(response.data);
 
                     // Turn off flag.
                     Utilities.data.isFetchingLiveScreening = false;
@@ -46,6 +43,39 @@ angular.module('app.controllers')
                     Utilities.alert('Could not retrieve screening. Please try again later.');
                 }
             );
+        };
+
+        /**
+         * Sets up the screening to be started or continued.
+         *
+         * @param object screening
+         */
+        $scope.setupScreening = function(screening) {
+
+            screening = screening || Utilities.data.liveScreening;
+            if (!screening) {
+                return;
+            }
+
+            // Create local reference to screening.
+            $scope.screening = Utilities.data.liveScreening = screening;
+
+            // Retrieve screening profile.
+            $scope.profile = Utilities.getData('profile', screening.profileId);
+
+            // Set current movement in screening.
+            $scope.screeningStep = 0;
+            for (var i = 0; i < screening.movements.length; i++)
+            {
+                if (screening.movements[i].isComplete) {
+                    continue;
+                }
+
+                else {
+                    $scope.screeningStep = i;
+                    break;
+                }
+            }
         };
 
         /**
@@ -114,6 +144,16 @@ angular.module('app.controllers')
                     $scope.screening = Utilities.data.liveScreening = response.data;
                     $scope.profile = Utilities.getData('profile', response.data.profileId);
 
+                    // Update list of screenings.
+                    if (Utilities.hasDataNamespace('screening'))
+                    {
+                        response.data.profile = {
+                            firstName: Utilities.getData('profile',  response.data.profileId).firstName || '',
+                            lastName: Utilities.getData('profile',  response.data.profileId).lastName || ''
+                        };
+                        Utilities.setData('screening', response.data.id, response.data);
+                    }
+
                     // Turn off flag.
                     Utilities.data.isPreparingNewScreening = false;
                 },
@@ -175,6 +215,20 @@ angular.module('app.controllers')
             // ...
         };
 
+        /**
+         * Cycles to the previous screening movement.
+         */
+        $scope.previousMovement = function() {
+            // ...
+        };
+
+        /**
+         * Cycles to the next screening movement.
+         */
+        $scope.nextMovement = function() {
+            // ...
+        };
+
         // Retrieve current screening.
         if (Utilities.store.liveScreeningId > 0)
         {
@@ -185,9 +239,7 @@ angular.module('app.controllers')
 
             // Or from the ephemeral storage.
             else {
-                $scope.screening = Utilities.data.liveScreening;
-                $scope.profile = Utilities.data.liveScreening.id > 0 ?
-                    Utilities.getData('profile', Utilities.data.liveScreening.profileId) : null;
+                $scope.setupScreening();
             }
         }
 

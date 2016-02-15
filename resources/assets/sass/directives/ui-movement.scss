@@ -5,25 +5,77 @@
  * @author      Francis Amankrah (frank@heddoko.com)
  */
 
-.ui-movement-container {
+.ui-movement-card {
     background-color: $blue;
     @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+
+    &.four-three-aspect-ratio {
+        position: relative;
+        width: 100%;
+        padding-bottom: 75%;
+    }
+
+    > div {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .ui-movement-placeholder {
+        margin: 20%;
+        text-align: center;
+    }
 }
-.ui-movement-container.four-three-aspect-ratio {
+
+// Dimensions of controls box.
+$controls-size: 60px;
+
+.ui-movement-container {
     position: relative;
-    width: 100%;
-    padding-bottom: 75%;
-}
+    display: block;
+    padding-bottom: $controls-size;
 
-.ui-movement-container > div {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
+    h1 {
+        font-size: 1.2em;
+        text-transform: uppercase;
+        color: $text-color;
+        text-align: left;
+    }
 
-.ui-movement-container .ui-movement-placeholder {
-    margin: 20%;
-    text-align: center;
+    .controls {
+        display: block;
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        height: $controls-size;
+        width: $controls-size;
+
+        a {
+            position: absolute;
+        }
+
+        .controls-up, .controls-down {
+            left: 50%;
+            @include transform(translateX(-50%));
+        }
+        .controls-up {
+            top: 0;
+        }
+        .controls-down {
+            bottom: 0;
+        }
+
+        .controls-left, .controls-right {
+            top: 50%;
+            @include transform(translateY(-50%));
+        }
+        .controls-left {
+            left: 0;
+        }
+        .controls-right {
+            right: 0;
+        }
+    }
 }
