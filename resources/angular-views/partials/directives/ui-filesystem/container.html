@@ -30,14 +30,55 @@
                     <i class="fa fa-fw fa-lg fa-{{ config.toolbar.createModalIcon }}"></i>
                 </a>
             </div>
+
+            <!-- Other actions -->
+            <div ng-if="config.onDelete" class="ui-filesystem-toolbar-group">
+
+                <!-- Edit resource -->
+                <a
+                    ng-click="config.onEdit()"
+                    ng-class="{disabled: (selectedFiles.length + selectedFolders.length !== 1)}"
+                    href="javascript:;"
+                    class="ui-filesystem-toolbar-btn">
+
+                    <i class="fa fa-fw fa-lg fa-pencil"></i>
+                </a>
+
+                <!-- Delete resources -->
+                <a
+                    ng-click="config.onDelete()"
+                    ng-class="{disabled: (selectedFiles.length + selectedFolders.length === 0)}"
+                    href="javascript:;"
+                    class="ui-filesystem-toolbar-btn">
+
+                    <i class="fa fa-fw fa-lg fa-trash"></i>
+                </a>
+            </div>
         </div>
     </div>
 
     <!-- Contents -->
-    <ng-include
-        src="'partials/directives/ui-filesystem/layouts/' + layout.name + '.html'">
-    </ng-include>
+    <div ng-if="!isLoading" class="ui-filesystem-contents ui-filesystem-{{ layout.name }}">
+        <ng-include
+            src="'partials/directives/ui-filesystem/layouts/' + layout.name + '.html'">
+        </ng-include>
+    </div>
+
+    <!-- Loading -->
+    <div ng-if="isLoading" class="ui-filesystem-contents">
+        <div class="text-center" style="margin: 60px auto">
+            <i class="fa fa-spinner fa-spin fa-2x text-muted"></i>
+        </div>
+    </div>
 
     <!-- Location -->
+    <div ng-if="!hideLocation && path" class="row ui-filesystem-location">
+        <div class="col-xs-12">
+            <i class="fa fa-compass fa-fw"></i>
+            <span>
+                {{ path }}
+            </span>
+        </div>
+    </div>
 
 </div>

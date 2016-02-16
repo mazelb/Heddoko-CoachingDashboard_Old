@@ -96,29 +96,6 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 		})
 
         //
-        // Profile routes.
-        //
-        .when('/profiles', {
-            templateUrl: 'profile/list.html',
-            controller: 'ProfileController'
-		})
-        .when('/profiles/list', {
-            redirectTo: '/profile'
-		})
-        .when('/profiles/create', {
-			templateUrl: 'profile/create.html',
-            controller: 'ProfileController'
-		})
-        .when('/profiles/edit', {
-			templateUrl: 'profile/edit.html',
-            controller: 'ProfileController'
-		})
-        .when('/profiles/:profileId', {
-			templateUrl: 'profile/view.html',
-            controller: 'ProfileController'
-		})
-
-        //
         // Data routes.
         //
         .when('/movements/analyze', {
@@ -140,6 +117,29 @@ app.config(['$routeProvider', 'isLocalEnvironment',
         .when('/movements/:rootId?/:folderId?/:path?', {
 			templateUrl: 'movements/explorer/index.html',
             controller: 'MovementController'
+		})
+
+        //
+        // Profile routes.
+        //
+        .when('/profiles', {
+            templateUrl: 'profile/list.html',
+            controller: 'ProfileController'
+		})
+        .when('/profiles/list', {
+            redirectTo: '/profile'
+		})
+        .when('/profiles/create', {
+			templateUrl: 'profile/create.html',
+            controller: 'ProfileController'
+		})
+        .when('/profiles/edit', {
+			templateUrl: 'profile/edit.html',
+            controller: 'ProfileController'
+		})
+        .when('/profiles/:profileId', {
+			templateUrl: 'profile/view.html',
+            controller: 'ProfileController'
 		})
 
         //

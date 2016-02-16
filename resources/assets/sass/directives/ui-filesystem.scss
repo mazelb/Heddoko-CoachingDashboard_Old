@@ -25,7 +25,38 @@
         }
     }
 
+    .ui-filesystem-location {
+        margin: 15px auto 0;
+        padding: 10px;
+        color: #999;
+        border-top: 1px solid #444;
+    }
+}
+
+.ui-filesystem-contents {
     table thead {
         font-weight: bold;
+    }
+
+    .file, .folder {
+        display: block;
+
+        .name {
+            display: block;
+        }
+    }
+
+    .ui-filesystem-large-tiles {
+        .file, .folder {
+            margin: 30px auto;
+            text-align: center;
+        }
+    }
+
+    .ui-filesystem-small-tiles {
+        .file, .folder {
+            margin: 15px auto;
+            text-align: center;
+        }
     }
 }

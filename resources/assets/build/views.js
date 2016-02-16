@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/details-layout.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/directives/ui-avatar.html', 'partials/directives/ui-editable-fields/btn-group.html', 'partials/directives/ui-editable-fields/field-horizontal.html', 'partials/directives/ui-editable-fields/field-value-generic.html', 'partials/directives/ui-editable-fields/field-value-timestamp.html', 'partials/directives/ui-editable-fields/field-value-with-units.html', 'partials/directives/ui-editable-fields/field-vertical.html', 'partials/directives/ui-editable-fields/fields.html', 'partials/directives/ui-editable-fields/standalone-field.html', 'partials/directives/ui-filesystem/container.html', 'partials/directives/ui-filesystem/layouts/details.html', 'partials/directives/ui-filesystem/layouts/large-tiles.html', 'partials/directives/ui-filesystem/layouts/small-tiles.html', 'partials/directives/ui-movement/placeholder.html', 'partials/directives/ui-movement/playback.html', 'partials/directives/ui-movement/preview.html', 'partials/directives/ui-page-title.html', 'partials/directives/ui-taggable-input.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'movements/explorer/partials/large-tiles-layout.html', 'movements/explorer/partials/small-tiles-layout.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/directives/ui-avatar.html', 'partials/directives/ui-editable-fields/btn-group.html', 'partials/directives/ui-editable-fields/field-horizontal.html', 'partials/directives/ui-editable-fields/field-value-generic.html', 'partials/directives/ui-editable-fields/field-value-timestamp.html', 'partials/directives/ui-editable-fields/field-value-with-units.html', 'partials/directives/ui-editable-fields/field-vertical.html', 'partials/directives/ui-editable-fields/fields.html', 'partials/directives/ui-editable-fields/standalone-field.html', 'partials/directives/ui-filesystem/container.html', 'partials/directives/ui-filesystem/layouts/details.html', 'partials/directives/ui-filesystem/layouts/large-tiles.html', 'partials/directives/ui-filesystem/layouts/small-tiles.html', 'partials/directives/ui-movement/placeholder.html', 'partials/directives/ui-movement/playback.html', 'partials/directives/ui-movement/preview.html', 'partials/directives/ui-page-title.html', 'partials/directives/ui-taggable-input.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -3118,253 +3118,73 @@ angular.module("movements/explorer/index.html", []).run(["$templateCache", funct
     "\n" +
     "    <!-- Main container -->\n" +
     "    <div\n" +
-    "        ng-if=\"global.getDataLength('profile') > 0 || global.data.isFetchingProfiles === true\"\n" +
-    "        class=\"file-explorer-container\">\n" +
+    "        ng-if=\"global.getDataLength('profile') > 0 || global.data.isFetchingProfiles\"\n" +
+    "        class=\"row file-explorer-container\">\n" +
     "\n" +
-    "        <header>\n" +
-    "            <div role=\"toolbar\">\n" +
+    "        <ui-filesystem\n" +
+    "            data-id=\"movements-explorer\"\n" +
+    "            data-files=\"files\"\n" +
+    "            data-folders=\"folders\"\n" +
+    "            data-parent-folder=\"parentFolder\"\n" +
+    "            data-path=\"path\"\n" +
+    "            data-config=\"uiFilesystemConfig\"\n" +
+    "            data-default-layout=\"small-tiles\"\n" +
+    "            data-is-loading=\"global.data.isFetchingMovementData || global.data.isFetchingProfiles\"\n" +
+    "            class=\"col-sm-12\">\n" +
+    "        </ui-filesystem>\n" +
     "\n" +
-    "                <!-- Layout selector -->\n" +
-    "                <div class=\"btn-group\" role=\"group\">\n" +
-    "                    <button\n" +
-    "                        ng-repeat=\"btn in layout.list\"\n" +
-    "                        ng-click=\"setLayout(btn.name)\"\n" +
-    "                        ng-class=\"{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn\">\n" +
+    "        <!-- New folder modal form -->\n" +
+    "        <div class=\"modal fade\" id=\"createFolderForm\">\n" +
+    "            <div class=\"modal-dialog\">\n" +
+    "                <div class=\"modal-content\">\n" +
+    "                    <div class=\"modal-header\">\n" +
+    "                        New Folder\n" +
+    "                    </div>\n" +
     "\n" +
-    "                        <i ng-class=\"'fa-' + btn.icon\" class=\"fa\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
+    "                    <div class=\"modal-body\">\n" +
     "\n" +
-    "                <!-- Sorting -->\n" +
-    "                <div class=\"btn-group\">\n" +
-    "                    <div class=\"dropdown\">\n" +
-    "                        <button\n" +
-    "                            class=\"btn btn-default dropdown-toggle\"\n" +
-    "                            type=\"button\"\n" +
-    "                            id=\"sortMenu\"\n" +
-    "                            data-toggle=\"dropdown\"\n" +
-    "                            aria-haspopup=\"true\"\n" +
-    "                            aria-expanded=\"false\">\n" +
+    "                        <!-- Name -->\n" +
+    "                        <div class=\"form-group\">\n" +
+    "                            <input\n" +
+    "                                type=\"text\"\n" +
+    "                                ng-model=\"newFolder.name\"\n" +
+    "                                placeholder=\"Folder Name\"\n" +
+    "                                class=\"form-control\"\n" +
+    "                                required>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
     "\n" +
-    "                            Sort <span class=\"caret\"></span>\n" +
+    "                    <div class=\"modal-footer text-center\">\n" +
+    "                        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">\n" +
+    "                            Cancel\n" +
     "                        </button>\n" +
+    "                        <button\n" +
+    "                            ng-click=\"createFolder(newFolder.name)\"\n" +
+    "                            type=\"button\"\n" +
+    "                            class=\"btn btn-primary\"\n" +
+    "                            data-dismiss=\"modal\">\n" +
     "\n" +
-    "                        <ul class=\"dropdown-menu\" aria-labelledby=\"sortMenu\">\n" +
-    "                            <li>\n" +
-    "                                <a href=\"javascript:;\">\n" +
-    "                                    Alphabetically\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                            <li>\n" +
-    "                                <a href=\"javascript:;\">\n" +
-    "                                    By Date\n" +
-    "                                </a>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
+    "                            Create\n" +
+    "                        </button>\n" +
     "                    </div>\n" +
     "                </div>\n" +
-    "\n" +
-    "                <!-- Create new folder -->\n" +
-    "                <div class=\"btn-group\">\n" +
-    "                    <div class=\"dropdown\">\n" +
-    "                        <button\n" +
-    "                            ng-class=\"{disabled: (!rootProfile || global.data.isFetchingMovementData)}\"\n" +
-    "                            type=\"button\"\n" +
-    "                            id=\"createFolder\"\n" +
-    "                            class=\"btn btn-default dropdown-toggle\"\n" +
-    "                            data-toggle=\"dropdown\"\n" +
-    "                            aria-haspopup=\"true\"\n" +
-    "                            aria-expanded=\"false\">\n" +
-    "\n" +
-    "                            <i class=\"fa fa-plus\"></i> New Folder\n" +
-    "                        </button>\n" +
-    "\n" +
-    "                        <ul class=\"dropdown-menu\" aria-labelledby=\"createFolder\">\n" +
-    "                            <li>\n" +
-    "                                <div class=\"input-group\">\n" +
-    "                                    <input\n" +
-    "                                        ng-model=\"newFolderName\"\n" +
-    "                                        type=\"text\"\n" +
-    "                                        class=\"form-control\"\n" +
-    "                                        placeholder=\"Folder Name\">\n" +
-    "\n" +
-    "                                    <span class=\"input-group-btn\">\n" +
-    "                                        <button\n" +
-    "                                            ng-click=\"createFolder(newFolderName)\"\n" +
-    "                                            class=\"btn btn-default\"\n" +
-    "                                            type=\"button\">\n" +
-    "\n" +
-    "                                            <i class=\"fa fa-plus\"></i>\n" +
-    "                                        </button>\n" +
-    "                                    </span>\n" +
-    "                                </div>\n" +
-    "                            </li>\n" +
-    "                        </ul>\n" +
-    "                    </div>\n" +
-    "                </div>\n" +
-    "\n" +
-    "                <!-- Resource actions -->\n" +
-    "                <div class=\"btn-group\">\n" +
-    "\n" +
-    "                    <!-- Edit resource -->\n" +
-    "                    <button\n" +
-    "                        ng-class=\"{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length !== 1)}\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-default\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-pencil\"></i>\n" +
-    "                    </button>\n" +
-    "\n" +
-    "                    <!-- Delete resources -->\n" +
-    "                    <button\n" +
-    "                        ng-click=\"deleteResource()\"\n" +
-    "                        ng-class=\"{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length === 0)}\"\n" +
-    "                        type=\"button\"\n" +
-    "                        class=\"btn btn-danger\">\n" +
-    "\n" +
-    "                        <i class=\"fa fa-trash\"></i>\n" +
-    "                    </button>\n" +
-    "                </div>\n" +
     "            </div>\n" +
-    "        </header>\n" +
-    "\n" +
-    "        <!-- Movements and folders -->\n" +
-    "        <section\n" +
-    "            ng-if=\"!global.data.isFetchingMovementData && !global.data.isFetchingProfiles\"\n" +
-    "            ng-include=\"'movements/explorer/partials/' + layout.name + '-layout.html'\"\n" +
-    "            ng-class=\"layout.name + '-layout'\">\n" +
-    "        </section>\n" +
-    "\n" +
-    "        <!-- Loading notice -->\n" +
-    "        <section ng-show=\"global.data.isFetchingMovementData || global.data.isFetchingProfiles\">\n" +
-    "            <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
-    "                <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
-    "            </div>\n" +
-    "        </section>\n" +
-    "\n" +
-    "        <footer>\n" +
-    "            <i class=\"fa fa-compass fa-fw\"></i>\n" +
-    "            <span>\n" +
-    "                {{ path }}\n" +
-    "            </span>\n" +
-    "        </footer>\n" +
+    "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- No profile exists -->\n" +
     "    <div\n" +
-    "        ng-show=\"global.data.isFetchingProfiles === false && global.getDataLength('profile') === 0\"\n" +
+    "        ng-show=\"!global.data.isFetchingProfiles && global.getDataLength('profile') === 0\"\n" +
     "        class=\"text-center\">\n" +
     "\n" +
     "        <h3 class=\"text-center\">You do not have any profiles yet.</h3>\n" +
     "        <br>\n" +
     "\n" +
-    "        Once you create a profile, you can start uploading and organizing your movements here.\n" +
+    "        Once you create a profile, you'll be able to upload and organize your movements here.\n" +
     "        <br>\n" +
     "        <br>\n" +
     "\n" +
     "        Take this opportunity to <a href=\"#/profiles/create\">create one</a>.\n" +
-    "    </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
-angular.module("movements/explorer/partials/details-layout.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("movements/explorer/partials/details-layout.html",
-    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
-    "\n" +
-    "<div class=\"\">\n" +
-    "\n" +
-    "    <!-- Header -->\n" +
-    "    <div class=\"row header\">\n" +
-    "\n" +
-    "        <!-- Checkbox -->\n" +
-    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a ng-if=\"rootProfile\" ng-click=\"toggleSelect()\" href=\"javascript:;\">\n" +
-    "                <i class=\"fa fa-square-o fa-fw\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Title -->\n" +
-    "        <div class=\"col-xs-10 col-md-8\">\n" +
-    "            Title\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Created date -->\n" +
-    "        <div class=\"col-md-3 hidden-xs text-center\">\n" +
-    "            Date\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Parent folder -->\n" +
-    "    <div ng-if=\"parentFolder\" class=\"row\">\n" +
-    "\n" +
-    "        <!-- Title -->\n" +
-    "        <div class=\"col-xs-10 col-xs-offset-2 col-md-11 col-md-offset-1\">\n" +
-    "            <a href=\"{{ parentFolder.href }}\">\n" +
-    "                <i class=\"fa fa-level-up\"></i> Parent Folder\n" +
-    "            </a>\n" +
-    "            <br>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders track by $index\" ng-hide=\"folder === null\" class=\"row\">\n" +
-    "\n" +
-    "        <!-- Checkbox -->\n" +
-    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a ng-if=\"rootProfile\" ng-click=\"toggleSelect('folder', folder)\" href=\"javascript:;\">\n" +
-    "                <i\n" +
-    "                    ng-class=\"{'fa-square-o': !folder.selected, 'fa-check-square-o': folder.selected}\"\n" +
-    "                    class=\"fa fa-fw\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Title -->\n" +
-    "        <div class=\"col-xs-10 col-md-11\">\n" +
-    "            <a href=\"{{ folder.href }}\">\n" +
-    "                <i class=\"fa fa-folder-open fa-fw\"></i> {{ folder.name | characters:80 }}\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- Movements -->\n" +
-    "    <div ng-repeat=\"movement in movements track by movement.id\" class=\"row\">\n" +
-    "\n" +
-    "        <!-- Checkbox -->\n" +
-    "        <div class=\"col-xs-2 col-md-1 text-right\">\n" +
-    "            <a ng-click=\"toggleSelect('movement', movement)\" href=\"javascript:;\">\n" +
-    "                <i\n" +
-    "                    ng-class=\"{'fa-square-o': !movement.selected, 'fa-check-square-o': movement.selected}\"\n" +
-    "                    class=\"fa fa-fw\"></i>\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Title -->\n" +
-    "        <div class=\"col-xs-10 col-md-8\">\n" +
-    "            <a href=\"javascript:;\">\n" +
-    "                {{ movement.title | characters:40 }}\n" +
-    "            </a>\n" +
-    "        </div>\n" +
-    "\n" +
-    "        <!-- Created date -->\n" +
-    "        <div class=\"col-md-3 hidden-xs text-center\">\n" +
-    "            {{ movement.createdAt | mysqlDate:'MMMM d, yyyy (h:mm a)' }}\n" +
-    "        </div>\n" +
-    "    </div>\n" +
-    "\n" +
-    "    <!-- No movements or folders to show -->\n" +
-    "    <div ng-if=\"folders.length + movements.length === 0\" class=\"row text-center\">\n" +
-    "\n" +
-    "        <div class=\"col-xs-12\" style=\"margin-top: 20px; margin-bottom: 20px;\">\n" +
-    "            <h3>There are no movements to display.</h3>\n" +
-    "            Once you upload or capture a new movement, it will show up here.\n" +
-    "            <br>\n" +
-    "\n" +
-    "            Start by <b><a href=\"#/movements/upload\">importing</a></b> your own movements.\n" +
-    "        </div>\n" +
-    "\n" +
     "    </div>\n" +
     "</div>\n" +
     "");
@@ -4316,15 +4136,56 @@ angular.module("partials/directives/ui-filesystem/container.html", []).run(["$te
     "                    <i class=\"fa fa-fw fa-lg fa-{{ config.toolbar.createModalIcon }}\"></i>\n" +
     "                </a>\n" +
     "            </div>\n" +
+    "\n" +
+    "            <!-- Other actions -->\n" +
+    "            <div ng-if=\"config.onDelete\" class=\"ui-filesystem-toolbar-group\">\n" +
+    "\n" +
+    "                <!-- Edit resource -->\n" +
+    "                <a\n" +
+    "                    ng-click=\"config.onEdit()\"\n" +
+    "                    ng-class=\"{disabled: (selectedFiles.length + selectedFolders.length !== 1)}\"\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"ui-filesystem-toolbar-btn\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-fw fa-lg fa-pencil\"></i>\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <!-- Delete resources -->\n" +
+    "                <a\n" +
+    "                    ng-click=\"config.onDelete()\"\n" +
+    "                    ng-class=\"{disabled: (selectedFiles.length + selectedFolders.length === 0)}\"\n" +
+    "                    href=\"javascript:;\"\n" +
+    "                    class=\"ui-filesystem-toolbar-btn\">\n" +
+    "\n" +
+    "                    <i class=\"fa fa-fw fa-lg fa-trash\"></i>\n" +
+    "                </a>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Contents -->\n" +
-    "    <ng-include\n" +
-    "        src=\"'partials/directives/ui-filesystem/layouts/' + layout.name + '.html'\">\n" +
-    "    </ng-include>\n" +
+    "    <div ng-if=\"!isLoading\" class=\"ui-filesystem-contents\">\n" +
+    "        <ng-include\n" +
+    "            src=\"'partials/directives/ui-filesystem/layouts/' + layout.name + '.html'\">\n" +
+    "        </ng-include>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Loading -->\n" +
+    "    <div ng-if=\"isLoading\" class=\"ui-filesystem-contents\">\n" +
+    "        <div class=\"text-center\" style=\"margin: 60px auto\">\n" +
+    "            <i class=\"fa fa-spinner fa-spin fa-2x text-muted\"></i>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "\n" +
     "    <!-- Location -->\n" +
+    "    <div ng-if=\"!hideLocation && path\" class=\"row ui-filesystem-location\">\n" +
+    "        <div class=\"col-xs-12\">\n" +
+    "            <i class=\"fa fa-compass fa-fw\"></i>\n" +
+    "            <span>\n" +
+    "                {{ path }}\n" +
+    "            </span>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "\n" +
     "</div>\n" +
     "");
@@ -4339,6 +4200,14 @@ angular.module("partials/directives/ui-filesystem/layouts/details.html", []).run
     "    <!-- Heading -->\n" +
     "    <thead>\n" +
     "        <tr>\n" +
+    "\n" +
+    "            <!-- Checkbox -->\n" +
+    "            <td ng-if=\"config.onSelect\" class=\"text-right\">\n" +
+    "                <a ng-click=\"toggleAll()\" href=\"javascript:;\">\n" +
+    "                    <i class=\"fa fa-square-o fa-fw\"></i>\n" +
+    "                </a>\n" +
+    "            </td>\n" +
+    "\n" +
     "            <td ng-repeat=\"title in config.detailsLayoutTitles track by title.key\" class=\"text-center\">\n" +
     "                {{ ::title.title }}\n" +
     "            </td>\n" +
@@ -4346,20 +4215,69 @@ angular.module("partials/directives/ui-filesystem/layouts/details.html", []).run
     "    </thead>\n" +
     "\n" +
     "    <tbody>\n" +
+    "\n" +
     "        <!-- Parent folder -->\n" +
     "        <tr ng-if=\"parentFolder\">\n" +
+    "\n" +
+    "            <!-- Checkbox -->\n" +
+    "            <td ng-if=\"config.onSelect\">&nbsp;</td>\n" +
+    "\n" +
+    "            <td colspan=\"{{ config.detailsLayoutTitles.length }}\">\n" +
+    "                <a href=\"{{ parentFolder.href }}\">\n" +
+    "                    <i class=\"fa fa-fw fa-level-up\"></i> {{ ::parentFolder.title || 'Parent Folder' }}\n" +
+    "                </a>\n" +
+    "            </td>\n" +
     "\n" +
     "        </tr>\n" +
     "\n" +
     "        <!-- Folders -->\n" +
     "        <tr ng-repeat=\"folder in folders track by $index\">\n" +
     "\n" +
+    "            <!-- Checkbox -->\n" +
+    "            <td ng-if=\"config.onSelect\" class=\"text-right\">\n" +
+    "                <a ng-click=\"toggleFolder(folder)\" href=\"javascript:;\">\n" +
+    "                    <i\n" +
+    "                        ng-class=\"{'fa-square-o': !folder.selected, 'fa-check-square-o': folder.selected}\"\n" +
+    "                        class=\"fa fa-fw\">\n" +
+    "                    </i>\n" +
+    "                </a>\n" +
+    "            </td>\n" +
+    "\n" +
+    "            <td\n" +
+    "                ng-repeat=\"title in config.detailsLayoutTitles track by title.key\"\n" +
+    "                ng-class=\"{'text-center': !config.onSelect || title.key !== 'title'}\">\n" +
+    "\n" +
+    "                <a ng-show=\"title.key === 'title'\" href=\"{{ ::folder.href }}\">\n" +
+    "                    <i class=\"fa fa-folder-open fa-fw\"></i> {{ ::folder.title }}\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <span nf-hide=\"title.key === 'title'\">{{ ::folder[title.key] }}</span>\n" +
+    "            </td>\n" +
+    "\n" +
     "        </tr>\n" +
     "\n" +
     "        <!-- Files -->\n" +
     "        <tr ng-repeat=\"file in files track by $index\">\n" +
-    "            <td ng-repeat=\"title in config.detailsLayoutTitles track by title.key\" class=\"text-center\">\n" +
-    "                {{ file[title.key] }}\n" +
+    "\n" +
+    "            <!-- Checkbox -->\n" +
+    "            <td ng-if=\"config.onSelect\" class=\"text-right\">\n" +
+    "                <a ng-click=\"toggleFile(file)\" href=\"javascript:;\">\n" +
+    "                    <i\n" +
+    "                        ng-class=\"{'fa-square-o': !file.selected, 'fa-check-square-o': file.selected}\"\n" +
+    "                        class=\"fa fa-fw\">\n" +
+    "                    </i>\n" +
+    "                </a>\n" +
+    "            </td>\n" +
+    "\n" +
+    "            <td\n" +
+    "                ng-repeat=\"title in config.detailsLayoutTitles track by title.key\"\n" +
+    "                ng-class=\"{'text-center': !config.onSelect || title.key !== 'title'}\">\n" +
+    "                \n" +
+    "                <a ng-if=\"title.key == 'title'\" href=\"{{ ::file.href }}\">\n" +
+    "                    {{ ::file.title }}\n" +
+    "                </a>\n" +
+    "\n" +
+    "                <span nf-hide=\"title.key === 'title'\">{{ ::file[title.key] }}</span>\n" +
     "            </td>\n" +
     "        </tr>\n" +
     "    </tbody>\n" +
@@ -4371,7 +4289,7 @@ angular.module("partials/directives/ui-filesystem/layouts/large-tiles.html", [])
   $templateCache.put("partials/directives/ui-filesystem/layouts/large-tiles.html",
     "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
     "\n" +
-    "<div class=\"row\">\n" +
+    "<div class=\"row ui-filesystem-large-layout\">\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
     "    <div ng-if=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
@@ -5280,7 +5198,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "        <ui-filesystem\n" +
     "            data-id=\"profiles-explorer\"\n" +
     "            data-files=\"profileList\"\n" +
-    "            data-default-layout=\"small-tiles\"\n" +
+    "            data-default-layout=\"large-tiles\"\n" +
     "            data-hide-location=\"true\"\n" +
     "            data-config=\"uiFilesystemConfig\"\n" +
     "            class=\"col-sm-12\">\n" +

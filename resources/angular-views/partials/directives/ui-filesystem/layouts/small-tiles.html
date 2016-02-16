@@ -5,7 +5,7 @@
 
     <!-- Parent folder -->
     <div ng-if="parentFolder" class="col-xs-4 col-md-3 col-lg-1">
-        <a href="{{ parentFolder.href }}" class="folder">
+        <a href="{{ ::parentFolder.href }}" class="folder">
             <i class="fa fa-hand-o-left fa-2x"></i>
             <span class="name">
                 Back
@@ -26,16 +26,16 @@
     <!-- Files -->
     <div ng-repeat="file in files track by $index" class="col-sm-6 col-md-4 col-lg-2">
         <a
-            href="{{ file.href }}"
+            href="{{ ::file.href }}"
             class="aspect-ratio aspect-4-3 card"
-            style="background-image: url({{ file.image || '' }})">
+            style="background-image: url({{ ::file.image || '' }})">
             <div>
 
                 <!-- File actions -->
                 <div class="data">
 
                     <!-- Title -->
-                    <span class="title" title="{{ file.title }}">
+                    <span class="title" title="{{ ::file.title }}">
                         {{ ::file.title | characters:25 }}
                     </span>
 

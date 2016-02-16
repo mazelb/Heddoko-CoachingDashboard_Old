@@ -12,149 +12,69 @@
 
     <!-- Main container -->
     <div
-        ng-if="global.getDataLength('profile') > 0 || global.data.isFetchingProfiles === true"
-        class="file-explorer-container">
+        ng-if="global.getDataLength('profile') > 0 || global.data.isFetchingProfiles"
+        class="row file-explorer-container">
 
-        <header>
-            <div role="toolbar">
+        <ui-filesystem
+            data-id="movements-explorer"
+            data-files="files"
+            data-folders="folders"
+            data-parent-folder="parentFolder"
+            data-path="path"
+            data-config="uiFilesystemConfig"
+            data-default-layout="small-tiles"
+            data-is-loading="global.data.isFetchingMovementData || global.data.isFetchingProfiles"
+            class="col-sm-12">
+        </ui-filesystem>
 
-                <!-- Layout selector -->
-                <div class="btn-group" role="group">
-                    <button
-                        ng-repeat="btn in layout.list"
-                        ng-click="setLayout(btn.name)"
-                        ng-class="{'btn-primary': btn.name == layout.name, 'btn-default': btn.name != layout.name}"
-                        type="button"
-                        class="btn">
+        <!-- New folder modal form -->
+        <div class="modal fade" id="createFolderForm">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        New Folder
+                    </div>
 
-                        <i ng-class="'fa-' + btn.icon" class="fa"></i>
-                    </button>
-                </div>
+                    <div class="modal-body">
 
-                <!-- Sorting -->
-                <div class="btn-group">
-                    <div class="dropdown">
-                        <button
-                            class="btn btn-default dropdown-toggle"
-                            type="button"
-                            id="sortMenu"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
+                        <!-- Name -->
+                        <div class="form-group">
+                            <input
+                                type="text"
+                                ng-model="newFolder.name"
+                                placeholder="Folder Name"
+                                class="form-control"
+                                required>
+                        </div>
+                    </div>
 
-                            Sort <span class="caret"></span>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            Cancel
                         </button>
+                        <button
+                            ng-click="createFolder(newFolder.name)"
+                            type="button"
+                            class="btn btn-primary"
+                            data-dismiss="modal">
 
-                        <ul class="dropdown-menu" aria-labelledby="sortMenu">
-                            <li>
-                                <a href="javascript:;">
-                                    Alphabetically
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    By Date
-                                </a>
-                            </li>
-                        </ul>
+                            Create
+                        </button>
                     </div>
                 </div>
-
-                <!-- Create new folder -->
-                <div class="btn-group">
-                    <div class="dropdown">
-                        <button
-                            ng-class="{disabled: (!rootProfile || global.data.isFetchingMovementData)}"
-                            type="button"
-                            id="createFolder"
-                            class="btn btn-default dropdown-toggle"
-                            data-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false">
-
-                            <i class="fa fa-plus"></i> New Folder
-                        </button>
-
-                        <ul class="dropdown-menu" aria-labelledby="createFolder">
-                            <li>
-                                <div class="input-group">
-                                    <input
-                                        ng-model="newFolderName"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Folder Name">
-
-                                    <span class="input-group-btn">
-                                        <button
-                                            ng-click="createFolder(newFolderName)"
-                                            class="btn btn-default"
-                                            type="button">
-
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Resource actions -->
-                <div class="btn-group">
-
-                    <!-- Edit resource -->
-                    <button
-                        ng-class="{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length !== 1)}"
-                        type="button"
-                        class="btn btn-default">
-
-                        <i class="fa fa-pencil"></i>
-                    </button>
-
-                    <!-- Delete resources -->
-                    <button
-                        ng-click="deleteResource()"
-                        ng-class="{disabled: (global.data.selectedMovementFiles.length + global.data.selectedMovementFolders.length === 0)}"
-                        type="button"
-                        class="btn btn-danger">
-
-                        <i class="fa fa-trash"></i>
-                    </button>
-                </div>
             </div>
-        </header>
-
-        <!-- Movements and folders -->
-        <section
-            ng-if="!global.data.isFetchingMovementData && !global.data.isFetchingProfiles"
-            ng-include="'movements/explorer/partials/' + layout.name + '-layout.html'"
-            ng-class="layout.name + '-layout'">
-        </section>
-
-        <!-- Loading notice -->
-        <section ng-show="global.data.isFetchingMovementData || global.data.isFetchingProfiles">
-            <div class="text-center" style="margin: 60px auto">
-                <i class="fa fa-spinner fa-spin fa-2x text-muted"></i>
-            </div>
-        </section>
-
-        <footer>
-            <i class="fa fa-compass fa-fw"></i>
-            <span>
-                {{ path }}
-            </span>
-        </footer>
+        </div>
     </div>
 
     <!-- No profile exists -->
     <div
-        ng-show="global.data.isFetchingProfiles === false && global.getDataLength('profile') === 0"
+        ng-show="!global.data.isFetchingProfiles && global.getDataLength('profile') === 0"
         class="text-center">
 
         <h3 class="text-center">You do not have any profiles yet.</h3>
         <br>
 
-        Once you create a profile, you can start uploading and organizing your movements here.
+        Once you create a profile, you'll be able to upload and organize your movements here.
         <br>
         <br>
 

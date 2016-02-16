@@ -869,35 +869,6 @@ pre {
       right: 0;
       margin: 10px; }
 
-/**
- * File explorers
- */
-.file-explorer-container header {
-  margin: 25px auto; }
-.file-explorer-container section .folder, .file-explorer-container section .file {
-  display: block;
-  text-align: center; }
-  .file-explorer-container section .folder .name, .file-explorer-container section .file .name {
-    display: block; }
-.file-explorer-container .details-layout .header {
-  margin-bottom: 15px;
-  padding: 10px;
-  color: #999;
-  border-bottom: 1px solid #444; }
-.file-explorer-container .small-tiles-layout .folder, .file-explorer-container .small-tiles-layout .file {
-  margin: 25px auto;
-  text-align: center; }
-.file-explorer-container .large-tiles-layout .folder, .file-explorer-container .large-tiles-layout .file {
-  margin: 25% auto;
-  text-align: center; }
-.file-explorer-container .large-tiles-layout .name {
-  margin: 15px auto 0; }
-.file-explorer-container footer {
-  margin: 15px auto 0;
-  padding: 10px;
-  color: #999;
-  border-top: 1px solid #444; }
-
 /*
  * ...
  */
@@ -8876,8 +8847,24 @@ svg {
     color: #5b707d; }
     .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn:hover, .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn:active, .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn.ui-filesystem-active {
       color: #3bd6b2; }
-.ui-filesystem-container table thead {
+.ui-filesystem-container .ui-filesystem-location {
+  margin: 15px auto 0;
+  padding: 10px;
+  color: #999;
+  border-top: 1px solid #444; }
+
+.ui-filesystem-contents table thead {
   font-weight: bold; }
+.ui-filesystem-contents .file, .ui-filesystem-contents .folder {
+  display: block; }
+  .ui-filesystem-contents .file .name, .ui-filesystem-contents .folder .name {
+    display: block; }
+.ui-filesystem-contents .ui-filesystem-large-layout .file, .ui-filesystem-contents .ui-filesystem-large-layout .folder {
+  margin: 30px auto;
+  text-align: center; }
+.ui-filesystem-contents .ui-filesystem-small-layout .file, .ui-filesystem-contents .ui-filesystem-small-layout .folder {
+  margin: 15px auto;
+  text-align: center; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

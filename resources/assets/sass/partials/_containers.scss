@@ -116,61 +116,6 @@
     }
 }
 
-/**
- * File explorers
- */
-.file-explorer-container {
-
-    header {
-        margin: 25px auto;
-    }
-
-    section {
-        .folder, .file {
-            display: block;
-            text-align: center;
-
-            .name {
-                display: block;
-            }
-        }
-    }
-
-    .details-layout {
-        .header {
-            margin-bottom: 15px;
-            padding: 10px;
-            color: #999;
-            border-bottom: 1px solid #444;
-        }
-    }
-
-    .small-tiles-layout {
-        .folder, .file {
-            margin: 25px auto;
-            text-align: center;
-        }
-    }
-
-    .large-tiles-layout {
-        .folder, .file {
-            margin: 25% auto;
-            text-align: center;
-        }
-
-        .name {
-            margin: 15px auto 0;
-        }
-    }
-
-    footer {
-        margin: 15px auto 0;
-        padding: 10px;
-        color: #999;
-        border-top: 1px solid #444;
-    }
-}
-
 /*
  * ...
  */
