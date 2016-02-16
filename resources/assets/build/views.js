@@ -4339,9 +4339,8 @@ angular.module("partials/directives/ui-filesystem/layouts/details.html", []).run
     "    <!-- Heading -->\n" +
     "    <thead>\n" +
     "        <tr>\n" +
-    "            <td class=\"text-center\">...</td>\n" +
-    "            <td ng-repeat=\"(key, value) in listParams track by key\" class=\"text-center\">\n" +
-    "                {{ value }}\n" +
+    "            <td ng-repeat=\"title in config.detailsLayoutTitles track by title.key\" class=\"text-center\">\n" +
+    "                {{ ::title.title }}\n" +
     "            </td>\n" +
     "        </tr>\n" +
     "    </thead>\n" +
@@ -4359,10 +4358,8 @@ angular.module("partials/directives/ui-filesystem/layouts/details.html", []).run
     "\n" +
     "        <!-- Files -->\n" +
     "        <tr ng-repeat=\"file in files track by $index\">\n" +
-    "            <td class=\"text-center\">...</td>\n" +
-    "\n" +
-    "            <td ng-repeat=\"(key, value) in listParams track by key\" class=\"text-center\">\n" +
-    "                {{ file[key] }}\n" +
+    "            <td ng-repeat=\"title in config.detailsLayoutTitles track by title.key\" class=\"text-center\">\n" +
+    "                {{ file[title.key] }}\n" +
     "            </td>\n" +
     "        </tr>\n" +
     "    </tbody>\n" +

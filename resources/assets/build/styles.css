@@ -8876,6 +8876,8 @@ svg {
     color: #5b707d; }
     .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn:hover, .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn:active, .ui-filesystem-container .ui-filesystem-toolbar .ui-filesystem-toolbar-btn.ui-filesystem-active {
       color: #3bd6b2; }
+.ui-filesystem-container table thead {
+  font-weight: bold; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

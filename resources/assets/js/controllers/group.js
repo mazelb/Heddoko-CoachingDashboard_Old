@@ -18,10 +18,16 @@ angular.module('app.controllers')
                 createModal: 'createGroupForm',
                 createModalIcon: 'plus'
             },
-            detailsLayoutTitles: {
-                name: 'Name',
-                createdAt: 'Created On'
-            }
+            detailsLayoutTitles: [
+                {
+                    key: 'title',
+                    title: 'Name'
+                },
+                {
+                    key: 'createdAt',
+                    title: 'Created On'
+                },
+            ]
         };
 
         // Data for group list.

@@ -19,12 +19,24 @@ angular.module('app.controllers')
                 createModal: 'createProfileForm',
                 createModalIcon: 'plus'
             },
-            detailsLayoutTitles: {
-                firstName: 'First Name',
-                lastName: 'Last Name',
-                group: 'Team',
-                createdAt: 'Created On'
-            }
+            detailsLayoutTitles: [
+                {
+                    key: 'firstName',
+                    title: 'First Name'
+                },
+                {
+                    key: 'lastName',
+                    title: 'Last Name'
+                },
+                {
+                    key: 'group',
+                    title: 'Team'
+                },
+                {
+                    key: 'createdAt',
+                    title: 'Created On'
+                },
+            ]
         };
 
         // Data for profile list.

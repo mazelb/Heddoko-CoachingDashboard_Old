@@ -6,9 +6,8 @@
     <!-- Heading -->
     <thead>
         <tr>
-            <td class="text-center">...</td>
-            <td ng-repeat="(key, value) in listParams track by key" class="text-center">
-                {{ value }}
+            <td ng-repeat="title in config.detailsLayoutTitles track by title.key" class="text-center">
+                {{ ::title.title }}
             </td>
         </tr>
     </thead>
@@ -26,10 +25,8 @@
 
         <!-- Files -->
         <tr ng-repeat="file in files track by $index">
-            <td class="text-center">...</td>
-
-            <td ng-repeat="(key, value) in listParams track by key" class="text-center">
-                {{ file[key] }}
+            <td ng-repeat="title in config.detailsLayoutTitles track by title.key" class="text-center">
+                {{ file[title.key] }}
             </td>
         </tr>
     </tbody>
