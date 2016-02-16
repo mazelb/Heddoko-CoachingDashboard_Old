@@ -103,12 +103,86 @@
 
                     <div class="col-lg-7 screening-details">
 
-                        <div class="row">
-                            <div class="col-lg-2 text-right">
-                                Title
-                            </div>
+                        <!-- Scoring, Saving -->
+                        <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                            <div class="col-sm-12">
 
-                            <div class="col-lg-10">
+                                <!-- Latest movements (demo) -->
+                                <div class="screening-latest-movement-demo"></div>
+
+                                <div class="screeening-scoring-container">
+
+                                    <!-- Pain indicator -->
+                                    <a
+                                        href="javascript:;"
+                                        class="btn-score text-danger">
+
+                                        <i class="fa fa-dot-circle-o"></i>
+                                        <span>Pain</span>
+                                    </a>
+
+                                    <!-- Scoring -->
+                                    <a
+                                        ng-repeat="score in [0, 1, 2, 3]"
+                                        ng-click="setScore(screeningMovement, score)"
+                                        href="javascript:;"
+                                        class="btn-score">
+
+                                        <i ng-if="screeningMovement.score != score" class="fa fa-circle-o"></i>
+                                        <i ng-if="screeningMovement.score == score" class="fa fa-dot-circle-o"></i>
+                                        <span>{{ score }}</span>
+                                    </a>
+
+                                    <!-- Actions -->
+                                    <a
+                                        ng-if="!global.data.isRecordingLiveScreening"
+                                        ng-click="startLiveRecording()"
+                                        href="javascript:;"
+                                        class="btn-flat btn-danger">
+
+                                        <i class="fa fa-video-camera"></i>
+                                        <span>Record</span>
+                                    </a>
+                                    <a
+                                        ng-if="global.data.isRecordingLiveScreening"
+                                        ng-click="pauseLiveRecording()"
+                                        href="javascript:;"
+                                        class="btn-flat btn-danger">
+
+                                        <i class="fa fa-pause"></i>
+                                        <span>Pause</span>
+                                    </a>
+                                    <a
+                                        ng-if="!global.data.isSavingLiveScreeningScore"
+                                        ng-click="saveScreeningScore()"
+                                        href="javascript:;"
+                                        class="btn-flat btn-default">
+
+                                        <i class="fa fa-floppy-o"></i>
+                                        <span>Save</span>
+                                    </a>
+                                    <a
+                                        ng-if="global.data.isSavingLiveScreeningScore"
+                                        href="javascript:;"
+                                        class="btn-flat btn-default">
+
+                                        <i class="fa fa-spinner fa-spin"></i>
+                                        <span>Saving</span>
+                                    </a>
+                                    <a
+                                        href="javascript:;"
+                                        class="btn-flat btn-default">
+
+                                        <i class="fa fa-trash"></i>
+                                        <span>Delete</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Screening title edit field -->
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <ui-editable-standalone-field
                                     data-model="screeningMovement"
                                     data-key="title"
@@ -120,13 +194,7 @@
                             </div>
                         </div>
 
-                        <!-- Scoring, Saving -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                            </div>
-                        </div>
-
-                        <!-- Screening notes -->
+                        <!-- Screening notes edit field -->
                         <div class="row">
                             <div class="col-sm-12">
                                 <ui-editable-standalone-field

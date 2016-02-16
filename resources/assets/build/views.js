@@ -6456,12 +6456,86 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "\n" +
     "                    <div class=\"col-lg-7 screening-details\">\n" +
     "\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-lg-2 text-right\">\n" +
-    "                                Title\n" +
-    "                            </div>\n" +
+    "                        <!-- Scoring, Saving -->\n" +
+    "                        <div class=\"row\" style=\"margin-top: 10px; margin-bottom: 10px\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
     "\n" +
-    "                            <div class=\"col-lg-10\">\n" +
+    "                                <!-- Latest movements (demo) -->\n" +
+    "                                <div class=\"screening-latest-movement-demo\"></div>\n" +
+    "\n" +
+    "                                <div class=\"screeening-scoring-container\">\n" +
+    "\n" +
+    "                                    <!-- Pain indicator -->\n" +
+    "                                    <a\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-score text-danger\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-dot-circle-o\"></i>\n" +
+    "                                        <span>Pain</span>\n" +
+    "                                    </a>\n" +
+    "\n" +
+    "                                    <!-- Scoring -->\n" +
+    "                                    <a\n" +
+    "                                        ng-repeat=\"score in [0, 1, 2, 3]\"\n" +
+    "                                        ng-click=\"setScore(screeningMovement, score)\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-score\">\n" +
+    "\n" +
+    "                                        <i ng-if=\"screeningMovement.score != score\" class=\"fa fa-circle-o\"></i>\n" +
+    "                                        <i ng-if=\"screeningMovement.score == score\" class=\"fa fa-dot-circle-o\"></i>\n" +
+    "                                        <span>{{ score }}</span>\n" +
+    "                                    </a>\n" +
+    "\n" +
+    "                                    <!-- Actions -->\n" +
+    "                                    <a\n" +
+    "                                        ng-if=\"!global.data.isRecordingLiveScreening\"\n" +
+    "                                        ng-click=\"startLiveRecording()\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-flat btn-danger\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-video-camera\"></i>\n" +
+    "                                        <span>Record</span>\n" +
+    "                                    </a>\n" +
+    "                                    <a\n" +
+    "                                        ng-if=\"global.data.isRecordingLiveScreening\"\n" +
+    "                                        ng-click=\"pauseLiveRecording()\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-flat btn-danger\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-pause\"></i>\n" +
+    "                                        <span>Pause</span>\n" +
+    "                                    </a>\n" +
+    "                                    <a\n" +
+    "                                        ng-if=\"!global.data.isSavingLiveScreeningScore\"\n" +
+    "                                        ng-click=\"saveScreeningScore()\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-flat btn-default\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                                        <span>Save</span>\n" +
+    "                                    </a>\n" +
+    "                                    <a\n" +
+    "                                        ng-if=\"global.data.isSavingLiveScreeningScore\"\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-flat btn-default\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-spinner fa-spin\"></i>\n" +
+    "                                        <span>Saving</span>\n" +
+    "                                    </a>\n" +
+    "                                    <a\n" +
+    "                                        href=\"javascript:;\"\n" +
+    "                                        class=\"btn-flat btn-default\">\n" +
+    "\n" +
+    "                                        <i class=\"fa fa-trash\"></i>\n" +
+    "                                        <span>Delete</span>\n" +
+    "                                    </a>\n" +
+    "                                </div>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Screening title edit field -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
     "                                <ui-editable-standalone-field\n" +
     "                                    data-model=\"screeningMovement\"\n" +
     "                                    data-key=\"title\"\n" +
@@ -6473,13 +6547,7 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <!-- Scoring, Saving -->\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
-    "                        <!-- Screening notes -->\n" +
+    "                        <!-- Screening notes edit field -->\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
     "                                <ui-editable-standalone-field\n" +

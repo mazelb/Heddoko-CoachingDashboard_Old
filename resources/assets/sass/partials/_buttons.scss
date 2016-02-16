@@ -53,8 +53,8 @@
 }
 
 /*
-* Dashboard-style buttons
-*/
+ * Dashboard-style buttons
+ */
 .btn-dashboard {
    display: block;
 
@@ -83,6 +83,33 @@
    &:hover span:last-child {
        background-color: $heddokogreen;
    }
+}
+
+/*
+ * Flat buttons
+ */
+.btn-flat {
+    display: inline-block;
+    text-align: center;
+    @include border-radius(8px);
+
+    span {
+        display: block;
+        font-size: 0.7em;
+    }
+
+    &.btn-default, &.btn-danger {
+        color: $text-color;
+        text-shadow: none;
+        background-image: none;
+        @include box-shadow(none);
+    }
+    &.btn-default {
+        background-color: #5C6F7D;
+    }
+    &.btn-danger {
+        background-color: #F94562;
+    }
 }
 
 /*

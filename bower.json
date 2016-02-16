@@ -42,7 +42,8 @@
     "eonasdan-bootstrap-datetimepicker": "~4.17.37",
     "selectize": "~0.12.1",
     "angular-selectize2": "~3.0.1",
-    "angular-truncate": "*"
+    "angular-truncate": "*",
+    "compass-mixins": "^1.0.2"
   },
   "resolutions": {
     "angular": "~1.3.13",

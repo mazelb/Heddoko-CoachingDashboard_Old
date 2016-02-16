@@ -13,6 +13,8 @@ angular.module('app.controllers')
 
         // Setup controller.
         Utilities.data.isFetchingLiveScreening = true;
+        Utilities.data.isRecordingLiveScreening = false;
+        Utilities.data.isSavingLiveScreeningScore = false;      // demo
 
         /**
          * Retrieves screening data.
@@ -76,6 +78,9 @@ angular.module('app.controllers')
                     break;
                 }
             }
+
+            // Turn off flag.
+            Utilities.data.isFetchingLiveScreening = false;
         };
 
         /**
@@ -223,6 +228,51 @@ angular.module('app.controllers')
         };
 
         /**
+         * Saves the score for the screening movement.
+         * TODO: this can be combined with $scope.saveScreeningMovement
+         */
+        $scope.saveScreeningScore = function() {
+            Utilities.time('Saving Screening Score');
+
+            Utilities.data.isSavingLiveScreeningScore = true;
+
+            MovementService.update($scope.screeningMovement.id, $scope.screeningMovement).then(
+                function(response) {
+                    Utilities.timeEnd('Saving Screening Score');
+
+                    // Turn off flag.
+                    Utilities.data.isSavingLiveScreeningScore = false;
+                },
+
+                function(response) {
+                    Utilities.timeEnd('Saving Screening Score');
+
+                    // Turn off flag.
+                    Utilities.data.isSavingLiveScreeningScore = false;
+
+                }
+            );
+        };
+
+        /**
+         * Starts a live recording
+         */
+        $scope.startLiveRecording = function() {
+
+            Utilities.info('Live recording is not yet supported.');
+
+            Utilities.data.isRecordingLiveScreening = true;
+        };
+
+        /**
+         * Stops a live recording
+         */
+        $scope.pauseLiveRecording = function() {
+
+            Utilities.data.isRecordingLiveScreening = false;
+        };
+
+        /**
          * Cycles to the previous screening movement.
          */
         $scope.previousMovement = function() {
@@ -234,6 +284,17 @@ angular.module('app.controllers')
          */
         $scope.nextMovement = function() {
             // ...
+        };
+
+        /**
+         * Sets the score of a screening movement.
+         *
+         * @param object movement
+         * @param int score
+         */
+        $scope.setScore = function(movement, score) {
+            Utilities.log(movement);
+            movement.score = score;
         };
 
         // Retrieve current screening.
