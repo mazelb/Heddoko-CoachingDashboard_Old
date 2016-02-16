@@ -6481,8 +6481,13 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                                        href=\"javascript:;\"\n" +
     "                                        class=\"btn-score\">\n" +
     "\n" +
-    "                                        <i ng-if=\"screeningMovement.score != score\" class=\"fa fa-circle-o\"></i>\n" +
-    "                                        <i ng-if=\"screeningMovement.score == score\" class=\"fa fa-dot-circle-o\"></i>\n" +
+    "                                        <i\n" +
+    "                                            ng-if=\"screeningMovement.meta.score != score\"\n" +
+    "                                            class=\"fa fa-circle-o\"></i>\n" +
+    "                                        <i\n" +
+    "                                            ng-if=\"screeningMovement.meta.score == score\"\n" +
+    "                                            class=\"fa fa-dot-circle-o\"></i>\n" +
+    "                                        \n" +
     "                                        <span>{{ score }}</span>\n" +
     "                                    </a>\n" +
     "\n" +

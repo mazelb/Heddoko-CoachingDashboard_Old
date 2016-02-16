@@ -11,10 +11,13 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 
+use Illuminate\Http\Request;
+
 use App\Http\Requests;
 use App\Models\Profile;
 use App\Models\Movement;
-use Illuminate\Http\Request;
+use App\Models\Screening;
+use App\Models\MovementMeta;
 use App\Http\Controllers\Controller;
 
 class MovementController extends Controller
@@ -157,8 +160,55 @@ class MovementController extends Controller
 
         $movement->save();
 
-        // TODO: save movement meta.
-        // ...
+        // Save movement meta.
+        if ($this->request->has('meta'))
+        {
+            // Retrieve meta object.
+            $newMetaData = (array) $this->request->input('meta');
+            $metaAttributes = [
+                'startFrame',
+                'endFrame',
+                'score',
+                'scoreMin',
+                'scoreMax',
+                'notes',
+                'data',
+            ];
+
+            // Create meta data.
+            if (!$movement->meta)
+            {
+                $movement->meta()->create(array_only($newMetaData, $metaAttributes));
+            }
+
+            // Update meta data.
+            else
+            {
+                $metaData = MovementMeta::find($movement->meta->id);
+
+                foreach ($metaAttributes as $attribute) {
+                    if (array_has($newMetaData, $attribute)) {
+                        $metaData->$attribute = $newMetaData[$attribute];
+                    }
+                }
+
+                $metaData->save();
+            }
+
+            // If a score was updated, and the movement belongs to a screening, we'll update the
+            // screening score as well.
+            if (array_has($newMetaData, 'score') && $movement->screeningId > 0
+                && $screening = Screening::with('movements.meta')->find($movement->screeningId))
+            {
+                $score = 0;
+                foreach($screening->movements as $test) {
+                    $score += $test->meta->score;
+                }
+
+                $screening->score = $score;
+                $screening->save();
+            }
+        }
 
         // TODO: save movement markers.
         // ...

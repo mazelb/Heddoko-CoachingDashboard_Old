@@ -36,14 +36,6 @@ class Movement extends Model
     public static $appendable = [];
 
     /**
-     * Extra details about this movement.
-     */
-	public function meta()
-	{
-		return $this->hasOne('App\Models\MovementMeta');
-	}
-
-    /**
      * Frames which make up this movement.
      */
 	public function frames()
@@ -60,12 +52,12 @@ class Movement extends Model
 	}
 
     /**
-     * Tags belonging to this movement.
+     * Extra details about this movement.
      */
-    public function tags()
-    {
-        return $this->morphToMany('App\Models\Tag', 'taggable');
-    }
+	public function meta()
+	{
+		return $this->hasOne('App\Models\MovementMeta');
+	}
 
     /**
      * Profile this movement belongs to.
@@ -74,4 +66,20 @@ class Movement extends Model
 	{
 		return $this->belongsTo('App\Model\Profile');
 	}
+
+    /**
+     * Screening this movement belongs to.
+     */
+	public function screening()
+	{
+		return $this->belongsTo('App\Model\Screening');
+	}
+
+    /**
+     * Tags belonging to this movement.
+     */
+    public function tags()
+    {
+        return $this->morphToMany('App\Models\Tag', 'taggable');
+    }
 }

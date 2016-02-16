@@ -25,7 +25,7 @@ angular.module('app.controllers')
             // Turn on "fetching live screening" flag.
             Utilities.data.isFetchingLiveScreening = true;
 
-            ScreeningService.get(Utilities.store.liveScreeningId, 'movements').then(
+            ScreeningService.get(Utilities.store.liveScreeningId, ['movements.meta']).then(
                 function(response) {
                     Utilities.timeEnd('Retrieving Live Screening Data');
 
@@ -66,10 +66,9 @@ angular.module('app.controllers')
             $scope.profile = Utilities.getData('profile', screening.profileId);
 
             // Set current movement in screening.
-            $scope.screeningMovement = null;
             for (var i = 0; i < screening.movements.length; i++)
             {
-                if (screening.movements[i].isComplete) {
+                if (screening.movements[i].meta.score !== null) {
                     continue;
                 }
 
@@ -78,6 +77,8 @@ angular.module('app.controllers')
                     break;
                 }
             }
+            $scope.screeningMovement = $scope.screeningMovement ?
+                $scope.screeningMovement : screening.movements[0];
 
             // Turn off flag.
             Utilities.data.isFetchingLiveScreening = false;
@@ -293,8 +294,16 @@ angular.module('app.controllers')
          * @param int score
          */
         $scope.setScore = function(movement, score) {
-            Utilities.log(movement);
-            movement.score = score;
+
+            // Save the score in the movement meta.
+            movement.meta = movement.meta || {};
+            movement.meta.score = score;
+
+            // Update the screening score.
+            $scope.screening.score = 0;
+            angular.forEach($scope.screening.movements, function(test) {
+                $scope.screening.score += parseInt(test.meta.score);
+            });
         };
 
         // Retrieve current screening.

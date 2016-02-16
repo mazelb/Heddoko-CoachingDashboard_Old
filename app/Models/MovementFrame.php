@@ -7,11 +7,14 @@
  * @date    February 2016
  */
 namespace App\Models;
+use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 use Illuminate\Database\Eloquent\Model;
 
 class MovementFrame extends Model
 {
+    use CamelCaseAttrs;
+
     /**
      * The database table used by the model.
      *

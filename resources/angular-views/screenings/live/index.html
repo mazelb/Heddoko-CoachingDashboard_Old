@@ -128,8 +128,13 @@
                                         href="javascript:;"
                                         class="btn-score">
 
-                                        <i ng-if="screeningMovement.score != score" class="fa fa-circle-o"></i>
-                                        <i ng-if="screeningMovement.score == score" class="fa fa-dot-circle-o"></i>
+                                        <i
+                                            ng-if="screeningMovement.meta.score != score"
+                                            class="fa fa-circle-o"></i>
+                                        <i
+                                            ng-if="screeningMovement.meta.score == score"
+                                            class="fa fa-dot-circle-o"></i>
+                                        
                                         <span>{{ score }}</span>
                                     </a>
 
