@@ -53,11 +53,11 @@
                 ng-repeat="title in config.detailsLayoutTitles track by title.key"
                 ng-class="{'text-center': !config.onSelect || title.key !== 'title'}">
 
-                <a ng-show="title.key === 'title'" href="{{ ::folder.href }}">
+                <a ng-if="title.key == 'title'" href="{{ ::folder.href }}">
                     <i class="fa fa-folder-open fa-fw"></i> {{ ::folder.title }}
                 </a>
 
-                <span nf-hide="title.key === 'title'">{{ ::folder[title.key] }}</span>
+                <span ng-if="title.key != 'title'">{{ ::folder[title.key] }}</span>
             </td>
 
         </tr>
@@ -83,7 +83,7 @@
                     {{ ::file.title }}
                 </a>
 
-                <span nf-hide="title.key === 'title'">{{ ::file[title.key] }}</span>
+                <span ng-if="title.key != 'title'">{{ ::file[title.key] }}</span>
             </td>
         </tr>
     </tbody>

@@ -8859,10 +8859,10 @@ svg {
   display: block; }
   .ui-filesystem-contents .file .name, .ui-filesystem-contents .folder .name {
     display: block; }
-.ui-filesystem-contents .ui-filesystem-large-layout .file, .ui-filesystem-contents .ui-filesystem-large-layout .folder {
+.ui-filesystem-contents .ui-filesystem-large-tiles .file, .ui-filesystem-contents .ui-filesystem-large-tiles .folder {
   margin: 30px auto;
   text-align: center; }
-.ui-filesystem-contents .ui-filesystem-small-layout .file, .ui-filesystem-contents .ui-filesystem-small-layout .folder {
+.ui-filesystem-contents .ui-filesystem-small-tiles .file, .ui-filesystem-contents .ui-filesystem-small-tiles .folder {
   margin: 15px auto;
   text-align: center; }
 
