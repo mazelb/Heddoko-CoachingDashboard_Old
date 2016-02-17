@@ -60,7 +60,7 @@ angular.module('app.controllers')
             {
                 $scope.groupList.push({
                     title: list[i].name,
-                    image: list[i].avatarSrc,
+                    image: list[i].avatarSrc.length ? list[i].avatarSrc : undefined,
                     href: '#/groups/' + list[i].id,
                     createdAt: $filter('mysqlDate')(list[i].createdAt)
                 });

@@ -83,7 +83,7 @@ angular.module('app.controllers')
                 $scope.profileList.push({
                     title: list[i].lastName,
                     subTitle: list[i].groups[0].name || '',
-                    image: list[i].avatarSrc,
+                    image: list[i].avatarSrc.length ? list[i].avatarSrc : null,
                     href: '#/profiles/' + list[i].id,
                     firstName: list[i].firstName,
                     lastName: list[i].lastName,

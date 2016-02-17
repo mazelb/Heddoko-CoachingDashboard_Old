@@ -218,9 +218,9 @@ angular.module('app.controllers')
                     if (profiles[key].id && profiles[key].id > 0)
                     {
                         $scope.folders.push({
-                            name: profiles[key].firstName + ' ' + profiles[key].lastName,
                             title: profiles[key].firstName + ' ' + profiles[key].lastName,
                             createdAt: profiles[key].createdAt,
+                            updatedAt: profiles[key].updatedAt,
                             href: '#/movements/' + profiles[key].id
                         });
                     }
@@ -247,9 +247,9 @@ angular.module('app.controllers')
                 {
                     $scope.folders.push({
                         id: folders[i].id,
-                        name: folders[i].name,
                         title: folders[i].name,
                         createdAt: folders[i].createdAt,
+                        updatedAt: folders[i].updatedAt,
                         href: $scope.getHash(folders[i]),
                     });
                 }

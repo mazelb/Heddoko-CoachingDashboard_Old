@@ -2384,7 +2384,7 @@ angular.module("group/list.html", []).run(["$templateCache", function($templateC
     "            <div class=\"modal-dialog\">\n" +
     "                <div class=\"modal-content\">\n" +
     "                    <div class=\"modal-header\">\n" +
-    "                        Team Details\n" +
+    "                        Add a Team\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"modal-body\">\n" +
@@ -4053,7 +4053,7 @@ angular.module("partials/directives/ui-filesystem/layouts/details.html", []).run
     "\n" +
     "            <td colspan=\"{{ ::config.detailsLayoutTitles.length }}\">\n" +
     "                <a href=\"{{ ::parentFolder.href }}\">\n" +
-    "                    <i class=\"fa fa-fw fa-level-up\"></i> {{ ::parentFolder.title || 'Parent Folder' }}\n" +
+    "                    <i class=\"fa fa-fw fa-level-up\"></i> {{ ::parentFolder.title || 'Back' }}\n" +
     "                </a>\n" +
     "            </td>\n" +
     "\n" +
@@ -4121,22 +4121,44 @@ angular.module("partials/directives/ui-filesystem/layouts/large-tiles.html", [])
     "<div class=\"row\">\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
-    "    <div ng-if=\"parentFolder\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
-    "        <a href=\"{{ ::parentFolder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-hand-o-left fa-3x\"></i>\n" +
-    "            <span class=\"name\">\n" +
-    "                Back\n" +
-    "            </span>\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-sm-12 col-md-6 col-lg-4\">\n" +
+    "        <a href=\"{{ ::parentFolder.href }}\" class=\"aspect-ratio aspect-4-3 card parent-folder\">\n" +
+    "            <div>\n" +
+    "                <i class=\"fa fa-hand-o-left fa-5x\"></i>\n" +
+    "                <span class=\"title\">\n" +
+    "                    {{ ::parentFolder.title || 'Back' }}\n" +
+    "                </span>\n" +
+    "            </div>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-6 col-md-4 col-lg-3\">\n" +
-    "        <a href=\"{{ ::folder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-folder-open fa-3x\"></i>\n" +
-    "            <span class=\"name\">\n" +
-    "                {{ ::folder.name | characters:25 }}\n" +
-    "            </span>\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-sm-12 col-md-6 col-lg-4\">\n" +
+    "        <a\n" +
+    "            href=\"{{ ::folder.href }}\"\n" +
+    "            title=\"{{ ::folder.title }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card folder\">\n" +
+    "            <div>\n" +
+    "\n" +
+    "                <i class=\"fa fa-folder-open-o folder-icon\"></i>\n" +
+    "\n" +
+    "                <!-- File actions -->\n" +
+    "                <div class=\"data\">\n" +
+    "\n" +
+    "                    <!-- Favourite (demo) -->\n" +
+    "                    <i class=\"fa fa-star-o fa-2x pull-right\"></i>\n" +
+    "\n" +
+    "                    <!-- Title -->\n" +
+    "                    <span class=\"title\">\n" +
+    "                        {{ ::folder.title | characters:25 }}\n" +
+    "                    </span>\n" +
+    "\n" +
+    "                    <!-- Sub title -->\n" +
+    "                    <span class=\"sub-title\" ng-if=\"folder.updatedAt\">\n" +
+    "                        Last updated on {{ ::folder.updatedAt | mysqlDate:'MMM d, yyyy' }}\n" +
+    "                    </span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
@@ -4144,15 +4166,18 @@ angular.module("partials/directives/ui-filesystem/layouts/large-tiles.html", [])
     "    <div ng-repeat=\"file in files track by $index\" class=\"col-sm-12 col-md-6 col-lg-4\">\n" +
     "        <a\n" +
     "            href=\"{{ ::file.href }}\"\n" +
-    "            class=\"aspect-ratio aspect-4-3 card\"\n" +
-    "            style=\"background-image: url({{ ::file.image || '' }})\">\n" +
-    "            <div>\n" +
+    "            title=\"{{ ::file.title }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card file\">\n" +
+    "            <div style=\"background-image: url({{ ::file.image || '' }})\">\n" +
     "\n" +
     "                <!-- File actions -->\n" +
     "                <div class=\"data\">\n" +
     "\n" +
+    "                    <!-- Favourite (demo) -->\n" +
+    "                    <i class=\"fa fa-star-o fa-2x pull-right\"></i>\n" +
+    "\n" +
     "                    <!-- Title -->\n" +
-    "                    <span class=\"title\" title=\"{{ ::file.title }}\">\n" +
+    "                    <span class=\"title\">\n" +
     "                        {{ ::file.title | characters:25 }}\n" +
     "                    </span>\n" +
     "\n" +
@@ -4175,22 +4200,44 @@ angular.module("partials/directives/ui-filesystem/layouts/small-tiles.html", [])
     "<div class=\"row\">\n" +
     "\n" +
     "    <!-- Parent folder -->\n" +
-    "    <div ng-if=\"parentFolder\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
-    "        <a href=\"{{ ::parentFolder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-hand-o-left fa-2x\"></i>\n" +
-    "            <span class=\"name\">\n" +
-    "                Back\n" +
-    "            </span>\n" +
+    "    <div ng-if=\"parentFolder\" class=\"col-sm-6 col-md-4 col-lg-2\">\n" +
+    "        <a href=\"{{ ::parentFolder.href }}\" class=\"aspect-ratio aspect-4-3 card parent-folder\">\n" +
+    "            <div>\n" +
+    "                <i class=\"fa fa-hand-o-left fa-2x\"></i>\n" +
+    "                <span class=\"title\">\n" +
+    "                    {{ ::parentFolder.title || 'Back' }}\n" +
+    "                </span>\n" +
+    "            </div>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
     "    <!-- Other folders -->\n" +
-    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-xs-4 col-md-3 col-lg-1\">\n" +
-    "        <a href=\"{{ ::folder.href }}\" class=\"folder\">\n" +
-    "            <i class=\"fa fa-folder-open fa-2x\"></i>\n" +
-    "            <span class=\"name\">\n" +
-    "                {{ ::folder.name | characters:12 }}\n" +
-    "            </span>\n" +
+    "    <div ng-repeat=\"folder in folders track by $index\" class=\"col-sm-6 col-md-4 col-lg-2\">\n" +
+    "        <a\n" +
+    "            href=\"{{ ::folder.href }}\"\n" +
+    "            title=\"{{ ::folder.title }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card folder\">\n" +
+    "            <div>\n" +
+    "\n" +
+    "                <i class=\"fa fa-folder-open-o folder-icon\"></i>\n" +
+    "\n" +
+    "                <!-- File actions -->\n" +
+    "                <div class=\"data\">\n" +
+    "\n" +
+    "                    <!-- Favourite (demo) -->\n" +
+    "                    <i class=\"fa fa-star-o pull-right\"></i>\n" +
+    "\n" +
+    "                    <!-- Title -->\n" +
+    "                    <span class=\"title\">\n" +
+    "                        {{ ::folder.title | characters:12 }}\n" +
+    "                    </span>\n" +
+    "\n" +
+    "                    <!-- Sub title -->\n" +
+    "                    <span class=\"sub-title\" ng-if=\"folder.updatedAt\">\n" +
+    "                        Last updated on {{ ::folder.updatedAt | mysqlDate:'MMM d, yyyy' }}\n" +
+    "                    </span>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </a>\n" +
     "    </div>\n" +
     "\n" +
@@ -4198,16 +4245,19 @@ angular.module("partials/directives/ui-filesystem/layouts/small-tiles.html", [])
     "    <div ng-repeat=\"file in files track by $index\" class=\"col-sm-6 col-md-4 col-lg-2\">\n" +
     "        <a\n" +
     "            href=\"{{ ::file.href }}\"\n" +
-    "            class=\"aspect-ratio aspect-4-3 card\"\n" +
-    "            style=\"background-image: url({{ ::file.image || '' }})\">\n" +
-    "            <div>\n" +
+    "            title=\"{{ ::file.title }}\"\n" +
+    "            class=\"aspect-ratio aspect-4-3 card file\">\n" +
+    "            <div style=\"background-image: url({{ ::file.image || '' }})\">\n" +
     "\n" +
     "                <!-- File actions -->\n" +
     "                <div class=\"data\">\n" +
     "\n" +
+    "                    <!-- Favourite (demo) -->\n" +
+    "                    <i class=\"fa fa-star-o pull-right\"></i>\n" +
+    "\n" +
     "                    <!-- Title -->\n" +
-    "                    <span class=\"title\" title=\"{{ ::file.title }}\">\n" +
-    "                        {{ ::file.title | characters:25 }}\n" +
+    "                    <span class=\"title\">\n" +
+    "                        {{ ::file.title | characters:12 }}\n" +
     "                    </span>\n" +
     "\n" +
     "                    <!-- Sub title -->\n" +
@@ -5038,7 +5088,7 @@ angular.module("profile/list.html", []).run(["$templateCache", function($templat
     "            <div class=\"modal-dialog\">\n" +
     "                <div class=\"modal-content\">\n" +
     "                    <div class=\"modal-header\">\n" +
-    "                        Profile Details\n" +
+    "                        Add an Athlete\n" +
     "                    </div>\n" +
     "\n" +
     "                    <div class=\"modal-body\">\n" +

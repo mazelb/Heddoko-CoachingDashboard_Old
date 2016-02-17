@@ -8855,16 +8855,50 @@ svg {
 
 .ui-filesystem-contents table thead {
   font-weight: bold; }
-.ui-filesystem-contents .file, .ui-filesystem-contents .folder {
-  display: block; }
-  .ui-filesystem-contents .file .name, .ui-filesystem-contents .folder .name {
-    display: block; }
-.ui-filesystem-contents .ui-filesystem-large-tiles .file, .ui-filesystem-contents .ui-filesystem-large-tiles .folder {
-  margin: 30px auto;
+.ui-filesystem-contents.ui-filesystem-large-tiles .card .data {
+  padding: 20px;
+  height: 20%; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .card:hover .data {
+  height: 70%; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .file, .ui-filesystem-contents.ui-filesystem-large-tiles .folder, .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder {
+  margin: 0 0 20px;
+  background: #1c242c url(../../images/backgrounds/radial-blue-800.png) center center no-repeat;
+  background-size: cover; }
+  .ui-filesystem-contents.ui-filesystem-large-tiles .file > div, .ui-filesystem-contents.ui-filesystem-large-tiles .folder > div, .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder > div {
+    background: transparent center center no-repeat;
+    background-size: cover; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder {
   text-align: center; }
-.ui-filesystem-contents .ui-filesystem-small-tiles .file, .ui-filesystem-contents .ui-filesystem-small-tiles .folder {
-  margin: 15px auto;
+  .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder > div {
+    padding: 100px 0; }
+  .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder .title {
+    display: block;
+    margin: 25px 0 0; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .folder-icon {
+  display: block;
+  margin-top: 35px;
+  text-align: center;
+  font-size: 10em; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .file, .ui-filesystem-contents.ui-filesystem-small-tiles .folder, .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder {
+  margin: 0 0 10px;
+  background: #1c242c url(../../images/backgrounds/radial-blue-400.png) center center no-repeat;
+  background-size: cover; }
+  .ui-filesystem-contents.ui-filesystem-small-tiles .file > div, .ui-filesystem-contents.ui-filesystem-small-tiles .folder > div, .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder > div {
+    background: transparent center center no-repeat;
+    background-size: cover; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder {
   text-align: center; }
+  .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder > div {
+    padding: 50px 0; }
+  .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder .title {
+    display: block;
+    margin: 15px 0 0;
+    font-size: .7em; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .folder-icon {
+  display: block;
+  margin-top: 25px;
+  text-align: center;
+  font-size: 4em; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

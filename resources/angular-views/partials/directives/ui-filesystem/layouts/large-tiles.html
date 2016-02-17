@@ -4,22 +4,44 @@
 <div class="row">
 
     <!-- Parent folder -->
-    <div ng-if="parentFolder" class="col-xs-6 col-md-4 col-lg-3">
-        <a href="{{ ::parentFolder.href }}" class="folder">
-            <i class="fa fa-hand-o-left fa-3x"></i>
-            <span class="name">
-                Back
-            </span>
+    <div ng-if="parentFolder" class="col-sm-12 col-md-6 col-lg-4">
+        <a href="{{ ::parentFolder.href }}" class="aspect-ratio aspect-4-3 card parent-folder">
+            <div>
+                <i class="fa fa-hand-o-left fa-5x"></i>
+                <span class="title">
+                    {{ ::parentFolder.title || 'Back' }}
+                </span>
+            </div>
         </a>
     </div>
 
     <!-- Other folders -->
-    <div ng-repeat="folder in folders track by $index" class="col-xs-6 col-md-4 col-lg-3">
-        <a href="{{ ::folder.href }}" class="folder">
-            <i class="fa fa-folder-open fa-3x"></i>
-            <span class="name">
-                {{ ::folder.name | characters:25 }}
-            </span>
+    <div ng-repeat="folder in folders track by $index" class="col-sm-12 col-md-6 col-lg-4">
+        <a
+            href="{{ ::folder.href }}"
+            title="{{ ::folder.title }}"
+            class="aspect-ratio aspect-4-3 card folder">
+            <div>
+
+                <i class="fa fa-folder-open-o folder-icon"></i>
+
+                <!-- File actions -->
+                <div class="data">
+
+                    <!-- Favourite (demo) -->
+                    <i class="fa fa-star-o fa-2x pull-right"></i>
+
+                    <!-- Title -->
+                    <span class="title">
+                        {{ ::folder.title | characters:25 }}
+                    </span>
+
+                    <!-- Sub title -->
+                    <span class="sub-title" ng-if="folder.updatedAt">
+                        Last updated on {{ ::folder.updatedAt | mysqlDate:'MMM d, yyyy' }}
+                    </span>
+                </div>
+            </div>
         </a>
     </div>
 
@@ -27,15 +49,18 @@
     <div ng-repeat="file in files track by $index" class="col-sm-12 col-md-6 col-lg-4">
         <a
             href="{{ ::file.href }}"
-            class="aspect-ratio aspect-4-3 card"
-            style="background-image: url({{ ::file.image || '' }})">
-            <div>
+            title="{{ ::file.title }}"
+            class="aspect-ratio aspect-4-3 card file">
+            <div style="background-image: url({{ ::file.image || '' }})">
 
                 <!-- File actions -->
                 <div class="data">
 
+                    <!-- Favourite (demo) -->
+                    <i class="fa fa-star-o fa-2x pull-right"></i>
+
                     <!-- Title -->
-                    <span class="title" title="{{ ::file.title }}">
+                    <span class="title">
                         {{ ::file.title | characters:25 }}
                     </span>
 

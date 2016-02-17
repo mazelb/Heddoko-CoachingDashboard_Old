@@ -38,25 +38,83 @@
         font-weight: bold;
     }
 
-    .file, .folder {
-        display: block;
+    &.ui-filesystem-large-tiles {
+        .card {
+            .data {
+                padding: 20px;
+                height: 20%;
+            }
 
-        .name {
+            &:hover {
+                .data {
+                    height: 70%;
+                }
+            }
+        }
+
+        .file, .folder, .parent-folder {
+            margin: 0 0 20px;
+            background: $dark-blue url(../../images/backgrounds/radial-blue-800.png) center center no-repeat;
+            background-size: cover;
+
+            > div {
+                background: transparent center center no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .parent-folder {
+            text-align: center;
+
+            > div {
+                padding: 100px 0;
+            }
+
+            .title {
+                display: block;
+                margin: 25px 0 0;
+            }
+        }
+
+        .folder-icon {
             display: block;
+            margin-top: 35px;
+            text-align: center;
+            font-size: 10em;
         }
     }
 
-    .ui-filesystem-large-tiles {
-        .file, .folder {
-            margin: 30px auto;
-            text-align: center;
-        }
-    }
+    &.ui-filesystem-small-tiles {
+        .file, .folder, .parent-folder {
+            margin: 0 0 10px;
+            background: $dark-blue url(../../images/backgrounds/radial-blue-400.png) center center no-repeat;
+            background-size: cover;
 
-    .ui-filesystem-small-tiles {
-        .file, .folder {
-            margin: 15px auto;
+            > div {
+                background: transparent center center no-repeat;
+                background-size: cover;
+            }
+        }
+
+        .parent-folder {
             text-align: center;
+
+            > div {
+                padding: 50px 0;
+            }
+
+            .title {
+                display: block;
+                margin: 15px 0 0;
+                font-size: .7em;
+            }
+        }
+
+        .folder-icon {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            font-size: 4em;
         }
     }
 }
