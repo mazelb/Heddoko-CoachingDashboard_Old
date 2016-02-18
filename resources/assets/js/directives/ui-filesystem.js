@@ -46,7 +46,9 @@ angular.module('app.directives')
                 selectedFoldersKey = namespace + '-selected-folders';
             $scope.config = $scope.config || {};
             $scope.config.toolbar = $scope.config.toolbar || {};
-            $scope.config.onDelete = $scope.config.onDelete || false;
+            $scope.config.onDeleteFile = $scope.config.onDeleteFile || false;
+            $scope.config.onDeleteFolder = $scope.config.onDeleteFolder || false;
+            $scope.config.onDeleteSelected = $scope.config.onDeleteSelected || false;
             $scope.config.onSelect = $scope.config.onSelect || false;
             $scope.config.detailsLayoutTitles = $scope.config.detailsLayoutTitles || [
                 {
@@ -158,6 +160,22 @@ angular.module('app.directives')
                         $scope.config.onSelect('folder', $scope.folders[i]);
                     }
                 }
+            };
+
+            /**
+             * Calls a method while preventing bubbling.
+             *
+             * @param object $event
+             * @param function callback
+             * @param array args
+             */
+            $scope.call = function($event, callback, args) {
+
+                // Stop propagation.
+                $event.preventDefault();
+
+                // Call intended method.
+                callback.apply(callback, args);
             };
         }],
         templateUrl: 'partials/directives/ui-filesystem/container.html'

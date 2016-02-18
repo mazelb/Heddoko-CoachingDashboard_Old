@@ -8,10 +8,16 @@
 angular.module('app.controllers')
 
 .controller('ProfileController',
-    ['$scope', '$routeParams', '$filter', 'Rover', 'ProfileService', 'GroupService',
+    ['$scope', '$routeParams', '$filter', '$window', 'Rover', 'ProfileService', 'GroupService',
     'Utilities', '$http',
-    function($scope, $routeParams, $filter, Rover, ProfileService, GroupService, Utilities, $http) {
+    function($scope, $routeParams, $filter, $window, Rover, ProfileService, GroupService, Utilities, $http) {
         Utilities.info('ProfileController');
+
+        // Controller setup.
+        $scope.isLoading = false;
+
+        // Data for profile list.
+        $scope.profileList = [];
 
         // Profile list config for uiFilesystem.
         $scope.uiFilesystemConfig = {
@@ -36,11 +42,78 @@ angular.module('app.controllers')
                     key: 'createdAt',
                     title: 'Created On'
                 },
-            ]
-        };
+            ],
 
-        // Data for profile list.
-        $scope.profileList = [];
+            /**
+             * Opens the latest screening for the profile.
+             *
+             * @param object profile
+             */
+            onAnalyzeFile: function(profile) {
+                // TODO
+            },
+
+            /**
+             * Shares a profile.
+             *
+             * @param object profile
+             */
+            onShareFile: function(profile) {
+                Utilities.log('Sharing profile: ' + profile.title);
+
+                Utilities.alert('In Development.');
+            },
+
+            /**
+             * Deletes the specified profiles.
+             *
+             * @param int|array IDs
+             */
+            onDeleteFile: function(IDs) {
+
+                // Confirm.
+                if ($window.confirm('Delete profile(s)?'))
+                {
+                    Utilities.time('Deleting Profile');
+
+                    // Turn on "loading" flag
+                    $scope.isLoading = true;
+
+                    // Make sure we have an array.
+                    Utilities.log('uiFilesystem::delete profile');
+                    Utilities.log(IDs);
+                    IDs = typeof IDs == 'object' ? IDs : [IDs];
+
+                    ProfileService.destroy(IDs.join()).then(
+
+                        // On success, update profile list and browse to selected group.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Profile');
+
+                            // Update profile list.
+                            for (var i = 0; i < IDs.length; i++) {
+                                Utilities.setData('profile', IDs[i], null);
+                            }
+                            $scope.updateProfileList();
+                            $scope.global.updateFilteredProfiles();
+
+                            // Unselect profile by default.
+                            Utilities.store.profileId = 0;
+
+                            $scope.isLoading = false;
+                        },
+
+                        // On failure.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Profile');
+                            Utilities.error('Could not delete profile: ' + response.responseText);
+                            Utilities.alert('Could not delete profile. Please try again later.');
+                            $scope.isLoading = false;
+                        }
+                    );
+                }
+            }
+        };
 
         // Currently displayed profile.
         $scope.profile = {id: 0};
@@ -81,6 +154,7 @@ angular.module('app.controllers')
             for (i = 0; i < list.length; i++)
             {
                 $scope.profileList.push({
+                    id: list[i].id,
                     title: list[i].lastName,
                     subTitle: list[i].groups[0].name || '',
                     image: list[i].avatarSrc.length ? list[i].avatarSrc : null,

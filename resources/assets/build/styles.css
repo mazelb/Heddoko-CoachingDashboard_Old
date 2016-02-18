@@ -818,30 +818,56 @@ pre {
   -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); }
   .card .data {
-    padding: 10px;
     position: absolute;
     bottom: 0;
-    height: 35%;
+    height: 65px;
     width: 100%;
     color: #fff;
     background-color: rgba(44, 58, 70, 0.8);
+    overflow: hidden;
     -webkit-transition: height 0.2s;
     -moz-transition: height 0.2s;
     -ms-transition: height 0.2s;
     -o-transition: height 0.2s;
     transition: height 0.2s; }
+    .card .data section {
+      padding: 15px;
+      height: auto; }
+      .card .data section:first-child {
+        height: 65px; }
+      .card .data section:nth-child(2) {
+        height: 90px;
+        text-align: left;
+        background-color: #506572; }
     .card .data span {
       line-height: 1em; }
     .card .data .title {
       display: block;
-      text-transform: uppercase;
-      font-size: 1.1em; }
+      text-transform: uppercase; }
     .card .data .sub-title {
       display: block;
       text-transform: uppercase;
       font-size: 0.7em; }
+    .card .data .data-btn {
+      display: inline-block;
+      width: 45px;
+      text-align: center;
+      border: none;
+      background-color: transparent;
+      -webkit-appearance: none;
+      -webkit-transition: color 0.2s;
+      -moz-transition: color 0.2s;
+      -ms-transition: color 0.2s;
+      -o-transition: color 0.2s;
+      transition: color 0.2s; }
+      .card .data .data-btn span {
+        display: block;
+        margin: 5px 0 0;
+        font-size: .6em; }
+      .card .data .data-btn:hover {
+        color: #3bd6b2; }
   .card:hover .data {
-    height: 85%; }
+    height: 155px; }
 
 .active-element {
   position: relative;
@@ -8855,11 +8881,6 @@ svg {
 
 .ui-filesystem-contents table thead {
   font-weight: bold; }
-.ui-filesystem-contents.ui-filesystem-large-tiles .card .data {
-  padding: 20px;
-  height: 20%; }
-.ui-filesystem-contents.ui-filesystem-large-tiles .card:hover .data {
-  height: 70%; }
 .ui-filesystem-contents.ui-filesystem-large-tiles .file, .ui-filesystem-contents.ui-filesystem-large-tiles .folder, .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder {
   margin: 0 0 20px;
   background: #1c242c url(../../images/backgrounds/radial-blue-800.png) center center no-repeat;
@@ -8870,7 +8891,7 @@ svg {
 .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder {
   text-align: center; }
   .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder > div {
-    padding: 100px 0; }
+    padding: 80px 0; }
   .ui-filesystem-contents.ui-filesystem-large-tiles .parent-folder .title {
     display: block;
     margin: 25px 0 0; }
@@ -8879,6 +8900,15 @@ svg {
   margin-top: 35px;
   text-align: center;
   font-size: 10em; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .card .data section:nth-child(2) {
+  height: 165px; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .card .data-btn {
+  width: 65px;
+  z-index: 1; }
+  .ui-filesystem-contents.ui-filesystem-large-tiles .card .data-btn span {
+    font-size: 0.9em; }
+.ui-filesystem-contents.ui-filesystem-large-tiles .card:hover .data {
+  height: 230px; }
 .ui-filesystem-contents.ui-filesystem-small-tiles .file, .ui-filesystem-contents.ui-filesystem-small-tiles .folder, .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder {
   margin: 0 0 10px;
   background: #1c242c url(../../images/backgrounds/radial-blue-400.png) center center no-repeat;
@@ -8889,16 +8919,25 @@ svg {
 .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder {
   text-align: center; }
   .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder > div {
-    padding: 50px 0; }
+    padding: 75px 0; }
   .ui-filesystem-contents.ui-filesystem-small-tiles .parent-folder .title {
     display: block;
     margin: 15px 0 0;
     font-size: .7em; }
 .ui-filesystem-contents.ui-filesystem-small-tiles .folder-icon {
   display: block;
-  margin-top: 25px;
+  margin-top: 35px;
   text-align: center;
   font-size: 4em; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .card .data section:nth-child(2) {
+  height: 115px; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .card .data-btn {
+  margin: 0 auto 8px;
+  z-index: 1; }
+  .ui-filesystem-contents.ui-filesystem-small-tiles .card .data-btn span {
+    font-size: 0.5em; }
+.ui-filesystem-contents.ui-filesystem-small-tiles .card:hover .data {
+  height: 180px; }
 
 /**
  * Copyright Heddoko(TM) 2015, all rights reserved.

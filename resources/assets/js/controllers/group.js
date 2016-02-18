@@ -8,9 +8,15 @@
 angular.module('app.controllers')
 
 .controller('GroupController',
-    ['$scope', '$routeParams', '$filter', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
-    function($scope, $routeParams, $filter, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
+    ['$scope', '$routeParams', '$filter', '$window', 'GroupService', 'Upload', 'Utilities', 'Rover', 'isLocalEnvironment', '$timeout',
+    function($scope, $routeParams, $filter, $window, GroupService, Upload, Utilities, Rover, isLocalEnvironment, $timeout) {
         Utilities.info('GroupController');
+
+        // Controller setup.
+        $scope.isLoading = false;
+
+        // Data for group list.
+        $scope.groupList = [];
 
         // Group list config for uiFilesystem.
         $scope.uiFilesystemConfig = {
@@ -27,11 +33,76 @@ angular.module('app.controllers')
                     key: 'createdAt',
                     title: 'Created On'
                 },
-            ]
-        };
+            ],
 
-        // Data for group list.
-        $scope.groupList = [];
+            /**
+             * Opens the screening summary of a group.
+             *
+             * @param object group
+             */
+            onAnalyzeFile: function(group) {
+                // TODO
+            },
+
+            /**
+             * Shares a group.
+             *
+             * @param object group
+             */
+            onShareFile: function(group) {
+                Utilities.log('Sharing group: ' + group.title);
+
+                Utilities.alert('In Development.');
+            },
+
+            /**
+             * Deletes the specified groups.
+             *
+             * @param int|array IDs
+             */
+            onDeleteFile: function(IDs) {
+
+                // Confirm.
+                if ($window.confirm('Delete group(s)?'))
+                {
+                    Utilities.time('Deleting Group');
+
+                    // Turn on "loading" flag
+                    $scope.isLoading = true;
+
+                    // Make sure we have an array.
+                    IDs = typeof IDs == 'object' ? IDs : [IDs];
+
+                    GroupService.destroy(IDs.join()).then(
+
+                        // On success, update profile list and browse to selected group.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Group');
+
+                            // Update group list.
+                            for (var i = 0; i < IDs.length; i++) {
+                                Utilities.setData('group', IDs[i], null);
+                            }
+                            $scope.updateGroupList();
+                            $scope.global.updateFilteredProfiles();
+
+                            // Unselect profile by default.
+                            Utilities.store.groupId = 0;
+
+                            $scope.isLoading = false;
+                        },
+
+                        // On failure.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Group');
+                            Utilities.error('Could not delete group: ' + response.responseText);
+                            Utilities.alert('Could not delete group. Please try again later.');
+                            $scope.isLoading = false;
+                        }
+                    );
+                }
+            }
+        };
 
         // Currently displayed group.
         $scope.group = {id: 0};
@@ -59,6 +130,7 @@ angular.module('app.controllers')
             for (i = 0; i < list.length; i++)
             {
                 $scope.groupList.push({
+                    id: list[i].id,
                     title: list[i].name,
                     image: list[i].avatarSrc.length ? list[i].avatarSrc : undefined,
                     href: '#/groups/' + list[i].id,

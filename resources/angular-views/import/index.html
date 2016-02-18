@@ -138,11 +138,14 @@
                         <!-- Movement title -->
                         <div class="row">
                             <div class="col-xs-12">
-                                <input
-                                    ng-model="file.title"
-                                    type="text"
-                                    class="form-control movement-title"
-                                    placeholder="Movement Title">
+                                <ui-editable-standalone-field
+                                    data-model="file"
+                                    data-key="title"
+                                    data-empty="Movement Title"
+                                    data-input-type="text"
+                                    data-save="saveMovementFile"
+                                    data-save-callback="saveMovementFileCallback">
+                                </ui-editable-standalone-field>
                             </div>
                         </div>
 

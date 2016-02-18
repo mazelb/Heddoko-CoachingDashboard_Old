@@ -7,8 +7,8 @@
  */
 angular.module('app.controllers')
 
-.controller('MovementController', ['$scope', '$routeParams', 'FolderService', 'MovementService', 'Rover', 'Utilities',
-    function($scope, $routeParams, FolderService, MovementService, Rover, Utilities) {
+.controller('MovementController', ['$scope', '$routeParams', '$window', 'FolderService', 'MovementService', 'Rover', 'Utilities',
+    function($scope, $routeParams, $window, FolderService, MovementService, Rover, Utilities) {
         Utilities.info('MovementController');
 
         // Setup controller.
@@ -57,105 +57,181 @@ angular.module('app.controllers')
             },
 
             /**
+             * Opens the movement playback.
+             *
+             * @param object movement
+             */
+            onAnalyzeFile: function(movement) {
+                // TODO
+            },
+
+            /**
+             * Opens the movement comparison screen.
+             *
+             * @param object movement
+             */
+            onCompareFile: function(movement) {
+                // TODO
+            },
+
+            /**
+             * Edits a movement.
+             *
+             * @param object movement
+             */
+            onEditFile: function(movement) {
+                // TODO
+            },
+
+            /**
+             * Edits a folder name.
+             *
+             * @param object folder
+             */
+            onEditFolder: $routeParams.rootId ? function(folder) {
+                // TODO
+            } : false,
+
+            /**
+             * Shares a movement.
+             *
+             * @param object file
+             */
+            onShareFile: function(file) {
+                Utilities.log('Sharing movement: ' + file.title);
+
+                Utilities.alert('In Development.');
+            },
+
+            /**
+             * Shares a folder.
+             *
+             * @TODO
+             *
+             * @param object folder
+             */
+            onShareFolder: function(folder) {
+                Utilities.log('Sharing folder: ' + folder.title);
+
+                Utilities.alert('In Development.');
+            },
+
+            /**
              * Deletes the specified movements.
              *
-             * @param array IDs
+             * @param int|array IDs
              */
             onDeleteFile: function(IDs) {
-                Utilities.time('Deleting Movements');
 
-                // Turn on flag
-                Utilities.data.isFetchingMovementData = true;
+                // Confirm.
+                if ($window.confirm('Delete movement(s)?'))
+                {
+                    Utilities.time('Deleting Movements');
 
-                MovementService.destroy(IDs.join()).then(
+                    // Turn on flag
+                    Utilities.data.isFetchingMovementData = true;
 
-                    // On success, update profile list and browse to selected group.
-                    function(response) {
-                        Utilities.timeEnd('Deleting Movements');
+                    // Make sure we have an array.
+                    IDs = typeof IDs == 'object' ? IDs : [IDs];
 
-                        // Remove deleted movements.
-                        var newList = [], i;
-                        for (i = 0; i < $scope.files.length; i++)
-                        {
-                            Utilities.setData('selectedMovementFiles', IDs[i], null);
+                    MovementService.destroy(IDs.join()).then(
 
-                            if (IDs.indexOf($scope.files[i].id) === -1) {
-                                newList.push($scope.files[i]);
+                        // On success, update profile list and browse to selected group.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Movements');
+
+                            // Remove deleted movements.
+                            var newList = [], i;
+                            for (i = 0; i < $scope.files.length; i++)
+                            {
+                                Utilities.setData('selectedMovementFiles', IDs[i], null);
+
+                                if (IDs.indexOf($scope.files[i].id) === -1) {
+                                    newList.push($scope.files[i]);
+                                }
                             }
+
+                            $scope.files = newList;
+
+                            Utilities.data.isFetchingMovementData = false;
+                        },
+
+                        // On failure.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Movements');
+                            Utilities.error('Could not delete movements: ' + response.responseText);
+                            Utilities.alert('Could not delete movements. Please try again later.');
+                            Utilities.data.isFetchingMovementData = false;
                         }
-
-                        $scope.files = newList;
-
-                        Utilities.data.isFetchingMovementData = false;
-                    },
-
-                    // On failure.
-                    function(response) {
-                        Utilities.timeEnd('Deleting Movements');
-                        Utilities.error('Could not delete movements: ' + response.responseText);
-                        Utilities.alert('Could not delete movements. Please try again later.');
-                        Utilities.data.isFetchingMovementData = false;
-                    }
-                );
+                    );
+                }
             },
 
             /**
              * Deletes the specified folders.
              *
-             * @param array IDs
+             * @param int|array IDs
              */
-            onDeleteFolders: function(IDs) {
-                Utilities.time('Deleting Folders');
+            onDeleteFolder: $routeParams.rootId ? function(IDs) {
 
-                // Turn on flag
-                Utilities.data.isFetchingMovementData = true;
+                // Confirm.
+                if ($window.confirm('Delete folder(s)?'))
+                {
+                    Utilities.time('Deleting Folders');
 
-                FolderService.destroy($scope.rootProfile.id, IDs.join()).then(
+                    // Turn on flag
+                    Utilities.data.isFetchingMovementData = true;
 
-                    // On success, update profile list and browse to selected group.
-                    function(response) {
-                        Utilities.timeEnd('Deleting Folders');
+                    // Make sure we have an array.
+                    IDs = typeof IDs == 'object' ? IDs : [IDs];
 
-                        // Remove deleted folders.
-                        var newList = [], i;
-                        for (i = 0; i < $scope.folders.length; i++)
-                        {
-                            Utilities.setData('selectedMovementFolders', IDs[i], null);
+                    FolderService.destroy($scope.rootProfile.id, IDs.join()).then(
 
-                            if (IDs.indexOf($scope.folders[i].id) === -1) {
-                                newList.push($scope.folders[i]);
+                        // On success, update profile list and browse to selected group.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Folders');
+
+                            // Remove deleted folders.
+                            var newList = [], i;
+                            for (i = 0; i < $scope.folders.length; i++)
+                            {
+                                Utilities.setData('selectedMovementFolders', IDs[i], null);
+
+                                if (IDs.indexOf($scope.folders[i].id) === -1) {
+                                    newList.push($scope.folders[i]);
+                                }
                             }
+
+                            $scope.folders = newList;
+
+                            Utilities.data.isFetchingMovementData = false;
+                        },
+
+                        // On failure.
+                        function(response) {
+                            Utilities.timeEnd('Deleting Folders');
+                            Utilities.error('Could not delete folders: ' + response.responseText);
+                            Utilities.alert('Could not delete folders. Please try again later.');
+                            Utilities.data.isFetchingMovementData = false;
                         }
-
-                        $scope.folders = newList;
-
-                        Utilities.data.isFetchingMovementData = false;
-                    },
-
-                    // On failure.
-                    function(response) {
-                        Utilities.timeEnd('Deleting Folders');
-                        Utilities.error('Could not delete folders: ' + response.responseText);
-                        Utilities.alert('Could not delete folders. Please try again later.');
-                        Utilities.data.isFetchingMovementData = false;
-                    }
-                );
-            },
+                    );
+                }
+            } : false,
 
             /**
              *
              */
-            onDelete: function() {
+            onDeleteSelected: function() {
                 Utilities.log('Deleting selected resources...');
 
                 // Delete folders.
                 if (Utilities.getDataLength('selectedMovementFolders')) {
-                    this.onDeleteFolders(Utilities.getDataArray('selectedMovementFolders').map(Utilities.getId));
+                    this.onDeleteFolder(Utilities.getDataArray('selectedMovementFolders').map(Utilities.getId));
                 }
 
                 // Delete movements.
                 if (Utilities.getDataLength('selectedMovementFiles')) {
-                    this.onDeleteFiles(Utilities.getDataArray('selectedMovementFiles').map(Utilities.getId));
+                    this.onDeleteFile(Utilities.getDataArray('selectedMovementFiles').map(Utilities.getId));
                 }
             }
         };
@@ -183,12 +259,12 @@ angular.module('app.controllers')
             hash += parent ? parent.id : folder.id;
 
             // Add the pathname.
-            if (folder.path && folder.path != '/') {
+            if (folder.path && folder.path.length > 1) {
                 hash += '/' + folder.path.substr(1).replace('/', '_').replace(/\s+/g, '-');
             }
 
             // If no parent was passed, include the current folder name.
-            if (!parent) {
+            if (!parent && folder.name) {
                 hash += (folder.path == '/' ? '/' : '_') + folder.name.replace(/\s+/g, '-');
             }
 
@@ -247,6 +323,7 @@ angular.module('app.controllers')
                 {
                     $scope.folders.push({
                         id: folders[i].id,
+                        name: folders[i].name,
                         title: folders[i].name,
                         createdAt: folders[i].createdAt,
                         updatedAt: folders[i].updatedAt,

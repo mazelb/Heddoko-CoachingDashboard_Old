@@ -55,14 +55,29 @@
     @include box-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
 
     .data {
-        padding: 10px;
         position: absolute;
         bottom: 0;
-        height: 35%;
+        height: 65px;
         width: 100%;
         color: #fff;
         background-color: rgba(44, 58, 70, 0.8);
+        overflow: hidden;
         @include transition(height .2s);
+
+        section {
+            padding: 15px;
+            height: auto;
+
+            &:first-child {
+                height: 65px;
+            }
+
+            &:nth-child(2) {
+                height: 90px;
+                text-align: left;
+                background-color: $light-blue;
+            }
+        }
 
         span {
             line-height: 1em;
@@ -71,7 +86,6 @@
         .title {
             display: block;
             text-transform: uppercase;
-            font-size: 1.1em;
         }
 
         .sub-title {
@@ -79,11 +93,31 @@
             text-transform: uppercase;
             font-size: 0.7em;
         }
+
+        .data-btn {
+            display: inline-block;
+            width: 45px;
+            text-align: center;
+            border: none;
+            background-color: transparent;
+            -webkit-appearance: none;
+            @include transition(color .2s);
+
+            span {
+                display: block;
+                margin: 5px 0 0;
+                font-size: .6em;
+            }
+
+            &:hover {
+                color: $heddoko-green;
+            }
+        }
     }
 
     &:hover {
         .data {
-            height: 85%;
+            height: 155px;
         }
     }
 }
