@@ -216,7 +216,7 @@ angular.module('app.controllers')
          * @return $http
          */
         $scope.saveScreeningMovement = function() {
-            return MovementService.update(this.id, this);
+            return MovementService.update($scope.screeningMovement.id, $scope.screeningMovement);
         };
 
         /**

@@ -8922,7 +8922,12 @@ svg {
     margin: 0 10px;
     color: #777;
     opacity: 0;
-    filter: alpha(opacity=0); }
+    filter: alpha(opacity=0);
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    transition: opacity 0.2s; }
   .ui-editable-fields .ui-editable-field-value .edit-text {
     color: #ddd; }
     .ui-editable-fields .ui-editable-field-value .edit-text:hover, .ui-editable-fields .ui-editable-field-value .edit-text:focus {
@@ -8937,6 +8942,31 @@ svg {
   font-size: 0.7em;
   text-transform: uppercase;
   color: #777; }
+.ui-editable-fields .input-type-textarea {
+  display: block;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #506572; }
+  .ui-editable-fields .input-type-textarea .form-control {
+    display: inline-block;
+    width: 90%;
+    vertical-align: top;
+    resize: vertical;
+    background-color: transparent; }
+  .ui-editable-fields .input-type-textarea .buttons {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: 20px;
+    text-align: center; }
+    .ui-editable-fields .input-type-textarea .buttons a {
+      display: inline-block;
+      margin: 2px;
+      text-align: center; }
+.ui-editable-fields .ui-editable-field-value .input-type-textarea .edit-text:hover, .ui-editable-fields .ui-editable-field-value .input-type-textarea .edit-text:focus {
+  background-color: transparent; }
+.ui-editable-fields .ui-editable-field-value:hover .input-type-textarea .edit-icon, .ui-editable-fields .ui-editable-field-value:hover .input-type-textarea .edit-icon {
+  color: #ddd; }
 
 .ui-editable-fields-actions {
   color: #777;

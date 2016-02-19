@@ -103,6 +103,20 @@
 
                     <div class="col-lg-7 screening-details">
 
+                        <!-- Screening title edit field -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <ui-editable-standalone-field
+                                    data-model="screeningMovement"
+                                    data-key="title"
+                                    data-empty="Title"
+                                    data-input-type="text"
+                                    data-save="saveScreeningMovement"
+                                    data-save-callback="saveScreeningMovementCallback">
+                                </ui-editable-standalone-field>
+                            </div>
+                        </div>
+
                         <!-- Scoring, Saving -->
                         <div class="row" style="margin-top: 10px; margin-bottom: 10px">
                             <div class="col-sm-12">
@@ -185,27 +199,14 @@
                             </div>
                         </div>
 
-                        <!-- Screening title edit field -->
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <ui-editable-standalone-field
-                                    data-model="screeningMovement"
-                                    data-key="title"
-                                    data-empty="Title"
-                                    data-input-type="text"
-                                    data-save="saveScreeningMovement"
-                                    data-save-callback="saveScreeningMovementCallback">
-                                </ui-editable-standalone-field>
-                            </div>
-                        </div>
-
                         <!-- Screening notes edit field -->
                         <div class="row">
                             <div class="col-sm-12">
                                 <ui-editable-standalone-field
-                                    data-model="screeningMovement"
+                                    data-model="screeningMovement.meta"
                                     data-key="notes"
-                                    data-empty="General Notes"
+                                    data-empty="Notes:"
+                                    data-input-type="textarea"
                                     data-save="saveScreeningMovement"
                                     data-save-callback="saveScreeningMovementCallback">
                                 </ui-editable-standalone-field>

@@ -3273,13 +3273,19 @@ angular.module("movements/analysis/layouts/emphasis.html", []).run(["$templateCa
     "        <div class=\"col-lg-8 movement-details\">\n" +
     "            <div class=\"row\">\n" +
     "\n" +
-    "                <!-- Tags -->\n" +
-    "                <div class=\"col-sm-4\">\n" +
+    "                <div class=\"col-sm-3\">\n" +
+    "\n" +
+    "                    <!-- Date -->\n" +
+    "                    <span style=\"font-size: 0.8em\">\n" +
+    "                        {{ movement.createdAt | mysqlDate:'MMM d yyyy, h:mm a' }}\n" +
+    "                    </span>\n" +
+    "\n" +
+    "                    <!-- Tags -->\n" +
     "\n" +
     "                </div>\n" +
     "\n" +
     "                <!-- Notes -->\n" +
-    "                <div class=\"col-sm-4\">\n" +
+    "                <div class=\"col-sm-6\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-model=\"movement.meta\"\n" +
     "                        data-key=\"notes\"\n" +
@@ -3291,7 +3297,7 @@ angular.module("movements/analysis/layouts/emphasis.html", []).run(["$templateCa
     "                </div>\n" +
     "\n" +
     "                <!-- Buttons -->\n" +
-    "                <div class=\"col-sm-4\">\n" +
+    "                <div class=\"col-sm-3\">\n" +
     "\n" +
     "                </div>\n" +
     "            </div>\n" +
@@ -4104,11 +4110,19 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "\n" +
     "        <!-- Editable field -->\n" +
     "        <div ng-switch-when=\"editing\" class=\"col-sm-12\">\n" +
-    "            <textarea\n" +
-    "                ng-if=\"inputType == 'textarea'\"\n" +
-    "                ng-model=\"model[key]\"\n" +
-    "                class=\"form-control\">\n" +
-    "            </textarea>\n" +
+    "            <div ng-if=\"inputType == 'textarea'\" class=\"input-type-textarea\">\n" +
+    "\n" +
+    "                <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
+    "\n" +
+    "                <div class=\"buttons\">\n" +
+    "                    <a ng-click=\"cancel()\" title=\"Cancel\" href=\"javascript:;\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </a>\n" +
+    "                    <a ng-click=\"save()\" title=\"Save\" href=\"javascript:;\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "\n" +
     "            <div ng-if=\"inputType == 'text'\" class=\"input-group\">\n" +
     "                <span class=\"input-group-btn\">\n" +
@@ -4128,14 +4142,16 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "        </div>\n" +
     "\n" +
     "        <!-- Saving notice -->\n" +
-    "        <div ng-switch-when=\"saving\" class=\"col-sm-12 text-muted\">\n" +
-    "            {{ model[key] || empty }}\n" +
-    "            <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
+    "        <div ng-switch-when=\"saving\" class=\"col-sm-12\">\n" +
+    "            <span class=\"input-type-{{ inputType }}\">\n" +
+    "                {{ model[key] || empty }}\n" +
+    "                <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
+    "            </span>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Displayed field -->\n" +
     "        <div ng-switch-default class=\"col-sm-12 ui-editable-field-value\">\n" +
-    "            <a ng-click=\"edit()\" href=\"javascript:;\">\n" +
+    "            <a ng-click=\"edit()\" href=\"javascript:;\" class=\"input-type-{{ inputType }}\">\n" +
     "                <span class=\"edit-text\">\n" +
     "                    {{ model[key] || empty }}\n" +
     "                </span>\n" +
@@ -6918,6 +6934,20 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "\n" +
     "                    <div class=\"col-lg-7 screening-details\">\n" +
     "\n" +
+    "                        <!-- Screening title edit field -->\n" +
+    "                        <div class=\"row\">\n" +
+    "                            <div class=\"col-sm-12\">\n" +
+    "                                <ui-editable-standalone-field\n" +
+    "                                    data-model=\"screeningMovement\"\n" +
+    "                                    data-key=\"title\"\n" +
+    "                                    data-empty=\"Title\"\n" +
+    "                                    data-input-type=\"text\"\n" +
+    "                                    data-save=\"saveScreeningMovement\"\n" +
+    "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
+    "                                </ui-editable-standalone-field>\n" +
+    "                            </div>\n" +
+    "                        </div>\n" +
+    "\n" +
     "                        <!-- Scoring, Saving -->\n" +
     "                        <div class=\"row\" style=\"margin-top: 10px; margin-bottom: 10px\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
@@ -7000,27 +7030,14 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                            </div>\n" +
     "                        </div>\n" +
     "\n" +
-    "                        <!-- Screening title edit field -->\n" +
-    "                        <div class=\"row\">\n" +
-    "                            <div class=\"col-sm-12\">\n" +
-    "                                <ui-editable-standalone-field\n" +
-    "                                    data-model=\"screeningMovement\"\n" +
-    "                                    data-key=\"title\"\n" +
-    "                                    data-empty=\"Title\"\n" +
-    "                                    data-input-type=\"text\"\n" +
-    "                                    data-save=\"saveScreeningMovement\"\n" +
-    "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
-    "                                </ui-editable-standalone-field>\n" +
-    "                            </div>\n" +
-    "                        </div>\n" +
-    "\n" +
     "                        <!-- Screening notes edit field -->\n" +
     "                        <div class=\"row\">\n" +
     "                            <div class=\"col-sm-12\">\n" +
     "                                <ui-editable-standalone-field\n" +
-    "                                    data-model=\"screeningMovement\"\n" +
+    "                                    data-model=\"screeningMovement.meta\"\n" +
     "                                    data-key=\"notes\"\n" +
-    "                                    data-empty=\"General Notes\"\n" +
+    "                                    data-empty=\"Notes\"\n" +
+    "                                    data-input-type=\"textarea\"\n" +
     "                                    data-save=\"saveScreeningMovement\"\n" +
     "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
     "                                </ui-editable-standalone-field>\n" +

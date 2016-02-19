@@ -12,11 +12,19 @@
 
         <!-- Editable field -->
         <div ng-switch-when="editing" class="col-sm-12">
-            <textarea
-                ng-if="inputType == 'textarea'"
-                ng-model="model[key]"
-                class="form-control">
-            </textarea>
+            <div ng-if="inputType == 'textarea'" class="input-type-textarea">
+
+                <textarea ng-model="model[key]" class="form-control"></textarea>
+
+                <div class="buttons">
+                    <a ng-click="cancel()" title="Cancel" href="javascript:;">
+                        <i class="fa fa-times"></i>
+                    </a>
+                    <a ng-click="save()" title="Save" href="javascript:;">
+                        <i class="fa fa-floppy-o"></i>
+                    </a>
+                </div>
+            </div>
 
             <div ng-if="inputType == 'text'" class="input-group">
                 <span class="input-group-btn">
@@ -36,14 +44,16 @@
         </div>
 
         <!-- Saving notice -->
-        <div ng-switch-when="saving" class="col-sm-12 text-muted">
-            {{ model[key] || empty }}
-            <i class="fa fa-spinner fa-spin fa-fw"></i>
+        <div ng-switch-when="saving" class="col-sm-12">
+            <span class="input-type-{{ inputType }}">
+                {{ model[key] || empty }}
+                <i class="fa fa-spinner fa-spin fa-fw"></i>
+            </span>
         </div>
 
         <!-- Displayed field -->
         <div ng-switch-default class="col-sm-12 ui-editable-field-value">
-            <a ng-click="edit()" href="javascript:;">
+            <a ng-click="edit()" href="javascript:;" class="input-type-{{ inputType }}">
                 <span class="edit-text">
                     {{ model[key] || empty }}
                 </span>

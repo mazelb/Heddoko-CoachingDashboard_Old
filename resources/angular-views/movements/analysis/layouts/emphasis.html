@@ -137,17 +137,23 @@
         <div class="col-lg-8 movement-details">
             <div class="row">
 
-                <!-- Tags -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+
+                    <!-- Date -->
+                    <span style="font-size: 0.8em">
+                        {{ movement.createdAt | mysqlDate:'MMM d yyyy, h:mm a' }}
+                    </span>
+
+                    <!-- Tags -->
 
                 </div>
 
                 <!-- Notes -->
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <ui-editable-standalone-field
                         data-model="movement.meta"
                         data-key="notes"
-                        data-empty="Notes"
+                        data-empty="Notes:"
                         data-input-type="textarea"
                         data-save="saveMovementDetails"
                         data-save-callback="saveMovementDetailsCallback">
@@ -155,7 +161,7 @@
                 </div>
 
                 <!-- Buttons -->
-                <div class="col-sm-4">
+                <div class="col-sm-3">
 
                 </div>
             </div>
