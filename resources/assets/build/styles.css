@@ -8949,10 +8949,11 @@ svg {
   background-color: #506572; }
   .ui-editable-fields .input-type-textarea .form-control {
     display: inline-block;
-    width: 90%;
     vertical-align: top;
-    resize: vertical;
-    background-color: transparent; }
+    width: 90%;
+    font-weight: normal;
+    background-color: transparent;
+    resize: vertical; }
   .ui-editable-fields .input-type-textarea .buttons {
     position: absolute;
     top: 0;

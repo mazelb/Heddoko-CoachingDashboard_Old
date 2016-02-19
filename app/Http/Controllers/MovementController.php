@@ -135,7 +135,14 @@ class MovementController extends Controller
             return response('Movement Not Found.', 404);
         }
 
-        // There are no movement attributes to append. Keep going...
+        // Append attributes.
+        if (count($embed['attributes']))
+        {
+            foreach ($embed['attributes'] as $accessor)
+            {
+                $movement->setAttribute($accessor, $movement->$accessor);
+            }
+        }
 
         return $movement;
     }
@@ -216,8 +223,14 @@ class MovementController extends Controller
         // TODO: save movement events.
         // ...
 
-        // TODO: save tags.
-        // ...
+        // Attach or create tags.
+        if ($this->request->has('tags') || $this->request->has('tagIds'))
+        {
+            $movement->saveTags(
+                $this->request->input('tags', []),
+                $this->request->input('tagIds', [])
+            );
+        }
 
         // TODO: save folder changes.
         // ...
@@ -236,6 +249,15 @@ class MovementController extends Controller
 
         // Return updated model.
         $updated = Movement::with($embed['relations'])->find($movement->id);
+
+        // Append attributes.
+        if (count($embed['attributes']))
+        {
+            foreach ($embed['attributes'] as $accessor)
+            {
+                $updated->setAttribute($accessor, $updated->$accessor);
+            }
+        }
 
         return $updated;
     }

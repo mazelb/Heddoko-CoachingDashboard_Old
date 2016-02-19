@@ -18,9 +18,18 @@ class Profile extends Model
     use Taggable, HasAvatar, CamelCaseAttrs;
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta.data' => 'array',
+    ];
+
+    /**
      * Attributes which are mass-assignable.
      */
-	protected $fillable = ['firstName', 'lastName', 'tagId'];
+	protected $fillable = ['firstName', 'lastName', 'mainTagId'];
 
     /**
      * Attributes that SHOULD be appended to the model's array form.
@@ -30,14 +39,12 @@ class Profile extends Model
     /**
      * Attributes that CAN be appended to the model's array form.
      */
-    public static $appendable = [
-        'avatarSrc',
-    ];
+    public static $appendable = ['avatarSrc', 'mainTag', 'tags'];
 
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['main_tag_id', 'avatar', 'pivot'];
+    protected $hidden = ['avatar', 'main_tag_id', 'pivot', 'taggables'];
 
     /**
      * Profile's additional details.
@@ -79,5 +86,12 @@ class Profile extends Model
      */
     public function folders() {
         return $this->hasMany('App\Models\Folder');
+    }
+
+    /**
+     * Primary tag belonging to this profile.
+     */
+    public function mainTag() {
+        return $this->belongsTo('App\Models\Tag', 'main_tag_id');
     }
 }

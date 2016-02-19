@@ -31,6 +31,15 @@ class ProfileMeta extends Model
     CONST GENDER_MALE = 2;
 
     /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'data' => 'array',
+    ];
+
+    /**
      * Name of associated database table.
      */
     protected $table = 'profile_meta';

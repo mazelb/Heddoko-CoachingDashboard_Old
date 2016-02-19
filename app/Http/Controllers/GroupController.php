@@ -128,16 +128,25 @@ class GroupController extends Controller
      */
     private function saveGroupData(Group $group)
     {
-        // Update primary profile details.
-        if ($this->request->has('name')) {
-            $group->name = $this->request->input('name');
+        // Update primary group details.
+        foreach (['name', 'mainTagId', 'meta'] as $attribute) {
+            if ($this->request->has($attribute)) {
+                $group->$attribute = $this->request->input($attribute);
+            }
         }
-
-        // TODO: save meta data...
 
         // Save group.
         if (!$group->save()) {
             return response('Could not save group data.', 500);
+        }
+
+        // Attach or create tags.
+        if ($this->request->has('tags') || $this->request->has('tagIds'))
+        {
+            $group->saveTags(
+                $this->request->input('tags', []),
+                $this->request->input('tagIds', [])
+            );
         }
 
         // Attach profiles.

@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
 use App\Traits\TaggableTrait as Taggable;
 use App\Traits\HasAvatarTrait as HasAvatar;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
@@ -30,14 +31,19 @@ class Group extends Model
     /**
      * Attributes that CAN be appended to the model's array form.
      */
-    public static $appendable = [
-        'avatarSrc',
-    ];
+    public static $appendable = ['avatarSrc', 'tags'];
 
     /**
      * Attributes which should be hidden from the models' array form.
      */
-    protected $hidden = ['avatar', 'pivot'];
+    protected $hidden = ['avatar', 'pivot', 'taggables'];
+
+    /**
+     * Managers of this group.
+     */
+    public function managers() {
+        return $this->belongsToMany('App\Models\User', 'group_manager', 'group_id', 'manager_id');
+    }
 
     /**
      * Profiles beloning to this group.
@@ -47,9 +53,9 @@ class Group extends Model
     }
 
     /**
-     * Managers of this group.
+     * Primary tag belonging to this profile.
      */
-    public function managers() {
-        return $this->belongsToMany('App\Models\User', 'group_manager', 'group_id', 'manager_id');
+    public function mainTag() {
+        return $this->belongsTo('App\Models\Tag', 'main_tag_id');
     }
 }

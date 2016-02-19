@@ -227,8 +227,9 @@
                         <div class="col-xs-12 col-sm-6">
                             <ui-editable-field
                                 data-label="Primary Sport"
-                                data-key="primaryTag"
-                                data-type="tag">
+                                data-key="mainTag"
+                                data-type="tag"
+                                data-empty="Select a Sport">
                             </ui-editable-field>
                         </div>
 
@@ -236,9 +237,10 @@
                         <div class="col-xs-12 col-sm-6">
                             <ui-editable-field
                                 data-label="Other Sports"
-                                data-key="secondaryTags"
+                                data-key="tags"
                                 data-type="tag"
-                                data-max-tags="10">
+                                data-max-tags="10"
+                                data-empty="Select a Sport">
                             </ui-editable-field>
                         </div>
                     </div>
@@ -300,9 +302,9 @@
         		<div class="col-xs-12" style="margin-bottom: 15px">
                     <ui-editable-standalone-field
                         data-heading="Medical Information"
-                        data-model="profile"
+                        data-model="profile.meta.data"
                         data-key="medicalHistory"
-                        data-empty="No medical information provided."
+                        data-empty="Medical information:"
                         data-save="saveProfileDetails"
                         data-save-callback="saveProfileDetailsCallback">
                     </ui-editable-standalone-field>
@@ -311,9 +313,9 @@
                 <div class="col-xs-12" style="margin-bottom: 15px">
                     <ui-editable-standalone-field
                         data-heading="Previous Injuries"
-                        data-model="profile"
+                        data-model="profile.meta.data"
                         data-key="injuries"
-                        data-empty="No previous injuries."
+                        data-empty="Injuries:"
                         data-save="saveProfileDetails"
                         data-save-callback="saveProfileDetailsCallback">
                     </ui-editable-standalone-field>
@@ -346,9 +348,9 @@
                 <div class="col-xs-12" style="margin-bottom: 15px">
                     <ui-editable-standalone-field
                         data-heading="Other Notes"
-                        data-model="profile"
+                        data-model="profile.meta.data"
                         data-key="notes"
-                        data-empty="No other notes."
+                        data-empty="Notes:"
                         data-save="saveProfileDetails"
                         data-save-callback="saveProfileDetailsCallback">
                     </ui-editable-standalone-field>

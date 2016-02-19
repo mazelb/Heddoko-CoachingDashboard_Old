@@ -145,10 +145,15 @@ angular.module('app.services')
                 // // Calculate the weight in pounds.
                 // profile.weight_lbs = profile.mass > 0 ? Math.round(profile.mass / 0.453592) : '';
 
+                // Make sure meta data array is not null.
+                profile.meta.data = $.extend({}, profile.meta.data);
+
                 // Append meta data to profile object.
                 angular.forEach(profile.meta, function(data, key) {
                     profile[key] = data;
                 });
+
+                //
 
                 return profile;
             },
@@ -167,6 +172,7 @@ angular.module('app.services')
                     id: profile.id,
                     firstName: profile.firstName || '',
                     lastName: profile.lastName || '',
+                    mainTagId: profile.mainTagId || '',
                     meta: {
                         height: profile.height || 0.0,
                         mass: profile.mass || 0.0,
@@ -174,10 +180,7 @@ angular.module('app.services')
                         gender: profile.gender || '',
                         phone: profile.phone || '',
                         email: profile.email || '',
-                        medicalHistory: profile.medicalHistory || '',
-                        injuries: profile.injuries || '',
-                        notes: profile.notes || '',
-                        params: profile.params || ''
+                        data: profile.data || {}
                     }
                 };
 

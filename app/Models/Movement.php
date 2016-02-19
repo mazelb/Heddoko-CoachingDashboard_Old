@@ -9,11 +9,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Traits\TaggableTrait as Taggable;
 use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class Movement extends Model
 {
-    use CamelCaseAttrs;
+    use CamelCaseAttrs, Taggable;
 
     /**
      * Attributes which are mass-assignable.
@@ -27,14 +28,19 @@ class Movement extends Model
     ];
 
     /**
-     * Attributes that SHOULD be appended to the model's array form.
+     * Attributes which should be hidden from the models' array form.
      */
-    protected $appends = [];
+    protected $hidden = ['taggables'];
 
     /**
      * Attributes that CAN be appended to the model's array form.
      */
-    public static $appendable = [];
+    public static $appendable = ['tags'];
+
+    /**
+     * Attributes that SHOULD be appended to the model's array form.
+     */
+    protected $appends = [];
 
     /**
      * Events belonging to this movement.
@@ -83,12 +89,4 @@ class Movement extends Model
 	{
 		return $this->belongsTo('App\Model\Screening');
 	}
-
-    /**
-     * Tags belonging to this movement.
-     */
-    public function tags()
-    {
-        return $this->morphToMany('App\Models\Tag', 'taggable');
-    }
 }

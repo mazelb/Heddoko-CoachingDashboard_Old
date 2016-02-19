@@ -130,7 +130,7 @@ angular.module('app.controllers')
             Utilities.data.isFetchingGroups = true;
 
             // Retrieve available groups.
-    		GroupService.list(['avatarSrc']).then(
+    		GroupService.list(['avatarSrc', 'tags']).then(
                 function(response) {
                     Utilities.timeEnd('Fetching Groups');
 
@@ -241,9 +241,8 @@ angular.module('app.controllers')
         $scope.fetchProfiles = function() {
             Utilities.time('Fetching Profiles');
 
-            // Turn on fetching flag.
+            // Turn on "fetching profiles" flag.
             Utilities.data.isFetchingProfiles = true;
-            // Utilities.setFlag('isFetchingProfiles', true);
 
             // Retrieve profiles.
     		ProfileService.list(null, ['avatarSrc', 'groups', 'meta']).then(
@@ -258,7 +257,6 @@ angular.module('app.controllers')
 
                     // Select a default profile.
                     if (Utilities.store.profileId === 0 && response.data.length > 0) {
-                        // Utilities.store.profileId = response.data[0].id;
                         $scope.global.selectProfile(response.data[0].id);
                     }
 
@@ -266,13 +264,11 @@ angular.module('app.controllers')
                     $scope.global.updateFilteredProfiles();
 
                     Utilities.data.isFetchingProfiles = false;
-                    // Utilities.setFlag('isFetchingProfiles', false);
     		    },
                 function(response) {
                     Utilities.timeEnd('Fetching Profiles');
                     Utilities.error('Could not retrieve profile list: ' + response.statusText);
                     Utilities.data.isFetchingProfiles = false;
-                    // Utilities.setFlag('isFetchingProfiles', false);
                 }
             );
         };
@@ -325,7 +321,6 @@ angular.module('app.controllers')
             }
 
             // Update the selected group.
-            // var profile = $scope.global.state.profile.list[id];
             var profile = Utilities.getData('profile', id);
             if (profile && profile.groups && profile.groups.length &&
                 profile.groups[0].id != Utilities.store.groupId) {

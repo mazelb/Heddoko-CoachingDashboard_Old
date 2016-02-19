@@ -2613,8 +2613,9 @@ angular.module("group/view.html", []).run(["$templateCache", function($templateC
     "                        <div class=\"col-xs-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Sport\"\n" +
-    "                                data-key=\"tags\"\n" +
-    "                                data-type=\"tag\">\n" +
+    "                                data-key=\"mainTag\"\n" +
+    "                                data-type=\"tag\"\n" +
+    "                                data-empty=\"Select a Sport\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "\n" +
@@ -3281,6 +3282,15 @@ angular.module("movements/analysis/layouts/emphasis.html", []).run(["$templateCa
     "                    </span>\n" +
     "\n" +
     "                    <!-- Tags -->\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-model=\"movement\"\n" +
+    "                        data-key=\"tags\"\n" +
+    "                        data-empty=\"Tags:\"\n" +
+    "                        data-input-type=\"tag-title\"\n" +
+    "                        data-max-tags=\"20\"\n" +
+    "                        data-save=\"saveMovementDetails\"\n" +
+    "                        data-save-callback=\"saveMovementDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
     "\n" +
     "                </div>\n" +
     "\n" +
@@ -3289,7 +3299,7 @@ angular.module("movements/analysis/layouts/emphasis.html", []).run(["$templateCa
     "                    <ui-editable-standalone-field\n" +
     "                        data-model=\"movement.meta\"\n" +
     "                        data-key=\"notes\"\n" +
-    "                        data-empty=\"Notes\"\n" +
+    "                        data-empty=\"Notes:\"\n" +
     "                        data-input-type=\"textarea\"\n" +
     "                        data-save=\"saveMovementDetails\"\n" +
     "                        data-save-callback=\"saveMovementDetailsCallback\">\n" +
@@ -4110,9 +4120,9 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "\n" +
     "        <!-- Editable field -->\n" +
     "        <div ng-switch-when=\"editing\" class=\"col-sm-12\">\n" +
-    "            <div ng-if=\"inputType == 'textarea'\" class=\"input-type-textarea\">\n" +
     "\n" +
-    "                <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
+    "            <!-- Type: tag -->\n" +
+    "            <div ng-if=\"inputType == 'tag-title'\" class=\"input-type-tag\">\n" +
     "\n" +
     "                <div class=\"buttons\">\n" +
     "                    <a ng-click=\"cancel()\" title=\"Cancel\" href=\"javascript:;\">\n" +
@@ -4122,8 +4132,16 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "                        <i class=\"fa fa-floppy-o\"></i>\n" +
     "                    </a>\n" +
     "                </div>\n" +
+    "\n" +
+    "                <selectize\n" +
+    "                    ng-model=\"model[key]\"\n" +
+    "                    class=\"form-control text-left\"\n" +
+    "                    config=\"selectizeConfig\"\n" +
+    "                    options=\"options\">\n" +
+    "                </selectize>\n" +
     "            </div>\n" +
     "\n" +
+    "            <!-- Type: text -->\n" +
     "            <div ng-if=\"inputType == 'text'\" class=\"input-group\">\n" +
     "                <span class=\"input-group-btn\">\n" +
     "                    <button ng-click=\"cancel()\" title=\"Cancel\" class=\"btn btn-danger\" type=\"button\">\n" +
@@ -4139,12 +4157,27 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "                    type=\"text\"\n" +
     "                    class=\"form-control\">\n" +
     "            </div>\n" +
+    "\n" +
+    "            <!-- Type: textarea -->\n" +
+    "            <div ng-if=\"inputType == 'textarea'\" class=\"input-type-textarea\">\n" +
+    "\n" +
+    "                <textarea ng-model=\"model[key]\" class=\"form-control\"></textarea>\n" +
+    "\n" +
+    "                <div class=\"buttons\">\n" +
+    "                    <a ng-click=\"cancel()\" title=\"Cancel\" href=\"javascript:;\">\n" +
+    "                        <i class=\"fa fa-times\"></i>\n" +
+    "                    </a>\n" +
+    "                    <a ng-click=\"save()\" title=\"Save\" href=\"javascript:;\">\n" +
+    "                        <i class=\"fa fa-floppy-o\"></i>\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
     "        </div>\n" +
     "\n" +
     "        <!-- Saving notice -->\n" +
     "        <div ng-switch-when=\"saving\" class=\"col-sm-12\">\n" +
     "            <span class=\"input-type-{{ inputType }}\">\n" +
-    "                {{ model[key] || empty }}\n" +
+    "                {{ display || model[key] || empty }}\n" +
     "                <i class=\"fa fa-spinner fa-spin fa-fw\"></i>\n" +
     "            </span>\n" +
     "        </div>\n" +
@@ -4153,7 +4186,7 @@ angular.module("partials/directives/ui-editable-fields/standalone-field.html", [
     "        <div ng-switch-default class=\"col-sm-12 ui-editable-field-value\">\n" +
     "            <a ng-click=\"edit()\" href=\"javascript:;\" class=\"input-type-{{ inputType }}\">\n" +
     "                <span class=\"edit-text\">\n" +
-    "                    {{ model[key] || empty }}\n" +
+    "                    {{ display || model[key] || empty }}\n" +
     "                </span>\n" +
     "                <i class=\"edit-icon fa fa-pencil\"></i>\n" +
     "            </a>\n" +
@@ -6589,8 +6622,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Primary Sport\"\n" +
-    "                                data-key=\"primaryTag\"\n" +
-    "                                data-type=\"tag\">\n" +
+    "                                data-key=\"mainTag\"\n" +
+    "                                data-type=\"tag\"\n" +
+    "                                data-empty=\"Select a Sport\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "\n" +
@@ -6598,9 +6632,10 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                        <div class=\"col-xs-12 col-sm-6\">\n" +
     "                            <ui-editable-field\n" +
     "                                data-label=\"Other Sports\"\n" +
-    "                                data-key=\"secondaryTags\"\n" +
+    "                                data-key=\"tags\"\n" +
     "                                data-type=\"tag\"\n" +
-    "                                data-max-tags=\"10\">\n" +
+    "                                data-max-tags=\"10\"\n" +
+    "                                data-empty=\"Select a Sport\">\n" +
     "                            </ui-editable-field>\n" +
     "                        </div>\n" +
     "                    </div>\n" +
@@ -6662,9 +6697,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "        		<div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Medical Information\"\n" +
-    "                        data-model=\"profile\"\n" +
+    "                        data-model=\"profile.meta.data\"\n" +
     "                        data-key=\"medicalHistory\"\n" +
-    "                        data-empty=\"No medical information provided.\"\n" +
+    "                        data-empty=\"Medical information:\"\n" +
     "                        data-save=\"saveProfileDetails\"\n" +
     "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                    </ui-editable-standalone-field>\n" +
@@ -6673,9 +6708,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Previous Injuries\"\n" +
-    "                        data-model=\"profile\"\n" +
+    "                        data-model=\"profile.meta.data\"\n" +
     "                        data-key=\"injuries\"\n" +
-    "                        data-empty=\"No previous injuries.\"\n" +
+    "                        data-empty=\"Injuries:\"\n" +
     "                        data-save=\"saveProfileDetails\"\n" +
     "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                    </ui-editable-standalone-field>\n" +
@@ -6708,9 +6743,9 @@ angular.module("profile/view.html", []).run(["$templateCache", function($templat
     "                <div class=\"col-xs-12\" style=\"margin-bottom: 15px\">\n" +
     "                    <ui-editable-standalone-field\n" +
     "                        data-heading=\"Other Notes\"\n" +
-    "                        data-model=\"profile\"\n" +
+    "                        data-model=\"profile.meta.data\"\n" +
     "                        data-key=\"notes\"\n" +
-    "                        data-empty=\"No other notes.\"\n" +
+    "                        data-empty=\"Notes:\"\n" +
     "                        data-save=\"saveProfileDetails\"\n" +
     "                        data-save-callback=\"saveProfileDetailsCallback\">\n" +
     "                    </ui-editable-standalone-field>\n" +
@@ -7036,7 +7071,7 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                                <ui-editable-standalone-field\n" +
     "                                    data-model=\"screeningMovement.meta\"\n" +
     "                                    data-key=\"notes\"\n" +
-    "                                    data-empty=\"Notes\"\n" +
+    "                                    data-empty=\"Notes:\"\n" +
     "                                    data-input-type=\"textarea\"\n" +
     "                                    data-save=\"saveScreeningMovement\"\n" +
     "                                    data-save-callback=\"saveScreeningMovementCallback\">\n" +
