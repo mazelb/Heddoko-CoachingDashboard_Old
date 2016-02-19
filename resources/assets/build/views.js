@@ -1,4 +1,4 @@
-angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/directives/ui-avatar.html', 'partials/directives/ui-editable-fields/btn-group.html', 'partials/directives/ui-editable-fields/field-horizontal.html', 'partials/directives/ui-editable-fields/field-value-generic.html', 'partials/directives/ui-editable-fields/field-value-timestamp.html', 'partials/directives/ui-editable-fields/field-value-with-units.html', 'partials/directives/ui-editable-fields/field-vertical.html', 'partials/directives/ui-editable-fields/fields.html', 'partials/directives/ui-editable-fields/standalone-field.html', 'partials/directives/ui-filesystem/container.html', 'partials/directives/ui-filesystem/layouts/details.html', 'partials/directives/ui-filesystem/layouts/large-tiles.html', 'partials/directives/ui-filesystem/layouts/small-tiles.html', 'partials/directives/ui-movement/placeholder.html', 'partials/directives/ui-movement/playback.html', 'partials/directives/ui-movement/preview.html', 'partials/directives/ui-page-title.html', 'partials/directives/ui-taggable-input.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/new-profile-modal.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
+angular.module('app.views', ['account.html', 'configuration.html', 'dashboard.html', 'fmsresults.html', 'fmstest.html', 'placeholder.html', 'capture-demo/index.html', 'capture/index.html', 'demo/trends/index.html', 'fms-bak/demo/analysis.html', 'fms-bak/demo/index.html', 'fms-bak/demo/partials/analysis-coronal.html', 'fms-bak/demo/partials/analysis-layout-emphasized.html', 'fms-bak/demo/partials/analysis-sagittal.html', 'fms-bak/demo/partials/analysis-transverse.html', 'fms-bak/demo/partials/summary-content.html', 'fms-bak/demo/partials/summary-layout.html', 'fms-bak/demo/partials/summary-menu.html', 'fms-bak/demo/partials/summary-movement-overview.html', 'fms-bak/demo/partials/summary-overall-scores.html', 'fms-bak/demo/partials/test-coronal.html', 'fms-bak/demo/partials/test-layout-emphasized.html', 'fms-bak/demo/partials/test-sagittal.html', 'fms-bak/demo/partials/test-transverse.html', 'fms-bak/demo/summary.html', 'fms-bak/demo/test.html', 'fms-bak/live/analysis.html', 'fms-bak/live/index.html', 'fms-bak/live/partials/analysis-menu.html', 'fms-bak/live/partials/breadcrumbs.html', 'fms-bak/live/partials/header.html', 'fms-bak/live/partials/iterations.html', 'fms-bak/live/partials/summary-legend.html', 'fms-bak/live/partials/summary-menu.html', 'fms-bak/live/partials/test-menu.html', 'fms-bak/live/partials/test-trials.html', 'fms-bak/live/summary.html', 'fms-bak/live/test.html', 'group/edit.html', 'group/list.html', 'group/partials/form.html', 'group/partials/upload-photo.html', 'group/view.html', 'import/index.html', 'movements/analysis-demo/index.html', 'movements/analysis/index.html', 'movements/analysis/layouts/emphasis.html', 'movements/comparison/index.html', 'movements/explorer/index.html', 'overlay/movement-editor/footer.html', 'overlay/movement-editor/index.html', 'overlay/thumbnail-selector/footer.html', 'overlay/thumbnail-selector/index.html', 'partials/breadcrumbs.html', 'partials/directives/ui-avatar.html', 'partials/directives/ui-editable-fields/btn-group.html', 'partials/directives/ui-editable-fields/field-horizontal.html', 'partials/directives/ui-editable-fields/field-value-generic.html', 'partials/directives/ui-editable-fields/field-value-timestamp.html', 'partials/directives/ui-editable-fields/field-value-with-units.html', 'partials/directives/ui-editable-fields/field-vertical.html', 'partials/directives/ui-editable-fields/fields.html', 'partials/directives/ui-editable-fields/standalone-field.html', 'partials/directives/ui-filesystem/container.html', 'partials/directives/ui-filesystem/layouts/details.html', 'partials/directives/ui-filesystem/layouts/large-tiles.html', 'partials/directives/ui-filesystem/layouts/small-tiles.html', 'partials/directives/ui-movement/placeholder.html', 'partials/directives/ui-movement/playback.html', 'partials/directives/ui-movement/preview.html', 'partials/directives/ui-page-title.html', 'partials/directives/ui-taggable-input.html', 'partials/header.html', 'partials/loading.html', 'partials/navigation.html', 'partials/overlay.html', 'partials/select-profile.html', 'profile/create.html', 'profile/list.html', 'profile/partials/current-fms-plot.html', 'profile/partials/demo-session.html', 'profile/partials/final-fms-plot.html', 'profile/partials/movement-indicators.html', 'profile/partials/new-profile-modal.html', 'profile/partials/screening-indicators.html', 'profile/partials/upload-photo.html', 'profile/view.html', 'screenings/index.html', 'screenings/live/index.html', 'screenings/view.html']);
 
 angular.module("account.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("account.html",
@@ -3075,7 +3075,9 @@ angular.module("movements/analysis-demo/index.html", []).run(["$templateCache", 
 
 angular.module("movements/analysis/index.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("movements/analysis/index.html",
-    "<div class=\"page\">\n" +
+    "<!-- Copyright Heddoko(TM) 2015, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"page analysis-page\">\n" +
     "    <header>\n" +
     "        <h1>\n" +
     "            Analyze <i class=\"fa fa-line-chart\"></i>\n" +
@@ -3083,9 +3085,218 @@ angular.module("movements/analysis/index.html", []).run(["$templateCache", funct
     "        </h1>\n" +
     "    </header>\n" +
     "\n" +
-    "    <h2 style=\"text-align: center; color: #ccc;\">\n" +
-    "        In Development\n" +
-    "    </h2>\n" +
+    "    <!-- Analysis container -->\n" +
+    "    <div ng-if=\"!global.data.isFetchingAnalysisMovement && movement\" class=\"page-padded\">\n" +
+    "\n" +
+    "        <!-- Title -->\n" +
+    "        <div class=\"row\">\n" +
+    "            <div class=\"col-lg-6\">\n" +
+    "                <h3 class=\"title\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-model=\"movement\"\n" +
+    "                        data-key=\"title\"\n" +
+    "                        data-empty=\"Movement Title\"\n" +
+    "                        data-input-type=\"text\"\n" +
+    "                        data-save=\"saveMovementDetails\"\n" +
+    "                        data-save-callback=\"saveMovementDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "\n" +
+    "                    <span></span>\n" +
+    "                </h3>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Layout -->\n" +
+    "        <ng-include src=\"'movements/analysis/layouts/' + layout + '.html'\"></ng-include>\n" +
+    "\n" +
+    "        <!-- Movement details -->\n" +
+    "        <div class=\"row no-gutter\">\n" +
+    "            <div class=\"col-sm-12\">\n" +
+    "\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Retrieving movement data -->\n" +
+    "    <div ng-if=\"global.data.isFetchingAnalysisMovement\">\n" +
+    "        <ng-include src=\"'partials/loading.html'\"></ng-include>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Movement not found -->\n" +
+    "    <div ng-if=\"!global.data.isFetchingAnalysisMovement && !movement\">\n" +
+    "        <h2 class=\"text-center\">\n" +
+    "            An Error Occurred :(\n" +
+    "        </h2>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("movements/analysis/layouts/emphasis.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("movements/analysis/layouts/emphasis.html",
+    "<!-- Copyright Heddoko(TM) 2016, all rights reserved. -->\n" +
+    "\n" +
+    "<div class=\"emphasis-layout\">\n" +
+    "\n" +
+    "    <!-- Main container -->\n" +
+    "    <div class=\"main-container\">\n" +
+    "\n" +
+    "        <!-- Secondary views -->\n" +
+    "        <div class=\"secondary-views\">\n" +
+    "            <div class=\"movement-playback-container\">\n" +
+    "                <ui-movement-playback\n" +
+    "                    data-title=\"'Side / Sagittal'\"\n" +
+    "                    data-height=\"'300px'\"\n" +
+    "                    data-previous-movement=\"false\"\n" +
+    "                    data-next-movement=\"false\">\n" +
+    "                </ui-movement-playback>\n" +
+    "            </div>\n" +
+    "\n" +
+    "            <div class=\"movement-playback-container\">\n" +
+    "                <ui-movement-playback\n" +
+    "                    data-title=\"'Horizontal / Transverse'\"\n" +
+    "                    data-height=\"'300px'\"\n" +
+    "                    data-previous-movement=\"false\"\n" +
+    "                    data-next-movement=\"false\">\n" +
+    "                </ui-movement-playback>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Primary view -->\n" +
+    "        <div class=\"primary-view\">\n" +
+    "            <div class=\"movement-playback-container\">\n" +
+    "                <ui-movement-playback\n" +
+    "                    data-title=\"'Front / Coronal'\"\n" +
+    "                    data-height=\"'605px'\"\n" +
+    "                    data-previous-movement=\"false\"\n" +
+    "                    data-next-movement=\"false\">\n" +
+    "                </ui-movement-playback>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <!-- Menu -->\n" +
+    "        <div class=\"menu-container\">\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-desktop\"></i>\n" +
+    "                <span>\n" +
+    "                    Screen <br>\n" +
+    "                    Recording\n" +
+    "                </span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-camera\"></i>\n" +
+    "                <span>Screenshot</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-microphone\"></i>\n" +
+    "                <span>Voice</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-comment\"></i>\n" +
+    "                <span>Comment</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-search-plus\"></i>\n" +
+    "                <span>Zoom In</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-search-minus\"></i>\n" +
+    "                <span>Zoom Out</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-hand-paper-o\"></i>\n" +
+    "                <span>Rotate</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-pencil\"></i>\n" +
+    "                <span>Edit</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-random\"></i>\n" +
+    "                <span>Compare</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-share-alt\"></i>\n" +
+    "                <span>Share</span>\n" +
+    "            </a>\n" +
+    "\n" +
+    "            <a href=\"javascript:;\" class=\"btn btn-flat\">\n" +
+    "                <i class=\"fa fa-trash\"></i>\n" +
+    "                <span>Delete</span>\n" +
+    "            </a>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
+    "\n" +
+    "    <!-- Movement details -->\n" +
+    "    <div class=\"row movement-meta-row\">\n" +
+    "\n" +
+    "        <!-- Profile details -->\n" +
+    "        <div class=\"col-lg-4\">\n" +
+    "            <div class=\"row no-gutter\">\n" +
+    "                <div class=\"col-md-5\">\n" +
+    "                    <a\n" +
+    "                        href=\"#/profiles/{{ profile.id }}\"\n" +
+    "                        class=\"aspect-ratio aspect-4-3 card profile-avatar\"\n" +
+    "                        style=\"background-image: url({{ profile.avatarSrc || '' }})\">\n" +
+    "                    </a>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <div class=\"col-md-7\">\n" +
+    "                    <div class=\"profile-details\">\n" +
+    "                        <div>\n" +
+    "                            <a href=\"#/profiles/{{ profile.id }}\">\n" +
+    "                                {{ profile.lastName.toUpperCase() }}\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "\n" +
+    "                        <!-- Main group -->\n" +
+    "                        <div ng-if=\"profile.groups.length > 0\">\n" +
+    "                            <a href=\"#/groups/{{ profile.groups[0].id }}\">\n" +
+    "                                {{ profile.groups[0].name }}\n" +
+    "                            </a>\n" +
+    "                        </div>\n" +
+    "                    </div>\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "\n" +
+    "        <div class=\"col-lg-8 movement-details\">\n" +
+    "            <div class=\"row\">\n" +
+    "\n" +
+    "                <!-- Tags -->\n" +
+    "                <div class=\"col-sm-4\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Notes -->\n" +
+    "                <div class=\"col-sm-4\">\n" +
+    "                    <ui-editable-standalone-field\n" +
+    "                        data-model=\"movement.meta\"\n" +
+    "                        data-key=\"notes\"\n" +
+    "                        data-empty=\"Notes\"\n" +
+    "                        data-input-type=\"textarea\"\n" +
+    "                        data-save=\"saveMovementDetails\"\n" +
+    "                        data-save-callback=\"saveMovementDetailsCallback\">\n" +
+    "                    </ui-editable-standalone-field>\n" +
+    "                </div>\n" +
+    "\n" +
+    "                <!-- Buttons -->\n" +
+    "                <div class=\"col-sm-4\">\n" +
+    "\n" +
+    "                </div>\n" +
+    "            </div>\n" +
+    "        </div>\n" +
+    "    </div>\n" +
     "</div>\n" +
     "");
 }]);
@@ -4958,7 +5169,7 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "            </a>\n" +
     "        </li>\n" +
     "\n" +
-    "        <!-- List of movements -->\n" +
+    "        <!-- Movements -->\n" +
     "		<li>\n" +
     "            <a href=\"#/movements\">\n" +
     "                <i class=\"fa fa-th\"></i>\n" +
@@ -4991,9 +5202,9 @@ angular.module("partials/navigation.html", []).run(["$templateCache", function($
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
-    "                    <a href=\"#/movements/analyze\">\n" +
+    "                    <a href=\"#/movements/analyze/demo\">\n" +
     "                        <i class=\"fa fa-angle-right\"></i>\n" +
-    "                        <span>Analyze</span>\n" +
+    "                        <span>Analyze (demo)</span>\n" +
     "                    </a>\n" +
     "                </li>\n" +
     "                <li>\n" +
@@ -6620,7 +6831,7 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "        </div>\n" +
     "    </header>\n" +
     "\n" +
-    "    <div ng-if=\"!global.data.isFetchingLiveScreening && screening.id > 0\">\n" +
+    "    <div ng-if=\"!global.data.isFetchingLiveScreening && screening.id > 0\" class=\"page-padded\">\n" +
     "\n" +
     "        <!-- Container -->\n" +
     "        <div class=\"row no-gutter screening-container\">\n" +
@@ -6738,7 +6949,7 @@ angular.module("screenings/live/index.html", []).run(["$templateCache", function
     "                                        <i\n" +
     "                                            ng-if=\"screeningMovement.meta.score == score\"\n" +
     "                                            class=\"fa fa-dot-circle-o\"></i>\n" +
-    "                                        \n" +
+    "\n" +
     "                                        <span>{{ score }}</span>\n" +
     "                                    </a>\n" +
     "\n" +

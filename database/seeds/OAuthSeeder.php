@@ -55,17 +55,17 @@ class OAuthSeeder extends Seeder
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://suits.heddoko.vagrant/token'
+                'redirect_uri' => 'http://suits.heddoko.vagrant/oauth-token'
             ]);
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://localhost/token'
+                'redirect_uri' => 'http://localhost/oauth-token'
             ]);
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://localhost:8000/token'
+                'redirect_uri' => 'http://localhost:8000/oauth-token'
             ]);
         }
     }

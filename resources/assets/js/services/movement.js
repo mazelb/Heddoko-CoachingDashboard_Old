@@ -7,24 +7,29 @@
  */
 angular.module('app.services')
 
-.factory('MovementService', ['$http', 'apiEndpoint',
-    function($http, apiEndpoint) {
+.factory('MovementService', ['$http', 'apiEndpoint', 'Utilities',
+    function($http, apiEndpoint, Utilities) {
 
         return {
 
             /**
              * Base endpoint.
              */
-            endpoint: apiEndpoint + '/movements/',
+            endpoint: apiEndpoint + '/movements',
 
             /**
              * Retrieves the specified resource from the API.
              *
              * @param int id
+             * @param array|string embed
              * @return object $http
              */
-            get: function(id) {
-    			return $http.get(this.endpoint + id);
+            get: function(id, embed) {
+    			return $http.get(this.endpoint + '/' + id, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
@@ -55,10 +60,15 @@ angular.module('app.services')
              *
              * @param int id
              * @param object data
+             * @param array|string embed
              * @return object $http
              */
-            update: function(id, data) {
-                return $http.put(this.endpoint + id, data);
+            update: function(id, data, embed) {
+                return $http.put(this.endpoint + '/' + id, data, {
+                    params: {
+                        embed: Utilities.getEmbedParameter(embed)
+                    }
+                });
     		},
 
             /**
@@ -68,7 +78,7 @@ angular.module('app.services')
              * @return object $http
              */
             destroy: function(id) {
-    			return $http.delete(this.endpoint + id);
+    			return $http.delete(this.endpoint + '/' + id);
     		}
         };
     }

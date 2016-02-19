@@ -90,7 +90,7 @@ Route::group(['prefix' => 'api'], function()
         ]);
         Route::post('authorize', [
             'as' => 'oauth.authorize.post',
-            'uses' => 'Auth\OAuthController@authorize',
+            'uses' => 'Auth\OAuthController@postAuthorize',
             'middleware' => ['csrf', 'oauth.authorization', 'auth']
         ]);
     });

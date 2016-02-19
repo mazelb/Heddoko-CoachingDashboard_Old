@@ -29,16 +29,14 @@
     }
 }
 
-// Dimensions of controls box.
-$controls-size: 60px;
-
 .ui-movement-container {
     position: relative;
     display: block;
-    padding-bottom: $controls-size;
+    padding-bottom: 75px;
 
     h1 {
-        margin: 20px;
+        margin: 0;
+        padding: 20px;
         font-size: 1.2em;
         text-transform: uppercase;
         color: $text-color;
@@ -50,8 +48,8 @@ $controls-size: 60px;
         position: absolute;
         bottom: 15px;
         right: 15px;
-        height: $controls-size;
-        width: $controls-size;
+        height: 60px;
+        width: 60px;
 
         a {
             position: absolute;

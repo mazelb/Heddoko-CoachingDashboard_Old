@@ -62,7 +62,7 @@ angular.module('app.controllers')
              * @param object movement
              */
             onAnalyzeFile: function(movement) {
-                // TODO
+                Rover.browseTo.path('/movements/analyze/' + movement.id);
             },
 
             /**
@@ -380,8 +380,18 @@ angular.module('app.controllers')
                     }
 
                     // Update movement data.
-                    $scope.files = response.data.movements;
+                    $scope.files = [];
                     Utilities.resetDataNamespace('selectedMovementFiles');
+                    for (var i = 0; i < response.data.movements.length; i++)
+                    {
+                        $scope.files.push({
+                            id: response.data.movements[i].id,
+                            title: response.data.movements[i].title,
+                            createdAt: response.data.movements[i].createdAt,
+                            updatedAt: response.data.movements[i].updatedAt,
+                            href: '#/movements/analyze/' + response.data.movements[i].id,
+                        });
+                    }
 
                     Utilities.data.isFetchingMovementData = false;
                 },

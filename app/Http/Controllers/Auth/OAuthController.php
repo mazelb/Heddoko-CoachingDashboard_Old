@@ -35,7 +35,7 @@ class OAuthController extends Controller
     }
 
     /**
-     *
+     * Displays the login/authorization form.
      */
     public function showAuthorizationForm()
     {
@@ -56,9 +56,9 @@ class OAuthController extends Controller
     }
 
     /**
-     *
+     * Authorizes an app's access to user data.
      */
-    public function authorize()
+    public function postAuthorize()
     {
         $params = Authorizer::getAuthCodeRequestParams();
         $params['user_id'] = Auth::user()->id;

@@ -96,9 +96,9 @@ app.config(['$routeProvider', 'isLocalEnvironment',
 		})
 
         //
-        // Data routes.
+        // Movement routes.
         //
-        .when('/movements/analyze', {
+        .when('/movements/analyze/:movementId', {
 			templateUrl: 'movements/analysis/index.html',
             controller: 'AnalysisController'
 		})

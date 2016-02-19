@@ -211,7 +211,11 @@ angular.module('app.controllers')
             return ProfileService.update(profile.id, profile, ['avatarSrc', 'groups', 'meta']);
         };
 
-        // Callback for uiEditableListContainer directive.
+        /**
+         * Callback for uiEditableListContainer directive.
+         *
+         * @param bool profileSaved
+         */
         $scope.saveProfileDetailsCallback = function(profileSaved) {
 
             // Update profile data.

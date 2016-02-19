@@ -92,6 +92,7 @@
     display: inline-block;
     text-align: center;
     @include border-radius(8px);
+    @include box-shadow(none);
 
     span {
         display: block;
@@ -102,7 +103,6 @@
         color: $text-color;
         text-shadow: none;
         background-image: none;
-        @include box-shadow(none);
     }
     &.btn-default {
         background-color: #5C6F7D;

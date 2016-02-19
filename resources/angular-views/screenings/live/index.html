@@ -16,7 +16,7 @@
         </div>
     </header>
 
-    <div ng-if="!global.data.isFetchingLiveScreening && screening.id > 0">
+    <div ng-if="!global.data.isFetchingLiveScreening && screening.id > 0" class="page-padded">
 
         <!-- Container -->
         <div class="row no-gutter screening-container">
@@ -134,7 +134,7 @@
                                         <i
                                             ng-if="screeningMovement.meta.score == score"
                                             class="fa fa-dot-circle-o"></i>
-                                        
+
                                         <span>{{ score }}</span>
                                     </a>
 
