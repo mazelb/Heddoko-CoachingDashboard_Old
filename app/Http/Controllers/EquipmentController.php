@@ -89,7 +89,7 @@ class EquipmentController extends Controller {
 		$updated_model = Request::input('updated_equipment', []);
 
 		// Update the model.
-		$model->fill(array_except($updated_model, ['id', 'suits_equipment_id']));
+		$model->fill(array_except($updated_model, ['id', 'complex_equipment_id']));
 		$model->save();
 
 		return $this->index();

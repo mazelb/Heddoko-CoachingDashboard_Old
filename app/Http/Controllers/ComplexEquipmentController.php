@@ -67,7 +67,13 @@ class ComplexEquipmentController extends Controller {
 	{
         $data = Request::input('new_suit_equipment');
 
-		$new_suit_equipment = ComplexEquipment::create(array_only($data, ['mac_address', 'physical_location']));
+		$new_suit_equipment = ComplexEquipment::create(array_only($data, [
+            'serial_no',
+            'mac_address',
+            'physical_location',
+            'notes',
+            'status_id'
+        ]));
 
 		$new_suit_equipment_list = $data['equipment'];
 
