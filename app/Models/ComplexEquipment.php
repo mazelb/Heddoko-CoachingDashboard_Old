@@ -25,11 +25,6 @@ class ComplexEquipment extends Model
     protected $fillable = ['status_id', 'mac_address', 'serial_no', 'physical_location'];
 
     /**
-     * Attributes that SHOULD be appended to the model's array form.
-     */
-    protected $appends = ['status', 'equipment'];
-
-    /**
      * Status of complex equipment.
      */
 	public function status()

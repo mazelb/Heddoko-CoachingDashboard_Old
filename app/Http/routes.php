@@ -17,7 +17,7 @@ Route::group(['prefix' => 'api'], function()
      *
      * Middleware for these routes are defined in App\Providers\AppAuthenticationProvider
      */
-    Route::group(['prefix' => 'v1'], function()
+    Route::group(['prefix' => 'v1', 'middleware' => 'api.headers'], function()
     {
         // Profile endpoints.
         Route::post('profiles/{id}/avatar', 'ProfileController@saveAvatar');

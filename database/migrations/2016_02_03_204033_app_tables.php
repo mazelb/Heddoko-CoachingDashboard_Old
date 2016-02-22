@@ -63,6 +63,7 @@ class AppTables extends Migration
 			$table->string('mac_address');
             $table->string('serial_no');
 			$table->string('physical_location');
+            $table->text('notes');
 
 			$table->timestamps();
 		});
@@ -86,6 +87,7 @@ class AppTables extends Migration
             $table->string('mac_address');
 			$table->string('serial_no');
 			$table->string('physical_location');
+            $table->text('notes');
 
 			$table->timestamps();
 		});

@@ -33,11 +33,6 @@ class Equipment extends Model
     ];
 
     /**
-     * Attributes that SHOULD be appended to the model's array form.
-     */
-    protected $appends = ['status', 'material', 'anatomical_position'];
-
-    /**
      * Status of equipment.
      */
 	public function status()

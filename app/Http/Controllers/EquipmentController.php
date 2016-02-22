@@ -27,14 +27,9 @@ class EquipmentController extends Controller {
         $query = Equipment::with('status', 'material')->orderBy('id', 'desc');
 
 		// Filter by status ID.
-		$status_id = (int) Request::input('status_id', -1);
+		$status_id = (int) Request::input('status_id', 0);
 		switch ($status_id)
 		{
-			// No status ID was explicitly specified, assume we want available equipemnt.
-			case -1:
-				$query->where('status_id', Status::getByName('available')->id);
-				break;
-
 			case 0:
 				// Retrieve all equipment.
 				break;

@@ -86,12 +86,14 @@ class AccountSeeder extends Seeder
 		]);
 
         $this->command->info('Creating admin account');
-
+        
         $adminUser = User::create([
-			'email' => 'admin.demo@example.com',
-			'username' => 'admindemo',
+			'email' => 'admin@heddoko.com',
+			'username' => 'heddoko.admin',
 			'password' => bcrypt('hedd oko'),
-            'created_at' => '2015-10-21 20:58:19'
+            'first_name' => 'Admin',
+            'last_name' => '',
+            'created_at' => '2016-01-01 00:00:00'
 		]);
 
         $this->command->info('Creating roles');
