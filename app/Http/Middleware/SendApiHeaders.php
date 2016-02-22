@@ -17,23 +17,25 @@ class SendApiHeaders
     {
         $response = $next($request);
 
-        // Set the "Access-Control-Allow-Origin" header.
-        if (strlen($request->header('Origin'))) {
-            $response->header('Access-Control-Allow-Origin', $request->header('Origin'), true);
-        }
+        // NOTE: These headers are set by the server in /public/web.config
 
-        // Respond to pre-flighted requests.
-        if ($request->method() == 'OPTIONS')
-        {
-            // Allow the requested method.
-            if (in_array($request->header('Access-Control-Request-Method'), ['POST', 'PUT', 'PATCH', 'DELETE'])) {
-                $response->header('Access-Control-Allow-Methods', $request->header('Access-Control-Request-Method'), true);
-            }
-            // Allow requested header.
-            if ($request->header('Access-Control-Request-Headers')) {
-                $response->header('Access-Control-Allow-Headers', $request->header('Access-Control-Request-Headers'), true);
-            }
-        }
+        // // Set the "Access-Control-Allow-Origin" header.
+        // if (strlen($request->header('Origin'))) {
+        //     $response->header('Access-Control-Allow-Origin', $request->header('Origin'), true);
+        // }
+        //
+        // // Respond to pre-flighted requests.
+        // if ($request->method() == 'OPTIONS')
+        // {
+        //     // Allow the requested method.
+        //     if (in_array($request->header('Access-Control-Request-Method'), ['POST', 'PUT', 'PATCH', 'DELETE'])) {
+        //         $response->header('Access-Control-Allow-Methods', $request->header('Access-Control-Request-Method'), true);
+        //     }
+        //     // Allow requested header.
+        //     if ($request->header('Access-Control-Request-Headers')) {
+        //         $response->header('Access-Control-Allow-Headers', $request->header('Access-Control-Request-Headers'), true);
+        //     }
+        // }
 
         return $response;
     }
