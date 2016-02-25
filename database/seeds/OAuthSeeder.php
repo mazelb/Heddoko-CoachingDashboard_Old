@@ -55,7 +55,7 @@ class OAuthSeeder extends Seeder
 
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
-                'redirect_uri' => 'http://suits.heddoko.vagrant/oauth-token'
+                'redirect_uri' => 'http://heddokosuitsapp.azurewebsites.net/oauth-token'
             ]);
 
             OAuthClientEndpoint::create([
@@ -66,6 +66,11 @@ class OAuthSeeder extends Seeder
             OAuthClientEndpoint::create([
                 'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
                 'redirect_uri' => 'http://localhost:8000/oauth-token'
+            ]);
+
+            OAuthClientEndpoint::create([
+                'client_id' => 'oQUuD535CgQ1OwewridIjmokBRpU0g7mAbaJBlrs',
+                'redirect_uri' => 'http://suits.heddoko.vagrant/oauth-token'
             ]);
         }
     }
