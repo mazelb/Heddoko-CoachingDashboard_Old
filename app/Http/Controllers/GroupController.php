@@ -6,9 +6,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 
+use Illuminate\Http\Request;
+
 use App\Models\Group;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\Models\Profile;
 use App\Http\Controllers\Controller;
 
 class GroupController extends Controller

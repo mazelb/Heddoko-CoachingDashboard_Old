@@ -59,8 +59,10 @@ class MovementController extends Controller
 
         $offset = 0;
         $limit = 20;
-        $orderBy = snake_case('createdAt');
-        $orderDir = 'desc';
+        $orderBy = snake_case($this->request->get('orderBy', 'createdAt'));
+        $orderBy = in_array($orderBy, ['title', 'created_at', 'updated_at']) ? $orderBy : 'created_at';
+        $orderDir = $this->request->get('orderDir', 'desc');
+        $orderDir = in_array($orderDir, ['asc', 'desc']) ? $orderDir : 'desc';
 
         $builder->orderBy($orderBy, $orderDir)->skip($offset)->take($limit);
 
