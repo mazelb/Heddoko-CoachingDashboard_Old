@@ -15,7 +15,8 @@ Route::group(['prefix' => 'api'], function()
     /**
      * API Draft 1.
      *
-     * Middleware for these routes are defined in App\Providers\AppAuthenticationProvider
+     * Authentication middleware for these routes are implemented through the listener:
+     * App\Listeners\ApiAuthentication
      */
     Route::group(['prefix' => 'v1', 'middleware' => 'api.headers'], function()
     {
