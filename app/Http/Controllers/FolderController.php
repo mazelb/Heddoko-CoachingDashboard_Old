@@ -55,7 +55,7 @@ class FolderController extends Controller
         // Validate incoming data.
         $this->validate($this->request, [
             'name' => 'required|string|min:1|max:255',
-            'folderId' => 'int|exists:folders,id',
+            'parentId' => 'int|exists:folders,id',
         ]);
 
         // Create new folder.
@@ -139,7 +139,7 @@ class FolderController extends Controller
         // Validate incoming data.
         $this->validate($this->request, [
             'name' => 'string|min:1|max:255',
-            'folderId' => 'int|exists:folders,id',
+            'parentId' => 'int|exists:folders,id',
         ]);
 
         // Save folder data.
@@ -160,9 +160,9 @@ class FolderController extends Controller
         }
 
         // Set parent folder.
-        if ($this->request->has('folderId'))
+        if ($this->request->has('parentId'))
         {
-            $folder->folderId = $this->request->input('folderId');
+            $folder->parentId = $this->request->input('parentId');
         }
 
         // Set profile.
@@ -211,7 +211,7 @@ class FolderController extends Controller
         $deleted = false;
         if (strpos($folderId, ',') !== false)
         {
-            $folders = $builder->whereIn('id', explode(',', $folderId))->lists('id')->toArray();
+            $folders = $builder->whereIn('id', explode(',', $folderId))->pluck('id')->toArray();
 
             if (count($folders)) {
                 $deleted = Folder::destroy($folders);
