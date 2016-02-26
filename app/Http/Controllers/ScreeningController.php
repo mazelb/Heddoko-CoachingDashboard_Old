@@ -288,6 +288,11 @@ class ScreeningController extends Controller
             $deleted = Screening::destroy($id);
         }
 
-        return $deleted ? response('', 200) : response('', 500);
+        // Screening doesn't exist.
+        else {
+            return response('', 204);
+        }
+
+        return $deleted ? response('', 204) : response('', 500);
     }
 }

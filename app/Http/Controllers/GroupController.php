@@ -1,6 +1,8 @@
 <?php
 /**
+ * Copyright Heddoko(TM) 2015, all rights reserved.
  *
+ * @author  Maxwell (max@heddoko.com) & Francis Amankrah (frank@heddoko.com)
  */
 namespace App\Http\Controllers;
 

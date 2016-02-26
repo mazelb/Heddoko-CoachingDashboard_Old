@@ -7,13 +7,35 @@
  * @date    February 2016
  */
 namespace App\Models;
-use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 use Illuminate\Database\Eloquent\Model;
+
+use App\Traits\CamelCaseTrait as CamelCaseAttrs;
 
 class MovementFrame extends Model
 {
     use CamelCaseAttrs;
+
+    /**
+     * Attributes that CAN be appended to the model's array form.
+     */
+    public static $appendable = [];
+
+    /**
+     * Attributes that SHOULD be appended to the model's array form.
+     */
+    protected $appends = [];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+	protected $fillable = [
+        'movement_id',
+        'format_revision',
+        'timestamp',
+    ];
 
     /**
      * The database table used by the model.
@@ -21,13 +43,6 @@ class MovementFrame extends Model
      * @var string
      */
     protected $table = 'frames';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-	protected $fillable = ['movement_id'];
 
     /**
      * Indicates if the model should be timestamped.

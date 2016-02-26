@@ -133,6 +133,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        return Tag::destroy($id) ? response('', 200) : response('', 500);
+        return Tag::destroy($id) ? response('', 204) : response('', 500);
     }
 }

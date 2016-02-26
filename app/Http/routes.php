@@ -38,7 +38,7 @@ Route::group(['prefix' => 'api'], function()
         ]);
 
         // Movement frame endpoints.
-        Route::resource('movements.frames', 'FrameController', [
+        Route::resource('movements.frames', 'MovementFrameController', [
             'only' => ['index', 'store', 'show', 'update', 'destroy']
         ]);
 

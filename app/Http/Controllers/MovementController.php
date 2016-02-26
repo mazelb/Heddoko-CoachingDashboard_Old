@@ -293,6 +293,11 @@ class MovementController extends Controller
             $deleted = Movement::destroy($id);
         }
 
-        return $deleted ? response('', 200) : response('', 500);
+        // Movement doesn't exist.
+        else {
+            return response('', 204);
+        }
+
+        return $deleted ? response('', 204) : response('', 500);
     }
 }

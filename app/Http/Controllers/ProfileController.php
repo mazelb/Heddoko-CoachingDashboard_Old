@@ -298,7 +298,7 @@ class ProfileController extends Controller
         }
 
         // Delete profile and associated groups/movements/screenings/tags.
-        return $profile->delete() ? response('', 200) : response('', 500);
+        return $profile->delete() ? response('', 204) : response('', 500);
     }
 
     /**

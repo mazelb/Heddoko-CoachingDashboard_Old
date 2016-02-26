@@ -224,6 +224,11 @@ class FolderController extends Controller
             $deleted = Folder::destroy($folderId);
         }
 
-        return $deleted ? response('', 200) : response('', 500);
+        // Folder doesn't exist.
+        else {
+            return response('', 204);
+        }
+
+        return $deleted ? response('', 204) : response('', 500);
     }
 }
