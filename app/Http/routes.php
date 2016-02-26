@@ -63,7 +63,7 @@ Route::group(['prefix' => 'api'], function()
 
         // Tag endpoints.
         Route::resource('tags', 'TagController', [
-            'only' => ['index', 'store']
+            'only' => ['index', 'store', 'show', 'update', 'destroy']
         ]);
 
         //

@@ -15,6 +15,16 @@ use App\Http\Controllers\Controller;
 class TagController extends Controller
 {
     /**
+     *
+     */
+    const SEARCH_LIMIT = 100;
+
+    /**
+     *
+     */
+    const ORDER_DIR = 'asc';
+
+    /**
      * Constructor.
      *
      * @param \Illuminate\Http\Request $request
@@ -39,21 +49,13 @@ class TagController extends Controller
             $builder->where('title', 'like', '%'. $this->request->get('query') .'%');
         }
 
-        // Limit to 200 results or lower.
-        $limit = min(200, $this->request->get('limit', 50));
+        $offset = max(0, $this->request->get('offset', 0));
+        $limit = min(static::SEARCH_LIMIT, $this->request->get('limit', 20));
+        $orderDir = $this->request->get('orderDir', static::ORDER_DIR);
+        $orderDir = in_array($orderDir, ['asc', 'desc']) ? $orderDir : static::ORDER_DIR;
 
         // Return available tags.
-        return $builder->limit($limit)->get();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response('Not Implemented.', 501);
+        return $builder->orderBy('title', $orderDir)->skip($offset)->limit($limit)->get();
     }
 
     /**
@@ -88,30 +90,39 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        return response('Not Implemented.', 501);
-    }
+        if ($tag = Tag::find($id)) {
+            return $tag;
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return response('Not Implemented.', 501);
+        return response('Tag Not Found.', 404);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        return response('Not Implemented.', 501);
+        // Performance check.
+        if (!$tag = Tag::find($id)) {
+            return response('Tag Not Found.', 404);
+        }
+
+        // Make sure we have a valid title.
+        $title = trim($this->request->input('title'));
+        if (strlen($title) < 1) {
+            return response('Tag Title Too Short.', 400);
+        }
+
+        $tag->title = $title;
+
+        if (!$tag->save()) {
+            return response('Could not save tag.', 500);
+        }
+
+        return $tag;
     }
 
     /**
@@ -122,6 +133,6 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        return response('Not Implemented.', 501);
+        return Tag::destroy($id) ? response('', 200) : response('', 500);
     }
 }

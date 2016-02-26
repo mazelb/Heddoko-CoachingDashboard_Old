@@ -61,10 +61,12 @@ class ScreeningController extends Controller
 
         // Retrieve other search parameters. We\ll also make sure we have positive values
         // for "limit" and "offset".
-        $limit = max(0, min(50, $this->request->input('limit', static::SEARCH_LIMIT)));
+        $limit = max(0, min(static::SEARCH_LIMIT, $this->request->input('limit', 20)));
         $offset = max(0, $this->request->input('offset', 0));
-        $orderBy = snake_case($this->request->input('orderBy', 'createdAt'));
-        $orderDir = $this->request->input('orderDir', 'desc');
+        $orderBy = snake_case($this->request->get('orderBy', 'createdAt'));
+        $orderBy = in_array($orderBy, ['title', 'created_at', 'updated_at']) ? $orderBy : 'created_at';
+        $orderDir = $this->request->get('orderDir', 'desc');
+        $orderDir = in_array($orderDir, ['asc', 'desc']) ? $orderDir : 'desc';
 
         // Add search query.
         // TODO...
@@ -266,8 +268,26 @@ class ScreeningController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Make sure that only screenings accessible by the authenticated user can be deleted.
+        $builder = Screening::whereIn('profile_id', Auth::user()->getProfileIDs());
 
-        return response('Not Implemented.', 501);
+        // Delete an array of screenings.
+        $deleted = false;
+        if (strpos($id, ',') !== false)
+        {
+            $screenings = $builder->whereIn('id', explode(',', $id))->pluck('id')->toArray();
+
+            if (count($screenings)) {
+                $deleted = Screening::destroy($screenings);
+            }
+        }
+
+        // Delete a single screening.
+        elseif ($builder->exists($id))
+        {
+            $deleted = Screening::destroy($id);
+        }
+
+        return $deleted ? response('', 200) : response('', 500);
     }
 }

@@ -31,7 +31,8 @@ class FrameController extends Controller
      */
     public function index($movementId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -42,7 +43,8 @@ class FrameController extends Controller
      */
     public function create($movementId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -53,7 +55,8 @@ class FrameController extends Controller
      */
     public function store($movementId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -65,7 +68,8 @@ class FrameController extends Controller
      */
     public function show($movementId, $frameId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -77,7 +81,8 @@ class FrameController extends Controller
      */
     public function edit($movementId, $frameId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -89,7 +94,8 @@ class FrameController extends Controller
      */
     public function update($movementId, $frameId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 
     /**
@@ -101,6 +107,7 @@ class FrameController extends Controller
      */
     public function destroy($movementId, $frameId)
     {
-        //
+        // TODO
+        return response('In Development.', 501);
     }
 }

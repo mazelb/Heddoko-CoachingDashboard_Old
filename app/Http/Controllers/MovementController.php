@@ -22,6 +22,8 @@ use App\Http\Controllers\Controller;
 
 class MovementController extends Controller
 {
+    CONST SEARCH_LIMIT = 50;
+
     /**
      * @param \Illuminate\Http\Request $request
      */
@@ -55,10 +57,9 @@ class MovementController extends Controller
             $builder = Movement::whereIn('profile_id', Auth::user()->getProfileIDs());
         }
 
-        // ...
-
-        $offset = 0;
-        $limit = 20;
+        // Search parameters.
+        $limit = max(0, min(static::SEARCH_LIMIT, $this->request->input('limit', 20)));
+        $offset = max(0, $this->request->input('offset', 0));
         $orderBy = snake_case($this->request->get('orderBy', 'createdAt'));
         $orderBy = in_array($orderBy, ['title', 'created_at', 'updated_at']) ? $orderBy : 'created_at';
         $orderDir = $this->request->get('orderDir', 'desc');
